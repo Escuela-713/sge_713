@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Registro de Provincia</title>
-<meta charset="UTF-8">
-<title>Registro de Empleados</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.min.css" >
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+	<meta charset="UTF-8">
+	<title>Registro de Provincia</title>
+	<meta charset="UTF-8">
+	<title>Registro de Empleados</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css" >
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 	<?php include("nav.php");?>  
@@ -27,7 +26,7 @@
 		</div>
 	</div>
 	<?php include("footer.php");?>  
-		<!-- Add Modal HTML -->
+	<!-- Add Modal HTML -->
 	<?php include("modal/modal_nuevo_provincia.php");?>
 	<!-- Edit Modal HTML -->
 	<?php include("modal/modal_modificar_provincia.php");?>

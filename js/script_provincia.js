@@ -11,9 +11,9 @@
 			$.ajax({
 				url:'ajax/listar_provincias.php',
 				data: parametros,
-				 beforeSend: function(objeto){
-				$("#loader").html("Cargando...");
-			  },
+				beforeSend: function(objeto){
+					$("#loader").html("Cargando...");
+				},
 				success:function(data){
 					$(".outer_div").html(data).fadeIn('slow');
 					$("#loader").html("");
@@ -36,56 +36,56 @@
 		})
 		
 		$("#edit_provincia" ).submit(function( event ) {
-		  var parametros = $(this).serialize();
+			var parametros = $(this).serialize();
 			$.ajax({
-					type: "POST",
-					url: "ajax/modificar_provincia.php",
-					data: parametros,
-					 beforeSend: function(objeto){
-						$("#resultados").html("Enviando...");
-					  },
-					success: function(datos){
+				type: "POST",
+				url: "ajax/modificar_provincia.php",
+				data: parametros,
+				beforeSend: function(objeto){
+					$("#resultados").html("Enviando...");
+				},
+				success: function(datos){
 					$("#resultados").html(datos);
 					load(1);
 					$('#editProvinciaModal').modal('hide');
-				  }
+				}
 			});
-		  event.preventDefault();
+			event.preventDefault();
 		});
 		
 		
 		$( "#add_provincia" ).submit(function( event ) {
-		  var parametros = $(this).serialize();
+			var parametros = $(this).serialize();
 			$.ajax({
-					type: "POST",
-					url: "ajax/nuevo_provincia.php",
-					data: parametros,
-					 beforeSend: function(objeto){
-						$("#resultados").html("Enviando...");
-					  },
-					success: function(datos){
+				type: "POST",
+				url: "ajax/nuevo_provincia.php",
+				data: parametros,
+				beforeSend: function(objeto){
+					$("#resultados").html("Enviando...");
+				},
+				success: function(datos){
 					$("#resultados").html(datos);
 					load(1);
 					$('#addProvinciaModal').modal('hide');
-				  }
+				}
 			});
-		  event.preventDefault();
+			event.preventDefault();
 		});
 		
 		$( "#delete_provincia" ).submit(function( event ) {
-		  var parametros = $(this).serialize();
+			var parametros = $(this).serialize();
 			$.ajax({
-					type: "POST",
-					url: "ajax/eliminar_provincia.php",
-					data: parametros,
-					 beforeSend: function(objeto){
-						$("#resultados").html("Enviando...");
-					  },
-					success: function(datos){
+				type: "POST",
+				url: "ajax/eliminar_provincia.php",
+				data: parametros,
+				beforeSend: function(objeto){
+					$("#resultados").html("Enviando...");
+				},
+				success: function(datos){
 					$("#resultados").html(datos);
 					load(1);
 					$('#deleteProvinciaModal').modal('hide');
-				  }
+				}
 			});
-		  event.preventDefault();
+			event.preventDefault();
 		});

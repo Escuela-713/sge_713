@@ -1,22 +1,22 @@
 <?php
-	//Valido que el usuario ingrese el valor del país
-if (empty($_POST['name']or$_POST['cp'] or $_POST['name_provincia']))
+
+if (empty($_POST['nombre']))
 {
-	$errors[] = "Ingrese todos los datos requeridos";
+	$errors[] = "Ingresa el nombre de la Provincia.";
 } 
 
-elseif (!empty($_POST['name']&&$_POST['cp']&&$_POST['name_provincia']))
+elseif (!empty($_POST['nombre'] ))
 {
 	
-	require_once ("conexion.php");//Contiene founcion que conecta a la base de datos
+	require_once ("conexion.php");//Contiene funcion que conecta a la base de datos
 	
-	$localidad_name = mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
-	$localidad_cp=mysqli_real_escape_string($con,(strip_tags($_POST["cp"],ENT_QUOTES)));
-	$localidad_name_provincia=mysqli_real_escape_string($con,(strip_tags($_POST["name_provincia"],ENT_QUOTES)));
+	$provincia_name = mysqli_real_escape_string($con,(strip_tags($_POST["nombre"],ENT_QUOTES)));
+	$pais_id = intval($_POST["pais"]);
 	
 	// INSERT data into database
-	$sql = "call nuevo_localidad('".$localidad_name."''".$localidad_cp."''".$localidad_name_provincia."')";
+	$sql = "call nuevo_provincia('".$provincia_name."','".$pais_id."')";
 	$query = mysqli_query($con,$sql);
+	
     // if product has been added successfully
 	if ($query) 
 	{
