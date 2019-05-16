@@ -12,21 +12,19 @@ if($action == 'ajax'){
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th>Id Pais</th>
+						<th class="d-none">Id Pais</th>
 						<th>Nombre</th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>	
 						<?php 
-						$finales=0;
 						while($row = mysqli_fetch_array($query)){	
 							$pais_id=$row['id_pais'];
 							$pais_name=$row['nombre'];
-							$finales++;
 						?>	
 						<tr>
-							<td ><?php echo $pais_id;?></td>
+							<td class="d-none"><?php echo $pais_id;?></td>
 							<td ><?php echo $pais_name;?></td>
 							<td class = "text-right">
 								<a href="#"  class="btn btn-info" data-target="#editPaisModal" class="edit" data-toggle="modal" data-id='<?php echo $pais_id;?>' data-name="<?php echo $pais_name?>"><span class="glyphicon glyphicon-edit" ></span>Editar</a>
