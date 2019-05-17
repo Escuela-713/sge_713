@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Registro de Localidades</title>
+	<meta charset="UTF-8">
+	<title>Registro de Localidades</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.min.css" >
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css" >
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
 	<?php include("nav.php");?>  
@@ -16,7 +16,7 @@
 			<h2>Lista de localidades</h2>
 			<hr />
 			<br />
-			<a href="#addLocalidadModal" class="btn btn-success" data-toggle="modal"><span>Agregar nueva localidad</span></a>
+			<a href="#addLocalidadModal" class="btn btn-success" data-toggle="modal"><span>Agregar Nueva Localidad</span></a>
 			
 			<div class='clearfix'></div>
 			
@@ -32,9 +32,9 @@
 	<!-- Add Modal HTML -->
 	<?php include("modal/modal_nuevo_localidad.php");?>
 	<!-- Edit Modal HTML -->
-	<!-- <?php include("modal/modal_modificar_localidad.php");?>
+    <?php include("modal/modal_modificar_localidad.php");?>
 	
-	<?php include("modal/modal_eliminar_localidad.php");?> -->
+	<?php include("modal/modal_eliminar_localidad.php");?> 
 
 	<?php include("modal/login.php");?>
 
