@@ -111,8 +111,6 @@ $(function() {
 		  var cp=button.data('cp');
 		  $('#edit_cp').val(cp);
 		  var id_provincia=button.data('idprovincia');	
-		  var nombre_provincia=button.data('nombreprovincia');	
-		  $('#edit_id_provincia').val(id_provincia);
 		  var id_pais=button.data('idpais');
 		  $('select[name="id_pais_m"]').val(id_pais);
 

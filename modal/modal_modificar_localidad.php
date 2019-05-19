@@ -45,7 +45,6 @@ require_once "ajax/db_provincia.php"
 					</div>
 					<div class="form-group">
 						<label>Provincia</label>
-						<input type="text" id="edit_id_provincia" name="edit_id_provincia" >
 						<select name="id_provincia_m" id="id_provincia_m">
 							<option value="0">No hay datos</option>;
 						</select>
