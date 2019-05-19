@@ -20,6 +20,45 @@ $(function() {
 			})
 		}
 
+		$('#id_pais').on('change',function(){
+			var id_pais=this.value;
+
+			if (id_pais)
+			{
+				$.ajax({
+					type: "POST",
+					url:"ajax/listar_provincias_por_pais.php",
+					data:{id_pais:id_pais},
+					success:function (data)
+					{
+						$("#id_provincia").html(data);
+					}
+
+				})
+			}
+		})
+
+
+		$('#id_pais_m').on('change',function(){
+			var id_pais=this.value;
+
+			if (id_pais)
+			{
+				$.ajax({
+					type: "POST",
+					url:"ajax/listar_provincias_por_pais.php",
+					data:{id_pais:id_pais},
+					success:function (data)
+					{
+						$("#id_provincia_m").html(data);
+
+					},
+
+				})
+
+			}
+		})
+
 		$( "#add_localidad" ).submit(function( event ) {
 			var parametros = $(this).serialize();
 			$.ajax({
@@ -71,9 +110,26 @@ $(function() {
 		  $('#edit_id').val(id);
 		  var cp=button.data('cp');
 		  $('#edit_cp').val(cp);
-		  var id_provincia=button.data('idprovincia');
+		  var id_provincia=button.data('idprovincia');	
+		  var nombre_provincia=button.data('nombreprovincia');	
 		  $('#edit_id_provincia').val(id_provincia);
+		  var id_pais=button.data('idpais');
+		  $('select[name="id_pais_m"]').val(id_pais);
+
+		  $.ajax({
+		  	type: "POST",
+		  	url:"ajax/listar_provincias_por_pais.php",
+		  	data:{id_pais:id_pais},
+		  	success:function (data)
+		  	{
+		  		$("#id_provincia_m").html(data);
+		  		$('select[name="id_provincia_m"]').val(id_provincia);
+		  	},
+
+		  })
+
 		})
+
 
 		$("#edit_localidad" ).submit(function( event ) {
 			var parametros = $(this).serialize();

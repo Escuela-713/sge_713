@@ -1,6 +1,6 @@
-<?php
-	include("ajax/conexion.php");
-	//Contiene funcion que conecta a la base de datos
+<?php 
+require_once "ajax/db_pais.php";
+require_once "ajax/db_provincia.php"
 ?>
 <div id="editLocalidadModal" class="modal fade">
 	<div class="modal-dialog">
@@ -24,19 +24,30 @@
 					</div>
 
 					<div class="form-group">
-						<label>Provincia</label>
-						<select name="edit_id_provincia" id="edit_id_provincia">
+						<label>Pais</label>
+						<select name="id_pais_m" id="id_pais_m" >
 							<?php
-							$sql = mysqli_query($con, "call obtener_provincias();");
-							if(mysqli_num_rows($sql) == 0){
+							$obj=new pais();
+							$sql=$obj->obtener_paises();
+							if(mysqli_num_rows($sql) == 0)
+							{
 								echo '<option value="0">No hay datos</option>';
 							}
-							else{
+							else
+							{
+								echo '<option value="0">Seleccione</option>';
 								while ($row = mysqli_fetch_assoc($sql)) {
-									echo '<option value="'.$row['id_provincia'].'">'.$row['nombre'].'</option>';
+									echo '<option value="'.$row['id_pais'].'">'.$row['nombre'].'</option>';
 								}
 							}
 							?>	
+						</select>
+					</div>
+					<div class="form-group">
+						<label>Provincia</label>
+						<input type="text" id="edit_id_provincia" name="edit_id_provincia" >
+						<select name="id_provincia_m" id="id_provincia_m">
+							<option value="0">No hay datos</option>;
 						</select>
 					</div>
 

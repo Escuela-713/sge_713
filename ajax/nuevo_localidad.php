@@ -1,5 +1,6 @@
 <?php
 	//Valido que el usuario ingrese el valor del país
+require_once "db_localidad.php";
 
 if (empty($_POST['name'] ))
 {
@@ -8,16 +9,14 @@ if (empty($_POST['name'] ))
 
 elseif (!empty($_POST['name'] && $_POST['id_provincia']))
 {
-	
-	require_once ("conexion.php");//Contiene founcion que conecta a la base de datos
-	
+	require_once ("conexion.php");
 	$localidad_name = mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
 	$localidad_cp=intval($_POST["cp"]);
 	$localidad_id_provincia=intval($_POST["id_provincia"]);
 	
 	// INSERT data into database
-	$sql = "call nuevo_localidad('".$localidad_name."',".$localidad_cp.",".$localidad_id_provincia.")";
-	$query = mysqli_query($con,$sql);
+	$obj=new localidad();
+	$query=$obj->nuevo_localidad($localidad_name,$localidad_cp,$localidad_id_provincia);
     // if product has been added successfully
 	if ($query) 
 	{

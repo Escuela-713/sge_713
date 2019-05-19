@@ -18,7 +18,6 @@
 			<br />
 			<a href="#addProvinciaModal" class="btn btn-success" data-toggle="modal"><span>Agregar Nueva Provincia</span></a>
 			<div class='clearfix'></div>
-			
 			<div id="loader"></div><!-- Carga de datos ajax aqui -->
 			<div id="resultados"></div><!-- Carga de datos ajax aqui -->
 			<div class='outer_div'></div><!-- Carga de datos ajax aqui -->
