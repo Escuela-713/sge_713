@@ -9,7 +9,7 @@
 			var parametros = {"action":"ajax"};
 			$("#loader").fadeIn('slow');
 			$.ajax({
-				url:'ajax/listar_provincias.php',
+				url:'php/listar_provincias.php',
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#loader").html("Cargando...");
@@ -39,7 +39,7 @@
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
-				url: "ajax/modificar_provincia.php",
+				url: "php/modificar_provincia.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Enviando...");
@@ -58,7 +58,7 @@
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
-				url: "ajax/nuevo_provincia.php",
+				url: "php/nuevo_provincia.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Enviando...");
@@ -76,7 +76,7 @@
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
-				url: "ajax/eliminar_provincia.php",
+				url: "php/eliminar_provincia.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Enviando...");

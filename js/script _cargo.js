@@ -9,7 +9,7 @@
 			var parametros = {"action":"ajax"};
 			$("#loader").fadeIn('slow');
 			$.ajax({
-				url:'ajax/listar_cargo.php',
+				url:'php/listar_cargo.php',
 				data: parametros,
 				 beforeSend: function(objeto){
 				$("#loader").html("Cargando...");
@@ -37,7 +37,7 @@
 		  var parametros = $(this).serialize();
 			$.ajax({
 					type: "POST",
-					url: "ajax/modificar_cargo.php",
+					url: "php/modificar_cargo.php",
 					data: parametros,
 					 beforeSend: function(objeto){
 						$("#resultados").html("Enviando...");
@@ -55,7 +55,7 @@
 		  var parametros = $(this).serialize();
 			$.ajax({
 					type: "POST",
-					url: "ajax/nuevo_cargo.php",
+					url: "php/nuevo_cargo.php",
 					data: parametros,
 					 beforeSend: function(objeto){
 						$("#resultados").html("Enviando...");
@@ -79,7 +79,7 @@
 		  var parametros = $(this).serialize();
 			$.ajax({
 					type: "POST",
-					url: "ajax/eliminar_cargo.php",
+					url: "php/eliminar_cargo.php",
 					data: parametros,
 					 beforeSend: function(objeto){
 						$("#resultados").html("Enviando...");

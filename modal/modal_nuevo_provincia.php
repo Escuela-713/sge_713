@@ -1,5 +1,5 @@
 <?php
-include("ajax/conexion.php");
+include("php/conexion.php");
 ?>
 <div id="addProvinciaModal" class="modal fade">
 	<div class="modal-dialog">

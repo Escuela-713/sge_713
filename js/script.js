@@ -8,7 +8,7 @@
 			var parametros = {"action":"ajax"};
 			$("#loader").fadeIn('slow');
 			$.ajax({
-				url:'ajax/listar_paises.php',
+				url:'php/listar_paises.php',
 				data: parametros,
 				 beforeSend: function(objeto){
 				$("#loader").html("Cargando...");
@@ -38,7 +38,7 @@
 		  var parametros = $(this).serialize();
 			$.ajax({
 					type: "POST",
-					url: "ajax/modificar_pais.php",
+					url: "php/modificar_pais.php",
 					data: parametros,
 					 beforeSend: function(objeto){
 						$("#resultados").html("Enviando...");
@@ -57,7 +57,7 @@
 		  var parametros = $(this).serialize();
 			$.ajax({
 					type: "POST",
-					url: "ajax/nuevo_pais.php",
+					url: "php/nuevo_pais.php",
 					data: parametros,
 					 beforeSend: function(objeto){
 						$("#resultados").html("Enviando...");
@@ -75,7 +75,7 @@
 		  var parametros = $(this).serialize();
 			$.ajax({
 					type: "POST",
-					url: "ajax/eliminar_pais.php",
+					url: "php/eliminar_pais.php",
 					data: parametros,
 					 beforeSend: function(objeto){
 						$("#resultados").html("Enviando...");

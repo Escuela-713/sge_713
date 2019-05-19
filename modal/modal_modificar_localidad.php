@@ -1,7 +1,3 @@
-<?php 
-require_once "ajax/db_pais.php";
-require_once "ajax/db_provincia.php"
-?>
 <div id="editLocalidadModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -26,21 +22,7 @@ require_once "ajax/db_provincia.php"
 					<div class="form-group">
 						<label>Pais</label>
 						<select name="id_pais_m" id="id_pais_m" >
-							<?php
-							$obj=new pais();
-							$sql=$obj->obtener_paises();
-							if(mysqli_num_rows($sql) == 0)
-							{
-								echo '<option value="0">No hay datos</option>';
-							}
-							else
-							{
-								echo '<option value="0">Seleccione</option>';
-								while ($row = mysqli_fetch_assoc($sql)) {
-									echo '<option value="'.$row['id_pais'].'">'.$row['nombre'].'</option>';
-								}
-							}
-							?>	
+							<option value="0">No hay datos</option>;
 						</select>
 					</div>
 					<div class="form-group">

@@ -8,7 +8,7 @@ $(function() {
 			var parametros = {"action":"ajax"};
 			$("#loader").fadeIn('slow');
 			$.ajax({
-				url:'ajax/listar_localidades.php',
+				url:'php/listar_localidades.php',
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#loader").html("Cargando...");
@@ -27,7 +27,7 @@ $(function() {
 			{
 				$.ajax({
 					type: "POST",
-					url:"ajax/listar_provincias_por_pais.php",
+					url:"php/select_options_listar_provincias_por_pais.php",
 					data:{id_pais:id_pais},
 					success:function (data)
 					{
@@ -46,7 +46,7 @@ $(function() {
 			{
 				$.ajax({
 					type: "POST",
-					url:"ajax/listar_provincias_por_pais.php",
+					url:"php/select_options_listar_provincias_por_pais.php",
 					data:{id_pais:id_pais},
 					success:function (data)
 					{
@@ -63,7 +63,7 @@ $(function() {
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
-				url: "ajax/nuevo_localidad.php",
+				url: "php/nuevo_localidad.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Enviando...");
@@ -77,6 +77,20 @@ $(function() {
 			event.preventDefault();
 		});
 
+		$('#addLocalidadModal').on('show.bs.modal', function (event) {
+			  //cargo lista desplegable paises
+		  $.ajax({
+		  	type: "POST",
+		  	url:"php/select_options_listar_paises.php",
+		  	success:function (data)
+		  	{
+		  		$("#id_pais").html(data);
+		  	},
+
+		  })
+
+		})
+
 		$('#deleteLocalidadModal').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget) // Button that triggered the modal
 		  var id = button.data('id') 
@@ -87,7 +101,7 @@ $(function() {
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
-				url: "ajax/eliminar_localidad.php",
+				url: "php/eliminar_localidad.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Enviando...");
@@ -102,6 +116,7 @@ $(function() {
 		});
 
 
+
 		$('#editLocalidadModal').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget); // Button that triggered the modal
 		  var name = button.data('name') ;
@@ -112,11 +127,23 @@ $(function() {
 		  $('#edit_cp').val(cp);
 		  var id_provincia=button.data('idprovincia');	
 		  var id_pais=button.data('idpais');
-		  $('select[name="id_pais_m"]').val(id_pais);
 
+		  //cargo lista desplegable paises
 		  $.ajax({
 		  	type: "POST",
-		  	url:"ajax/listar_provincias_por_pais.php",
+		  	url:"php/select_options_listar_paises.php",
+		  	success:function (data)
+		  	{
+		  		$("#id_pais_m").html(data);
+		  		$('select[name="id_pais_m"]').val(id_pais);
+		  	},
+
+		  })
+
+		  //cargo lista desplegable provincias
+		  $.ajax({
+		  	type: "POST",
+		  	url:"php/select_options_listar_provincias_por_pais.php",
 		  	data:{id_pais:id_pais},
 		  	success:function (data)
 		  	{
@@ -133,7 +160,7 @@ $(function() {
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
-				url: "ajax/modificar_localidad.php",
+				url: "php/modificar_localidad.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Enviando...");

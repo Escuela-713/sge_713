@@ -9,7 +9,7 @@
 			var parametros = {"action":"ajax"};
 			$("#loader").fadeIn('slow');
 			$.ajax({
-				url:'ajax/listar_orientaciones.php',
+				url:'php/listar_orientaciones.php',
 				data: parametros,
 				 beforeSend: function(objeto){
 				$("#loader").html("Cargando...");
@@ -35,7 +35,7 @@ $(document).ready(function (){
 		  var parametros = $(this).serialize();
 			$.ajax({
 					type: "POST",
-					url: "ajax/eliminar_orientacion.php",
+					url: "php/eliminar_orientacion.php",
 					data: parametros,
 					 beforeSend: function(objeto){
 						$("#resultados").html("Enviando...");
@@ -54,7 +54,7 @@ $(document).ready(function (){
 		  console.log("orientacion enviadoa");
 			$.ajax({
 					type: "POST",
-					url: "ajax/nuevo_orientacion.php",
+					url: "php/nuevo_orientacion.php",
 					data: parametros,
 					 beforeSend: function(objeto){
 						$("#resultados").html("Enviando...");
