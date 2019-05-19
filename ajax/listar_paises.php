@@ -1,11 +1,12 @@
 <?php
-include("conexion.php");
+require_once "db_pais.php";
 
 $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 if($action == 'ajax'){
 	
 	
-	$query   = mysqli_query($con,"call obtener_paises()");
+	$obj=new pais();
+	$query=$obj->obtener_paises();
 	
 	?>
 	<div class="table-responsive">

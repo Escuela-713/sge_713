@@ -11,9 +11,9 @@
 			$id=intval($_POST['edit_id']);
 			
 			// UPDATE data into database
-		    $sql = "call modificar_pais('".$name."',".$id.")";
-		    	 
-			$query = mysqli_query($con,$sql);
+			require_once "db_pais.php";
+			$obj=new pais();
+		    $query =$obj->modificar_pais($id,$name);
 		    // if product has been added successfully
 		    if ($query) {
 		        $messages[] = "El registro ha sido actualizado con éxito.";

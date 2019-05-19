@@ -7,8 +7,9 @@
     $id_pais=intval($_POST['delete_id']);
 	
 	// DELETE FROM  database
-    $sql = "call eliminar_pais(".$id_pais.")";
-    $query = mysqli_query($con,$sql);
+    require_once "db_pais.php";
+    $obj=new pais();
+    $query=$obj->eliminar_pais($id_pais);
     // if product has been added successfully
     if ($query) {
         $messages[] = "El registro ha sido eliminado con éxito.";

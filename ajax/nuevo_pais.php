@@ -1,4 +1,5 @@
 <?php
+	require_once "db_pais.php";
 	//Valido que el usuario ingrese el valor del país
 	if (empty($_POST['name']))
 	{
@@ -7,14 +8,13 @@
 
 	elseif (!empty($_POST['name']))
 	{
-	
-	require_once ("conexion.php");//Contiene funcion que conecta a la base de datos
-	
+	include ("conexion.php");
     $pais_name = mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
 	
-	// INSERT data into database
-    $sql = "call nuevo_pais('".$pais_name."')";
-    $query = mysqli_query($con,$sql);
+	$obj=new pais();
+
+    $query = $obj->nuevo_pais($pais_name);
+	
     // if product has been added successfully
     if ($query) 
     {
