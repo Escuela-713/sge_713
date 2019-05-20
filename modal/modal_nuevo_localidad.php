@@ -10,11 +10,11 @@
 					<!-- Defino un grupo por cada dato que se va a representar en el formulario -->				
 					<div class="form-group">
 						<label>Localidad</label>
-						<input type="text" name="name" id="name" class="form-control" required>
+						<input type="text" name="name" id="name" class="form-control" placeholder="Ingrese aquí la Localidad" required>
 					</div>
 					<div class="form-group">
 						<label>Código Postal</label>
-						<input type="number" name="cp" id="cp" class="form-control" >
+						<input type="number" name="cp" id="cp" class="form-control" placeholder="Ingrese aquí el Código Postal" >
 					</div>
 					<div class="form-group">
 						<label>Pais</label>

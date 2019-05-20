@@ -9,11 +9,11 @@
 			var parametros = {"action":"ajax"};
 			$("#loader").fadeIn('slow');
 			$.ajax({
-				url:'php/listar_cargo.php',
+				url:'php/listar_cargos.php',
 				data: parametros,
-				 beforeSend: function(objeto){
-				$("#loader").html("Cargando...");
-			  },
+				beforeSend: function(objeto){
+					$("#loader").html("Cargando...");
+				},
 				success:function(data){
 					$(".outer_div").html(data).fadeIn('slow');
 					$("#loader").html("");
@@ -21,9 +21,8 @@
 			})
 		}
 
-
 		$('#editCargoModal').on('show.bs.modal', function (event) {
-		  console.log("evento on");
+			console.log("evento on");
 		  var button = $(event.relatedTarget); // Button that triggered the modal
 		  var name = button.data('name'); 
 		  var descripcion= button.data('descripcion');
@@ -34,39 +33,39 @@
 		})
 
 		$("#edit_cargo" ).submit(function( event ) {
-		  var parametros = $(this).serialize();
+			var parametros = $(this).serialize();
 			$.ajax({
-					type: "POST",
-					url: "php/modificar_cargo.php",
-					data: parametros,
-					 beforeSend: function(objeto){
-						$("#resultados").html("Enviando...");
-					  },
-					success: function(datos){
+				type: "POST",
+				url: "php/modificar_cargo.php",
+				data: parametros,
+				beforeSend: function(objeto){
+					$("#resultados").html("Enviando...");
+				},
+				success: function(datos){
 					$("#resultados").html(datos);
 					load(1);
 					$('#editCargoModal').modal('hide');
-				  }
+				}
 			});
-		  event.preventDefault();
+			event.preventDefault();
 		});
 		
 		$("#add_cargo" ).submit(function( event ) {
-		  var parametros = $(this).serialize();
+			var parametros = $(this).serialize();
 			$.ajax({
-					type: "POST",
-					url: "php/nuevo_cargo.php",
-					data: parametros,
-					 beforeSend: function(objeto){
-						$("#resultados").html("Enviando...");
-					  },
-					success: function(datos){
+				type: "POST",
+				url: "php/nuevo_cargo.php",
+				data: parametros,
+				beforeSend: function(objeto){
+					$("#resultados").html("Enviando...");
+				},
+				success: function(datos){
 					$("#resultados").html(datos);
 					load(1);
 					$('#addCargoModal').modal('hide');
-				  }
+				}
 			});
-		  event.preventDefault();
+			event.preventDefault();
 		});
 
 		$('#deleteCargoModal').on('show.bs.modal', function (event) {
@@ -76,19 +75,19 @@
 		})
 		
 		$( "#delete_cargo" ).submit(function( event ) {
-		  var parametros = $(this).serialize();
+			var parametros = $(this).serialize();
 			$.ajax({
-					type: "POST",
-					url: "php/eliminar_cargo.php",
-					data: parametros,
-					 beforeSend: function(objeto){
-						$("#resultados").html("Enviando...");
-					  },
-					success: function(datos){
+				type: "POST",
+				url: "php/eliminar_cargo.php",
+				data: parametros,
+				beforeSend: function(objeto){
+					$("#resultados").html("Enviando...");
+				},
+				success: function(datos){
 					$("#resultados").html(datos);
 					load(1);
 					$('#deleteCargoModal').modal('hide');
-				  }
+				}
 			});
-		  event.preventDefault();
+			event.preventDefault();
 		});

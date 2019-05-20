@@ -1,6 +1,3 @@
-<?php
-include("ajax/conexion.php");
-?>
 <div id="addCargoModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -12,11 +9,11 @@ include("ajax/conexion.php");
 					<div class="modal-body">					
 						<div class="form-group">
 							<label>Cargo</label>
-							<input type="text" name="nombre" id="nombre" class="form-control" required>
+							<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese aquí el Cargo" required>
 						</div>			
 						<div class="form-group">
 							<label>Descripción</label>
-							<textarea  name="descripcion" id="descripcion" class="form-control"></textarea>
+							<textarea  name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese aquí la Descripción"></textarea>
 						</div>
 					</div>
 					<div class="modal-footer">

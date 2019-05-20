@@ -1,5 +1,5 @@
 <?php
-
+require_once "db_provincia.php";
 if (empty($_POST['nombre']))
 {
 	$errors[] = "Ingresa el nombre de la Provincia.";
@@ -14,8 +14,8 @@ elseif (!empty($_POST['nombre'] ))
 	$pais_id = intval($_POST["id_pais"]);
 	
 	// INSERT data into database
-	$sql = "call nuevo_provincia('".$provincia_name."','".$pais_id."')";
-	$query = mysqli_query($con,$sql);
+	$obj=new provincia();
+	$query = $obj->nuevo_provincia($provincia_name,$pais_id);
 	
     // if product has been added successfully
 	if ($query) 

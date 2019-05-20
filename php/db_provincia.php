@@ -32,5 +32,13 @@ class provincia
 		return $sql;
 
 	}
+
+	public function nuevo_provincia($nombre,$id_pais)
+	{
+		include("conexion.php");
+		$sql = mysqli_query($con,"call nuevo_provincia('".$nombre."',".$id_pais.")");
+		return $sql;
+
+	}
 }
 ?>

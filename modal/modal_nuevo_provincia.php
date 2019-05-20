@@ -12,7 +12,7 @@ include("php/conexion.php");
 				<div class="modal-body">					
 					<div class="form-group">
 						<label>Provincia</label>
-						<input type="text" name="nombre" id="nombre" class="form-control" required>
+						<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese aquí la Provincia" required>
 					</div>
 					<div class="form-group">
 						<label>Pais</label>
