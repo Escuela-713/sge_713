@@ -1,6 +1,3 @@
-<?php
-include("php/conexion.php");
-?>
 <div id="editProvinciaModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -19,18 +16,8 @@ include("php/conexion.php");
 
 					<div class="form-group">
 						<label>Pais</label>
-						<select name="id_pais" id="id_pais">
-							<?php
-							$sql = mysqli_query($con, "call obtener_paises();");
-							if(mysqli_num_rows($sql) == 0){
-								echo '<option value="0">No hay datos</option>';
-							}
-							else{
-								while ($row = mysqli_fetch_assoc($sql)) {
-									echo '<option value="'.$row['id_pais'].'">'.$row['nombre'].'</option>';
-								}
-							}
-							?>	
+						<select name="id_pais_m" id="id_pais_m">
+							<option value="0">No hay datos</option>
 						</select>
 					</div>
 

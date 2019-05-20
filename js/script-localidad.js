@@ -2,7 +2,7 @@ $(function() {
 	load(1);
 });
 
-		//Funcion que se ejecuta al iniciar el form. Lista los paises en el div loader
+		//Función que refresca la tabla
 		function load(page){
 			var query=$("#q").val();
 			var parametros = {"action":"ajax"};
@@ -20,6 +20,7 @@ $(function() {
 			})
 		}
 
+		//Evento que se ejecuta cuando el usuario cambia la selección de la lista desplegable en el modal nuevo.
 		$('#id_pais').on('change',function(){
 			var id_pais=this.value;
 
@@ -38,7 +39,7 @@ $(function() {
 			}
 		})
 
-
+		//Evento que se ejecuta cuando el usuario cambia la selección de la lista desplegable en el modal modificar.
 		$('#id_pais_m').on('change',function(){
 			var id_pais=this.value;
 
@@ -59,6 +60,7 @@ $(function() {
 			}
 		})
 
+		//Evento que se ejecuta cuando el usuario presiona el botón enviar del modal agregar.
 		$( "#add_localidad" ).submit(function( event ) {
 			var parametros = $(this).serialize();
 			$.ajax({
@@ -77,6 +79,7 @@ $(function() {
 			event.preventDefault();
 		});
 
+		//Evento que se ejecuta cuando se inicia el modal agregar.
 		$('#addLocalidadModal').on('show.bs.modal', function (event) {
 			  //cargo lista desplegable paises
 		  $.ajax({
@@ -91,12 +94,14 @@ $(function() {
 
 		})
 
+		//Evento que se ejecuta cuando se inicia el modal eliminar
 		$('#deleteLocalidadModal').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget) // Button that triggered the modal
 		  var id = button.data('id') 
 		  $('#delete_id').val(id)
 		})
 		
+		//Evento que se ejecuta cuando el usuario presiona el botón enviar del modal eliminar.
 		$( "#delete_localidad" ).submit(function( event ) {
 			var parametros = $(this).serialize();
 			$.ajax({
@@ -115,8 +120,7 @@ $(function() {
 			event.preventDefault();
 		});
 
-
-
+		//Evento que se ejecuta cuando se inicia el modal de edición.  
 		$('#editLocalidadModal').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget); // Button that triggered the modal
 		  var name = button.data('name') ;

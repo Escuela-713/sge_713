@@ -1,4 +1,6 @@
 <?php
+require_once "db_provincia.php";
+
 if (empty($_POST['edit_id'])){
 	$errors[] = "ID está vacío.";
 } 
@@ -8,19 +10,18 @@ elseif (empty ($_POST['edit_name']))
 }
 
 elseif (!empty($_POST['edit_id'])){
-	require_once ("conexion.php");//Contiene funcion que conecta a la base de datos
+	require_once ("conexion.php");
 	
 	$name = mysqli_real_escape_string($con,(strip_tags($_POST["edit_name"],ENT_QUOTES)));
 	
 	$id=intval($_POST['edit_id']);
 
-	$id_pais=intval($_POST['id_pais']);
+	$id_pais=intval($_POST['id_pais_m']);
 	
 	// UPDATE data into database
-	$sql = "call modificar_provincia('".$name."',".$id.",".$id_pais.")";
+	$obj=new provincia();
+	$query=$obj->modificar_provincia($id,$name,$id_pais);   
 	
-	$query = mysqli_query($con,$sql);
-    // if product has been added successfully
 	if ($query) {
 		$messages[] = "El registro ha sido actualizado con éxito.";
 	} else {
@@ -31,32 +32,7 @@ elseif (!empty($_POST['edit_id'])){
 {
 	$errors[] = "desconocido.";
 }
-if (isset($errors)){
 
-	?>
-	<div class="alert alert-danger" role="alert">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>Error!</strong> 
-		<?php
-		foreach ($errors as $error) {
-			echo $error;
-		}
-		?>
-	</div>
-	<?php
-}
-if (isset($messages)){
+include("alerta_abm.php");
 
-	?>
-	<div class="alert alert-success" role="alert">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>¡Bien hecho!</strong>
-		<?php
-		foreach ($messages as $message) {
-			echo $message;
-		}
-		?>
-	</div>
-	<?php
-}
 ?>			

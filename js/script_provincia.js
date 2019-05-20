@@ -25,8 +25,38 @@
 		  var button = $(event.relatedTarget) // Button that triggered the modal
 		  var name = button.data('name') 
 		  $('#edit_name').val(name)
-		  var id = button.data('id') 
-		  $('#edit_id').val(id)
+		  var id_provincia = button.data('id') 
+		  $('#edit_id').val(id_provincia)
+		  var id_pais = button.data('idpais') 
+
+		  //cargo la lista paises
+		  $.ajax({
+		  	type: "POST",
+		  	url:"php/select_options_listar_paises.php",
+		  	success:function (data)
+		  	{
+		  		
+		  		$("#id_pais_m").html(data);
+		  		$('select[name="id_pais_m"]').val(id_pais);
+		  	},
+
+		  })
+
+		})
+
+		$('#addProvinciaModal').on('show.bs.modal', function (event) {
+		 
+		  //cargo la lista paises
+		  $.ajax({
+		  	type: "POST",
+		  	url:"php/select_options_listar_paises.php",
+		  	success:function (data)
+		  	{
+		  		$("#id_pais").html(data);
+		  	},
+
+		  })
+
 		})
 		
 		$('#deleteProvinciaModal').on('show.bs.modal', function (event) {

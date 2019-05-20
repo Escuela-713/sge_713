@@ -1,14 +1,16 @@
 <?php
+include("db_provincia.php");
+
 if (empty($_POST['delete_id'])){
 	$errors[] = "Id vacío.";
 } elseif (!empty($_POST['delete_id'])){
-	require_once ("conexion.php");//Contiene funcion que conecta a la base de datos
+	
 	
 	$id_provincia=intval($_POST['delete_id']);
 	
 	// DELETE FROM  database
-	$sql = "call eliminar_provincia(".$id_provincia.")";
-	$query = mysqli_query($con,$sql);
+	$obj=new provincia();
+	$query=$obj->eliminar_provincia($id_provincia);
    
    	if ($query) {
 		$messages[] = "El registro ha sido eliminado con éxito.";
@@ -20,32 +22,7 @@ if (empty($_POST['delete_id'])){
 {
 	$errors[] = "desconocido.";
 }
-if (isset($errors)){
 
-	?>
-	<div class="alert alert-danger" role="alert">
-		<button type="button" class="close"  data-dismiss="alert">&times;</button>
-		<strong>Error!</strong> 
-		<?php
-		foreach ($errors as $error) {
-			echo $error;
-		}
-		?>
-	</div>
-	<?php
-}
-if (isset($messages)){
+include("alerta_abm.php");
 
-	?>
-	<div class="alert alert-success" role="alert">
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-		<strong>¡Bien hecho!</strong>
-		<?php
-		foreach ($messages as $message) {
-			echo $message;
-		}
-		?>
-	</div>
-	<?php
-}
 ?>			
