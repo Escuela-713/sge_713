@@ -4,7 +4,6 @@ $(function() {
 
 		//Función que refresca la tabla
 		function load(page){
-			var query=$("#q").val();
 			var parametros = {"action":"ajax"};
 			$("#loader").fadeIn('slow');
 			$.ajax({

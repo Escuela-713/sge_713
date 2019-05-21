@@ -4,8 +4,6 @@
 
 		//Funcion que se ejecuta al iniciar el form. Lista los paises en el div loader
 		function load(page){
-			console.log("load ejecutandose");
-			var query=$("#q").val();
 			var parametros = {"action":"ajax"};
 			$("#loader").fadeIn('slow');
 			$.ajax({
@@ -22,11 +20,10 @@
 		}
 
 		$('#editCargoModal').on('show.bs.modal', function (event) {
-			console.log("evento on");
 		  var button = $(event.relatedTarget); // Button that triggered the modal
 		  var name = button.data('name'); 
 		  var descripcion= button.data('descripcion');
-		  $('edit_descripcion').val(descripcion);
+		  $('#edit_descripcion').val(descripcion);
 		  $('#edit_name').val(name);
 		  var id = button.data('id');
 		  $('#edit_id').val(id);

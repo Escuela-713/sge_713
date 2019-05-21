@@ -4,7 +4,6 @@
 
 		//Funcion que se ejecuta al iniciar el form. Lista los paises en el div loader
 		function load(page){
-			var query=$("#q").val();
 			var parametros = {"action":"ajax"};
 			$("#loader").fadeIn('slow');
 			$.ajax({
