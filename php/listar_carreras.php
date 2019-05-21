@@ -42,7 +42,7 @@ if($action == 'ajax'){
 						<tr>
 							<td class="d-none"><?php echo $id;?></td>
 							<td ><?php echo $name;?></td>
-							<td  ><?php echo $estado;?></td>
+							<td  class="d-none"><?php echo $estado;?></td>
 							<td><?php echo $estados_desc;?></td>
 							<td ><?php echo $plan;?></td>
 							<td class = "text-right">

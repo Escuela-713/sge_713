@@ -1,14 +1,14 @@
 <?php
-	if (empty($_POST['edit_id']))
+	if (empty($_POST['id']))
 		{ $errors[] = "ID está vacío.";
 		} 
-	elseif (!empty($_POST['edit_id']))
+	elseif (!empty($_POST['id']))
 		{
 			require_once ("conexion.php");//Contiene funcion que conecta a la base de datos
 		
-			$name = mysqli_real_escape_string($con,(strip_tags($_POST["edit_name"],ENT_QUOTES)));
+			$name = mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
 			
-			$id=intval($_POST['edit_id']);
+			$id=intval($_POST['id']);
 			
 			// UPDATE data into database
 			require_once "db_pais.php";

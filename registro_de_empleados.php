@@ -20,7 +20,7 @@
 			<h2>Lista de Empleados</h2>
 			<hr />
 			<br />
-			<a href="#addEmpleadoModal" class="btn btn-success" data-toggle="modal"><span>Agregar nuevo empleado</span></a>
+			<a href="#addEmpleadoModal" class="btn btn-success" data-toggle="modal"><span>Agregar Nuevo Empleado</span></a>
 			
 			<div class='clearfix'></div>
 			

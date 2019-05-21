@@ -17,7 +17,7 @@
 			<h2>Lista de Paises</h2>
 			<hr />
 			<br />
-			<a href="#addPaisModal" class="btn btn-success" data-toggle="modal"><span>Agregar nuevo país</span></a>
+			<a href="#PaisModal" class="btn btn-success" data-toggle="modal"><span>Agregar nuevo país</span></a>
 			<div class='clearfix'></div>
 			<div id="loader"></div><!-- Carga de datos ajax aqui -->
 			<div id="resultados"></div><!-- Carga de datos ajax aqui -->
@@ -26,12 +26,10 @@
 	</div>
 	<?php include("footer.php");?>  
 	<!-- Add Modal HTML -->
-	<?php include("modal/modal_nuevo_pais.php");?>
-	<!-- Edit Modal HTML -->
-	<?php include("modal/modal_modificar_pais.php");?>
+	<?php include("modal/modal_pais.php");?>
 	<!-- Delete Modal HTML -->
-	<?php include("modal/modal_eliminar_pais.php");?>
+	<?php include("modal/modal_eliminar.php");?>
   	<?php include("modal/login.php");?>
-	<script src="js/script.js"></script>
+	<script src="js/script_pais.js"></script>
 </body>
 </html>

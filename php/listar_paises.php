@@ -28,8 +28,8 @@ if($action == 'ajax'){
 						<td class="d-none"><?php echo $pais_id;?></td>
 						<td ><?php echo $pais_name;?></td>
 						<td class = "text-right">
-							<a href="#"  class="btn btn-info" data-target="#editPaisModal" class="edit" data-toggle="modal" data-id='<?php echo $pais_id;?>' data-name="<?php echo $pais_name?>"><span class="glyphicon glyphicon-edit" ></span>Editar</a>
-							<a href="#deletePaisModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $pais_id;?>"><span class="glyphicon glyphicon-trash"  ></span>Eliminar</a>
+							<a href="#"  class="btn btn-info" data-target="#PaisModal" class="edit" data-toggle="modal" data-id='<?php echo $pais_id;?>' data-name="<?php echo $pais_name?>"><span class="glyphicon glyphicon-edit" ></span>Editar</a>
+							<a href="#deleteModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $pais_id;?>"><span class="glyphicon glyphicon-trash"  ></span>Eliminar</a>
 						</td>
 					</tr>
 				<?php }?>
