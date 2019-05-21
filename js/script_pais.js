@@ -22,7 +22,6 @@
 		$('#PaisModal').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget) ;// Button that triggered the modal
 		  var id = button.data('id');
-		  console.log("on event"); 
 		  if (isNaN(id))
 		  { 
 		  	//nuevo registro
@@ -42,13 +41,10 @@
 
 		
 		$("#frm_pais" ).submit(function( event ) {
-		  console.log("submit event");
 		  var id=$('input[name="id"]').val();
 		  var parametros = $(this).serialize();
-		  console.log(id);
 		  if (isNaN(id))
 		  {  
-		  	console.log("nuevo");
 		  	$.ajax({
 				type: "POST",
 				url: "php/nuevo_pais.php",
@@ -65,7 +61,6 @@
 		}
 		else
 		{
-			console.log("modificar")
 			//modifico el registro pais
 			$.ajax({
 				type: "POST",
@@ -79,19 +74,19 @@
 					load(1);
 					$('#PaisModal').modal('hide');
 				}
-			});
-			
+			});	
 		}
 		event.preventDefault();
 		});
 		
 		$('#deleteModal').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget) // Button that triggered the modal
-		  var id = button.data('id') 
-		  $('#delete_id').val(id)
+		  var button = $(event.relatedTarget); // Button that triggered the modal
+		  var id = button.data('id');
+		  $('#delete_id').val(id);
+		  $('#titulo_eliminar').text("Eliminar Pais");
 		})
 		
-		$( "#frm_delete" ).submit(function( event ) {
+		$("#frm_delete").submit(function( event ) {
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",

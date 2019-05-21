@@ -3,7 +3,7 @@
 			<div class="modal-content">
 				<form name="frm_delete" id="frm_delete">
 					<div class="modal-header">						
-						<h4 in="titulo" name="titulo" class="modal-title">Eliminar ..</h4>
+						<h4 id="titulo_eliminar" class="modal-title">Eliminar</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
 					<div class="modal-body">					
