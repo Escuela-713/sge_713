@@ -13,7 +13,7 @@ if($action == 'ajax'){
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th>Id Empleado</th>
+						<th class="d-none">Id Empleado</th>
 						<th>Legajo</th>
 						<th>Cargo</th>
 						<th>Apellido, Nombre</th>
@@ -35,7 +35,7 @@ if($action == 'ajax'){
 
 						?>	
 						<tr>
-							<td ><?php echo $id_empleado;?></td>
+							<td  class="d-none"><?php echo $id_empleado;?></td>
 							<td ><?php echo $legajo;?></td>
 							<td ><?php echo $cargo;?></td>
 							<td ><?php echo $apellido;?></td>

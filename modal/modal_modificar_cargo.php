@@ -23,7 +23,6 @@
 							<input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancelar">	
 							
 						</div>			
-					
 				</form>
 			</div>
 		</div>
