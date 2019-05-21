@@ -10,12 +10,12 @@
 						
 						<div class="form-group">
 							<label>Cargo</label>
-							<input type="text" name="edit_name" id="edit_name" class="form-control"  required>
+							<input type="text" name="edit_name" id="edit_name" class="form-control" maxlength="45" required>
 							<input type="hidden" name="edit_id" id="edit_id">
 						</div>
 						<div class="form-group">
 							<label>Descripción</label>
-							<textarea  name="edit_descripcion" id="edit_descripcion" class="form-control"></textarea>
+							<textarea  name="edit_descripcion" id="edit_descripcion" class="form-control" maxlength="150"></textarea>
 						</div>
 					</div>
 						<div class="modal-footer">

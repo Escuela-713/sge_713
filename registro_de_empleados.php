@@ -1,16 +1,13 @@
-<?php
-include("ajax/conexion.php");
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Registro de Empleados</title>
+	<meta charset="UTF-8">
+	<title>Registro de Empleados</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/bootstrap.min.css" >
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.min.css" >
-<script src="js/jquery-3.2.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
 </head>
 <body>
   <?php include("nav.php");?>  
@@ -30,15 +27,16 @@ include("ajax/conexion.php");
 		</div>
 	</div>
 
-<?php include("footer.php");?>  
-
-	<!-- Add Modal HTML -->
+<!-- Add Modal HTML -->
 	<?php include("modal/modal_nuevo_empleado.php");?>
 	<!-- Edit Modal HTML -->
 	<?php include("modal/modal_modificar_empleado.php");?>
 	<!-- Delete Modal HTML -->
 	<?php include("modal/modal_eliminar_empleado.php");?>
-	<?php include("modal/login.php");?>
 	<script src="js/script_empleado.js"></script>
+
+<?php include("footer.php");?>  
+
+
 </body>
 </html>

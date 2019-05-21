@@ -9,11 +9,11 @@
 					<div class="modal-body">					
 						<div class="form-group">
 							<label>Cargo</label>
-							<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese aquí el Cargo" required>
+							<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese aquí el Cargo" maxlength="45" required>
 						</div>			
 						<div class="form-group">
 							<label>Descripción</label>
-							<textarea  name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese aquí la Descripción"></textarea>
+							<textarea  name="descripcion" id="descripcion" class="form-control" placeholder="Ingrese aquí la Descripción" maxlength="150"></textarea>
 						</div>
 					</div>
 					<div class="modal-footer">

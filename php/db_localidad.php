@@ -31,5 +31,12 @@ class localidad
 		$sql = "call modificar_localidad('".$nombre."',".$id.",".$id_provincia.",".$codigo_postal.")";
 		return mysqli_query($con,$sql);	
 	}
+
+	public function obtener_localidades_por_provincia($id_provincia)
+	{
+		include("conexion.php");
+		$sql = "call obtener_localidades_x_provincia(".$id_provincia.")";
+		return mysqli_query($con,$sql);	
+	}
 }
 ?>

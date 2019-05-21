@@ -26,6 +26,40 @@
 		  var id = button.data('id') ;
 		  $('#edit_id').val(id);
 		})
+
+		$('#addEmpleadoModal').on('show.bs.modal', function (event) {
+		  //cargo lista paises
+		  $.ajax({
+		  	type: "POST",
+		  	url:"php/select_options_listar_paises.php",
+		  	success:function (data)
+		  	{
+		  		$("#id_pais").html(data);
+		  	},
+
+		  })
+		  //cargo lista cargos
+		    $.ajax({
+		  	type: "POST",
+		  	url:"php/select_options_listar_cargos.php",
+		  	success:function (data)
+		  	{
+		  		$("#id_cargo").html(data);
+		  	},
+
+		  })
+
+		  //cargo lista estado civil
+		   $.ajax({
+		  	type: "POST",
+		  	url:"php/select_options_listar_estados_civil.php",
+		  	success:function (data)
+		  	{
+		  		$("#id_estado_civil").html(data);
+		  	},
+
+		  })
+		})
 		
 		$('#deleteEmpleadoModal').on('show.bs.modal', function (event) {
 		  console.log("on ejec");
@@ -89,3 +123,40 @@
 			});
 		  event.preventDefault();
 		});
+
+		//Evento que se ejecuta cuando el usuario cambia la selección de la lista desplegable en el modal nuevo.
+		$('#id_pais').on('change',function(){
+			var id_pais=this.value;
+
+			if (id_pais)
+			{
+				$.ajax({
+					type: "POST",
+					url:"php/select_options_listar_provincias_por_pais.php",
+					data:{id_pais:id_pais},
+					success:function (data)
+					{
+						$("#id_provincia").html(data);
+					}
+
+				})
+			}
+		})
+
+		$('#id_provincia').on('change',function(){
+			var id_provincia=this.value;
+			console.log(id_provincia);
+			if (id_provincia)
+			{
+				$.ajax({
+					type: "POST",
+					url:"php/select_options_listar_localidades_por_provincia.php",
+					data:{id_provincia:id_provincia},
+					success:function (data)
+					{
+						$("#id_localidad").html(data);
+					}
+
+				})
+			}
+		})

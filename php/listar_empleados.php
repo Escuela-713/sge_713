@@ -1,11 +1,12 @@
 <?php
 include("conexion.php");
+require_once "db_empleado.php";
 	
 $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 if($action == 'ajax'){
 	
-	
-	$query   = mysqli_query($con,"call obtener_empleados()");
+	$obj=new empleado();
+	$query   = $obj->obtener_empleados();
 		
 	?>
 		<div class="table-responsive">

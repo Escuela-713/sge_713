@@ -9,7 +9,7 @@
 					<div class="modal-body">					
 						<div class="form-group">
 							<label>Pais</label>
-							<input type="text" name="name" id="name" class="form-control" placeholder="Ingrese aquí el Pais" required>
+							<input type="text" name="name" id="name" class="form-control" placeholder="Ingrese aquí el Pais" maxlength="45" required>
 						</div>
 					</div>
 					<div class="modal-footer">

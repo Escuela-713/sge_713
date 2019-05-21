@@ -10,7 +10,7 @@
 
 					<div class="form-group">
 						<label>Provincia</label>
-						<input type="text" name="edit_name" id="edit_name" class="form-control" required>
+						<input type="text" name="edit_name" id="edit_name" class="form-control" maxlength="45" required>
 						<input type="hidden" name="edit_id" id="edit_id">
 					</div>
 

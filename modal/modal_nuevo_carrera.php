@@ -9,7 +9,7 @@
 				<div class="modal-body">					
 					<div class="form-group">
 						<label>Carrera</label>
-						<input type="text" name="name" id="name" class="form-control" placeholder="Ingrese aquí la Carrera" required>
+						<input type="text" name="name" id="name" class="form-control" placeholder="Ingrese aquí la Carrera" maxlength="45" required>
 					</div>		
 					<div class="form-group">
 						<label>Estado</label>
@@ -20,7 +20,7 @@
 					</div>
 					<div class="form-group">
 						<label>Plan</label>
-						<input type="number" name="plan" id="plan" placeholder="Ingrese aquí el Plan (año)" required> 
+						<input type="number" name="plan" id="plan" placeholder="Ingrese aquí el Plan (año)"  maxlength="6" required> 
 					</div>
 				</div>
 				<div class="modal-footer">

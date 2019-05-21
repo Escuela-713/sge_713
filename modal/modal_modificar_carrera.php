@@ -10,7 +10,7 @@
 					<div class="form-group">
 						<label>Carrera</label>
 						<input type="hidden" name="edit_id" id="edit_id">
-						<input type="text" name="edit_name" id="edit_name" class="form-control" required>
+						<input type="text" name="edit_name" id="edit_name" class="form-control"  maxlength="45" required>
 					</div>		
 					<div class="form-group">
 						<label>Estado</label>
@@ -21,7 +21,7 @@
 					</div>
 					<div class="form-group">
 						<label>Plan</label>
-						<input type="number" name="edit_plan" id="edit_plan" required> 
+						<input type="number" name="edit_plan" id="edit_plan" maxlength="6" required> 
 					</div>
 				</div>
 				<div class="modal-footer">
