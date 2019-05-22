@@ -20,31 +20,10 @@
 			})
 		}
 
-		$('#editProvinciaModal').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget) // Button that triggered the modal
-		  var name = button.data('name') 
-		  $('#edit_name').val(name)
-		  var id_provincia = button.data('id') 
-		  $('#edit_id').val(id_provincia)
-		  var id_pais = button.data('idpais') 
+		$('#ProvinciaModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget); // Button that triggered the modal
+		  var id = button.data('id') 
 
-		  //cargo la lista paises
-		  $.ajax({
-		  	type: "POST",
-		  	url:"php/select_options_listar_paises.php",
-		  	success:function (data)
-		  	{
-		  		
-		  		$("#id_pais_m").html(data);
-		  		$('select[name="id_pais_m"]').val(id_pais);
-		  	},
-
-		  })
-
-		})
-
-		$('#addProvinciaModal').on('show.bs.modal', function (event) {
-		 
 		  //cargo la lista paises
 		  $.ajax({
 		  	type: "POST",
@@ -52,56 +31,78 @@
 		  	success:function (data)
 		  	{
 		  		$("#id_pais").html(data);
+		  		if (!isNaN(id))
+		  		{
+		  			$('select[name="id_pais"]').val(id_pais);
+		  		}
 		  	},
-
 		  })
 
-		})
-		
-		$('#deleteProvinciaModal').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget) // Button that triggered the modal
-		  var id = button.data('id') 
-		  $('#delete_id').val(id)
-		})
-		
-		$("#edit_provincia" ).submit(function( event ) {
+		  if (isNaN(id))
+		  {
+		  	$('#titulo').text("Nueva Provincia");
+		  	$('#id').val('undefined');
+		  	$('#name').val('');
+		  }
+		  else
+		  {
+		  	  //Modificar registro
+		  	  $('#titulo').text("Editar Provincia");	
+		  	  $('#id').val(id);
+		  	  var name = button.data('name');
+		  	  $('#name').val(name);
+		  	  var id_pais = button.data('idpais');
+		  	}
+		  });
+
+		$('#deleteModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget); // Button that triggered the modal
+		  var id = button.data('id');
+		  $('#delete_id').val(id);
+		  $('#titulo_eliminar').text("Eliminar Provincia");
+		});
+
+		$( "#frm_provincia" ).submit(function( event ) {
+			var id=$('input[name="id"]').val();
 			var parametros = $(this).serialize();
-			$.ajax({
-				type: "POST",
-				url: "php/modificar_provincia.php",
-				data: parametros,
-				beforeSend: function(objeto){
-					$("#resultados").html("Enviando...");
-				},
-				success: function(datos){
-					$("#resultados").html(datos);
-					load(1);
-					$('#editProvinciaModal').modal('hide');
-				}
-			});
+			if (isNaN(id))
+			{  
+				$.ajax({
+					type: "POST",
+					url: "php/nuevo_provincia.php",
+					data: parametros,
+					beforeSend: function(objeto){
+						$("#resultados").html("Enviando...");
+					},
+					success: function(datos){
+						$("#resultados").html(datos);
+						load(1);
+						$('#ProvinciaModal').modal('hide');
+					}
+				});
+			}
+			else
+			{
+				var parametros = $(this).serialize();
+				$.ajax({
+					type: "POST",
+					url: "php/modificar_provincia.php",
+					data: parametros,
+					beforeSend: function(objeto){
+						$("#resultados").html("Enviando...");
+					},
+					success: function(datos){
+						$("#resultados").html(datos);
+						load(1);
+						$('#ProvinciaModal').modal('hide');
+					}
+				});
+			}
+
 			event.preventDefault();
 		});
 		
-		
-		$( "#add_provincia" ).submit(function( event ) {
-			var parametros = $(this).serialize();
-			$.ajax({
-				type: "POST",
-				url: "php/nuevo_provincia.php",
-				data: parametros,
-				beforeSend: function(objeto){
-					$("#resultados").html("Enviando...");
-				},
-				success: function(datos){
-					$("#resultados").html(datos);
-					load(1);
-					$('#addProvinciaModal').modal('hide');
-				}
-			});
-			event.preventDefault();
-		});
-		
-		$( "#delete_provincia" ).submit(function( event ) {
+		$( "#frm_delete" ).submit(function( event ) {
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
@@ -113,7 +114,7 @@
 				success: function(datos){
 					$("#resultados").html(datos);
 					load(1);
-					$('#deleteProvinciaModal').modal('hide');
+					$('#deleteModal').modal('hide');
 				}
 			});
 			event.preventDefault();

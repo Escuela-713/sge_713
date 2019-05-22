@@ -34,8 +34,8 @@ if($action == 'ajax'){
 						<td ><?php echo $provincia_pais;?></td>
 						<td class="d-none"><?php echo $provincia_id_pais;?></td>
 						<td class = "text-right">
-							<a href="#editProvinciaModal"  class="btn btn-info" data-target="#editProvinciaModal" class="edit" data-toggle="modal" data-id='<?php echo $provincia_id;?>' data-idpais='<?php echo $provincia_id_pais;?>' data-name="<?php echo $provincia_name?>" ><span class="glyphicon glyphicon-edit" >Editar</span> </a>
-							<a href="#deleteProvinciaModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $provincia_id;?>"><span class="glyphicon glyphicon-trash"  >Eliminar</span></a>
+							<a href="#ProvinciaModal"  class="btn btn-info" data-target="#ProvinciaModal" class="edit" data-toggle="modal" data-id='<?php echo $provincia_id;?>' data-idpais='<?php echo $provincia_id_pais;?>' data-name="<?php echo $provincia_name?>" ><span class="glyphicon glyphicon-edit" >Editar</span> </a>
+							<a href="#deleteModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $provincia_id;?>"><span class="glyphicon glyphicon-trash"  >Eliminar</span></a>
 						</td>
 					</tr>
 				<?php }?>

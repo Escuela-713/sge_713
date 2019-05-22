@@ -156,7 +156,7 @@ $(function() {
 
 		  })
 
-		})
+		});
 
 
 		$("#edit_localidad" ).submit(function( event ) {

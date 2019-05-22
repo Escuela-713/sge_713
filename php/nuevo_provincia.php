@@ -1,16 +1,16 @@
 <?php
 require_once "db_provincia.php";
-if (empty($_POST['nombre']))
+if (empty($_POST['name']))
 {
 	$errors[] = "Ingresa el nombre de la Provincia.";
 } 
 
-elseif (!empty($_POST['nombre'] ))
+elseif (!empty($_POST['name'] ))
 {
 	
 	require_once ("conexion.php");//Contiene funcion que conecta a la base de datos
 	
-	$provincia_name = mysqli_real_escape_string($con,(strip_tags($_POST["nombre"],ENT_QUOTES)));
+	$provincia_name = mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
 	$pais_id = intval($_POST["id_pais"]);
 	
 	// INSERT data into database

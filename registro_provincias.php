@@ -16,7 +16,7 @@
 			<h2>Lista de Provincias</h2>
 			<hr />
 			<br />
-			<a href="#addProvinciaModal" class="btn btn-success" data-toggle="modal"><span>Agregar Nueva Provincia</span></a>
+			<a href="#ProvinciaModal" class="btn btn-success" data-toggle="modal"><span>Agregar Nueva Provincia</span></a>
 			<div class='clearfix'></div>
 			<div id="loader"></div><!-- Carga de datos ajax aqui -->
 			<div id="resultados"></div><!-- Carga de datos ajax aqui -->
@@ -24,13 +24,11 @@
 		</div>
 	</div>
 	<?php include("footer.php");?>  
-	<!-- Add Modal HTML -->
-	<?php include("modal/modal_nuevo_provincia.php");?>
-	<!-- Edit Modal HTML -->
-	<?php include("modal/modal_modificar_provincia.php");?>
+	<!-- Add and update Modal HTML -->
+	<?php include("modal/modal_provincia.php");?>
+
 	<!-- Delete Modal HTML -->
-	<?php include("modal/modal_eliminar_provincia.php");?>
-	<?php include("modal/login.php");?>
+	<?php include("modal/modal_eliminar.php");?>
 	<script src="js/script_provincia.js"></script>
 </body>
 </html>

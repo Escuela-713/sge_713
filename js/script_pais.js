@@ -28,6 +28,7 @@
 		  	$('#titulo').text("Nuevo Pais");
 		  	$('#id').val('undefined');
 		  	$('#name').val('');
+		  
 		  }
 		  else
 		  {
