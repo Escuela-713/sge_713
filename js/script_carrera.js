@@ -21,15 +21,15 @@
 			})
 		};
 
-		$(document).ready(function (){
-			$('#deleteCarreraModal').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget) // Button that triggered the modal
-		  var id = button.data('id') 
-		  $('#delete_id').val(id)
 
-		})
+	$('#deleteModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget); // Button that triggered the modal
+		  var id = button.data('id');
+		  $('#delete_id').val(id);
+		  $('#titulo_eliminar').text("Eliminar Carrera");
+		});
 
-			$('#delete_carrera' ).submit(function( event ) {
+			$('#frm_delete' ).submit(function( event ) {
 				var parametros = $(this).serialize();
 				$.ajax({
 					type: "POST",
@@ -41,57 +41,71 @@
 					success: function(datos){
 						$("#resultados").html(datos);
 						load(1);
-						$('#deleteCarreraModal').modal('hide');
+						$('#deleteModal').modal('hide');
 					}
 				});
 				event.preventDefault();
 			});
 
-			$('#add_carrera' ).submit(function( event ) {
+	$('#CarreraModal').on('show.bs.modal', function (event) {
+		var button = $(event.relatedTarget); // Button that triggered the modal
+		var id = button.data('id');
+
+		if (isNaN(id))
+		{	
+			$('#titulo').text("Nueva Carrera");
+			$('#id').val('undefined');
+			$('#name').val('');
+			$('#plan').val('');
+		}
+		else
+		{ var estado = button.data('estado');  
+				var name = button.data('name'); 
+				var plan= button.data('plan');
+				$('#titulo').text("Editar Carrera");	
+				$('#plan').val(plan);
+				$('#name').val(name);
+				$('#id').val(id);
+				$('select[name="estado"]').val(estado);
+		}
+	});
+
+
+			$('#frm_carrera' ).submit(function( event ) {
+				var id=$('input[name="id"]').val();
 				var parametros = $(this).serialize();
-				$.ajax({
-					type: "POST",
-					url: "php/nuevo_carrera.php",
-					data: parametros,
-					beforeSend: function(objeto){
-						$("#resultados").html("Enviando...");
-					},
-					success: function(datos){
-						$("#resultados").html(datos);
-						load(1);
-						$('#addCarreraModal').modal('hide');
-					}
-				});
+				if (isNaN(id))
+				{ 
+					$.ajax({
+						type: "POST",
+						url: "php/nuevo_carrera.php",
+						data: parametros,
+						beforeSend: function(objeto){
+							$("#resultados").html("Enviando...");
+						},
+						success: function(datos){
+							$("#resultados").html(datos);
+							load(1);
+							$('#CarreraModal').modal('hide');
+						}
+					});
+
+				}
+				else
+				{
+					$.ajax({
+						type: "POST",
+						url: "php/modificar_carrera.php",
+						data: parametros,
+						beforeSend: function(objeto){
+							$("#resultados").html("Enviando...");
+						},
+						success: function(datos){
+							$("#resultados").html(datos);
+							load(1);
+							$('#CarreraModal').modal('hide');
+						}
+					});
+				}
 				event.preventDefault();
 			});
-		})
-
-		$('#editCarreraModal').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget); // Button that triggered the modal
-		  var name = button.data('name'); 
-		  var plan= button.data('plan');
-		  var id = button.data('id');
-		  var estado = button.data('estado');
-		  $('#edit_plan').val(plan);
-		  $('#edit_name').val(name);
-		  $('#edit_id').val(id);
-		  $('select[name="edit_estado"]').val(estado);
-		})
-
-		$("#edit_carrera" ).submit(function( event ) {
-			var parametros = $(this).serialize();
-			$.ajax({
-				type: "POST",
-				url: "php/modificar_carrera.php",
-				data: parametros,
-				beforeSend: function(objeto){
-					$("#resultados").html("Enviando...");
-				},
-				success: function(datos){
-					$("#resultados").html(datos);
-					load(1);
-					$('#editCarreraModal').modal('hide');
-				}
-			});
-			event.preventDefault();
-		});

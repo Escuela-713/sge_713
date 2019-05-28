@@ -15,20 +15,16 @@
 			<h2>Lista de Carreras</h2>
 			<hr />
 			<br />
-			<a href="#addCarreraModal" class="btn btn-success" data-toggle="modal"><span>Agregar Nueva Carrera</span></a>
-			
-			<div class='clearfix'></div>
-			
+			<a href="#CarreraModal" class="btn btn-success" data-toggle="modal"><span>Agregar Nueva Carrera</span></a>	
+			<div class='clearfix'></div>		
 			<div id="loader"></div><!-- Carga de datos ajax aqui -->
 			<div id="resultados"></div><!-- Carga de datos ajax aqui -->
 			<div class='outer_div'></div><!-- Carga de datos ajax aqui -->
-			
 		</div>
 	</div>
 	<?php include("footer.php");?>  
-	<?php include("modal/modal_modificar_carrera.php");?>
-	<?php include("modal/modal_nuevo_carrera.php");?>
-	<?php include("modal/modal_eliminar_carrera.php");?>
+	<?php include("modal/modal_carrera.php");?>
+	<?php include("modal/modal_eliminar.php");?>
 	<script src="js/script_carrera.js"></script>
 	<?php include("footer.php");?>  
 </body>

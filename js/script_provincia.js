@@ -1,6 +1,5 @@
 		$(function() {
 			load(1);
-
 		});
 
 		//Funcion que se ejecuta al iniciar el form. Lista los paises en el div loader
@@ -22,8 +21,9 @@
 
 		$('#ProvinciaModal').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget); // Button that triggered the modal
-		  var id = button.data('id') 
-
+		  var id = button.data('id');
+		  var id_pais = button.data('idpais');
+		  
 		  //cargo la lista paises
 		  $.ajax({
 		  	type: "POST",
@@ -31,13 +31,13 @@
 		  	success:function (data)
 		  	{
 		  		$("#id_pais").html(data);
-		  		if (!isNaN(id))
+		  		if (!isNaN(id_pais))
 		  		{
 		  			$('select[name="id_pais"]').val(id_pais);
 		  		}
 		  	},
 		  })
-
+		 
 		  if (isNaN(id))
 		  {
 		  	$('#titulo').text("Nueva Provincia");
@@ -51,7 +51,6 @@
 		  	  $('#id').val(id);
 		  	  var name = button.data('name');
 		  	  $('#name').val(name);
-		  	  var id_pais = button.data('idpais');
 		  	}
 		  });
 

@@ -17,38 +17,36 @@
 					$("#loader").html("");
 				}
 			})
-		}
+		};
 
-		$('#editCargoModal').on('show.bs.modal', function (event) {
+		$('#CargoModal').on('show.bs.modal', function (event) {
 		  var button = $(event.relatedTarget); // Button that triggered the modal
-		  var name = button.data('name'); 
-		  var descripcion= button.data('descripcion');
-		  $('#edit_descripcion').val(descripcion);
-		  $('#edit_name').val(name);
 		  var id = button.data('id');
-		  $('#edit_id').val(id);
-		})
-
-		$("#edit_cargo" ).submit(function( event ) {
-			var parametros = $(this).serialize();
-			$.ajax({
-				type: "POST",
-				url: "php/modificar_cargo.php",
-				data: parametros,
-				beforeSend: function(objeto){
-					$("#resultados").html("Enviando...");
-				},
-				success: function(datos){
-					$("#resultados").html(datos);
-					load(1);
-					$('#editCargoModal').modal('hide');
-				}
-			});
-			event.preventDefault();
+		  if ( isNaN(id) )
+		  {
+				$('#titulo').text("Nuevo Cargo");
+				$('#id').val('undefined');
+				$('#name').val('');
+				$('#descripcion').val('');
+		  }
+		  else
+		  {
+		  	  $('#titulo').text("Editar Cargo");
+			  var name = button.data('name'); 
+			  var descripcion= button.data('descripcion');
+			  $('#descripcion').val(descripcion);
+			  $('#nombre').val(name);
+			  $('#id').val(id);
+		  }
 		});
-		
-		$("#add_cargo" ).submit(function( event ) {
+
+		$("#frm_cargo" ).submit(function( event ) {
+			
 			var parametros = $(this).serialize();
+			var id=$('input[name="id"]').val();
+
+			if (isNaN(id))
+			{
 			$.ajax({
 				type: "POST",
 				url: "php/nuevo_cargo.php",
@@ -59,19 +57,37 @@
 				success: function(datos){
 					$("#resultados").html(datos);
 					load(1);
-					$('#addCargoModal').modal('hide');
+					$('#CargoModal').modal('hide');
 				}
 			});
+			}
+			else
+			{
+				$.ajax({
+				type: "POST",
+				url: "php/modificar_cargo.php",
+				data: parametros,
+				beforeSend: function(objeto){
+					$("#resultados").html("Enviando...");
+				},
+				success: function(datos){
+					$("#resultados").html(datos);
+					load(1);
+					$('#CargoModal').modal('hide');
+				}
+				});
+			}
 			event.preventDefault();
 		});
 
-		$('#deleteCargoModal').on('show.bs.modal', function (event) {
-		  var button = $(event.relatedTarget) // Button that triggered the modal
-		  var id = button.data('id') 
-		  $('#delete_id').val(id)
-		})
+		$('#deleteModal').on('show.bs.modal', function (event) {
+		  var button = $(event.relatedTarget);
+		  var id = button.data('id');
+		  $('#delete_id').val(id);
+		  $('#titulo_eliminar').text("Eliminar Cargo");
+		});
 		
-		$( "#delete_cargo" ).submit(function( event ) {
+		$("#frm_delete").submit(function( event ) {
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
@@ -83,7 +99,7 @@
 				success: function(datos){
 					$("#resultados").html(datos);
 					load(1);
-					$('#deleteCargoModal').modal('hide');
+					$('#deleteModal').modal('hide');
 				}
 			});
 			event.preventDefault();

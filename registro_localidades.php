@@ -16,28 +16,19 @@
 			<h2>Lista de localidades</h2>
 			<hr />
 			<br />
-			<a href="#addLocalidadModal" class="btn btn-success" data-toggle="modal"><span>Agregar Nueva Localidad</span></a>
+			<a href="#LocalidadModal" class="btn btn-success" data-toggle="modal"><span>Agregar Nueva Localidad</span></a>
 			
 			<div class='clearfix'></div>
 			
 			<div id="loader"></div><!-- Carga de datos ajax aqui -->
 			<div id="resultados"></div><!-- Carga de datos ajax aqui -->
 			<div class='outer_div'></div><!-- Carga de datos ajax aqui -->
-			
 		</div>
 	</div>
-
 	<?php include("footer.php");?>  
-
-	<!-- Add Modal HTML -->
-	<?php include("modal/modal_nuevo_localidad.php");?>
-	<!-- Edit Modal HTML -->
-    <?php include("modal/modal_modificar_localidad.php");?>
-	
-	<?php include("modal/modal_eliminar_localidad.php");?> 
-
+	<?php include("modal/modal_localidad.php");?>
+	<?php include("modal/modal_eliminar.php");?> 
 	<?php include("modal/login.php");?>
-
-	<script src="js/script-localidad.js"></script>
+	<script src="js/script_localidad.js"></script>
 </body>
 </html>

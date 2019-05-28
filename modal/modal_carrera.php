@@ -1,15 +1,16 @@
-<div id="addCarreraModal" class="modal fade">
+<div id="CarreraModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form name="add_carrera" id="add_carrera">
+			<form name="frm_carrera" id="frm_carrera">
 				<div class="modal-header">						
-					<h4 class="modal-title">Agregar Carrera</h4>
+					<h4  name="titulo" id="titulo" class="title">Editar Carrera</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
 					<div class="form-group">
 						<label>Carrera</label>
-						<input type="text" name="name" id="name" class="form-control" placeholder="Ingrese aquí la Carrera" maxlength="45" required>
+						<input type="hidden" name="id" id="id">
+						<input type="text" name="name" id="name" class="form-control"  maxlength="45" placeholder="Ingrese aquí la Carrera" required>
 					</div>		
 					<div class="form-group">
 						<label>Estado</label>
@@ -20,7 +21,7 @@
 					</div>
 					<div class="form-group">
 						<label>Plan</label>
-						<input type="number" name="plan" id="plan" placeholder="Ingrese aquí el Plan (año)"  maxlength="6" required> 
+						<input type="number" name="plan" id="plan" maxlength="6" placeholder="Ingrese aquí el Plan" required> 
 					</div>
 				</div>
 				<div class="modal-footer">

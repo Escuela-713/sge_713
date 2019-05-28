@@ -1,20 +1,21 @@
 <?php
 require_once "db_carrera.php";
 
-if (empty($_POST['edit_name']) || empty($_POST['edit_id'])  )
+if (empty($_POST['name']) || empty($_POST['id'])  )
 {
-	$errors[] = "Ingresa los datos.".$_POST['edit_name'].$_POST['edit_id'];
+	$errors[] = "Ingresa los datos.";
+
 } 
 
-elseif (!empty($_POST['edit_name']))
+elseif (!empty($_POST['name']))
 {
 	
 	require_once ("conexion.php");
 	
-	$orientacion_name = mysqli_real_escape_string($con,(strip_tags($_POST["edit_name"],ENT_QUOTES)));
-	$orientacion_estado=(int) $_POST["edit_estado"];
-	$orientacion_plan=(int) $_POST["edit_plan"];
-	$orientacion_id=(int) $_POST["edit_id"];
+	$orientacion_name = mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
+	$orientacion_estado=(int) $_POST["estado_id"];
+	$orientacion_plan=(int) $_POST["plan"];
+	$orientacion_id=(int) $_POST["id"];
 
 	$obj=new carrera();
 	$query=$obj->modificar_carrera($orientacion_id, $orientacion_name,$orientacion_estado,$orientacion_plan);

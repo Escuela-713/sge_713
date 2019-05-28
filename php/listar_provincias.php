@@ -6,7 +6,6 @@ if($action == 'ajax'){
 	
 	$obj=new provincia();
 	$query =$obj->obtener_provincias();
-
 	?>
 	<div class="table-responsive">
 		<table class="table table-striped table-hover">
@@ -42,7 +41,6 @@ if($action == 'ajax'){
 			</tbody>			
 		</table>
 	</div>	
-
 	<?php	
 }
 ?>          

@@ -14,7 +14,7 @@
 		<div class="content">
 			<h2>Lista De Cargos</h2>
 			<br />
-			<a href="#addCargoModal" class="btn btn-success" data-toggle="modal"><span>Agregar nuevo cargo</span></a>
+			<a href="#CargoModal" class="btn btn-success" data-toggle="modal"><span>Agregar Nuevo Cargo</span></a>
 			<div class='clearfix'></div>
 			<div id="loader"></div><!-- Carga de datos ajax aqui -->
 			<div id="resultados"></div><!-- Carga de datos ajax aqui -->
@@ -22,9 +22,8 @@
 			
 		</div>
 	</div>
-	<?php include("modal/modal_nuevo_cargo.php");?>
-	<?php include("modal/modal_modificar_cargo.php");?>
-	<?php include("modal/modal_eliminar_cargo.php");?>
+	<?php include("modal/modal_cargo.php");?>
+	<?php include("modal/modal_eliminar.php");?>
 	<script src="js/script _cargo.js"></script>
 	<?php include("footer.php");?>  
 </body>

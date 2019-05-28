@@ -42,9 +42,9 @@ if($action == 'ajax'){
 						<td class="d-none"><?php echo $localidad_id_pais;?></td>
 						<td><?php echo $localidad_nombre_pais;?></td>
 						<td class = "text-right">
-							<a href="#editLocalidadModal"  class="btn btn-info" data-target="#editLocalidadModal" class="edit" data-toggle="modal" data-id='<?php echo $localidad_id;?>' data-name="<?php echo $localidad_name?>" data-cp='<?php echo $localidad_codigo_postal;?>'  data-idprovincia='<?php echo $localidad_id_provincia;?>' data-nombreprovincia='<?php echo $localidad_nombre_provincia;?>' data-idpais='<?php echo $localidad_id_pais;?>' data-nombrepais='<?php echo $localidad_nombre_pais;?>' >
+							<a href="#LocalidadModal"  class="btn btn-info" data-target="#LocalidadModal" class="edit" data-toggle="modal" data-id='<?php echo $localidad_id;?>' data-name="<?php echo $localidad_name?>" data-cp='<?php echo $localidad_codigo_postal;?>'  data-idprovincia='<?php echo $localidad_id_provincia;?>' data-nombreprovincia='<?php echo $localidad_nombre_provincia;?>' data-idpais='<?php echo $localidad_id_pais;?>' data-nombrepais='<?php echo $localidad_nombre_pais;?>' >
 								<span class="glyphicon glyphicon-edit" >Editar</span> </a>
-							<a href="#deleteLocalidadModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $localidad_id;?>"><span class="glyphicon glyphicon-trash"  >Eliminar</span></a>
+							<a href="#deleteModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $localidad_id;?>"><span class="glyphicon glyphicon-trash"  >Eliminar</span></a>
 						</td>
 					</tr>
 				<?php }?>

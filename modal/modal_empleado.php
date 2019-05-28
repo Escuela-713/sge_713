@@ -1,9 +1,9 @@
-<div id="addEmpleadoModal" class="modal fade">
+<div id="EmpleadoModal" class="modal fade">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<form name="add_empleado" id="add_empleado">
+			<form name="frm_empleado" id="frm_empleado">
 				<div class="modal-header">						
-					<h4 class="modal-title">Agregar Nuevo Empleado</h4>
+					<h4 id="titulo" class="modal-title">Agregar Nuevo Empleado</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">
@@ -101,19 +101,19 @@
 
 													<div class="form-group col-md-4">
 														<label>Pais</label>
-														<select name="id_pais" id="id_pais" class="form-control" required>
+														<select name="id_pais_d" id="id_pais_d" class="form-control" required>
 															<option value="0">No hay datos</option>
 														</select>
 													</div>
 													<div class="form-group col-md-4">
 														<label>Provincia</label>
-														<select name="id_provincia" id="id_provincia" class="form-control"  required>
+														<select name="id_provincia_d" id="id_provincia_d" class="form-control"  required>
 															<option value="0">No hay datos</option>
 														</select>
 													</div>
 													<div class="form-group col-md-4">
 														<label>Localidad</label>
-														<select name="id_localidad" id="id_localidad" class="form-control"  required>
+														<select name="id_localidad_d" id="id_localidad_d" class="form-control"  required>
 															<option value="0">No hay datos</option>
 														</select>
 													</div>
@@ -136,9 +136,7 @@
 														</div>
 													</div>
 												</div>
-						
 										</div>
-
 									</div>
 									<div class="form-group">
 										<label>Telefono</label>

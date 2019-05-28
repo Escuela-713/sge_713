@@ -27,7 +27,7 @@
               <a class="dropdown-item" href="registro_paises.php">Paises</a>
               <a class="dropdown-item" href="registro_provincias.php">Provincias</a>
               <a class="dropdown-item" href="registro_localidades.php">Localidades</a>
-              <a class="dropdown-item" href="registro_de_empleados.php">Empleados</a>
+              <a class="dropdown-item" href="registro_empleados.php">Empleados</a>
               <a class="dropdown-item" href="registro_cargos.php">Cargos</a>
               <a class="dropdown-item" href="registro_carreras.php">Carreras</a>
             </div>

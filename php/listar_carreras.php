@@ -46,8 +46,8 @@ if($action == 'ajax'){
 							<td><?php echo $estados_desc;?></td>
 							<td ><?php echo $plan;?></td>
 							<td class = "text-right">
-								<a href="#editCarreraModal"  class="btn btn-info" data-target="#editCarreraModal" class="edit" data-toggle="modal" data-id='<?php echo $id;?>' data-name="<?php echo $name?>" data-estado="<?php echo $estado?>" data-plan="<?php echo $plan?>"  ><span class="glyphicon glyphicon-edit" ></span>Editar</a>
-								<a href="#deleteCarreraModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $id;?>"><span class="glyphicon glyphicon-trash"  ></span>Eliminar</a>
+								<a href="#CarreraModal" class="btn btn-info" data-target="#CarreraModal" class="edit" data-toggle="modal" data-id='<?php echo $id;?>' data-name="<?php echo $name?>" data-estado="<?php echo $estado?>" data-plan="<?php echo $plan?>"  ><span class="glyphicon glyphicon-edit" ></span>Editar</a>
+								<a href="#deleteModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $id;?>"><span class="glyphicon glyphicon-trash"  ></span>Eliminar</a>
                     		</td>
 						</tr>
 						<?php }?>

@@ -10,7 +10,7 @@
 
 					<div class="form-group">
 						<label>Provincia</label>
-						<input type="text" name="name" id="name" class="form-control" maxlength="45" required>
+						<input type="text" name="name" id="name" class="form-control" maxlength="45" placeholder="Ingrese aquí la Provincia" required>
 						<input type="hidden" name="id" id="id">
 					</div>
 

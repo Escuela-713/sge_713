@@ -4,7 +4,7 @@ class estado_civil
 {	
 	private $sql;
 	
-	public  function obtener_estados_civil()
+	public function obtener_estados_civil()
 	{
 		include("conexion.php");	
 		$sql= "CALL obtener_estados_civil();";
