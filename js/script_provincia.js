@@ -37,7 +37,7 @@
 		  		}
 		  	},
 		  })
-		 
+		  
 		  if (isNaN(id))
 		  {
 		  	$('#titulo').text("Nueva Provincia");
@@ -62,42 +62,20 @@
 		});
 
 		$( "#frm_provincia" ).submit(function( event ) {
-			var id=$('input[name="id"]').val();
 			var parametros = $(this).serialize();
-			if (isNaN(id))
-			{  
-				$.ajax({
-					type: "POST",
-					url: "php/nuevo_provincia.php",
-					data: parametros,
-					beforeSend: function(objeto){
-						$("#resultados").html("Enviando...");
-					},
-					success: function(datos){
-						$("#resultados").html(datos);
-						load(1);
-						$('#ProvinciaModal').modal('hide');
-					}
-				});
-			}
-			else
-			{
-				var parametros = $(this).serialize();
-				$.ajax({
-					type: "POST",
-					url: "php/modificar_provincia.php",
-					data: parametros,
-					beforeSend: function(objeto){
-						$("#resultados").html("Enviando...");
-					},
-					success: function(datos){
-						$("#resultados").html(datos);
-						load(1);
-						$('#ProvinciaModal').modal('hide');
-					}
-				});
-			}
-
+			$.ajax({
+				type: "POST",
+				url: "php/modificar_provincia.php",
+				data: parametros,
+				beforeSend: function(objeto){
+					$("#resultados").html("Enviando...");
+				},
+				success: function(datos){
+					$("#resultados").html(datos);
+					load(1);
+					$('#ProvinciaModal').modal('hide');
+				}
+			});
 			event.preventDefault();
 		});
 		

@@ -42,27 +42,7 @@
 
 		
 		$("#frm_pais" ).submit(function( event ) {
-		  var id=$('input[name="id"]').val();
 		  var parametros = $(this).serialize();
-		  if (isNaN(id))
-		  {  
-		  	$.ajax({
-				type: "POST",
-				url: "php/nuevo_pais.php",
-				data: parametros,
-				beforeSend: function(objeto){
-					$("#resultados").html("Enviando...");
-				},
-				success: function(datos){
-					$("#resultados").html(datos);
-					load(1);
-					$('#PaisModal').modal('hide');
-				}
-			});
-		}
-		else
-		{
-			//modifico el registro pais
 			$.ajax({
 				type: "POST",
 				url: "php/modificar_pais.php",
@@ -76,7 +56,6 @@
 					$('#PaisModal').modal('hide');
 				}
 			});	
-		}
 		event.preventDefault();
 		});
 		

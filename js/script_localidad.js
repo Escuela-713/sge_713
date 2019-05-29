@@ -41,26 +41,7 @@ $(function() {
 
 		//Evento que se ejecuta cuando el usuario presiona el botón enviar.
 		$( "#frm_localidad" ).submit(function( event ) {
-			var id=$('input[name="id"]').val();
 			var parametros = $(this).serialize();
-			if (isNaN(id))
-			{  
-				$.ajax({
-				type: "POST",
-				url: "php/nuevo_localidad.php",
-				data: parametros,
-				beforeSend: function(objeto){
-					$("#resultados").html("Enviando...");
-				},
-				success: function(datos){
-					$("#resultados").html(datos);
-					load(1);
-					$('#LocalidadModal').modal('hide');
-				}
-			});
-			}
-			else
-			{
 				$.ajax({
 				type: "POST",
 				url: "php/modificar_localidad.php",
@@ -74,7 +55,6 @@ $(function() {
 					$('#LocalidadModal').modal('hide');
 				}
 			});
-			}
 			event.preventDefault();
 		});
 

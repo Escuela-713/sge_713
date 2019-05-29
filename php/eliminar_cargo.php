@@ -1,14 +1,15 @@
 <?php
+require_once "db_cargo.php";
 	if (empty($_POST['delete_id'])){
 		$errors[] = "Id vacío.";
 	} elseif (!empty($_POST['delete_id'])){
 	require_once ("conexion.php");//Contiene funcion que conecta a la base de datos
 	
     $id_cargo=intval($_POST['delete_id']);
+
+    $objeto= new cargo();
+	$query=$objeto->eliminar_cargo($id_cargo);
 	
-	// DELETE FROM  database
-    $sql = "call eliminar_cargo(".$id_cargo.")";
-    $query = mysqli_query($con,$sql);
     // if product has been added successfully
     if ($query) {
         $messages[] = "El registro ha sido eliminado con éxito.";

@@ -26,7 +26,7 @@
 		  {
 				$('#titulo').text("Nuevo Cargo");
 				$('#id').val('undefined');
-				$('#name').val('');
+				$('#nombre').val('');
 				$('#descripcion').val('');
 		  }
 		  else
@@ -43,26 +43,6 @@
 		$("#frm_cargo" ).submit(function( event ) {
 			
 			var parametros = $(this).serialize();
-			var id=$('input[name="id"]').val();
-
-			if (isNaN(id))
-			{
-			$.ajax({
-				type: "POST",
-				url: "php/nuevo_cargo.php",
-				data: parametros,
-				beforeSend: function(objeto){
-					$("#resultados").html("Enviando...");
-				},
-				success: function(datos){
-					$("#resultados").html(datos);
-					load(1);
-					$('#CargoModal').modal('hide');
-				}
-			});
-			}
-			else
-			{
 				$.ajax({
 				type: "POST",
 				url: "php/modificar_cargo.php",
@@ -76,7 +56,6 @@
 					$('#CargoModal').modal('hide');
 				}
 				});
-			}
 			event.preventDefault();
 		});
 

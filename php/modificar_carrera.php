@@ -1,39 +1,34 @@
 <?php
 require_once "db_carrera.php";
+require_once ("conexion.php");
+$name = mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
+$estado=(int) $_POST["estado_id"];
+$plan=(int) $_POST["plan"];
 
-if (empty($_POST['name']) || empty($_POST['id'])  )
+if (intval($_POST['id']==0)  )
 {
-	$errors[] = "Ingresa los datos.";
-
-} 
-
-elseif (!empty($_POST['name']))
-{
-	
-	require_once ("conexion.php");
-	
-	$orientacion_name = mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
-	$orientacion_estado=(int) $_POST["estado_id"];
-	$orientacion_plan=(int) $_POST["plan"];
-	$orientacion_id=(int) $_POST["id"];
-
 	$obj=new carrera();
-	$query=$obj->modificar_carrera($orientacion_id, $orientacion_name,$orientacion_estado,$orientacion_plan);
-
-	if ($query) 
-	{
-		$messages[] = "El registro ha sido guardado con éxito.";
-	} 
-	else 
-	{
-		$errors[] = "Lo sentimos, el registro falló. Por favor, regrese y vuelva a intentarlo.". $query;
-	}
-
+	$query=$obj->nuevo_carrera($name,$estado,$plan);
 } 
 
+elseif (intval($_POST['id'])!=0)
+{
+	$id=(int) $_POST["id"];
+	$obj=new carrera();
+	$query=$obj->modificar_carrera($id, $name,$estado,$plan);
+} 
 else 
 {
 	$errors[] = "desconocido.";
+}
+
+if ($query) 
+{
+	$messages[] = "El registro ha sido guardado con éxito.";
+} 
+else 
+{
+	$errors[] = "Lo sentimos, el registro falló. Por favor, regrese y vuelva a intentarlo.". $query;
 }
 
 include("alerta_abm.php");

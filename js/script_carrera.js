@@ -72,27 +72,7 @@
 
 
 			$('#frm_carrera' ).submit(function( event ) {
-				var id=$('input[name="id"]').val();
 				var parametros = $(this).serialize();
-				if (isNaN(id))
-				{ 
-					$.ajax({
-						type: "POST",
-						url: "php/nuevo_carrera.php",
-						data: parametros,
-						beforeSend: function(objeto){
-							$("#resultados").html("Enviando...");
-						},
-						success: function(datos){
-							$("#resultados").html(datos);
-							load(1);
-							$('#CarreraModal').modal('hide');
-						}
-					});
-
-				}
-				else
-				{
 					$.ajax({
 						type: "POST",
 						url: "php/modificar_carrera.php",
@@ -106,6 +86,5 @@
 							$('#CarreraModal').modal('hide');
 						}
 					});
-				}
 				event.preventDefault();
 			});
