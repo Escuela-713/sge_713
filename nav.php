@@ -24,12 +24,12 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Registros </a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="registro_paises.php">Paises</a>
-              <a class="dropdown-item" href="registro_provincias.php">Provincias</a>
-              <a class="dropdown-item" href="registro_localidades.php">Localidades</a>
-              <a class="dropdown-item" href="registro_empleados.php">Empleados</a>
-              <a class="dropdown-item" href="registro_cargos.php">Cargos</a>
-              <a class="dropdown-item" href="registro_carreras.php">Carreras</a>
+              <a class="dropdown-item" href="gestion_paises.php">Paises</a>
+              <a class="dropdown-item" href="gestion_provincias.php">Provincias</a>
+              <a class="dropdown-item" href="gestion_localidades.php">Localidades</a>
+              <a class="dropdown-item" href="gestion_empleados.php">Empleados</a>
+              <a class="dropdown-item" href="gestion_cargos.php">Cargos</a>
+              <a class="dropdown-item" href="gestion_carreras.php">Carreras</a>
             </div>
           </li>
            <li class="nav-item">
@@ -38,7 +38,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
          <li class="nav-item">
-            <a class="nav-link" href="#Login" data-toggle="modal">Iniciar Sesión</a>
+            <a class="nav-link" href="#login" data-toggle="modal">Iniciar Sesión</a>
           </li>
       </ul>
     </div>

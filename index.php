@@ -87,6 +87,7 @@
   </section>
   
 <?php include("footer.php");?>	
-<?php include("modal/login.php");?>
+<?php include("modal/modal_login.php");?>
+
 </body>
 </html>
