@@ -10,7 +10,6 @@ if(mysqli_num_rows($sql) == 0)
 }
 else
 {
-	echo '<option value="0">Seleccione</option>';
 	while ($row = mysqli_fetch_assoc($sql)) {
 
 		echo '<option value="'.$row['id_cargo'].'">'.$row['nombre'].'</option>';

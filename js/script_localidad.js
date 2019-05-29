@@ -44,7 +44,7 @@ $(function() {
 			var parametros = $(this).serialize();
 				$.ajax({
 				type: "POST",
-				url: "php/modificar_localidad.php",
+				url: "php/abm_localidad.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Enviando...");
@@ -129,7 +129,7 @@ $(function() {
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
-				url: "php/eliminar_localidad.php",
+				url: "php/abm_localidad.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Enviando...");

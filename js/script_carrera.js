@@ -33,7 +33,7 @@
 				var parametros = $(this).serialize();
 				$.ajax({
 					type: "POST",
-					url: "php/eliminar_carrera.php",
+					url: "php/abm_carrera.php",
 					data: parametros,
 					beforeSend: function(objeto){
 						$("#resultados").html("Enviando...");
@@ -75,7 +75,7 @@
 				var parametros = $(this).serialize();
 					$.ajax({
 						type: "POST",
-						url: "php/modificar_carrera.php",
+						url: "php/abm_carrera.php",
 						data: parametros,
 						beforeSend: function(objeto){
 							$("#resultados").html("Enviando...");

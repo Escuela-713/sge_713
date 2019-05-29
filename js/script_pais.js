@@ -45,7 +45,7 @@
 		  var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
-				url: "php/modificar_pais.php",
+				url: "php/abm_pais.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Enviando...");
@@ -70,7 +70,7 @@
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
-				url: "php/eliminar_pais.php",
+				url: "php/abm_pais.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Enviando...");

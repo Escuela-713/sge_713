@@ -65,7 +65,7 @@
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
-				url: "php/modificar_provincia.php",
+				url: "php/abm_provincia.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Enviando...");
@@ -83,7 +83,7 @@
 			var parametros = $(this).serialize();
 			$.ajax({
 				type: "POST",
-				url: "php/eliminar_provincia.php",
+				url: "php/abm_provincia.php",
 				data: parametros,
 				beforeSend: function(objeto){
 					$("#resultados").html("Enviando...");

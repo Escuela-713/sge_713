@@ -16,7 +16,7 @@
 
 					<div class="form-group">
 						<label>Pais</label>
-						<select name="id_pais" id="id_pais">
+						<select name="id_pais" id="id_pais" required>
 							<option value="0">No hay datos</option>
 						</select>
 					</div>
