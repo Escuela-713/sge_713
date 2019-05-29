@@ -42,7 +42,7 @@ $(function() {
 		//Evento que se ejecuta cuando el usuario presiona el botón enviar.
 		$( "#frm_localidad" ).submit(function( event ) {
 			var parametros = $(this).serialize();
-				$.ajax({
+			$.ajax({
 				type: "POST",
 				url: "php/abm_localidad.php",
 				data: parametros,
@@ -64,7 +64,7 @@ $(function() {
 		  var id = button.data('id');
 		  var id_provincia=button.data('idprovincia');	
 		  var id_pais=button.data('idpais');
-		
+		  
 		  //cargo lista desplegable paises
 		  $.ajax({
 		  	type: "POST",
@@ -76,25 +76,29 @@ $(function() {
 		  		{
 		  			$('select[name="id_pais"]').val(id_pais);
 		  		}
-		  	},
-
-		  })
-
-		  //cargo la lista de provincias
-		  $.ajax({
-		  	type: "POST",
-		  	url:"php/select_options_listar_provincias_por_pais.php",
-		  	data:{id_pais:id_pais},
-		  	success:function (data)
-		  	{
-		  		$("#id_provincia").html(data);
-		  		if (!isNaN(id_provincia))
+		  		else
 		  		{
-		  			$('select[name="id_provincia"]').val(id_provincia);
+		  			$('select[name="id_pais"]').change();	
 		  		}
 		  	},
 
 		  })
+
+		  if (!isNaN(id_provincia))
+		  {
+			  //cargo la lista de provincias
+			  $.ajax({
+			  	type: "POST",
+			  	url:"php/select_options_listar_provincias_por_pais.php",
+			  	data:{id_pais:id_pais},
+			  	success:function (data)
+			  	{
+			  		$("#id_provincia").html(data);
+			  		
+			  		$('select[name="id_provincia"]').val(id_provincia);
+			  	},
+
+		  })}
 
 		  if (isNaN(id))
 		  {

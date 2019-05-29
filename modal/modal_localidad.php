@@ -3,7 +3,7 @@
 		<div class="modal-content">
 			<form name="frm_localidad" id="frm_localidad">
 				<div class="modal-header">						
-					<h4 class="title">Editar Localidad</h4>
+					<h4 class="title" id="titulo">Editar Localidad</h4>
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				</div>
 				<div class="modal-body">					
