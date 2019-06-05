@@ -1,5 +1,5 @@
 <?php
-require_once "db_pais.php";
+require_once "cls_pais.php";
 require_once ("conexion.php");
 
 if(!empty($_POST['delete_id']))

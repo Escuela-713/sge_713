@@ -1,6 +1,6 @@
 <?php
 include("conexion.php");
-require_once "db_empleado.php";
+require_once "cls_empleado.php";
 	
 $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 if($action == 'ajax'){
@@ -29,21 +29,20 @@ if($action == 'ajax'){
 							$id_empleado=$row['id_empleado'];
 							$legajo=$row['legajo'];
 							$cargo=$row['cargo'];
-							$apellido=$row['apellido'].", ".$row['nombre'];
+							$ape_nom=$row['apellido'].", ".$row['nombre'];
 							$dni=$row['dni'];
 							$telefono=$row['telefono'];
-
 						?>	
 						<tr>
 							<td  class="d-none"><?php echo $id_empleado;?></td>
 							<td ><?php echo $legajo;?></td>
 							<td ><?php echo $cargo;?></td>
-							<td ><?php echo $apellido;?></td>
+							<td ><?php echo $ape_nom;?></td>
 							<td ><?php echo $dni;?></td>
 							<td ><?php echo $telefono;?></td>
 							<td class = "text-right">
-								<a href="#editEmpleadoModal"  class="btn btn-info" data-target="#editEmpleadoModal" class="edit" data-toggle="modal" data-id='<?php echo $id_empleado;?>' data-name="<?php echo $apellido?>"><span class="glyphicon glyphicon-edit" >Editar</span> </a>
-								<a href="#deleteEmpleadoModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $id_empleado;?>"><span class="glyphicon glyphicon-trash"  >Eliminar</span></a>
+								<a href="#EmpleadoModal"  class="btn btn-info" data-target="#EmpleadoModal" class="edit" data-toggle="modal" data-id='<?php echo $id_empleado;?>'>Editar</ </a>
+								<a href="#deleteModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $id_empleado;?>">Eliminar</a>
                     		</td>
 						</tr>
 						<?php }

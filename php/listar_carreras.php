@@ -1,5 +1,5 @@
 <?php
-include("db_carrera.php");
+include("cls_carrera.php");
 	
 $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 if($action == 'ajax'){

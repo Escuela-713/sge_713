@@ -1,5 +1,5 @@
 <?php
-require_once "db_cargo.php";
+require_once "cls_cargo.php";
 $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 if($action == 'ajax'){
 	$obj=new cargo();
@@ -19,7 +19,7 @@ if($action == 'ajax'){
 				<?php 
 
 				while($row = mysqli_fetch_array($query)){	
-					$cargo_id=$row['id_tipo_de_empleado'];
+					$cargo_id=$row['id_cargo'];
 					$cargo_name=$row['nombre'];
 					$cargo_descripcion=$row['descripcion'];
 

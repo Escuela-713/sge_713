@@ -1,5 +1,5 @@
 <?php
-require_once "db_carrera.php";
+require_once "cls_carrera.php";
 require_once ("conexion.php");
 
 if(!empty($_POST['delete_id']))

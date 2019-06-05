@@ -1,5 +1,5 @@
 <?php
-require_once "db_localidad.php";
+require_once "cls_localidad.php";
 
 $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 if($action == 'ajax'){

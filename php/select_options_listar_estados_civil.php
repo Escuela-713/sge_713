@@ -1,5 +1,5 @@
 <?php
-require_once "db_estado_civil.php";
+require_once "cls_estado_civil.php";
 
 $obj=new estado_civil();
 $sql   = $obj->obtener_estados_civil();

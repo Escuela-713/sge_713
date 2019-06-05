@@ -1,5 +1,5 @@
 <?php
-require_once "db_cargo.php";
+require_once "cls_cargo.php";
 
 $obj=new cargo();
 $sql   = $obj->obtener_cargos();

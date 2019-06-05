@@ -1,5 +1,5 @@
 <?php
-include("db_provincia.php");
+include("cls_provincia.php");
 
 $action = (isset($_REQUEST['action'])&& $_REQUEST['action'] !=NULL)?$_REQUEST['action']:'';
 if($action == 'ajax'){

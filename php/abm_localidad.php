@@ -1,5 +1,5 @@
 <?php
-require_once "db_localidad.php";
+require_once "cls_localidad.php";
 include("conexion.php");
 
 if(!empty($_POST['delete_id']))
