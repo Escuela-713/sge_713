@@ -22,9 +22,10 @@
 			<div class='outer_div'></div><!-- Carga de datos ajax aqui -->
 		</div>
 	</div>	
-    <?php include("footer.php");?> 
     <?php include("modal/modal_instancias.php");?>
     <?php include("modal/modal_eliminar.php");?>
     <?php include("footer.php");?>
+	<script src="js/script_instancias.js"></script>
+    
 </body>
 </html>

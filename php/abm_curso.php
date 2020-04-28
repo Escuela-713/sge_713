@@ -10,22 +10,20 @@ if(!empty($_POST['delete_id']))
 }
 elseif (intval($_POST['id'])==0)
 {
-	$name = mysqli_real_escape_string($con,(strip_tags($_POST["nombre"],ENT_QUOTES)));
 	$anio =intval($_POST["anio"]);
-	$división = mysqli_real_escape_string($con,(strip_tags($_POST["division"],ENT_QUOTES)));
+	$division = mysqli_real_escape_string($con,(strip_tags($_POST["division"],ENT_QUOTES)));
 
-	$obj=new cargo();
-	$query =$obj->nuevo_cargo($name,$año,$división);
+	$obj=new curso();
+	$query =$obj->nuevo_curso($anio,$division);
 } 
 elseif (intval($_POST['id'])!=0)
 {	
-	$name = mysqli_real_escape_string($con,(strip_tags($_POST["nombre"],ENT_QUOTES)));
 	$anio =intval($_POST["anio"]);
-	$división = mysqli_real_escape_string($con,(strip_tags($_POST["division"],ENT_QUOTES)));
+	$division = mysqli_real_escape_string($con,(strip_tags($_POST["division"],ENT_QUOTES)));
 	$id=intval($_POST['id']);
 	
 	$obj=new curso();
-	$query = $obj->modificar_curso($id, $name, $año, $división);	
+	$query = $obj->modificar_curso($id, $año, $division);	
 }	
 else 
 {

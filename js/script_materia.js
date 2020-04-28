@@ -45,7 +45,7 @@ $('#frm_delete' ).submit(function( event ) {
 	event.preventDefault();
 });
 
-$('#MateriaModal').on('show.bs.modal', function (event) {
+$('#MateriasModal').on('show.bs.modal', function (event) {
 	var button = $(event.relatedTarget); // Button that triggered the modal
 	var id = button.data('id');
 	if (isNaN(id))
@@ -53,18 +53,18 @@ $('#MateriaModal').on('show.bs.modal', function (event) {
 		$('#titulo').text("Nueva Materia");
 		$('#id').val('undefined');
 		$('#name').val('');
-		$('#plan').val('');
+		$('#descripcion').val('');
 	}
 	else
 	{ 
-		var estado = button.data('estado');  
-		var name = button.data('name'); 
-		var plan= button.data('plan');
+		
 		$('#titulo').text("Editar Materia");	
-		$('#plan').val(plan);
+		var name = button.data('name'); 
+		var descripcion= button.data('descripcion');
+		$('#descripcion').val(descripcion);
 		$('#name').val(name);
 		$('#id').val(id);
-		$('select[name="estado"]').val(estado);
+	
 	}
 });
 

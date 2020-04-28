@@ -29,8 +29,11 @@
               <a class="dropdown-item" href="gestion_localidades.php">Localidades</a>
               <a class="dropdown-item" href="gestion_empleados.php">Empleados</a>
               <a class="dropdown-item" href="gestion_cargos.php">Cargos</a>
+              <a class="dropdown-item" href="gestion_cursos.php">Cursos</a>
+              <a class="dropdown-item" href="gestion_instancias.php">Instancias</a>
               <a class="dropdown-item" href="gestion_carreras.php">Carreras</a>
               <a class="dropdown-item" href="gestion_planes.php">Planes</a>
+              <a class="dropdown-item" href="gestion_materias.php">Materias</a>
             </div>
           </li>
            <li class="nav-item">
