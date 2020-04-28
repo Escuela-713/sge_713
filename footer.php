@@ -21,7 +21,13 @@
         <h4><p>Escuela 713</p></h4>
         <h6><p>Alsina 2252, 9200 Esquel</p></h6>
         <h6><p>02945-451395</p></h6>
-        <h6><a  href="https://www.facebook.com/escuela713/?ref=br_rs" target="_blak">Ir a Facebook 713</a></h6>
+        <br><br>
+        <h6> <center>
+            <button class="w3-btn w3-white w3-round-large">
+                <a  href="https://www.facebook.com/escuela713/?ref=br_rs" target="_blak"> <i class='fab fa-facebook' style='font-size:36px'></i> </a>
+              </button>
+            </center>
+        </h6>
       </div>
    </div>
 
