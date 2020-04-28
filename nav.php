@@ -1,14 +1,13 @@
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top"> 
-    <div class="navbar-header">
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
       <a class="navbar-brand" href="#">
-      <img class="rounded-circle" src="img/logo.png" alt="Logo" style="width:60px;">
+          <img class="rounded-circle" src="img/logo.png" alt="Logo" style="width:60px;">
       </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=" #collapsibleNavbar">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-    </div>
-    <div class="collapse navbar-collapse" id="collapsibleNavbar">
-      <ul class="nav navbar-nav">
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
             <a class="nav-link" href="index.php"> 713 </a>
           </li>
@@ -17,9 +16,6 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"> Alumnos </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"> Profesores </a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Registros </a>
@@ -30,18 +26,17 @@
               <a class="dropdown-item" href="gestion_empleados.php">Empleados</a>
               <a class="dropdown-item" href="gestion_cargos.php">Cargos</a>
               <a class="dropdown-item" href="gestion_carreras.php">Carreras</a>
-              <a class="dropdown-item" href="gestion_materiasxplan.php">Materias por Plan</a>
-              <a class="dropdown-item" href="gestion_materia.php">Materia</a>
             </div>
           </li>
            <li class="nav-item">
             <a class="nav-link" href="#"> Blog </a>
           </li>  
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <ul class="navbar-nav navbar-right">
          <li class="nav-item">
             <a class="nav-link" href="#login" data-toggle="modal">Iniciar Sesión</a>
           </li>
       </ul>
+      </div>
     </div>
-  </nav> 
+  </nav>
