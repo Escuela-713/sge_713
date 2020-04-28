@@ -12,9 +12,10 @@
 						<input type="hidden" name="id" id="id">
 						<input type="text" name="instancia" id="instancia" class="form-control"  maxlength="30" placeholder="Ingrese aquí la Instancia" required>
 					</div>		
-				<div class="modal-footer">
-					<input type="submit" class="btn btn-info" value="Guardar datos">
-					<input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancelar">	
+					<div class="modal-footer">
+						<input type="submit" class="btn btn-info" value="Guardar datos">
+						<input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancelar">	
+					</div>
 				</div>
 			</form>
 		</div>

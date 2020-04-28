@@ -24,10 +24,11 @@
 			<div class='outer_div'></div><!-- Carga de datos ajax aqui -->		
 		</div>
 	</div>
-	<?php include("footer.php");?>  
 	<!-- Add Modal HTML -->
 	<?php include("modal/modal_cursos.php");?>
 	<!-- Delete Modal HTML -->
 	<?php include("modal/modal_eliminar.php");?>
+	<script src="js/script_cursos.js"></script>
+	<?php include("footer.php");?> 
 </body>
 </html>

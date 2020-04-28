@@ -24,7 +24,7 @@
 	</div>
 	<?php include("modal/modal_cargo.php");?>
 	<?php include("modal/modal_eliminar.php");?>
-	<script src="js/script _cargo.js"></script>
+	<script src="js/script_cargo.js"></script>
 	<?php include("footer.php");?>  
 </body>
 </html>

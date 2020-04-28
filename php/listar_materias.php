@@ -25,14 +25,14 @@ if($action == 'ajax'){
 						while($row = mysqli_fetch_array($query)){	
 							$id_materia=$row['id_materia'];
 							$nombre=$row['nombre'];
-							$descripcion=$row['descripción'];
+							$descripcion=$row['descripcion'];
 						?>	
 						<tr>
 							<td  class="d-none"><?php echo $id_materia;?></td>
 							<td ><?php echo $nombre;?></td>
 							<td ><?php echo $descripcion;?></td>
 							<td class = "text-right">
-								<a href="#MateriaModal"  class="btn btn-info" data-target="#MateriaModal" class="edit" data-toggle="modal" data-id='<?php echo $id_materia;?>'>Editar</ </a>
+								<a href="#MateriasModal"  class="btn btn-info" data-target="#MateriasModal" class="edit" data-toggle="modal" data-id='<?php echo $id_materia;?>' data-name='<?php echo $nombre;?>'  data-descripcion='<?php echo $descripcion;?>'>Editar</ </a>
 								<a href="#deleteModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $id_materia;?>">Eliminar</a>
                     		</td>
 						</tr>
