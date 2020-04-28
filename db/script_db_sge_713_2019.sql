@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-12-2019 a las 19:32:10
--- Versión del servidor: 10.3.15-MariaDB
--- Versión de PHP: 7.1.30
+-- Tiempo de generación: 28-04-2020 a las 06:51:51
+-- Versión del servidor: 10.1.30-MariaDB
+-- Versión de PHP: 5.6.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,13 +21,24 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `mydb`
 --
-CREATE DATABASE IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `mydb` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `mydb`;
 
 DELIMITER $$
 --
 -- Procedimientos
 --
+DROP PROCEDURE IF EXISTS `eliminar_cargo`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_cargo` (IN `p_id` INT)  BEGIN
+delete from cargo
+where id_cargo=p_id;
+END$$
+
+DROP PROCEDURE IF EXISTS `eliminar_carrera`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_carrera` (IN `p_id` INT(11))  BEGIN
+DELETE FROM carrera WHERE id_carrera=p_id;
+END$$
+
 DROP PROCEDURE IF EXISTS `eliminar_curso`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `eliminar_curso` (IN `p_id_curso` INT(11))  BEGIN
 delete 
@@ -101,10 +112,10 @@ WHERE id_carrera=p_id;
 END$$
 
 DROP PROCEDURE IF EXISTS `modificar_curso`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modificar_curso` (IN `p_nombre` VARCHAR(45), `p_anio` SMALLINT(4), `p_division` VARCHAR(15))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificar_curso` (IN `p_anio` SMALLINT(4), `p_division` VARCHAR(15))  BEGIN
 UPDATE curso
 SET
-nombre= p_nombre,
+
 anio= p_anio,
 division = p_division
 WHERE id_curso=p_id;
@@ -152,7 +163,7 @@ WHERE id_localidad=p_id;
 END$$
 
 DROP PROCEDURE IF EXISTS `modificar_materia`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `modificar_materia` (IN `p_nombre` VARCHAR(45), `p_descripcion` VARCHAR(45))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `modificar_materia` (IN `p_id` INT, `p_nombre` VARCHAR(45), `p_descripcion` VARCHAR(45))  BEGIN
 UPDATE materia
 SET nombre=p_nombre,
 descripcion=p_descripcion
@@ -214,13 +225,13 @@ VALUES
 END$$
 
 DROP PROCEDURE IF EXISTS `nuevo_curso`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `nuevo_curso` (IN `p_nombre` VARCHAR(45), `p_anio` SMALLINT(11), `p_division` VARCHAR(15))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `nuevo_curso` (IN `p_anio` SMALLINT(11), `p_division` VARCHAR(15))  BEGIN
 INSERT INTO `mydb`.`curso`
-(`nombre`,
+(
 `anio`,
 `division`)
 VALUES
-(`p_nombre`,
+(
 `p_anio`,
 `p_division`);
 END$$
@@ -306,10 +317,10 @@ FROM carrera
 ORDER BY nombre ASC;
 END$$
 
-DROP PROCEDURE IF EXISTS `obtener_curso`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_curso` ()  BEGIN
-select id_curso, division, anio, nombre from curso
-order by nombre;
+DROP PROCEDURE IF EXISTS `obtener_cursos`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_cursos` ()  BEGIN
+select id_curso, division, anio from curso;
+
 END$$
 
 DROP PROCEDURE IF EXISTS `obtener_empleado`$$
@@ -321,7 +332,7 @@ INNER JOIN persona p ON p.id_persona=e.id_persona
 LEFT JOIN localidad l on l.id_localidad=p.id_localidad
 LEFT JOIN provincia pro on l.id_provincia=pro.id_provincia
 LEFT JOIN pais pa on pro.id_pais= pa.id_pais
-LEFT JOIN localidad ln	on p.id_localidad_nacimiento=ln.id_localidad
+LEFT JOIN localidad ln  on p.id_localidad_nacimiento=ln.id_localidad
 LEFT JOIN provincia pron on ln.id_provincia=pron.id_provincia
 LEFT JOIN pais pan on pan.id_pais=pron.id_pais
 LEFT JOIN cargo c ON c.id_cargo=ec.id_cargo
@@ -356,8 +367,8 @@ from estado_civil
 ORDER BY nombre ASC;
 END$$
 
-DROP PROCEDURE IF EXISTS `obtener_instancia`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_instancia` ()  BEGIN
+DROP PROCEDURE IF EXISTS `obtener_instancias`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_instancias` ()  BEGIN
 select id_instancia, nombre from instancia
 order by nombre;
 END$$
@@ -377,19 +388,19 @@ FROM localidad l
 WHERE id_provincia = pid_provincia ORDER BY nombre ASC;
 END$$
 
-DROP PROCEDURE IF EXISTS `obtener_materia`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_materia` ()  BEGIN
+DROP PROCEDURE IF EXISTS `obtener_materias`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_materias` ()  BEGIN
 select id_materia, nombre, descripcion from materia
 order by nombre;
 END$$
 
 DROP PROCEDURE IF EXISTS `obtener_paises`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_paises` ()  BEGIN
-	SELECT id_pais, nombre FROM mydb.pais ORDER BY nombre ASC;
+  SELECT id_pais, nombre FROM mydb.pais ORDER BY nombre ASC;
 END$$
 
-DROP PROCEDURE IF EXISTS `obtener_plan`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_plan` ()  BEGIN
+DROP PROCEDURE IF EXISTS `obtener_planes`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `obtener_planes` ()  BEGIN
 select p.id_plan, car.id_carrera, p.plan, p.estado, p.horas_catedra, p.horas_reloj, car.nombre as carrera 
 from carrera car
 inner join plan p on p.id_carrera=car.id_carrera
@@ -509,11 +520,18 @@ INSERT INTO `carrera` (`id_carrera`, `nombre`, `estado`, `titulo_egreso`) VALUES
 DROP TABLE IF EXISTS `curso`;
 CREATE TABLE IF NOT EXISTS `curso` (
   `id_curso` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(45) NOT NULL,
   `anio` smallint(4) NOT NULL,
   `division` varchar(15) NOT NULL,
   PRIMARY KEY (`id_curso`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `curso`
+--
+
+INSERT INTO `curso` (`id_curso`, `anio`, `division`) VALUES
+(1, 1, '2'),
+(4, 3, '3');
 
 -- --------------------------------------------------------
 
@@ -529,14 +547,15 @@ CREATE TABLE IF NOT EXISTS `empleado` (
   `id_persona` int(11) NOT NULL,
   PRIMARY KEY (`id_empleado`),
   KEY `fk_Empleado_Personas1_idx` (`id_persona`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `empleado`
 --
 
 INSERT INTO `empleado` (`id_empleado`, `fecha_de_ingreso`, `legajo`, `id_persona`) VALUES
-(12, '2011-02-02', 65535, 12);
+(12, '2011-02-02', 65535, 12),
+(19, '2010-10-10', 1254, 13);
 
 -- --------------------------------------------------------
 
@@ -557,7 +576,8 @@ CREATE TABLE IF NOT EXISTS `empleado_x_cargo` (
 --
 
 INSERT INTO `empleado_x_cargo` (`id_cargo`, `id_empleado`) VALUES
-(10, 12);
+(10, 12),
+(10, 19);
 
 -- --------------------------------------------------------
 
@@ -593,7 +613,15 @@ CREATE TABLE IF NOT EXISTS `instancia` (
   `id_instancia` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(30) NOT NULL,
   PRIMARY KEY (`id_instancia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `instancia`
+--
+
+INSERT INTO `instancia` (`id_instancia`, `nombre`) VALUES
+(1, '1er cuatrimestre'),
+(2, '2do cuatrimestre');
 
 -- --------------------------------------------------------
 
@@ -609,7 +637,7 @@ CREATE TABLE IF NOT EXISTS `localidad` (
   `id_provincia` int(11) NOT NULL,
   PRIMARY KEY (`id_localidad`),
   KEY `fk_Localidad_Provincia1_idx` (`id_provincia`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `localidad`
@@ -619,7 +647,8 @@ INSERT INTO `localidad` (`id_localidad`, `nombre`, `codigo_postal`, `id_provinci
 (1, 'Esquel', 9200, 1),
 (5, 'Trevelin', 0, 1),
 (16, 'CÃ³rdoba', 5000, 14),
-(17, 'CABA', 0, 22);
+(17, 'CABA', 0, 22),
+(18, 'Santa MarÃ­a', 5000, 14);
 
 -- --------------------------------------------------------
 
@@ -633,7 +662,14 @@ CREATE TABLE IF NOT EXISTS `materia` (
   `nombre` varchar(45) NOT NULL,
   `descripcion` varchar(45) NOT NULL,
   PRIMARY KEY (`id_materia`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `materia`
+--
+
+INSERT INTO `materia` (`id_materia`, `nombre`, `descripcion`) VALUES
+(1, 'Desarrollo IV', '');
 
 -- --------------------------------------------------------
 
@@ -662,7 +698,7 @@ CREATE TABLE IF NOT EXISTS `pais` (
   `id_pais` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
   PRIMARY KEY (`id_pais`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `pais`
@@ -671,7 +707,8 @@ CREATE TABLE IF NOT EXISTS `pais` (
 INSERT INTO `pais` (`id_pais`, `nombre`) VALUES
 (1, 'Argentina'),
 (12, 'Chile'),
-(22, 'Bolivia ');
+(22, 'Bolivia '),
+(23, 'Brasil');
 
 -- --------------------------------------------------------
 
@@ -699,14 +736,15 @@ CREATE TABLE IF NOT EXISTS `persona` (
   `id_alumno` int(11) NOT NULL,
   PRIMARY KEY (`id_persona`),
   KEY `id_localidad_idx` (`id_localidad`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `persona`
 --
 
 INSERT INTO `persona` (`id_persona`, `nombre`, `apellido`, `sexo`, `fecha_nacimiento`, `id_estado_civil`, `dni`, `grupo sanguineo`, `calle`, `numero`, `barrio`, `telefono`, `id_localidad`, `id_localidad_nacimiento`, `contacto`, `id_alumno`) VALUES
-(12, 'EstefanÃ­a Soledad', 'LÃ³pez', 'F', '1978-01-01', 1, 26915087, NULL, 'San MartÃ­n', 451, 'Malvinas', '2945-1544000', 1, 1, '', 0);
+(12, 'EstefanÃ­a Soledad', 'LÃ³pez', 'F', '1978-01-01', 1, 26915087, NULL, 'San MartÃ­n', 451, 'Malvinas', '2945-1544000', 1, 1, '', 0),
+(13, 'Rosario', 'Fuentes', 'F', '0000-00-00', 1, 25457899, NULL, '', 0, '', '', 17, 0, '', 0);
 
 -- --------------------------------------------------------
 
@@ -723,7 +761,14 @@ CREATE TABLE IF NOT EXISTS `plan` (
   `horas_catedra` tinyint(2) NOT NULL,
   `horas_reloj` tinyint(2) NOT NULL,
   PRIMARY KEY (`id_plan`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `plan`
+--
+
+INSERT INTO `plan` (`id_plan`, `id_carrera`, `plan`, `estado`, `horas_catedra`, `horas_reloj`) VALUES
+(1, 1, 2010, 1, 45, 44);
 
 -- --------------------------------------------------------
 
@@ -752,7 +797,7 @@ CREATE TABLE IF NOT EXISTS `provincia` (
   `id_pais` int(11) NOT NULL,
   PRIMARY KEY (`id_provincia`),
   KEY `fk_Provincia_Pais1_idx` (`id_pais`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
 -- Volcado de datos para la tabla `provincia`
@@ -762,7 +807,8 @@ INSERT INTO `provincia` (`id_provincia`, `nombre`, `id_pais`) VALUES
 (1, 'Chubut', 1),
 (14, 'CÃ³rdoba', 1),
 (22, 'Buenos Aires', 1),
-(23, 'TucumÃ¡n', 1);
+(23, 'TucumÃ¡n', 1),
+(24, 'Santa Cruz', 1);
 
 -- --------------------------------------------------------
 
@@ -799,18 +845,6 @@ CREATE TABLE IF NOT EXISTS `usuario` (
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `empleado`
---
-ALTER TABLE `empleado`
-  ADD CONSTRAINT `#id_persona` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `localidad`
---
-ALTER TABLE `localidad`
-  ADD CONSTRAINT `#id_localidad_provincia` FOREIGN KEY (`id_provincia`) REFERENCES `provincia` (`id_provincia`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Filtros para la tabla `provincia`
