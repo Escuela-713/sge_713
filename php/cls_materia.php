@@ -6,7 +6,7 @@ class materia
 	public  function obtener_materias()
 	{
 		include("conexion.php");
-		$sql= mysqli_query($con, "CALL obtener_materia();");
+		$sql= mysqli_query($con, "CALL obtener_materias();");
 		return $sql;	
 	}
 
