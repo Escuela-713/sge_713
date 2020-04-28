@@ -13,20 +13,20 @@ elseif (intval($_POST['id']==0)  )
 {
 	$name = mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
 	$estado=(int) $_POST["estado_id"];
-	$plan=(int) $_POST["plan"];
+	$titulo_egreso=(int) $_POST["titulo_egreso"];
 
 	$obj=new carrera();
-	$query=$obj->nuevo_carrera($name,$estado,$plan);
+	$query=$obj->nuevo_carrera($name,$estado,$titulo_egreso);
 } 
 elseif (intval($_POST['id'])!=0)
 {
 	$name = mysqli_real_escape_string($con,(strip_tags($_POST["name"],ENT_QUOTES)));
 	$estado=(int) $_POST["estado_id"];
-	$plan=(int) $_POST["plan"];
+	$titulo_egreso=(int) $_POST["titulo_egreso"];
 	$id=(int) $_POST["id"];
 	
 	$obj=new carrera();
-	$query=$obj->modificar_carrera($id, $name,$estado,$plan);
+	$query=$obj->modificar_carrera($id, $name,$estado,$titulo_egreso);
 } 
 else 
 {

@@ -16,7 +16,7 @@ if($action == 'ajax'){
 						<th>Nombre</th>
 						<th>Estado</th>
 						<th class="d-none"></th>
-						<th>Plan</th>
+						<th>Título</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -36,7 +36,7 @@ if($action == 'ajax'){
 							{
 								$estados_desc="Inactivo";
 							}	
-							$plan=$row['plan'];
+							$titulo_egreso=$row['titulo_egreso'];
 							
 						?>	
 						<tr>
@@ -44,9 +44,9 @@ if($action == 'ajax'){
 							<td ><?php echo $name;?></td>
 							<td  class="d-none"><?php echo $estado;?></td>
 							<td><?php echo $estados_desc;?></td>
-							<td ><?php echo $plan;?></td>
+							<td ><?php echo $titulo_egreso;?></td>
 							<td class = "text-right">
-								<a href="#CarreraModal" class="btn btn-info" data-target="#CarreraModal" class="edit" data-toggle="modal" data-id='<?php echo $id;?>' data-name="<?php echo $name?>" data-estado="<?php echo $estado?>" data-plan="<?php echo $plan?>"  ><span class="glyphicon glyphicon-edit" ></span>Editar</a>
+								<a href="#CarreraModal" class="btn btn-info" data-target="#CarreraModal" class="edit" data-toggle="modal" data-id='<?php echo $id;?>' data-name="<?php echo $name?>" data-estado="<?php echo $estado?>" data-titulo_egreso="<?php echo $titulo_egreso?>"  ><span class="glyphicon glyphicon-edit" ></span>Editar</a>
 								<a href="#deleteModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $id;?>"><span class="glyphicon glyphicon-trash"  ></span>Eliminar</a>
                     		</td>
 						</tr>

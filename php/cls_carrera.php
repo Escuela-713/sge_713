@@ -17,17 +17,17 @@ class carrera
 	    return $sql;
 	}
 
-	public function modificar_carrera($id,$nombre,$estado, $plan)
+	public function modificar_carrera($id,$nombre,$estado, $titulo_egreso)
 	{
 		include("conexion.php");
-		$sql = mysqli_query($con,"call modificar_carrera('".$nombre."',".$estado.",".$plan.",".$id.")");
+		$sql = mysqli_query($con,"call modificar_carrera('".$nombre."',".$estado.",".$titulo_egreso.",".$id.")");
 		return $sql;
 	}
 
-	public function nuevo_carrera($nombre,$estado, $plan)
+	public function nuevo_carrera($nombre,$estado, $titulo_egreso)
 	{
 		include("conexion.php");
-		$sql = mysqli_query($con,"call nuevo_carrera('".$nombre."',".$estado.",".$plan.")");
+		$sql = mysqli_query($con,"call nuevo_carrera('".$nombre."',".$estado.",".$titulo_egreso.")");
 		return $sql;
 
 	}

@@ -6,7 +6,7 @@ class plan
 	public  function obtener_planes()
 	{
 		include("conexion.php");
-		$sql= mysqli_query($con, "CALL obtener_plan();");
+		$sql= mysqli_query($con, "CALL obtener_planes();");
 		return $sql;	
 	}
 
@@ -25,10 +25,10 @@ class plan
 
 	}
 
-	public function nuevo_plan($plan,$id_carreras,$estado,$hs_catedra,$hs_reloj)
+	public function nuevo_plan($nombre,$descripcion)
 	{
 		include("conexion.php");
-		$sql = mysqli_query($con,"call nuevo_plan(".$id_carreras.",'".$plan."',".$estado.",".$hs_catedra.",".$hs_reloj.")");
+		$sql = mysqli_query($con,"call nuevo_plan(".$id_carreras.",".$plan.",'".$estado."','".$hs_catedra."','".$hs_reloj."')");
 		return $sql;
 
 	}
