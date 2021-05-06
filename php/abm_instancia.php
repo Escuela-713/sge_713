@@ -16,7 +16,8 @@ elseif (intval($_POST['id'])==0)
 	$nombre=(int) $_POST["nombre"];
 
 	$obj=new instancia();
-	$query=$obj->nueva_instancia($nombre);
+	$query=$obj->nuevo_instancia($nombre);
+}
 elseif (intval($_POST['id'])!=0)
 {
 	$nombre = mysqli_real_escape_string($con,(strip_tags($_POST["nombre"],ENT_QUOTES)));

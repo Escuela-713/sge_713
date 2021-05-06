@@ -28,7 +28,7 @@ elseif (intval($_POST['id'])!=0)
 	$hs_reloj=(int) $_POST["horas_reloj"];
 	
 	$obj=new plan();
-	$query=$obj->modificar_plan($id,$name,$id_carrera,$estado,$hs_catedra,$hs_reloj);
+	$query=$obj->modificar_plan($id,$name,$id_carrera,$estado);
 }
 else 
 {
@@ -45,6 +45,5 @@ else
 }
 
 include("alerta.php");
-
 
 ?>	

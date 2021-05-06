@@ -33,7 +33,7 @@ if($action == 'ajax'){
 						
 						<td class = "text-right">
 
-							<a href="#PlanesModal"  class="btn btn-info" data-target="#PlanesModal" class="edit" data-toggle="modal" data-id='<?php echo $plan_id;?>' data-name="<?php echo $plan_name?>" data-estado="<?php echo $plan_estado?>" data-carreras="<?php echo $plan_carrera?>"  data-hscatedra= "<?php echo $plan_hscatedra?>" data-hsreloj="<?php echo $plan_hsreloj?>" > <span class="glyphicon glyphicon-edit" ></span>Editar</a>
+							<a href="#PlanesModal"  class="btn btn-info" data-target="#PlanesModal" class="edit" data-toggle="modal" data-id='<?php echo $plan_id;?>' data-name="<?php echo $plan_name?>" data-estado="<?php echo $plan_estado?>" data-carreras="<?php echo $plan_carrera?>"> <span class="glyphicon glyphicon-edit" ></span>Editar</a>
 
 							<a href="#deleteModal" class="btn btn-danger" class="delete" data-toggle="modal" data-id="<?php echo $plan_id?>"><span class="glyphicon glyphicon-trash"  ></span>Eliminar</a>
 						</td>
