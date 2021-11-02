@@ -14,11 +14,11 @@
 							</li>
 							<li   class="nav-item"><a class="nav-link"  href="#datos_personalestab" aria-controls="datos_personalestab"  data-toggle="tab">Datos Personales</a>
 							</li>
-							<li   class="nav-item"><a class="nav-link"  href="#datos_tutortab" aria-controls="datos_tutortab"  data-toggle="tab">Datos Tutor</a>
+							<li   class="nav-item"><a class="nav-link"  href="#datos_tutorestab" aria-controls="datos_tutorestab"  data-toggle="tab">Datos Tutores</a>
 							</li>
 						</ul>
 						<div  class="tab-content">
-							<div role="tabpanel" class="tab-pane" id="datos_tutortab">
+							<div role="tabpanel" class="tab-pane" id="datos_tutorestab">
 								<div class="container-fluid">
 									<ul class="nav nav-tabs" role="tablist">	
 										<li class="nav-item active"><a class="nav-link active" href="#datos_madretab" aria-controls="datos_madretab" data-toggle="tab">Madre</a>
@@ -29,6 +29,13 @@
 									     </li>
 						             </ul>
 									 <div class="tab-content">
+										 <div role="tabpanel" class="tab-pane" id="datos_tutortab">
+											 <div class="container-fluid">
+												 <label for=""> nombreeee</label>
+
+											 </div>
+
+										 </div>
 										<div role="tabpanel" class="tab-pane active" id="datos_madretab">
 											<div class="container-fluid mt-2">
 												<input type="hidden" name="id" id="id"> 
@@ -39,7 +46,6 @@
 														Ingrese el nombre
 													</div>
 												</div>
-											
 												<div class="form-group">
 													<label>Apellido/s</label>
 													<input type="text" name="apellido" id="apellido" class="form-control" placeholder="Ingrese aquí el Apellido" maxlength="45" required>
@@ -47,9 +53,25 @@
 														Ingrese el apellido
 													</div>
 												</div>
+												<div class="form-group">	
+													<label>DNI</label>
+													<input type="number" name="dni" id="dni" placeholder="Ingrese aquí el DNI" maxlength="11" class="form-control" required>
+														<div class="invalid-feedback">
+															Ingrese el DNI
+														</div>
+												</div>
+												<div class="form-group">	
+													<label>CUIL</label>
+													<input type="number" name="cuil" id="cuil" placeholder="Ingrese aquí el Cuil" maxlength="11" class="form-control" required>
+													<div class="invalid-feedback">
+														Ingrese el CUIL
+												</div>
+
+									</div>
+
 											</div>
 										</div>
-
+										
 										<div role="tabpanel" class="tab-pane" id="datos_padretab">
 											<div class="container-fluid mt-2">
 												<input type="hidden" name="id" id="id">
@@ -63,19 +85,8 @@
 												</div>
 											</div>
 										</div>
-										
-										<div role="tabpanel" class="tab-pane" id="datos_tutortab">
-											<div class="container-fluid mt-2">
-												<input type="hidden" name="id" id="id">
-												<div class="form-group">
-													<label> Nombree</label>
-												
-												</div>
-											</div>
-										</div>
 								
 									</div>
-
 								</div>
 							</div>
 
