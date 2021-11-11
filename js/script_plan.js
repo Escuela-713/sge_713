@@ -69,7 +69,7 @@ $('#PlanesModal').on('show.bs.modal', function (event) {
 	}
 });
 
-$('#frm_plan' ).submit(function( event ) {
+/*$('#frm_plan' ).submit(function( event ) {
 	var parametros = $(this).serialize();
 	$.ajax({
 		type: "POST",
@@ -85,4 +85,36 @@ $('#frm_plan' ).submit(function( event ) {
 		}
 	});
 	event.preventDefault();
-});
+}); */
+
+function check()
+{
+	let check_campo_complet=true;
+    let name= document.forms["frm_plan"]["name"].value;
+    let descripcion= document.forms["frm_plan"]["descripcion"].value;
+    let id=0;
+		if (document.forms["frm_plan"].checkValidity())	
+		{
+			console.log(document.forms["frm_plan"].checkValidity());
+			$.ajax({
+				type: "POST",
+				url: "php/abm_plan.php",
+				datatype: "json",
+                data: {name:name, descripcion:descripcion, id:id},
+				beforeSend: function(objeto){
+					$("#resultados").html("Enviando...");
+				},
+				success: function(datos){
+					$("#resultados").html(datos);
+					load(1);
+					$('#PlanesModal').modal('hide');
+				}
+			});
+		}
+		else
+		{
+			check_campo_complet=false;
+		}
+	
+		return check_campo_complet;
+} 
