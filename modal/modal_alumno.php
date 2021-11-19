@@ -201,7 +201,7 @@
 											<div class="container-fluid mt-2">
 												<input type="hidden" name="id" id="id"> 
 										 		<div class="form-group">
-													<label>Nombreee/s</label>
+													<label>Nombre/s</label>
 													<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese aquí el Nombre" maxlength="45" required>
 													<div class="invalid-feedback">
 														Ingrese el nombre
@@ -369,7 +369,7 @@
 											<div class="container-fluid mt-2">
 												<input type="hidden" name="id" id="id"> 
 													<div class="form-group">
-														<label>Nombree/s</label>
+														<label>Nombre/s</label>
 														<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese aquí el Nombre" maxlength="45" required>
 														<div class="invalid-feedback">
 															Ingrese el nombre
