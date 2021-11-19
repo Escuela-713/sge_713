@@ -1,5 +1,4 @@
-
-    //cargo lista paises
+  //cargo lista paises alumno
 	$.ajax({
 	  	type: "POST",
 	  	url:"php/select_options_listar_paises.php",
@@ -82,9 +81,178 @@
             })
         }
     })
-    
 
-    //cargo lista paises
+
+    //cargo lista paises madre
+	$.ajax({
+        type: "POST",
+        url:"php/select_options_listar_paises.php",
+        success:function (data)
+        {
+            $("#id_pais_madre").html(data);
+            $("#id_pais_d_madre").html(data);
+
+            if (isNaN(id))
+          {
+              $('#id_pais_madre').change();
+              $('#id_pais_d_madre').change();
+          }
+          
+        },
+  })
+  
+  $('#id_pais_madre').on('change',function(){
+      var id_pais=this.value;
+      if (id_pais)
+      {
+          $.ajax({
+              type: "POST",
+              url:"php/select_options_listar_provincias_por_pais.php",
+              data:{id_pais:id_pais},
+              success:function (data)
+              {
+                  $('#id_provincia_madre').html(data);
+                  $('#id_provincia_madre').change();
+              }
+              })
+      }
+  });
+
+  $('#id_pais_d_madre').on('change',function(){
+      var id_pais=this.value;
+      if (!isNaN(id_pais))
+      {
+          $.ajax({
+              type: "POST",
+              url:"php/select_options_listar_provincias_por_pais.php",
+              data:{id_pais:id_pais},
+              success:function (data)
+              {
+                  $("#id_provincia_d_madre").html(data);
+                  $('#id_provincia_d_madre').change();
+              }
+              })
+      }
+  });
+
+  $('#id_provincia_madre').on('change',function(){
+      var id_provincia=this.value;
+      if (!isNaN(id_provincia))
+           {
+              $.ajax({
+                  type: "POST",
+                  url:"php/select_options_listar_localidades_por_provincias.php",
+                  data:{id_provincia:id_provincia},
+                  success:function (data)
+                  {
+                      $("#id_localidad_madre").html(data);
+                  }
+              })
+          }
+  });
+  
+  $('#id_provincia_d_madre').on('change',function(){
+      var id_provincia=this.value;
+      if (!isNaN(id_provincia))
+      {
+          $.ajax({
+              type: "POST",
+              url:"php/select_options_listar_localidades_por_provincias.php",
+              data:{id_provincia:id_provincia},
+              success:function (data)
+              {
+                  $("#id_localidad_d_madre").html(data);
+              }
+          })
+      }
+  })    
+
+      //cargo lista paises padre
+	$.ajax({
+        type: "POST",
+        url:"php/select_options_listar_paises.php",
+        success:function (data)
+        {
+            $("#id_pais_padre").html(data);
+            $("#id_pais_d_padre").html(data);
+
+            if (isNaN(id))
+          {
+              $('#id_pais_padre').change();
+              $('#id_pais_d_padre').change();
+          }
+          
+        },
+  })
+  
+  $('#id_pais_padre').on('change',function(){
+      var id_pais=this.value;
+      if (id_pais)
+      {
+          $.ajax({
+              type: "POST",
+              url:"php/select_options_listar_provincias_por_pais.php",
+              data:{id_pais:id_pais},
+              success:function (data)
+              {
+                  $('#id_provincia_padre').html(data);
+                  $('#id_provincia_padre').change();
+              }
+              })
+      }
+  });
+
+  $('#id_pais_d_padre').on('change',function(){
+      var id_pais=this.value;
+      if (!isNaN(id_pais))
+      {
+          $.ajax({
+              type: "POST",
+              url:"php/select_options_listar_provincias_por_pais.php",
+              data:{id_pais:id_pais},
+              success:function (data)
+              {
+                  $("#id_provincia_d_padre").html(data);
+                  $('#id_provincia_d_padre').change();
+              }
+              })
+      }
+  });
+
+  $('#id_provincia_padre').on('change',function(){
+      var id_provincia=this.value;
+      if (!isNaN(id_provincia))
+           {
+              $.ajax({
+                  type: "POST",
+                  url:"php/select_options_listar_localidades_por_provincias.php",
+                  data:{id_provincia:id_provincia},
+                  success:function (data)
+                  {
+                      $("#id_localidad_padre").html(data);
+                  }
+              })
+          }
+  });
+  
+  $('#id_provincia_d_padre').on('change',function(){
+      var id_provincia=this.value;
+      if (!isNaN(id_provincia))
+      {
+          $.ajax({
+              type: "POST",
+              url:"php/select_options_listar_localidades_por_provincias.php",
+              data:{id_provincia:id_provincia},
+              success:function (data)
+              {
+                  $("#id_localidad_d_padre").html(data);
+              }
+          })
+      }
+  })    
+ 
+ 
+    //cargo lista paises tutor
 	$.ajax({
         type: "POST",
         url:"php/select_options_listar_paises.php",
@@ -167,6 +335,7 @@
           })
       }
   })
+
 
       //cargo lista estado civil del tutor
 	$.ajax({

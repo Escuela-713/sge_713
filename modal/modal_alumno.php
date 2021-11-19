@@ -201,7 +201,7 @@
 											<div class="container-fluid mt-2">
 												<input type="hidden" name="id" id="id"> 
 										 		<div class="form-group">
-													<label>Nombre/s</label>
+													<label>Nombreee/s</label>
 													<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese aquí el Nombre" maxlength="45" required>
 													<div class="invalid-feedback">
 														Ingrese el nombre
@@ -252,19 +252,19 @@
 															<div class="form-row" >
 																<div class="form-group col-md-4">
 																	<label>Pais</label>
-																	<select name="id_pais_d_tutores" id="id_pais_d_tutores" class="form-control" >
+																	<select name="id_pais_d_madre" id="id_pais_d_madre" class="form-control" >
 																		<option value="0" required>No hay datos</option>
 																	</select>
 																</div>
 																<div class="form-group col-md-4">
 																	<label>Provincia</label>
-																	<select name="id_provincia_d_tutores" id="id_provincia_d_tutores" class="form-control"  >
+																	<select name="id_provincia_d_madre" id="id_provincia_d_madre" class="form-control" >
 																		<option value="0">No hay datos</option>
 																	</select>
 																</div>
 																<div class="form-group col-md-4">
 																	<label>Localidad</label>
-																	<select name="id_localidad_d_tutores" id="id_localidad_d_tutores" class="form-control"  >
+																	<select name="id_localidad_d_madre" id="id_localidad_d_madre" class="form-control"  >
 																		<option value="0">No hay datos</option>
 																	</select>
 																</div>
@@ -320,19 +320,19 @@
 
 																<div class="form-group col-md-4">
 																	<label>Pais</label>
-																	<select name="id_pais_tutores" id="id_pais_tutores" class="form-control">
+																	<select name="id_pais_madre" id="id_pais_madre" class="form-control">
 																		<option value="0">No hay datos</option>
 																	</select>
 																</div>
 																<div class="form-group col-md-4">
 																	<label>Provincia</label>
-																	<select name="id_provincia_tutores" id="id_provincia_tutores" class="form-control"  >
+																	<select name="id_provincia_madre" id="id_provincia_madre" class="form-control"  >
 																		<option value="0">No hay datos</option>
 																	</select>
 																</div>
 																<div class="form-group col-md-4">
 																	<label>Localidad</label>
-																	<select name="id_localidad_tutores" id="id_localidad_tutores" class="form-control"  >
+																	<select name="id_localidad_madre" id="id_localidad_madre" class="form-control"  >
 																		<option value="0">No hay datos</option>
 																	</select>
 																</div>
@@ -367,43 +367,43 @@
 										
 										<div role="tabpanel" class="tab-pane" id="datos_padretab">
 											<div class="container-fluid mt-2">
-														<input type="hidden" name="id" id="id"> 
-														<div class="form-group">
-															<label>Nombre/s</label>
-															<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese aquí el Nombre" maxlength="45" required>
-															<div class="invalid-feedback">
-																Ingrese el nombre
-															</div>
+												<input type="hidden" name="id" id="id"> 
+													<div class="form-group">
+														<label>Nombree/s</label>
+														<input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese aquí el Nombre" maxlength="45" required>
+														<div class="invalid-feedback">
+															Ingrese el nombre
 														</div>
-														<div class="form-group">
-															<label>Apellido/s</label>
-															<input type="text" name="apellido" id="apellido" class="form-control" placeholder="Ingrese aquí el Apellido" maxlength="45" required>
-															<div class="invalid-feedback">
-																Ingrese el apellido
-															</div>
+													</div>
+													<div class="form-group">
+														<label>Apellido/s</label>
+														<input type="text" name="apellido" id="apellido" class="form-control" placeholder="Ingrese aquí el Apellido" maxlength="45" required>
+														<div class="invalid-feedback">
+															Ingrese el apellido
 														</div>
-														<div class="form-group">	
-															<label>DNI</label>
-															<input type="number" name="dni" id="dni" placeholder="Ingrese aquí el DNI" maxlength="11" class="form-control" required>
-																<div class="invalid-feedback">
-																	Ingrese el DNI
-																</div>
+													</div>
+													<div class="form-group">	
+														<label>DNI</label>
+														<input type="number" name="dni" id="dni" placeholder="Ingrese aquí el DNI" maxlength="11" class="form-control" required>
+														<div class="invalid-feedback">
+															Ingrese el DNI
 														</div>
-														<div class="form-group">	
-															<label>CUIL</label>
-															<input type="number" name="cuil" id="cuil" placeholder="Ingrese aquí el Cuil" maxlength="11" class="form-control" required>
-															<div class="invalid-feedback">
-																Ingrese el CUIL
+													</div>
+													<div class="form-group">	
+														<label>CUIL</label>
+														<input type="number" name="cuil" id="cuil" placeholder="Ingrese aquí el Cuil" maxlength="11" class="form-control" required>
+														<div class="invalid-feedback">
+															Ingrese el CUIL
 														</div>
-														<div class="form-group">
-															<label>Nro. de telefono</label>
-															<input type="text" name="telefono" id="telefono" class="form-control" placeholder="Ingrese aquí el N° de Teléfono" maxlength="14" required>
-															<div class="invalid-feedback">
-																Ingrese el numero de telefono
-															</div>
+													<div class="form-group">
+														<label>Nro. de telefono</label>
+														<input type="text" name="telefono" id="telefono" class="form-control" placeholder="Ingrese aquí el N° de Teléfono" maxlength="14" required>
+														<div class="invalid-feedback">
+															Ingrese el numero de telefono
 														</div>
-														<div class="form-group">
-															<label>Género</label>
+													</div>
+													<div class="form-group">
+														<label>Género</label>
 															<input type="radio" name="sexo" value="F" required checked="true">Femenino
 															<input type="radio" name="sexo" value="M" >Masculino
 															<input type="radio" name="sexo" value="O" >Otro	
@@ -415,51 +415,52 @@
 																		<i class='fas fa-angle-double-down float-right'></i>
 																	</a>
 																</div>
-															<div id="collapseOne" class="collapse show" data-parent="#accordion">
-																<div class="card-body">
-																	<div class="form-row" >
-																		<div class="form-group col-md-4">
-																			<label>Pais</label>
-																			<select name="id_pais_d_tutores" id="id_pais_d_tutores" class="form-control" >
-																				<option value="0" required>No hay datos</option>
-																			</select>
-																		</div>
-																		<div class="form-group col-md-4">
-																			<label>Provincia</label>
-																			<select name="id_provincia_d_tutores" id="id_provincia_d_tutores" class="form-control"  >
-																				<option value="0">No hay datos</option>
-																			</select>
-																		</div>
-																		<div class="form-group col-md-4">
-																			<label>Localidad</label>
-																			<select name="id_localidad_d_tutores" id="id_localidad_d_tutores" class="form-control"  >
-																				<option value="0">No hay datos</option>
-																			</select>
-																		</div>
-																	</div>
-																		<div class="form-group">
-																		<label>Barrio</label>
-																		<input type="text" name="barrio" id="barrio" class="form-control" placeholder="Ingrese aquí el Barrio" maxlength="45" required >
-																		<div class="invalid-feedback">
-																			Ingrese el barrio
-																		</div>
-																	</div>
-																	<div class="form-row" >
-																		<div class="form-group col-md-8">
-																			<div class="form-group">
-																				<label>Calle</label>
-																				<input type="text" name="calle" id="calle" class="form-control" placeholder="Ingrese aquí la Calle" maxlength="45" required >
-																				<div class="invalid-feedback">
-																					Ingrese la calle
-																				</div>
+																<div id="collapseOne" class="collapse show" data-parent="#accordion">
+																	<div class="card-body">
+																		<div class="form-row" >
+																			<div class="form-group col-md-4">
+																				<label>Pais</label>
+																				<select name="id_pais_d_padre" id="id_pais_d_padre" class="form-control" >
+																					<option value="0" required>No hay datos</option>
+																				</select>
+																			</div>
+																			<div class="form-group col-md-4">
+																				<label>Provincia</label>
+																				<select name="id_provincia_d_padre" id="id_provincia_d_padre" class="form-control"  >
+																					<option value="0">No hay datos</option>
+																				</select>
+																			</div>
+																			<div class="form-group col-md-4">
+																				<label>Localidad</label>
+																				<select name="id_localidad_d_padre" id="id_localidad_d_padre" class="form-control"  >
+																					<option value="0">No hay datos</option>
+																				</select>
 																			</div>
 																		</div>
-																		<div class="form-group col-md-4">
 																			<div class="form-group">
-																				<label>Número</label>
-																				<input type="number" name="numero" id="numero" class="form-control" placeholder="Ingrese aquí el Número" maxlength="4" required>
-																				<div class="invalid-feedback">
-																					Ingrese el numero
+																			<label>Barrio</label>
+																			<input type="text" name="barrio" id="barrio" class="form-control" placeholder="Ingrese aquí el Barrio" maxlength="45" required >
+																			<div class="invalid-feedback">
+																				Ingrese el barrio
+																			</div>
+																		</div>
+																		<div class="form-row" >
+																			<div class="form-group col-md-8">
+																				<div class="form-group">
+																					<label>Calle</label>
+																					<input type="text" name="calle" id="calle" class="form-control" placeholder="Ingrese aquí la Calle" maxlength="45" required >
+																					<div class="invalid-feedback">
+																						Ingrese la calle
+																					</div>
+																				</div>
+																			</div>
+																			<div class="form-group col-md-4">
+																				<div class="form-group">
+																					<label>Número</label>
+																					<input type="number" name="numero" id="numero" class="form-control" placeholder="Ingrese aquí el Número" maxlength="4" required>
+																					<div class="invalid-feedback">
+																						Ingrese el numero
+																					</div>
 																				</div>
 																			</div>
 																		</div>
@@ -467,7 +468,6 @@
 																</div>
 															</div>
 														</div>
-													</div>
 													<div class="form-group">
 														<label>Fecha de Nacimiento</label>
 														<input type="date" name="fecha_de_nacimiento" id="fecha_de_nacimiento" class="form-control" required>
@@ -488,19 +488,19 @@
 
 																		<div class="form-group col-md-4">
 																			<label>Pais</label>
-																			<select name="id_pais_tutores" id="id_pais_tutores" class="form-control">
+																			<select name="id_pais_padre" id="id_pais_padre" class="form-control">
 																				<option value="0">No hay datos</option>
 																			</select>
 																		</div>
 																		<div class="form-group col-md-4">
 																			<label>Provincia</label>
-																			<select name="id_provincia_tutores" id="id_provincia_tutores" class="form-control"  >
+																			<select name="id_provincia_padre" id="id_provincia_padre" class="form-control"  >
 																				<option value="0">No hay datos</option>
 																			</select>
 																		</div>
 																		<div class="form-group col-md-4">
 																			<label>Localidad</label>
-																			<select name="id_localidad_tutores" id="id_localidad_tutores" class="form-control"  >
+																			<select name="id_localidad_padre" id="id_localidad_padre" class="form-control" >
 																				<option value="0">No hay datos</option>
 																			</select>
 																		</div>
