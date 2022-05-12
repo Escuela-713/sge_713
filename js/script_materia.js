@@ -68,7 +68,39 @@ $('#MateriasModal').on('show.bs.modal', function (event) {
 	}
 });
 
-$('#frm_materia' ).submit(function( event ) {
+function check()
+{
+	let check_campo_complet=true;
+    let name= document.forms["frm_materia"]["name"].value;
+    let descripcion= document.forms["frm_materia"]["descripcion"].value;
+    let id=0;
+		if (document.forms["frm_materia"].checkValidity())	
+		{
+			console.log(document.forms["frm_materia"].checkValidity());
+			$.ajax({
+				type: "POST",
+				url: "php/abm_materia.php",
+				datatype: "json",
+                data: {name:name, descripcion:descripcion, id:id},
+				beforeSend: function(objeto){
+					$("#resultados").html("Enviando...");
+				},
+				success: function(datos){
+					$("#resultados").html(datos);
+					load(1);
+					$('#MateriasModal').modal('hide');
+				}
+			});
+		}
+		else
+		{
+			check_campo_complet=false;
+		}
+	
+		return check_campo_complet;
+} 
+
+/*$('#frm_materia' ).submit(function( event ) {
 	var parametros = $(this).serialize();
 	$.ajax({
 		type: "POST",
@@ -84,4 +116,7 @@ $('#frm_materia' ).submit(function( event ) {
 		}
 	});
 	event.preventDefault();
-});
+});*/
+
+
+	
