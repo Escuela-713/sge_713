@@ -16,7 +16,7 @@
             <a class=" nav-link" href="#"> Orientaciones </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> Alumnos </a>
+            <a class="nav-link" href="gestion_datos_personales.php"> Alumnos </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"> Profesores </a>
