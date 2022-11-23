@@ -1,46 +1,40 @@
 <?php
-require_once "modelos/persona.modelo.php";
-
-class PersonaControlador {
-
-    public function procesarPeticionHTTP(){
-
+require_once "modelos/materia.modelo.php";
+class MateriaControlador
+{
+    public function procesarPeticionHTTP()
+    {
         $data;
         $inputJson = json_decode(file_get_contents("php://input"), true);
         header('Content-type: application/json');
         // echo json_encode($inputJson);
 
+        $descripcion= (isset($inputJson['descripcion'])) ? $inputJson['descripcion'] : '';
         $nombre= (isset($inputJson['nombre'])) ? $inputJson['nombre'] : '';
-        $apellido= (isset($inputJson['apellido'])) ? $inputJson['apellido'] : '';
-        $dni= (isset($inputJson['dni'])) ? $inputJson['dni'] : '0';
-        $grupo_sanguineo= (isset($inputJson['grupo_sanguineo'])) ? $inputJson['grupo sanguineo'] : '';
-        $telefono= (isset($inputJson['telefono'])) ? $inputJson['telefono'] : '0';
-        $calle=( isset($inputJson['calle'])) ? $inputJson['calle'] : '';
-        $contacto= (isset($inputJson['contacto'])) ? $inputJson['contacto'] : '';
         $id=(isset($inputJson['id'])) ? $inputJson['id'] : '0';
-
         
         if ($_SERVER['REQUEST_METHOD']=="GET")
         {
-            $data=Persona::listarPersonas();
+            //echo json_encode($inputJson);
+            $data=Materia::listarMateria();
         }
     
         if ($_SERVER['REQUEST_METHOD']=="POST")
         {
-            $data=Persona::crearPersona($nombre, $apellido, $dni, $grupo_sanguineo, $telefono, $calle, $contacto);
+           $data=Materia::crearMateria($nombre, $descripcion);
         }
     
         if ($_SERVER['REQUEST_METHOD']=="PUT")
         {
-           $data=Persona::modificarPersona($id, $nombre, $apellido);
+            $data=Materia::modificarMateria($id, $nombre, $descripcion);
         }
     
         if ($_SERVER['REQUEST_METHOD']=="DELETE")
         {
-           $data=Persona::eliminarPersona($id);
+            $data=Materia::eliminarMateria($id);
         }
 
-        $return= new PersonaControlador();
+        $return= new MateriaControlador();
         $return -> response($data);
     }
 

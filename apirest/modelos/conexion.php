@@ -3,7 +3,7 @@
 class Conexion{
     public static function connect(){
         define('server','localhost');
-        define('name_db','my_db');
+        define('name_db','mydb');
         define('user','root');
         define('password','');
         

@@ -1,17 +1,16 @@
 <?php
-
 require_once "conexion.php";
 
-class Persona {
-
-    public static function listarPersonas(){
+class Materia
+{
+    public static function listarMateria(){
 
         try{
 
             $obj = new Conexion();
             $con = $obj->connect();
 
-            $sql=  "select * from persona";
+            $sql=  "select * from materias";
             $result = $con->prepare($sql);
             $result->execute();
 
@@ -25,17 +24,17 @@ class Persona {
         }
     }
 
-    public static function crearPersona($nombre, $apellido, $dni, $grupo_sanguineo, $telefono, $calle, $contacto)
+    public static function crearMateria($nombre, $descripcion)
     {
         try {
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "insert into persona(nombre, apellido, dni, grupo_sanguineo, telefono, calle, contacto) values ('$nombre', '$apellido','$dni','$grupo_sanguineo','$telefono','$calle','$contacto' )";
+            $sql=  "insert into materias(nombre,descripcion) values ('$nombre', '$descripcion')";
             $result = $con->prepare($sql);
             $result->execute();
     
-            $sql = "select max(id_persona) from persona";
+            $sql = "select max(id_materia) from materias";
             $result = $con->prepare($sql);
             $result->execute();
     
@@ -50,14 +49,14 @@ class Persona {
         
     }
 
-    public static function eliminarPersona($id)
+    public static function eliminarMateria($id)
     {
         try
         {
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "delete from persona where id_persona = $id";
+            $sql=  "delete from materias where id = $id";
      
             $result = $con->prepare($sql);
             $result->execute();
@@ -70,18 +69,18 @@ class Persona {
 
     }
 
-    public static function modificarPersona($id, $nombre, $apellido)
+    public static function modificarMateria($id, $nombre, $descripcion)
     {
         try{
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "update persona set nombre='$nombre', apellido='$apellido' where id_persona=$id";
+            $sql=  "update materias set nombre='$nombre', descripcion='$descripcion' where id=$id";
     
             $result = $con->prepare($sql);
             $result->execute();
     
-            $sql = "select * from persona where id_persona=$id";
+            $sql = "select * from materias where id=$id";
             $result = $con->prepare($sql);
             $result->execute();
     
@@ -93,9 +92,11 @@ class Persona {
             $con->rollBack();
             error_log($e, 3, "tb-errors.log");
             throw new Exception($e->getMessage(), $e->getCode());
-        }
+        }   
         
     }
 
-
 }
+
+
+?>
