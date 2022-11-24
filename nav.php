@@ -1,4 +1,4 @@
-	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top"> 
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark"> 
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
       <img class="rounded-circle" src="img/logo.png" alt="Logo" style="width:60px;">
