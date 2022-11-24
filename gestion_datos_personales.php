@@ -12,6 +12,8 @@
 </head>
 <body>
 <?php include("nav.php");?>  
+	
+
 	<div class="container">
 		<div class="content">
 			<h2>Lista de Alumnos</h2>
@@ -28,6 +30,7 @@
 	<?php include("modal/modal_alumno.php");?>
 	<?php include("modal/modal_eliminar.php");?>
 	<script src="js/script_alumno.js"></script>
+
 
 <?php include("footer.php");?>  
     
