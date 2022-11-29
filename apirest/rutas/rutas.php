@@ -16,6 +16,8 @@ if (count($rutas)==0)
 }
 
 require_once "controladores/persona.controlador.php";
+require_once "controladores/materia.controlador.php";
+require_once "controladores/plan.controlador.php";
 
 $endpoint = $rutas[1];
 
@@ -27,6 +29,15 @@ if ($endpoint == "persona")
     $response -> procesarPeticionHTTP($endpoint);
 }
 
+if ($endpoint == "materia")
+{
+    $response= new MateriaControlador();
+    $response -> procesarPeticionHTTP($endpoint);
+}
 
-
+if ($endpoint == "plan")
+{
+    $response= new PlanControlador();
+    $response -> procesarPeticionHTTP($endpoint);
+}
 ?>
