@@ -17,11 +17,18 @@ if (count($rutas)==0)
 
 require_once "controladores/persona.controlador.php";
 require_once "controladores/materia.controlador.php";
+require_once "controladores/usuario.controlador.php";
 
 $endpoint = $rutas[1];
 
 
-//Endpoint PERSONA (CRUD) 
+//Endpoint usuario (CRUD) 
+if ($endpoint == "usuario")
+{
+    $response= new usuarioControlador();
+    $response -> procesarPeticionHTTP($endpoint);
+}
+//Endpoint persona
 if ($endpoint == "persona")
 {
     $response= new PersonaControlador();

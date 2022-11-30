@@ -10,15 +10,9 @@ class PersonaControlador {
         header('Content-type: application/json');
         // echo json_encode($inputJson);
 
-        $nombre= (isset($inputJson['nombre'])) ? $inputJson['nombre'] : '';
-        $apellido= (isset($inputJson['apellido'])) ? $inputJson['apellido'] : '';
-        $dni= (isset($inputJson['dni'])) ? $inputJson['dni'] : '0';
-        $grupo_sanguineo= (isset($inputJson['grupo_sanguineo'])) ? $inputJson['grupo sanguineo'] : '';
-        $telefono= (isset($inputJson['telefono'])) ? $inputJson['telefono'] : '0';
-        $calle=( isset($inputJson['calle'])) ? $inputJson['calle'] : '';
-        $contacto= (isset($inputJson['contacto'])) ? $inputJson['contacto'] : '';
-        $id=(isset($inputJson['id'])) ? $inputJson['id'] : '0';
-
+        $usuario= (isset($inputJson['usuario'])) ? $inputJson['usuario'] : '';
+        $contraseña= (isset($inputJson['contraseña'])) ? $inputJson['contraseña'] : '';
+       
         
         if ($_SERVER['REQUEST_METHOD']=="GET")
         {
