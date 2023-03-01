@@ -26,7 +26,7 @@
             error_log($e, 3, "tb-errors.log");
             throw new Exception($e->getMessage(), $e->getCode());
         }
-    }
+      }
 
     public static function crearMateria($nombre, $descripcion)
     {
@@ -73,6 +73,7 @@
 
     }
 
+
     public static function modificarMateria($id_materia, $nombre, $descripcion)
     {
         try{
@@ -96,9 +97,12 @@
             $con->rollBack();
             error_log($e, 3, "tb-errors.log");
             throw new Exception($e->getMessage(), $e->getCode());
+
         }
         
     }
 
 
 }
+
+?>

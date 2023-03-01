@@ -3,14 +3,17 @@ require_once "modelos/materia.modelo.php";
 class MateriaControlador
 {
     public function procesarPeticionHTTP()
-    {   
+
+    {
         $data;
         $inputJson = json_decode(file_get_contents("php://input"), true);
         header('Content-type: application/json');
         // echo json_encode($inputJson);
 
+
         $nombre= (isset($inputJson['nombre'])) ? $inputJson['nombre'] : '';
         $descripcion= (isset($inputJson['descripcion'])) ? $inputJson['descripcion'] : '';
+
         $id=(isset($inputJson['id'])) ? $inputJson['id'] : '0';
         
         if ($_SERVER['REQUEST_METHOD']=="GET")
@@ -30,6 +33,7 @@ class MateriaControlador
     
         if ($_SERVER['REQUEST_METHOD']=="DELETE")
         {
+
            $data=Materia::eliminarMateria($id);
         }
 
@@ -58,6 +62,5 @@ class MateriaControlador
         echo json_encode($json, http_response_code($json["status"]));
     }
 }
-
 
 ?>

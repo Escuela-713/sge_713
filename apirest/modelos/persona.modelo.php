@@ -25,17 +25,18 @@ class Persona {
         }
     }
 
-    public static function crearPersona($nombre, $apellido)
+    public static function crearPersona($nombre, $apellido, $dni, $grupo_sanguineo, $telefono, $calle, $contacto)
     {
         try {
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "insert into persona(nombre,apellido) values ('$nombre', '$apellido')";
+            $sql=  "insert into persona(nombre, apellido, dni, grupo_sanguineo, telefono, calle, contacto) values ('$nombre', '$apellido','$dni','$grupo_sanguineo','$telefono','$calle','$contacto' )";
             $result = $con->prepare($sql);
             $result->execute();
     
-            $sql = "select max(id) from persona";
+            $sql = "select max(id_persona) from persona";
+
             $result = $con->prepare($sql);
             $result->execute();
     
@@ -66,8 +67,7 @@ class Persona {
             error_log($e, 3, "tb-errors.log");
             throw new Exception($e->getMessage(), $e->getCode());
         }
-        
-
+       
     }
 
     public static function modificarPersona($id, $nombre, $apellido)
@@ -82,6 +82,7 @@ class Persona {
             $result->execute();
     
             $sql = "select * from persona where id=$id";
+
             $result = $con->prepare($sql);
             $result->execute();
     
