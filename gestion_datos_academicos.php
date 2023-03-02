@@ -113,15 +113,11 @@
         </div>
       </div>
     </div>
-
-  
     
-
 	<?php include("modal/modal_alumno.php");?>
 	<?php include("modal/modal_eliminar.php");?>
 	<script src="js/script_alumno.js"></script>
- 
-  
   <?php include("footer.php");?>  
+
 </body>
 </html>

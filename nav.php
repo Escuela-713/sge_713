@@ -54,8 +54,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
          <li class="nav-item">
-            <a class="nav-link" href="#login" data-toggle="modal">Iniciar Sesión</a>
+            <a class="nav-link " href="#iniciarsesionModal" data-toggle="modal">Iniciar Sesión</a>
           </li>
+          <li><a class="nav-link" href="#registroModal" data-toggle="modal">Resgistrarse</a></li>
       </ul>
     </div>
   </nav> 
+  

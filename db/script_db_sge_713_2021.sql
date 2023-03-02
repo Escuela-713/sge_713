@@ -87,33 +87,6 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`empleado`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`empleado` (
-  `id_empleado` INT(11) NOT NULL AUTO_INCREMENT,
-  `fecha_de_ingreso` DATE NULL DEFAULT NULL,
-  `legajo` SMALLINT(6) UNSIGNED NOT NULL,
-  `id_persona` INT(11) NOT NULL,
-  PRIMARY KEY (`id_empleado`),
-  INDEX `fk_Empleado_Personas1_idx` (`id_persona` ASC) VISIBLE)
-ENGINE = InnoDB
-AUTO_INCREMENT = 20
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `mydb`.`empleado_x_cargo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`empleado_x_cargo` (
-  `id_cargo` INT(11) NOT NULL,
-  `id_empleado` INT(11) NOT NULL,
-  PRIMARY KEY (`id_cargo`, `id_empleado`),
-  INDEX `fk_Empleado x Cargo_Empleado1_idx` (`id_empleado` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `mydb`.`estado_civil`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`estado_civil` (
@@ -145,8 +118,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`localidad` (
   `nombre` VARCHAR(45) NOT NULL,
   `codigo_postal` SMALLINT(5) UNSIGNED NULL DEFAULT NULL,
   `id_provincia` INT(11) NOT NULL,
-  PRIMARY KEY (`id_localidad`),
-  INDEX `fk_Localidad_Provincia1_idx` (`id_provincia` ASC) VISIBLE)
+  PRIMARY KEY (`id_localidad`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 20
 DEFAULT CHARACTER SET = utf8;
@@ -211,8 +183,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`persona` (
   `id_localidad_nacimiento` INT(11) NOT NULL,
   `contacto` VARCHAR(45) NOT NULL,
   `id_alumno` INT(11) NOT NULL,
-  PRIMARY KEY (`id_persona`),
-  INDEX `id_localidad_idx` (`id_localidad` ASC) VISIBLE)
+  PRIMARY KEY (`id_persona`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8;
@@ -240,8 +211,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `mydb`.`profesor_x_materia` (
   `id_materia` VARCHAR(45) NOT NULL,
   `id_empleado` INT(11) NOT NULL,
-  PRIMARY KEY (`id_materia`, `id_empleado`),
-  INDEX `fk_Profesor x Materia_Empleado1_idx` (`id_empleado` ASC) VISIBLE)
+  PRIMARY KEY (`id_materia`, `id_empleado`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -253,13 +223,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`provincia` (
   `id_provincia` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `id_pais` INT(11) NOT NULL,
-  PRIMARY KEY (`id_provincia`),
-  INDEX `fk_Provincia_Pais1_idx` (`id_pais` ASC) VISIBLE,
-  CONSTRAINT `#id_pais`
-    FOREIGN KEY (`id_pais`)
-    REFERENCES `mydb`.`pais` (`id_pais`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id_provincia`))
 ENGINE = InnoDB
 AUTO_INCREMENT = 28
 DEFAULT CHARACTER SET = utf8;
@@ -309,13 +273,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
   `id_usuario` INT(11) NOT NULL AUTO_INCREMENT,
   `id_persona` INT(11) NOT NULL,
   `contraseña` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`id_usuario`),
-  INDEX `fk_Usuario_Personas1_idx` (`id_persona` ASC) VISIBLE,
-  CONSTRAINT `#id_usuario_persona`
-    FOREIGN KEY (`id_persona`)
-    REFERENCES `mydb`.`persona` (`id_persona`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id_usuario`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
