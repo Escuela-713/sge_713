@@ -10,14 +10,23 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="nav navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="index.php"> 713 </a>
+            <a class="nav-link" href="index.php"> Colegio 713 </a>
+          </li>
+          <li class="nav-item">
+            <a class=" nav-link" href="gestion_de_inscripcion.php"> Inscripción</a>
           </li>
           <li class="nav-item">
             <a class=" nav-link" href="#"> Orientaciones </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="gestion_datos_personales.php"> Alumnos </a>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">Alumnos </a>
+            <div class="dropdown-menu">
+             <a class="dropdown-item" href="">Registro de alumnos</a>
+              <a class="dropdown-item" href="gestion_datos_academicos.php">Registro de notas</a>
+            </div>
           </li>
+          
           <li class="nav-item">
             <a class="nav-link" href="#"> Profesores </a>
           </li>
@@ -34,6 +43,9 @@
               <a class="dropdown-item" href="gestion_carreras.php">Carreras</a>
               <a class="dropdown-item" href="gestion_planes.php">Planes</a>
               <a class="dropdown-item" href="gestion_materias.php">Materias</a>
+             
+              
+              
             </div>
           </li>
            <li class="nav-item">
