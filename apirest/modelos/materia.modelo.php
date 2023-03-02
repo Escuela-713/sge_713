@@ -1,16 +1,20 @@
 <?php
-require_once "conexion.php";
 
-class Materia
-{
-    public static function listarMateria(){
+    require_once "conexion.php";
 
-        try{
+    class Materia 
+    {
+
+        public static function listarMaterias()
+        {
+
+            try
+            {
 
             $obj = new Conexion();
             $con = $obj->connect();
 
-            $sql=  "select * from materias";
+            $sql=  "select * from materia";
             $result = $con->prepare($sql);
             $result->execute();
 
@@ -22,7 +26,7 @@ class Materia
             error_log($e, 3, "tb-errors.log");
             throw new Exception($e->getMessage(), $e->getCode());
         }
-    }
+      }
 
     public static function crearMateria($nombre, $descripcion)
     {
@@ -30,11 +34,11 @@ class Materia
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "insert into materias(nombre,descripcion) values ('$nombre', '$descripcion')";
+            $sql=  "insert into materia(nombre,descripcion) values ('$nombre', '$descripcion')";
             $result = $con->prepare($sql);
             $result->execute();
     
-            $sql = "select max(id_materia) from materias";
+            $sql = "select max(id_materia) from materia";
             $result = $con->prepare($sql);
             $result->execute();
     
@@ -56,7 +60,7 @@ class Materia
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "delete from materias where id = $id";
+            $sql=  "delete from materia where id_materia = $id";
      
             $result = $con->prepare($sql);
             $result->execute();
@@ -69,18 +73,19 @@ class Materia
 
     }
 
-    public static function modificarMateria($id, $nombre, $descripcion)
+
+    public static function modificarMateria($id_materia, $nombre, $descripcion)
     {
         try{
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "update materias set nombre='$nombre', descripcion='$descripcion' where id=$id";
+            $sql=  "update materia set nombre='$nombre', descripcion='$descripcion' where id=$id_materia";
     
             $result = $con->prepare($sql);
             $result->execute();
     
-            $sql = "select * from materias where id=$id";
+            $sql = "select * from materia where id_materia=$id_materia";
             $result = $con->prepare($sql);
             $result->execute();
     
@@ -92,11 +97,12 @@ class Materia
             $con->rollBack();
             error_log($e, 3, "tb-errors.log");
             throw new Exception($e->getMessage(), $e->getCode());
-        }   
+
+        }
         
     }
 
-}
 
+}
 
 ?>

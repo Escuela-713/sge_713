@@ -1,17 +1,20 @@
 <?php
 
-require_once "conexion.php";
+    require_once "conexion.php";
 
-class Persona {
+    class Plan 
+    {
 
-    public static function listarPersonas(){
+        public static function listarPlan()
+        {
 
-        try{
+            try
+            {
 
             $obj = new Conexion();
             $con = $obj->connect();
 
-            $sql=  "select * from persona";
+            $sql=  "select * from plan";
             $result = $con->prepare($sql);
             $result->execute();
 
@@ -25,18 +28,17 @@ class Persona {
         }
     }
 
-    public static function crearPersona($nombre, $apellido, $dni, $grupo_sanguineo, $telefono, $calle, $contacto)
+    public static function crearPlan($plan, $id_carrera, $estado, $horas_reloj, $horas_catedra)
     {
         try {
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "insert into persona(nombre, apellido, dni, grupo_sanguineo, telefono, calle, contacto) values ('$nombre', '$apellido','$dni','$grupo_sanguineo','$telefono','$calle','$contacto' )";
+            $sql=  "insert into plan(plan,estado,horas_catedra,horas_reloj) values ('$plan', $estado, $horas_catedra, $horas_reloj)";
             $result = $con->prepare($sql);
             $result->execute();
     
-            $sql = "select max(id_persona) from persona";
-
+            $sql = "select max(id_plan) as id from plan";
             $result = $con->prepare($sql);
             $result->execute();
     
@@ -51,14 +53,14 @@ class Persona {
         
     }
 
-    public static function eliminarPersona($id)
+    public static function eliminarPlan($id)
     {
         try
         {
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "delete from persona where id = $id";
+            $sql=  "delete from plan where id_plan = $id";
      
             $result = $con->prepare($sql);
             $result->execute();
@@ -67,22 +69,22 @@ class Persona {
             error_log($e, 3, "tb-errors.log");
             throw new Exception($e->getMessage(), $e->getCode());
         }
-       
+        
+
     }
 
-    public static function modificarPersona($id, $nombre, $apellido)
+    public static function modificarPlan($id_plan, $id_carrera, $plan, $estado, $horas_catedra, $horas_reloj)
     {
         try{
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "update persona set nombre='$nombre', apellido='$apellido' where id=$id";
+            $sql=  "update plan set plan=$plan, estado=$estado, horas_reloj=$horas_reloj, horas_catedra=$horas_catedra, id_carrera=$id_carrera where id_plan=$id_plan";
     
             $result = $con->prepare($sql);
             $result->execute();
     
-            $sql = "select * from persona where id=$id";
-
+            $sql = "select * from plan where id_plan=$id_plan";
             $result = $con->prepare($sql);
             $result->execute();
     
