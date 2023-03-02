@@ -101,7 +101,8 @@
     </section>
   
 <?php include("footer.php");?>	
-<?php include("modal/modal_login.php");?>
+<?php include("modal/modal_iniciar_sesion.php");?>
+<?php include("modal/modal_registro.php");?>
 <p>@2021</p>
 </body>
 </html>
