@@ -24,6 +24,7 @@
             <div class="dropdown-menu">
              <a class="dropdown-item" href="">Registro de alumnos</a>
               <a class="dropdown-item" href="gestion_datos_academicos.php">Registro de notas</a>
+              <a class="dropdown-item" href="gestion_calificaciones.php">Calificaciones</a>
             </div>
           </li>
           
