@@ -1,15 +1,16 @@
 <?php
+require_once "conexion.php";
 
-
-class Materia
+class Carrera
 {
-    public static function listarMaterias(){
+    public static function listarCarreras(){
 
         try{
+
             $obj = new Conexion();
             $con = $obj->connect();
 
-            $sql=  "select * from materia";
+            $sql=  "select * from carrera";
             $result = $con->prepare($sql);
             $result->execute();
 
@@ -23,17 +24,17 @@ class Materia
         }
     }
 
-    public static function crearMateria($nombre, $descripcion)
+    public static function crearCarrera($nombre, $estado, $titulo_egreso)
     {
         try {
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "insert into materia(nombre,descripcion) values ('$nombre', '$descripcion')";
+            $sql=  "insert into carrera(nombre,estado,titulo_egreso) values ('$nombre', $estado, '$titulo_egreso')";
             $result = $con->prepare($sql);
             $result->execute();
     
-            $sql = "select max(id_materia) from materia";
+            $sql = "select max(id_carrera) from carrera";
             $result = $con->prepare($sql);
             $result->execute();
     
@@ -48,14 +49,14 @@ class Materia
         
     }
 
-    public static function eliminarMateria($id)
+    public static function eliminarCarrera($id)
     {
         try
         {
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "delete from materia where id_materia = $id";
+            $sql=  "delete from carrera where id_carrera = $id";
      
             $result = $con->prepare($sql);
             $result->execute();
@@ -68,18 +69,18 @@ class Materia
 
     }
 
-    public static function modificarMateria($id, $nombre, $descripcion)
+    public static function modificarCarrera($id, $nombre, $estado, $titulo_egreso)
     {
         try{
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "update materia set nombre='$nombre', descripcion='$descripcion' where id_materia=$id";
+            $sql=  "update carrera set nombre='$nombre', estado=$estado, titulo_egreso='$titulo_egreso' where id_carrera=$id";
     
             $result = $con->prepare($sql);
             $result->execute();
     
-            $sql = "select * from materia where id_materia=$id";
+            $sql = "select * from carrera where id_carrera=$id";
             $result = $con->prepare($sql);
             $result->execute();
     

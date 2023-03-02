@@ -21,7 +21,6 @@ class PersonaControlador {
     
         if ($_SERVER['REQUEST_METHOD']=="POST")
         {
-
             $data=Persona::crearPersona($nombre, $apellido);
         }
     

@@ -1,6 +1,6 @@
 <?php
-require_once "modelos/materia.modelo.php";
-class MateriaControlador
+require_once "modelos/carrera.modelo.php";
+class CarreraControlador
 {
     public function procesarPeticionHTTP()
     {
@@ -9,36 +9,35 @@ class MateriaControlador
         header('Content-type: application/json');
         // echo json_encode($inputJson);
 
-        $descripcion= (isset($inputJson['descripcion'])) ? $inputJson['descripcion'] : '';
+        $titulo_egreso= (isset($inputJson['titulo_egreso'])) ? $inputJson['titulo_egreso'] : '';
+        $estado= (isset($inputJson['estado'])) ? $inputJson['estado'] : '';
         $nombre= (isset($inputJson['nombre'])) ? $inputJson['nombre'] : '';
-
         $id=(isset($inputJson['id'])) ? $inputJson['id'] : '0';
         
         if ($_SERVER['REQUEST_METHOD']=="GET")
         {
-            $data=Materia::listarMaterias();
+            $data=Carrera::listarCarreras();
         }
     
         if ($_SERVER['REQUEST_METHOD']=="POST")
         {
-            $data=Materia::crearMateria($nombre, $descripcion);
+            $data=Carrera::crearCarrera($nombre, $estado, $titulo_egreso);
         }
     
         if ($_SERVER['REQUEST_METHOD']=="PUT")
         {
-           $data=Materia::modificarMateria($id, $nombre, $descripcion);
+           $data=Carrera::modificarCarrera($id, $nombre, $estado, $titulo_egreso);
         }
     
         if ($_SERVER['REQUEST_METHOD']=="DELETE")
         {
-           $data=Materia::eliminarMateria($id);
+           $data=Carrera::eliminarCarrera($id);
         }
 
-        $return= new MateriaControlador();
+        $return= new CarreraControlador();
         $return -> response($data);
     }
-
-   public function response($data)
+    public function response($data)
     {
         if (!empty($data) || $_SERVER['REQUEST_METHOD']=="DELETE")
         {
@@ -59,5 +58,4 @@ class MateriaControlador
         echo json_encode($json, http_response_code($json["status"]));
     }
 }
-
 ?>
