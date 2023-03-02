@@ -1,6 +1,6 @@
 <?php
 
-//require_once "conexion.php";
+require_once "conexion.php";
 
 class Persona {
 
@@ -66,8 +66,6 @@ class Persona {
             error_log($e, 3, "tb-errors.log");
             throw new Exception($e->getMessage(), $e->getCode());
         }
-        
-
     }
 
     public static function modificarPersona($id, $nombre, $apellido)

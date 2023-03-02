@@ -15,34 +15,42 @@ if (count($rutas)==0)
     return;
 }
 
-//require_once "controladores/persona.controlador.php";
-//require_once "controladores/materia.controlador.php";
 require_once "controladores/carrera.controlador.php";
+require_once "controladores/persona.controlador.php";
+require_once "controladores/materia.controlador.php";
+require_once "controladores/plan.controlador.php";
+require_once "controladores/usuario.controlador.php";
 
 $endpoint = $rutas[1];
+ 
+if ($endpoint == "usuario")
+{
+    $response= new usuarioControlador();
+    $response -> procesarPeticionHTTP($endpoint);
+}
 
-/*
-//Endpoint PERSONA (CRUD) 
 if ($endpoint == "persona")
 {
     $response= new PersonaControlador();
     $response -> procesarPeticionHTTP($endpoint);
 }
 
-//Endpoint MATERIA (CRUD)
-if ($endpoint="materia")
-{
-    $response= new MateriaControlador();
-    $response -> procesarPeticionHTTP($endpoint);
-
-}*/
-
-//Endpoint CARRERA (CRUD)
 if ($endpoint="carrera")
 {
     $response= new CarreraControlador();
     $response -> procesarPeticionHTTP($endpoint);
 }
 
+if ($endpoint == "materia")
+{
+    $response= new MateriaControlador();
+    $response -> procesarPeticionHTTP($endpoint);
+}
+
+if ($endpoint == "plan")
+{
+    $response= new PlanControlador();
+    $response -> procesarPeticionHTTP($endpoint);
+}
 
 ?>

@@ -1,44 +1,46 @@
 <?php
-require_once "modelos/materia.modelo.php";
-class MateriaControlador
+require_once "modelos/plan.modelo.php";
+class PlanControlador
 {
     public function procesarPeticionHTTP()
-    {
+    {   
         $data;
         $inputJson = json_decode(file_get_contents("php://input"), true);
         header('Content-type: application/json');
         // echo json_encode($inputJson);
 
-        $descripcion= (isset($inputJson['descripcion'])) ? $inputJson['descripcion'] : '';
-        $nombre= (isset($inputJson['nombre'])) ? $inputJson['nombre'] : '';
-
-        $id=(isset($inputJson['id'])) ? $inputJson['id'] : '0';
+        $plan= (isset($inputJson['plan'])) ? $inputJson['plan'] : '0';
+        $horas_catedra= (isset($inputJson['horas_catedras'])) ? $inputJson['horas_catedras'] : '0';
+        $horas_reloj= (isset($inputJson['horas_reloj'])) ? $inputJson['horas_reloj'] : '0';
+        $estado= (isset($inputJson['estado'])) ? $inputJson['estado'] : '0';
+        $id_plan=(isset($inputJson['id_plan'])) ? $inputJson['id_plan'] : '0';
+        $id_carrera=(isset($inputJson['id_carrera'])) ? $inputJson['id_carrera'] : '0';
         
         if ($_SERVER['REQUEST_METHOD']=="GET")
         {
-            $data=Materia::listarMaterias();
+            $data=Plan::listarPlan();
         }
     
         if ($_SERVER['REQUEST_METHOD']=="POST")
         {
-            $data=Materia::crearMateria($nombre, $descripcion);
+            $data=Plan::crearPlan($plan, $id_carrera, $estado, $horas_catedra, $horas_reloj);
         }
     
         if ($_SERVER['REQUEST_METHOD']=="PUT")
         {
-           $data=Materia::modificarMateria($id, $nombre, $descripcion);
+           $data=Plan::modificarPlan($id_plan, $id_carrera, $plan, $estado, $horas_reloj, $horas_catedra);
         }
     
         if ($_SERVER['REQUEST_METHOD']=="DELETE")
         {
-           $data=Materia::eliminarMateria($id);
+           $data=Plan::eliminarPlan($id_plan);
         }
 
-        $return= new MateriaControlador();
+        $return= new PlanControlador();
         $return -> response($data);
     }
 
-   public function response($data)
+    public function response($data)
     {
         if (!empty($data) || $_SERVER['REQUEST_METHOD']=="DELETE")
         {
@@ -59,5 +61,6 @@ class MateriaControlador
         echo json_encode($json, http_response_code($json["status"]));
     }
 }
+
 
 ?>

@@ -1,15 +1,20 @@
 <?php
 
+    require_once "conexion.php";
 
-class Materia
-{
-    public static function listarMaterias(){
+    class Plan 
+    {
 
-        try{
+        public static function listarPlan()
+        {
+
+            try
+            {
+
             $obj = new Conexion();
             $con = $obj->connect();
 
-            $sql=  "select * from materia";
+            $sql=  "select * from plan";
             $result = $con->prepare($sql);
             $result->execute();
 
@@ -23,17 +28,17 @@ class Materia
         }
     }
 
-    public static function crearMateria($nombre, $descripcion)
+    public static function crearPlan($plan, $id_carrera, $estado, $horas_reloj, $horas_catedra)
     {
         try {
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "insert into materia(nombre,descripcion) values ('$nombre', '$descripcion')";
+            $sql=  "insert into plan(plan,estado,horas_catedra,horas_reloj) values ('$plan', $estado, $horas_catedra, $horas_reloj)";
             $result = $con->prepare($sql);
             $result->execute();
     
-            $sql = "select max(id_materia) from materia";
+            $sql = "select max(id_plan) as id from plan";
             $result = $con->prepare($sql);
             $result->execute();
     
@@ -48,14 +53,14 @@ class Materia
         
     }
 
-    public static function eliminarMateria($id)
+    public static function eliminarPlan($id)
     {
         try
         {
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "delete from materia where id_materia = $id";
+            $sql=  "delete from plan where id_plan = $id";
      
             $result = $con->prepare($sql);
             $result->execute();
@@ -68,18 +73,18 @@ class Materia
 
     }
 
-    public static function modificarMateria($id, $nombre, $descripcion)
+    public static function modificarPlan($id_plan, $id_carrera, $plan, $estado, $horas_catedra, $horas_reloj)
     {
         try{
             $obj = new Conexion();
             $con = $obj->connect();
     
-            $sql=  "update materia set nombre='$nombre', descripcion='$descripcion' where id_materia=$id";
+            $sql=  "update plan set plan=$plan, estado=$estado, horas_reloj=$horas_reloj, horas_catedra=$horas_catedra, id_carrera=$id_carrera where id_plan=$id_plan";
     
             $result = $con->prepare($sql);
             $result->execute();
     
-            $sql = "select * from materia where id_materia=$id";
+            $sql = "select * from plan where id_plan=$id_plan";
             $result = $con->prepare($sql);
             $result->execute();
     
@@ -94,6 +99,6 @@ class Materia
         }
         
     }
-}
 
-?>
+
+}
