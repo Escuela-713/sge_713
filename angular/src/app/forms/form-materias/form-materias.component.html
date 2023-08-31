@@ -1,0 +1,44 @@
+<form name="frm_plan" id="frm_plan" class="needs-validation" novalidate onsubmit="return check()">
+    <div class="modal-header">
+        <h4 name="titulo" id="titulo" class="title">Materias</h4>
+
+    </div>
+
+    <div class="form-group row p-1">
+        <label for="inputMateria" class="col-sm-2 col-form-label">Nombre de Materia</label>
+        <div class="col-sm-10">
+            <input type="text" id="id-materia" class="form-control" maxlength="2" min="0" max="99"
+                placeholder="Nombre de Materia" required>
+        </div>
+
+    </div>
+    <div class="form-group row p-1">
+        <label for="inputMateria" class="col-sm-2 col-form-label">Año</label>
+        <div class="col-sm-10">
+            <input type="number" id="id-materia" class="form-control" maxlength="2" min="0" max="99"
+                placeholder="Año de la materia" required>
+        </div>
+
+    </div>
+    <div class="form-group row p-1">
+        <label for="horas-catedras" class="col-sm-2 col-form-label">Hs semanales</label>
+        <div class="col-sm-10">
+            <input type="number" id="horas-catedras" class="form-control" maxlength="4" size="10" min="0"
+                placeholder="Horas semanales" required>
+        </div>
+    </div>
+    <div class="form-group row p-1">
+        <label for="horas-catedras" class="col-sm-2 col-form-label">Hs reloj anuales</label>
+        <div class="col-sm-10">
+            <input type="number" id="horas-anuales" class="form-control" maxlength="4" size="10" min="0" placeholder="Horas reloj anuales" required>
+        </div>
+    </div>
+
+  
+
+
+    <div class="modal-footer">
+        <input type="submit" class="btn btn-primary" value="Guardar datos">
+        <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
+    </div>
+</form>

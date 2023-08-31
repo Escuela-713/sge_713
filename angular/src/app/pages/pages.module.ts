@@ -5,12 +5,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { CarrerasComponent } from './carreras/carreras.component';
+import { MateriasComponent } from './materias/materias.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     DashboardComponent,
-    CarrerasComponent
+    CarrerasComponent,
+    MateriasComponent
   ],
   imports: [
     CommonModule,
