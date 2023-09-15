@@ -5,6 +5,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CarrerasComponent } from './pages/carreras/carreras.component';
 import { PlanesComponent } from './pages/planes/planes.component';
 import { FormPlanesComponent } from './form/form-planes/form-planes.component';
+import { MateriasComponent } from './pages/materias/materias.component';
 
 const routes: Routes = [
   {path:"home" , component:HomeComponent
@@ -13,7 +14,8 @@ const routes: Routes = [
   children: [
     {path:"carreras", component:CarrerasComponent },
     {path:"planes", component:PlanesComponent},
-    {path:"editarPlanes", component:FormPlanesComponent}
+    {path:"editarPlanes", component:FormPlanesComponent},
+    {path:"materias", component:MateriasComponent}
     ] },
   { path: '',   redirectTo: '/home', pathMatch: 'full'}
 ];
