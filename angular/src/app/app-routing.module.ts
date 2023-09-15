@@ -5,13 +5,21 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CarrerasComponent } from './pages/carreras/carreras.component';
 import { DatosPersonalesComponent } from './pages/datos-personales/datos-personales.component';
 
+import { PlanesComponent } from './pages/planes/planes.component';
+import { MateriasComponent } from './pages/materias/materias.component';
+import { FormPlanesComponent } from './forms/form-planes/form-planes.component';
+
 const routes: Routes = [
   {path:"home" , component:HomeComponent
   },
   {path:"dashboard" , component:DashboardComponent,
   children: [
     {path:"carreras", component:CarrerasComponent },
-    {path:"datos-personales", component:DatosPersonalesComponent}
+    {path:"datos-personales", component:DatosPersonalesComponent},
+    {path:"planes", component:PlanesComponent},
+    {path:"editarPlanes", component:FormPlanesComponent},
+    {path:"materias", component:MateriasComponent}
+
     ] },
   { path: '',   redirectTo: '/home', pathMatch: 'full'}
 ];
