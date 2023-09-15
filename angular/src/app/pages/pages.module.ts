@@ -4,20 +4,25 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
-import { CarrerasComponent } from './carreras/carreras.component';
+import { CalificadorComponent } from './calificador/calificador.component';
 import { DatosAcademicosComponent } from './datos-academicos/datos-academicos.component';
+import { BuscarEstudianteComponent } from '../components/buscar-estudiante/buscar-estudiante.component';
+import { ComponentsModule } from '../components/components.module';
+import { AnaliticoComponent } from './analitico/analitico.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     DashboardComponent,
-    CarrerasComponent,
-    DatosAcademicosComponent
+    CalificadorComponent,
+    DatosAcademicosComponent,
+    AnaliticoComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    ComponentsModule
   ],
   exports:
   [HomeComponent]
