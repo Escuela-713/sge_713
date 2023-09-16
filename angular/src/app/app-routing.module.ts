@@ -5,9 +5,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CarrerasComponent } from './pages/carreras/carreras.component';
 import { FormCarrerasComponent } from './forms/form-carreras/form-carreras.component';
 import { PlanesComponent } from './pages/planes/planes.component';
-import { FormPlanesComponent } from './form/form-planes/form-planes.component';
 import { MateriasComponent } from './pages/materias/materias.component';
 import { FormMateriasComponent } from './forms/form-materias/form-materias.component';
+import { FormPlanesComponent } from './forms/form-planes/form-planes.component';
 
 const routes: Routes = [
   {path:"home" , component:HomeComponent
