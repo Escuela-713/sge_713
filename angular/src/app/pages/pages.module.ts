@@ -6,13 +6,15 @@ import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { CarrerasComponent } from './carreras/carreras.component';
 import { PlanesComponent } from './planes/planes.component';
+import { MateriasComponent } from './materias/materias.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     DashboardComponent,
     CarrerasComponent,
-    PlanesComponent
+    PlanesComponent,
+    MateriasComponent
   ],
   imports: [
     CommonModule,
