@@ -1,0 +1,49 @@
+<div id="accordion" >
+    <div class="card">
+        <div class="card-header bg-info">
+             <a class="card-link text-white" data-toggle="collapse" >Datos Identidad
+                  <i class='fas fa-angle-double-down float-right'></i>
+            </a>
+        </div>
+<div>
+    <div role="tabpanel" class="tab-pane active" id="datos_madretab">
+        <div class="container-fluid mt-2">
+            <input type="hidden" name="id" id="id"> 
+            <div class="form-group">
+                <label for="nombre">Nombre/s</label>
+                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese aquí el Nombre" maxlength="45" required>
+                <div class="invalid-feedback">
+                    Ingrese el nombre
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="apellido">Apellido/s</label>
+                <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Ingrese aquí el Apellido" maxlength="45" required>
+                <div class="invalid-feedback">
+                    Ingrese el apellido
+                </div>
+            </div>
+            <div class="form-group">	
+                <label for="dni">DNI</label>
+                <input type="number" name="dni" id="dni" placeholder="Ingrese aquí el DNI" maxlength="11" class="form-control" required>
+                <div class="invalid-feedback">
+                    Ingrese el DNI
+                </div>
+            </div>
+            <div class="form-group">	
+                <label for="cuil">CUIL</label>
+                <input type="number" name="cuil" id="cuil" placeholder="Ingrese aquí el Cuil" maxlength="11" class="form-control" required>
+                <div class="invalid-feedback">
+                    Ingrese el CUIL
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Nro. de teléfono</label>
+                <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Ingrese aquí el N° de Teléfono" maxlength="14" required>
+                <div class="invalid-feedback">
+                    Ingrese el número de teléfono
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

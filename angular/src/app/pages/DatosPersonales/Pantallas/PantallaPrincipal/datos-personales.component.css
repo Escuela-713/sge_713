@@ -1,0 +1,133 @@
+
+h1 {
+    text-align: center;
+    background-color: #007BFF;
+    color: #FFF;
+    padding: 10px;
+}
+
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+    margin: 20px auto;
+    border: 2px solid #007BFF;
+}
+
+table, th, td {
+    border: 2px solid #007BFF;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+
+button {
+    padding: 5px 10px;
+    background-color: #007BFF;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+
+#formulario-agregar {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #007BFF;
+    background-color: #F5F5F5;
+    box-shadow: 2px 2px 5px #888;
+}
+
+#formulario-agregar label, #formulario-agregar input {
+    display: block;
+    margin: 10px 0;
+}
+
+#formulario-agregar button {
+    margin-top: 20px;
+    background-color: #007BFF;
+    color: #FFF;
+    border: none;
+}
+
+#formulario-agregar button:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  button {
+    background-color: #007BFF;
+    color: #FFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  
+  .popup.visible {
+    display: block;
+  }
+  
+  .popup-content {
+    background-color: #FFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .close {
+    color: #777;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover {
+    color: #000;
+  }
+
+  
+
+.popup-content {
+    background-color: #FFF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-height: 80%; 
+    overflow: auto; 
+}
