@@ -20,6 +20,7 @@ import { CalificadorComponent } from './datos-academicos/calificador/calificador
 import { DatosAcademicosComponent } from './datos-academicos/datos-academicos.component';
 import { BuscarEstudianteComponent } from './datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
 import { AnaliticoComponent } from './datos-academicos/analitico/analitico.component';
+import { AsistenciasComponent } from './asistencias/asistencias.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { AnaliticoComponent } from './datos-academicos/analitico/analitico.compo
     CalificadorComponent,
     DatosAcademicosComponent,
     AnaliticoComponent,
-    BuscarEstudianteComponent
+    BuscarEstudianteComponent,
+    AsistenciasComponent
   ],
   imports: [
     CommonModule,

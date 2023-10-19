@@ -15,6 +15,7 @@ import { PlanesComponent } from './pages/planes/planes.component';
 import { CalificadorComponent } from './pages/datos-academicos/calificador/calificador.component';
 import { DatosAcademicosComponent } from './pages/datos-academicos/datos-academicos.component';
 import { AnaliticoComponent } from './pages/datos-academicos/analitico/analitico.component';
+import { AsistenciasComponent } from './pages/asistencias/asistencias.component';
 
 const routes: Routes = [
   {path:"home" , component:HomeComponent
@@ -30,13 +31,12 @@ const routes: Routes = [
     {path:"DatosPersonalesPantalla",component:DatosPersonalesComponent},
     {path:"DatosAlumno",component:PantallaDatosAlumnoComponent},
     {path:"DatosTutores",component:PantallaDatosTutoresComponent},
-    {path:"DatosPersonales",component:PantallaDatosPersonalesComponent}, 
+    {path:"DatosPersonales",component:PantallaDatosPersonalesComponent},
+    {path:"asistencias", component:AsistenciasComponent}, 
     {path:"DatosAcademicos", component:DatosAcademicosComponent,
     children:[
       {path:"analitico", component:AnaliticoComponent},
-      {path:"calificador", component: CalificadorComponent}
-    ] },
-    
+      {path:"calificador", component: CalificadorComponent},]},
     ]}, 
   { path: '',   redirectTo: '/home', pathMatch: 'full'}
 ];
