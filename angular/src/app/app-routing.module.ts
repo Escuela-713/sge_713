@@ -7,6 +7,7 @@ import { FormCarrerasComponent } from './forms/form-carreras/form-carreras.compo
 import { PlanesComponent } from './pages/planes/planes.component';
 import { MateriasComponent } from './pages/materias/materias.component';
 import { FormMateriasComponent } from './forms/form-materias/form-materias.component';
+import { DatosPersonalesComponent } from './pages/datos-personales/datos-personales.component';
 import { FormPlanesComponent } from './forms/form-planes/form-planes.component';
 
 const routes: Routes = [
@@ -16,10 +17,12 @@ const routes: Routes = [
   children: [
     {path:"carreras", component:CarrerasComponent },
     {path:"planes", component:PlanesComponent},
+    {path:"editarCarreras", component:FormCarrerasComponent},
     {path:"editarPlanes", component:FormPlanesComponent},
     {path:"materias", component:MateriasComponent},
-    {path:"editarMaterias",component:FormMateriasComponent}
-  ] },
+    {path:"editarMaterias",component:FormMateriasComponent},
+    {path:"datos-personales", component:DatosPersonalesComponent}
+    ] },
   { path: '',   redirectTo: '/home', pathMatch: 'full'}
 ];
 

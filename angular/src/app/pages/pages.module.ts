@@ -7,6 +7,8 @@ import { RouterModule } from '@angular/router';
 import { CarrerasComponent } from './carreras/carreras.component';
 import { PlanesComponent } from './planes/planes.component';
 import { MateriasComponent } from './materias/materias.component';
+import { DatosPersonalesComponent } from './datos-personales/datos-personales.component';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import { MateriasComponent } from './materias/materias.component';
     DashboardComponent,
     CarrerasComponent,
     PlanesComponent,
-    MateriasComponent
+    MateriasComponent,
+    DatosPersonalesComponent
   ],
   imports: [
     CommonModule,

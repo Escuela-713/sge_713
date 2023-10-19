@@ -5,16 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { PagesModule } from './pages/pages.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    PagesModule
+    PagesModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
