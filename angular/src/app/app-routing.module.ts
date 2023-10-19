@@ -3,16 +3,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { CarrerasComponent } from './pages/carreras/carreras.component';
-import { FormCarrerasComponent } from './forms/form-carreras/form-carreras.component';
-import { PlanesComponent } from './pages/planes/planes.component';
+import { FormCarrerasComponent } from './pages/carreras/form-carreras/form-carreras.component';
 import { MateriasComponent } from './pages/materias/materias.component';
-import { FormMateriasComponent } from './forms/form-materias/form-materias.component';
-import { FormPlanesComponent } from './forms/form-planes/form-planes.component';
-import { DatosPersonalesComponent } from './pages/DatosPersonales/Pantallas/PantallaPrincipal/datos-personales.component';
-import { PantallaDatosAlumnoComponent } from './pages/DatosPersonales/Pantallas/pantalla-datos-alumno/pantalla-datos-alumno.component';
-import { PantallaDatosTutoresComponent } from './pages/DatosPersonales/Pantallas/pantalla-datos-tutores/pantalla-datos-tutores.component';
-import { PantallaDatosPersonalesComponent } from './pages/DatosPersonales/Pantallas/pantalla-datos-personales/pantalla-datos-personales.component';
-import { PantallaNavegacionComponent } from './pages/DatosPersonales/Pantallas/pantalla-navegacion/pantalla-navegacion.component';
+import { FormMateriasComponent } from './pages/materias/form-materias/form-materias.component';
+import { FormPlanesComponent } from './pages/planes/form-planes/form-planes.component';
+import { DatosPersonalesComponent } from './pages/datos-personales/pantallas/PantallaPrincipal/datos-personales.component';
+import { PantallaDatosAlumnoComponent } from './pages/datos-personales/pantallas/pantalla-datos-alumno/pantalla-datos-alumno.component';
+import { PantallaDatosTutoresComponent } from './pages/datos-personales/pantallas/pantalla-datos-tutores/pantalla-datos-tutores.component';
+import { PantallaDatosPersonalesComponent } from './pages/datos-personales/pantallas/pantalla-datos-personales/pantalla-datos-personales.component';
+import { PantallaNavegacionComponent } from './pages/datos-personales/pantallas/pantalla-navegacion/pantalla-navegacion.component';
+import { PlanesComponent } from './pages/planes/planes.component';
 
 const routes: Routes = [
   {path:"home" , component:HomeComponent
