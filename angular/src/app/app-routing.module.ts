@@ -7,8 +7,11 @@ import { FormCarrerasComponent } from './forms/form-carreras/form-carreras.compo
 import { PlanesComponent } from './pages/planes/planes.component';
 import { MateriasComponent } from './pages/materias/materias.component';
 import { FormMateriasComponent } from './forms/form-materias/form-materias.component';
-import { DatosPersonalesComponent } from './pages/datos-personales/datos-personales.component';
 import { FormPlanesComponent } from './forms/form-planes/form-planes.component';
+import { DatosPersonalesComponent } from './pages/DatosPersonales/Pantallas/PantallaPrincipal/datos-personales.component';
+import { PantallaDatosAlumnoComponent } from './pages/DatosPersonales/Pantallas/pantalla-datos-alumno/pantalla-datos-alumno.component';
+import { PantallaDatosTutoresComponent } from './pages/DatosPersonales/Pantallas/pantalla-datos-tutores/pantalla-datos-tutores.component';
+import { PantallaDatosPersonalesComponent } from './pages/DatosPersonales/Pantallas/pantalla-datos-personales/pantalla-datos-personales.component';
 
 const routes: Routes = [
   {path:"home" , component:HomeComponent
@@ -21,8 +24,11 @@ const routes: Routes = [
     {path:"editarPlanes", component:FormPlanesComponent},
     {path:"materias", component:MateriasComponent},
     {path:"editarMaterias",component:FormMateriasComponent},
-    {path:"datos-personales", component:DatosPersonalesComponent}
-    ] },
+    {path:"DatosPersonalesPantalla",component:DatosPersonalesComponent},
+    {path:"DatosAlumno",component:PantallaDatosAlumnoComponent},
+    {path:"DatosTutores",component:PantallaDatosTutoresComponent},
+    {path:"DatosPersonales",component:PantallaDatosPersonalesComponent}
+  ] },
   { path: '',   redirectTo: '/home', pathMatch: 'full'}
 ];
 
