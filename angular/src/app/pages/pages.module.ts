@@ -13,6 +13,10 @@ import { PantallaDatosTutoresComponent } from './DatosPersonales/Pantallas/panta
 import { PantallaDatosPersonalesComponent } from './DatosPersonales/Pantallas/pantalla-datos-personales/pantalla-datos-personales.component';
 import { DatosDomicilioComponent } from './DatosPersonales/Componentes/datos-domicilio/datos-domicilio.component';
 import { DatosLocalidadComponent } from './DatosPersonales/Componentes/datos-localidad/datos-localidad.component';
+import { DatosEscolaresComponent } from './DatosPersonales/Componentes/datos-escolares/datos-escolares.component';
+import { DatosIdentidadComponent } from './DatosPersonales/Componentes/datos-identidad/datos-identidad.component';
+import { DatosTutoresComponent } from './DatosPersonales/Componentes/datos-tutores/datos-tutores.component';
+import { PantallaNavegacionComponent } from './DatosPersonales/Pantallas/pantalla-navegacion/pantalla-navegacion.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,10 @@ import { DatosLocalidadComponent } from './DatosPersonales/Componentes/datos-loc
     PantallaDatosPersonalesComponent,
     DatosDomicilioComponent,
     DatosLocalidadComponent,
+    DatosEscolaresComponent,
+    DatosIdentidadComponent,
+    DatosTutoresComponent,
+    PantallaNavegacionComponent,
   ],
   imports: [
     CommonModule,

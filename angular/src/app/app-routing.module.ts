@@ -12,6 +12,7 @@ import { DatosPersonalesComponent } from './pages/DatosPersonales/Pantallas/Pant
 import { PantallaDatosAlumnoComponent } from './pages/DatosPersonales/Pantallas/pantalla-datos-alumno/pantalla-datos-alumno.component';
 import { PantallaDatosTutoresComponent } from './pages/DatosPersonales/Pantallas/pantalla-datos-tutores/pantalla-datos-tutores.component';
 import { PantallaDatosPersonalesComponent } from './pages/DatosPersonales/Pantallas/pantalla-datos-personales/pantalla-datos-personales.component';
+import { PantallaNavegacionComponent } from './pages/DatosPersonales/Pantallas/pantalla-navegacion/pantalla-navegacion.component';
 
 const routes: Routes = [
   {path:"home" , component:HomeComponent
@@ -27,7 +28,8 @@ const routes: Routes = [
     {path:"DatosPersonalesPantalla",component:DatosPersonalesComponent},
     {path:"DatosAlumno",component:PantallaDatosAlumnoComponent},
     {path:"DatosTutores",component:PantallaDatosTutoresComponent},
-    {path:"DatosPersonales",component:PantallaDatosPersonalesComponent}
+    {path:"DatosPersonales",component:PantallaDatosPersonalesComponent}, 
+    {path:"AgregarAlumno",component:PantallaNavegacionComponent}
   ] },
   { path: '',   redirectTo: '/home', pathMatch: 'full'}
 ];

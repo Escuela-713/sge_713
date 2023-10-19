@@ -1,22 +1,149 @@
-<div class="modal-body">
-    <div role="tabbable">
-        <!-- Tab panes -->
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item active"><a class="nav-link active" routerLink="/dashboard/DatosAlumno"
-                    data-toggle="tab">Datos Alumno</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" routerLink="/dashboard/DatosPersonales" data-toggle="tab">Datos
-                    Personales</a>
-            </li>
-            <li class="nav-item"><a class="nav-link" routerLink="/dashboard/DatosTutores" data-toggle="tab">Datos
-                    Tutores</a>
-            </li>
-        </ul>
+<h1>Sistema de Gestión de Alumnos</h1>
+<!-- Tabla de datos de alumnos -->
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>DNI</th>
+                <th>CUIL</th>
+                <th>Teléfono</th>
+                <th>Carrera</th>
+                <th>Legajo</th>
+                <th>Fecha de Ingreso</th>
+                <th>Libro de Matriz</th>
+                <th>Fecha de Egreso</th>
+                <th>Localidad</th>
+                <th>Domicilio</th>
+                <th>ID Tutor</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Ejemplo de datos de alumnos -->
+            <tr>
+                <td>Juan</td>
+                <td>Pérez</td>
+                <td>12345678</td>
+                <td>20-12345678-9</td>
+                <td>555-1234</td>
+                <td>Ciencias</td>
+                <td>78901</td>
+                <td>2023-01-15</td>
+                <td>12345</td>
+                <td>2023-12-20</td>
+                <td>Buenos Aires</td>
+                <td>Calle 123</td>
+                <td>5678</td>
+                <td><button class="editar-alumno">Editar</button></td>
+                <td><button class="eliminar-alumno">Eliminar</button></td>
+            </tr>
+            <tr>
+                <td>Maria</td>
+                <td>López</td>
+                <td>87654321</td>
+                <td>20-87654321-0</td>
+                <td>555-5678</td>
+                <td>Artes</td>
+                <td>89012</td>
+                <td>2022-09-10</td>
+                <td>54321</td>
+                <td>2023-11-15</td>
+                <td>Córdoba</td>
+                <td>Avenida 456</td>
+                <td>1234</td>
+                <td><button class="editar-alumno">Editar</button></td>
+                <td><button class="eliminar-alumno">Eliminar</button></td>
+            </tr>
+            <!-- Puedes agregar más filas aquí -->
+        </tbody>
+    </table>
 
-        <div role="tabpanel" class="tab-pane active" id="datos_alumnotab">
-            <div class="container-fluid mt-2">
+    <!-- Formulario para agregar un nuevo alumno -->
+    <div id="formulario-agregar" style="display: none;">
+        <h2>Agregar Nuevo Alumno</h2>
+        <form id="formulario-alumno">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required><br><br>
 
-            </div>
-        </div>
+            <label for="apellido">Apellido:</label>
+            <input type="text" id="apellido" name="apellido" required><br><br>
+
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" name="dni" required><br><br>
+
+            <label for="cuil">CUIL:</label>
+            <input type="text" id="cuil" name="cuil" required><br><br>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="text" id="telefono" name="telefono" required><br><br>
+
+            <label for="carrera">Carrera:</label>
+            <input type="text" id="carrera" name="carrera" required><br><br>
+
+            <label for="legajo">Legajo:</label>
+            <input type="text" id="legajo" name="legajo" required><br><br>
+
+            <label for="fecha-ingreso">Fecha de Ingreso:</label>
+            <input type="date" id="fecha-ingreso" name="fecha-ingreso" required><br><br>
+
+            <label for="libro-matriz">Libro de Matriz:</label>
+            <input type="text" id="libro-matriz" name="libro-matriz" required><br><br>
+
+            <label for="fecha-egreso">Fecha de Egreso:</label>
+            <input type="date" id="fecha-egreso" name="fecha-egreso"><br><br>
+
+            <label for="localidad">Localidad:</label>
+            <input type="text" id="localidad" name="localidad" required><br><br>
+
+            <label for="domicilio">Domicilio:</label>
+            <input type="text" id="domicilio" name="domicilio" required><br><br>
+
+            <label for="id-tutor">ID del Tutor:</label>
+            <input type="text" id="id-tutor" name="id-tutor" required><br><br>
+
+            <button id="guardar-alumno">Guardar</button>
+            <button id="cancelar-agregar">Cancelar</button>
+        </form>
     </div>
-</div>
+
+
+<div>
+
+    <!-- Botón para agregar un nuevo alumno -->
+    <div class="container">
+    <button (click)="showPopup()">Agregar Alumno</button>
+    </div>
+    <div class="popup" [ngClass]="{'visible': isPopupVisible}">
+        <div class="popup-content">
+          <span (click)="closePopup()" class="close">&times;</span>
+          <h2>Agregar Alumno</h2>
+          <div class="modal-body">
+            <div role="tabbable">
+                <!-- Tab panes -->
+                <ul class="nav nav-tabs" role="tablist">
+                    <div>
+                    <button class="nav-item active" class="nav-link active" (click)="mostrarComponente('componente1')" data-target="componente1" >Datos Alumno
+                    </button> <app-pantalla-datos-alumno *ngIf="componenteVisible=== 'componente1'"></app-pantalla-datos-alumno>
+                    </div>
+                    <div>
+                    <button  class="nav-item active" class="nav-link active" (click)="mostrarComponente('componente2')"data-target="componente2">Datos Personales
+                    </button> <app-pantalla-datos-personales *ngIf="componenteVisible === 'componente2'"></app-pantalla-datos-personales>
+                </div>
+                <div>
+                    <button  class="nav-item active" class="nav-link active" (click)="mostrarComponente('componente3')"data-target="componente2">Datos Tutor
+                    </button> <app-pantalla-datos-tutores *ngIf="componenteVisible === 'componente3'"></app-pantalla-datos-tutores>
+                </div>
+                </ul>
+        
+        
+        
+        
+                <div role="tabpanel" class="tab-pane active" id="datos_alumnotab">
+                    <div class="container-fluid mt-2">
+        
+                </div>
+        </div>
+      </div>
+    

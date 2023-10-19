@@ -1,0 +1,48 @@
+<div id="accordion" >
+    <div class="card">
+        <div class="card-header bg-info">
+             <a class="card-link text-white" data-toggle="collapse" >Datos Escolares
+                  <i class='fas fa-angle-double-down float-right'></i>
+            </a>
+        </div>
+<div>
+    <div class="form-group">
+        <label for="carrera">Carrera</label>
+        <select class="form-select" id="carrera" name="carrera" aria-label="Carrera" required>
+            <option value="" disabled selected>Seleccione la carrera</option>
+            <option value="1">ETP</option>
+            <option value="2">Comunicaciones</option>
+            <option value="3">Humanidades</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="legajo">Número de Legajo</label>
+                <input type="number" id="legajo" name="legajo" class="form-control" placeholder="Ingrese aquí el Legajo" required>
+                <div class="invalid-feedback">
+                    Ingrese el número de legajo
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fecha_de_ingreso">Fecha de Ingreso</label>
+                <input type="date" id="fecha_de_ingreso" name="fecha_de_ingreso" class="form-control" required>
+                <div class="invalid-feedback">
+                    Ingrese la fecha de ingreso
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="matriz">Nro. libro matriz</label>
+                <input type="number" id="matriz" name="matriz" class="form-control" placeholder="Ingrese aquí el n° de libro matriz" required>
+                <div class="invalid-feedback">
+                    Ingrese el número de matriz
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="fecha_de_egreso">Fecha de Egreso</label>
+                <input type="date" id="fecha_de_egreso" name="fecha_de_egreso" class="form-control">
+            </div>
+        </div>
+    </div>
+</div>

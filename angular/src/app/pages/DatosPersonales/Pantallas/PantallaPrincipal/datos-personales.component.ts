@@ -12,4 +12,23 @@ export class DatosPersonalesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  isPopupVisible: boolean = false;
+
+  showPopup() {
+    this.isPopupVisible = true;
+  }
+
+  closePopup() {
+    this.isPopupVisible = false;
+  }
+
+  mostrar2: boolean = false;
+
+  mostrarComponente(componente: string) {
+    this.componenteVisible = componente;
+  }
+
+  componenteVisible: string | null = null;
+
+
 }
