@@ -13,7 +13,7 @@ import { PagesModule } from './pages/pages.module';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    PagesModule,
+    PagesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

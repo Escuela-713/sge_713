@@ -11,8 +11,10 @@ import { DatosPersonalesComponent } from './pages/datos-personales/pantallas/Pan
 import { PantallaDatosAlumnoComponent } from './pages/datos-personales/pantallas/pantalla-datos-alumno/pantalla-datos-alumno.component';
 import { PantallaDatosTutoresComponent } from './pages/datos-personales/pantallas/pantalla-datos-tutores/pantalla-datos-tutores.component';
 import { PantallaDatosPersonalesComponent } from './pages/datos-personales/pantallas/pantalla-datos-personales/pantalla-datos-personales.component';
-import { PantallaNavegacionComponent } from './pages/datos-personales/pantallas/pantalla-navegacion/pantalla-navegacion.component';
 import { PlanesComponent } from './pages/planes/planes.component';
+import { CalificadorComponent } from './pages/datos-academicos/calificador/calificador.component';
+import { DatosAcademicosComponent } from './pages/datos-academicos/datos-academicos.component';
+import { AnaliticoComponent } from './pages/datos-academicos/analitico/analitico.component';
 
 const routes: Routes = [
   {path:"home" , component:HomeComponent
@@ -29,8 +31,13 @@ const routes: Routes = [
     {path:"DatosAlumno",component:PantallaDatosAlumnoComponent},
     {path:"DatosTutores",component:PantallaDatosTutoresComponent},
     {path:"DatosPersonales",component:PantallaDatosPersonalesComponent}, 
-    {path:"AgregarAlumno",component:PantallaNavegacionComponent}
-  ] },
+    {path:"DatosAcademicos", component:DatosAcademicosComponent,
+    children:[
+      {path:"analitico", component:AnaliticoComponent},
+      {path:"calificador", component: CalificadorComponent}
+    ] },
+    
+    ]}, 
   { path: '',   redirectTo: '/home', pathMatch: 'full'}
 ];
 

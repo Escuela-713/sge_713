@@ -16,7 +16,10 @@ import { DatosLocalidadComponent } from './datos-personales/componentes/datos-lo
 import { DatosEscolaresComponent } from './datos-personales/componentes/datos-escolares/datos-escolares.component';
 import { DatosIdentidadComponent } from './datos-personales/componentes/datos-identidad/datos-identidad.component';
 import { DatosTutoresComponent } from './datos-personales/componentes/datos-tutores/datos-tutores.component';
-import { PantallaNavegacionComponent } from './datos-personales/pantallas/pantalla-navegacion/pantalla-navegacion.component';
+import { CalificadorComponent } from './datos-academicos/calificador/calificador.component';
+import { DatosAcademicosComponent } from './datos-academicos/datos-academicos.component';
+import { BuscarEstudianteComponent } from './datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
+import { AnaliticoComponent } from './datos-academicos/analitico/analitico.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { PantallaNavegacionComponent } from './datos-personales/pantallas/pantal
     DatosEscolaresComponent,
     DatosIdentidadComponent,
     DatosTutoresComponent,
-    PantallaNavegacionComponent,
+    CalificadorComponent,
+    DatosAcademicosComponent,
+    AnaliticoComponent,
+    BuscarEstudianteComponent
   ],
   imports: [
     CommonModule,
