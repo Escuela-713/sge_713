@@ -7,7 +7,7 @@ import { RouterModule } from '@angular/router';
 import { CarrerasComponent } from './carreras/carreras.component';
 import { PlanesComponent } from './planes/planes.component';
 import { MateriasComponent } from './materias/materias.component';
-import { DatosPersonalesComponent } from './datos-personales/pantallas/PantallaPrincipal/datos-personales.component';
+import { DatosPersonalesComponent } from './datos-personales/pantallas/pantalla-principal/datos-personales.component';
 import { PantallaDatosAlumnoComponent } from './datos-personales/pantallas/pantalla-datos-alumno/pantalla-datos-alumno.component';
 import { PantallaDatosTutoresComponent } from './datos-personales/pantallas/pantalla-datos-tutores/pantalla-datos-tutores.component';
 import { PantallaDatosPersonalesComponent } from './datos-personales/pantallas/pantalla-datos-personales/pantalla-datos-personales.component';

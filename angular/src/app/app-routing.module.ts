@@ -7,7 +7,7 @@ import { FormCarrerasComponent } from './pages/carreras/form-carreras/form-carre
 import { MateriasComponent } from './pages/materias/materias.component';
 import { FormMateriasComponent } from './pages/materias/form-materias/form-materias.component';
 import { FormPlanesComponent } from './pages/planes/form-planes/form-planes.component';
-import { DatosPersonalesComponent } from './pages/datos-personales/pantallas/PantallaPrincipal/datos-personales.component';
+import { DatosPersonalesComponent } from './pages/datos-personales/pantallas/pantalla-principal/datos-personales.component';
 import { PantallaDatosAlumnoComponent } from './pages/datos-personales/pantallas/pantalla-datos-alumno/pantalla-datos-alumno.component';
 import { PantallaDatosTutoresComponent } from './pages/datos-personales/pantallas/pantalla-datos-tutores/pantalla-datos-tutores.component';
 import { PantallaDatosPersonalesComponent } from './pages/datos-personales/pantallas/pantalla-datos-personales/pantalla-datos-personales.component';
