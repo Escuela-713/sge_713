@@ -1,3 +1,8 @@
 body{padding-top: 40px}
 header{text-align: center}
 div h3{text-align: right;}
+.form-group{
+    text-align: center;
+    width: 300px;
+    margin: auto;
+}
