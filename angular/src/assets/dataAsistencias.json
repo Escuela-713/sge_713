@@ -1,0 +1,18 @@
+{
+    "informacion": {
+        "idAlumno": 1,
+        "apellido":"Avanzatti",
+        "nombre": "Aluhé",
+        "FecNac": "21/03/2004",
+        "NomTutor":"Marihuana",
+        "ApTutor":"locrura",
+        "TelAlumno":"45107200",
+        "TelTutor":"10010100",
+        "Asistencias":"200",
+        "inasistencias":"5",
+        "PorcentajeAsistencia":"90%",
+        "Sanciones":"",
+        "Observaciones":""
+    }
+}
+

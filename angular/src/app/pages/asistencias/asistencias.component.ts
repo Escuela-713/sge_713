@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/servicios/data.service';
 
 @Component({
   selector: 'app-asistencias',
@@ -6,10 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./asistencias.component.css']
 })
 export class AsistenciasComponent implements OnInit {
+  constructor(private dataService:DataService){}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  ngOnInit(): void{
+    console.log("ola")
+    console.log(this.dataService())
   }
-
 }

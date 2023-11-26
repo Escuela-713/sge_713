@@ -6,3 +6,24 @@ div h3{text-align: right;}
     width: 300px;
     margin: auto;
 }
+#botones{
+    margin-bottom:12px ;
+}
+
+.col1{
+margin-left: 45%;
+}
+
+#filtrar{
+    margin-top: 15%;
+   width: 75px;
+   height: 75px;
+   
+}
+
+.col3{
+margin-right: 45%
+}
+form div input{
+    text-align: center;
+}
