@@ -7,10 +7,14 @@ import { DataService } from 'src/app/servicios/data.service';
   styleUrls: ['./asistencias.component.css']
 })
 export class AsistenciasComponent implements OnInit {
+  informacionEstudiante: any;
   constructor(private dataService:DataService){}
 
   ngOnInit(): void{
-    console.log("ola")
-    console.log(this.dataService())
+    this.dataService.ObtenerAsistencias().subscribe(
+      data => {console.log(data["informacion"]);
+      this.informacionEstudiante=data["informacion"];
+    }
+    )
   }
 }
