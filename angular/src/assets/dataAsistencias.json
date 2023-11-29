@@ -1,5 +1,6 @@
 {
-    "informacion": {
+    "informacion": [
+        {
         "idAlumno": 1,
         "apellido":"Avanzatti",
         "nombre": "Aluhé",
@@ -13,6 +14,83 @@
         "PorcentajeAsistencia":"90%",
         "Sanciones":"",
         "Observaciones":""
-    }
+        },
+        {
+            "idAlumno": 2,
+        "apellido":"Sepulveda",
+        "nombre": "Eluney",
+        "FecNac": "04/04/2004",
+        "NomTutor":"Maria",
+        "ApTutor":"Teresa",
+        "TelAlumno":"45107220",
+        "TelTutor":"1090100",
+        "Asistencias":"190",
+        "inasistencias":"15",
+        "PorcentajeAsistencia":"85%",
+        "Sanciones":"",
+        "Observaciones":""
+        },
+        {
+            "idAlumno": 3,
+        "apellido":"Lacoma",
+        "nombre": "Santiago",
+        "FecNac": "01/12/2004",
+        "NomTutor":"Jarvan",
+        "ApTutor":"De La Cuarta",
+        "TelAlumno":"45207201",
+        "TelTutor":"1090340",
+        "Asistencias":"180",
+        "inasistencias":"25",
+        "PorcentajeAsistencia":"80%",
+        "Sanciones":"",
+        "Observaciones":""
+        },
+        {
+            "idAlumno": 4,
+        "apellido":"Elsezar",
+        "nombre": "Renata",
+        "FecNac": "10/05/2004",
+        "NomTutor":"Lucian",
+        "ApTutor":"Nami",
+        "TelAlumno":"45607202",
+        "TelTutor":"1033100",
+        "Asistencias":"181",
+        "inasistencias":"24",
+        "PorcentajeAsistencia":"89%",
+        "Sanciones":"",
+        "Observaciones":""
+        },
+        {
+            "idAlumno": 5,
+        "apellido":"Garcia",
+        "nombre": "Maximo",
+        "FecNac": "29/02/2004",
+        "NomTutor":"Robert",
+        "ApTutor":"Neeko",
+        "TelAlumno":"4510720",
+        "TelTutor":"1097200",
+        "Asistencias":"190",
+        "inasistencias":"15",
+        "PorcentajeAsistencia":"85%",
+        "Sanciones":"",
+        "Observaciones":""
+        },
+        {
+            "idAlumno": 6,
+        "apellido":"Voli",
+        "nombre": "Bear",
+        "FecNac": "23/03/2004",
+        "NomTutor":"Juan",
+        "ApTutor":"Tal",
+        "TelAlumno":"45107200",
+        "TelTutor":"10010100",
+        "Asistencias":"200",
+        "inasistencias":"5",
+        "PorcentajeAsistencia":"90%",
+        "Sanciones":"",
+        "Observaciones":""
+        }
+
+        ]
 }
 

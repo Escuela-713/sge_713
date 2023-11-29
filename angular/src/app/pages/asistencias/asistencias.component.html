@@ -68,96 +68,22 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row"> {{informacionEstudiante.idAlumno}} </th>
-            <td>{{informacionEstudiante.apellido}}</td>
-            <td> {{informacionEstudiante.nombre}} </td>
-            <td>{{informacionEstudiante.FecNac}}</td>
-            <td>{{informacionEstudiante.NomTutor}} </td>
-            <td>{{informacionEstudiante.ApTutor}} </td>
-            <td>{{informacionEstudiante.TelAlumno}}</td>
-            <td>{{informacionEstudiante.TelTutor}}</td>
-            <td>{{informacionEstudiante.Asistencias}}</td>
-            <td>{{informacionEstudiante.inasistencias}}</td>
-            <td>{{informacionEstudiante.PorcentajeAsistencia}}</td>
-            <td>{{informacionEstudiante.Sanciones}}</td>
-            <td>{{informacionEstudiante.Observaciones}}</td>
+        <tr *ngFor="let item of informacionEstudiante">
+            <th scope="row"> {{item.idAlumno}} </th>
+            <td>{{item.apellido}}</td>
+            <td>{{item.nombre}} </td>
+            <td>{{item.FecNac}}</td>
+            <td>{{item.NomTutor}} </td>
+            <td>{{item.ApTutor}} </td>
+            <td>{{item.TelAlumno}}</td>
+            <td>{{item.TelTutor}}</td>
+            <td>{{item.Asistencias}}</td>
+            <td>{{item.inasistencias}}</td>
+            <td>{{item.PorcentajeAsistencia}}</td>
+            <td>{{item.Sanciones}}</td>
+            <td>{{item.Observaciones}}</td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Sepulveda</td>
-            <td>Eluney</td>
-            <td>04/04/2004</td>
-            <td>Maria </td>
-            <td>Teresa </td>
-            <td>45107220</td>
-            <td>10090100</td>
-            <td>190</td>
-            <td>15</td>
-            <td>85%</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Lacoma</td>
-            <td>Santiago</td>
-            <td>01/12/2004</td>
-            <td> Jarvan </td>
-            <td> De La Cuarta</td>
-            <td>45207201</td>
-            <td>10010340</td>
-            <td>180</td>
-            <td>25</td>
-            <td>80%</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">4</th>
-            <td>Elsezar</td>
-            <td>Renata</td>
-            <td>10/05/2004</td>
-            <td>Lucian </td>
-            <td>Nami </td>
-            <td>45607202</td>
-            <td>10033100</td>
-            <td>181</td>
-            <td>24</td>
-            <td>90%</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">5</th>
-            <td>García</td>
-            <td>Maximo</td>
-            <td>29/02/2004</td>
-            <td>Robert </td>
-            <td>Neeko </td>
-            <td>45107200</td>
-            <td>10010100</td>
-            <td>200</td>
-            <td>5</td>
-            <td>90%</td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">6</th>
-            <td>Bear</td>
-            <td>Viktor</td>
-            <td>23/05/2004</td>
-            <td>Lucas </td>
-            <td>Upsteni </td>
-            <td>45107200</td>
-            <td>10010100</td>
-            <td>200</td>
-            <td>5</td>
-            <td>90%</td>
-            <td></td>
-            <td></td>
-        </tr>
+        
     </tbody>
 </table>
 <div class="container-fluid" id="botones">
