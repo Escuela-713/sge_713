@@ -27,7 +27,7 @@
             <h4 name="titulo" id="titulo" class="title">Carreras</h4>
         </div>
         <div>
-            <a rel="stylesheet" href="form-carerras.component.html" class="btn btn-primary m-1" data-dismiss="modal" >Nuevo</a>
+            <a rel="stylesheet" href="form-carerras.component.html" class="btn btn-success m-1" data-dismiss="modal" >Nuevo</a>
             
             
         </div>
@@ -49,23 +49,19 @@
                 </thead>
 
                 <tbody>
-                    <tr *ngfor="let item of carrera">
+                    <tr *ngFor="let item of carrera">
                         <th>{{item.nombre2}}</th>
                         <th>{{itme.titulo2}}</th>
                         <th>{{item.descripcion2}}</th>
                         <th>{{item.idCarrera2}}</th>
 
-                            <a rel="stylesheet" routerLink="/dashboard/editar-carreras" class="btn btn-primary" data-dismiss="modal" >Editar</a>
+                            <a rel="stylesheet" routerLink="/dashboard/editar-carreras" class="btn btn-info" data-dismiss="modal" >Editar</a>
                             <a rel="stylesheet" routerLink="desactivarCarrera" class="btn btn-danger m-1" data-dismiss="modal" >Eliminar</a>
                             <a rel="stylesheet" routerLink="planes" class="btn btn-warning m-1" data-dismiss="modal" >Planes</a>
 
                         </th>
                     </tr>
-                    <tr *ngfor="let item of carrera">
-                        <th>{{item.nombre1}}</th>
-                        <th>{{itme.titulo1}}</th>
-                        <th>{{item.descripcion1}}</th>
-                        <th>{{item.idCarrera1}}</th>
+                    <tr>
 
                             <a rel="stylesheet" routerLink="/dashboard/editar-carreras" class="btn btn-primary" data-dismiss="modal" >Editar</a>
                             <a rel="stylesheet" routerLink="desactivarCarrera" class="btn btn-danger m-1" data-dismiss="modal" >Eliminar</a>

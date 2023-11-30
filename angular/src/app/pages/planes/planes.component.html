@@ -1,4 +1,4 @@
-<a rel="stylesheet" routerLink="/dashboard/editarPlanes" class="btn btn-primary m-1" data-dismiss="modal">Nuevo</a>
+<a rel="stylesheet" routerLink="/dashboard/editarPlanes" class="btn btn-success m-1" data-dismiss="modal">Nuevo</a>
 <div class="col-sm">
     <table class="table table-bordered table-hover ">
         <thead>
@@ -8,28 +8,23 @@
                 <th>Descripción</th>
             </tr>
         </thead>
-
         <tbody>
-            <tr>
-                <th>......</th>
-                <th>........</th>
-                <th>...........</th>
+            <tr *ngFor="let item of planes" >
+                <th>{{item.nombre}}</th>
+                <th>{{item.titulo}}</th>
+                <th>{{item.descripcion}}</th>
                 <th>
 
-                    <a rel="stylesheet" routerLink="/dashboard/editarPlanes" class="btn btn-primary m-1"
+                    <a rel="stylesheet" routerLink="/dashboard/editarPlanes" class="btn btn-info m-1"
                         data-dismiss="modal">Editar</a>
-                    <a rel="stylesheet" href="desactivarPlan.html" class="btn btn-primary m-1"
-                        data-dismiss="modal">Desactivar</a>
-                    <a rel="stylesheet" href="materias.html" class="btn btn-success m-1"
+                    <a rel="stylesheet" routerLink="desactivarPlan" class="btn btn-danger m-1"
+                        data-dismiss="modal">Eliminar</a>
+                    <a rel="stylesheet" routerLInk="./pages/materias/materias.component" class="btn btn-warning m-1"
                         data-dismiss="modal">Materias</a>
                 </th>
 
             </tr>
-            <tr>
-                <th>Humanidades</th>
-                <th>tecnico en la humanidad</th>
-                <th>fumo porro y me encanta fiosofia</th>
-            </tr>
+     
         </tbody>
 
     </table>

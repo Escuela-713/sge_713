@@ -1,0 +1,18 @@
+{
+    "planes": [
+        {
+            "nombre": "2018",
+            "titulo": "Plan tecnico",
+            "descripcion": "7 años de cursada",
+            "idPlan": "2"
+        },
+        [
+            {
+                "nombre": "........",
+                "titulo": "....",
+                "descripcion": "......",
+                "idPlan": "......."
+            }
+        ]
+    ]
+}
