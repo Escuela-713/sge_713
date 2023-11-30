@@ -4,10 +4,15 @@
             "idCarrera": "1"
 
             },[{"nombre":"Humanidades",
-                "titulo":"tecnico en la humanidad",
-                "descripcion":"fumo porro y me encanta la filosofia",
+                "titulo":"vachiller con orientacion a ciencias sociales",
+                "descripcion":"Educacion basica",
                 "idCarrera": "3"
-            }
+                
+            },[{"nombre": "Comunicaciones",
+                "titulo": "Vachiller con orientacion a Comunicaciones",
+                "descripcion": "educacion con tecnicatura en medios de comunicacion",
+                "idCarrera": "2"
+            }]
             ]
             ]
 }
