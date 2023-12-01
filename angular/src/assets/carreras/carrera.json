@@ -1,12 +1,12 @@
 {"carrera":[{"nombre":"E.T.P",
             "titulo":"Tecnico en informatica Profesional y Personal",
             "descripcion":"Educacion tecnologica profesional",
-            "idCarrera": "1"
+            "idCarrera": ""
 
             },[{"nombre":"Humanidades",
                 "titulo":"tecnico en la humanidad",
                 "descripcion":"Educacion social",
-                "idCarrera": "3"
+                "idCarrera": ""
             }
             ]
             ]

@@ -49,20 +49,20 @@
                 </thead>
 
                 <tbody>
-                    <tr *ngFor="let item of carrera">
-                        <th>{{item.nombre2}}</th>
-                        <th>{{itme.titulo2}}</th>
-                        <th>{{item.descripcion2}}</th>
-                        <th>{{item.idCarrera2}}</th>
-
+                    <tr *ngFor="let item of carreras">
+                        <th>{{item.nombre}}</th>
+                        <th>{{item.titulo}}</th>
+                        <th>{{item.descripcion}}</th>
+                        <th>{{item.idCarrera}}</th>
+                        <th>
                             <a rel="stylesheet" routerLink="/dashboard/editar-carreras" class="btn btn-info" data-dismiss="modal" >Editar</a>
                             <a rel="stylesheet" routerLink="desactivarCarrera" class="btn btn-danger m-1" data-dismiss="modal" >Eliminar</a>
-                            <a rel="stylesheet" routerLink="planes" class="btn btn-warning m-1" data-dismiss="modal" >Planes</a>
+                            <a rel="stylesheet" routerLink="/dashboard/planes" class="btn btn-warning m-1" data-dismiss="modal" >Planes</a>
 
                         </th>
                     </tr>
                     <tr>
-
+                        <th>
                             <a rel="stylesheet" routerLink="/dashboard/editar-carreras" class="btn btn-primary" data-dismiss="modal" >Editar</a>
                             <a rel="stylesheet" routerLink="desactivarCarrera" class="btn btn-danger m-1" data-dismiss="modal" >Eliminar</a>
                             <a rel="stylesheet" routerLink="planes" class="btn btn-warning m-1" data-dismiss="modal" >Planes</a>

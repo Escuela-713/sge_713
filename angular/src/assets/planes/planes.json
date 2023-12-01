@@ -1,17 +1,19 @@
 {
     "planes": [
         {
-            "nombre": "2018",
-            "titulo": "Plan tecnico",
-            "descripcion": "7 años de cursada",
-            "idPlan": "2"
+            "idPlan": "2",
+            "plan": "2023",
+            "estado": "activo",
+            "hsCatedra": "80 horas",
+            "hsReloj": "40 horas"
         },
         [
             {
-                "nombre": "........",
-                "titulo": "....",
-                "descripcion": "......",
-                "idPlan": "......."
+                "idPlan": "...",
+                "plan": "....",
+                "estado": ".....",
+                "hsCatedra": ".....",
+                "hsReloj": "......"
             }
         ]
     ]

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {FormBuilder, Validators} from '@angular/forms'
 @Component({
   selector: 'app-form-planes',
   templateUrl: './form-planes.component.html',
@@ -7,9 +7,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormPlanesComponent implements OnInit {
 
-  constructor() { }
+  planForm = this.formBuilder.group({
+    plan:['', [Validators.required]],
+    hsCatedra:['', [Validators.required]],
+    hsReloj:['', [Validators.required]],
+  })
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
+  guardarPlan(){
+    if (this.planForm.valid)
+    {
+      //llamar al backend para crear un nuevo plan
+      //navegar a la pagina de gestion de planes
+    }
+    else
+    {
+      alert("Datos no validos")
+    }
+  }
 
+  get plan()
+  {
+    return this.planForm.controls["plan"];
+  }
+  get hsCatedras()
+  {
+    return this.planForm.controls["hsCatedra"];
+  }
+  get hsReloj()
+  {
+    return this.planForm.controls["hsReloj"];
+  }
 }

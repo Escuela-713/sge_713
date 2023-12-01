@@ -15,3 +15,11 @@
 #guardar:hover {
     background-color: #45a049; 
 }
+
+
+.ng-valid:not(form).ng-touched {
+    border-left: 5px solid #45a049
+}
+.ng-invalid:not(form).ng-touched {
+    border-left: 5px solid #a94442;
+}

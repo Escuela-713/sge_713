@@ -4,22 +4,24 @@
         <thead>
             <tr class="table-primary">
                 <th>Nombre</th>
-                <th>Titulo</th>
-                <th>Descripción</th>
+                <th>Estado</th>
+                <th>Horas Catedras</th>
+                <th>Horas Reloj</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let item of planes" >
-                <th>{{item.nombre}}</th>
-                <th>{{item.titulo}}</th>
-                <th>{{item.descripcion}}</th>
+                <th>{{item.plan}}</th>
+                <th>{{item.estado}}</th>
+                <th>{{item.hsCatedra}}</th>
+                <th>{{item.hsReloj}}</th>
                 <th>
 
                     <a rel="stylesheet" routerLink="/dashboard/editarPlanes" class="btn btn-info m-1"
                         data-dismiss="modal">Editar</a>
                     <a rel="stylesheet" routerLink="desactivarPlan" class="btn btn-danger m-1"
                         data-dismiss="modal">Eliminar</a>
-                    <a rel="stylesheet" routerLInk="./pages/materias/materias.component" class="btn btn-warning m-1"
+                    <a rel="stylesheet" routerLink="/dashboard/materias" class="btn btn-warning m-1"
                         data-dismiss="modal">Materias</a>
                 </th>
 
