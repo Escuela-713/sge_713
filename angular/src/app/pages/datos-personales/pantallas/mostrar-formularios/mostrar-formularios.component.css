@@ -1,0 +1,55 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  .contenedor-secciones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .seccion {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .botones-seccion {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px; /* Ajusta este valor según sea necesario */
+  }
+  
+  .botones-seccion button {
+    margin-right: 10px; /* Espaciado entre botones */
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    background-color: #4caf50;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .botones-seccion button:last-child {
+    margin-right: 0; /* Elimina el margen del último botón */
+  }
+  
+  .botones-seccion button:hover {
+    background-color: #45a049;
+  }
+  
+  
+  

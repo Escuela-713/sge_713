@@ -16,6 +16,7 @@ import { CalificadorComponent } from './pages/datos-academicos/calificador/calif
 import { DatosAcademicosComponent } from './pages/datos-academicos/datos-academicos.component';
 import { AnaliticoComponent } from './pages/datos-academicos/analitico/analitico.component';
 import { AsistenciasComponent } from './pages/asistencias/asistencias.component';
+import { MostrarFormulariosComponent } from './pages/datos-personales/pantallas/mostrar-formularios/mostrar-formularios.component';
 
 const routes: Routes = [
   {path:"home" , component:HomeComponent
@@ -32,6 +33,8 @@ const routes: Routes = [
     {path:"DatosAlumno",component:PantallaDatosAlumnoComponent},
     {path:"DatosTutores",component:PantallaDatosTutoresComponent},
     {path:"DatosPersonales",component:PantallaDatosPersonalesComponent},
+    {path:"MostrarFormulariosDatosPersonales",component:MostrarFormulariosComponent},
+
     {path:"asistencias", component:AsistenciasComponent}, 
     {path:"DatosAcademicos", component:DatosAcademicosComponent,
     children:[

@@ -21,6 +21,7 @@ import { DatosAcademicosComponent } from './datos-academicos/datos-academicos.co
 import { BuscarEstudianteComponent } from './datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
 import { AnaliticoComponent } from './datos-academicos/analitico/analitico.component';
 import { AsistenciasComponent } from './asistencias/asistencias.component';
+import { MostrarFormulariosComponent } from './datos-personales/pantallas/mostrar-formularios/mostrar-formularios.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { AsistenciasComponent } from './asistencias/asistencias.component';
     DatosAcademicosComponent,
     AnaliticoComponent,
     BuscarEstudianteComponent,
-    AsistenciasComponent
+    AsistenciasComponent,
+    MostrarFormulariosComponent
   ],
   imports: [
     CommonModule,

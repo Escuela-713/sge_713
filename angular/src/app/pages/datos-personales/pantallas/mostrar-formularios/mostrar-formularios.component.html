@@ -1,0 +1,28 @@
+<!-- Botones para cambiar entre secciones -->
+    <div class="botones-seccion">
+        <button (click)="mostrarComponente('datosAlumno')">Datos del Alumno</button>
+        <button (click)="mostrarComponente('datosPersonales')">Datos Personales</button>
+        <button (click)="mostrarComponente('datosTutor')">Datos del Tutor</button>
+      </div>
+
+<!-- En tu archivo HTML -->
+<div>
+
+  
+    <div class="seccion" *ngIf="componenteVisible === 'datosAlumno'">
+      <h2>Datos del Alumno</h2>
+      <app-pantalla-datos-alumno></app-pantalla-datos-alumno>
+    </div>
+  
+    <div class="seccion" *ngIf="componenteVisible === 'datosPersonales'">
+      <h2>Datos Personales</h2>
+      <app-pantalla-datos-personales></app-pantalla-datos-personales>
+    </div>
+  
+    <div class="seccion" *ngIf="componenteVisible === 'datosTutor'">
+      <h2>Datos del Tutor</h2>
+      <app-pantalla-datos-tutores></app-pantalla-datos-tutores>
+    </div>
+  
+    </div>
+    
