@@ -22,6 +22,7 @@ import { BuscarEstudianteComponent } from './datos-academicos/componentes/buscar
 import { AnaliticoComponent } from './datos-academicos/analitico/analitico.component';
 import { AsistenciasComponent } from './asistencias/asistencias.component';
 import { MostrarFormulariosComponent } from './datos-personales/pantallas/mostrar-formularios/mostrar-formularios.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { MostrarFormulariosComponent } from './datos-personales/pantallas/mostra
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
   ],
   exports:
   [HomeComponent]

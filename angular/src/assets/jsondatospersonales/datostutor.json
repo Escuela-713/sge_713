@@ -1,0 +1,52 @@
+{
+    "tutor": [
+        {
+            "id": 1 ,
+            "nombre": "Juan",
+            "apellido": "Perez",
+            "DNI": "23544342",
+            "CUIL": "20-23544342-1",
+            "nroTel": "2945-4327443"
+        },
+        {
+            "estadoCivil": "Casado",
+            "profesion": "Docente",
+            "lugarTrabajo": "Colegio Salesiano"
+        },
+        {
+            "pais": "Argentina",
+            "provincia": "Chubut",
+            "localidad": "Esquel"
+        },
+        {
+            "barrio": "Sargento Cabral",
+            "calle": "Pampas",
+            "numero": "234"
+        },
+        [
+            {
+                "id": 2 ,
+                "nombre": "Andrea",
+                "apellido": "Sanchez",
+                "DNI": "32143444",
+                "CUIL": "20-2143444-1",
+                "nroTel": "2945-223311"
+            },
+            {
+                "estadoCivil": "Soltera",
+                "profesion": "Odontóloga",
+                "lugarTrabajo": "Clínica Los Alerces"
+            },
+            {
+                "pais": "Argentina",
+                "provincia": "Chubut",
+                "localidad": "Esquel"
+            },
+            {
+                "barrio": "Malvinas",
+                "calle": "Ayún",
+                "numero": "321"
+            }
+        ]
+    ]
+}
