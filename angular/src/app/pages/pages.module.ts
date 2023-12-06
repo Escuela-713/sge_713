@@ -21,6 +21,9 @@ import { DatosAcademicosComponent } from './datos-academicos/datos-academicos.co
 import { BuscarEstudianteComponent } from './datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
 import { AnaliticoComponent } from './datos-academicos/analitico/analitico.component';
 import { AsistenciasComponent } from './asistencias/asistencias.component';
+import { FiltroAsistenciaComponent } from './asistencias/filtro-asistencia/filtro-asistencia.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -42,13 +45,17 @@ import { AsistenciasComponent } from './asistencias/asistencias.component';
     DatosAcademicosComponent,
     AnaliticoComponent,
     BuscarEstudianteComponent,
-    AsistenciasComponent
+    AsistenciasComponent,
+    FiltroAsistenciaComponent
   ],
+  
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
+
   exports:
   [HomeComponent]
 })
