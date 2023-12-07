@@ -22,7 +22,7 @@
         </thead>
         <tbody>
             <!-- Ejemplo de datos de alumnos -->
-            <tr>
+            <tr *ngFor="let item of datostutor">
                 <td>Juan</td>
                 <td>Pérez</td>
                 <td>12345678</td>
@@ -35,11 +35,11 @@
                 <td>2023-12-20</td>
                 <td>Buenos Aires</td>
                 <td>Calle 123</td>
-                <td *ngFor="let item of datostutor">{{datostutor.id}}</td>
+                <td>{{item.id}}</td>
                 <td><button class="editar-alumno">Editar</button></td>
                 <td><button class="eliminar-alumno">Eliminar</button></td>
             </tr>
-            <tr>
+            <tr *ngFor="let item of datostutor">
                 <td>Maria</td>
                 <td>López</td>
                 <td>87654321</td>
@@ -52,7 +52,7 @@
                 <td>2023-11-15</td>
                 <td>Córdoba</td>
                 <td>Avenida 456</td>
-                <td *ngFor="let item of datostutor">{{datostutor.id}}</td>
+                <td>{{item.id}}</td>
                 <td><button class="editar-alumno">Editar</button></td>
                 <td><button class="eliminar-alumno">Eliminar</button></td>
             </tr>
