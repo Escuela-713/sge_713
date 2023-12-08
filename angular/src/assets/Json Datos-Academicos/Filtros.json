@@ -1,0 +1,40 @@
+{   
+    "Orientacion": {
+      "tipo1": "ETP",
+      "tipo2": "Humanidades",
+      "tipo3": "Comunicaciones"
+    },
+    "Curso": {
+      "curso1": "1",
+      "curso2": "2",
+      "curso3": "3",
+      "curso4": "4",
+      "curso5": "5",
+      "curso6": "6",
+      "curso7": "7"
+    },
+    "Division": {
+      "tipo1": "1era",
+      "tipo2": "2da",
+      "tipo3": "3era"
+  },
+  "Materias": {
+    "materia1": "Lengua",
+    "materia2": "Matematica",
+    "materia3": "Historia",
+    "materia4": "Geografia",
+    "materia5": "Educacion Fisica",
+    "materia6": "Desarrollo IV"
+  },
+    "Instancia": {
+      "tipo1": "Bimestre",
+      "tipo2": "Trimestre",
+      "tipo3": "Cuatrimestre"
+    },
+      "años":{
+        "tipo1": "Años",
+        "tipo2": "Un Año",
+        "tipo3": "Todos Los Años"
+      }
+    
+}

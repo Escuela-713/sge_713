@@ -18,9 +18,9 @@ import { DatosIdentidadComponent } from './datos-personales/componentes/datos-id
 import { DatosTutoresComponent } from './datos-personales/componentes/datos-tutores/datos-tutores.component';
 import { CalificadorComponent } from './datos-academicos/calificador/calificador.component';
 import { DatosAcademicosComponent } from './datos-academicos/datos-academicos.component';
-import { BuscarEstudianteComponent } from './datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
 import { AnaliticoComponent } from './datos-academicos/analitico/analitico.component';
 import { AsistenciasComponent } from './asistencias/asistencias.component';
+import { BuscarEstudianteComponent } from './datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
 
 @NgModule({
   declarations: [
@@ -36,12 +36,11 @@ import { AsistenciasComponent } from './asistencias/asistencias.component';
     DatosDomicilioComponent,
     DatosLocalidadComponent,
     DatosEscolaresComponent,
+    CalificadorComponent,
     DatosIdentidadComponent,
     DatosTutoresComponent,
-    CalificadorComponent,
     DatosAcademicosComponent,
     AnaliticoComponent,
-    BuscarEstudianteComponent,
     AsistenciasComponent
   ],
   imports: [

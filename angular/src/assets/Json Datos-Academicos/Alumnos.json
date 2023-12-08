@@ -1,0 +1,28 @@
+{
+    "Estudiantes": {
+        "estudiante1": {
+          "nombre": "Imanol Valenzuela",
+          "edad": 18,
+          "curso": "curso3",
+          "orientacion": "Humanidades"
+        },
+        "estudiante2": {
+          "nombre": "Julian Vazquez",
+          "edad": 17,
+          "curso": "curso5",
+          "orientacion": "Comunicaciones"
+        },
+        "estudiante3": {
+          "nombre": "Nahuel Barria",
+          "edad": 16,
+          "curso": "curso2",
+          "orientacion": "ETP"
+        },
+        "estudiante4": {
+          "nombre": "Benjamin Pozo",
+          "edad": 18,
+          "curso": "curso7",
+          "orientacion": "Humanidades"
+        }
+      }
+    }
