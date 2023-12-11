@@ -23,35 +23,19 @@
         <tbody>
             <!-- Ejemplo de datos de alumnos -->
             <tr *ngFor="let item of datostutor">
-                <td>Juan</td>
-                <td>Pérez</td>
-                <td>12345678</td>
-                <td>20-12345678-9</td>
-                <td>555-1234</td>
-                <td>Ciencias</td>
-                <td>78901</td>
-                <td>2023-01-15</td>
-                <td>12345</td>
-                <td>2023-12-20</td>
-                <td>Buenos Aires</td>
-                <td>Calle 123</td>
-                <td>{{item.id}}</td>
-                <td><button class="editar-alumno">Editar</button></td>
-                <td><button class="eliminar-alumno">Eliminar</button></td>
-            </tr>
-            <tr *ngFor="let item of datostutor">
-                <td>Maria</td>
-                <td>López</td>
-                <td>87654321</td>
-                <td>20-87654321-0</td>
-                <td>555-5678</td>
-                <td>Artes</td>
-                <td>89012</td>
-                <td>2022-09-10</td>
-                <td>54321</td>
-                <td>2023-11-15</td>
-                <td>Córdoba</td>
-                <td>Avenida 456</td>
+                <td>{{item.nombre}}</td>
+                <td>{{item.apellido}}</td>
+                <td>{{item.dni}}</td>
+                <td>{{item.cuil}}</td>
+                <td>{{item.nroTel}}</td>
+                <td>{{item.estadoCivil}}</td>
+                <td>{{item.profesion}}</td>
+                <td>{{item.lugarTrabajo}}</td>
+                <td>{{item.pais}}</td>
+                <td>{{item.localidad}}</td>
+                <td>{{item.barrio}}</td>
+                <td>{{item.calle}}</td>
+                <td>{{item.numero}}</td>
                 <td>{{item.id}}</td>
                 <td><button class="editar-alumno">Editar</button></td>
                 <td><button class="eliminar-alumno">Eliminar</button></td>

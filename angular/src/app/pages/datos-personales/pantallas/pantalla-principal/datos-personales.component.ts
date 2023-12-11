@@ -11,7 +11,7 @@ export class DatosPersonalesComponent {
     this.serviciosge.obtenerdatosTutor().subscribe(
       {
         next: (data) => {
-          this.datostutor = data["datosTutor"];
+          this.datostutor = data["tutor"];
           console.log("datosTutor");
           console.log(this.datostutor);
         },
