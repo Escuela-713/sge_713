@@ -1,0 +1,171 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8mb3 ;
+USE `mydb` ;
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Curso`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Curso` (
+  `idCurso` INT NOT NULL,
+  `nombreCurso` VARCHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`idCurso`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Division`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Division` (
+  `idDivision` INT NOT NULL,
+  `nombreDivision` VARCHAR(10) NULL DEFAULT NULL,
+  PRIMARY KEY (`idDivision`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Orientacion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Orientacion` (
+  `idOrientacion` INT NOT NULL,
+  `nombreOrientacion` VARCHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`idOrientacion`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Alumno`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Alumno` (
+  `idAlumno` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NULL DEFAULT NULL,
+  `apellido` VARCHAR(45) NULL DEFAULT NULL,
+  `orientacionID` INT NULL DEFAULT NULL,
+  `cursoID` INT NULL DEFAULT NULL,
+  `divisionID` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`idAlumno`),
+  INDEX `idorientacion_idx` (`orientacionID` ASC) VISIBLE,
+  INDEX `idcurso_idx` (`cursoID` ASC) VISIBLE,
+  INDEX `idDivision_idx` (`divisionID` ASC) VISIBLE,
+  CONSTRAINT `idcurso_fk`
+    FOREIGN KEY (`cursoID`)
+    REFERENCES `mydb`.`Curso` (`idCurso`),
+  CONSTRAINT `idDivision_fk`
+    FOREIGN KEY (`divisionID`)
+    REFERENCES `mydb`.`Division` (`idDivision`),
+  CONSTRAINT `idorientacion_fk`
+    FOREIGN KEY (`orientacionID`)
+    REFERENCES `mydb`.`Orientacion` (`idOrientacion`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Materia`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Materia` (
+  `idMateria` INT NOT NULL,
+  `nombreMateria` VARCHAR(50) NULL DEFAULT NULL,
+  PRIMARY KEY (`idMateria`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`InstanciaMateria`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`InstanciaMateria` (
+  `idInstancia` INT NOT NULL,
+  `orientacionID` INT NULL DEFAULT NULL,
+  `CursoID` INT NULL DEFAULT NULL,
+  `divisionID` INT NULL DEFAULT NULL,
+  `materiaID` INT NULL DEFAULT NULL,
+  `fechaInicio` DATE NULL DEFAULT NULL,
+  `fechaFin` DATE NULL DEFAULT NULL,
+  PRIMARY KEY (`idInstancia`),
+  INDEX `idorientacion_idx` (`orientacionID` ASC) VISIBLE,
+  INDEX `iddivision_idx` (`divisionID` ASC) VISIBLE,
+  INDEX `idmateria_idx` (`materiaID` ASC) VISIBLE,
+  INDEX `idcurso_idx` (`CursoID` ASC) VISIBLE,
+  CONSTRAINT `idcurso`
+    FOREIGN KEY (`CursoID`)
+    REFERENCES `mydb`.`Curso` (`idCurso`),
+  CONSTRAINT `iddivision`
+    FOREIGN KEY (`divisionID`)
+    REFERENCES `mydb`.`Division` (`idDivision`),
+  CONSTRAINT `idmateria`
+    FOREIGN KEY (`materiaID`)
+    REFERENCES `mydb`.`Materia` (`idMateria`),
+  CONSTRAINT `idorientacion`
+    FOREIGN KEY (`orientacionID`)
+    REFERENCES `mydb`.`Orientacion` (`idOrientacion`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Calificador`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Calificador` (
+  `idCalificador` INT NOT NULL,
+  `alumnoID` INT NULL DEFAULT NULL,
+  `instanciaMateriaID` INT NULL DEFAULT NULL,
+  `1erTrimestre` FLOAT NULL DEFAULT NULL,
+  `2doTrimestre` FLOAT NULL DEFAULT NULL,
+  `3erTrimestre` FLOAT NULL DEFAULT NULL,
+  `diciembre` FLOAT NULL DEFAULT NULL,
+  `febreroMarzo` FLOAT NULL DEFAULT NULL,
+  `notaFinal` FLOAT NULL DEFAULT NULL,
+  `TAE` FLOAT NULL DEFAULT NULL,
+  `observaciones` TEXT NULL DEFAULT NULL,
+  PRIMARY KEY (`idCalificador`),
+  INDEX `idalumno_idx` (`alumnoID` ASC) VISIBLE,
+  INDEX `idinstancia_idx` (`instanciaMateriaID` ASC) VISIBLE,
+  CONSTRAINT `idalumno_fk`
+    FOREIGN KEY (`alumnoID`)
+    REFERENCES `mydb`.`Alumno` (`idAlumno`),
+  CONSTRAINT `idinstancia_fk`
+    FOREIGN KEY (`instanciaMateriaID`)
+    REFERENCES `mydb`.`InstanciaMateria` (`idInstancia`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Notas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Notas` (
+  `idNotas` INT NOT NULL,
+  `alumnoID` INT NULL DEFAULT NULL,
+  `instanciaMateriaID` INT NULL DEFAULT NULL,
+  `calificacion` FLOAT NULL DEFAULT NULL,
+  PRIMARY KEY (`idNotas`),
+  INDEX `idalumno_idx` (`alumnoID` ASC) VISIBLE,
+  INDEX `idinstanciamateria_idx` (`instanciaMateriaID` ASC) VISIBLE,
+  CONSTRAINT `idalumno`
+    FOREIGN KEY (`alumnoID`)
+    REFERENCES `mydb`.`Alumno` (`idAlumno`),
+  CONSTRAINT `idinstanciamateria`
+    FOREIGN KEY (`instanciaMateriaID`)
+    REFERENCES `mydb`.`InstanciaMateria` (`idInstancia`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb3;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
