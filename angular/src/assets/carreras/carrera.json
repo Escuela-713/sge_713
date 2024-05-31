@@ -1,19 +1,20 @@
 {"carrera":[{"nombre":"E.T.P",
             "titulo":"Tecnico en informatica Profesional y Personal",
             "descripcion":"Educacion tecnologica profesional",
-            "idCarrera": "1"
+            "idCarrera": ""
 
-            },[{"nombre":"Humanidades",
+            },
+            {"nombre":"Humanidades",
                 "titulo":"vachiller con orientacion a ciencias sociales",
                 "descripcion":"Educacion basica",
                 "idCarrera": "3"
                 
-            },[{"nombre": "Comunicaciones",
+            },
+            {"nombre": "Comunicaciones",
                 "titulo": "Vachiller con orientacion a Comunicaciones",
                 "descripcion": "educacion con tecnicatura en medios de comunicacion",
                 "idCarrera": "2"
-            }]
-            ]
-            ]
+            }
+        ]      
 }
 

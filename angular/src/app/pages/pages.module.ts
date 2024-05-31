@@ -21,6 +21,11 @@ import { DatosAcademicosComponent } from './datos-academicos/datos-academicos.co
 import { AnaliticoComponent } from './datos-academicos/analitico/analitico.component';
 import { AsistenciasComponent } from './asistencias/asistencias.component';
 import { BuscarEstudianteComponent } from './datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormCarrerasComponent } from './carreras/form-carreras/form-carreras.component';
+import { FormPlanesComponent } from './planes/form-planes/form-planes.component';
+import { FormMateriasComponent } from './materias/form-materias/form-materias.component';
+
 
 @NgModule({
   declarations: [
@@ -41,12 +46,17 @@ import { BuscarEstudianteComponent } from './datos-academicos/componentes/buscar
     DatosTutoresComponent,
     DatosAcademicosComponent,
     AnaliticoComponent,
-    AsistenciasComponent
+    BuscarEstudianteComponent,
+    AsistenciasComponent,
+    FormCarrerasComponent,
+    FormPlanesComponent,
+    FormMateriasComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports:
   [HomeComponent]
