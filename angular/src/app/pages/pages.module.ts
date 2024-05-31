@@ -25,8 +25,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormCarrerasComponent } from './carreras/form-carreras/form-carreras.component';
 import { FormPlanesComponent } from './planes/form-planes/form-planes.component';
 import { FormMateriasComponent } from './materias/form-materias/form-materias.component';
-
-import { MostrarFormulariosComponent } from './datos-personales/pantallas/mostrar-formularios/mostrar-formularios.component';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -43,9 +41,9 @@ import { HttpClientModule } from '@angular/common/http';
     DatosDomicilioComponent,
     DatosLocalidadComponent,
     DatosEscolaresComponent,
-    CalificadorComponent,
     DatosIdentidadComponent,
     DatosTutoresComponent,
+    CalificadorComponent,
     DatosAcademicosComponent,
     AnaliticoComponent,
     BuscarEstudianteComponent,
