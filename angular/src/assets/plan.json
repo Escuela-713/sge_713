@@ -1,0 +1,14 @@
+{ 
+    "planes": [{
+        "idPlan":"2",
+        "plan":"2023" ,
+        "estado": "activo",
+        "horasCatedra": "80 horas",
+        "horasReloj": "40 horas"
+    }
+    
+]
+        
+
+    
+}
