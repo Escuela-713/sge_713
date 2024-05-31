@@ -27,6 +27,7 @@ import { FormPlanesComponent } from './planes/form-planes/form-planes.component'
 import { FormMateriasComponent } from './materias/form-materias/form-materias.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FiltroAsistenciaComponent } from './asistencias/filtro-asistencia/filtro-asistencia.component';
+import { MostrarFormulariosComponent } from './datos-personales/pantallas/mostrar-formularios/mostrar-formularios.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,6 @@ import { FiltroAsistenciaComponent } from './asistencias/filtro-asistencia/filtr
     PlanesComponent,
     MateriasComponent,
     DatosPersonalesComponent,
-    PantallaDatosAlumnoComponent,
     PantallaDatosTutoresComponent,
     PantallaDatosPersonalesComponent,
     DatosDomicilioComponent,
@@ -52,7 +52,11 @@ import { FiltroAsistenciaComponent } from './asistencias/filtro-asistencia/filtr
     FormCarrerasComponent,
     FormPlanesComponent,
     FormMateriasComponent,
-    FiltroAsistenciaComponent
+    FiltroAsistenciaComponent,
+    PantallaDatosAlumnoComponent,
+    PantallaDatosPersonalesComponent,
+    PantallaDatosTutoresComponent,
+    MostrarFormulariosComponent
   ],
   
   imports: [

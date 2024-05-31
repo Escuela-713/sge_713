@@ -16,7 +16,6 @@
     background-color: #45a049; 
 }
 
-<<<<<<< HEAD
 
 .ng-valid:not(form).ng-touched {
     border-left: 5px solid #45a049
@@ -24,7 +23,6 @@
 .ng-invalid:not(form).ng-touched {
     border-left: 5px solid #a94442;
 }
-=======
 .ng-valid:not(form).ng-touched {
 
     border-left: 5px solid #42A948; /* green */
@@ -36,4 +34,3 @@
     border-left: 5px solid #a94442; /* red */
     
     }
->>>>>>> origin/Elu-Santi

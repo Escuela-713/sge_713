@@ -35,16 +35,15 @@ const routes: Routes = [
     {path:"DatosTutores",component:PantallaDatosTutoresComponent},
     {path:"DatosPersonales",component:PantallaDatosPersonalesComponent},
     {path:"MostrarFormulariosDatosPersonales",component:MostrarFormulariosComponent},
-
     {path:"asistencias", component:AsistenciasComponent}, 
     {path:"DatosAcademicos", component:DatosAcademicosComponent,
-    children:[
-      {path:"Analitico", component:AnaliticoComponent},
-      {path:"calificador", component: CalificadorComponent,  
       children:[
-        {path:"Buscador", component: BuscarEstudianteComponent},]},
-      ]},
-    ]}, 
+        {path:"Analitico", component:AnaliticoComponent},
+        {path:"calificador", component: CalificadorComponent,  
+        children:[
+          {path:"Buscador", component: BuscarEstudianteComponent},]},
+        ]},
+      ]}, 
   { path: '',   redirectTo: '/home', pathMatch: 'full'}
 ];
 
