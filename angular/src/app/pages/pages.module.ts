@@ -26,6 +26,8 @@ import { FormCarrerasComponent } from './carreras/form-carreras/form-carreras.co
 import { FormPlanesComponent } from './planes/form-planes/form-planes.component';
 import { FormMateriasComponent } from './materias/form-materias/form-materias.component';
 
+import { MostrarFormulariosComponent } from './datos-personales/pantallas/mostrar-formularios/mostrar-formularios.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -56,7 +58,8 @@ import { FormMateriasComponent } from './materias/form-materias/form-materias.co
     CommonModule,
     SharedModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports:
   [HomeComponent]

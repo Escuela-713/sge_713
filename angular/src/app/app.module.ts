@@ -12,10 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     SharedModule,
     PagesModule,
-    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

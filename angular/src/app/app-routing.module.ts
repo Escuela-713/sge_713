@@ -17,6 +17,7 @@ import { DatosAcademicosComponent } from './pages/datos-academicos/datos-academi
 import { AnaliticoComponent } from './pages/datos-academicos/analitico/analitico.component';
 import { AsistenciasComponent } from './pages/asistencias/asistencias.component';
 import { BuscarEstudianteComponent } from './pages/datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
+import { MostrarFormulariosComponent } from './pages/datos-personales/pantallas/mostrar-formularios/mostrar-formularios.component';
 
 const routes: Routes = [
   {path:"home" , component:HomeComponent
@@ -33,6 +34,8 @@ const routes: Routes = [
     {path:"DatosAlumno",component:PantallaDatosAlumnoComponent},
     {path:"DatosTutores",component:PantallaDatosTutoresComponent},
     {path:"DatosPersonales",component:PantallaDatosPersonalesComponent},
+    {path:"MostrarFormulariosDatosPersonales",component:MostrarFormulariosComponent},
+
     {path:"asistencias", component:AsistenciasComponent}, 
     {path:"DatosAcademicos", component:DatosAcademicosComponent,
     children:[
