@@ -26,6 +26,7 @@ import { FormCarrerasComponent } from './carreras/form-carreras/form-carreras.co
 import { FormPlanesComponent } from './planes/form-planes/form-planes.component';
 import { FormMateriasComponent } from './materias/form-materias/form-materias.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FiltroAsistenciaComponent } from './asistencias/filtro-asistencia/filtro-asistencia.component';
 
 @NgModule({
   declarations: [
@@ -50,8 +51,10 @@ import { HttpClientModule } from '@angular/common/http';
     AsistenciasComponent,
     FormCarrerasComponent,
     FormPlanesComponent,
-    FormMateriasComponent
+    FormMateriasComponent,
+    FiltroAsistenciaComponent
   ],
+  
   imports: [
     CommonModule,
     SharedModule,
@@ -59,6 +62,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
+
   exports:
   [HomeComponent]
 })

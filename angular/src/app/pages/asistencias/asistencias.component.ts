@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/servicios/data.service';
 
+
 @Component({
   selector: 'app-asistencias',
   templateUrl: './asistencias.component.html',
@@ -18,3 +19,4 @@ export class AsistenciasComponent implements OnInit {
     )
   }
 }
+

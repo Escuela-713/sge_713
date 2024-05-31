@@ -1,17 +1,78 @@
-<div class="row">
-    <div class="col"><h3>modalidad</h3></div>
-    <div class="col"><input type="text" size="3"></div>
-</div>
-<div class="row">
-    <div class="col"><h3>año</h3></div>
-    <div class="col"><input type="number" size="3" min="1" max="7"></div>
-</div>
-<div class="row">
-    <div class="col"><h3>division</h3></div>
-    <div class="col"><input type="text" size="3"></div>
-</div>
+<form action="" [formGroup]="asistenciaForm">
+    <div class="row">
+        <div class="col">
+            <h3>modalidad</h3>
+        </div>
+        <div class="col">
+            <input type="text" formControlName="modalidad">
+            <div *ngIf="modalidad.invalid && (anio.dirty || modalidad.touched)" class="text-danger">
+                <div *ngIf="modalidad.errors?.['required']">Porfavor, ingrese la modalidad</div>
+        </div>
+
+            
+        
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h3>año</h3>
+        </div>
+        <div class="col">
+            <input type="number" formControlName="anio">
+            <div *ngIf="anio.invalid && (anio.dirty || anio.touched)" class="text-danger">
+
+                <div *ngIf="anio.errors?.['required']">Porfavor, ingrese el año</div>
     
-<div class="row">
-    <div class="col"><h3>fecha</h3></div>
-    <div class="col"><input type="date" size="3"></div>
-</div>
+                <div *ngIf="anio.errors?.['minlength']">
+                    El año del estudiante no puede ser menor a 1.
+                </div>
+
+                <div *ngIf="anio.errors?.['maxlength']">
+                    El año del estudainte no puede ser mayor a 7
+                </div>
+            </div>
+        </div>
+     
+    </div>
+
+
+
+    <div class="row">
+        <div class="col">
+            <h3>division</h3>
+        </div>
+        <div class="col"><input type="text" formControlName="division">
+            <div *ngIf="division.invalid && (division.dirty || division.touched)" class="text-danger">
+
+            <div *ngIf="division.errors?.['required']">Porfavor, ingrese la division>
+
+            <div *ngIf="division.errors?.['minlength']">
+                La division del estudiante no puede ser menor a 1.
+
+                <div *ngIf="division.errors?.['maxlength']">
+                la division del estudiante no puede ser mayor a 4
+
+            </div>
+            </div>
+        </div>
+    </div>
+ 
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h3>fecha</h3>
+        </div>
+        <div class="col"><input type="date" size="3"></div>
+    </div>
+
+    <button (click)="buscarAlumno()">Buscar</button>
+
+    <div class="filtro-asistencia">
+        <input type="submit" class="btn btn.primary m-1" (click)="buscarAlumno()"
+            value="Buscar alumnos con los datos ingresados">
+    </div>
+</form>
