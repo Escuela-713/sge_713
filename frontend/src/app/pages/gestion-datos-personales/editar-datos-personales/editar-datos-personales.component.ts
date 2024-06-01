@@ -11,10 +11,10 @@ import { DatosDomicilioComponent } from '../componentes/datos-domicilio/datos-do
   selector: 'app-mostrar-formularios',
   standalone: true,
   imports: [DatosEscolaresComponent, DatosIdentidadComponent, DatosTutoresComponent, DatosLocalidadComponent, DatosDomicilioComponent, NgIf],
-  templateUrl: './mostrar-formularios.component.html',
-  styleUrls: ['./mostrar-formularios.component.css']
+  templateUrl: './editar-datos-personales.component.html',
+  styleUrls: ['./editar-datos-personales.component.css']
 })
-export class MostrarFormulariosComponent implements OnInit {
+export class EditarDatosPersonalesComponent implements OnInit {
 
   constructor() { }
 

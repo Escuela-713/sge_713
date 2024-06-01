@@ -8,7 +8,7 @@ import { FormPlanesComponent } from './pages/gestion-carreras-planes-materias/pl
 import { MateriasComponent } from './pages/gestion-carreras-planes-materias/materias/materias.component';
 import { FormMateriasComponent } from './pages/gestion-carreras-planes-materias/materias/componentes/form-materias.component';
 import { DatosPersonalesComponent } from './pages/gestion-datos-personales/datos-personales.component';
-import { MostrarFormulariosComponent } from './pages/gestion-datos-personales/editar-datos-personales/mostrar-formularios.component';
+import { EditarDatosPersonalesComponent } from './pages/gestion-datos-personales/editar-datos-personales/editar-datos-personales.component';
 import { DatosAcademicosComponent } from './pages/gestion-datos-academicos/datos-academicos.component';
 import { AnaliticoComponent } from './pages/gestion-datos-academicos/analitico/analitico.component';
 import { CalificadorComponent } from './pages/gestion-datos-academicos/calificador/calificador.component';
@@ -28,7 +28,7 @@ children: [
   {path:"editar-materias",component:FormMateriasComponent},
  
   {path:"datos-personales",component:DatosPersonalesComponent},   
-  {path:"editar-datos-personales",component:MostrarFormulariosComponent},
+  {path:"editar-datos-personales",component:EditarDatosPersonalesComponent},
 
   {path:"datos-academicos", component:DatosAcademicosComponent,
     children:[
