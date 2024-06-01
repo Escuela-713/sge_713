@@ -1,9 +1,10 @@
+import { NgFor } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { PlanesService } from 'src/app/service/planes.service';
 @Component({
   selector: 'app-planes',
   standalone: true,
-  imports: [],
+  imports: [NgFor],
   templateUrl: './planes.component.html',
   styleUrls: ['./planes.component.css']
 })

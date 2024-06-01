@@ -1,9 +1,10 @@
+import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms'
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms'
 @Component({
   selector: 'app-form-planes',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule,NgIf],
   templateUrl: './form-planes.component.html',
   styleUrls: ['./form-planes.component.css']
 })

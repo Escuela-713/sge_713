@@ -1,15 +1,18 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { SgeService } from 'src/app/sge-service/sge.service';
+import { RouterLink } from '@angular/router';
+import { DatosPeronalesService } from 'src/app/service/datos-personales.service';
+
 @Component({
   selector: 'app-datos-personales',
   standalone: true,
-  imports: [],
+  imports: [NgFor, RouterLink],
   templateUrl: './datos-personales.component.html',
   styleUrls: ['./datos-personales.component.css']
 })
 export class DatosPersonalesComponent {
   datostutor: any;
-  constructor(private serviciosge: SgeService) {
+  constructor(private serviciosge: DatosPeronalesService) {
     this.serviciosge.obtenerdatosTutor().subscribe(
       {
         next: (data) => {

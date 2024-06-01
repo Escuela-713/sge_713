@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { SgeService } from 'src/app/sge-service/sge.service';
+import { DatosPeronalesService } from 'src/app/service/datos-personales.service';
+
 @Component({
   selector: 'app-datos-tutores',
   standalone: true,
@@ -10,7 +11,7 @@ import { SgeService } from 'src/app/sge-service/sge.service';
 export class DatosTutoresComponent {
 
   datostutor: any;
-  constructor(private serviciosge: SgeService) {
+  constructor(private serviciosge: DatosPeronalesService) {
     this.serviciosge.obtenerdatosTutor().subscribe(
       {
         next: (data) => {

@@ -17,7 +17,7 @@
             "calle": "Pampas",
             "numero": "234"
         },
-        [
+        
             {
                 "id": "2",
                 "nombre": "Andrea",
@@ -35,6 +35,6 @@
                 "calle": "Ayún",
                 "numero": "321"
             }
+        
         ]
-    ]
 }

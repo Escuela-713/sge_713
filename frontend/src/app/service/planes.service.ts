@@ -10,6 +10,6 @@ export class PlanesService {
   constructor(private http:HttpClient) { }
   obtenerPlanes():Observable<any>
   {
-    return this.http.get("./assets/planes/planes.json")
+    return this.http.get("assets/planes/planes.json")
   }
 }

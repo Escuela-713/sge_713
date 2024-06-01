@@ -10,6 +10,6 @@ export class DatosPeronalesService {
   constructor(private http: HttpClient) { }
 
   obtenerdatosTutor():Observable<any> {
-    return this.http.get("./assets/jsondatospersonales/datostutor.json");
+    return this.http.get("./assets/datos-personales/datostutor.json");
   }
 }

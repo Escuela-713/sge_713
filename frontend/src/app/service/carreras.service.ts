@@ -9,8 +9,9 @@ import { Observable } from 'rxjs';
 export class CarrerasService {
 
   constructor(private http: HttpClient) { }
+  
   obtenerCarreras():Observable<any>
   {
-  return this.http.get("./assets/carreras/carrera.json");
+    return this.http.get("assets/carreras/carreras.json")
   }
 }
