@@ -4,11 +4,11 @@
     <div class="accordion-item" *ngFor="let item of datostutor">
       <h2 class="accordion-header" class="heading">
         <span
-          >{{ item.nombre }}, {{ item.apellido }} {{ item.DNI }} -
-          {{ item.localidad }}</span
+          >{{ item.nombre }}, {{ item.apellido }} {{ item.dni }} -
+          {{ item.curso }}</span
         >
         <button type="button" class="btn btn-danger">Eliminar</button>
-        <button type="button" class="btn btn-primary">Editar</button>
+        <a routerLink="/ " class="btn btn-primary">Editar</a>
         <button
           class="accordion-button collapsed"
           type="button"
@@ -25,16 +25,27 @@
         data-bs-parent="#accordionExample"
       >
         <div class="accordion-body">
-          <span> <b>Nombre:</b> {{ item.nombre }} </span>
-          <span> <b>Apellido:</b> {{ item.apellido }} </span>
-          <span> <b>DNI:</b> {{ item.DNI }} </span>
-          <span> <b>Telefono:</b> {{ item.nroTel }} </span>
-          <span> <b>Estado civil:</b> {{ item.estadoCivil }} </span>
-          <span> <b>Profesión:</b> {{ item.profesion }} </span>
-          <span> <b>Pais:</b> {{ item.pais }} </span>
-          <span> <b>Provincia:</b> {{ item.provincia }} </span>
-          <span> <b>Localidad:</b> {{ item.localidad }} </span>
-          <span> <b>Nombre:</b> {{ item.nombre }} </span>
+          <div id="alumnoInfo">
+            <span> <b>Nombre:</b> {{ item.nombre }} </span>
+            <span> <b>Apellido:</b> {{ item.apellido }} </span>
+            <span> <b>DNI:</b> {{ item.dni }} </span>
+            <span> <b>Telefono:</b> {{ item.telefono }} </span>
+            <span> <b>Cuil:</b> {{ item.cuil }} </span>
+            <span> <b>Legajo:</b> {{ item.legajo }} </span>
+            <span> <b>fecha de nacimiento:</b> {{ item.fechaNac }} </span>
+          </div>
+          <div id="tutorInfo">
+            <h3>Tutores</h3>
+            <div *ngFor="let tutor of item['tutores']">
+              <div class="tutorInfo-child">
+                <b style="font-size: 23px"
+                  >{{ tutor.nombre }}, {{ tutor.apellido }}</b
+                >
+                <span><b>DNI</b>: {{ tutor.dni }}</span>
+                <span><b>Telefono</b>: {{ tutor.telefono }}</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

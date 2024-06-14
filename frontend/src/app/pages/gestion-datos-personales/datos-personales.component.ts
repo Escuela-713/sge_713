@@ -16,9 +16,7 @@ export class DatosPersonalesComponent {
   constructor(private serviciosge: DatosPeronalesService) {
     this.serviciosge.obtenerdatosTutor().subscribe({
       next: (data) => {
-        this.datostutor = data['tutor'];
-        console.log('datosTutor');
-        console.log(this.datostutor);
+        this.datostutor = data;
       },
       error: (err) => {
         alert('Se ha producido un error. Por favor, intente nuevamente.');

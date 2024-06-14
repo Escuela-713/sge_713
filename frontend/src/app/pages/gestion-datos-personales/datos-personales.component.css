@@ -1,25 +1,30 @@
 #datosAlumnos {
   margin: 30px;
 }
-
 h1 {
   text-align: center;
   background-color: #007bff;
   color: #fff;
   padding: 10px;
 }
-
 .heading {
   display: grid;
   grid-template-columns: 1fr auto auto auto;
   column-gap: 10px;
   margin: 30px;
 }
-
 .accordion-body {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   background: #f7f7f7;
+}
+#alumnoInfo {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.tutorInfo-child {
+  display: flex;
+  flex-direction: column;
 }
 .accordion-button {
   color: #fff;
@@ -29,7 +34,6 @@ h1 {
   cursor: pointer;
   font-size: 16px;
 }
-
 #formulario-agregar {
   width: 90%;
   margin: 20px auto;
@@ -38,18 +42,15 @@ h1 {
   background-color: #f5f5f5;
   box-shadow: 2px 2px 5px #888;
 }
-
 #formulario-agregar label,
 #formulario-agregar input {
   display: block;
   margin: 10px 0;
 }
-
 .container {
   text-align: center;
   margin-top: 20px;
 }
-
 .popup {
   display: none;
   position: fixed;
@@ -60,11 +61,9 @@ h1 {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
-
 .popup.visible {
   display: block;
 }
-
 .popup-content {
   background-color: #fff;
   position: absolute;
@@ -76,7 +75,6 @@ h1 {
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
-
 .close {
   color: #777;
   float: right;
@@ -84,11 +82,9 @@ h1 {
   font-weight: bold;
   cursor: pointer;
 }
-
 .close:hover {
   color: #000;
 }
-
 .popup-content {
   background-color: #fff;
   position: absolute;
