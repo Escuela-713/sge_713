@@ -11,7 +11,7 @@ h1 {
   display: grid;
   grid-template-columns: 1fr auto auto auto;
   column-gap: 10px;
-  margin: 30px;
+  padding: 10px 10px;
 }
 .accordion-body {
   display: grid;

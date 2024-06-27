@@ -8,7 +8,11 @@
           {{ item.curso }}</span
         >
         <button type="button" class="btn btn-danger">Eliminar</button>
-        <a routerLink="/ " class="btn btn-primary">Editar</a>
+        <a
+          routerLink="/dashboard/editar-datos-personales"
+          class="btn btn-primary"
+          >Editar</a
+        >
         <button
           class="accordion-button collapsed"
           type="button"
@@ -51,6 +55,8 @@
     </div>
   </div>
   <div class="container">
-    <button routerLink="../editar-datos-personales">Agregar Alumno</button>
+    <button routerLink="../editar-datos-personales" class="btn btn-primary">
+      Agregar Alumno
+    </button>
   </div>
 </div>
