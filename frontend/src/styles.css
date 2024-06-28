@@ -1,7 +1,4 @@
-.logo{width: 60px;}
-.body{font-family: 'Raleway', sans-serif;}
-
-#guardar {
+/* #guardar {
     background-color: #4CAF50;
     color: white; 
     padding: 10px 20px; 
@@ -11,11 +8,9 @@
     font-size: 16px; 
     transition: background-color 0.3s; 
 }
-
 #guardar:hover {
     background-color: #45a049; 
 }
-
 
 .ng-valid:not(form).ng-touched {
     border-left: 5px solid #45a049
@@ -24,13 +19,64 @@
     border-left: 5px solid #a94442;
 }
 .ng-valid:not(form).ng-touched {
+    border-left: 5px solid #42A948;
+}
+.ng-invalid:not(form).ng-touched {
+    border-left: 5px solid #a94442;
+} */
 
-    border-left: 5px solid #42A948; /* green */
-    
+:root {     /* CREA VARIABLES DE COLORES PARA USAR GLOBALMENTE */                
+    --color-1: #f7f7f7;
+    --color-2: #eeeeee;
+    --color-3: #393e46;
+    --color-4: #929aab;
+}
+* { 
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+html {
+    font-size: 16px;
+}
+body {
+    background-color: var(--color-1);
+    color: var(--color-3);
+    font-family: 'Satoshi-Variable';
+    font-weight: 500;
+}
+/* BOTON USADO EN GESTION DE DATOS PERSONALES */
+.btnSave {
+    background-color: var(--color-1);
+    border: solid 3px var(--color-3);
+    color: var(--color-3);
+    font-size: 1rem;
+    font-weight: 900;
+    &:hover {
+        background-color: var(--color-3);
+        color: var(--color-1);
+        border: solid 3px var(--color-3);
     }
-    
-    .ng-invalid:not(form).ng-touched {
-    
-    border-left: 5px solid #a94442; /* red */
-    
+}
+/* BOTON USADO EN GESTION DE DATOS PERSONALES */
+.btnDelete {
+    background-color: none;
+    border: solid 3px red;
+    color: red;
+    font-weight: 900;
+    &:hover {
+      background-color: red;
+      color: var(--color-1);
     }
+  }
+/* BOTON USADO EN GESTION DE DATOS PERSONALES */
+.btnAdd {
+    border: solid 3px green;
+    background-color: green;
+  color: var(--color-1);
+  font-weight: 900;
+  &:hover{
+    background-color: green;
+    color: var(--color-1);
+  }
+}
