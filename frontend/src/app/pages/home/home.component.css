@@ -1,0 +1,8 @@
+.homeImg {
+    max-height: 60vh;
+    width: 100%;
+    border-bottom: solid 5px var(--color-3);
+}
+.container {
+    margin: 2% auto;
+}
