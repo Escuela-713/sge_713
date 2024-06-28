@@ -1,0 +1,48 @@
+nav {
+    background-color: var(--color-4);
+    font-size: 1.5rem;
+    padding: .5% 5%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    & .divBrand {
+        text-decoration: none;
+        color: var(--color-3);
+        font-size: 2.5rem;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        & h1 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin: auto;
+            font-weight: 900;
+        }
+    }
+    & nav {
+        display: flex;
+        gap: 50px;
+        & a {
+            color: var(--color-3);
+            text-transform: uppercase;
+            font-weight: 900;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+                text-underline-offset: 10px;
+            }
+        }
+    }
+}
+.dropdown-menu {
+    background-color: var(--color-1);
+    width: 100%;
+    font-size: 1.5rem;
+}
+.dropdown-item:hover {
+    background-color: var(--color-3);
+    color: var(--color-1);
+    text-decoration: none;
+}
