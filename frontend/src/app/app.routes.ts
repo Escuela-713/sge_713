@@ -14,6 +14,7 @@ import { AnaliticoComponent } from './pages/gestion-datos-academicos/analitico/a
 import { CalificadorComponent } from './pages/gestion-datos-academicos/calificador/calificador.component';
 import { BuscarEstudianteComponent } from './pages/gestion-datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
 import { LoginComponent } from './pages/gestion-usuarios/login/login.component';
+import {FiltroDatosPersonalesComponent} from './pages/gestion-datos-personales/filtro-datos-personales/filtro-datos-personales.component'
 
 export const routes: Routes = [
     {path:"home" , component:HomeComponent
@@ -27,6 +28,7 @@ children: [
   {path:"materias", component:MateriasComponent},
   {path:"editar-materias",component:FormMateriasComponent},
  
+  {path:"filtro-datos-personales",component:FiltroDatosPersonalesComponent},
   {path:"datos-personales",component:DatosPersonalesComponent},   
   {path:"editar-datos-personales",component:EditarDatosPersonalesComponent},
 

@@ -1,0 +1,26 @@
+h1 {
+  text-align: center;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+}
+form {
+  border: 1px solid #ccc;
+  width: 400px;
+  margin: 50px auto;
+  padding: 20px 10px;
+}
+select {
+  margin-bottom: 15px;
+}
+input {
+  margin-bottom: 20px;
+}
+#curso-division {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+#curso-division > div {
+  width: 100%;
+}
