@@ -1,49 +1,69 @@
-<div id="accordion" >
-    <div class="card">
-        <div class="card-header bg-info">
-             <a class="card-link text-white" data-toggle="collapse" >Datos Identidad
-                  <i class='fas fa-angle-double-down float-right'></i>
-            </a>
-        </div>
-<div>
-    <div role="tabpanel" class="tab-pane active" id="datos_madretab">
-        <div class="container-fluid mt-2">
-            <input type="hidden" name="id" id="id"> 
-            <div class="form-group">
-                <label for="nombre">Nombre/s</label>
-                <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ingrese aquí el Nombre" maxlength="45" required>
-                <div class="invalid-feedback">
-                    Ingrese el nombre
-                </div>
+<div class="container">
+    <h1>Datos Académicos</h1>
+
+    <form id="formularioAlumno">
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
+                <input type="date" class="form-control" id="fechaNacimiento" required>
             </div>
-            <div class="form-group">
-                <label for="apellido">Apellido/s</label>
-                <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Ingrese aquí el Apellido" maxlength="45" required>
-                <div class="invalid-feedback">
-                    Ingrese el apellido
-                </div>
-            </div>
-            <div class="form-group">	
-                <label for="dni">DNI</label>
-                <input type="number" name="dni" id="dni" placeholder="Ingrese aquí el DNI" maxlength="11" class="form-control" required>
-                <div class="invalid-feedback">
-                    Ingrese el DNI
-                </div>
-            </div>
-            <div class="form-group">	
-                <label for="cuil">CUIL</label>
-                <input type="number" name="cuil" id="cuil" placeholder="Ingrese aquí el Cuil" maxlength="11" class="form-control" required>
-                <div class="invalid-feedback">
-                    Ingrese el CUIL
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="telefono">Nro. de teléfono</label>
-                <input type="text" name="telefono" id="telefono" class="form-control" placeholder="Ingrese aquí el N° de Teléfono" maxlength="14" required>
-                <div class="invalid-feedback">
-                    Ingrese el número de teléfono
-                </div>
+            <div class="col-sm-6">
+                <label for="provinciaNacimiento" class="form-label">Provincia de Nacimiento:</label>
+                <select class="form-select" id="provinciaNacimiento" required></select>
             </div>
         </div>
-    </div>
-</div>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="localidadNacimiento" class="form-label">Localidad de Nacimiento:</label>
+                <input type="text" class="form-control" id="localidadNacimiento" placeholder="Ingrese la localidad" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="domicilioPais" class="form-label">País de Domicilio:</label>
+                <select class="form-select" id="domicilioPais" required>
+                    </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="domicilioProvincia" class="form-label">Provincia del Domicilio:</label>
+                <select class="form-select" id="domicilioProvincia"required>
+                    </select>
+            </div>
+            <div class="col-sm-6">
+                <label for="domicilioLocalidad" class="form-label">Localidad del Domicilio:</label>
+                <input type="text" class="form-control" id="domicilioLocalidad" placeholder="Ingrese la localidad" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="domicilioBarrio" class="form-label">Barrio del domicilio:</label>
+                <input type="text" class="form-control" id="domicilioBarrio" placeholder="Ingrese el barrio" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="domicilioBarrio" class="form-label">Calle:</label>
+                <input type="text" class="form-control" id="domicilioBarrio" placeholder="Ingrese la calle">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="numeroPiso" class="form-label">Número de piso:</label>
+                <input type="text" class="form-control" id="numeroPiso" placeholder="Ingrese el número de piso">
+            </div>
+            <div class="col-sm-6">
+                <label for="numeroDepartamento" class="form-label">Número de departamento:</label>
+                <input type="text" class="form-control" id="numeroDepartamento" placeholder="Ingrese el número de departamento">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="localidadNacimiento" class="form-label">Télefono:</label>
+                <input type="tel" class="form-control" id="numeroTelefono" placeholder="Ingrese el número de teléfono">
+            </div>
+            <div class="col-sm-6">
+                <label for="domicilioPais" class="form-label">Email del alumno:</label>
+                <input type="email" class="form-control" id="emailAlumno" placeholder="Ingrese el email del alumno" required>
+            </div>
+            
+        </div>
+        <button type="submit" class="btn btnSave">Guardar Alumno</button>
+    </form>

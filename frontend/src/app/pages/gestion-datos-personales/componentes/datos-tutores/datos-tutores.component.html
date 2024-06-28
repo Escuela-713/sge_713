@@ -1,28 +1,50 @@
-<div id="accordion" >
-    <div class="card">
-        <div class="card-header bg-info">
-             <a class="card-link text-white" data-toggle="collapse" >Datos Tutores
-                  <i class='fas fa-angle-double-down float-right'></i>
-            </a>
+<div id="datosAlumnos">
+    <div class="accordion" id="accordionExample">
+      <div class="accordion-item">
+        <h2 class="accordion-header" class="heading">
+          <span
+            >Santiago, Rebequi 45193142 - 7mo etp</span
+          >
+          <button type="button" class="btn btnDelete">Eliminar</button>
+          <a
+            routerLink="/dashboard/editar-datos-personales"
+            class="btn btnAdd"
+            >Editar</a
+          >
+          <button
+            class="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target='#flushCollapse1'
+            aria-expanded="false"
+            aria-controls="collapseOne"
+          ></button>
+        </h2>
+        <div
+          id="flushCollapse1"
+          class="accordion-collapse collapse"
+          aria-labelledby="headingOne"
+          data-bs-parent="#accordionExample"
+        >
+          <div class="accordion-body">
+            <div id="tutorInfo">
+              <span> <b>Nombre:</b> Santiago </span>
+              <span> <b>Apellido:</b> Rebequi</span>
+              <span> <b>DNI:</b> 45132512 </span>
+              <span> <b>Telefono:</b> +12 234 456781</span>
+              <span> <b>Cuil:</b> 21451325121</span>
+              <span> <b>fecha de nacimiento:</b> 12/12/12 </span>
+              <span> <b>Profesion:</b> veterinario </span>
+              <span> <b>Pais:</b> Argentina </span>
+              <span> <b>Provincia:</b> Chubut </span>
+              <span> <b>Ciudad:</b> Esquel </span>
+              <span> <b>Domicilio:</b> Chacabuco 431 </span>
+            </div>
+          </div>
         </div>
-<div class="form-group">
-    <label for="id_estado_civil_padre">Estado Civil</label>
-    <select name="id_estado_civil_padre" id="id_estado_civil_padre" class="form-control">
-        <option value="0">No hay datos</option>
-    </select>
-</div>
-
-<div class="form-group">
-    <label for="profesion">Profesión</label>
-    <input type="text" name="profesion" id="profesion" class="form-control" placeholder="Ingrese aquí la profesión" maxlength="45" required>
-    <div class="invalid-feedback">
+      </div>
     </div>
-</div>
-
-<div class="form-group">
-    <label for="lugar_trabajo">Lugar de trabajo</label>
-    <input type="text" name="lugar_trabajo" id="lugar_trabajo" class="form-control" placeholder="Ingrese aquí el lugar de trabajo" maxlength="45" required>
-    <div class="invalid-feedback">
-        Ingrese un lugar de trabajo
+    <div class="container">
+      <button routerLink="../editar-datos-personales" class="btn btnSave">Agregar Tutor</button>
     </div>
-</div>
+  </div>
