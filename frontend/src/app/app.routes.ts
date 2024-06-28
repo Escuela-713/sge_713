@@ -14,6 +14,7 @@ import { AnaliticoComponent } from './pages/gestion-datos-academicos/analitico/a
 import { CalificadorComponent } from './pages/gestion-datos-academicos/calificador/calificador.component';
 import { BuscarEstudianteComponent } from './pages/gestion-datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
 import { LoginComponent } from './pages/gestion-usuarios/login/login.component';
+import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.component';
 
 export const routes: Routes = [
     {path:"home" , component:HomeComponent
@@ -39,5 +40,6 @@ children: [
       ]},
     ]}, 
   {path: "iniciar-sesion", component: LoginComponent},
+  {path: "registro",component: RegistroComponent},
   { path: '',   redirectTo: '/home', pathMatch: 'full'}
 ];
