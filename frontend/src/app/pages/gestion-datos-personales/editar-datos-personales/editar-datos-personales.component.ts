@@ -4,13 +4,11 @@ import { NgIf } from '@angular/common';
 import { DatosEscolaresComponent } from '../componentes/datos-escolares/datos-escolares.component';
 import { DatosIdentidadComponent } from '../componentes/datos-identidad/datos-identidad.component';
 import { DatosTutoresComponent } from '../componentes/datos-tutores/datos-tutores.component';
-import { DatosLocalidadComponent } from '../componentes/datos-localidad/datos-localidad.component';
-import { DatosDomicilioComponent } from '../componentes/datos-domicilio/datos-domicilio.component';
 
 @Component({
   selector: 'app-mostrar-formularios',
   standalone: true,
-  imports: [DatosEscolaresComponent, DatosIdentidadComponent, DatosTutoresComponent, DatosLocalidadComponent, DatosDomicilioComponent, NgIf],
+  imports: [DatosEscolaresComponent, DatosIdentidadComponent, DatosTutoresComponent, NgIf],
   templateUrl: './editar-datos-personales.component.html',
   styleUrls: ['./editar-datos-personales.component.css']
 })
