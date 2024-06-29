@@ -29,7 +29,7 @@
     --color-1: #f7f7f7;
     --color-2: #eeeeee;
     --color-3: #393e46;
-    --color-4: #D8D8C0;
+    --color-4: #4A5859;
 }
 * { 
     box-sizing: border-box;
@@ -44,6 +44,8 @@ body {
     color: var(--color-3);
     font-family: 'Satoshi-Variable';
     font-weight: 500;
+    min-height: 150vh;
+    position: relative;
 }
 /* BOTON USADO EN GESTION DE DATOS PERSONALES */
 .btnSave {

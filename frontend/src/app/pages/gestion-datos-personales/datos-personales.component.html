@@ -7,10 +7,10 @@
           >{{ item.nombre }}, {{ item.apellido }} {{ item.dni }} -
           {{ item.curso }}</span
         >
-        <button type="button" class="btn btn-danger">Eliminar</button>
+        <button type="button" class="btn btnDelete">Eliminar</button>
         <a
           routerLink="/dashboard/editar-datos-personales"
-          class="btn btn-primary"
+          class="btn btnAdd"
           >Editar</a
         >
         <button
@@ -28,8 +28,10 @@
         aria-labelledby="headingOne"
         data-bs-parent="#accordionExample"
       >
+
         <div class="accordion-body">
-          <div id="alumnoInfo">
+
+          <div id="alumnoInfo" class="alumnoInfo">
             <span> <b>Nombre:</b> {{ item.nombre }} </span>
             <span> <b>Apellido:</b> {{ item.apellido }} </span>
             <span> <b>DNI:</b> {{ item.dni }} </span>
@@ -38,24 +40,24 @@
             <span> <b>Legajo:</b> {{ item.legajo }} </span>
             <span> <b>fecha de nacimiento:</b> {{ item.fechaNac }} </span>
           </div>
-          <div id="tutorInfo">
+
+          <div id="tutorInfo" class="tutorInfo">
             <h3>Tutores</h3>
             <div *ngFor="let tutor of item['tutores']">
               <div class="tutorInfo-child">
-                <b style="font-size: 23px"
-                  >{{ tutor.nombre }}, {{ tutor.apellido }}</b
-                >
+                <b>{{ tutor.nombre }}, {{ tutor.apellido }}</b>
                 <span><b>DNI</b>: {{ tutor.dni }}</span>
                 <span><b>Telefono</b>: {{ tutor.telefono }}</span>
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
   <div class="container">
-    <button routerLink="../editar-datos-personales" class="btn btn-primary">
+    <button routerLink="../editar-datos-personales" class="btn btnSave">
       Agregar Alumno
     </button>
   </div>

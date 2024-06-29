@@ -1,4 +1,9 @@
 footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 8rem;
+
     background-color: var(--color-3);
     color: var(--color-1);
     font-size: 1.5rem;
@@ -8,8 +13,11 @@ footer {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    & .aImg {
+        height: 100%;
+    }
     & img {
-        width: 150px;
+        height: 100%;
     }
     & .navPages {
         display: flex;
