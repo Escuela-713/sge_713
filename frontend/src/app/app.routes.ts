@@ -15,32 +15,46 @@ import { CalificadorComponent } from './pages/gestion-datos-academicos/calificad
 import { BuscarEstudianteComponent } from './pages/gestion-datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
 import { LoginComponent } from './pages/gestion-usuarios/login/login.component';
 import { DatosTutoresComponent } from './pages/gestion-datos-personales/componentes/datos-tutores/datos-tutores.component';
-
+import { EditarAgregarTutorComponent } from './pages/gestion-datos-personales/editar-agregar-tutor/editar-agregar-tutor.component';
 
 export const routes: Routes = [
-    {path:"home" , component:HomeComponent
-},
-{path:"dashboard" , component:DashboardComponent,
-children: [
-  {path:"carreras", component:CarrerasComponent },
-  {path:"planes", component:PlanesComponent},
-  {path:"editar-carreras", component:FormCarrerasComponent},
-  {path:"editar-planes", component:FormPlanesComponent},
-  {path:"materias", component:MateriasComponent},
-  {path:"editar-materias",component:FormMateriasComponent},
- 
-  {path:"datos-personales",component:DatosPersonalesComponent},   
-  {path:"editar-datos-personales",component:EditarDatosPersonalesComponent},
-  { path: "editar-datos-tutores",component:DatosTutoresComponent},
+  { path: 'home', component: HomeComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      { path: 'carreras', component: CarrerasComponent },
+      { path: 'planes', component: PlanesComponent },
+      { path: 'editar-carreras', component: FormCarrerasComponent },
+      { path: 'editar-planes', component: FormPlanesComponent },
+      { path: 'materias', component: MateriasComponent },
+      { path: 'editar-materias', component: FormMateriasComponent },
 
-  {path:"datos-academicos", component:DatosAcademicosComponent,
-    children:[
-      {path:"analitico", component:AnaliticoComponent},
-      {path:"calificador", component: CalificadorComponent,
-      children:[
-        {path:"buscador", component: BuscarEstudianteComponent},]},
-      ]},
-    ]}, 
-  {path: "iniciar-sesion", component: LoginComponent},
-  { path: '',   redirectTo: '/home', pathMatch: 'full'}
+      { path: 'datos-tutor-editar', component: EditarAgregarTutorComponent },
+
+      { path: 'datos-personales', component: DatosPersonalesComponent },
+      {
+        path: 'editar-datos-personales',
+        component: EditarDatosPersonalesComponent,
+      },
+      { path: 'editar-datos-tutores', component: DatosTutoresComponent },
+
+      {
+        path: 'datos-academicos',
+        component: DatosAcademicosComponent,
+        children: [
+          { path: 'analitico', component: AnaliticoComponent },
+          {
+            path: 'calificador',
+            component: CalificadorComponent,
+            children: [
+              { path: 'buscador', component: BuscarEstudianteComponent },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  { path: 'iniciar-sesion', component: LoginComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];

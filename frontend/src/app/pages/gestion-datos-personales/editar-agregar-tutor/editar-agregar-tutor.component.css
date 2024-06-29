@@ -1,0 +1,10 @@
+h1 {
+  text-align: center;
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px;
+}
+form {
+  padding: 10px;
+  border: #ccc 1px solid;
+}
