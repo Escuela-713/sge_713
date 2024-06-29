@@ -1,0 +1,185 @@
+<div class="container">
+  <form id="formularioAlumno">
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="nombre" class="form-label">Nombre/s:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="nombre"
+          placeholder="Ingrese el nombre"
+          required
+        />
+      </div>
+      <div class="col-sm-6">
+        <label for="apellido" class="form-label">Apellido/s:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="apellido"
+          placeholder="Ingrese el apellido"
+          required
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="dni" class="form-label">DNI:</label>
+        <input
+          type="number"
+          class="form-control"
+          id="dni"
+          placeholder="Ingrese el DNI"
+          required
+        />
+      </div>
+      <div class="col-sm-6">
+        <label for="cuil" class="form-label">CUIL:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cuil"
+          placeholder="Ingrese el CUIL"
+          required
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="genero" class="form-label">Género:</label>
+        <select class="form-select" id="genero" required>
+          <option value="Masculino">Masculino</option>
+          <option value="Femenino">Femenino</option>
+          <option value="No Binario">X</option>
+        </select>
+      </div>
+      <div class="col-sm-6">
+        <label for="cuil" class="form-label">Trabajo:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="cuil"
+          placeholder="Ingrese el trabajo"
+          required
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="fechaNacimiento" class="form-label"
+          >Fecha de Nacimiento:</label
+        >
+        <input type="date" class="form-control" id="fechaNacimiento" required />
+      </div>
+      <div class="col-sm-6">
+        <label for="provinciaNacimiento" class="form-label"
+          >Provincia de Nacimiento:</label
+        >
+        <select class="form-select" id="provinciaNacimiento" required></select>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="localidadNacimiento" class="form-label"
+          >Localidad de Nacimiento:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="localidadNacimiento"
+          placeholder="Ingrese la localidad"
+          required
+        />
+      </div>
+      <div class="col-sm-6">
+        <label for="domicilioPais" class="form-label">País de Domicilio:</label>
+        <select class="form-select" id="domicilioPais" required></select>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="domicilioProvincia" class="form-label"
+          >Provincia del Domicilio:</label
+        >
+        <select class="form-select" id="domicilioProvincia" required></select>
+      </div>
+      <div class="col-sm-6">
+        <label for="domicilioLocalidad" class="form-label"
+          >Localidad del Domicilio:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="domicilioLocalidad"
+          placeholder="Ingrese la localidad"
+          required
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="domicilioBarrio" class="form-label"
+          >Barrio del domicilio:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="domicilioBarrio"
+          placeholder="Ingrese el barrio"
+        />
+      </div>
+      <div class="col-sm-6">
+        <label for="domicilioBarrio" class="form-label">Calle:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="domicilioBarrio"
+          placeholder="Ingrese la calle"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="numeroPiso" class="form-label">Número de piso:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="numeroPiso"
+          placeholder="Ingrese el número de piso"
+        />
+      </div>
+      <div class="col-sm-6">
+        <label for="numeroDepartamento" class="form-label"
+          >Número de departamento:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="numeroDepartamento"
+          placeholder="Ingrese el número de departamento"
+        />
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="localidadNacimiento" class="form-label">Télefono:</label>
+        <input
+          type="tel"
+          class="form-control"
+          id="numeroTelefono"
+          placeholder="Ingrese el número de teléfono"
+        />
+      </div>
+      <div class="col-sm-6">
+        <label for="domicilioPais" class="form-label">Email:</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          placeholder="Ingrese el email"
+        />
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar Tutor</button>
+  </form>
+</div>
