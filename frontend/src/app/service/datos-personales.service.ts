@@ -3,13 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DatosPeronalesService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  obtenerdatosTutor():Observable<any> {
-    return this.http.get("./assets/datos-personales/datostutor.json");
+  obtenerdatosTutor(): Observable<any> {
+    return this.http.get(
+      './assets/datos-academicos/alumnos-ejemplo-bien-hecho.json'
+    );
   }
 }

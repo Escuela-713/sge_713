@@ -50,24 +50,25 @@
     </div>
   </div>
 
-<div
-  class="tab-pane fade"
-  id="nav-profile"
-  role="tabpanel"
-  aria-labelledby="nav-profile-tab"
->
-  <div class="seccion" *ngIf="componenteVisible === 'datosAlumno'">
-    <app-datos-identidad></app-datos-identidad>
+  <div
+    class="tab-pane fade"
+    id="nav-profile"
+    role="tabpanel"
+    aria-labelledby="nav-profile-tab"
+  >
+    <div class="seccion" *ngIf="componenteVisible === 'datosAlumno'">
+      <app-datos-identidad></app-datos-identidad>
+    </div>
   </div>
-</div>
 
-<div
-  class="tab-pane fade"
-  id="nav-contact"
-  role="tabpanel"
-  aria-labelledby="nav-contact-tab">
-
-  <div class="seccion" *ngIf="componenteVisible === 'datosAlumno'">
+  <div
+    class="tab-pane fade"
+    id="nav-contact"
+    role="tabpanel"
+    aria-labelledby="nav-contact-tab"
+  >
     <app-datos-tutores></app-datos-tutores>
+
+    <div></div>
   </div>
 </div>

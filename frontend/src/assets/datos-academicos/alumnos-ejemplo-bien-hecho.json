@@ -1,0 +1,81 @@
+[
+  {
+    "id": 1,
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "dni": "45423912",
+    "cuil": "20123456789",
+    "telefono": "(460) 237-7576",
+    "legajo": "A001",
+    "curso": "7mo ETP",
+    "fechaNac": "2000-01-01",
+    "tutores": [
+      {
+        "id": 1,
+        "nombre": "Carlos",
+        "apellido": "Perez",
+        "telefono": "123456789",
+        "dni": "23456789"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Ana",
+    "apellido": "Garcia",
+    "dni": "46912312",
+    "cuil": "20876543210",
+    "telefono": "(326) 247-7520",
+    "legajo": "A002",
+    "curso": "6to Humanidades",
+    "fechaNac": "2001-02-02",
+    "tutores": [
+      {
+        "id": 2,
+        "nombre": "Maria",
+        "apellido": "Garcia",
+        "telefono": "987654321",
+        "dni": "34567890"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "nombre": "Luis",
+    "apellido": "Martinez",
+    "dni": "50412876",
+    "cuil": "20456789123",
+    "telefono": "(468) 982-2671",
+    "legajo": "A003",
+    "curso": "5to ETP",
+    "fechaNac": "2002-03-03",
+    "tutores": [
+      {
+        "id": 3,
+        "nombre": "Laura",
+        "apellido": "Martinez",
+        "telefono": "456789123",
+        "dni": "45678901"
+      },
+      {
+        "id": 4,
+        "nombre": "Jose",
+        "apellido": "Martinez",
+        "telefono": "789123456",
+        "dni": "56789012"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "nombre": "Lucia",
+    "apellido": "Lopez",
+    "dni": "56789012",
+    "cuil": "20567890123",
+    "telefono": "(642) 675-9370",
+    "legajo": "A004",
+    "curso": "2do ETP",
+    "fechaNac": "2003-04-04",
+    "tutores": []
+  }
+]

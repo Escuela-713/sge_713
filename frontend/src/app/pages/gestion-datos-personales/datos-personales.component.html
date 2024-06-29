@@ -2,17 +2,15 @@
 <div id="datosAlumnos">
   <div class="accordion" id="accordionExample">
     <div class="accordion-item" *ngFor="let item of datostutor">
-
-
       <h2 class="accordion-header" class="heading">
         <span
           >{{ item.nombre }}, {{ item.apellido }} {{ item.dni }} -
           {{ item.curso }}</span
         >
-        <button type="button" class="btn btnDelete">Eliminar</button>
+        <button type="button" class="btn btn-danger">Eliminar</button>
         <a
           routerLink="/dashboard/editar-datos-personales"
-          class="btn btnAdd"
+          class="btn btn-primary"
           >Editar</a
         >
         <button
@@ -24,8 +22,6 @@
           aria-controls="collapseOne"
         ></button>
       </h2>
-
-
       <div
         id="flushCollapse{{ item.id }}"
         class="accordion-collapse collapse"
@@ -59,7 +55,7 @@
     </div>
   </div>
   <div class="container">
-    <button routerLink="../editar-datos-personales" class="btn btnSave">
+    <button routerLink="../editar-datos-personales" class="btn btn-primary">
       Agregar Alumno
     </button>
   </div>
