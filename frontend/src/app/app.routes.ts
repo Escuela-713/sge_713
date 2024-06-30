@@ -16,6 +16,7 @@ import { BuscarEstudianteComponent } from './pages/gestion-datos-academicos/comp
 import { LoginComponent } from './pages/gestion-usuarios/login/login.component';
 import { DatosTutoresComponent } from './pages/gestion-datos-personales/componentes/datos-tutores/datos-tutores.component';
 import { EditarAgregarTutorComponent } from './pages/gestion-datos-personales/editar-agregar-tutor/editar-agregar-tutor.component';
+import { FiltroDatosPersonalesComponent } from './pages/gestion-datos-personales/filtro-datos-personales/filtro-datos-personales.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -31,6 +32,7 @@ export const routes: Routes = [
       { path: 'editar-materias', component: FormMateriasComponent },
 
       { path: 'datos-tutor-editar', component: EditarAgregarTutorComponent },
+      { path: 'filtro', component: FiltroDatosPersonalesComponent },
 
       { path: 'datos-personales', component: DatosPersonalesComponent },
       {
