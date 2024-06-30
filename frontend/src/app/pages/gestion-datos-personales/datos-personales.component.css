@@ -1,12 +1,6 @@
 #datosAlumnos {
   margin: 30px;
 }
-h1 {
-  text-align: center;
-  background-color: var(--color-3);
-  color: var(--color-1);
-  padding: 10px;
-}
 .heading {
   display: grid;
   grid-template-columns: 1fr auto auto auto;

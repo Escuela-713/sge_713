@@ -47,6 +47,13 @@ body {
     min-height: 150vh;
     position: relative;
 }
+/* H1 USADO EN DATOS PERSONALES */
+.datosPersonalesTitle {
+    text-align: center;
+    background-color: var(--color-3);
+    color: var(--color-1);
+    padding: 10px;
+  }
 /* BOTON USADO EN GESTION DE DATOS PERSONALES */
 .btnSave {
     background-color: var(--color-1);
@@ -75,10 +82,10 @@ body {
 .btnAdd {
     border: solid 3px green;
     background-color: green;
-  color: var(--color-1);
-  font-weight: 900;
-  &:hover{
-    background-color: green;
     color: var(--color-1);
-  }
+    font-weight: 900;
+    &:hover{
+      background-color: green;
+      color: var(--color-1);
+    }
 }
