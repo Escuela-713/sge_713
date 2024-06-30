@@ -1,13 +1,14 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: var(--font2);
 }
 footer {
-    height: 8rem;
+    height: 80px;
     
     background-color: var(--color2);
     color: var(--color1);
-    font-size: 2rem;
+    font-size: 1.3rem;
     padding: 0 5%;
 
     align-items: center;
@@ -30,7 +31,7 @@ footer {
         }
     }
     & .navRedes {
-        font-size: 3rem;
+        font-size: 2rem;
         display: flex;
         justify-content: right;
         gap: 20px;

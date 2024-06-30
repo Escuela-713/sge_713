@@ -1,6 +1,7 @@
 nav {
     background-color: var(--color2);
     color: var(--color3);
+    font-family: var(--font2);
     height: 50px;
     align-items: center;
     position: relative;
@@ -14,7 +15,7 @@ nav {
             & a {
                 color: var(--color3);
                 font-weight: 400;
-                font-size: 1.8rem;
+                font-size: 1.2rem;
                 text-decoration: none;
                 text-transform: uppercase;
                 &:hover {

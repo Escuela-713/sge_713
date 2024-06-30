@@ -1,5 +1,6 @@
 header {
     background-color: var(--color1);
+    font-family: var(--font2);
     color: var(--color3);
     height: 100px;
     position: relative;
@@ -21,7 +22,7 @@ header {
             & a {
                 color: var(--color3);
                 font-weight: 500;
-                font-size: 2.5rem;
+                font-size: 1.5rem;
                 text-decoration: none;
                 text-transform: uppercase;
                 &:hover {
@@ -47,6 +48,6 @@ header {
         position: absolute;
         right: 2%;
         top: 25%;
-        font-size: 5rem;
+        font-size: 3rem;
     }
 }

@@ -37,11 +37,34 @@
   display: block;
   margin: 10px 0;
 }
+
 .container {
   text-align: center;
   margin-top: 20px;
 }
-.popup {
+.accordion-body {
+  font-size: 1.3rem;
+  & .alumnoInfo {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  & .tutorInfo {
+    border-left: 2px solid;
+    padding-left: 2%;
+    & h3 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      text-decoration: underline;
+      text-underline-offset: 5px;
+    }
+    & .tutorInfo-child {
+      border-bottom: 2px solid;
+    }
+  }
+}
+
+
+/* .popup {
   display: none;
   position: fixed;
   top: 0;
@@ -87,24 +110,4 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   max-height: 80%;
   overflow: auto;
-}
-.accordion-body {
-  font-size: 1.3rem;
-  & .alumnoInfo {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-  & .tutorInfo {
-    border-left: 2px solid;
-    padding-left: 2%;
-    & h3 {
-      font-size: 2rem;
-      text-transform: uppercase;
-      text-decoration: underline;
-      text-underline-offset: 5px;
-    }
-    & .tutorInfo-child {
-      border-bottom: 2px solid;
-    }
-  }
-}
+} */

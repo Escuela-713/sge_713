@@ -16,33 +16,34 @@
 }
 html, body {
     height: 100%;
-    font-size: 10px;
+    font-size: 16px;
 }
 body {
     background-color: var(--color3);
     color: var(--color2);
-    font-family: var(--font2);
+    font-family: var(--font1);
     letter-spacing: 1px;
     position: relative;
+}
+h1, h2, span {
+    font-family: var(--font1);
 }
 /* H1 USADO EN DATOS PERSONALES */
 .datosPersonalesTitle {
     text-align: center;
-    background-color: var(--color-3);
-    color: var(--color-1);
+    color: var(--color2);
     padding: 10px;
   }
 /* BOTON USADO EN GESTION DE DATOS PERSONALES */
 .btnSave {
-    background-color: var(--color-1);
-    border: solid 3px var(--color-3);
-    color: var(--color-3);
+    background-color: var(--color3);
+    border: solid 3px var(--color2);
     font-size: 1rem;
     font-weight: 900;
     &:hover {
-        background-color: var(--color-3);
-        color: var(--color-1);
-        border: solid 3px var(--color-3);
+        background-color: var(--color2);
+        color: var(--color3);
+        border: solid 3px var(--color2);
     }
 }
 /* BOTON USADO EN GESTION DE DATOS PERSONALES */
@@ -53,18 +54,18 @@ body {
     font-weight: 900;
     &:hover {
       background-color: red;
-      color: var(--color-1);
+      color: var(--color3);
     }
   }
 /* BOTON USADO EN GESTION DE DATOS PERSONALES */
 .btnAdd {
     border: solid 3px green;
     background-color: green;
-    color: var(--color-1);
+    color: var(--color3);
     font-weight: 900;
     &:hover{
       background-color: green;
-      color: var(--color-1);
+      color: var(--color2);
     }
 }
 

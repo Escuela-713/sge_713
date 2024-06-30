@@ -16,11 +16,11 @@ section {
             & .card-body {
                 font-family: var(--font1);
                 h3 {
-                    font-size: 2.5rem;
+                    font-size: 1.5rem;
                     font-weight: 700;
                 }
                 & .card-text {
-                    font-size: 1.8rem;
+                    font-size: 1.2rem;
                     font-weight: 500;
                 }
             }

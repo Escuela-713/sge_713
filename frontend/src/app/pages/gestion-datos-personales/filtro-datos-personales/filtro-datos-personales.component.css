@@ -1,5 +1,6 @@
 form {
   max-width: 1320px;
+  font-weight: 500;
   margin: 50px auto;
   padding: 20px 10px;
   & label {
