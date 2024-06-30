@@ -1,8 +1,30 @@
-.homeImg {
-    max-height: 60vh;
-    width: 100%;
-    border-bottom: solid 5px var(--color-3);
-}
-.container {
-    margin: 2% auto;
+section {
+    & .homeImg {
+        max-height: 70vh;
+        width: 100%;
+        object-fit: cover;
+        border-bottom: solid 5px var(--color1);
+    }
+    & .container {
+        margin: 2% auto;
+        max-width: 90%;
+        & .card {
+            height: 100%;
+            & img {
+                height: 75%;
+            }
+            & .card-body {
+                font-family: var(--font1);
+                h3 {
+                    font-size: 2.5rem;
+                    font-weight: 700;
+                }
+                & .card-text {
+                    font-size: 1.8rem;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
 }

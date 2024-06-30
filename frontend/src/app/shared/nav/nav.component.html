@@ -1,29 +1,22 @@
-<nav>
-  <div href="#" class="divBrand">
-      <i class="fa-solid fa-hammer"></i>
-      <h1>Workbench</h1>
-  </div>
-  <nav class="navPages">
-    <a href="#">Home</a>
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Datos Academicos</a>
+<nav class="homeNav">
+  <div class="divCenter row">
+    <nav class="col row">
+      <li class="col dropdown">
+        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Datos Academicos</a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/dashboard/datos-academicos/calificador">Calificador</a></li>
-            <li><a class="dropdown-item" routerLink="/dashboard/datos-academicos/analitico">Analitico</a></li>
+          <li><a class="dropdown-item" routerLink="/dashboard/datos-academicos/analitico">Analitico</a></li>
+          <li><a class="dropdown-item" routerLink="/dashboard/datos-academicos/calificador">Calificador</a></li>
         </ul>
       </li>
-    </ul>
-    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Datos Materias</a>
+      <li class="col dropdown">
+        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Datos Materias</a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" routerLink="/dashboard/carreras">Carreras</a></li>
-          <li><a class="dropdown-item" routerLink="/dashboard/planes">Planes</a></li>
           <li><a class="dropdown-item" routerLink="/dashboard/materias">Materias</a></li>
+          <li><a class="dropdown-item" routerLink="/dashboard/planes">Planes</a></li>
         </ul>
       </li>
-    </ul>
-    <a routerLink="/dashboard/filtro">Datos Personales</a>
-  </nav>
+      <a class="col" routerLink="/dashboard/filtro">Datos Personales</a>
+    </nav>
+  </div>
 </nav>

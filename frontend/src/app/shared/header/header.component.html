@@ -1,14 +1,20 @@
 <header>
-  <a href="#" class="divBrand">
-    <i class="fa-solid fa-box-archive"></i>
-    <h1>SGE 713</h1>
-  </a>
-  <nav class="navPages">
-    <a href="#">Home</a>
-    <a href="#">Sobre Nosotros</a>
-    <a href="#">Contactanos</a>
-  </nav>
-  <div class="divAccount">
-    <button routerLink="/iniciar-sesion">Sign In</button>
+  <div class="divCenter row">
+    <nav class="col row">
+      <a class="col" href="">Contactanos</a>
+      <a class="col" href="">Nosotros</a>
+    </nav>
+    <a class="col" href="#"><img src="assets/imgs/brand.svg" alt="Brand"></a>
+    <nav class="col row">
+      <a class="col" href="">Galeria</a>
+      <li class="col dropdown">
+        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Redes</a>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="https://www.facebook.com/escuela713/">Facebook</a></li>
+          <li><a class="dropdown-item" href="https://www.instagram.com/laradiodela713/">Instagram</a></li>
+        </ul>
+      </li>
+    </nav>
   </div>
+  <a routerLink="/iniciar-sesion"><i class="fa-regular fa-circle-user"></i></a>
 </header>
