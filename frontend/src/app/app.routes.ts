@@ -29,10 +29,10 @@ children: [
  
   {path:"datos-personales",component:DatosPersonalesComponent},   
   {path:"editar-datos-personales",component:EditarDatosPersonalesComponent},
-
+  {path:"analitico", component:AnaliticoComponent},
   {path:"datos-academicos", component:DatosAcademicosComponent,
     children:[
-      {path:"analitico", component:AnaliticoComponent},
+
       {path:"calificador", component: CalificadorComponent,
       children:[
         {path:"buscador", component: BuscarEstudianteComponent},]},
