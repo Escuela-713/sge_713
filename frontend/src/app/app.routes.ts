@@ -40,12 +40,11 @@ export const routes: Routes = [
         component: EditarDatosPersonalesComponent,
       },
       { path: 'editar-datos-tutores', component: DatosTutoresComponent },
-
+      {path:"analitico", component:AnaliticoComponent},
       {
         path: 'datos-academicos',
         component: DatosAcademicosComponent,
         children: [
-          { path: 'analitico', component: AnaliticoComponent },
           {
             path: 'calificador',
             component: CalificadorComponent,
