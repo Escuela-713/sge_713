@@ -6,7 +6,7 @@
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-
+from rest_framework import serializers
 
 class Alumno(models.Model):
     id_alumno = models.AutoField(primary_key=True)
@@ -122,7 +122,7 @@ class Persona(models.Model):
 
 class Plan(models.Model):
     id_plan = models.AutoField(primary_key=True)
-    id_carrera = models.ForeignKey(Carrera, models.DO_NOTHING, db_column='id_carrera')
+    carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE, db_column='id_carrera')
     horas_catedra = models.IntegerField()
     horas_reloj = models.IntegerField()
 
