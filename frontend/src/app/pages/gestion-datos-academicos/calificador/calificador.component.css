@@ -1,0 +1,19 @@
+html, body {
+  height: 100%;
+  font-size: 16px;
+}
+body {
+  background-color: var(#F3F3F1);
+  color: var(#1E1E1E);
+  font-family: var(--font1);
+  letter-spacing: 1px;
+  position: relative;
+}
+h1, h2 {
+  font-family: var(--font1);
+}
+.Title {
+  text-align: center;
+  color: var(#1E1E1E);
+  padding: 10px;
+}
