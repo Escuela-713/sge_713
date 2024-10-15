@@ -1,22 +1,46 @@
-<div class="login" >
-  <form class="form-login">
+<div class="login">
+  <form class="form-login" [formGroup]="form" (ngSubmit)="onEnviar($event)">
     <h4>Inicio De Sesion</h4>
-    <input
-      class="controls"
-      type="text"
-      name="nombres"
-      id="nombres"
-      placeholder="Ingrese su Cuit"
-    />
-    <input
-      class="controls"
-      type="text"
-      name="apellidos"
-      id="apellidos"
-      placeholder="Ingrese su Contraseña"
-    />
+    <input formControlName="email" class="controls" type="text" name="nombres" id="nombres"
+      placeholder="Ingrese su Cuit" />
+    @if (Email?.errors && Email?.touched)
+    {
+    @if (Email?.hasError('required'))
+    {
+    <p class="text-danger">
+      El email es requerido.
+    </p>
+    }
+    @else if (Email?.hasError('email'))
+    {
+    <p class="text-danger">
+      El formato del email debe ser válido.
+    </p>
+    }
+    }
+    <input formControlName="password" class="controls" type="text" name="apellidos" id="apellidos"
+      placeholder="Ingrese su Contraseña" />
+    @if(Password?.errors && Password?.touched)
+    {
+    @if(Password?.hasError('required'))
+    {
+    <p class="text-danger">
+      El Password es requerido.
+    </p>
+    }
+    @else if (Password?.hasError('minlength') )
+    {
+    <p class="text-danger">
+      El Password requiere como mínimo 8 caracteres.
+    </p>
+    }
+    }
+
     <p><a href="#">Home</a></p>
     <input class="botons" type="submit" value="Iniciar Sesion" />
     <p><a routerLink="/registro">No tengo cuenta</a></p>
+
+
+
   </form>
 </div>
