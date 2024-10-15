@@ -44,3 +44,8 @@ class PlanesApiView(APIView):
         except Exception as ex:
            print(ex)
            return Response({'details':'Internal server error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class AlumnosFiltrado(APIView):
+    def get(self, request):
+        alumno = Alumno.objects.all()
+        return Response([alumno])
