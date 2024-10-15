@@ -12,7 +12,6 @@ import { EditarDatosPersonalesComponent } from './pages/gestion-datos-personales
 import { DatosAcademicosComponent } from './pages/gestion-datos-academicos/datos-academicos.component';
 import { AnaliticoComponent } from './pages/gestion-datos-academicos/analitico/analitico.component';
 import { CalificadorComponent } from './pages/gestion-datos-academicos/calificador/calificador.component';
-import { BuscarEstudianteComponent } from './pages/gestion-datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
 import { LoginComponent } from './pages/gestion-usuarios/login/login.component';
 import { DatosTutoresComponent } from './pages/gestion-datos-personales/componentes/datos-tutores/datos-tutores.component';
 import { EditarAgregarTutorComponent } from './pages/gestion-datos-personales/editar-agregar-tutor/editar-agregar-tutor.component';
@@ -48,10 +47,7 @@ export const routes: Routes = [
         children: [
           {
             path: 'calificador',
-            component: CalificadorComponent,
-            children: [
-              { path: 'buscador', component: BuscarEstudianteComponent },
-            ],
+            component: CalificadorComponent
           },
         ],
       },

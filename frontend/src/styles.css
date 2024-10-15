@@ -95,3 +95,29 @@ h1, h2, span {
 .ng-invalid:not(form).ng-touched {
     border-left: 5px solid #a94442;
 } */
+
+/* filtro 
+form {
+    max-width: 1320px;
+    font-weight: 500;
+    margin: 50px auto;
+    padding: 20px 10px;
+    & label {
+      font-size: 1.5rem;
+    }
+  }
+  select {
+    margin-bottom: 15px;
+  }
+  input {
+    margin-bottom: 20px;
+  }
+  #curso-division {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+  #curso-division > div {
+    width: 100%;
+  }
+*/
