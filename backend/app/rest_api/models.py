@@ -37,6 +37,7 @@ class Carrera(models.Model):
     nombre = models.CharField(max_length=45)
     titulo_egreso = models.CharField(max_length=125)
     id_estado = models.IntegerField()
+    descripcion=models.CharField(max_length=255,blank=True, null=True)
 
     class Meta:
         managed = True
