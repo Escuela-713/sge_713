@@ -37,7 +37,8 @@ class Alumno(models.Model):
     n_libro_matriz = models.IntegerField(blank=True, null=True)
     fecha_egreso = models.DateField(db_column='fecha egreso', blank=True, null=True)  # Field renamed to remove unsuitable characters.
     cuil = models.CharField(max_length=15)
-    id_persona = models.ForeignKey(Persona, models.DO_NOTHING, db_column='id_persona')
+
+    id_persona = models.ForeignKey(Persona, models.DO_NOTHING, db_column='id_persona', null=True)
 
 
     class Meta:
