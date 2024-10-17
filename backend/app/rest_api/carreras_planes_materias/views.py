@@ -48,4 +48,5 @@ class PlanesApiView(APIView):
 class AlumnosFiltrado(APIView):
     def get(self, request):
         alumno = Alumno.objects.all()
+        
         return Response([alumno])
