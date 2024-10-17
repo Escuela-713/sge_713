@@ -1,4 +1,4 @@
-<h1 class="datosPersonalesTitle">Filtro de Gestión de Datos Personales</h1>
+<h1 class="datosPersonalesTitle">Filtro de Gestión de Datos Academicos</h1>
 <form action="">
   <div id="curso-division">
     <div>
@@ -25,28 +25,31 @@
   </div>
 
   <label for="modalidad-select" class="form-label"
-    >Selecciona la modalidad:</label
-  >
+    >Selecciona la modalidad:</label>
   <select id="modalidad-select" name="modalidad" class="form-select">
     <option value="etp">ETP</option>
     <option value="humanidades">Humanidades</option>
     <option value="comunicaciones">Comunicaciones</option>
   </select>
-  <label for="annoSelect" class="form-label">Año:</label>
 
-  <input
-    type="number"
-    min="2018"
-    max="2024"
-    value="2024"
-    class="form-control"
-    q
-    id="annoSelect"
-    placeholder="Recipient's username"
-    aria-label="Recipient's username with two button addons"
-  />
-  <a class="btn btnSave" routerLink="/dashboard/datos-personales"
-    >Filtrar</a
-  >
+  <label for="modalidad-select" class="form-label"
+  >Selecciona la materia:</label>
+  <select id="materia" name="materia" class="form-select">
+  <option value="Matemática">Matemática</option>
+  <option value="Ingles">Ingles</option>
+  <option value="Lengua">Lengua</option>
+  <option value="Geografía">Geografía</option>
+  <option value="Física">Física</option>
+  <option value="Química">Química</option>
+  </select>
+
+  <label for="Instancia" class="form-label">Selecciona la instancia:</label>
+    <select id="instancia" name="instancia" class="form-select">
+      <option value="1er cuatrimestre">1er cuatrimestre</option>
+      <option value="2do cuatrimestre">2do cuatrimestre</option>
+    </select>
+
+
+  <a class="btn btnSave" routerLink="/dashboard/datos-academicos">Filtrar</a>
 </form>
 

@@ -17,6 +17,7 @@ import { DatosTutoresComponent } from './pages/gestion-datos-personales/componen
 import { EditarAgregarTutorComponent } from './pages/gestion-datos-personales/editar-agregar-tutor/editar-agregar-tutor.component';
 import { FiltroDatosPersonalesComponent } from './pages/gestion-datos-personales/filtro-datos-personales/filtro-datos-personales.component';
 import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.component';
+import { FiltroCalificadorComponent } from './pages/gestion-datos-academicos/filtro-calificador/filtro-calificador.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -45,10 +46,8 @@ export const routes: Routes = [
         path: 'datos-academicos',
         component: DatosAcademicosComponent,
         children: [
-          {
-            path: 'calificador',
-            component: CalificadorComponent
-          },
+          {path: 'calificador',component: CalificadorComponent},
+        {path:'filtro', component: FiltroCalificadorComponent},
         ],
       },
     ],
