@@ -32,22 +32,13 @@ class CarreraApiViewSet(APIView):
         
 class PlanesApiView(APIView):
     def get(self, request):
-        try:
-           planes_de_estudio = Plan.objects.select_related('carrera').all()
-           planes_data=[]
-           for plan in planes_de_estudio:
-               planes_data.append({
-                   'id_plan':plan.id_plan,
-                   'horas_catedra':plan.horas_catedra,
-                   'horas_reloj':plan.horas_reloj,
-                   'nombre_carrera':plan.carrera.nombre,
-                   'id_carrera':plan.carrera.id_carrera 
-               })
-           return Response(planes_data)
-        except Exception as ex:
+       try:
+           planes=PlanSerializer(Plan.objects.all(), many=True).data
+           return Response(planes)
+       except Exception as ex:
            print(ex)
            return Response({'details':'Internal server error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
+     
 class MateriasApiViewSet(APIView):
     def get(self, request):
        try:

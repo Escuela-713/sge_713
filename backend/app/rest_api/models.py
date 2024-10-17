@@ -126,7 +126,9 @@ class Persona(models.Model):
 
 class Plan(models.Model):
     id_plan = models.AutoField(primary_key=True)
-    carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE, db_column='id_carrera')
+    id_carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE, db_column='id_carrera',null=True)
+    nombre= models.CharField(max_length=45)
+    estado= models.BooleanField(null=True)
     horas_catedra = models.IntegerField()
     horas_reloj = models.IntegerField()
 
