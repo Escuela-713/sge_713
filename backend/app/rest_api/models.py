@@ -73,6 +73,9 @@ class Localidad(models.Model):
 class Materia(models.Model):
     id_materia = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=45)
+    año= models.IntegerField(null=True)
+    horasCatedrasSemanales= models.IntegerField(null=True)
+    horasRelojAnuales= models.IntegerField(null=True)
     descripcion = models.CharField(max_length=45)
 
     class Meta:

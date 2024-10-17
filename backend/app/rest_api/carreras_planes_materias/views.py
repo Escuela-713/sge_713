@@ -4,6 +4,9 @@ from rest_framework.response import Response
 from rest_api.carreras_planes_materias.serializers import *
 from rest_api.models import *
 
+
+
+
 class CarreraApiViewSet(APIView):
 
     def get(self, request):
@@ -44,3 +47,13 @@ class PlanesApiView(APIView):
         except Exception as ex:
            print(ex)
            return Response({'details':'Internal server error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class MateriasApiViewSet(APIView):
+    def get(self, request):
+       try:
+           materias=MateriaSerializer(Materia.objects.all(), many=True).data
+           return Response(materias)
+       except Exception as ex:
+           print(ex)
+           return Response({'details':'Internal server error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
