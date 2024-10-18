@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, numberAttribute } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -15,7 +15,7 @@ export class LoginComponent {
 
     this.form = this.formBuilder.group(
       {
-        email: ['', [Validators.email, Validators.required]],
+        cuil: ['', [Validators.required,]],
         password: ['', [Validators.required]]
       }
     )
@@ -39,8 +39,8 @@ export class LoginComponent {
   get Password() {
     return this.form.get("password");
   }
-  get Email() {
-    return this.form.get("email");
+  get Cuil() {
+    return this.form.get("cuil");
   }
 
 

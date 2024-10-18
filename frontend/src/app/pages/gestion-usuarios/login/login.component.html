@@ -1,20 +1,14 @@
 <div class="login">
   <form class="form-login" [formGroup]="form" (ngSubmit)="onEnviar($event)">
     <h4>Inicio De Sesion</h4>
-    <input formControlName="email" class="controls" type="text" name="nombres" id="nombres"
+    <input formControlName="cuil" class="controls" type="text" name="nombres" id="nombres"
       placeholder="Ingrese su Cuit" />
-    @if (Email?.errors && Email?.touched)
+    @if (Cuil?.errors && Cuil?.touched)
     {
-    @if (Email?.hasError('required'))
-    {
-    <p class="text-danger">
-      El email es requerido.
-    </p>
-    }
-    @else if (Email?.hasError('email'))
+    @if (Cuil?.hasError('required'))
     {
     <p class="text-danger">
-      El formato del email debe ser válido.
+      El Cuil es requerido.
     </p>
     }
     }

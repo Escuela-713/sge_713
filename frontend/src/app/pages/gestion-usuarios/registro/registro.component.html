@@ -1,17 +1,16 @@
 <div class="registro">
-  <form [formGroup]="form">
-
-    <section class="form-register">
+  <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
+    <section class="form-register" >
       <h4>Formulario Registro</h4>
       <input class="controls" formControlName="name" type="text" name="nombres" id="nombres" placeholder="Nombres">
       @if (Name?.errors && Name?.touched)
       {
-        @if (Name?.hasError('required'))
-        {
-        <p class="text-danger">
-          El nombre es requerido.
-        </p>
-        }
+      @if (Name?.hasError('required'))
+      {
+      <p class="text-danger">
+        El nombre es requerido.
+      </p>
+      }
       }
       <input class="controls" formControlName="surname" type="text" name="apellidos" id="apellidos"
         placeholder="Apellidos">
@@ -20,7 +19,7 @@
       @if (Surname?.hasError('required'))
       {
       <p class="text-danger">
-        El email es requerido.
+        El apellido es requerido.
       </p>
       }
       @else if (Surname?.hasError('surname'))
@@ -72,13 +71,7 @@
       @if (Passwordconfirmation?.hasError('required'))
       {
       <p class="text-danger">
-        El email es requerido.
-      </p>
-      }
-      @else if (Passwordconfirmation?.hasError('passwordconfirmation'))
-      {
-      <p class="text-danger">
-        El formato del email debe ser válido.
+        La confirmacion del password es requerida.
       </p>
       }
       }
@@ -89,13 +82,7 @@
       @if (Cuil?.hasError('required'))
       {
       <p class="text-danger">
-        El email es requerido.
-      </p>
-      }
-      @else if (Cuil?.hasError('Cuil'))
-      {
-      <p class="text-danger">
-        El formato del email debe ser válido.
+        El cuil es requerido.
       </p>
       }
       }
@@ -106,14 +93,7 @@
       @if (Cuilconfirmation?.hasError('required'))
       {
       <p class="text-danger">
-        El email es requerido.
-      </p>
-      }
-      @else if (Cuilconfirmation?.hasError('cuilconfirmation'))
-      {
-
-      <p class="text-danger">
-        El formato del email debe ser válido.
+        La confirmacion del cuil es requerido.
       </p>
       }
       }
@@ -122,5 +102,4 @@
       <p><a routerLink="/iniciar-sesion">¿Ya tengo Cuenta?</a></p>
     </section>
   </form>
-
 </div>

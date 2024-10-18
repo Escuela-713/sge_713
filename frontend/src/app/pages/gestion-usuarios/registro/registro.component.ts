@@ -55,7 +55,7 @@ export class RegistroComponent {
     return this.form.get("email");
   }
   get Name() {
-    return this.form.get["name"];
+    return this.form.get("name");
   }
   get Surname() {
     return this.form.get("surname");
