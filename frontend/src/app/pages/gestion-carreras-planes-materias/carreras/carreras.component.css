@@ -1,0 +1,64 @@
+#datosAlumnos {
+    margin: 30px;
+  }
+  .heading {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    column-gap: 10px;
+    padding: 10px 10px;
+  }
+  .accordion-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #f7f7f7;
+  }
+  .tutorInfo-child {
+    display: flex;
+    flex-direction: column;
+  }
+  .accordion-button {
+    color: #fff;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  #formulario-agregar {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #007bff;
+    background-color: #f5f5f5;
+    box-shadow: 2px 2px 5px #888;
+  }
+  #formulario-agregar label,
+  #formulario-agregar input {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .accordion-body {
+    font-size: 1.3rem;
+    & .alumnoInfo {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    & .tutorInfo {
+      border-left: 2px solid;
+      padding-left: 2%;
+      & h3 {
+        font-size: 2rem;
+        text-transform: uppercase;
+        text-decoration: underline;
+        text-underline-offset: 5px;
+      }
+      & .tutorInfo-child {
+        border-bottom: 2px solid;
+      }
+    }
+  }
