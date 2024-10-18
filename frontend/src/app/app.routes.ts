@@ -3,7 +3,6 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CarrerasComponent } from './pages/gestion-carreras-planes-materias/carreras/carreras.component';
 import { PlanesComponent } from './pages/gestion-carreras-planes-materias/planes/planes.component';
-import { FormCarrerasComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
 import { FormPlanesComponent } from './pages/gestion-carreras-planes-materias/planes/componentes/form-planes.component';
 import { MateriasComponent } from './pages/gestion-carreras-planes-materias/materias/materias.component';
 import { FormMateriasComponent } from './pages/gestion-carreras-planes-materias/materias/componentes/form-materias.component';
@@ -18,6 +17,7 @@ import { DatosTutoresComponent } from './pages/gestion-datos-personales/componen
 import { EditarAgregarTutorComponent } from './pages/gestion-datos-personales/editar-agregar-tutor/editar-agregar-tutor.component';
 import { FiltroDatosPersonalesComponent } from './pages/gestion-datos-personales/filtro-datos-personales/filtro-datos-personales.component';
 import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.component';
+import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -27,7 +27,7 @@ export const routes: Routes = [
     children: [
       { path: 'carreras', component: CarrerasComponent },
       { path: 'planes', component: PlanesComponent },
-      { path: 'editar-carreras', component: FormCarrerasComponent },
+      { path: 'editar-carreras', component: FormCarreraComponent },
       { path: 'editar-planes', component: FormPlanesComponent },
       { path: 'materias', component: MateriasComponent },
       { path: 'editar-materias', component: FormMateriasComponent },
