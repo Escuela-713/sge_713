@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component ,Input} from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -8,4 +8,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './filtro-calificador.component.html',
   styleUrl: './filtro-calificador.component.css'
 })
-export class FiltroCalificadorComponent {}
+export class FiltroCalificadorComponent {
+  @Input() tipo!: String;
+
+}

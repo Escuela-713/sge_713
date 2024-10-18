@@ -31,24 +31,31 @@
     <option value="comunicaciones">Comunicaciones</option>
   </select>
 
-  <label for="modalidad-select" class="form-label"
-  >Selecciona la materia:</label>
-  <select id="materia" name="materia" class="form-select">
-  <option value="Matemática">Matemática</option>
-  <option value="Ingles">Ingles</option>
-  <option value="Lengua">Lengua</option>
-  <option value="Geografía">Geografía</option>
-  <option value="Física">Física</option>
-  <option value="Química">Química</option>
-  </select>
+  @if (tipo=="calificador")
+  {
+    <label for="modalidad-select" class="form-label"
+    >Selecciona la materia:</label>
+    <select id="materia" name="materia" class="form-select">
+    <option value="Matemática">Matemática</option>
+    <option value="Ingles">Ingles</option>
+    <option value="Lengua">Lengua</option>
+    <option value="Geografía">Geografía</option>
+    <option value="Física">Física</option>
+    <option value="Química">Química</option>
+    </select>
+
 
   <label for="Instancia" class="form-label">Selecciona la instancia:</label>
     <select id="instancia" name="instancia" class="form-select">
       <option value="1er cuatrimestre">1er cuatrimestre</option>
       <option value="2do cuatrimestre">2do cuatrimestre</option>
     </select>
+    <a class="btn btnSave" routerLink="/dashboard/datos-academicos/calificador">Filtrar</a>
+  }
 
-
-  <a class="btn btnSave" routerLink="/dashboard/datos-academicos/calificador">Filtrar</a>
+  @if (tipo=="boletin")
+  {
+  <a class="btn btnSave" routerLink="/dashboard/datos-academicos/boletin">Filtrar</a>
+  }
 </form>
 
