@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 
 
@@ -14,7 +14,7 @@ import { RouterLink } from '@angular/router';
 })
 export class RegistroComponent {
   form!:FormGroup;
-  constructor(private formBuilder: FormBuilder)
+  constructor(private formBuilder: FormBuilder, private router:Router )
   { 
 
     this.form=this.formBuilder.group(
@@ -26,6 +26,7 @@ export class RegistroComponent {
         surname:['',[Validators.required]],
         cuil:['',[Validators.required]],
         cuilconfirmation:['',[Validators.required]],
+        aceptoterminos:['',[Validators.required]],
       } 
     )
 
@@ -35,8 +36,10 @@ export class RegistroComponent {
     console.log(this.form.value)
 
     event.preventDefault;
-    if (this.form.valid) {
+    if (this.form.valid) 
+      {
       alert("Enviar al servidor...")
+      this.router.navigate(["/iniciar-sesion"]);
     }
     else {
 
@@ -65,6 +68,9 @@ export class RegistroComponent {
   }
   get Cuilconfirmation() {
     return this.form.get("cuilconfirmation");
+  }
+  get Aceptarterminos() {
+    return this.form.get("aceptarterminos");
   }
 
 }

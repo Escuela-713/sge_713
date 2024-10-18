@@ -97,7 +97,22 @@
       </p>
       }
       }
-      <p>Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></p>
+      <div class="mb-3 form-check">
+        
+        <input type="checkbox" class="form-check-input" >
+        <label for="exampleFormControlInput1" class="form-label"> Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></label>
+        
+      @if (Aceptarterminos?.errors && Aceptarterminos?.touched)
+      {
+      @if (Aceptarterminos?.hasError('required'))
+      {
+      <p class="text-danger">
+        Aceptar los termino es requerido.
+      </p>
+      }
+      }
+
+      </div>      
       <input class="botons" type="submit" value="Registrar">
       <p><a routerLink="/iniciar-sesion">¿Ya tengo Cuenta?</a></p>
     </section>

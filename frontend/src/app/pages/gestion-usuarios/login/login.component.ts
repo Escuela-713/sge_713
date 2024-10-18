@@ -1,6 +1,6 @@
 import { Component, numberAttribute } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import { RouterLink } from '@angular/router';
 })
 export class LoginComponent {
   form!: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router:Router) {
 
     this.form = this.formBuilder.group(
       {
@@ -27,7 +27,8 @@ export class LoginComponent {
 
     event.preventDefault;
     if (this.form.valid) {
-      alert("Enviar al servidor...")
+      //alert("Enviar al servidor...")
+      this.router.navigate(["/home"]);
     }
     else {
 
