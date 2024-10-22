@@ -13,4 +13,14 @@ class InstanciaApiViewSet(APIView):
        except Exception as ex:
            print(ex)
            return Response({'details':'Internal server error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
+
+class CursoApiViewSet(APIView):
+
+    def get(self, request):
+       try:
+           curso = CursoSerializer(Curso.objects.all(), many=True).data
+           return Response(curso)
+       except Exception as ex:
+           print(ex)
+           return Response({'details':'Internal server error'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+   
