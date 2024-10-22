@@ -1,48 +1,56 @@
-<div id="accordion" >
-    <div class="card">
-        <div class="card-header bg-info">
-             <a class="card-link text-white" data-toggle="collapse" >Datos Escolares
-                  <i class='fas fa-angle-double-down float-right'></i>
-            </a>
-        </div>
-<div>
-    <div class="form-group">
-        <label for="carrera">Carrera</label>
-        <select class="form-select" id="carrera" name="carrera" aria-label="Carrera" required>
-            <option value="" disabled selected>Seleccione la carrera</option>
-            <option value="1">ETP</option>
-            <option value="2">Comunicaciones</option>
-            <option value="3">Humanidades</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="legajo">Número de Legajo</label>
-                <input type="number" id="legajo" name="legajo" class="form-control" placeholder="Ingrese aquí el Legajo" required>
-                <div class="invalid-feedback">
-                    Ingrese el número de legajo
-                </div>
+<div class="container">
+    <h1>Datos del Alumno</h1>
+    <form id="formularioAlumno">
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="nombre" class="form-label">Nombre/s:</label>
+                <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre" required>
             </div>
-            <div class="form-group col-md-6">
-                <label for="fecha_de_ingreso">Fecha de Ingreso</label>
-                <input type="date" id="fecha_de_ingreso" name="fecha_de_ingreso" class="form-control" required>
-                <div class="invalid-feedback">
-                    Ingrese la fecha de ingreso
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="matriz">Nro. libro matriz</label>
-                <input type="number" id="matriz" name="matriz" class="form-control" placeholder="Ingrese aquí el n° de libro matriz" required>
-                <div class="invalid-feedback">
-                    Ingrese el número de matriz
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="fecha_de_egreso">Fecha de Egreso</label>
-                <input type="date" id="fecha_de_egreso" name="fecha_de_egreso" class="form-control">
+            <div class="col-sm-6">
+                <label for="apellido" class="form-label">Apellido/s:</label>
+                <input type="text" class="form-control" id="apellido" placeholder="Ingrese el apellido" required>
             </div>
         </div>
-    </div>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="dni" class="form-label">DNI:</label>
+                <input type="number" class="form-control" id="dni" placeholder="Ingrese el DNI" required>
+            </div>
+            <div class="col-sm-6">
+                <label for="cuil" class="form-label">CUIL:</label>
+                <input type="text" class="form-control" id="cuil" placeholder="Ingrese el CUIL" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="genero" class="form-label">Género:</label>
+                <select class="form-select" id="genero" required>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                    <option value="No Binario">X</option>
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <label for="legajo" class="form-label">Número de Legajo:</label>
+                <input type="number" class="form-control" id="legajo" placeholder="Ingrese el número de legajo" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="fechaIngreso" class="form-label">Fecha Ingreso:</label>
+                <input type="date" class="form-control" id="fechaIngreso">
+            </div>
+            <div class="col-sm-6">
+                <label for="libroMatriz" class="form-label">Número de Libro Matriz:</label>
+                <input type="number" class="form-control" id="libroMatriz" placeholder="Ingrese el número de libro matriz" required>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-sm-6">
+                <label for="fechaEgreso" class="form-label">Fecha Egreso:</label>
+                <input type="date" class="form-control" id="fechaEgreso">
+            </div>
+            <div class="col-sm-6"></div> </div>
+        <button type="submit" class="btn btnSave">Guardar Alumno</button>
+    </form>
 </div>

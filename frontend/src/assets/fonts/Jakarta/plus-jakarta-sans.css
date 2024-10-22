@@ -1,0 +1,188 @@
+/**
+* @license
+*
+* Font Family: Plus Jakarta Sans
+* Designed by: Tokotype
+* URL: https://www.fontshare.com/fonts/plus-jakarta-sans
+* © 2024 Indian Type Foundry
+*
+* Plus Jakarta Sans ExtraLight 
+* Plus Jakarta Sans ExtraLightItalic 
+* Plus Jakarta Sans Light 
+* Plus Jakarta Sans LightItalic 
+* Plus Jakarta Sans Regular 
+* Plus Jakarta Sans Italic 
+* Plus Jakarta Sans Medium 
+* Plus Jakarta Sans MediumItalic 
+* Plus Jakarta Sans SemiBold 
+* Plus Jakarta Sans SemiBoldItalic 
+* Plus Jakarta Sans Bold 
+* Plus Jakarta Sans BoldItalic 
+* Plus Jakarta Sans ExtraBold 
+* Plus Jakarta Sans ExtraBoldItalic 
+* Plus Jakarta Sans Variable (Variable font)
+* Plus Jakarta Sans VariableItalic (Variable font)
+
+*
+*/
+@font-face {
+  font-family: 'PlusJakartaSans-ExtraLight';
+  src: url('./PlusJakartaSans-ExtraLight.woff2') format('woff2'),
+       url('./PlusJakartaSans-ExtraLight.woff') format('woff'),
+       url('./PlusJakartaSans-ExtraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-ExtraLightItalic';
+  src: url('./PlusJakartaSans-ExtraLightItalic.woff2') format('woff2'),
+       url('./PlusJakartaSans-ExtraLightItalic.woff') format('woff'),
+       url('./PlusJakartaSans-ExtraLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-Light';
+  src: url('./PlusJakartaSans-Light.woff2') format('woff2'),
+       url('./PlusJakartaSans-Light.woff') format('woff'),
+       url('./PlusJakartaSans-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-LightItalic';
+  src: url('./PlusJakartaSans-LightItalic.woff2') format('woff2'),
+       url('./PlusJakartaSans-LightItalic.woff') format('woff'),
+       url('./PlusJakartaSans-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-Regular';
+  src: url('./PlusJakartaSans-Regular.woff2') format('woff2'),
+       url('./PlusJakartaSans-Regular.woff') format('woff'),
+       url('./PlusJakartaSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-Italic';
+  src: url('./PlusJakartaSans-Italic.woff2') format('woff2'),
+       url('./PlusJakartaSans-Italic.woff') format('woff'),
+       url('./PlusJakartaSans-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-Medium';
+  src: url('./PlusJakartaSans-Medium.woff2') format('woff2'),
+       url('./PlusJakartaSans-Medium.woff') format('woff'),
+       url('./PlusJakartaSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-MediumItalic';
+  src: url('./PlusJakartaSans-MediumItalic.woff2') format('woff2'),
+       url('./PlusJakartaSans-MediumItalic.woff') format('woff'),
+       url('./PlusJakartaSans-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-SemiBold';
+  src: url('./PlusJakartaSans-SemiBold.woff2') format('woff2'),
+       url('./PlusJakartaSans-SemiBold.woff') format('woff'),
+       url('./PlusJakartaSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-SemiBoldItalic';
+  src: url('./PlusJakartaSans-SemiBoldItalic.woff2') format('woff2'),
+       url('./PlusJakartaSans-SemiBoldItalic.woff') format('woff'),
+       url('./PlusJakartaSans-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-Bold';
+  src: url('./PlusJakartaSans-Bold.woff2') format('woff2'),
+       url('./PlusJakartaSans-Bold.woff') format('woff'),
+       url('./PlusJakartaSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-BoldItalic';
+  src: url('./PlusJakartaSans-BoldItalic.woff2') format('woff2'),
+       url('./PlusJakartaSans-BoldItalic.woff') format('woff'),
+       url('./PlusJakartaSans-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-ExtraBold';
+  src: url('./PlusJakartaSans-ExtraBold.woff2') format('woff2'),
+       url('./PlusJakartaSans-ExtraBold.woff') format('woff'),
+       url('./PlusJakartaSans-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PlusJakartaSans-ExtraBoldItalic';
+  src: url('./PlusJakartaSans-ExtraBoldItalic.woff2') format('woff2'),
+       url('./PlusJakartaSans-ExtraBoldItalic.woff') format('woff'),
+       url('./PlusJakartaSans-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-display: swap;
+  font-style: italic;
+}
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 400.0;
+*
+* available axes:
+'wght' (range from 200.0 to 800.0
+*/
+@font-face {
+  font-family: 'PlusJakartaSans-Variable';
+  src: url('./PlusJakartaSans-Variable.woff2') format('woff2'),
+       url('./PlusJakartaSans-Variable.woff') format('woff'),
+       url('./PlusJakartaSans-Variable.ttf') format('truetype');
+  font-weight: 200 800;
+  font-display: swap;
+  font-style: normal;
+}
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 400.0;
+*
+* available axes:
+'wght' (range from 200.0 to 800.0
+*/
+@font-face {
+  font-family: 'PlusJakartaSans-VariableItalic';
+  src: url('./PlusJakartaSans-VariableItalic.woff2') format('woff2'),
+       url('./PlusJakartaSans-VariableItalic.woff') format('woff'),
+       url('./PlusJakartaSans-VariableItalic.ttf') format('truetype');
+  font-weight: 200 800;
+  font-display: swap;
+  font-style: italic;
+}
+

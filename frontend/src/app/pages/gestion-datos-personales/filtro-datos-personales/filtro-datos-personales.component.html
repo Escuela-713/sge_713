@@ -1,0 +1,51 @@
+<h1 class="datosPersonalesTitle">Filtro de Gestión de Datos Personales</h1>
+<form action="">
+  <div id="curso-division">
+    <div>
+      <label for="curso-select" class="form-label">Selecciona el curso:</label>
+      <select id="curso-select" name="curso" class="form-select">
+        <option value="1ro">1ro</option>
+        <option value="2do">2do</option>
+        <option value="3ro">3ro</option>
+        <option value="4to">4to</option>
+        <option value="5to">5to</option>
+        <option value="6to">6to</option>
+        <option value="7mo">7mo</option>
+      </select>
+    </div>
+    <div>
+      <label for="division-select" class="form-label"
+        >Selecciona la división:</label
+      >
+      <select id="division-select" name="division" class="form-select">
+        <option value="1ra">1ra</option>
+        <option value="2da">2da</option>
+      </select>
+    </div>
+  </div>
+
+  <label for="modalidad-select" class="form-label"
+    >Selecciona la modalidad:</label
+  >
+  <select id="modalidad-select" name="modalidad" class="form-select">
+    <option value="etp">ETP</option>
+    <option value="humanidades">Humanidades</option>
+    <option value="comunicaciones">Comunicaciones</option>
+  </select>
+  <label for="annoSelect" class="form-label">Año:</label>
+
+  <input
+    type="number"
+    min="2018"
+    max="2024"
+    value="2024"
+    class="form-control"
+    q
+    id="annoSelect"
+    placeholder="Recipient's username"
+    aria-label="Recipient's username with two button addons"
+  />
+  <a class="btn btnSave" routerLink="/dashboard/datos-personales"
+    >Filtrar</a
+  >
+</form>

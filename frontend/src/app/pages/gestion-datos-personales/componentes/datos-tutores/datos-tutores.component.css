@@ -1,0 +1,104 @@
+#datosAlumnos {
+    margin: 30px;
+  }
+  h1 {
+    text-align: center;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px;
+  }
+  .heading {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    column-gap: 10px;
+    padding: 10px 10px;
+  }
+  .accordion-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #f7f7f7;
+  }
+  #tutorInfo {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .tutorInfo-child {
+    display: flex;
+    flex-direction: column;
+  }
+  .accordion-button {
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  #formulario-agregar {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #007bff;
+    background-color: #f5f5f5;
+    box-shadow: 2px 2px 5px #888;
+  }
+  #formulario-agregar label,
+  #formulario-agregar input {
+    display: block;
+    margin: 10px 0;
+  }
+  .container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  .popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  .popup.visible {
+    display: block;
+  }
+  .popup-content {
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  .close {
+    color: #777;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .close:hover {
+    color: #000;
+  }
+  .popup-content {
+    background-color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-height: 80%;
+    overflow: auto;
+  }
+  
+.accordion-body {
+  font-size: 1.3rem;
+}

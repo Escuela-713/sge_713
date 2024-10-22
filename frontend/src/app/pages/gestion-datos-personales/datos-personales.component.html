@@ -1,50 +1,64 @@
-<h1>Sistema de Gestión de Datos Personales</h1>
-<!-- Tabla de datos de alumnos -->
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>DNI</th>
-                <th>CUIL</th>
-                <th>Teléfono</th>
-                <th>Carrera</th>
-                <th>Legajo</th>
-                <th>Fecha de Ingreso</th>
-                <th>Libro de Matriz</th>
-                <th>Fecha de Egreso</th>
-                <th>Localidad</th>
-                <th>Domicilio</th>
-                <th>ID Tutor</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Ejemplo de datos de alumnos -->
-            <tr *ngFor="let item of datostutor">
-                <td>{{item.nombre}}</td>
-                <td>{{item.apellido}}</td>
-                <td>{{item.dni}}</td>
-                <td>{{item.cuil}}</td>
-                <td>{{item.nroTel}}</td>
-                <td>{{item.estadoCivil}}</td>
-                <td>{{item.profesion}}</td>
-                <td>{{item.lugarTrabajo}}</td>
-                <td>{{item.pais}}</td>
-                <td>{{item.localidad}}</td>
-                <td>{{item.barrio}}</td>
-                <td>{{item.calle}}</td>
-                <td>{{item.numero}}</td>
-                <td>{{item.id}}</td>
-                <td><button class="editar-alumno">Editar</button></td>
-                <td><button class="eliminar-alumno">Eliminar</button></td>
-            </tr>
-            <!-- Puedes agregar más filas aquí -->
-        </tbody>
-    </table>
+<h1 class="datosPersonalesTitle">Sistema de Gestión de Datos Personales</h1>
+<div id="datosAlumnos">
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item" *ngFor="let item of datostutor">
+      <h2 class="accordion-header" class="heading">
+        <span
+          >{{ item.nombre }}, {{ item.apellido }} {{ item.dni }} -
+          {{ item.curso }}</span
+        >
+        <button type="button" class="btn btnDelete">Eliminar</button>
+        <a
+          routerLink="/dashboard/editar-datos-personales"
+          class="btn btnAdd"
+          >Editar</a
+        >
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#flushCollapse' + item.id"
+          aria-expanded="false"
+          aria-controls="collapseOne"
+        ></button>
+      </h2>
+      <div
+        id="flushCollapse{{ item.id }}"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample"
+      >
 
-    
-    <div class="container">
-        <button routerLink="../editar-datos-personales">Agregar Alumno</button>
+        <div class="accordion-body">
+
+          <div id="alumnoInfo" class="alumnoInfo">
+            <span> <b>Nombre:</b> {{ item.nombre }} </span>
+            <span> <b>Apellido:</b> {{ item.apellido }} </span>
+            <span> <b>DNI:</b> {{ item.dni }} </span>
+            <span> <b>Telefono:</b> {{ item.telefono }} </span>
+            <span> <b>Cuil:</b> {{ item.cuil }} </span>
+            <span> <b>Legajo:</b> {{ item.legajo }} </span>
+            <span> <b>Fecha de nacimiento:</b> {{ item.fechaNac }} </span>
+          </div>
+
+          <div id="tutorInfo" class="tutorInfo">
+            <h3>Tutores</h3>
+            <div *ngFor="let tutor of item['tutores']">
+              <div class="tutorInfo-child">
+                <b>{{ tutor.nombre }}, {{ tutor.apellido }}</b>
+                <span><b>DNI</b>: {{ tutor.dni }}</span>
+                <span><b>Telefono</b>: {{ tutor.telefono }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
+    </div>
+  </div>
+  <div class="container">
+    <button routerLink="../editar-datos-personales" class="btn btnSave">
+      Agregar Alumno
+    </button>
+  </div>
+</div>

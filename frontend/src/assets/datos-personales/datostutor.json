@@ -1,40 +1,56 @@
 {
-    "tutor": [
-        {
-            "id": "1",
-            "nombre": "Juan",
-            "apellido": "Perez",
-            "dni": "23544342",
-            "cuil": "20-23544342-1",
-            "nroTel": "2945-4327443",
-            "estadoCivil": "Casado",
-            "profesion": "Docente",
-            "lugarTrabajo": "Colegio Salesiano",
-            "pais": "Argentina",
-            "provincia": "Chubut",
-            "localidad": "Esquel",
-            "barrio": "Sargento Cabral",
-            "calle": "Pampas",
-            "numero": "234"
-        },
-        
-            {
-                "id": "2",
-                "nombre": "Andrea",
-                "apellido": "Sanchez",
-                "DNI": "32143444",
-                "CUIL": "20-2143444-1",
-                "nroTel": "2945-223311",
-                "estadoCivil": "Soltera",
-                "profesion": "Odontóloga",
-                "lugarTrabajo": "Clínica Los Alerces",
-                "pais": "Argentina",
-                "provincia": "Chubut",
-                "localidad": "Esquel",
-                "barrio": "Malvinas",
-                "calle": "Ayún",
-                "numero": "321"
-            }
-        
-        ]
+  "tutor": [
+    {
+      "id": "1",
+      "nombre": "Diego",
+      "apellido": "Perez",
+      "DNI": "23544342",
+      "cuil": "20-23544342-1",
+      "nroTel": "2945-4327443",
+      "estadoCivil": "Casado",
+      "profesion": "Docente",
+      "lugarTrabajo": "Colegio Salesiano",
+      "pais": "Argentina",
+      "provincia": "Chubut",
+      "localidad": "Esquel",
+      "barrio": "Sargento Cabral",
+      "calle": "Pampas",
+      "numero": "234"
+    },
+
+    {
+      "id": "2",
+      "nombre": "Andrea",
+      "apellido": "Sanchez",
+      "DNI": "32143444",
+      "CUIL": "20-2143444-1",
+      "nroTel": "2945-223311",
+      "estadoCivil": "Soltera",
+      "profesion": "Odontóloga",
+      "lugarTrabajo": "Clínica Los Alerces",
+      "pais": "Argentina",
+      "provincia": "Chubut",
+      "localidad": "Esquel",
+      "barrio": "Malvinas",
+      "calle": "Ayún",
+      "numero": "321"
+    },
+    {
+      "id": "3",
+      "nombre": "Juancito",
+      "apellido": "Gonzalez",
+      "DNI": "42253812",
+      "CUIL": "20-42253812-1",
+      "nroTel": "2945-123456",
+      "estadoCivil": "Casadete",
+      "profesion": "Odontóloga",
+      "lugarTrabajo": "Clínica Los Alerces",
+      "pais": "Argentina",
+      "provincia": "Chubut",
+      "localidad": "Esquel",
+      "barrio": "Malvinas",
+      "calle": "Ayún",
+      "numero": "321"
+    }
+  ]
 }

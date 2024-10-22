@@ -1,0 +1,30 @@
+section {
+    & .homeImg {
+        max-height: 70vh;
+        width: 100%;
+        object-fit: cover;
+        border-bottom: solid 5px var(--color1);
+    }
+    & .container {
+        margin: 2% auto;
+        max-width: 90%;
+        & .card {
+            height: 100%;
+            & img {
+                height: 75%;
+            }
+            & .card-body {
+                font-family: var(--font1);
+                h3 {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                }
+                & .card-text {
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+}

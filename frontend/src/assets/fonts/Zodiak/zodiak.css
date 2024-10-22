@@ -1,0 +1,168 @@
+/**
+* @license
+*
+* Font Family: Zodiak
+* Designed by: Jérémie Hornus, Gaetan Baehr, Jean-Baptiste Morizot, Alisa Nowak, Theo Guillard
+* URL: https://www.fontshare.com/fonts/zodiak
+* © 2024 Indian Type Foundry
+*
+* Zodiak Thin 
+* Zodiak ThinItalic 
+* Zodiak Light 
+* Zodiak LightItalic 
+* Zodiak Regular 
+* Zodiak Italic 
+* Zodiak Bold 
+* Zodiak BoldItalic 
+* Zodiak Extrabold 
+* Zodiak ExtraboldItalic 
+* Zodiak Black 
+* Zodiak BlackItalic 
+* Zodiak Variable (Variable font)
+* Zodiak VariableItalic (Variable font)
+
+*
+*/
+@font-face {
+  font-family: 'Zodiak-Thin';
+  src: url('./Zodiak-Thin.woff2') format('woff2'),
+       url('./Zodiak-Thin.woff') format('woff'),
+       url('./Zodiak-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Zodiak-ThinItalic';
+  src: url('./Zodiak-ThinItalic.woff2') format('woff2'),
+       url('./Zodiak-ThinItalic.woff') format('woff'),
+       url('./Zodiak-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Zodiak-Light';
+  src: url('./Zodiak-Light.woff2') format('woff2'),
+       url('./Zodiak-Light.woff') format('woff'),
+       url('./Zodiak-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Zodiak-LightItalic';
+  src: url('./Zodiak-LightItalic.woff2') format('woff2'),
+       url('./Zodiak-LightItalic.woff') format('woff'),
+       url('./Zodiak-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Zodiak-Regular';
+  src: url('./Zodiak-Regular.woff2') format('woff2'),
+       url('./Zodiak-Regular.woff') format('woff'),
+       url('./Zodiak-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Zodiak-Italic';
+  src: url('./Zodiak-Italic.woff2') format('woff2'),
+       url('./Zodiak-Italic.woff') format('woff'),
+       url('./Zodiak-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Zodiak-Bold';
+  src: url('./Zodiak-Bold.woff2') format('woff2'),
+       url('./Zodiak-Bold.woff') format('woff'),
+       url('./Zodiak-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Zodiak-BoldItalic';
+  src: url('./Zodiak-BoldItalic.woff2') format('woff2'),
+       url('./Zodiak-BoldItalic.woff') format('woff'),
+       url('./Zodiak-BoldItalic.ttf') format('truetype');
+  font-weight: 700;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Zodiak-Extrabold';
+  src: url('./Zodiak-Extrabold.woff2') format('woff2'),
+       url('./Zodiak-Extrabold.woff') format('woff'),
+       url('./Zodiak-Extrabold.ttf') format('truetype');
+  font-weight: 800;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Zodiak-ExtraboldItalic';
+  src: url('./Zodiak-ExtraboldItalic.woff2') format('woff2'),
+       url('./Zodiak-ExtraboldItalic.woff') format('woff'),
+       url('./Zodiak-ExtraboldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Zodiak-Black';
+  src: url('./Zodiak-Black.woff2') format('woff2'),
+       url('./Zodiak-Black.woff') format('woff'),
+       url('./Zodiak-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Zodiak-BlackItalic';
+  src: url('./Zodiak-BlackItalic.woff2') format('woff2'),
+       url('./Zodiak-BlackItalic.woff') format('woff'),
+       url('./Zodiak-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-display: swap;
+  font-style: italic;
+}
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 900.0;
+*
+* available axes:
+'wght' (range from 100.0 to 900.0
+*/
+@font-face {
+  font-family: 'Zodiak-Variable';
+  src: url('./Zodiak-Variable.woff2') format('woff2'),
+       url('./Zodiak-Variable.woff') format('woff'),
+       url('./Zodiak-Variable.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: normal;
+}
+/**
+* This is a variable font
+* You can control variable axes as shown below:
+* font-variation-settings: wght 900.0;
+*
+* available axes:
+'wght' (range from 100.0 to 900.0
+*/
+@font-face {
+  font-family: 'Zodiak-VariableItalic';
+  src: url('./Zodiak-VariableItalic.woff2') format('woff2'),
+       url('./Zodiak-VariableItalic.woff') format('woff'),
+       url('./Zodiak-VariableItalic.ttf') format('truetype');
+  font-weight: 100 900;
+  font-display: swap;
+  font-style: italic;
+}
+
