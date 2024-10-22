@@ -1,65 +1,39 @@
-<form action="../../form-result.php" method="post" target="_blank"></form>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">busqueda de carrera</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                <form class="d-flex">
-                    <input class="form-control me-2" type="ingrese la carrera" placeholder="Ingrese la carrera"
-                        aria-label="ingrese la carrera">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
+<h1 class="datosPersonalesTitle"> Gestion de carreras</h1>
+<div id="datosAlumnos">
+    <div class="accordion" id="accordionExample">
+        <div  class="accordion-item">
+            <h2 class="accordion-header" class="heading">
+                <span>ETP</span>
+                <a routerLink="#" class="btn btnAdd">Editar</a>
+                <button type="button" class="btn btnDelete">Eliminar</button>
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flushCollapse'" aria-expanded="false" aria-controls="collapseOne"></button>
+              </h2>
+              <div
+              id="flushCollapse"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+      
+              <div class="accordion-body">
+      
+                <div id="alumnoInfo" class="alumnoInfo">
+                  <span> <b>Nombre:</b>ETP </span>
+                  <span> <b>Titulo:</b> Tec. en Informática Profesional y Personal </span>
+                  <span> <b>Descripcion:</b> Educación Tecnica </span>
+                </div>
+              </div>
             </div>
         </div>
-    </nav>
 
-<header>
+    </div>
+    <div class="container">
+        <button rel="stylesheet" routerLink="../editar-carreras" class="btn btnSave" data-dismiss="modal" >Nuevo</button> 
+        <button routerLink="/dashboard/planes" id="btn-planes" class="btn btn-warning">Planes</button>
 
-</header>
-<div>
-    <form name="frm_carrera" id="frm_carrera">
-        <div class="modal-header">
-            <h4 name="titulo" id="titulo" class="title">Carreras</h4>
-        </div>
-        <div>
-            <a rel="stylesheet" routerLink="../editar-carreras" class="btn btn-success m-1" data-dismiss="modal" >Nuevo</a>
-        </div>
+    </div>
 
-        <div class="col-sm">
-            <table class="table table-bordered table-hover ">
-                <thead>
-                    <tr class="table-primary">
-                        <th>Nombre</th>
-                        <th>Titulo</th>
-                        <th>Descripción</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr *ngFor="let item of carreras">
-                        <th>{{item.nombre}}</th>
-                        <th>{{item.titulo}}</th>
-                        <th>{{item.descripcion}}</th>
-                        <th>
-                            <a rel="stylesheet" routerLink="/dashboard/editar-carreras" class="btn btn-info" data-dismiss="modal" >Editar</a>
-                            <a rel="stylesheet" routerLink="desactivarCarrera" class="btn btn-danger m-1" data-dismiss="modal" >Eliminar</a>
-                            <a rel="stylesheet" routerLink="/dashboard/planes" class="btn btn-warning m-1" data-dismiss="modal" >Planes</a>
-
-                        </th>
-                    </tr>
-              
-                </tbody>
-
-            </table>
-        </div>
-
-
-
+</div>
 
 
 
