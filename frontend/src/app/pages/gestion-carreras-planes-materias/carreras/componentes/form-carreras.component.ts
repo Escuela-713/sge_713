@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 @Component({
   selector: 'app-form-carreras',
   standalone: true,
-  imports: [ReactiveFormsModule,NgIf],
+  imports: [ReactiveFormsModule],
   templateUrl: './form-carreras.component.html',
   styleUrls: ['./form-carreras.component.css']
 })
@@ -13,7 +13,7 @@ export class FormCarreraComponent  {
   carreraForm = this.formBuilder.group({
     nombre:['', [Validators.required]],
     titulo:['', [Validators.required]],
-    carrera:['', [Validators.required]],
+    descripcion:['', [Validators.required]],
   })
 
   constructor(private formBuilder: FormBuilder) { }
@@ -21,9 +21,10 @@ export class FormCarreraComponent  {
   ngOnInit(): void {
   }
 
-  guardarCarrera(){
+  guardarCarrera(event:Event){
     if (this.carreraForm.valid)
     {
+      alert("datos valido")
       //llamar al backend para crear un nuevo plan
       //navegar a la pagina de gestion de planes
     }
@@ -33,16 +34,16 @@ export class FormCarreraComponent  {
     }
   }
 
-  get nombre()
+  get Nombre()
   {
     return this.carreraForm.controls["nombre"];
   }
-  get titulo()
+  get Titulo()
   {
     return this.carreraForm.controls["titulo"];
   }
-  get carrera()
+  get Descripcion()
   {
-    return this.carreraForm.controls["carrera"];
+    return this.carreraForm.controls["descripcion"];
   }
 }
