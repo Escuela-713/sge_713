@@ -1,9 +1,11 @@
+
 <div id="datosAlumnos">
   <div class="accordion" id="accordionExample">
-    <div class="accordion-item">
+    <div class="accordion-item" *ngFor="let item of datostutor">
       <h2 class="accordion-header" class="heading">
         <span
-          >Santiago, Rebequi 45193142 - 7mo etp</span
+          >{{ item.nombre }}, {{ item.apellido }} - {{ item.dni }}
+        </span
         >
         <button type="button" class="btn btnDelete">Eliminar</button>
         <a
@@ -12,41 +14,48 @@
           >Editar</a
         >
         <button
+        
           class="accordion-button collapsed"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#flushCollapse1"
+          [attr.data-bs-target]="'#flushCollapse' + item.id"
           aria-expanded="false"
           aria-controls="collapseOne"
         ></button>
       </h2>
       <div
-        id="flushCollapse1"
+        id="flushCollapse{{ item.id }}"
         class="accordion-collapse collapse"
         aria-labelledby="headingOne"
         data-bs-parent="#accordionExample"
       >
+
         <div class="accordion-body">
-          <div id="tutorInfo">
-            <span> <b>Nombre:</b> Santiago </span>
-            <span> <b>Apellido:</b> Rebequi</span>
-            <span> <b>DNI:</b> 45132512 </span>
-            <span> <b>Telefono:</b> +12 234 456781</span>
-            <span> <b>Cuil:</b> 21451325121</span>
-            <span> <b>Fecha de nacimiento:</b> 12/12/12 </span>
-            <span> <b>Profesion:</b> veterinario </span>
-            <span> <b>Pais:</b> Argentina </span>
-            <span> <b>Provincia:</b> Chubut </span>
-            <span> <b>Ciudad:</b> Esquel </span>
-            <span> <b>Domicilio:</b> Chacabuco 431 </span>
+
+          <div id="alumnoInfo" class="alumnoInfo">
+            <span> <b>Nombre:</b> {{ item.nombre }} </span>
+            <span> <b>Apellido:</b> {{ item.apellido }} </span>
+            <span> <b>DNI:</b> {{ item.dni }} </span>
+            <span> <b>Telefono:</b> {{ item.telefono }} </span>
+            <span> <b>Cuil:</b> {{ item.cuil }} </span>
+            <span> <b>Fecha de nacimiento:</b> {{ item.fechaNac }} </span>
+            <span> <b>Profesion:</b> {{ item.profesion }} </span>
+            <span> <b>Lugar de trabajo:</b> {{ item.lugarTrabajo }} </span>
+            <span> <b>Pais:</b> {{ item.pais }} </span>
+            <span> <b>Provincia</b> {{ item.provincia }} </span>
+            <span> <b>Ciudad:</b> {{ item.ciudad }} </span>
+            <span> <b>Barrio:</b> {{ item.barrio }} </span>
+            <span> <b>Domicilio:</b> {{ item.domicilio }} </span>
+            <span> <b>Estado Civil:</b> {{ item.estadoCivil }} </span>
+          </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
-  <div class="container">
+  <div class="container"> 
     <button routerLink="/dashboard/datos-tutor-editar" class="btn btnSave">
       Agregar Tutor
     </button>
   </div>
-</div>

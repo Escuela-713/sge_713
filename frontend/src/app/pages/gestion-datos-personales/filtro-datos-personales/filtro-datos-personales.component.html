@@ -1,9 +1,10 @@
 <h1 class="datosPersonalesTitle">Filtro de Gestión de Datos Personales</h1>
-<form action="">
+
+<form [formGroup]="filter">
   <div id="curso-division">
     <div>
       <label for="curso-select" class="form-label">Selecciona el curso:</label>
-      <select id="curso-select" name="curso" class="form-select">
+      <select id="curso-select" name="curso" class="form-select" formControlName="curso">
         <option value="1ro">1ro</option>
         <option value="2do">2do</option>
         <option value="3ro">3ro</option>
@@ -17,7 +18,7 @@
       <label for="division-select" class="form-label"
         >Selecciona la división:</label
       >
-      <select id="division-select" name="division" class="form-select">
+      <select id="division-select" name="division" class="form-select" formControlName="division">
         <option value="1ra">1ra</option>
         <option value="2da">2da</option>
       </select>
@@ -27,22 +28,21 @@
   <label for="modalidad-select" class="form-label"
     >Selecciona la modalidad:</label
   >
-  <select id="modalidad-select" name="modalidad" class="form-select">
-    <option value="etp">ETP</option>
+  <select id="modalidad-select" name="modalidad" class="form-select" formControlName="modalidad">
+    <option value="ETP">ETP</option>
     <option value="humanidades">Humanidades</option>
     <option value="comunicaciones">Comunicaciones</option>
+    <option value="ESB">ESB</option>
   </select>
   <label for="annoSelect" class="form-label">Año:</label>
 
-  <input
+  <input formControlName="year"
     type="number"
     min="2018"
     max="2024"
     value="2024"
     class="form-control"
     q
-    id="annoSelect"
-    placeholder="Recipient's username"
     aria-label="Recipient's username with two button addons"
   />
   <a class="btn btnSave" routerLink="/dashboard/datos-personales"
