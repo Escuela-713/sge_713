@@ -1,3 +1,8 @@
 .container {
     padding-bottom: 2%;
 }
+.datosPersonalesTitle {
+    text-transform: uppercase;
+    padding: 0;
+    margin: 1% auto 2%;
+  }

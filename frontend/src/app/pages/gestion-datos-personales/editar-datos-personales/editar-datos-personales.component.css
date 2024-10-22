@@ -1,10 +1,18 @@
 .seccion {
   padding: 2% 0;
 }
-
+h1 {
+  text-transform: uppercase;
+  padding: 0;
+  margin: 1% auto 2%;
+}
+nav {
+  max-width: 80%;
+  margin: auto;
+}
 .nav-link {
-  background-color: var(--color-2);
-  color: var(--color-4);
-  font-size: 1.5rem;
+  background-color: var(--color3);
+  color: var(--color2);
+  font-size: 1.3rem;
   font-weight: 700;
 }
