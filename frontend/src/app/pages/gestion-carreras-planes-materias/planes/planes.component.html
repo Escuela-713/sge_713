@@ -1,33 +1,38 @@
-<a rel="stylesheet" routerLink="/dashboard/editar-planes" class="btn btn-success m-1" data-dismiss="modal">Nuevo</a>
-<div class="col-sm">
-    <table class="table table-bordered table-hover ">
-        <thead>
-            <tr class="table-primary">
-                <th>Nombre</th>
-                <th>Estado</th>
-                <th>Horas Catedras</th>
-                <th>Horas Reloj</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of planes" >
-                <th>{{item.plan}}</th>
-                <th>{{item.estado}}</th>
-                <th>{{item.hsCatedra}}</th>
-                <th>{{item.hsReloj}}</th>
-                <th>
+<h1 class="datosPersonalesTitle"> Gestion de planes</h1>
+<div id="datosAlumnos">
+    <div class="accordion" id="accordionExample">
+        <div  class="accordion-item">
+            <h2 class="accordion-header" class="heading">
+                <span>2023</span>
+                <a routerLink="#" class="btn btnAdd">Editar</a>
+                <button type="button" class="btn btnDelete">Eliminar</button>
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flushCollapse'" aria-expanded="false" aria-controls="collapseOne"></button>
+              </h2>
+              <div
+              id="flushCollapse"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+      
+              <div class="accordion-body">
+      
+                <div id="alumnoInfo" class="alumnoInfo">
+                  <span> <b>Nombre:</b>2023</span>
+                  <span> <b>Estado:</b> Activo</span>
+                  <span> <b>Horas Catedras:</b> 2 </span>
+                  <span> <b>Horas Reloj anuales:</b> 230 </span>
+                </div>
+              </div>
+            </div>
+        </div>
 
-                    <a rel="stylesheet" routerLink="/dashboard/editar-planes" class="btn btn-info m-1"
-                        data-dismiss="modal">Editar</a>
-                    <a rel="stylesheet" routerLink="desactivarPlan" class="btn btn-danger m-1"
-                        data-dismiss="modal">Eliminar</a>
-                    <a rel="stylesheet" routerLink="/dashboard/materias" class="btn btn-warning m-1"
-                        data-dismiss="modal">Materias</a>
-                </th>
+    </div>
+    <div class="container">
+        <button rel="stylesheet" routerLink="../editar-carreras" class="btn btnSave" data-dismiss="modal" >Nuevo</button> 
+        <button routerLink="/dashboard/materias" class="btn btn-warning">Mateiras</button>
+        
+    </div>
 
-            </tr>
-     
-        </tbody>
-
-    </table>
 </div>
+

@@ -3,20 +3,10 @@
     <div class="accordion" id="accordionExample">
         <div  class="accordion-item">
             <h2 class="accordion-header" class="heading">
-                <span>ETP</span
-                >
+                <span>ETP</span>
                 <a routerLink="#" class="btn btnAdd">Editar</a>
-                <a routerLink="/dashboard/planes" class="btn btn-warning" >Planes</a>
                 <button type="button" class="btn btnDelete">Eliminar</button>
-                
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  [attr.data-bs-target]="'#flushCollapse'"
-                  aria-expanded="false"
-                  aria-controls="collapseOne"
-                ></button>
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flushCollapse'" aria-expanded="false" aria-controls="collapseOne"></button>
               </h2>
               <div
               id="flushCollapse"
@@ -39,11 +29,11 @@
     </div>
     <div class="container">
         <button rel="stylesheet" routerLink="../editar-carreras" class="btn btnSave" data-dismiss="modal" >Nuevo</button> 
+        <button routerLink="/dashboard/planes" id="btn-planes" class="btn btn-warning">Planes</button>
+
     </div>
 
 </div>
-
-
 
 
 

@@ -41,6 +41,10 @@
   .container {
     text-align: center;
     margin-top: 20px;
+    gap: 15px;
+    display: flex;
+    margin: 20px auto;
+    justify-content: center;
   }
   .accordion-body {
     font-size: 1.3rem;
