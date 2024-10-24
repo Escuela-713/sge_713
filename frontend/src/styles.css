@@ -13,6 +13,9 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    color: var(--color2);
+    font-family: var(--font1);
+    font-weight: 500;
 }
 html, body {
     height: 100%;
@@ -25,8 +28,17 @@ body {
     letter-spacing: 1px;
     position: relative;
 }
-h1, h2, span {
-    font-family: var(--font1);
+h1, h2, h3, span, a, p, i {
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+label {
+    font-size: 1.5rem;
+}
+svg {
+    fill: var(--color3);
+    height: 2rem;
 }
 /* H1 USADO EN DATOS PERSONALES */
 .datosPersonalesTitle {
@@ -38,8 +50,13 @@ h1, h2, span {
 .btnSave {
     background-color: var(--color3);
     border: solid 3px var(--color2);
+    text-transform: uppercase;
     font-size: 1rem;
     font-weight: 900;
+    margin: auto;
+    display: block;
+    max-width: max-content;
+    padding: .5% 2%;
     &:hover {
         background-color: var(--color2);
         color: var(--color3);
@@ -48,76 +65,24 @@ h1, h2, span {
 }
 /* BOTON USADO EN GESTION DE DATOS PERSONALES */
 .btnDelete {
-    background-color: none;
-    border: solid 3px red;
-    color: red;
-    font-weight: 900;
+    background-color: var(--color3);
+    border: solid 3px var(--color1);
+    color: var(--color1);
+    font-weight: 700;
     &:hover {
-      background-color: red;
-      color: var(--color3);
+        background-color: var(--color1);
+        color: var(--color3);
     }
   }
 /* BOTON USADO EN GESTION DE DATOS PERSONALES */
 .btnAdd {
-    border: solid 3px green;
     background-color: green;
+    border: solid 3px green;
     color: var(--color3);
-    font-weight: 900;
+    font-weight: 700;
     &:hover{
-      background-color: green;
-      color: var(--color2);
+      background-color: var(--color3);
+      color: green;
+      border: solid 3px green;
     }
 }
-
-/* #guardar {
-    background-color: #4CAF50;
-    color: white; 
-    padding: 10px 20px; 
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    font-size: 16px; 
-    transition: background-color 0.3s; 
-}
-#guardar:hover {
-    background-color: #45a049; 
-}
-
-.ng-valid:not(form).ng-touched {
-    border-left: 5px solid #45a049
-}
-.ng-invalid:not(form).ng-touched {
-    border-left: 5px solid #a94442;
-}
-.ng-valid:not(form).ng-touched {
-    border-left: 5px solid #42A948;
-}
-.ng-invalid:not(form).ng-touched {
-    border-left: 5px solid #a94442;
-} */
-
-/* filtro 
-form {
-    max-width: 1320px;
-    font-weight: 500;
-    margin: 50px auto;
-    padding: 20px 10px;
-    & label {
-      font-size: 1.5rem;
-    }
-  }
-  select {
-    margin-bottom: 15px;
-  }
-  input {
-    margin-bottom: 20px;
-  }
-  #curso-division {
-    display: flex;
-    gap: 10px;
-    width: 100%;
-  }
-  #curso-division > div {
-    width: 100%;
-  }
-*/

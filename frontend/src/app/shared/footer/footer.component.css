@@ -1,21 +1,10 @@
-* {
-    padding: 0;
-    margin: 0;
-    font-family: var(--font2);
-}
 footer {
     height: 80px;
-    
-    background-color: var(--color2);
-    color: var(--color1);
-    font-size: 1.3rem;
     padding: 0 5%;
-
+    background-color: var(--color2);
     align-items: center;
     & a {
         height: 80%;
-        color: var(--color1);
-        text-decoration: none;
         & img {
             height: 100%;
         }
@@ -24,14 +13,12 @@ footer {
         flex-wrap: nowrap;
         text-wrap: nowrap;
         gap: 20px;
-        & a {
-            text-transform: uppercase;
-            text-decoration: underline;
-            text-underline-offset: 5px;
+        font-size: 1.3rem;
+        & p {
+            color: var(--color3);
         }
     }
     & .navRedes {
-        font-size: 2rem;
         display: flex;
         justify-content: right;
         gap: 20px;
