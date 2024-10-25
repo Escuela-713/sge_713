@@ -14,6 +14,8 @@ import { Router, RouterLink } from '@angular/router';
 })
 export class RegistroComponent {
   form!:FormGroup;
+  errorPassword:boolean=false;
+  errorCuil:boolean=false;
   constructor(private formBuilder: FormBuilder, private router:Router )
   { 
 
@@ -32,18 +34,43 @@ export class RegistroComponent {
 
   }
   
+  onChangeCuil()
+  {
+    if (this.Cuil?.value==this.Cuilconfirmation?.value )
+      {
+        this.errorCuil=false;
+      }
+      else{
+        this.errorCuil=true;
+      }
+  }
+
+onChangePassword()
+{
+
+    if (this.Password?.value==this.Passwordconfirmation?.value)
+    {
+      this.errorPassword=false;
+    }
+    else{
+      this.errorPassword=true;
+    }
+}
+
   onEnviar(event: Event) {
     console.log(this.form.value)
 
     event.preventDefault;
     if (this.form.valid) 
       {
-      alert("Enviar al servidor...")
-      this.router.navigate(["/iniciar-sesion"]);
+        
+          alert("Enviar al servidor...")
+          this.router.navigate(["/iniciar-sesion"]);
     }
     else {
 
 
+      
       this.form.markAllAsTouched();
     }
   }

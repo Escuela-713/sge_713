@@ -46,7 +46,7 @@
       </p>
       }
       }
-      <input class="controls" formControlName="password" type="password" name="correo" id="correo"
+      <input class="controls" (change)="onChangePassword()" formControlName="password" type="password" name="correo" id="correo"
         placeholder="Ingresar Contraseña">
       @if(Password?.errors && Password?.touched)
       {
@@ -63,8 +63,7 @@
       </p>
       }
       }
-
-      <input class="controls" formControlName="passwordconfirmation" type="password" name="correo" id="correo"
+      <input class="controls" (change)="onChangePassword()" formControlName="passwordconfirmation" type="password" name="correo" id="correo"
         placeholder="Confirmar contraseña">
       @if (Passwordconfirmation?.errors && Passwordconfirmation?.touched)
       {
@@ -75,7 +74,13 @@
       </p>
       }
       }
-      <input class="controls" formControlName="cuil" type="number" name="cuil" id="cuil"
+      @else if (errorPassword)
+      {
+        <p class="text-danger">
+          El Password debe ser igual.
+        </p>
+      }
+      <input class="controls" (change)="onChangeCuil()" formControlName="cuil" type="number" name="cuil" id="cuil"
         placeholder="Ingresar cuil/cuit">
       @if (Cuil?.errors && Cuil?.touched)
       {
@@ -86,7 +91,7 @@
       </p>
       }
       }
-      <input class="controls" formControlName="cuilconfirmation" type="number" name="cuil" id="cuil"
+      <input class="controls" (change)="onChangeCuil()" formControlName="cuilconfirmation" type="number" name="cuil" id="cuil"
         placeholder="Confirmar cuil/cuit">
       @if (Cuilconfirmation?.errors && Cuilconfirmation?.touched)
       {
@@ -96,6 +101,12 @@
         La confirmacion del cuil es requerido.
       </p>
       }
+      }
+      @else if (errorCuil)
+      {
+        <p class="text-danger">
+          El Cuil debe ser igual.
+        </p>
       }
       <div class="mb-3 form-check">
         
