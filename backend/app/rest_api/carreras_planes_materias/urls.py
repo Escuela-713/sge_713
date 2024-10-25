@@ -4,4 +4,6 @@ from .views import *
 urlpatterns = [
     path('carrera/', CarreraApiViewSet.as_view()),
     path('plan/', PlanesApiView.as_view()),
+    path('alumnos-filtrado/', AlumnosFiltrado.as_view()),
+    path('filtro/', Filtro.as_view()),
 ]
