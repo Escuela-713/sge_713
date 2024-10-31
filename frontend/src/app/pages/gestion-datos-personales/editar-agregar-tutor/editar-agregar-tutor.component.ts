@@ -23,7 +23,7 @@ export class EditarAgregarTutorComponent {
       calle: ['', Validators.required,],
       nroPiso: [''],
       nroDpto: [''],
-      telefono: [''],
+      telefono: ['', Validators.required],
       mailAlumno: ['', [Validators.required, Validators.email]],
     });
   }
