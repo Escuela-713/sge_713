@@ -37,6 +37,7 @@ class Carrera(models.Model):
     nombre = models.CharField(max_length=45)
     titulo_egreso = models.CharField(max_length=125)
     id_estado = models.IntegerField()
+    descripcion=models.CharField(max_length=255,blank=True, null=True)
 
     class Meta:
         managed = True
@@ -72,6 +73,9 @@ class Localidad(models.Model):
 class Materia(models.Model):
     id_materia = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=45)
+    año= models.IntegerField(null=True)
+    horasCatedrasSemanales= models.IntegerField(null=True)
+    horasRelojAnuales= models.IntegerField(null=True)
     descripcion = models.CharField(max_length=45)
 
     class Meta:
@@ -122,7 +126,9 @@ class Persona(models.Model):
 
 class Plan(models.Model):
     id_plan = models.AutoField(primary_key=True)
-    carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE, db_column='id_carrera')
+    id_carrera = models.ForeignKey(Carrera, on_delete=models.CASCADE, db_column='id_carrera',null=True)
+    nombre= models.CharField(max_length=45)
+    estado= models.BooleanField(null=True)
     horas_catedra = models.IntegerField()
     horas_reloj = models.IntegerField()
 

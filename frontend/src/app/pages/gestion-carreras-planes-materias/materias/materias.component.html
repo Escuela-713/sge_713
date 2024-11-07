@@ -1,36 +1,38 @@
-<a rel="stylesheet" routerLink="/dashboard/editar-materias" class="btn btn-success m-1" data-dismiss="modal" >Nuevo</a>
-    <div class="col-sm">
-        <table class="table table-bordered table-hover ">
-            <thead>
-                <tr class="table-primary">
-                    <th>Nombre</th>
-                    <th>Año</th>
-                    <th>Horas catedras semanales</th>
-                    <th>Horas reloj anuales</th>
-                    <th>Descripción</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <th>......</th>
-                    <th>........</th>
-                    <th>...........</th>
-                    <th>...........</th>
-                    <th>...........</th>
-                    <th>
-                        <a rel="stylesheet" routerLink="/dashboard/editarMaterias" class="btn btn-info m-1" data-dismiss="modal" >Editar</a>
-                        <a rel="stylesheet" routerLink="" class="btn btn-danger m-1" data-dismiss="modal" >Eliminar</a>
-                        <a rel="stylesheet" routerLink="/dashboard/planes" class="btn btn-warning m-1" data-dismiss="modal" >Planes</a>
-                    </th>
-                </tr>
-                <tr>
-                    <th>Matematicas</th>
-                    <th>7mo</th>
-                    <th>2hrs</th>
-                    <th>230hrs</th>
-                    <th>numeros y logaritmos</th>
-                </tr>
-            </tbody>
-        </table>
+    <h1 class="datosPersonalesTitle"> Gestion de Materias</h1>
+    <div id="datosAlumnos">
+        <div class="accordion" id="accordionExample">
+            <div  class="accordion-item">
+                <h2 class="accordion-header" class="heading">
+                    <span>Matematica</span>
+                    <a routerLink="#" class="btn btnAdd">Editar</a>
+                    <button type="button" class="btn btnDelete">Eliminar</button>
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flushCollapse'" aria-expanded="false" aria-controls="collapseOne"></button>
+                  </h2>
+                  <div
+                  id="flushCollapse"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                >
+          
+                  <div class="accordion-body">
+          
+                    <div id="alumnoInfo" class="alumnoInfo">
+                      <span> <b>Materia:</b>Matematica </span>
+                      <span> <b>Año:</b>7mo</span>
+                      <span> <b>Horas catedras semanales:</b> 2 </span>
+                      <span> <b>Horas reloj anuales:</b> 230</span>
+                      <span> <b>Descripcion:</b> Aprendizaje de numeros y demas </span>
+                    </div>
+                  </div>
+                </div>
+            </div>
+    
+        </div>
+        <div class="container">
+            <button rel="stylesheet" routerLink="../editar-carreras" class="btn btnSave" data-dismiss="modal" >Nuevo</button> 
+            <button routerLink="/dashboard/planes" id="btn-planes" class="btn btn-warning">Planes</button>
+    
+        </div>
+    
     </div>
