@@ -35,7 +35,7 @@ export class FormMateriasComponent {
     }
   }
 
-  get NombreDeMateria()
+  get Materia()
   {
     return this.materiasForm.controls["nombre de la materia"];
   }
