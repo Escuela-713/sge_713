@@ -1,0 +1,61 @@
+<h1 class="datosPersonalesTitle">FILTRO DE GESTIÓN DE DATOS ACADEMICOS</h1>
+<form action="">
+  <div id="curso-division">
+    <div>
+      <label for="curso-select" class="form-label">Selecciona el curso:</label>
+      <select id="curso-select" name="curso" class="form-select">
+        <option value="1ro">1ro</option>
+        <option value="2do">2do</option>
+        <option value="3ro">3ro</option>
+        <option value="4to">4to</option>
+        <option value="5to">5to</option>
+        <option value="6to">6to</option>
+        <option value="7mo">7mo</option>
+      </select>
+    </div>
+    <div>
+      <label for="division-select" class="form-label"
+        >Selecciona la división:</label>
+      <select id="division-select" name="division" class="form-select">
+        <option value="1ra">1ra</option>
+        <option value="2da">2da</option>
+      </select>
+    </div>
+  </div>
+
+  <label for="modalidad-select" class="form-label"
+    >Selecciona la modalidad:</label>
+  <select id="modalidad-select" name="modalidad" class="form-select">
+    <option value="etp">ETP</option>
+    <option value="humanidades">Humanidades</option>
+    <option value="comunicaciones">Comunicaciones</option>
+  </select>
+
+  @if (tipo=="calificador")
+  {
+    <label for="modalidad-select" class="form-label"
+    >Selecciona la materia:</label>
+    <select id="materia" name="materia" class="form-select">
+    <option value="Matemática">Matemática</option>
+    <option value="Ingles">Ingles</option>
+    <option value="Lengua">Lengua</option>
+    <option value="Geografía">Geografía</option>
+    <option value="Física">Física</option>
+    <option value="Química">Química</option>
+    </select>
+
+
+  <label for="Instancia" class="form-label">Selecciona la instancia:</label>
+    <select id="instancia" name="instancia" class="form-select">
+      <option value="1er cuatrimestre">1er cuatrimestre</option>
+      <option value="2do cuatrimestre">2do cuatrimestre</option>
+    </select>
+    <a class="btn btnSave" routerLink="/dashboard/datos-academicos/calificador">Filtrar</a>
+  }
+
+  @if (tipo=="boletin")
+  {
+  <a class="btn btnSave" routerLink="/dashboard/datos-academicos/boletin">Filtrar</a>
+  }
+</form>
+
