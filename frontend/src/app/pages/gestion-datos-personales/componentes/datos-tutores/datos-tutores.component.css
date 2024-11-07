@@ -1,4 +1,5 @@
 #datosAlumnos {
+
   margin: 30px;
 }
 .heading {
@@ -45,6 +46,28 @@
 .accordion-body {
   font-size: 1.3rem;
   & .alumnoInfo {
+
+  margin: auto;
+  max-width: 80%;
+}
+h1 {
+  text-transform: uppercase;
+  padding: 0;
+  margin: 1% auto 2%;
+}
+  .heading {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    column-gap: 10px;
+    padding: 10px 10px;
+  }
+  .accordion-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #f7f7f7;
+  }
+  #tutorInfo {
+
     display: grid;
     grid-template-columns: 1fr;
   }
