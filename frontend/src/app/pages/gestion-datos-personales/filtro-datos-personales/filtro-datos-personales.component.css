@@ -1,17 +1,17 @@
+h1 {
+  text-transform: uppercase;
+  padding: 0;
+  margin: 1% auto 2%;
+}
 form {
-  max-width: 1320px;
-  font-weight: 500;
-  margin: 50px auto;
-  padding: 20px 10px;
+  max-width: 50%;
+  margin: 0 auto;
   & label {
     font-size: 1.5rem;
   }
 }
 select {
   margin-bottom: 15px;
-}
-input {
-  margin-bottom: 20px;
 }
 #curso-division {
   display: flex;
@@ -20,4 +20,7 @@ input {
 }
 #curso-division > div {
   width: 100%;
+}
+.cont {
+  margin: 1% auto 2%;
 }

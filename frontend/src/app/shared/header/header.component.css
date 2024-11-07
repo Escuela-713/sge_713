@@ -1,28 +1,25 @@
 header {
     background-color: var(--color1);
-    font-family: var(--font2);
-    color: var(--color3);
-    height: 100px;
+    height: 80px;
     position: relative;
     padding: 5px 0;
-
     & .divCenter {
-        width: 80%;
+        width: 90%;
         height: 100%;
         margin: auto;
         text-align: center;
         align-items: center;
         & a {
             height: 100%;
+            color: var(--color3);
             & img {
                 height: 100%;
             }
         }
         & nav {
             & a {
-                color: var(--color3);
                 font-weight: 500;
-                font-size: 1.5rem;
+                font-size: 1.3rem;
                 text-decoration: none;
                 text-transform: uppercase;
                 &:hover {
@@ -38,16 +35,18 @@ header {
                         & a:hover {
                             background-color: var(--color3);
                             color: var(--color2);
+                            text-decoration: none;
                         }
                     }
                 }
             }
         }
     }
-    & i {
+    svg {
         position: absolute;
         right: 2%;
-        top: 25%;
-        font-size: 3rem;
+        top: 20%;
+        fill: var(--color3);
+        height: 3rem;
     }
 }
