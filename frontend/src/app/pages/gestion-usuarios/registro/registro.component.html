@@ -1,112 +1,112 @@
-<div class="registro">
+<div>
   <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
     <section class="form-register" >
       <h4>Formulario Registro</h4>
-      <input class="controls" formControlName="name" type="text" name="nombres" id="nombres" placeholder="Nombres">
+      <input class="form-control mb-2" formControlName="name" type="text" name="nombres" id="nombres" placeholder="Nombres">
       @if (Name?.errors && Name?.touched)
       {
       @if (Name?.hasError('required'))
       {
-      <p class="text-danger">
+      <div class="text-danger">
         El nombre es requerido.
-      </p>
+      </div>
       }
       }
-      <input class="controls" formControlName="surname" type="text" name="apellidos" id="apellidos"
+      <input class="form-control mb-2" formControlName="surname" type="text" name="apellidos" id="apellidos"
         placeholder="Apellidos">
       @if (Surname?.errors && Surname?.touched)
       {
       @if (Surname?.hasError('required'))
       {
-      <p class="text-danger">
+      <div class="text-danger">
         El apellido es requerido.
-      </p>
+      </div>
       }
       @else if (Surname?.hasError('surname'))
       {
-      <p class="text-danger">
+      <div class="text-danger">
         El formato del email debe ser válido.
-      </p>
+      </div>
       }
       }
-      <input class="controls" formControlName="email" type="email" name="correo" id="correo"
+      <input class="form-control mb-2" formControlName="email" type="email" name="correo" id="correo"
         placeholder="Ingresar Correo electronico">
       @if (Email?.errors && Email?.touched)
       {
       @if (Email?.hasError('required'))
       {
-      <p class="text-danger">
+      <div class="text-danger">
         El email es requerido.
-      </p>
+      </div>
       }
       @else if (Email?.hasError('email'))
       {
-      <p class="text-danger">
+      <div class="text-danger">
         El formato del email debe ser válido.
-      </p>
+      </div>
       }
       }
-      <input class="controls" (change)="onChangePassword()" formControlName="password" type="password" name="correo" id="correo"
+      <input class="form-control mb-2" (change)="onChangePassword()" formControlName="password" type="password" name="correo" id="correo"
         placeholder="Ingresar Contraseña">
       @if(Password?.errors && Password?.touched)
       {
       @if(Password?.hasError('required'))
       {
-      <p class="text-danger">
+      <div class="text-danger">
         El Password es requerido.
-      </p>
+      </div>
       }
       @else if (Password?.hasError('minlength') )
       {
-      <p class="text-danger">
+      <div class="text-danger">
         El Password requiere como mínimo 8 caracteres.
-      </p>
+      </div>
       }
       }
-      <input class="controls" (change)="onChangePassword()" formControlName="passwordconfirmation" type="password" name="correo" id="correo"
+      <input class="form-control mb-2" (change)="onChangePassword()" formControlName="passwordconfirmation" type="password" name="correo" id="correo"
         placeholder="Confirmar contraseña">
       @if (Passwordconfirmation?.errors && Passwordconfirmation?.touched)
       {
       @if (Passwordconfirmation?.hasError('required'))
       {
-      <p class="text-danger">
+      <div class="text-danger">
         La confirmacion del password es requerida.
-      </p>
+      </div>
       }
       }
       @else if (errorPassword)
       {
-        <p class="text-danger">
+        <div class="text-danger">
           El Password debe ser igual.
-        </p>
+        </div>
       }
-      <input class="controls" (change)="onChangeCuil()" formControlName="cuil" type="number" name="cuil" id="cuil"
+      <input class="form-control mb-2" (change)="onChangeCuil()" formControlName="cuil" type="number" name="cuil" id="cuil"
         placeholder="Ingresar cuil/cuit">
       @if (Cuil?.errors && Cuil?.touched)
       {
       @if (Cuil?.hasError('required'))
       {
-      <p class="text-danger">
+      <div class="text-danger">
         El cuil es requerido.
-      </p>
+      </div>
       }
       }
-      <input class="controls" (change)="onChangeCuil()" formControlName="cuilconfirmation" type="number" name="cuil" id="cuil"
+      <input class="form-control mb-2" (change)="onChangeCuil()" formControlName="cuilconfirmation" type="number" name="cuil" id="cuil"
         placeholder="Confirmar cuil/cuit">
       @if (Cuilconfirmation?.errors && Cuilconfirmation?.touched)
       {
       @if (Cuilconfirmation?.hasError('required'))
       {
-      <p class="text-danger">
+      <div class="text-danger">
         La confirmacion del cuil es requerido.
-      </p>
+      </div>
       }
       }
       @else if (errorCuil)
       {
-        <p class="text-danger">
+        <div class="text-danger">
           El Cuil debe ser igual.
-        </p>
+        </div>
       }
       <div class="mb-3 form-check">
         

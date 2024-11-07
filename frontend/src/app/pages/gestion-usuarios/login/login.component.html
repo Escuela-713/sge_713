@@ -1,32 +1,32 @@
 <div class="login">
   <form class="form-login" [formGroup]="form" (ngSubmit)="onEnviar($event)">
     <h4>Inicio De Sesion</h4>
-    <input formControlName="cuil" class="controls" type="text" name="nombres" id="nombres"
+    <input formControlName="cuil" class="form-control mb-2" type="text" name="nombres" id="nombres"
       placeholder="Ingrese su Cuit" />
     @if (Cuil?.errors && Cuil?.touched)
     {
     @if (Cuil?.hasError('required'))
     {
-    <p class="text-danger">
+    <div class="text-danger">
       El Cuil es requerido.
-    </p>
+    </div>
     }
     }
-    <input formControlName="password" class="controls" type="password" name="apellidos" id="apellidos"
+    <input formControlName="password" class="form-control mb-2" type="password" name="apellidos" id="apellidos"
       placeholder="Ingrese su Contraseña" />
     @if(Password?.errors && Password?.touched)
     {
     @if(Password?.hasError('required'))
     {
-    <p class="text-danger">
+    <div class="text-danger">
       El Password es requerido.
-    </p>
+    </div>
     }
     @else if (Password?.hasError('minlength') )
     {
-    <p class="text-danger">
+    <div class="text-danger">
       El Password requiere como mínimo 8 caracteres.
-    </p>
+    </div>
     }
     }
 

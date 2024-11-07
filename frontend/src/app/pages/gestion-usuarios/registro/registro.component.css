@@ -1,29 +1,18 @@
-.registro{
-    background-color: #A51C30;   
 
-}
 .form-register {
   
     width: 500px;
-    background-color:rgba(255, 255, 255, 0.25);
     padding: 50px;
     margin: auto;
-    border-radius: 50px;
-    font-family: 'calibri';
-    color: white;
-    transition: 0.5s;
-    border: 1px solid white;
-    box-shadow: 7px 13px 37px white;
-    backdrop-filter: blur(10px);
+
   }
   .form-register h4 {
-    font-size: 22px;
+
     margin-bottom: 20px;
   }
 ::placeholder{
     color: black;
 }  
-
   .controls {
     width: 100%;
     background: transparent;
@@ -35,7 +24,6 @@
     font-size: 18px;
     color: black;
   }
-  
   .form-register p {
     height: 40px;
     text-align: center;
