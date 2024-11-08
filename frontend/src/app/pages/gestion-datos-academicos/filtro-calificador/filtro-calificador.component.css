@@ -1,3 +1,28 @@
+form {
+    width: 70%; /* Ajusta el ancho según tus necesidades */
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+  }
+
+  
+  .form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px; /* Espacio entre selects */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }  
+.h1 {
+    text-align: center;
+    width: 50%;
+}
 .btn {
     margin-top: 25px; 
     margin-bottom: 25px; 
