@@ -1,26 +1,6 @@
-footer {
-    height: 80px;
-    padding: 0 5%;
-    background-color: var(--color2);
-    align-items: center;
-    & a {
-        height: 80%;
-        & img {
-            height: 100%;
-        }
-    }
-    & .navPages {
-        flex-wrap: nowrap;
-        text-wrap: nowrap;
-        gap: 20px;
-        font-size: 1.3rem;
-        & p {
-            color: var(--color3);
-        }
-    }
-    & .navRedes {
-        display: flex;
-        justify-content: right;
-        gap: 20px;
+.brand {
+    height: 40px;
+    & img {
+        height: 100%;
     }
 }

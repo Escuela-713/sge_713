@@ -1,22 +1,25 @@
-<nav class="homeNav">
-  <div class="divCenter row">
-    <nav class="col row">
-      <li class="col dropdown">
-        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Datos Academicos</a>
+<nav class="p-3 bg-dark text-white">
+  <div class="container">
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-2">
+
+      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
+        <a class="dropdown-toggle px-2 text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Datos Academicos</a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" routerLink="/dashboard/analitico">Analitico</a></li>
           <li><a class="dropdown-item" routerLink="/dashboard/datos-academicos/calificador">Calificador</a></li>
         </ul>
       </li>
-      <li class="col dropdown">
-        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Datos Materias</a>
+
+      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
+        <a class="dropdown-toggle px-2 text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Datos Materias</a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" routerLink="/dashboard/carreras">Carreras</a></li>
           <li><a class="dropdown-item" routerLink="/dashboard/materias">Materias</a></li>
           <li><a class="dropdown-item" routerLink="/dashboard/planes">Planes</a></li>
         </ul>
       </li>
-      <a class="col" routerLink="/dashboard/filtro">Datos Personales</a>
-    </nav>
+
+      <a class="text-end px-2 text-white" routerLink="/dashboard/filtro">Datos Personales</a>
+    </div>
   </div>
 </nav>
