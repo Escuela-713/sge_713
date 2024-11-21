@@ -10,17 +10,4 @@ class PlanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Plan
         fields = '__all__'
-class ALumnosSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Alumno
-        fields = '__all__'
-
-class CursoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Curso
-        fields = '__all__'
     
-class CareraSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Carrera
-        fields = '__all__'        
