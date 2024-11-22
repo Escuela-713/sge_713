@@ -1,0 +1,13 @@
+h1 {
+    text-transform: uppercase;
+    padding: 0%;
+    margin: 1% auto 2%;
+}
+.row .col-2.text-center {
+    text-align: right;
+    margin-left: auto;
+}
+.table th  {
+    background-color: #d3d3d3;
+    font-weight: bold;
+}

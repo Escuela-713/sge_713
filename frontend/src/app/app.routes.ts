@@ -12,12 +12,13 @@ import { EditarDatosPersonalesComponent } from './pages/gestion-datos-personales
 import { DatosAcademicosComponent } from './pages/gestion-datos-academicos/datos-academicos.component';
 import { AnaliticoComponent } from './pages/gestion-datos-academicos/analitico/analitico.component';
 import { CalificadorComponent } from './pages/gestion-datos-academicos/calificador/calificador.component';
-import { BuscarEstudianteComponent } from './pages/gestion-datos-academicos/componentes/buscar-estudiante/buscar-estudiante.component';
+import { BoletinComponent } from './pages/gestion-datos-academicos/boletin/boletin.component';
 import { LoginComponent } from './pages/gestion-usuarios/login/login.component';
 import { DatosTutoresComponent } from './pages/gestion-datos-personales/componentes/datos-tutores/datos-tutores.component';
 import { EditarAgregarTutorComponent } from './pages/gestion-datos-personales/editar-agregar-tutor/editar-agregar-tutor.component';
 import { FiltroDatosPersonalesComponent } from './pages/gestion-datos-personales/filtro-datos-personales/filtro-datos-personales.component';
 import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.component';
+import { FiltroCalificadorComponent } from './pages/gestion-datos-academicos/filtro-calificador/filtro-calificador.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -42,17 +43,19 @@ export const routes: Routes = [
       },
       { path: 'editar-datos-tutores', component: DatosTutoresComponent },
       {path:"analitico", component:AnaliticoComponent},
+      {path: 'datos-academicos',
+        component:DatosAcademicosComponent,
+        children: [
+          {path: 'boletin', component:BoletinComponent},
+        {path:'filtro/:tipo', component:FiltroCalificadorComponent},
+        ],
+      },
       {
         path: 'datos-academicos',
         component: DatosAcademicosComponent,
         children: [
-          {
-            path: 'calificador',
-            component: CalificadorComponent,
-            children: [
-              { path: 'buscador', component: BuscarEstudianteComponent },
-            ],
-          },
+          {path: 'calificador',component: CalificadorComponent},
+        {path:'filtro/:tipo', component: FiltroCalificadorComponent},
         ],
       },
     ],

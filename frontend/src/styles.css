@@ -48,7 +48,7 @@ svg {
   }
 /* BOTON USADO EN GESTION DE DATOS PERSONALES */
 .btnSave {
-    background-color: var(--color3);
+    background-color: var(#F3F3F1);
     border: solid 3px var(--color2);
     text-transform: uppercase;
     font-size: 1rem;

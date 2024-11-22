@@ -1,0 +1,39 @@
+div > h1, div > h3, div > h5 {
+  text-align: center;
+  margin-top: 15px; 
+  }
+  
+.container-fluid table {
+  width: 90%; 
+  margin-left: auto;
+  margin-right: auto;
+  }
+
+.container-fluid > div:first-child table {
+  width: 70%; 
+  }
+  
+.container-fluid > .col-10 {
+  width: 90%; 
+  margin: 0 auto; 
+  }
+
+  
+
+.container-fluid > div:nth-child(3) table {
+  width: 70%; 
+  margin-left: auto;
+  margin-right: auto;
+  
+  }
+
+  th{
+    background-color: #d3d3d3;
+    font-weight: bold;
+  }
+  
+
+
+
+
+  
