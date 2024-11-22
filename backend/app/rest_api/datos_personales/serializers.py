@@ -11,7 +11,7 @@ class CursoSerializer(serializers.ModelSerializer):
         model = Curso
         fields = '__all__'
     
-class CareraSerializer(serializers.ModelSerializer):
+class CarreraSerializer(serializers.ModelSerializer):
     class Meta:
         model = Carrera
         fields = '__all__'    

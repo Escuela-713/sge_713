@@ -13,4 +13,10 @@ export class DatosPeronalesService {
       './assets/datos-academicos/alumnos-ejemplo-bien-hecho.json'
     );
   }
+  obtenerdatosFiltro(): Observable<any> {
+    return this.http.get('http://127.0.0.1:8000/api/filtro/');
+  }
+  obtenerdatosAlumnos(): Observable<any> {
+    return this.http.get('http://127.0.0.1:8000/api/alumnos-filtrado/');
+  }
 }
