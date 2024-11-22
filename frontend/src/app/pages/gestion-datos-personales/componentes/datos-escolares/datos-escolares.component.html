@@ -1,56 +1,91 @@
 <div class="container">
     <h1>Datos del Alumno</h1>
-    <form id="formularioAlumno">
+    <form [formGroup]="datosEscolaresForm">
         <div class="row mb-3">
             <div class="col-sm-6">
                 <label for="nombre" class="form-label">Nombre/s:</label>
-                <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre" required>
+                <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre" formControlName="nombre">
+                @if (nombre.errors && nombre.touched)
+                {
+                    <div class="text-danger">{{ nombreErrors }}</div>
+                }
             </div>
             <div class="col-sm-6">
                 <label for="apellido" class="form-label">Apellido/s:</label>
-                <input type="text" class="form-control" id="apellido" placeholder="Ingrese el apellido" required>
+                <input type="text" class="form-control" id="apellido" placeholder="Ingrese el apellido" formControlName="apellido">
+                @if (apellido.errors && apellido.touched)
+                {
+                    <div class="text-danger">{{ apellidoErrors }}</div>
+                }
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm-6">
                 <label for="dni" class="form-label">DNI:</label>
-                <input type="number" class="form-control" id="dni" placeholder="Ingrese el DNI" required>
+                <input type="number" class="form-control" id="dni" placeholder="Ingrese el DNI" formControlName="dni">
+                @if (dni.errors && dni.touched)
+                {
+                    <div class="text-danger">{{ dniErrors }}</div>
+                }
             </div>
             <div class="col-sm-6">
                 <label for="cuil" class="form-label">CUIL:</label>
-                <input type="text" class="form-control" id="cuil" placeholder="Ingrese el CUIL" required>
+                <input type="text" class="form-control" id="cuil" placeholder="Ingrese el CUIL" formControlName="cuil">
+                @if (cuil.errors && cuil.touched)
+                {
+                    <div class="text-danger">{{ cuilErrors }}</div>
+                }
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm-6">
                 <label for="genero" class="form-label">Género:</label>
-                <select class="form-select" id="genero" required>
+                <select class="form-select" id="genero" formControlName="genero">
                     <option value="Masculino">Masculino</option>
                     <option value="Femenino">Femenino</option>
                     <option value="No Binario">X</option>
+                    @if (genero.errors && genero.touched)
+                    {
+                        <div class="text-danger">{{ generoErrors }}</div>
+                    }
                 </select>
             </div>
             <div class="col-sm-6">
                 <label for="legajo" class="form-label">Número de Legajo:</label>
-                <input type="number" class="form-control" id="legajo" placeholder="Ingrese el número de legajo" required>
+                <input type="number" class="form-control" id="legajo" placeholder="Ingrese el número de legajo" formControlName="legajo">
+                @if (legajo.errors && legajo.touched)
+                {
+                    <div class="text-danger">{{ legajoErrors }}</div>
+                }
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm-6">
                 <label for="fechaIngreso" class="form-label">Fecha Ingreso:</label>
-                <input type="date" class="form-control" id="fechaIngreso">
+                <input type="date" class="form-control" id="fechaIngreso" formControlName="fechaIngreso">
+                @if (fechaIngreso.errors && fechaIngreso.touched)
+                {
+                    <div class="text-danger">{{ fechaIngresoErrors }}</div>
+                }
             </div>
             <div class="col-sm-6">
                 <label for="libroMatriz" class="form-label">Número de Libro Matriz:</label>
-                <input type="number" class="form-control" id="libroMatriz" placeholder="Ingrese el número de libro matriz" required>
+                <input type="number" class="form-control" id="libroMatriz" placeholder="Ingrese el número de libro matriz" formControlName="nroLibroMatriz">
+                @if (nroLibroMatriz.errors && nroLibroMatriz.touched)
+                {
+                    <div class="text-danger">{{ nroLibroMatrizErrors }}</div>
+                }
             </div>
-        </div>
-        <div class="row mb-3">
+            </div>
             <div class="col-sm-6">
                 <label for="fechaEgreso" class="form-label">Fecha Egreso:</label>
-                <input type="date" class="form-control" id="fechaEgreso">
+                <input type="date" class="form-control" id="fechaEgreso" formControlName="fechaEgreso">
+                @if (fechaEgreso.errors && fechaEgreso.touched)
+                {
+                    <div class="text-danger">{{ fechaEgresoErrors }}</div>
+                }
             </div>
-            <div class="col-sm-6"></div> </div>
+            <div class="col-sm-6"></div>
         <button type="submit" class="btn btnSave">Guardar Alumno</button>
     </form>
 </div>

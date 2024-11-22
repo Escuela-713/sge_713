@@ -2,7 +2,7 @@
         [{"nombre":"E.T.P",
             "titulo":"Tecnico en informatica Profesional y Personal",
             "descripcion":"Educacion tecnologica profesional",
-            "idCarrera": ""
+            "idCarrera": "1"
 
             },
             {"nombre":"Humanidades",
@@ -15,6 +15,11 @@
                 "titulo": "Vachiller con orientacion a Comunicaciones",
                 "descripcion": "educacion con tecnicatura en medios de comunicacion",
                 "idCarrera": "2"
+            },
+            {"nombre": "ESB",
+                "titulo": "",
+                "descripcion": "Ciclo basico",
+                "idCarrera": "4"
             }
         ]      
 }

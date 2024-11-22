@@ -1,22 +1,25 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DatosPeronalesService } from 'src/app/service/datos-personales.service';
+import { TutoresService } from 'src/app/service/tutores.service';
+
 
 @Component({
   selector: 'app-datos-tutores',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NgFor],
   templateUrl: './datos-tutores.component.html',
   styleUrls: ['./datos-tutores.component.css'],
 })
 export class DatosTutoresComponent {
   datostutor: any;
-  constructor(private serviciosge: DatosPeronalesService) {
+  nombre: string = 'hola';
+  constructor(private serviciosge: TutoresService) {
     this.serviciosge.obtenerdatosTutor().subscribe({
       next: (data) => {
-        this.datostutor = data['datosTutor'];
-        console.log('datosTutor');
-        console.log(this.datostutor);
+
+        this.datostutor = data["tutor"];
+        console.log(data)
       },
       error: (err) => {
         alert('Se ha producido un error. Por favor, intente nuevamente.');
