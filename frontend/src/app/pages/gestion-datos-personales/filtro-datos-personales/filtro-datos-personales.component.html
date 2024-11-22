@@ -13,7 +13,12 @@
         <option value="6to">6to</option>
         <option value="7mo">7mo</option>
       </select>
+      @if (curso.errors && curso.touched)
+                    {
+                        <div class="text-danger">{{ cursoErrors }}</div>
+                    }
     </div>
+    
     <div>
       <label for="division-select" class="form-label"
         >Selecciona la división:</label
@@ -22,6 +27,10 @@
         <option value="1ra">1ra</option>
         <option value="2da">2da</option>
       </select>
+      @if (division.errors && division.touched)
+                    {
+                        <div class="text-danger">{{ divisionErrors }}</div>
+                    }
     </div>
   </div>
 
@@ -34,6 +43,10 @@
     <option value="comunicaciones">Comunicaciones</option>
     <option value="ESB">ESB</option>
   </select>
+  @if (modalidad.errors && modalidad.touched)
+                    {
+                        <div class="text-danger">{{ modalidadErrors }}</div>
+                    }
   <label for="annoSelect" class="form-label">Año:</label>
 
   <input formControlName="year"
@@ -45,6 +58,10 @@
     q
     aria-label="Recipient's username with two button addons"
   />
+  @if (year.errors && year.touched)
+                    {
+                        <div class="text-danger">{{ yearErrors }}</div>
+                    }
   <a class="btn btnSave" routerLink="/dashboard/datos-personales"
     >Filtrar</a
   >

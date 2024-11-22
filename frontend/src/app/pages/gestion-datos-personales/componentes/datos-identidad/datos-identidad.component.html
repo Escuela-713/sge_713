@@ -6,21 +6,37 @@
             <div class="col-sm-6">
                 <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
                 <input type="date" class="form-control" id="fechaNacimiento" formControlName="fechaNacimiento">
+                @if (fechaNacimiento.errors && fechaNacimiento.touched)
+                {
+                    <div class="text-danger">{{ fechaNacimientoErrors }}</div>
+                }
             </div>
             <div class="col-sm-6">
                 <label for="provinciaNacimiento" class="form-label">Provincia de Nacimiento:</label>
                 <select class="form-select" id="provinciaNacimiento" formControlName="provinciaNacimiento"></select>
+                @if (provinciaNacimiento.errors && provinciaNacimiento.touched)
+                {
+                    <div class="text-danger">{{ provinciaNacimientoErrors }}</div>
+                }
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm-6">
                 <label for="localidadNacimiento" class="form-label">Localidad de Nacimiento:</label>
                 <input type="text" class="form-control" id="localidadNacimiento" placeholder="Ingrese la localidad" formControlName="localidadNacimiento">
+                @if (localidadNacimiento.errors && localidadNacimiento.touched)
+                {
+                    <div class="text-danger">{{ localidadNacimientoErrors }}</div>
+                }
             </div>
             <div class="col-sm-6">
                 <label for="domicilioPais" class="form-label">País de Domicilio:</label>
                 <select class="form-select" id="domicilioPais" formControlName="paisDomicilio">
                     </select>
+                    @if (paisDomicilio.errors && paisDomicilio.touched)
+                    {
+                        <div class="text-danger">{{ paisDomicilioErrors }}</div>
+                    }
             </div>
         </div>
         <div class="row mb-3">
@@ -28,20 +44,36 @@
                 <label for="domicilioProvincia" class="form-label">Provincia del Domicilio:</label>
                 <select class="form-select" id="domicilioProvincia" formControlName="provinciaDomicilio">
                     </select>
-            </div>
+                    @if (provinciaDomicilio.errors && provinciaDomicilio.touched)
+                    {
+                        <div class="text-danger">{{ provinciaDomicilioErrors }}</div>
+                    }
+                </div>
             <div class="col-sm-6">
                 <label for="domicilioLocalidad" class="form-label">Localidad del Domicilio:</label>
                 <input type="text" class="form-control" id="domicilioLocalidad" placeholder="Ingrese la localidad" formControlName="localidadDomicilio">
+                @if (localidadDomicilio.errors && localidadDomicilio.touched)
+                {
+                    <div class="text-danger">{{ localidadDomicilioErrors }}</div>
+                }
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-sm-6">
                 <label for="domicilioBarrio" class="form-label">Barrio del domicilio:</label>
                 <input type="text" class="form-control" id="domicilioBarrio" placeholder="Ingrese el barrio" formControlName="barrio">
+                @if (barrio.errors && barrio.touched)
+                {
+                    <div class="text-danger">{{ barrioErrors }}</div>
+                }
             </div>
             <div class="col-sm-6">
                 <label for="domicilioBarrio" class="form-label">Calle:</label>
                 <input type="text" class="form-control" id="domicilioBarrio" placeholder="Ingrese la calle" formControlName="calle">
+                @if (calle.errors && calle.touched)
+                {
+                    <div class="text-danger">{{ calleErrors }}</div>
+                }
             </div>
         </div>
         <div class="row mb-3">
@@ -62,6 +94,10 @@
             <div class="col-sm-6">
                 <label for="domicilioPais" class="form-label">Email del alumno:</label>
                 <input type="email" class="form-control" id="emailAlumno" placeholder="Ingrese el email del alumno" formControlName="mailAlumno">
+                @if (mailAlumno.errors && mailAlumno.touched)
+                {
+                    <div class="text-danger">{{ mailAlumnoErrors }}</div>
+                }
             </div>
             
         </div>
