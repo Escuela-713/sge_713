@@ -1,26 +1,18 @@
 .form-login {
   width: 500px;
-  background-color: rgba(255, 255, 255, 0.25);
   padding: 50px;
   margin: auto;
-  border-radius: 50px;
-  font-family: "calibri";
-  color: white;
-  transition: 0.5s;
-  border: 1px solid white;
-  box-shadow: 7px 13px 37px white;
-  backdrop-filter: blur(10px);
+ 
 }
 .form-login h4 {
-  font-size: 22px;
   margin-bottom: 20px;
 }
-::placeholder {
-  color: rgba(240, 236, 236, 0.826);
-}
+::placeholder{
+  color: black;
+}  
 
 .controls {
-  width: 100%;
+  width: 100%;    
   background: transparent;
   padding: 10px;
   border-radius: 4px;

@@ -1,60 +1,53 @@
+
 .form-register {
-  width: 500px;
-  background-color: rgba(255, 255, 255, 0.25);
-  padding: 50px;
-  margin: auto;
-  border-radius: 50px;
-  font-family: "calibri";
-  color: white;
-  transition: 0.5s;
-  border: 1px solid white;
-  box-shadow: 7px 13px 37px white;
-  backdrop-filter: blur(10px);
-}
-.form-register h4 {
-  font-size: 22px;
-  margin-bottom: 20px;
-}
-::placeholder {
-  color: rgba(240, 236, 236, 0.826);
-}
+  
+    width: 500px;
+    padding: 50px;
+    margin: auto;
 
-.controls {
-  width: 100%;
-  background: transparent;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 16px;
-  border: 1px solid black;
-  font-family: "calibri";
-  font-size: 18px;
-  color: black;
-}
+  }
+  .form-register h4 {
 
-.form-register p {
-  height: 40px;
-  text-align: center;
-  font-size: 18px;
-  line-height: 40px;
-  color: white;
-}
-
-.form-register a {
-  color: black;
-  text-decoration: none;
-}
-
-.form-register a:hover {
-  color: black;
-  text-decoration: underline;
-}
-
-.form-register .botons {
-  width: 100%;
-  background: black;
-  border: none;
-  padding: 12px;
-  color: white;
-  margin: 16px 0;
-  font-size: 16px;
-}
+    margin-bottom: 20px;
+  }
+::placeholder{
+    color: black;
+}  
+  .controls {
+    width: 100%;
+    background: transparent;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid black;
+    font-family: 'calibri';
+    font-size: 18px;
+    color: black;
+  }
+  .form-register p {
+    height: 40px;
+    text-align: center;
+    font-size: 18px;
+    line-height: 40px;
+    color:white;
+  }
+  
+  .form-register a {
+    color:black;
+    text-decoration: none;
+  }
+  
+  .form-register a:hover {
+    color: black;
+    text-decoration: underline;
+  }
+  
+  .form-register .botons {
+    width: 100%;
+    background: black;
+    border: none;
+    padding: 12px;
+    color: white;
+    margin: 16px 0;
+    font-size: 16px;
+  }
