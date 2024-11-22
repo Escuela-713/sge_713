@@ -1,18 +1,10 @@
-.login{
-  background-image:url("../../../../assets/imgs/colegio2.jpg");
-  background-repeat: no-repeat;
-  height: 900px;
-  padding-top:50px;
-}
-
 .form-login {
-
   width: 500px;
-  background-color:rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.25);
   padding: 50px;
   margin: auto;
   border-radius: 50px;
-  font-family: 'calibri';
+  font-family: "calibri";
   color: white;
   transition: 0.5s;
   border: 1px solid white;
@@ -23,9 +15,9 @@
   font-size: 22px;
   margin-bottom: 20px;
 }
-::placeholder{
+::placeholder {
   color: rgba(240, 236, 236, 0.826);
-}  
+}
 
 .controls {
   width: 100%;
@@ -34,7 +26,7 @@
   border-radius: 4px;
   margin-bottom: 16px;
   border: 1px solid black;
-  font-family: 'calibri';
+  font-family: "calibri";
   font-size: 18px;
   color: black;
 }
@@ -44,11 +36,11 @@
   text-align: center;
   font-size: 18px;
   line-height: 40px;
-  color:white;
+  color: white;
 }
 
 .form-login a {
-  color:black;
+  color: black;
   text-decoration: none;
 }
 
