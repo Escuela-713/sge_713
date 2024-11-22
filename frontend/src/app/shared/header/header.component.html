@@ -1,20 +1,23 @@
-<header>
-  <div class="divCenter row">
-    <nav class="col row">
-      <a class="col" href="">Contactanos</a>
-      <a class="col" href="">Nosotros</a>
-    </nav>
-    <a class="col-2" href="#"><img src="assets/imgs/brand.svg" alt="Brand"></a>
-    <nav class="col row">
-      <a class="col" href="">Galeria</a>
-      <li class="col dropdown">
-        <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Redes</a>
-        <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="https://www.facebook.com/escuela713/">Facebook</a></li>
-          <li><a class="dropdown-item" href="https://www.instagram.com/laradiodela713/">Instagram</a></li>
-        </ul>
-      </li>
-    </nav>
+<header class="p-3 text-white">
+  <div class="container">
+
+    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+        <a class="col-2 brand" href="#"><img src="assets/imgs/brand.svg" alt="Brand"></a>
+      </a>
+
+      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li><a href="#" class="nav-link px-4 pe-2 text-warning">Home</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">Galeria</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">Nosotros</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">Contactanos</a></li>
+      </ul>
+
+      <div class="text-end">
+        <button type="button" class="btn btn-outline-light me-2" routerLink="/iniciar-sesion">Login</button>
+        <button type="button" class="btn btn-warning" routerLink="/registro">Sign-up</button>
+      </div>
+    </div>
+    
   </div>
-  <a routerLink="/iniciar-sesion"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M399 384.2C376.9 345.8 335.4 320 288 320l-64 0c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z"/></svg></a>
 </header>
