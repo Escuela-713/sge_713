@@ -1,6 +1,8 @@
     <h1 class="datosPersonalesTitle"> Gestion de Materias</h1>
     <div id="datosAlumnos">
         <div class="accordion" id="accordionExample">
+          @for (item of materias; track item.id_materia)
+      {
             <div  class="accordion-item">
                 <h2 class="accordion-header" class="heading">
                     <span>Matematica</span>
@@ -19,7 +21,7 @@
           
                     <div id="alumnoInfo" class="alumnoInfo">
                       <span> <b>Materia:</b>{{item.nombre}}</span>
-                      <span> <b>Año:</b>{{item.año}}</span>
+                      <span> <b>Año:</b>{{item.anio}}</span>
                       <span> <b>Horas catedras semanales:</b>{{item.horasCatedrasSemanales}}</span>
                       <span> <b>Horas reloj anuales:</b>{{item.horasRelojAnuales}}</span>
                       <span> <b>Descripcion:</b>{{item.descripcion}}</span>
@@ -28,7 +30,7 @@
                 </div>
             </div>
     
-        </div>
+      }</div>
         <div class="container">
             <button rel="stylesheet" routerLink="../editar-carreras" class="btn btnSave" data-dismiss="modal" >Nuevo</button> 
             <button routerLink="/dashboard/planes" id="btn-planes" class="btn btn-warning">Planes</button>

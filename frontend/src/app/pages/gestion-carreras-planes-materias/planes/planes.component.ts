@@ -5,13 +5,13 @@ import { PlanesService } from 'src/app/service/planes.service';
 @Component({
   selector: 'app-planes',
   standalone: true,
-  imports: [NgFor, RouterLink],
+  imports: [RouterLink],
   templateUrl: './planes.component.html',
   styleUrls: ['./planes.component.css']
 })
 export class PlanesComponent implements OnInit {
   
-  planes= [];
+  planes:any;
   constructor(private PlanesSevice: PlanesService) { }
 
   ngOnInit(): void {

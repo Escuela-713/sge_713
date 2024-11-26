@@ -2,7 +2,7 @@
     {
         "id_materia": 1,
         "nombre": "desarrollo I",
-        "año": 4,
+        "anio": 4,
         "horasCatedrasSemanales": 5,
         "horasRelojAnuales": 120,
         "descripcion": "introduccion a html,css,bootrsap y javascript"
@@ -10,7 +10,7 @@
     {
         "id_materia": 2,
         "nombre": "lengua",
-        "año": 4,
+        "anio": 4,
         "horasCatedrasSemanales": 5,
         "horasRelojAnuales": 120,
         "descripcion": "literatura y leer cuentos"
@@ -18,7 +18,7 @@
     {
         "id_materia": 3,
         "nombre": "Matematica",
-        "año": 1,
+        "anio": 1,
         "horasCatedrasSemanales": 5,
         "horasRelojAnuales": 120,
         "descripcion": "contar manzanas y ovejas"

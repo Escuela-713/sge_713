@@ -1,6 +1,8 @@
 <h1 class="datosPersonalesTitle"> Gestion de planes</h1>
 <div id="datosAlumnos">
     <div class="accordion" id="accordionExample">
+      @for (item of planes; track item.id_plan)
+      {
         <div  class="accordion-item">
             <h2 class="accordion-header" class="heading">
                 <span>2023</span>
@@ -27,7 +29,7 @@
             </div>
         </div>
 
-    </div>
+      }</div>
     <div class="container">
         <button rel="stylesheet" routerLink="../editar-carreras" class="btn btnSave" data-dismiss="modal" >Nuevo</button> 
         <button routerLink="/dashboard/materias" class="btn btn-warning">Mateiras</button>

@@ -9,7 +9,7 @@ import { MateriasService } from 'src/app/service/materias.service';
   styleUrls: ['./materias.component.css']
 })
 export class MateriasComponent implements OnInit {
-  materias= []
+  materias:any;
 
 
   constructor(private MateriasService: MateriasService) { }

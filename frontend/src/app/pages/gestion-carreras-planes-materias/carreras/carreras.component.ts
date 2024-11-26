@@ -6,7 +6,7 @@ import { CarrerasService } from 'src/app/service/carreras.service';
 @Component({
   selector: 'app-carreras',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [RouterLink],
   templateUrl: './carreras.component.html',
   styleUrls: ['./carreras.component.css']
 })
