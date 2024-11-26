@@ -5,7 +5,7 @@
       {
         <div  class="accordion-item">
             <h2 class="accordion-header" class="heading">
-                <span>2023</span>
+                <span>{{item.nombre}}</span>
                 <a routerLink="#" class="btn btnAdd">Editar</a>
                 <button type="button" class="btn btnDelete">Eliminar</button>
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flushCollapse'" aria-expanded="false" aria-controls="collapseOne"></button>
@@ -31,7 +31,7 @@
 
       }</div>
     <div class="container">
-        <button rel="stylesheet" routerLink="../editar-carreras" class="btn btnSave" data-dismiss="modal" >Nuevo</button> 
+        <button rel="stylesheet" routerLink="../editar-planes" class="btn btnSave" data-dismiss="modal" >Nuevo</button> 
         <button routerLink="/dashboard/materias" class="btn btn-warning">Mateiras</button>
         
     </div>

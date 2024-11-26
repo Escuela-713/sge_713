@@ -11,9 +11,9 @@
                 <input type="text" name="name" id="name" class="form-control p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 " maxlength="45"
                     placeholder="Ingrese aquí el nombre" formControlName="nombre">
                     
-                    @if (Nombre?.errors && Nombre?.touched) {
+                    @if (Nombre.errors && Nombre.touched) {
                         
-                        @if (Nombre?.hasError('required')) 
+                        @if (Nombre.hasError('required')) 
                         { 
                             <p class="text-danger"> El nombre es requerido.</p>                                                                                                                                                                                  
                         }
@@ -26,9 +26,9 @@
                 <input type="text" name="name" id="name" formControlName="titulo" class="form-control p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 " maxlength="45"
                     placeholder="Ingrese aquí el titulo" >
 
-                    @if (Titulo?.errors && Titulo?.touched) {
+                    @if (Titulo.errors && Titulo.touched) {
                         
-                        @if (Titulo?.hasError('required')) 
+                        @if (Titulo.hasError('required')) 
                         { 
                             <p class="text-danger"> El titulo es requerido.</p>                                                                                                                                                                                  
                         }
@@ -41,9 +41,9 @@
                 <input type="text" name="plan" id="plan"  formControlName="descripcion" maxlength="6" class="form-control p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3" placeholder="Ingrese aquí la carrera"
                     placeholder="Ingrese aquí la descripcion">
 
-                    @if (Descripcion?.errors && Descripcion?.touched) {
+                    @if (Descripcion.errors && Descripcion.touched) {
                         
-                        @if (Descripcion?.hasError('required')) 
+                        @if (Descripcion.hasError('required')) 
                         { 
                             <p class="text-danger"> La descripcion es requerida.</p>                                                                                                                                                                                  
                         }
