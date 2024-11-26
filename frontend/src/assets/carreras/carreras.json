@@ -1,21 +1,25 @@
-{"carreras":
-        [{"nombre":"E.T.P",
-            "titulo":"Tecnico en informatica Profesional y Personal",
-            "descripcion":"Educacion tecnologica profesional",
-            "idCarrera": ""
+[
+    {
+        "id_carrera": 1,
+        "nombre": "ETP",
+        "titulo_egreso": "tecnio en informatica profesional y personal",
+        "id_estado": 1,
+        "descripcion": "tecnico "
+    },
+    {
+        "id_carrera": 2,
+        "nombre": "ESB",
+        "titulo_egreso": "ciencias sociales y humanidades",
+        "id_estado": 2,
+        "descripcion": "no hacen nada, puro chatgpt"
+    },
+    {
+        "id_carrera": 3,
+        "nombre": "Comunicaciones",
+        "titulo_egreso": "ciencias de la comunicacion ",
+        "id_estado": 3,
+        "descripcion": "manejan la radio y algo mas"
+    }
+]
 
-            },
-            {"nombre":"Humanidades",
-                "titulo":"vachiller con orientacion a ciencias sociales",
-                "descripcion":"Educacion basica",
-                "idCarrera": "3"
-                
-            },
-            {"nombre": "Comunicaciones",
-                "titulo": "Vachiller con orientacion a Comunicaciones",
-                "descripcion": "educacion con tecnicatura en medios de comunicacion",
-                "idCarrera": "2"
-            }
-        ]      
-}
 

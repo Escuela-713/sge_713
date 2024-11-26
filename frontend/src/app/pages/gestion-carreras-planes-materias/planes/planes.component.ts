@@ -11,15 +11,15 @@ import { PlanesService } from 'src/app/service/planes.service';
 })
 export class PlanesComponent implements OnInit {
   
-  planes:any;
+  planes= [];
   constructor(private PlanesSevice: PlanesService) { }
 
   ngOnInit(): void {
     this.PlanesSevice.obtenerPlanes().subscribe(
       {
         next: (data) => {
-          this.planes=data["planes"];
-          console.log("COMPONENTE PLANES")
+          this.planes=data;
+          console.log(this.planes)
         },
         error:(err)=>{
           alert("se ha producido un error. Por favor, intente nuevamente");

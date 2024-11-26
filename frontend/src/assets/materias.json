@@ -1,44 +1,26 @@
-{
-    "materias":[{
+[
+    {
+        "id_materia": 1,
+        "nombre": "desarrollo I",
+        "año": 4,
+        "horasCatedrasSemanales": 5,
+        "horasRelojAnuales": 120,
+        "descripcion": "introduccion a html,css,bootrsap y javascript"
+    },
+    {
+        "id_materia": 2,
+        "nombre": "lengua",
+        "año": 4,
+        "horasCatedrasSemanales": 5,
+        "horasRelojAnuales": 120,
+        "descripcion": "literatura y leer cuentos"
+    },
+    {
+        "id_materia": 3,
         "nombre": "Matematica",
-        "descripcion": "La matemática es la ciencia deductiva que se dedica al estudio de las propiedades de los entes abstractos y de sus relaciones. Esto quiere decir que las matemáticas operan con números, símbolos, figuras geométricas, etc. La calculadora es un dispositivo muy útil en el ámbito de las matemáticas.",
-        "hsSemanales": "10 horas semanales.",
-        "hsAnual": "100 horas en el año.",
-        "idPlan": "1"
-    },
-    {
-        "nombre": "Historia",
-        "descripcion": "La historia es la ciencia social encargada de estudiar los eventos del pasado de la humanidad a través de distintas metodologías que analizan el contexto social, político, económico, geográfico y psicológico del hombre a través de su entorno.",
-        "hsSemanales": "15 horas semanales.",
-        "hsAnual": "155 horas en el año.",
-        "anio": "2010",
-        "idPlan": "2"
-    },
-    {
-        "nombre": "Practica Profesionalizante",
-        "descripcion":"Se entiende por prácticas profesionalizantes aquellas estrategias y actividades formativas que, como parte de la propuesta curricular, tienen como propósito que los estudiantes consoliden, integren y/o amplíen las capacidades y saberes que se corresponden con el perfil profesional en el que se están formando.",
-        "hsSemanales": "30 horas semanales",
-        "hsAnual": "225 horas en el año.",
-        "anio":"2015",
-        "idPlan": "3"
-    },
-    {
-        "nombre": "Desarrollo",
-        "descripcion": "El desarrollo de software se refiere a un conjunto de actividades informáticas dedicadas al proceso de creación, diseño, despliegue y compatibilidad de software. El software en sí es el conjunto de instrucciones o programas que le dicen a una computadora qué hacer.",
-        "hsSemanales": "4 horas semanales",
-        "hsAnual": "120 horas en el año.",
-        "anio": "2020",
-        "idPlan": "4"
-    },
-    {
-        "nombre": "Lengua",
-        "descripcion": "La lengua es el objeto de estudio de la ciencia lingüística. Es la disciplina encargada de estudiar, analizar y teorizar el conjunto de reglas y principios que interactúan en el funcionamiento de la lengua como sistema. Así como de los procesos comunicativos que tienen lugar gracias a ella.",
-        "hsSemanales": "10 horas semanales.",
-        "hsAnual": "100 horas en el año.",
-        "anio": "2023",
-        "idPlan":"1"
-    
+        "año": 1,
+        "horasCatedrasSemanales": 5,
+        "horasRelojAnuales": 120,
+        "descripcion": "contar manzanas y ovejas"
     }
-
 ]
-}
