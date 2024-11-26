@@ -1,14 +1,26 @@
-{ 
-    "planes": [{
-        "idPlan":"2",
-        "plan":"2023" ,
-        "estado": "activo",
-        "horasCatedra": "80 horas",
-        "horasReloj": "40 horas"
+[
+    {
+        "id_plan": 1,
+        "nombre": "2024",
+        "estado": true,
+        "horas_catedra": 80,
+        "horas_reloj": 55,
+        "id_carrera": 1
+    },
+    {
+        "id_plan": 2,
+        "nombre": "2023",
+        "estado": true,
+        "horas_catedra": 80,
+        "horas_reloj": 55,
+        "id_carrera": 2
+    },
+    {
+        "id_plan": 3,
+        "nombre": "2025",
+        "estado": true,
+        "horas_catedra": 80,
+        "horas_reloj": 55,
+        "id_carrera": 1
     }
-    
 ]
-        
-
-    
-}

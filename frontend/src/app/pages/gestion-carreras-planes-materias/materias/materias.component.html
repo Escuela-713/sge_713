@@ -1,9 +1,11 @@
     <h1 class="datosPersonalesTitle"> Gestion de Materias</h1>
     <div id="datosAlumnos">
         <div class="accordion" id="accordionExample">
+          @for (item of materias; track item.id_materia)
+      {
             <div  class="accordion-item">
                 <h2 class="accordion-header" class="heading">
-                    <span>Matematica</span>
+                    <span>{{item.nombre}}</span>
                     <a routerLink="#" class="btn btnAdd">Editar</a>
                     <button type="button" class="btn btnDelete">Eliminar</button>
                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flushCollapse'" aria-expanded="false" aria-controls="collapseOne"></button>
@@ -18,19 +20,19 @@
                   <div class="accordion-body">
           
                     <div id="alumnoInfo" class="alumnoInfo">
-                      <span> <b>Materia:</b>Matematica </span>
-                      <span> <b>Año:</b>7mo</span>
-                      <span> <b>Horas catedras semanales:</b> 2 </span>
-                      <span> <b>Horas reloj anuales:</b> 230</span>
-                      <span> <b>Descripcion:</b> Aprendizaje de numeros y demas </span>
+                      <span> <b>Materia:</b>{{item.nombre}}</span>
+                      <span> <b>Año:</b>{{item.anio}}</span>
+                      <span> <b>Horas catedras semanales:</b>{{item.horasCatedrasSemanales}}</span>
+                      <span> <b>Horas reloj anuales:</b>{{item.horasRelojAnuales}}</span>
+                      <span> <b>Descripcion:</b>{{item.descripcion}}</span>
                     </div>
                   </div>
                 </div>
             </div>
     
-        </div>
+      }</div>
         <div class="container">
-            <button rel="stylesheet" routerLink="../editar-carreras" class="btn btnSave" data-dismiss="modal" >Nuevo</button> 
+            <button rel="stylesheet" routerLink="../editar-materias" class="btn btnSave" data-dismiss="modal" >Nuevo</button> 
             <button routerLink="/dashboard/planes" id="btn-planes" class="btn btn-warning">Planes</button>
     
         </div>

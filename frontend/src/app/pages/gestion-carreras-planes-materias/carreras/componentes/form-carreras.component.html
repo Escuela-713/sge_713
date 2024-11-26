@@ -1,5 +1,5 @@
 <div class="modal-content">
-    <form name="frm_carrera" id="frm_carrera">
+    <form [formGroup]="carreraForm" (submit)="guardarCarrera($event)" name="frm_carrera" id="frm_carrera">
         <div class="modal-header">
             <h4 name="titulo" id="titulo" class="title">Editar Carrera</h4>
 
@@ -9,20 +9,47 @@
                 <label>Nombre</label>
                 <input type="hidden" name="id" id="id">
                 <input type="text" name="name" id="name" class="form-control p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 " maxlength="45"
-                    placeholder="Ingrese aquí el nombre" required>
+                    placeholder="Ingrese aquí el nombre" formControlName="nombre">
+                    
+                    @if (Nombre.errors && Nombre.touched) {
+                        
+                        @if (Nombre.hasError('required')) 
+                        { 
+                            <p class="text-danger"> El nombre es requerido.</p>                                                                                                                                                                                  
+                        }
+                     
+                    }
             </div>
 
             <div class="form-group ">
                 <label>Titulo</label>
-                
-                <input type="text" name="name" id="name" class="form-control p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 " maxlength="45"
-                    placeholder="Ingrese aquí el titulo" required>
+                <input type="text" name="name" id="name" formControlName="titulo" class="form-control p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3 " maxlength="45"
+                    placeholder="Ingrese aquí el titulo" >
+
+                    @if (Titulo.errors && Titulo.touched) {
+                        
+                        @if (Titulo.hasError('required')) 
+                        { 
+                            <p class="text-danger"> El titulo es requerido.</p>                                                                                                                                                                                  
+                        }
+                     
+                    }
             </div>
             <pre></pre>
             <div class="form-group">
                 <label>Descripción</label>
-                <input type="text" name="plan" id="plan" maxlength="6" class="form-control p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3" placeholder="Ingrese aquí la carrera"
-                    required>
+                <input type="text" name="plan" id="plan"  formControlName="descripcion" maxlength="6" class="form-control p-3 text-primary-emphasis bg-primary-subtle border border-primary-subtle rounded-3" placeholder="Ingrese aquí la carrera"
+                    placeholder="Ingrese aquí la descripcion">
+
+                    @if (Descripcion.errors && Descripcion.touched) {
+                        
+                        @if (Descripcion.hasError('required')) 
+                        { 
+                            <p class="text-danger"> La descripcion es requerida.</p>                                                                                                                                                                                  
+                        }
+                     
+                    }
+
             </div>
 
         </div>
@@ -30,5 +57,6 @@
             <input type="submit" class="btn btn-info" value="Guardar datos">
             <input type="button" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
         </div>
+    
     </form>
 </div>

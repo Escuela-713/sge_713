@@ -6,21 +6,23 @@ import { CarrerasService } from 'src/app/service/carreras.service';
 @Component({
   selector: 'app-carreras',
   standalone: true,
-  imports: [NgIf, NgFor, RouterLink],
+  imports: [RouterLink],
   templateUrl: './carreras.component.html',
   styleUrls: ['./carreras.component.css']
 })
 export class CarrerasComponent implements OnInit {
 
   carreras:any;
-  constructor(private CarrerasService: CarrerasService) {}
+  constructor(private CarrerasService: CarrerasService) {
+
+  }
 
   ngOnInit(): void {
     this.CarrerasService.obtenerCarreras().subscribe(
       {
         next: (data) => {
-          this.carreras=data["carreras"];
-          console.log("COMPONENTE CARRERAS")
+          this.carreras=data;
+          console.log(this.carreras)
           
         },
         error:(err) => {

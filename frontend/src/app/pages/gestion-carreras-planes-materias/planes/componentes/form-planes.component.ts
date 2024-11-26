@@ -15,10 +15,13 @@ export class FormPlanesComponent implements OnInit {
     hsCatedra:['', [Validators.required]],
     hsReloj:['', [Validators.required]],
   })
+
+
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
   }
+  
   guardarPlan(){
     if (this.planForm.valid)
     {

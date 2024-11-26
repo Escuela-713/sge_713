@@ -1,14 +1,24 @@
-<form name="frm_plan" id="frm_plan" class="needs-validation" novalidate onsubmit="return check()">
+<div class="modal-content">
+    <form [formGroup]="materiasForm" (submit)="guardarMaterias($event)" name="frm_materias" id="frm_materias">
     <div class="modal-header">
         <h4 name="titulo" id="titulo" class="title">Materias</h4>
-
     </div>
-
+ 
     <div class="form-group row p-1">
         <label for="inputMateria" class="col-sm-2 col-form-label">Nombre de Materia</label>
         <div class="col-sm-10">
+            <input type="hidden" name="id" id="id">
             <input type="text" id="id-materia" class="form-control" maxlength="2" min="0" max="99"
-                placeholder="Nombre de Materia" required>
+                placeholder="Nombre de Materia" formControlName="nombre" required>
+
+                @if (Materia?.errors && Materia?.touched) {
+            
+                    @if (Materia?.hasError('required')) 
+                    { 
+                        <p class="text-danger"> El nombre de la materia es requerido.</p>                                                                                                                                                                                  
+                    }
+                 
+                }
         </div>
 
     </div>

@@ -1,9 +1,13 @@
 <h1 class="datosPersonalesTitle"> Gestion de carreras</h1>
 <div id="datosAlumnos">
     <div class="accordion" id="accordionExample">
+      @for (item of carreras; track item.idCarrera)
+      { 
         <div  class="accordion-item">
+          
             <h2 class="accordion-header" class="heading">
-                <span>ETP</span>
+             
+                <span>{{item.nombre}}</span>
                 <a routerLink="#" class="btn btnAdd">Editar</a>
                 <button type="button" class="btn btnDelete">Eliminar</button>
                 
@@ -19,14 +23,14 @@
               <div class="accordion-body">
       
                 <div id="alumnoInfo" class="alumnoInfo">
-                  <span> <b>Nombre:</b>ETP </span>
-                  <span> <b>Titulo:</b> Tec. en Informática Profesional y Personal </span>
-                  <span> <b>Descripcion:</b> Educación Tecnica </span>
+                  <span> <b>Nombre:</b>{{item.nombre}} </span>
+                  <span> <b>Titulo:</b>{{item.titulo_egreso}} </span>
+                  <span> <b>Descripcion:</b> {{item.descripcion}}</span>
                 </div>
               </div>
             </div>
         </div>
-
+      }
     </div>
     <div class="container">
         <button rel="stylesheet" routerLink="../editar-carreras" class="btn btnSave" data-dismiss="modal" >Nuevo</button> 
