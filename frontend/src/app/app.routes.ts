@@ -22,8 +22,10 @@ import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/c
 import { GestionHomeComponent } from './pages/gestion-home/gestion-home.component';
 import { AgregarPosteoComponent } from './pages/gestion-home/agregar-posteo/agregar-posteo.component';
 import { EditarPosteoComponent } from './pages/gestion-home/editar-posteo/editar-posteo.component';
+import { NovedadComponent } from './pages/novedad/novedad.component';
 
 export const routes: Routes = [
+  { path: 'novedad/:slug', component: NovedadComponent },
   { path: 'home', component: HomeComponent },
   {
     path: 'dashboard',

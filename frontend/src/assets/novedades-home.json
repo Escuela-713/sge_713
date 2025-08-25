@@ -29,8 +29,10 @@
   "cards": [
     {
       "id": 1,
+      "slug": "sus-pasillos",
       "backgroundImage": "assets/imgs/colegio4.jpg",
       "title": "Sus pasillos",
+      "description": "Conoce los hermosos pasillos de nuestro colegio, espacios de encuentro y aprendizaje.",
       "location": "Pasillo",
       "date": "03/2018",
       "locationIcon": "M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z",
@@ -38,8 +40,10 @@
     },
     {
       "id": 2,
+      "slug": "salon-usos-multiples",
       "backgroundImage": "assets/imgs/colegio7.jpg",
       "title": "Actos en el Salón de Usos Múltiples",
+      "description": "Nuestro moderno SUM es el escenario perfecto para eventos y actividades escolares.",
       "location": "Sum",
       "date": "06/2019",
       "locationIcon": "M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z",
@@ -47,8 +51,10 @@
     },
     {
       "id": 3,
+      "slug": "biblioteca",
       "backgroundImage": "assets/imgs/colegio8.jpg",
       "title": "Recursos de nuestra biblioteca",
+      "description": "Descubre el amplio catálogo de recursos educativos disponibles en nuestra biblioteca.",
       "location": "Biblioteca",
       "date": "09/12/2018",
       "locationIcon": "M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z",

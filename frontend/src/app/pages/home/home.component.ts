@@ -4,6 +4,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
 import { NavComponent } from 'src/app/shared/nav/nav.component';
+import { RouterModule } from '@angular/router';
 
 interface CarouselSlide {
   id: number;
@@ -16,8 +17,10 @@ interface CarouselSlide {
 
 interface Card {
   id: number;
+  slug: string;
   backgroundImage: string;
   title: string;
+  description: string;
   location: string;
   date: string;
   locationIcon: string;
@@ -33,7 +36,7 @@ interface HomeData {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, NavComponent, HeaderComponent, FooterComponent, HttpClientModule],
+  imports: [CommonModule, NavComponent, HeaderComponent, FooterComponent, HttpClientModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

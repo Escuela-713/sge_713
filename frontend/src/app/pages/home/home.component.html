@@ -2,6 +2,7 @@
   <app-header></app-header>
   <app-nav></app-nav>
   
+  <!-- Loading State -->
   @if (isLoading) {
     <div class="d-flex justify-content-center align-items-center" style="min-height: 300px;">
       <div class="spinner-border text-primary" role="status">
@@ -24,24 +25,12 @@
   @if (homeData && !isLoading) {
     <!-- Carousel Section -->
     <div id="homeCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-      <div class="carousel-indicators">
-        @for (slide of homeData.carouselSlides; track slide.id; let i = $index) {
-          <button
-            type="button"
-            data-bs-target="#homeCarousel"
-            [attr.data-bs-slide-to]="i"
-            [class.active]="i === 0"
-            [attr.aria-label]="'Slide ' + (i + 1)"
-            [attr.aria-current]="i === 0 ? 'true' : null"
-          ></button>
-        }
-      </div>
-      
       <div class="carousel-inner h-100">
         @for (slide of homeData.carouselSlides; track slide.id; let i = $index) {
           <div 
             class="carousel-item"
-            [class.active]="i === 0">
+            [class.active]="i === 0"
+          >
             <img
               class="bd-placeholder-img object-fit-cover w-100"
               style="height: 80vh; min-height: 400px;"
@@ -61,6 +50,19 @@
               </div>
             </div>
           </div>
+        }
+      </div>
+      
+      <div class="carousel-indicators">
+        @for (slide of homeData.carouselSlides; track slide.id; let i = $index) {
+          <button
+            type="button"
+            data-bs-target="#homeCarousel"
+            [attr.data-bs-slide-to]="i"
+            [class.active]="i === 0"
+            [attr.aria-label]="'Slide ' + (i + 1)"
+            [attr.aria-current]="i === 0 ? 'true' : null"
+          ></button>
         }
       </div>
       
@@ -98,46 +100,48 @@
                 class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg card-hover"
                 [style.background-image]="'url(' + card.backgroundImage + ')'"
               >
-                <div class="card-overlay d-flex flex-column h-100 p-4 p-lg-5 pb-3 text-white">
-                  <div class="card-content flex-grow-1 d-flex flex-column justify-content-end">
-                    <h3 class="mb-3 display-6 lh-1 card-title">
-                      <span class="fw-bold">{{ card.title }}</span>
-                    </h3>
+              <div class="card-overlay d-flex flex-column h-100 p-4 p-lg-5 pb-3 text-white">
+                <div class="card-content flex-grow-1 d-flex flex-column justify-content-end">
+                  <h3 class="mb-3 display-6 lh-1 card-title">
+                    <span class="fw-bold">{{ card.title }}</span>
+                  </h3>
+                  
+                  <p class="card-description text-white mb-3">{{ card.description }}</p>
+                  <div class="card-meta d-flex flex-column flex-sm-row gap-3 mt-auto">
+                    <div class="d-flex align-items-center">
+                      <svg
+                        class="me-2 icon-location"
+                        width="1em"
+                        height="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 384 512"
+                        fill="currentColor"
+                      >
+                        <path [attr.d]="card.locationIcon" />
+                      </svg>
+                      <small class="fw-medium">{{ card.location }}</small>
+                    </div>
                     
-                    <div class="card-meta d-flex flex-column flex-sm-row gap-3 mt-auto">
-                      <div class="d-flex align-items-center">
-                        <svg
-                          class="me-2 icon-location"
-                          width="1em"
-                          height="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 384 512"
-                          fill="currentColor"
-                        >
-                          <path [attr.d]="card.locationIcon" />
-                        </svg>
-                        <small class="fw-medium">{{ card.location }}</small>
-                      </div>
-                      
-                      <div class="d-flex align-items-center">
-                        <svg
-                          class="me-2 icon-date"
-                          width="1em"
-                          height="1em"
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 448 512"
-                          fill="currentColor"
-                        >
-                          <path [attr.d]="card.dateIcon" />
-                        </svg>
-                        <small class="fw-medium">{{ card.date }}</small>
-                      </div>
+                    <div class="d-flex align-items-center">
+                      <svg
+                        class="me-2 icon-date"
+                        width="1em"
+                        height="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 448 512"
+                        fill="currentColor"
+                      >
+                        <path [attr.d]="card.dateIcon" />
+                      </svg>
+                      <small class="fw-medium">{{ card.date }}</small>
                     </div>
                   </div>
+                  <a [routerLink]="['/novedad', card.slug]" class="btn btn-warning">Ver más</a>
                 </div>
               </div>
             </div>
-          }
+          </div>
+        }
         </div>
       </div>
     </div>

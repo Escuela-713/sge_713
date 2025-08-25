@@ -48,6 +48,70 @@
     padding: 0.75rem 2rem;
     border-radius: 50px;
     transition: all 0.3s ease;
+}
+
+/* Card styles */
+.card {
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+}
+
+.card-hover:hover .btn-warning {
+    transform: none;
+    box-shadow: none;
+}
+
+.card-overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.2),
+        rgba(0, 0, 0, 0.8)
+    );
+    transition: background 0.3s ease;
+}
+
+.card:hover .card-overlay {
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.9)
+    );
+}
+
+.card-title {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.card-description {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.card-meta {
+    font-size: 0.85rem;
+}
+
+.icon-location, .icon-date {
+    opacity: 0.8;
+}
+
+.btn-warning {
+    font-weight: 500;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-warning:hover {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #000;
     box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
     animation: slideInUp 0.8s ease-out 0.4s both;
 }
