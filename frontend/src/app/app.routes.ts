@@ -23,6 +23,7 @@ import { GestionHomeComponent } from './pages/gestion-home/gestion-home.componen
 import { AgregarPosteoComponent } from './pages/gestion-home/agregar-posteo/agregar-posteo.component';
 import { EditarPosteoComponent } from './pages/gestion-home/editar-posteo/editar-posteo.component';
 import { NovedadComponent } from './pages/novedad/novedad.component';
+import { HomeGestionComponent } from './pages/gestion-home/home/home.component';
 
 export const routes: Routes = [
   { path: 'novedad/:slug', component: NovedadComponent },
@@ -65,8 +66,9 @@ export const routes: Routes = [
       },
       {
         path: "home",
+        component: GestionHomeComponent,
         children: [
-          { path: '', component: GestionHomeComponent },
+          { path: '', component: HomeGestionComponent, pathMatch: 'full' },
           { path: 'agregar-posteo', component: AgregarPosteoComponent },
           { path: 'editar-posteo', component: EditarPosteoComponent },
         ]

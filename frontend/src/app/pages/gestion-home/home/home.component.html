@@ -1,0 +1,139 @@
+<div class="dashboard-home">
+  <!-- Header -->
+  <div class="dashboard-header">
+    <h1 class="dashboard-title">Dashboard del Colegio</h1>
+    <p class="dashboard-subtitle">Resumen de contenido institucional</p>
+  </div>
+
+  <!-- Loading State -->
+  @if (isLoading) {
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p>Cargando información del colegio...</p>
+    </div>
+  } @else {
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+      
+      <!-- Cards de Estadísticas -->
+      <div class="stats-grid">
+        <div class="stat-card slides">
+          <div class="stat-icon">
+            <!-- icono -->
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-number">{{ totalSlides }}</h3>
+            <p class="stat-label">Slides del Carousel</p>
+          </div>
+        </div>
+
+        <div class="stat-card contenido">
+          <div class="stat-icon">
+            <!-- icono -->
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-number">{{ totalCards }}</h3>
+            <p class="stat-label">Artículos Publicados</p>
+          </div>
+        </div>
+
+        <div class="stat-card ubicaciones">
+          <div class="stat-icon">
+            <!-- icono -->
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-number">{{ totalLocaciones }}</h3>
+            <p class="stat-label">Ubicaciones Diferentes</p>
+          </div>
+        </div>
+
+        <div class="stat-card seccion">
+          <div class="stat-icon">
+            <!-- icono -->
+          </div>
+          <div class="stat-content">
+            <h3 class="stat-number">1</h3>
+            <p class="stat-label">{{ novedadesData.sectionTitle }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección de Últimas Publicaciones -->
+      <div class="recent-posts-section">
+        <div class="section-header">
+          <h2 class="section-title">Últimas Publicaciones del Colegio</h2>
+          <button class="view-all-btn">Ver todas</button>
+        </div>
+
+        <div class="posts-grid">
+          @for (card of ultimasCards; track card.id) {
+            <div class="post-card">
+              <div class="post-image">
+                <img [src]="card.backgroundImage" [alt]="card.title" />
+                <div class="post-overlay">
+                  <span class="post-slug">{{ card.slug }}</span>
+                </div>
+              </div>
+              
+              <div class="post-content">
+                <div class="post-header">
+                  <h3 class="post-title">{{ card.title }}</h3>
+                </div>
+                <p class="post-excerpt">{{ truncarTexto(card.description, 120) }}</p>
+                <div class="post-meta">
+                  <div class="meta-item">
+                    <svg width="16" height="16" viewBox="0 0 512 512" fill="currentColor">
+                      <path [attr.d]="card.locationIcon"/>
+                    </svg>
+                    <span>{{ card.location }}</span>
+                  </div>
+                  <div class="meta-item">
+                    <svg width="16" height="16" viewBox="0 0 512 512" fill="currentColor">
+                      <path [attr.d]="card.dateIcon"/>
+                    </svg>
+                    <span>{{ formatearFecha(card.date) }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+
+        @if (ultimasCards.length === 0) {
+          <div class="empty-state">
+            <div class="empty-icon">
+              <!-- icono vacío -->
+            </div>
+            <h3>No hay contenido disponible</h3>
+            <p>No se encontraron artículos para mostrar</p>
+            <button class="create-post-btn">Agregar Contenido</button>
+          </div>
+        }
+      </div>
+
+      <!-- Información del Carousel -->
+      @if (novedadesData.carouselSlides.length > 0) {
+        <div class="carousel-info-section">
+          <div class="section-header">
+            <h2 class="section-title">Slides del Carousel Principal</h2>
+          </div>
+          
+          <div class="carousel-preview">
+            @for (slide of novedadesData.carouselSlides; track slide.id; let i = $index) {
+              <div class="carousel-slide-preview">
+                <div class="slide-image">
+                  <img [src]="slide.image" [alt]="slide.title" />
+                </div>
+                <div class="slide-info">
+                  <h4>{{ slide.title }}</h4>
+                  <p>{{ slide.subtitle }}</p>
+                  <small>Slide #{{ i + 1 }}</small>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>
