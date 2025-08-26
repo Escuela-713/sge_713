@@ -71,6 +71,7 @@ export const routes: Routes = [
           { path: '', component: HomeGestionComponent, pathMatch: 'full' },
           { path: 'agregar-posteo', component: AgregarPosteoComponent },
           { path: 'editar-posteo', component: EditarPosteoComponent },
+          { path: 'editar-novedad/:slug', component: EditarPosteoComponent }
         ]
       },
     ],

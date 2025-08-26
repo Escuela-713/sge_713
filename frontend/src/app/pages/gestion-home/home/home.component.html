@@ -9,7 +9,7 @@
   @if (isLoading) {
     <div class="loading-container">
       <div class="loading-spinner"></div>
-      <p>Cargando información del colegio...</p>
+      <p>Cargando información de las novedades de la escuela...</p>
     </div>
   } @else {
     <!-- Dashboard Content -->
@@ -46,22 +46,12 @@
             <p class="stat-label">Ubicaciones Diferentes</p>
           </div>
         </div>
-
-        <div class="stat-card seccion">
-          <div class="stat-icon">
-            <!-- icono -->
-          </div>
-          <div class="stat-content">
-            <h3 class="stat-number">1</h3>
-            <p class="stat-label">{{ novedadesData.sectionTitle }}</p>
-          </div>
-        </div>
       </div>
 
       <!-- Sección de Últimas Publicaciones -->
       <div class="recent-posts-section">
         <div class="section-header">
-          <h2 class="section-title">Últimas Publicaciones del Colegio</h2>
+          <h2 class="section-title">Últimas Novedades del Colegio</h2>
           <button class="view-all-btn">Ver todas</button>
         </div>
 
@@ -92,6 +82,7 @@
                   </div>
                   <div class="post-actions">
                     <a class="view-post-link" [routerLink]="['/novedad', card.slug]">Ver Novedad</a>
+                    <a class="edit-post-link" [routerLink]="['/editar-novedad', card.slug]">Editar Novedad</a>
                   </div>
                 </div>
               </div>
