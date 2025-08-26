@@ -1,7 +1,7 @@
 <div class="dashboard-home">
   <!-- Header -->
   <div class="dashboard-header">
-    <h1 class="dashboard-title">Dashboard del Colegio</h1>
+    <h1 class="dashboard-title">Dashboard del CMS</h1>
     <p class="dashboard-subtitle">Resumen de contenido institucional</p>
   </div>
 
@@ -70,9 +70,6 @@
             <div class="post-card">
               <div class="post-image">
                 <img [src]="card.backgroundImage" [alt]="card.title" />
-                <div class="post-overlay">
-                  <span class="post-slug">{{ card.slug }}</span>
-                </div>
               </div>
               
               <div class="post-content">
@@ -92,6 +89,9 @@
                       <path [attr.d]="card.dateIcon"/>
                     </svg>
                     <span>{{ formatearFecha(card.date) }}</span>
+                  </div>
+                  <div class="post-actions">
+                    <a class="view-post-link" [routerLink]="['/novedad', card.slug]">Ver Novedad</a>
                   </div>
                 </div>
               </div>

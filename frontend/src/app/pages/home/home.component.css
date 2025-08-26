@@ -100,6 +100,7 @@
 
 .icon-location, .icon-date {
     opacity: 0.8;
+    color:black;
 }
 
 .btn-warning {

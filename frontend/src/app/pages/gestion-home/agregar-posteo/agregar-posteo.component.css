@@ -1,0 +1,66 @@
+.tx-center {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: #333;
+}
+
+/* Contenedor del formulario */
+.form-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.form {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Etiquetas */
+.form label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0.5rem 0 0.3rem;
+  color: #444;
+}
+
+/* Inputs y textarea */
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border-color: #007bff;
+}
+
+/* Textarea */
+.form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .tx-center {
+    font-size: 2rem;
+  }
+
+  .form {
+    padding: 2rem;
+  }
+}

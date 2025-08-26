@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {RouterLink} from '@angular/router'
 import { Observable } from 'rxjs';
 
 export interface CarouselSlide {
@@ -31,6 +32,7 @@ export interface NovedadesData {
 
 @Component({
   selector: 'app-dashboard-home',
+  imports: [RouterLink],
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']

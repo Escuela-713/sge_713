@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+
 
 @Component({
   selector: 'app-agregar-posteo',
-  imports: [],
+  imports: [ ReactiveFormsModule],
   templateUrl: './agregar-posteo.component.html',
-  styleUrl: './agregar-posteo.component.css'
+  styleUrls: ['./agregar-posteo.component.css']
 })
 export class AgregarPosteoComponent {
 
