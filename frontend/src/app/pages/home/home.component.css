@@ -108,14 +108,6 @@
     z-index: 2;
 }
 
-.btn-warning:hover {
-    background-color: #ffc107;
-    border-color: #ffc107;
-    color: #000;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
-    animation: slideInUp 0.8s ease-out 0.4s both;
-}
-
 .btn-modern:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);

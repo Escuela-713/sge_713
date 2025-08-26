@@ -49,6 +49,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadHomeData();
+    //Poner como titulo "Escuela 713 - Home" para que no se cargue SGE 713
+    document.title = `Escuela 713 - Home`;
   }
 
   private loadHomeData(): void {
@@ -71,7 +73,7 @@ export class HomeComponent implements OnInit {
     return `${prefix}-${index}`;
   }
 
-    // Método trackBy para *ngFor de las cards
+    // Método trackBy para @For de las cards
     trackByCardId(index: number, card: Card): number {
       return card.id;
     }
