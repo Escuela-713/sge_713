@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
+import { FormControl, FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-agregar-posteo',
@@ -15,19 +14,13 @@ export class AgregarPosteoComponent {
 
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
-      image: [''],
-      title: [''],
-      categoria: ['evento'],
-      content: ['']
+      image: ['', Validators.required],
+      title: ['', [Validators.required, Validators.minLength(5)]],
+      categoria: ['evento', Validators.required],
+      content: ['', [Validators.required, Validators.minLength(10)]]
     });
 
-    // Escuchar cambios y actualizar la señal novedad
-    this.form.valueChanges.subscribe((val: { 
-      image: string; 
-      title: string; 
-      categoria: string; 
-      content: string 
-    }) => {
+    this.form.valueChanges.subscribe(val => {
       this.novedad.set({
         backgroundImage: val.image,
         title: val.title || 'Título de ejemplo',
@@ -47,7 +40,16 @@ export class AgregarPosteoComponent {
     const reader = new FileReader();
     reader.onload = () => {
       this.form.patchValue({ image: reader.result });
+      this.form.get('image')?.markAsTouched();
     };
     reader.readAsDataURL(file);
+  }
+
+  onSubmit() {
+    if (this.form.valid) {
+      alert(`POST: ${JSON.stringify(this.form.value)}`);
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
 }
