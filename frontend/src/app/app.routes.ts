@@ -19,8 +19,14 @@ import { FiltroDatosPersonalesComponent } from './pages/gestion-datos-personales
 import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.component';
 import { FiltroCalificadorComponent } from './pages/gestion-datos-academicos/filtro-calificador/filtro-calificador.component';
 import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
+import { GestionHomeComponent } from './pages/gestion-home/gestion-home.component';
+import { AgregarPosteoComponent } from './pages/gestion-home/agregar-posteo/agregar-posteo.component';
+import { EditarPosteoComponent } from './pages/gestion-home/editar-posteo/editar-posteo.component';
+import { NovedadComponent } from './pages/novedad/novedad.component';
+import { HomeGestionComponent } from './pages/gestion-home/home/home.component';
 
 export const routes: Routes = [
+  { path: 'novedad/:slug', component: NovedadComponent },
   { path: 'home', component: HomeComponent },
   {
     path: 'dashboard',
@@ -57,6 +63,16 @@ export const routes: Routes = [
           {path: 'calificador',component: CalificadorComponent},
         {path:'filtro/:tipo', component: FiltroCalificadorComponent},
         ],
+      },
+      {
+        path: "home",
+        component: GestionHomeComponent,
+        children: [
+          { path: '', component: HomeGestionComponent, pathMatch: 'full' },
+          { path: 'agregar-posteo', component: AgregarPosteoComponent },
+          { path: 'editar-posteo', component: EditarPosteoComponent },
+          { path: 'editar-novedad/:slug', component: EditarPosteoComponent }
+        ]
       },
     ],
   },

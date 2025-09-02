@@ -1,0 +1,36 @@
+<app-header />
+@if (novedad) {
+    <div class="novedad-container">
+        <div class="novedad-header" [style.backgroundImage]="'url(' + novedad.backgroundImage + ')'">
+            <button class="back-button" (click)="goBack()" aria-label="Volver atrás">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 12H6m0 0l6 6m-6-6l6-6"/>
+                </svg>
+            </button>
+            <h1>{{ novedad.title }}</h1>
+        </div>
+        <div class="novedad-content">
+            <div class="meta-info">
+                <div class="location">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path [attr.d]="novedad.locationIcon"/>
+                    </svg>
+                    {{ novedad.location }}
+                </div>
+                <div class="date">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                        <path [attr.d]="novedad.dateIcon"/>
+                    </svg>
+                    {{ novedad.date }}
+                </div>
+            </div>
+            <p class="description">{{ novedad.description }}</p>
+        </div>
+    </div>
+} @else {
+    <div class="not-found">
+        <h2>Novedad no encontrada</h2>
+        <p>La novedad que estás buscando no existe.</p>
+    </div>
+}
+<app-footer />
