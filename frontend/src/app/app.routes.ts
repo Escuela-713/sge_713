@@ -19,6 +19,7 @@ import { FiltroDatosPersonalesComponent } from './pages/gestion-datos-personales
 import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.component';
 import { FiltroCalificadorComponent } from './pages/gestion-datos-academicos/filtro-calificador/filtro-calificador.component';
 import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
+import { MesaExamenComponent } from './pages/gestion-examenes-finales/mesa-examen/mesa-examen.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -42,25 +43,28 @@ export const routes: Routes = [
         component: EditarDatosPersonalesComponent,
       },
       { path: 'editar-datos-tutores', component: DatosTutoresComponent },
-      {path:"analitico", component:AnaliticoComponent},
-      {path: 'datos-academicos',
-        component:DatosAcademicosComponent,
+      { path: "analitico", component: AnaliticoComponent },
+      {
+        path: 'datos-academicos',
+        component: DatosAcademicosComponent,
         children: [
-          {path: 'boletin', component:BoletinComponent},
-        {path:'filtro/:tipo', component:FiltroCalificadorComponent},
+          { path: 'boletin', component: BoletinComponent },
+          { path: 'filtro/:tipo', component: FiltroCalificadorComponent },
         ],
       },
       {
         path: 'datos-academicos',
         component: DatosAcademicosComponent,
         children: [
-          {path: 'calificador',component: CalificadorComponent},
-        {path:'filtro/:tipo', component: FiltroCalificadorComponent},
+          { path: 'calificador', component: CalificadorComponent },
+          { path: 'filtro/:tipo', component: FiltroCalificadorComponent },
         ],
       },
+    
+      { path: 'registro-mesa', component: MesaExamenComponent },
     ],
   },
   { path: 'iniciar-sesion', component: LoginComponent },
-  {path: "registro",component: RegistroComponent},
+  { path: "registro", component: RegistroComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
