@@ -1,1 +1,60 @@
-<p>inscripcion-mesa works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscripción a Mesas de Examen</title>
+</head>
+<body>
+
+  <h2>Formulario de Inscripción a Mesas de Examen</h2>
+
+  <form action="procesar_inscripcion.php" method="POST">
+    <!-- Datos del estudiante -->
+    <label for="nombre">Nombre completo:</label><br>
+    <input type="text" id="nombre" name="nombre" required><br><br>
+
+    <label for="dni">DNI:</label><br>
+    <input type="text" id="dni" name="dni" required><br><br>
+
+    <label for="legajo">Número de Legajo:</label><br>
+    <input type="text" id="legajo" name="legajo" required><br><br>
+
+    <label for="email">Correo institucional:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <!-- Datos del examen -->
+    <label for="materia">Materia:</label><br>
+    <select id="materia" name="materia" required>
+      <option value="">Seleccione una materia</option>
+      <option value="matematica">Matematica </option>
+      <option value="historia">Historia</option>
+      <option value="lengua">Lengua</option>
+      <option value="desarrollo ||">Desarrollo ||</option>
+      <!-- Agrega más materias según tu necesidad -->
+    </select><br><br>
+
+    <label for="fecha_examen">Fecha de la mesa:</label><br>
+    <input type="date" id="fecha_examen" name="fecha_examen" required><br><br>
+
+    <label for="turno">Turno:</label><br>
+    <select id="turno" name="turno" required>
+      <option value="">Seleccione un turno</option>
+      <option value="manana">Mañana</option>
+      <option value="tarde">Tarde</option>
+    </select><br><br>
+
+    <label for="condicion">Condición:</label><br>
+    <select id="condicion" name="condicion" required>
+      <option value="">Seleccione condición</option>
+      <option value="regular">Regular</option>
+      <option value="libre">Libre</option>
+      <option value="recursa">Recursa</option>
+    </select><br><br>
+
+    <input type="submit" value="Inscribirse">
+  </form>
+
+</body>
+</html>
+
