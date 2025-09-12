@@ -5,7 +5,7 @@ import { FiltroCalificadorComponent } from './filtro-calificador/filtro-califica
 @Component({
   selector: 'app-datos-academicos',
   standalone: true,
-  imports: [FiltroCalificadorComponent, RouterOutlet],
+  imports: [RouterOutlet],
   templateUrl: './datos-academicos.component.html',
   styleUrls: ['./datos-academicos.component.css']
 })
