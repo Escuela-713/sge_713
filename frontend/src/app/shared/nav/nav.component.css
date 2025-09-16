@@ -1,0 +1,14 @@
+nav .container { display:flex; justify-content:center; }
+nav .d-flex { gap: 12px; align-items:center }
+nav li { list-style: none; }
+nav a { text-decoration: none; }
+
+/* ensure dropdown menu is centered under its parent */
+.dropdown { position: relative; }
+.dropdown-menu { left: 50%; transform: translateX(-50%); }
+
+@media (min-width: 992px) {
+	/* keep items centered on large screens */
+	nav .container { justify-content: center }
+}
+

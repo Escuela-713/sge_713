@@ -1,0 +1,71 @@
+<div class="inventory">
+    <div class="header">
+        <h2 class="titulo">Inventario — Bienes básicos (ejemplo fijo)</h2>
+        <input type="text" placeholder="Buscar bien por nombre, código o ubicación..." class="search-input" />
+    </div>
+
+    <ul class="items-list">
+        <li class="item">
+            <div style="display:flex; align-items:center; justify-content:space-between">
+                <div style="flex:1">
+                    <h3 style="margin:0; font-size:28px">Sillas</h3>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center">
+                      <button class="btn btn-success" routerLink="../registrar-bien">Editar</button>
+                    <details style="margin-left:6px">
+                        <summary style="list-style:none; border:none; background:transparent">▾</summary>
+                        <div class="card-body">
+                            <p><strong class="label">Nombre:</strong> <span class="value">Sillas</span></p>
+                            <p><strong class="label">Título:</strong> <span class="value">tecnico en informatica profesional y personal</span></p>
+                            <p><strong class="label">Descripción:</strong> <span class="value">tecnico</span></p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </li>
+
+        <li class="item">
+            <div style="display:flex; align-items:center; justify-content:space-between">
+                <div style="flex:1">
+                    <h3 style="margin:0; font-size:28px">Mesas</h3>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center">
+                    <button class="btn btn-success">Editar</button>
+                    <details style="margin-left:6px">
+                        <summary style="list-style:none; border:none; background:transparent">▾</summary>
+                        <div class="card-body">
+                            <p><strong class="label">Nombre:</strong> <span class="value">Mesas</span></p>
+                            <p><strong class="label">Título:</strong> <span class="value">ejemplo titulo ESB</span></p>
+                            <p><strong class="label">Descripción:</strong> <span class="value">Sillas y mesas en almacenamiento.</span></p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </li>
+
+        <li class="item">
+            <div style="display:flex; align-items:center; justify-content:space-between">
+                <div style="flex:1">
+                    <h3 style="margin:0; font-size:28px"> Mesas grandes</h3>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center">
+                    <button class="btn btn-success">Editar</button>
+                    <details style="margin-left:6px">
+                        <summary style="list-style:none; border:none; background:transparent">▾</summary>
+                        <div class="card-body">
+                            <p><strong class="label">Nombre:</strong> <span class="value">Mesas grandes</span></p>
+                            <p><strong class="label">Título:</strong> <span class="value">equipamiento red</span></p>
+                            <p><strong class="label">Descripción:</strong> <span class="value">Routers y switches para redes educativas.</span></p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div class="inventory-actions">
+        <div class="container">
+        <button class="btn btnSave" routerLink="../registrar-bien">Nuevo</button>
+        </div>
+    </div>
+</div>

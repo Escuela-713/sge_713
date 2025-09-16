@@ -8,17 +8,17 @@ import { RouterModule } from '@angular/router';
 
 
 @NgModule({
-  declarations: [
+  // standalone components must not be declared — import them instead
+  declarations: [],
+  imports: [
+    CommonModule,
+    RouterModule,
     HeaderComponent,
     NavComponent,
     FooterComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
-  exports:
-  [ HeaderComponent,
+  exports: [
+    HeaderComponent,
     NavComponent,
     FooterComponent
   ]

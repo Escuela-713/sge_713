@@ -1,0 +1,166 @@
+/* Inventory list styles to match provided screenshot */
+.items-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-radius: 6px;
+    background: #fff;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.06) inset;
+}
+.items-list .item {
+    padding: 16px 20px;
+    border-bottom: 1px solid #e6e6e6;
+    display: block;
+}
+.items-list .item:last-child {
+    border-bottom: none;    
+}
+.items-list h3 {
+    font-size: 28px;
+    margin: 0;
+    color: #111;
+}
+.items-list .details {
+    padding-top: 12px;
+    padding-left: 6px;
+}
+.items-list .card-body p {
+    margin: 4px 0;
+    color: #333;
+}
+.card-body {
+    background: #f7f7f7;
+    padding: 18px 20px;
+    border-radius: 2px;
+}
+.card-body .label {
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-right: 6px;
+}
+.card-body .value {
+    font-weight: 400;
+    margin-left: 6px;
+}
+.btn-success {
+    background-color: #0b7a1f;
+    border-color: #0b7a1f;
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+.btn-delete-outline {
+    background: transparent;
+    border: 2px solid #b71c1c;
+    color: #b71c1c;
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+.btn-light {
+    background: transparent;
+    border: none;
+    color: #333;
+    font-size: 18px;
+}
+
+/* Center header title and search input */
+.inventory .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+}
+.inventory .header h2 {
+    margin: 0;
+    text-align: center;
+    font-size: 24px;
+}
+.inventory .header .search-input {
+    max-width: 640px;
+    width: 100%;
+}
+
+:host {
+    display: block;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+}
+.titulo {
+        display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.search-input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    width: 320px;
+}
+
+.items-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 12px;
+}
+
+.item {
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 12px;
+    background: #fafafa;
+}
+
+.card { border: 1px solid #e6e6e6; border-radius:6px; margin-bottom:18px }
+.card-header { display:flex; justify-content:space-between; align-items:center; padding:12px 16px }
+.card-title { margin:0; font-size:32px }
+.card-actions { display:flex; gap:10px; align-items:center }
+.card-body { background:#f7f7f7; padding:16px; border-top:1px solid #e9e9e9 }
+.card-body p { margin:6px 0 }
+
+.card-actions .btn { padding: 6px 10px; border-radius: 6px; cursor: pointer; }
+.card-actions .btn.btn-success { background: #198754; color: white; border: none }
+.card-actions .btn.btn-outline-danger { background: transparent; border: 1px solid #c82333; color: #c82333 }
+.card-actions .btn.btn-light { background: #e9f4ff; border: none; color: #212529 }
+.card-actions .btn:hover { opacity: 0.95 }
+
+.details {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px dashed #e6e6e6;
+}
+
+.edit-form label { display:block; margin-top:8px; font-weight:600; font-size:13px }
+.edit-form input, .edit-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top:6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+.edit-actions { margin-top:10px; display:flex; gap:8px }
+.edit-actions button { padding:8px 12px; border-radius:6px; border:none; cursor:pointer }
+.edit-actions button:first-child { background:#198754; color:white }
+.edit-actions button:last-child { background:#6c757d; color:white }
+
+@media (max-width:600px) {
+    .header { flex-direction:column; align-items:stretch }
+    .search-input { width:100% }
+}
