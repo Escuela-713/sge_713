@@ -31,6 +31,22 @@
               <!-- Botón -->
               <div class="">
                 <button type="submit" class="btn btn-primary mt-4">Registrar Compra</button>
+                <script>
+    // Activar validación de Bootstrap
+    (() => {
+      'use strict'
+      const forms = document.querySelectorAll('.needs-validation')
+      Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+    })()
+  </script>
               </div>
             </form>
           </div>
