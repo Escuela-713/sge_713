@@ -1,1 +1,255 @@
-<p>editar-posteo works!</p>
+<!-- Loading State -->
+@if (isLoading) {
+  <div class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Cargando novedad para editar...</p>
+  </div>
+}
+
+<!-- Error State -->
+@if (error) {
+  <div class="error-container">
+    <div class="error-icon">⚠️</div>
+    <h2>Error al cargar</h2>
+    <p>{{ error }}</p>
+    <button type="button" class="btn-secondary" (click)="goBack()">
+      Volver
+    </button>
+  </div>
+}
+
+<!-- Main Edit Form -->
+@if (!isLoading && !error && originalNovedad) {
+  <div class="editar-page">
+    <!-- Header -->
+    <div class="page-header">
+      <button class="back-btn" (click)="goBack()" type="button" aria-label="Volver atrás">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M19 12H6m0 0l6 6m-6-6l6-6"/>
+        </svg>
+      </button>
+      <div class="header-content">
+        <h1 class="page-title">Editar Posteo</h1>
+        <p class="page-subtitle">Modificar "{{ originalNovedad.title }}"</p>
+      </div>
+    </div>
+
+    <!-- Form and Preview Container -->
+    <div class="content-container">
+      <!-- Form Section -->
+      <div class="form-section">
+        <div class="form-card">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <!-- Slug -->
+            <div class="form-group">
+              <label for="slug" class="form-label">Slug</label>
+              <input 
+                id="slug" 
+                type="text"
+                formControlName="slug" 
+                placeholder="Identificador único (ej: sus-pasillos)"
+                class="form-input"
+                [class.error]="form.get('slug')?.invalid && form.get('slug')?.touched"
+              />
+              @if(form.get('slug')?.errors?.['required'] && form.get('slug')?.touched) {
+                <div class="error-message">
+                  <span class="error-icon">⚠️</span>
+                  El slug es obligatorio
+                </div>
+              }
+              @if(form.get('slug')?.errors?.['minlength'] && form.get('slug')?.touched) {
+                <div class="error-message">
+                  <span class="error-icon">⚠️</span>
+                  El slug debe tener al menos 3 caracteres
+                </div>
+              }
+            </div>
+            <!-- Image Upload -->
+            <div class="form-group">
+              <label for="image" class="form-label">Imagen de portada</label>
+              <div class="image-upload-container">
+                @if (form.get('image')?.value) {
+                  <div class="current-image">
+                    <img [src]="form.get('image')?.value" alt="Preview" />
+                    <div class="image-overlay">
+                      <label for="image" class="change-image-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                          <circle cx="12" cy="13" r="4"/>
+                        </svg>
+                        Cambiar imagen
+                      </label>
+                    </div>
+                  </div>
+                }
+                <input 
+                  id="image" 
+                  type="file" 
+                  accept="image/*" 
+                  (change)="onImageChange($event)"
+                  [class.hidden]="form.get('image')?.value"
+                />
+              </div>
+              @if(form.get('image')?.invalid && form.get('image')?.touched) {
+                <div class="error-message">
+                  <span class="error-icon">⚠️</span>
+                  Por favor, agregue una imagen
+                </div>
+              }
+            </div>
+            <!-- Title -->
+            <div class="form-group">
+              <label for="title" class="form-label">Título</label>
+              <input 
+                id="title" 
+                type="text"
+                formControlName="title" 
+                placeholder="Ingrese el título de la novedad"
+                class="form-input"
+                [class.error]="form.get('title')?.invalid && form.get('title')?.touched"
+              />
+              @if(form.get('title')?.errors?.['required'] && form.get('title')?.touched) {
+                <div class="error-message">
+                  <span class="error-icon">⚠️</span>
+                  El título es obligatorio
+                </div>
+              }
+              @if(form.get('title')?.errors?.['minlength'] && form.get('title')?.touched) {
+                <div class="error-message">
+                  <span class="error-icon">⚠️</span>
+                  El título debe tener al menos 5 caracteres
+                </div>
+              }
+            </div>
+            <!-- Category -->
+            <div class="form-group">
+              <label for="categoria" class="form-label">Categoría</label>
+              <select 
+                id="categoria" 
+                formControlName="categoria"
+                class="form-select"
+                [class.error]="form.get('categoria')?.invalid && form.get('categoria')?.touched"
+              >
+                <option value="evento">Evento</option>
+                <option value="anuncio">Anuncio</option>
+                <option value="acto">Acto Escolar</option>
+              </select>
+              @if(form.get('categoria')?.invalid && form.get('categoria')?.touched) {
+                <div class="error-message">
+                  <span class="error-icon">⚠️</span>
+                  Seleccione una categoría
+                </div>
+              }
+            </div>
+            <!-- Content -->
+            <div class="form-group">
+              <label for="content" class="form-label">Contenido</label>
+              <textarea 
+                id="content" 
+                formControlName="content" 
+                placeholder="Ingrese el contenido de la novedad"
+                class="form-textarea"
+                rows="6"
+                [class.error]="form.get('content')?.invalid && form.get('content')?.touched"
+              ></textarea>
+              @if(form.get('content')?.errors?.['required'] && form.get('content')?.touched) {
+                <div class="error-message">
+                  <span class="error-icon">⚠️</span>
+                  El contenido es obligatorio
+                </div>
+              }
+              @if(form.get('content')?.errors?.['minlength'] && form.get('content')?.touched) {
+                <div class="error-message">
+                  <span class="error-icon">⚠️</span>
+                  El contenido debe tener al menos 10 caracteres
+                </div>
+              }
+            </div>
+            <!-- Action Buttons -->
+            <div class="form-actions">
+              <button 
+                type="button" 
+                class="btn-secondary" 
+                (click)="onCancel()"
+              >
+                Cancelar
+              </button>
+              <div class="primary-actions">
+                <button 
+                  type="button" 
+                  class="btn-danger" 
+                  (click)="onDelete()"
+                  title="Eliminar novedad"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3,6 5,6 21,6"/>
+                    <path d="m19,6v14a2,2 0 0,1 -2,2H7a2,2 0 0,1 -2,-2V6m3,0V4a2,2 0 0,1 2,-2h4a2,2 0 0,1 2,2v2"/>
+                    <line x1="10" y1="11" x2="10" y2="17"/>
+                    <line x1="14" y1="11" x2="14" y2="17"/>
+                  </svg>
+                  Eliminar
+                </button>
+                <button 
+                  type="submit" 
+                  class="btn-primary" 
+                  [disabled]="form.invalid"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="20,6 9,17 4,12"/>
+                  </svg>
+                  Guardar Cambios
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+  <!-- Removed stray closing block '}' -->
+      <!-- Preview Section -->
+      <div class="preview-section">
+        <div class="preview-header">
+          <h3>Vista Previa</h3>
+          <span class="preview-badge">Preview</span>
+        </div>
+        
+        @if (novedad()) {
+          <div class="preview-card">
+            <div class="preview-image" [style.backgroundImage]="'url(' + novedad().backgroundImage + ')'">
+              <h2 class="preview-title">{{ novedad().title }}</h2>
+            </div>
+            <div class="preview-details">
+              <p><strong>Slug:</strong> {{ novedad().slug || form.get('slug')?.value }}</p>
+              <p><strong>Descripción:</strong> {{ novedad().description }}</p>
+              <p><strong>Categoría:</strong> {{ form.get('categoria')?.value }}</p>
+              <p><strong>Fecha:</strong> {{ novedad().date }}</p>
+              <p><strong>locationIcon:</strong> <span>{{ novedad().locationIcon }}</span></p>
+              <p><strong>dateIcon:</strong> <span>{{ novedad().dateIcon }}</span></p>
+            </div>
+            <div class="preview-content">
+              <div class="preview-meta">
+                <div class="meta-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 384 512">
+                    <path [attr.d]="novedad().locationIcon"/>
+                  </svg>
+                  <span>{{ novedad().location }}</span>
+                </div>
+                <div class="meta-item">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512">
+                    <path [attr.d]="novedad().dateIcon"/>
+                  </svg>
+                  <span>{{ novedad().date }}</span>
+                </div>
+              </div>
+              <p class="preview-description">{{ novedad().description }}</p>
+            </div>
+          </div>
+        } @else {
+          <div class="preview-placeholder">
+            <div class="placeholder-icon">👁️</div>
+            <p>La vista previa aparecerá aquí mientras editas</p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}
