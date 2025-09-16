@@ -1,1 +1,54 @@
-
+<div class="modal-content">
+    <form>
+    <div class="modal-header">
+        <h4 name="titulo" id="titulo" class="title">Registro incidencia</h4>
+    </div>
+ 
+    <div class="form-group row p-1">
+        <label for="nombreCompleto" class="col-sm-2 col-form-label">Nombre completo</label>
+        <div class="col-sm-10">
+            <input type="text" id="nombreCompleto" class="form-control" placeholder="Nombre completo" formControlName="nombreCompleto" required>
+            <p class="text-danger" *ngIf="form.get('nombreCompleto')?.invalid && form.get('nombreCompleto')?.touched">El nombre completo es requerido</p>
+        </div>
+    </div>
+    <div class="form-group row p-1">
+        <label for="mail" class="col-sm-2 col-form-label">Mail</label>
+        <div class="col-sm-10">
+            <input type="email" id="mail" class="form-control" placeholder="Correo electrónico" formControlName="mail" required>
+            <p class="text-danger" *ngIf="form.get('mail')?.invalid && form.get('mail')?.touched">El mail es requerido</p>
+        </div>
+    </div>
+    <div class="form-group row p-1">
+        <label for="telefono" class="col-sm-2 col-form-label">Número de teléfono</label>
+        <div class="col-sm-10">
+            <input type="tel" id="telefono" class="form-control" placeholder="Número de teléfono" formControlName="telefono" required>
+            <p class="text-danger" *ngIf="form.get('telefono')?.invalid && form.get('telefono')?.touched">El número de teléfono es requerido</p>
+        </div>
+    </div>
+    <div class="form-group row p-1">
+        <label for="prioridad" class="col-sm-2 col-form-label">Prioridad</label>
+        <div class="col-sm-10">
+            <select id="prioridad" class="form-control" formControlName="prioridad" required>
+                <option value="">Seleccione prioridad</option>
+                <option value="alta">Alta</option>
+                <option value="media">Media</option>
+                <option value="baja">Baja</option>
+            </select>
+            <p class="text-danger" *ngIf="form.get('prioridad')?.invalid && form.get('prioridad')?.touched">La prioridad es requerida</p>
+        </div>
+    </div>
+    <div class="form-group row p-1">
+        <label for="descripcion" class="col-sm-2 col-form-label">Descripción</label>
+        <div class="col-sm-10">
+            <textarea id="descripcion" class="form-control" rows="3" placeholder="Describa la incidencia" formControlName="descripcion" required></textarea>
+            <p class="text-danger" *ngIf="form.get('descripcion')?.invalid && form.get('descripcion')?.touched">La descripción es requerida</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Enviar incidencia</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+    </div>
+    <div *ngIf="incidenciaEnviada" class="alert alert-success mt-2" role="alert">
+        Incidencia enviada correctamente
+    </div>
+</form>
