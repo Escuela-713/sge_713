@@ -6,23 +6,26 @@
             <h4>Registro de Compra</h4>
           </div>
           <div class="card-body">
-            <form>
+            <form class="needs-validation" novalidate>
               <!-- Monto -->
               <div class="mb-3">
                 <label for="monto" class="form-label">Monto</label>
-                <input type="number" class="form-control" id="monto" placeholder="Ingrese el monto" required>
+                <input type="number" class="form-control" id="monto" placeholder="Ingrese el monto"required min="1" step="0.01">
+                <div class="invalid-feedback">Ingrese un monto válido (mayor a 0).</div>
               </div>
 
               <!-- Fecha -->
               <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha</label>
                 <input type="date" class="form-control" id="fecha" required>
+                <div class="invalid-feedback">Seleccione una fecha válida.</div>
               </div>
 
               <!-- Motivo -->
               <div class="mb-3">
                 <label for="motivo" class="form-label">Motivo</label>
-                <textarea class="form-control" id="motivo" rows="3" placeholder="Describa el motivo de la compra" required></textarea>
+                <textarea class="form-control" id="motivo" rows="3" placeholder="Describa el motivo de la compra" required minlength="5" maxlength="200"></textarea>
+              <div class="invalid-feedback">El motivo debe tener entre 5 y 200 caracteres.</div>
               </div>
 
               <!-- Botón -->
