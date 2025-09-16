@@ -21,6 +21,7 @@ import { FiltroCalificadorComponent } from './pages/gestion-datos-academicos/fil
 import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
 import { HistorialComponent } from './pages/gestion-cooperadora/historial/historial.component';
 import { FormularioComponent } from './pages/gestion-cooperadora/formulario/formulario.component';
+import { RegistroIngresosComponent } from './pages/gestion-cooperadora/registro-ingresos/registro-ingresos.component';
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
@@ -29,6 +30,7 @@ export const routes: Routes = [
     children: [
       { path: 'cooperadora-historial', component: HistorialComponent },
       { path: 'cooperadora-compra', component: FormularioComponent },
+      {path: 'cooperadora-ingresos', component: RegistroIngresosComponent},
       { path: 'carreras', component: CarrerasComponent },
       { path: 'planes', component: PlanesComponent },
       { path: 'editar-carreras', component: FormCarreraComponent },
