@@ -20,6 +20,7 @@ import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.co
 import { FiltroCalificadorComponent } from './pages/gestion-datos-academicos/filtro-calificador/filtro-calificador.component';
 import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
 import { MesaExamenComponent } from './pages/gestion-examenes-finales/mesa-examen/mesa-examen.component';
+import { RegistroMesaExamenComponent } from './pages/gestion-examenes-finales/registro-mesa-examen/registro-mesa-examen.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -61,7 +62,7 @@ export const routes: Routes = [
         ],
       },
     
-      { path: 'registro-mesa', component: MesaExamenComponent },
+      { path: 'registro-mesa', component: RegistroMesaExamenComponent },
     ],
   },
   { path: 'iniciar-sesion', component: LoginComponent },
