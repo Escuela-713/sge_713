@@ -20,6 +20,7 @@ import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.co
 import { FiltroCalificadorComponent } from './pages/gestion-datos-academicos/filtro-calificador/filtro-calificador.component';
 import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
 import { RegistroIncidenciaComponent } from './pages/gestion-incidencias/registro-incidencia/registro-incidencia.component';
+import { IncidenciasPendientesComponent } from './pages/gestion-incidencias/incidencias-pendientes/incidencias-pendientes.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -61,8 +62,11 @@ export const routes: Routes = [
       },
       {
         path: 'registro-incidencias',
-        component: RegistroIncidenciaComponent
-
+        component: RegistroIncidenciaComponent,
+      },
+      {
+        path: 'incidencias-pendientes',
+        component: IncidenciasPendientesComponent
       },
     ],
   },

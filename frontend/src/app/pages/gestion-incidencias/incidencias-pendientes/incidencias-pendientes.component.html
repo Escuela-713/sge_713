@@ -1,0 +1,87 @@
+<h1 class="datosPersonalesTitle">Incidencias Pendientes</h1>
+
+<div id="datosAlumnos">
+  <div class="accordion" id="accordionExample">
+
+    
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        
+        <span>Alquiler de sum 10/09/25</span>
+
+        
+        <div align="right">
+          <a routerLink="#" class="btn btnAdd">Editar</a>
+          <button type="button" class="btn btnDelete">Anular</button>
+        </div>
+
+        
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#flushCollapse1'" aria-expanded="false" aria-controls="flushCollapse1">
+        </button>
+      </h2>
+
+      <div id="flushCollapse1" class="accordion-collapse collapse" aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <div id="alumnoInfo" class="alumnoInfo">
+            <span><b>Nombre:</b> Alqu</span><br />
+            <span><b>Fecha:</b> 10/09/25</span><br />
+            <span><b>Descripción:</b> Reserva de salón</span><br />
+            <span><b>Estado:</b> Pendiente</span><br />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <span>Reparación de proyector 12/09/25</span>
+        <div align="right">
+          <a routerLink="#" class="btn btnAdd">Editar</a>
+          <button type="button" class="btn btnDelete">Anular</button>
+        </div>
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#flushCollapse2'" aria-expanded="false" aria-controls="flushCollapse2">
+        </button>
+      </h2>
+      <div id="flushCollapse2" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <div id="alumnoInfo" class="alumnoInfo">
+            <span><b>Nombre:</b> Reparación Proyector</span><br />
+            <span><b>Fecha:</b> 12/09/25</span><br />
+            <span><b>Descripción:</b> Avería en sala multimedia</span><br />
+            <span><b>Estado:</b> Pendiente</span><br />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingThree">
+        <span>Mantenimiento de computadoras 15/09/25</span>
+        <div align="right">
+          <a routerLink="#" class="btn btnAdd">Editar</a>
+          <button type="button" class="btn btnDelete">Anular</button>
+        </div>
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#flushCollapse3'" aria-expanded="false" aria-controls="flushCollapse3">
+        </button>
+      </h2>
+      <div id="flushCollapse3" class="accordion-collapse collapse" aria-labelledby="headingThree"
+        data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <div id="alumnoInfo" class="alumnoInfo">
+            <span><b>Nombre:</b> Mantenimiento PC</span><br />
+            <span><b>Fecha:</b> 15/09/25</span><br />
+            <span><b>Descripción:</b> Limpieza y actualización de software</span><br />
+            <span><b>Estado:</b> resuelto</span><br />
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
