@@ -21,6 +21,7 @@ import { FiltroCalificadorComponent } from './pages/gestion-datos-academicos/fil
 import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
 import { MesaExamenComponent } from './pages/gestion-examenes-finales/mesa-examen/mesa-examen.component';
 import { InscripcionMesaComponent } from './pages/gestion-examenes-finales/inscripcion-mesa/inscripcion-mesa.component';
+import { RegistroMesaExamenComponent } from './pages/gestion-examenes-finales/registro-mesa-examen/registro-mesa-examen.component';
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -62,8 +63,8 @@ export const routes: Routes = [
         ],
       },
     
-      { path: 'registro-mesa', component: MesaExamenComponent },
       {path: 'inscripcion-mesa', component: InscripcionMesaComponent},
+      { path: 'registro-mesa', component: RegistroMesaExamenComponent },
     ],
   },
   { path: 'iniciar-sesion', component: LoginComponent },

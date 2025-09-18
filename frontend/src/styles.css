@@ -6,6 +6,7 @@
     --color3: #F3F3F1;
     --color4: #8C8179;
     --color5: #8996A0;
+    --color6: #8F8FFF;
     --font1: PlusJakartaSans-Variable;
     --font2: Zodiak-Variable;
 }
@@ -63,6 +64,18 @@ svg {
         border: solid 3px var(--color2);
     }
 }
+.btnVerTabla {
+    background-color:var(--color6) ;
+    border: solid 3px var(--color6);
+    color: var(--color3);
+    font-weight: 700;
+    &:hover {
+        background-color: var(--color3);
+        color: var(--color6);
+        border: var(--color6);
+    }
+    }
+
 /* BOTON USADO EN GESTION DE DATOS PERSONALES */
 .btnDelete {
     background-color: var(--color3);

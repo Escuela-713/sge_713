@@ -1,0 +1,46 @@
+<h1 class="datosMesasExamenTitle"> Gestion de carreras</h1>
+<div id="datosMesas">
+    <div class="accordion" id="accordionExample">
+      
+        <div  class="accordion-item">
+          
+            <h2 class="accordion-header" class="heading">
+             
+                <span>Matemáticas 1ro ESB {{fecha}}</span>
+                <a  routerLink="" class="btn btnVerTabla">Ver tabla completa</a>
+                <a routerLink="#" class="btn btnAdd">Editar</a>
+                <button type="button" class="btn btnDelete">Eliminar</button>
+                 
+                
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flushCollapse'" aria-expanded="false" aria-controls="collapseOne"></button>
+              </h2>
+              <div
+              id="flushCollapse"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+      
+              <div class="accordion-body">
+      
+                <div id="alumnoInfo" class="alumnoInfo">
+                  <span> <b>Profesores:</b> </span>
+                  <span> <b>Horario:</b> </span>
+                  <span> <b>Lugar:</b> </span>
+                </div>
+              </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="container">
+        <button rel="stylesheet" routerLink="../editar-carreras" class="btn btnSave" data-dismiss="modal" >Nuevo</button> 
+        <button routerLink="/dashboard/planes" id="btn-planes" class="btn btn-warning">Planes</button>
+
+    </div>
+
+</div>
+
+
+
+
