@@ -7,13 +7,13 @@
 </head>
 <body>
 
+
   <h2>Formulario de Inscripción a Mesas de Examen</h2>
 
   <form action="procesar_inscripcion.php" method="POST">
     <!-- Datos del estudiante -->
-    <label for="nombre">Nombre completo:</label><br>
-    <input type="text" id="nombre" name="nombre" required><br><br>
-
+      <label for="nombre">Nombre completo:</label><br>
+      <input type="text" id="nombre" name="nombre" required><br><br>
     <label for="dni">DNI:</label><br>
     <input type="text" id="dni" name="dni" required><br><br>
 
@@ -31,14 +31,14 @@
       <option value="historia">Historia</option>
       <option value="lengua">Lengua</option>
       <option value="desarrollo ||">Desarrollo ||</option>
-      <!-- Agrega más materias según tu necesidad -->
     </select><br><br>
 
-    <label for="fecha_examen">Fecha de la mesa:</label><br>
+    <label for="fecha_examen">Fecha de la mesa</label><br>
     <input type="date" id="fecha_examen" name="fecha_examen" required><br><br>
 
     <label for="turno">Turno:</label><br>
     <select id="turno" name="turno" required>
+
       <option value="">Seleccione un turno</option>
       <option value="manana">Mañana</option>
       <option value="tarde">Tarde</option>
