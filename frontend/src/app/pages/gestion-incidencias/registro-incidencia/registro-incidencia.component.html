@@ -1,5 +1,5 @@
 <div class="modal-content">
-    <form>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="modal-header">
         <h4 name="titulo" id="titulo" class="title">Registro incidencia</h4>
     </div>
