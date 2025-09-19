@@ -22,13 +22,13 @@ import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/c
 import { HistorialComponent } from './pages/gestion-cooperadora/historial/historial.component';
 import { MovimientosComponent } from './pages/gestion-cooperadora/movimientos/movimientos.component';
 
-
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
     children: [
+      { path: 'cooperadora-movimientos', component: MovimientosComponent },
       { path: 'cooperadora-historial', component: HistorialComponent },
       { path: 'carreras', component: CarrerasComponent },
       { path: 'planes', component: PlanesComponent },
