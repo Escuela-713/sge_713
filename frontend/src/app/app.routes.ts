@@ -19,6 +19,7 @@ import { FiltroDatosPersonalesComponent } from './pages/gestion-datos-personales
 import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.component';
 import { FiltroCalificadorComponent } from './pages/gestion-datos-academicos/filtro-calificador/filtro-calificador.component';
 import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
+import { BienesRegistradosComponent } from './pages/gestion-inventario/bienes-registrados/bienes-registrados.component';
 import { InventarioComponent } from './pages/gestion-inventario/inventario/inventario.component';
 import { RegistrarBienComponent } from './pages/gestion-inventario/registrar-bien/registrar-bien.component';
 export const routes: Routes = [
@@ -52,7 +53,8 @@ export const routes: Routes = [
         ],
       },
 
-      {path: 'inventario', component: InventarioComponent},
+  {path: 'bienes-registrados', component: BienesRegistradosComponent},
+  {path: 'inventario', component: InventarioComponent},
   {path: 'registrar-bien', component: RegistrarBienComponent},
 
       {

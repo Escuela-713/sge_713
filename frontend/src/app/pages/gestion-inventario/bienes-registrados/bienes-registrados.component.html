@@ -1,0 +1,86 @@
+<div class="inventory">
+    <div class="header">
+    <h2 class="titulo">Bienes registrados</h2>
+        <input type="text" placeholder="Buscar bien por nombre, código o ubicación..." class="search-input" />
+    </div>
+
+    <ul class="items-list">
+        <li class="item">
+            <div style="display:flex; align-items:center; justify-content:space-between">
+                <div style="flex:1">
+                    <h3 style="margin:0; font-size:28px">Sillas</h3>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center">
+                      <button class="btn btn-success" routerLink="../registrar-bien">Editar</button>
+                    <details style="margin-left:6px">
+                        <summary style="list-style:none; border:none; background:transparent">▾</summary>
+                        <div class="card-body">
+                            <p><strong class="label">Nombre:</strong> <span class="value">Sillas</span></p>
+                            <p><strong class="label">Categoría:</strong> <span class="value">Mobiliario</span></p>
+                            <p><strong class="label">Cantidad:</strong> <span class="value">12</span></p>
+                            <p><strong class="label">Código especial:</strong> <span class="value">BR-ESP-1001</span></p>
+                            <p><strong class="label">Código de registro:</strong> <span class="value">BR-001</span></p>
+                            <p><strong class="label">Estado:</strong> <span class="value">Bueno</span></p>
+                            <p><strong class="label">Ubicación:</strong> <span class="value">Aula 5</span></p>
+                            <p><strong class="label">Fecha de adquisición:</strong> <span class="value">2020-08-01</span></p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </li>
+
+        <li class="item">
+            <div style="display:flex; align-items:center; justify-content:space-between">
+                <div style="flex:1">
+                    <h3 style="margin:0; font-size:28px">Mesas</h3>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center">
+                    <button class="btn btn-success">Editar</button>
+                    <details style="margin-left:6px">
+                        <summary style="list-style:none; border:none; background:transparent">▾</summary>
+                        <div class="card-body">
+                            <p><strong class="label">Nombre:</strong> <span class="value">Mesas</span></p>
+                            <p><strong class="label">Categoría:</strong> <span class="value">Mobiliario</span></p>
+                            <p><strong class="label">Cantidad:</strong> <span class="value">24</span></p>
+                            <p><strong class="label">Código especial:</strong> <span class="value">BR-ESP-1002</span></p>
+                            <p><strong class="label">Código de registro:</strong> <span class="value">BR-002</span></p>
+                            <p><strong class="label">Estado:</strong> <span class="value">Regular</span></p>
+                            <p><strong class="label">Ubicación:</strong> <span class="value">Almacén central</span></p>
+                            <p><strong class="label">Fecha de adquisición:</strong> <span class="value">2019-11-20</span></p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </li>
+
+        <li class="item">
+            <div style="display:flex; align-items:center; justify-content:space-between">
+                <div style="flex:1">
+                    <h3 style="margin:0; font-size:28px"> Mesas grandes</h3>
+                </div>
+                <div style="display:flex; gap:8px; align-items:center">
+                    <button class="btn btn-success">Editar</button>
+                    <details style="margin-left:6px">
+                        <summary style="list-style:none; border:none; background:transparent">▾</summary>
+                        <div class="card-body">
+                            <p><strong class="label">Nombre:</strong> <span class="value">Mesas grandes</span></p>
+                            <p><strong class="label">Categoría:</strong> <span class="value">Equipamiento</span></p>
+                            <p><strong class="label">Cantidad:</strong> <span class="value">3</span></p>
+                            <p><strong class="label">Código especial:</strong> <span class="value">BR-ESP-1003</span></p>
+                            <p><strong class="label">Código de registro:</strong> <span class="value">BR-003</span></p>
+                            <p><strong class="label">Estado:</strong> <span class="value">Bueno</span></p>
+                            <p><strong class="label">Ubicación:</strong> <span class="value">Aula Magna</span></p>
+                            <p><strong class="label">Fecha de adquisición:</strong> <span class="value">2021-03-12</span></p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div class="inventory-actions">
+        <div class="container">
+        <button class="btn btnSave" routerLink="../registrar-bien">Nuevo</button>
+        </div>
+    </div>
+</div>
