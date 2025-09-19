@@ -1,6 +1,4 @@
-Aquí tienes una versión mejorada y más bonita de tu `README.md`. Usé **títulos claros, emojis, tablas, bloques destacados y mejor organización visual** para hacerlo más comprensible y agradable a la vista:
 
-````markdown
 # 📚 Documentación de la API REST - Sistema de Gestión Educativa (SGE)
 
 Bienvenido a la documentación oficial de la API REST desarrollada con **Django REST Framework**.  
@@ -252,9 +250,3 @@ python app/manage.py runserver
 3. Configurar **variables de entorno** para credenciales
 4. Desactivar `DEBUG` en `settings.py`
 5. Definir correctamente `ALLOWED_HOSTS`
-
----
-
-✨ ¡Listo! Tu API REST está documentada y lista para usarse 🚀
-
-```
