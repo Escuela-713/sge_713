@@ -28,7 +28,6 @@ interface Novedad {
 export class NovedadComponent implements OnInit, OnDestroy {
   novedad: Novedad | undefined;
   private destroy$ = new Subject<void>();
-
   constructor(
     private route: ActivatedRoute,
     private location: Location
@@ -68,6 +67,7 @@ export class NovedadComponent implements OnInit, OnDestroy {
       // Set page title if novedad is found
       if (this.novedad) {
         document.title = `${this.novedad.title} - Novedades`;
+        const novedadUrl = `https://localhost:4200/novedad/${this.novedad.slug}`;
       }
     } catch (error) {
       console.error('Error loading novedad:', error);
