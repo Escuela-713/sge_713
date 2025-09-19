@@ -1,0 +1,44 @@
+{
+  "author": "Kevin O'Hara <kevnohara80@gmail.com> (http://kevinmohara.com)",
+  "name": "force",
+  "description": "force.js is a REST API wrapper for force.com, database.com, and salesforce.com",
+  "version": "0.0.3",
+  "keywords": [
+    "salesforce",
+    "salesforce.com",
+    "force.com",
+    "database.com",
+    "sfdc",
+    "forcedotcom",
+    "rest",
+    "api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/heroku/force.js.git"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "request": "*",
+    "faye": "~0.8.3",
+    "mime": "~1.2.9"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "bugs": {
+    "url": "http://github.com/heroku/force.js/issues"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://raw.github.com/heroku/force.js/master/LICENSE"
+  }
+}
