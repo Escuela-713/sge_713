@@ -20,6 +20,8 @@ import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.co
 import { FiltroCalificadorComponent } from './pages/gestion-datos-academicos/filtro-calificador/filtro-calificador.component';
 import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
 import { HistorialComponent } from './pages/gestion-cooperadora/historial/historial.component';
+import { MovimientosComponent } from './pages/gestion-cooperadora/movimientos/movimientos.component';
+
 
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
