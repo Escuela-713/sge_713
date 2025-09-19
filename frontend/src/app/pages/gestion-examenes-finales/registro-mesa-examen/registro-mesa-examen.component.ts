@@ -8,6 +8,6 @@ import { RouterLink } from "@angular/router";
   styleUrl: './registro-mesa-examen.component.css'
 })
 export class RegistroMesaExamenComponent {
-  fecha: string = Date.now().toString();
+  fecha: string = new Date().toLocaleString();
 
 }
