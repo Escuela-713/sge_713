@@ -31,6 +31,7 @@ export class RegistroIncidenciaComponent {
       this.form.reset();
     } else {
       this.form.markAllAsTouched();
+      this.errorEnvio = true;
     }
   }
 }

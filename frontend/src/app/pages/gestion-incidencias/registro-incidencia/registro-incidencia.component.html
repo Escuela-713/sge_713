@@ -1,5 +1,6 @@
 <div class="modal-content">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div *ngIf="errorEnvio" class="alert alert-danger mb-2">Debe completar los datos requeridos</div>
     <div class="modal-header">
         <h4 name="titulo" id="titulo" class="title">Registro incidencia</h4>
     </div>
