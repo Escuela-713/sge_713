@@ -1,0 +1,25 @@
+.ingreso {
+  color: green;
+  font-weight: bold;
+}
+
+.egreso {
+  color: red;
+  font-weight: bold;
+}
+
+.balance {
+  margin-top: 15px;
+  font-size: 18px;
+  text-align: right;
+}
+
+.balance .positivo {
+  color: green;
+  font-weight: bold;
+}
+
+.balance .negativo {
+  color: red;
+  font-weight: bold;
+}

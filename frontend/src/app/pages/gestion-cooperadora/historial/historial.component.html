@@ -1,7 +1,18 @@
 <div class="container mt-4">
-  <h2>Historial de Cooperadora Escolar</h2>
+<div class="container mt-4 d-flex justify-content-end align-items-center">
+  <div class="group">
+    <svg class="icon" viewBox="0 0 24 24">
+      <path
+        d="M10,2A8,8 0 0,1 18,10C18,12.21 17.21,14.21 15.83,15.59L21,20.76L19.59,22.17L14.41,17
+           C13.03,18.38 11.03,19.17 8.82,19.17A8,8 0 0,1 0.82,11.17A8,8 0 0,1 8.82,3.17M8.82,5.17
+           A6,6 0 0,0 2.82,11.17A6,6 0 0,0 8.82,17.17A6,6 0 0,0 14.82,11.17A6,6 0 0,0 8.82,5.17Z">
+      </path>
+    </svg>
+    <input placeholder="Search" type="search" class="input" />
+  </div>
+</div>
 
-  <!-- Tabla de historial -->
+  <h2>Historial de Cooperadora Escolar</h2>
   <table class="table table-striped table-bordered mt-3">
     <thead class="thead-dark">
       <tr>
@@ -9,27 +20,26 @@
         <th>Tipo</th>
         <th>Monto</th>
         <th>Origen</th>
-        <th *ngIf="isEgreso()">Destino</th>
         <th>¿Destino Utilizado?</th>
         <th>Comentario</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let registro of historial">
+      @for (registro of historial; track registro.id){
+     <tr>
         <td>{{ registro.fecha }}</td>
         <td>{{ registro.tipo }}</td>
         <td>${{ registro.monto }}</td>
         <td>{{ registro.origen }}</td>
         
-        <!-- Mostrar destino solo si es Egreso -->
-        <td *ngIf="registro.tipo === 'Egreso'">{{ registro.destino }}</td>
+        <td>{{ registro.destino }}</td>
         
-        <td>{{ registro.utilizado }}</td>
+       
         <td>{{ registro.comentario }}</td>
-      </tr>
+      </tr>     
+      }
+      
     </tbody>
   </table>
 
-  <!-- Formulario para agregar nuevo registro (opcional) -->
-  <button class="btn btn-primary mt-4" (click)="agregarRegistro()">Agregar nuevo registro</button>
 </div>
