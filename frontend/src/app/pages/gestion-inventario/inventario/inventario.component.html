@@ -4,204 +4,126 @@
 		<input type="text" placeholder="Buscar bien por nombre, código o titular..." class="search-input" />
 	</div>
 
-	<!-- Ingresos como lista de ítems (cada ingreso es desplegable) -->
-	<ul class="items-list ingresos-list">
-		<li class="item">
-			<details>
-				<summary>
-					<div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
-						<div style="flex:1">
-							<h3 style="margin:0">Ingresos recientes</h3>
-							<div class="card-sub">Últimos ingresos al inventario</div>
-						</div>
-					</div>
-				</summary>
-				<div class="card-body">
-					<div class="ingreso">
-						<h4 style="margin:0 0 6px 0">2025-09-05 — Laptops XPS</h4>
-						<p><strong class="label">Fecha:</strong> <span class="value">2025-09-05</span></p>
-						<p><strong class="label">Origen:</strong> <span class="value">Proveedor TechCorp</span></p>
-						<p><strong class="label">Cantidad:</strong> <span class="value">10 unidades</span></p>
-						<p><strong class="label">Notas:</strong> <span class="value">Distribuir a aulas de informática</span></p>
-					</div>
-					<hr />
-					<div class="ingreso">
-						<h4 style="margin:0 0 6px 0">2025-08-20 — Tablets Galaxy</h4>
-						<p><strong class="label">Fecha:</strong> <span class="value">2025-08-20</span></p>
-						<p><strong class="label">Origen:</strong> <span class="value">Donación Fundación X</span></p>
-						<p><strong class="label">Cantidad:</strong> <span class="value">5 unidades</span></p>
-						<p><strong class="label">Notas:</strong> <span class="value">Asignar a proyecto de inclusión digital</span></p>
-					</div>
-					<hr />
-					<div class="ingreso">
-						<h4 style="margin:0 0 6px 0">2024-11-02 — Proyector portátil</h4>
-						<p><strong class="label">Fecha:</strong> <span class="value">2024-11-02</span></p>
-						<p><strong class="label">Origen:</strong> <span class="value">Compra</span></p>
-						<p><strong class="label">Cantidad:</strong> <span class="value">1 unidad</span></p>
-						<p><strong class="label">Notas:</strong> <span class="value">Usar en actividades extracurriculares</span></p>
-					</div>
-				</div>
-			</details>
-		</li>
-		<!-- Item 1: incluye formulario de devolución -->
-		<li class="item">
-			<details>
-				<summary>
-					<div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
-						<div style="flex:1">
-							<h3 style="margin:0">Proyector Epson X123</h3>
-							<div class="card-sub">Código de registro: INV-001</div>
-						</div>
-						<div class="card-actions">
-							<button class="btn btn-success">Editar</button>
-						</div>
-					</div>
-				</summary>
-				<div class="card-body">
-					<p><strong class="label">Estado:</strong> <span class="value">Prestado</span></p>
-					<p><strong class="label">Código especial:</strong> <span class="value">INV-ESP-2001</span></p>
-					<p><strong class="label">A nombre de:</strong> <span class="value">Juan Pérez</span></p>
-					<p><strong class="label">Contacto:</strong> <span class="value">tel: (11) 1234-5678 — email: juan.perez@ejemplo.edu</span></p>
-					<div class="description">
-						<p><strong class="label">Descripción:</strong> <span class="value">Proyector para uso en aula magna. Préstamo hasta 2025-10-01.</span></p>
-					</div>
-
-					<div class="movements" style="margin-top:10px;">
-						<strong>Movimientos:</strong>
-						<div class="ingresos" style="margin-top:6px">
-							<strong>Ingresos:</strong>
-							<ul>
-								<li>2025-09-05 — Ingreso: Laptops XPS (10 unidades)</li>
-								<li>2025-08-20 — Ingreso: Tablets Galaxy (5 unidades)</li>
-							</ul>
-						</div>
-						<div class="egresos" style="margin-top:6px">
-							<strong>Egresos:</strong>
-							<ul>
-								<li>2025-09-01 — Préstamo a Escuela 735</li>
-							</ul>
-						</div>
-					</div>
-
-					<details class="return" style="margin-top:12px">
-						<summary style="cursor:pointer; font-weight:700">Registrar devolución ▾</summary>
-						<div class="card-body" style="margin-top:8px;">
-							<form class="edit-form">
-								<label for="fecha-dev">Fecha de devolución</label>
-								<input id="fecha-dev" type="date" />
-
-								<label for="condicion-dev">Condición al devolver</label>
-								<select id="condicion-dev">
-									<option>Bueno</option>
-									<option>Regular</option>
-									<option>Malo</option>
-								</select>
-
-								<label for="entregado-por">Entregado por</label>
-								<input id="entregado-por" type="text" placeholder="Nombre de la persona" />
-
-								<label for="obs-dev">Observaciones</label>
-								<textarea id="obs-dev" rows="3" placeholder="Notas adicionales..."></textarea>
-
-								<div class="edit-actions">
-									<button type="button">Confirmar devolución</button>
-									<button type="button">Cancelar</button>
+	<div class="movements" style="margin-bottom:14px; display:flex; gap:16px;">
+		<div style="flex:1">
+			<strong>Ingresos recientes</strong>
+			<ul class="items-list recent-ingresos" style="margin-top:8px;">
+				<li class="item">
+					<details>
+						<summary>
+							<div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
+								<div style="flex:1">
+									<h3 style="margin:0; font-size:16px">2025-09-10 — Kits Arduino UNO (20 unidades)</h3>
+									<div class="card-sub">Proveedor: Distribuciones Electrónica SA</div>
 								</div>
-							</form>
+							</div>
+						</summary>
+						<div class="card-body">
+							<p><strong class="label">Fecha:</strong> <span class="value">2025-09-10</span></p>
+							<p><strong class="label">Descripción:</strong> <span class="value">Kits Arduino UNO para laboratorio de Electrónica</span></p>
+							<p><strong class="label">Cantidad:</strong> <span class="value">20</span></p>
 						</div>
 					</details>
-				</div>
-			</details>
-		</li>
+				</li>
+				<li class="item">
+					<details>
+						<summary>
+							<div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
+								<div style="flex:1">
+									<h3 style="margin:0; font-size:16px">2025-08-28 — Estaciones de soldadura (4 unidades)</h3>
+									<div class="card-sub">Compra: Taller de Automatización</div>
+								</div>
+							</div>
+						</summary>
+						<div class="card-body">
+							<p><strong class="label">Fecha:</strong> <span class="value">2025-08-28</span></p>
+							<p><strong class="label">Descripción:</strong> <span class="value">Estaciones de soldadura para prácticas de montaje</span></p>
+							<p><strong class="label">Cantidad:</strong> <span class="value">4</span></p>
+						</div>
+					</details>
+				</li>
+				<li class="item">
+					<details>
+						<summary>
+							<div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
+								<div style="flex:1">
+									<h3 style="margin:0; font-size:16px">2025-07-15 — Osciloscopios digitales (2 unidades)</h3>
+									<div class="card-sub">Donación: Empresa Industrial X</div>
+								</div>
+							</div>
+						</summary>
+						<div class="card-body">
+							<p><strong class="label">Fecha:</strong> <span class="value">2025-07-15</span></p>
+							<p><strong class="label">Descripción:</strong> <span class="value">Osciloscopios digitales 2 canales para laboratorio</span></p>
+							<p><strong class="label">Cantidad:</strong> <span class="value">2</span></p>
+						</div>
+					</details>
+				</li>
+			</ul>
+		</div>
 
-		<!-- Item 2 -->
-		<li class="item">
-			<details>
-				<summary>
-					<div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
-						<div style="flex:1">
-							<h3 style="margin:0">Juego de Sillas</h3>
-							<div class="card-sub">Código de registro: INV-002</div>
+		<div style="flex:1">
+			<strong>Egresos recientes</strong>
+			<ul class="items-list recent-egresos" style="margin-top:8px;">
+				<li class="item">
+					<details>
+						<summary>
+							<div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
+								<div style="flex:1">
+									<h3 style="margin:0; font-size:16px">2025-09-01 — Proyector (egreso)</h3>
+									<div class="card-sub">A nombre de: Escuela 735</div>
+								</div>
+							</div>
+						</summary>
+						<div class="card-body">
+							<p><strong class="label">Fecha de egreso:</strong> <span class="value">2025-09-01</span></p>
+							<p><strong class="label">Cantidad:</strong> <span class="value">1</span></p>
+							<p><strong class="label">Contacto:</strong> <span class="value">tel: (11) 4444-7777 — email: contacto@escuela735.edu</span></p>
 						</div>
-						<div class="card-actions">
-							<button class="btn btn-success" routerLink="../registrar-bien">Editar</button>
+					</details>
+				</li>
+				<li class="item">
+					<details>
+						<summary>
+							<div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
+								<div style="flex:1">
+									<h3 style="margin:0; font-size:16px">2025-08-15 — Equipo de sonido (egreso)</h3>
+									<div class="card-sub">A nombre de: María Gómez</div>
+								</div>
+							</div>
+						</summary>
+						<div class="card-body">
+							<p><strong class="label">Fecha de egreso:</strong> <span class="value">2025-08-15</span></p>
+							<p><strong class="label">Cantidad:</strong> <span class="value">1</span></p>
+							<p><strong class="label">Contacto:</strong> <span class="value">tel: (11) 5555-0000 — email: maria.gomez@ejemplo.com</span></p>
 						</div>
-					</div>
-				</summary>
-				<div class="card-body">
-					<p><strong class="label">Categoría:</strong> <span class="value">Mobiliario</span></p>
-					<p><strong class="label">Cantidad:</strong> <span class="value">12</span></p>
-					<p><strong class="label">Código especial:</strong> <span class="value">INV-ESP-2002</span></p>
-					<p><strong class="label">Estado:</strong> <span class="value">En uso</span></p>
-					<p><strong class="label">A nombre de:</strong> <span class="value">Colegio 713 (inventario central)</span></p>
-					<p><strong class="label">Contacto:</strong> <span class="value">tel: (11) 9876-5432 — email: admin@colegio713.edu</span></p>
-					<div class="description"><p><strong class="label">Descripción:</strong> <span class="value">Conjunto de 12 sillas en buen estado.</span></p></div>
-					<div class="movements" style="margin-top:10px;">
-						<strong>Movimientos:</strong>
-						<div class="ingresos" style="margin-top:6px">
-							<strong>Ingresos:</strong>
-							<ul>
-								<li>2024-11-02 — Ingreso: Proyector portátil (1 unidad)</li>
-								<li>2024-12-15 — Ingreso: Mesa plegable (3 unidades)</li>
-							</ul>
+					</details>
+				</li>
+				<li class="item">
+					<details>
+						<summary>
+							<div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
+								<div style="flex:1">
+									<h3 style="margin:0; font-size:16px">2024-12-20 — Juego de Sillas (egreso)</h3>
+									<div class="card-sub">A nombre de: Departamento de Eventos</div>
+								</div>
+							</div>
+						</summary>
+						<div class="card-body">
+							<p><strong class="label">Fecha de egreso:</strong> <span class="value">2024-12-20</span></p>
+							<p><strong class="label">Cantidad:</strong> <span class="value">1</span></p>
+							<p><strong class="label">Contacto:</strong> <span class="value">tel: (11) 2222-3333 — email: eventos@colegio713.edu</span></p>
 						</div>
-						<div class="egresos" style="margin-top:6px">
-							<strong>Egresos:</strong>
-							<ul>
-								<li>--</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</details>
-		</li>
-
-		<!-- Item 3 -->
-		<li class="item">
-			<details>
-				<summary>
-					<div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
-						<div style="flex:1">
-							<h3 style="margin:0">Equipo de Sonido — Micrófono</h3>
-							<div class="card-sub">Código de registro: INV-003</div>
-						</div>
-						<div class="card-actions">
-							<button class="btn btn-success" routerLink="../registrar-bien">Editar</button>
-						</div>
-					</div>
-				</summary>
-				<div class="card-body">
-					<p><strong class="label">Categoría:</strong> <span class="value">Equipamiento</span></p>
-					<p><strong class="label">Cantidad:</strong> <span class="value">1</span></p>
-					<p><strong class="label">Código especial:</strong> <span class="value">INV-ESP-2003</span></p>
-					<p><strong class="label">Estado:</strong> <span class="value">En préstamo</span></p>
-					<p><strong class="label">A nombre de:</strong> <span class="value">María Gómez</span></p>
-					<p><strong class="label">Contacto:</strong> <span class="value">tel: (11) 5555-0000 — email: maria.gomez@ejemplo.com</span></p>
-					<div class="description"><p><strong class="label">Descripción:</strong> <span class="value">Evento familiar — autorización concedida</span></p></div>
-					<div class="movements" style="margin-top:10px;">
-						<strong>Movimientos:</strong>
-						<div class="ingresos" style="margin-top:6px">
-							<strong>Ingresos:</strong>
-							<ul>
-								<li>2025-07-10 — Ingreso: Micrófonos de mano (2 unidades)</li>
-								<li>2025-06-02 — Ingreso: Parlantes activos (1 unidad)</li>
-							</ul>
-						</div>
-						<div class="egresos" style="margin-top:6px">
-							<strong>Egresos:</strong>
-							<ul>
-								<li>2025-08-15 — Préstamo a María Gómez</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</details>
-		</li>
+					</details>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<ul class="items-list">
 	</ul>
 
 	<div class="inventory-actions">
 		<div class="container">
-			<button class="btn btnSave" routerLink="../registrar-bien">Nuevo registro</button>
 		</div>
 	</div>
 </div>
