@@ -11,6 +11,7 @@
 .balance {
   margin-top: 15px;
   font-size: 18px;
+  text-align: right;
 }
 
 .balance .positivo {
@@ -21,14 +22,4 @@
 .balance .negativo {
   color: red;
   font-weight: bold;
-}
-
-.form-movimiento {
-  margin-top: 20px;
-}
-
-.form-movimiento select,
-.form-movimiento input {
-  margin-right: 10px;
-  padding: 5px;
 }

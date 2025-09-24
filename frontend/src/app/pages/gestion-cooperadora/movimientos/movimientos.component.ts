@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-movimientos',
   standalone: true,
+  imports: [CurrencyPipe],   // 👈 acá agregás el pipe
   templateUrl: './movimientos.component.html',
   styleUrls: ['./movimientos.component.css']
 })
 export class MovimientosComponent {
   movimientos = [
     { fecha: '03/09/2025', tipo: 'Ingreso', monto: 5000, origen: 'Cuota familiar', destino: 'Sanguchitos de miga', comentario: 'Pagado por familia Pérez' },
-    { fecha: '04/09/2025', tipo: 'Egreso', monto: 3200, origen: 'Venta de números', destino: 'Compra útiles escolares', comentario: 'Se compraron cuadernos y lápices' }
+    { fecha: '04/09/2025', tipo: 'Egreso', monto: 3200, origen: 'Venta de números', destino: 'Compra útiles escolares', comentario: 'Se compraron cuadernos y lápices' },
+    { fecha: '05/09/2025', tipo: 'Ingreso', monto: 1500, origen: 'Donación', destino: 'Sanguchitos de miga', comentario: 'Donación anónima' },
+    { fecha: '06/09/2025', tipo: 'Egreso', monto: 2000, origen: 'Venta de números', destino: 'Pago a proveedores', comentario: 'Pago a Proveedor X' }
   ];
 
   balance: number = 0;
