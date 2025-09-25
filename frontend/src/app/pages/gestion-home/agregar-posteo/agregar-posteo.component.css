@@ -54,7 +54,7 @@
 .form textarea {
   padding: 0.875rem;
   border: 2px solid #e1e8ed;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 1rem;
   transition: all 0.3s ease;
   font-family: inherit;

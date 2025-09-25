@@ -37,7 +37,7 @@
         @if(form.get('content')?.errors?.['minlength'] && form.get('content')?.touched){
           <p class="error">El contenido debe tener al menos 10 caracteres</p>
         }
-        <button type="submit" [disabled]="form.invalid">Guardar Posteo</button>
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Guardar Posteo</button>
       </form>
     </div>
   </div>

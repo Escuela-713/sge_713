@@ -3,7 +3,7 @@ import { FormControl, FormGroup, FormBuilder, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { NovedadesService, Card } from '../../../service/novedades.service';
 
 interface Novedad {
   id: number;
@@ -37,7 +37,7 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    private http: HttpClient
+    private novedadesService: NovedadesService
   ) {
     this.form = this.fb.group({
       slug: ['', [Validators.required, Validators.minLength(3)]],
@@ -72,14 +72,8 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
     try {
       this.isLoading = true;
       this.error = null;
-
-      const response = await fetch('/assets/novedades-home.json');
-      if (!response.ok) {
-        throw new Error('Error al cargar las novedades');
-      }
-      
-      const data = await response.json();
-      this.originalNovedad = data.cards?.find((card: Novedad) => card.slug === slug);
+      const card = await this.novedadesService.getCardBySlug(slug);
+      this.originalNovedad = card || null;
       if (this.originalNovedad) {
         let categoria = 'evento';
         if (this.originalNovedad.location && typeof this.originalNovedad.location === 'string') {
@@ -154,28 +148,21 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
         backgroundImage: this.form.value.image,
         updatedAt: new Date().toISOString()
       };
-
-      // Leer y actualizar el JSON
-      fetch('/assets/novedades-home.json')
-        .then(res => res.json())
-        .then(json => {
-          let cards = json.cards || [];
+      (async () => {
+        try {
           if (this.originalNovedad) {
-            // Editar existente
-            const idx = cards.findIndex((c: any) => c.id === this.originalNovedad!.id);
-            if (idx !== -1) {
-              cards[idx] = updatedData;
-            }
+            await this.novedadesService.updateCard(updatedData as Card);
+            alert('Posteo actualizado');
           } else {
-            // Agregar nuevo posteo
-            updatedData.id = cards.length ? Math.max(...cards.map((c: any) => c.id)) + 1 : 1;
-            cards.push(updatedData);
+            await this.novedadesService.addCard(updatedData as any);
+            alert('Posteo creado');
           }
-          // Simulación: mostrar resultado
-          alert(`GUARDADO EN JSON (simulado):\n${JSON.stringify(updatedData, null, 2)}`);
-        });
-
-      this.router.navigate(['/dashboard/home']);
+          this.router.navigate(['/dashboard/home']);
+        } catch (err) {
+          console.error('Error guardando novedad', err);
+          alert('Error al guardar la novedad');
+        }
+      })();
     } else {
       this.form.markAllAsTouched();
       alert('Por favor, complete todos los campos requeridos correctamente.');
@@ -198,9 +185,16 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
       const confirmDelete = confirm(`¿Está seguro de que desea eliminar la novedad "${this.originalNovedad.title}"?\n\nEsta acción no se puede deshacer.`);
       
       if (confirmDelete) {
-        // Simular eliminación
-        alert(`NOVEDAD ELIMINADA:\n"${this.originalNovedad.title}" ha sido eliminada correctamente.`);
-        this.router.navigate(['/dashboard/home']);
+        (async () => {
+          try {
+            await this.novedadesService.deleteCardById(this.originalNovedad!.id);
+            alert(`NOVEDAD ELIMINADA:\n"${this.originalNovedad!.title}" ha sido eliminada correctamente.`);
+            this.router.navigate(['/dashboard/home']);
+          } catch (err) {
+            console.error('Error eliminando novedad', err);
+            alert('No se pudo eliminar la novedad');
+          }
+        })();
       }
     }
   }

@@ -5,6 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { Location } from '@angular/common';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
+import { NovedadesService } from '../../service/novedades.service';
 
 interface Novedad {
   id: number;
@@ -30,7 +31,8 @@ export class NovedadComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
   constructor(
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private novedadesService: NovedadesService
   ) {}
 
   ngOnInit(): void {
@@ -56,18 +58,11 @@ export class NovedadComponent implements OnInit, OnDestroy {
 
   private async loadNovedad(slug: string): Promise<void> {
     try {
-      const response = await fetch('/assets/novedades-home.json');
-      if (!response.ok) {
-        throw new Error('Error al cargar las novedades');
-      }
-      
-      const data = await response.json();
-      this.novedad = data.cards?.find((card: Novedad) => card.slug === slug);
-      
-      // Set page title if novedad is found
+      const card = await this.novedadesService.getCardBySlug(slug);
+      this.novedad = card as Novedad | undefined;
+
       if (this.novedad) {
         document.title = `${this.novedad.title} - Novedades`;
-        const novedadUrl = `https://localhost:4200/novedad/${this.novedad.slug}`;
       }
     } catch (error) {
       console.error('Error loading novedad:', error);

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import {RouterLink} from '@angular/router'
-import { Observable } from 'rxjs';
+import { NovedadesService, NovedadesData, Card } from '../../../service/novedades.service';
 
 export interface CarouselSlide {
   id: number;
@@ -11,24 +10,7 @@ export interface CarouselSlide {
   buttonText: string;
   buttonLink: string;
 }
-
-export interface Card {
-  id: number;
-  slug: string;
-  backgroundImage: string;
-  title: string;
-  description: string;
-  location: string;
-  date: string;
-  locationIcon: string;
-  dateIcon: string;
-}
-
-export interface NovedadesData {
-  carouselSlides: CarouselSlide[];
-  sectionTitle: string;
-  cards: Card[];
-}
+// Card and NovedadesData types are declared in the service to avoid duplication
 
 @Component({
   selector: 'app-dashboard-home',
@@ -39,38 +21,48 @@ export interface NovedadesData {
 })
 export class HomeGestionComponent implements OnInit {
   
-  novedadesData: NovedadesData = { 
-    carouselSlides: [], 
-    sectionTitle: '', 
-    cards: [] 
+  novedadesData: NovedadesData = {
+    carouselSlides: [],
+    sectionTitle: '',
+    cards: []
   };
-  
+
   totalSlides = 0;
   totalCards = 0;
   totalLocaciones = 0;
   ultimasCards: Card[] = [];
   isLoading = true;
 
-  constructor(private http: HttpClient) {}
+  constructor(private novedadesService: NovedadesService) {}
 
   ngOnInit(): void {
     this.cargarDatos();
   }
 
-  cargarDatos(): void {
-    this.http.get<NovedadesData>('assets/novedades-home.json')
-      .subscribe({
-        next: (data) => {
-          this.novedadesData = data;
-          this.calcularEstadisticas();
-          this.obtenerUltimasCards();
-          this.isLoading = false;
-        },
-        error: (error) => {
-          console.error('Error al cargar los datos:', error);
-          this.isLoading = false;
-        }
-      });
+  async cargarDatos(): Promise<void> {
+    try {
+      this.isLoading = true;
+      this.novedadesData = await this.novedadesService.getAll();
+      this.calcularEstadisticas();
+      this.obtenerUltimasCards();
+    } catch (err) {
+      console.error('Error al cargar los datos:', err);
+    } finally {
+      this.isLoading = false;
+    }
+  }
+
+  async onDeleteCard(card: Card): Promise<void> {
+    const ok = confirm(`¿Eliminar posteo "${card.title}"? Esta acción no se puede deshacer.`);
+    if (!ok) return;
+    try {
+      await this.novedadesService.deleteCardById(card.id);
+      await this.cargarDatos();
+      alert('Posteo eliminado');
+    } catch (err) {
+      console.error('Error eliminando card:', err);
+      alert('Error al eliminar el posteo');
+    }
   }
 
   private calcularEstadisticas(): void {

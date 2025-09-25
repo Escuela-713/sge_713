@@ -83,6 +83,7 @@
                   <div class="post-actions">
                     <a class="view-post-link" [routerLink]="['/novedad', card.slug]">Ver Novedad</a>
                     <a class="edit-post-link" [routerLink]="['/dashboard/home/editar-novedad', card.slug]">Editar Novedad</a>
+                    <button class="delete-post-link" (click)="onDeleteCard(card)">Eliminar</button>
                   </div>
                 </div>
               </div>

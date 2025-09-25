@@ -1,5 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NovedadesService } from '../../../service/novedades.service';
 
 @Component({
   selector: 'app-agregar-posteo',
@@ -12,7 +14,7 @@ export class AgregarPosteoComponent {
   form: FormGroup;
   novedad = signal<any | null>(null);
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private novedadesService: NovedadesService, private router: Router) {
     this.form = this.fb.group({
       image: ['', Validators.required],
       title: ['', [Validators.required, Validators.minLength(5)]],
@@ -47,7 +49,32 @@ export class AgregarPosteoComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      alert(`POST: ${JSON.stringify(this.form.value)}`);
+      // Guardar usando el servicio
+      const val = this.form.value;
+      this.novedad.set({
+        backgroundImage: val.image,
+        title: val.title,
+        location: val.categoria,
+        date: new Date().toLocaleDateString(),
+        description: val.content
+      });
+      // Añadir al storage (async)
+      const payload = {
+        title: val.title,
+        description: val.content,
+        backgroundImage: val.image,
+        location: val.categoria,
+        date: new Date().toLocaleDateString(),
+        locationIcon: '',
+        dateIcon: ''
+      };
+      this.novedadesService.addCard(payload as any).then(() => {
+        alert('Posteo agregado');
+        this.router.navigate(['/dashboard/home']);
+      }).catch((err: any) => {
+        console.error('Error agregando posteo', err);
+        alert('No se pudo agregar el posteo');
+      });
     } else {
       this.form.markAllAsTouched();
     }
