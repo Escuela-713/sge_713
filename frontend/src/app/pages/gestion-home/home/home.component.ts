@@ -31,7 +31,8 @@ export class HomeGestionComponent implements OnInit {
   totalCards = 0;
   totalLocaciones = 0;
   ultimasCards: Card[] = [];
-  isLoading = true;
+  isLoading = false;
+  mostrarTodas = false;
 
   constructor(private novedadesService: NovedadesService) {}
 
@@ -41,14 +42,12 @@ export class HomeGestionComponent implements OnInit {
 
   async cargarDatos(): Promise<void> {
     try {
-      this.isLoading = true;
+      // Como cargamos desde localStorage, no necesitamos mostrar loading
       this.novedadesData = await this.novedadesService.getAll();
       this.calcularEstadisticas();
       this.obtenerUltimasCards();
     } catch (err) {
       console.error('Error al cargar los datos:', err);
-    } finally {
-      this.isLoading = false;
     }
   }
 
@@ -75,14 +74,15 @@ export class HomeGestionComponent implements OnInit {
   }
 
   private obtenerUltimasCards(): void {
-    // Ordenar por fecha (más recientes primero) y tomar las últimas 4
-    this.ultimasCards = this.novedadesData.cards
-      .sort((a, b) => {
-        const dateA = this.parsearFecha(a.date);
-        const dateB = this.parsearFecha(b.date);
-        return dateB.getTime() - dateA.getTime();
-      })
-      .slice(0, 4);
+    // Ordenar por fecha (más recientes primero)
+    const ordenadas = this.novedadesData.cards.sort((a, b) => {
+      const dateA = this.parsearFecha(a.date);
+      const dateB = this.parsearFecha(b.date);
+      return dateB.getTime() - dateA.getTime();
+    });
+    
+    // Si mostrarTodas es true, mostrar todas las cards ordenadas
+    this.ultimasCards = this.mostrarTodas ? ordenadas : ordenadas.slice(0, 4);
   }
 
   private parsearFecha(fechaStr: string): Date {
@@ -115,5 +115,23 @@ export class HomeGestionComponent implements OnInit {
 
   getIconSvg(iconPath: string): string {
     return `<svg width="20" height="20" viewBox="0 0 512 512" fill="currentColor"><path d="${iconPath}"/></svg>`;
+  }
+
+  mostrarTodasLasNovedades(): void {
+    this.mostrarTodas = !this.mostrarTodas;
+    this.obtenerUltimasCards();
+  }
+
+  async onDeleteSlide(slide: CarouselSlide): Promise<void> {
+    const ok = confirm(`¿Eliminar slide "${slide.title}"? Esta acción no se puede deshacer.`);
+    if (!ok) return;
+    try {
+      await this.novedadesService.deleteSlideById(slide.id);
+      await this.cargarDatos();
+      alert('Slide eliminado correctamente');
+    } catch (err) {
+      console.error('Error eliminando slide:', err);
+      alert('Error al eliminar el slide');
+    }
   }
 }

@@ -104,19 +104,27 @@
 .post-actions {
   margin-top: 1rem;
   display: flex;
+  gap: 0.5rem;
   justify-content: flex-end;
+  flex-wrap: wrap;
 }
 
-.view-post-link {
+.view-post-link, .edit-post-link, .delete-post-link {
   display: inline-flex;
   align-items: center;
   padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 500;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+}
+
+.view-post-link {
   background-color: #3b82f6;
   color: white;
   text-decoration: none;
-  border-radius: 0.375rem;
-  font-weight: 500;
-  transition: background-color 0.2s ease;
 }
 
 .view-post-link:hover {
@@ -124,7 +132,28 @@
   text-decoration: none;
 }
 
-.view-post-link:focus {
+.edit-post-link {
+  background-color: #10b981;
+  color: white;
+  text-decoration: none;
+}
+
+.edit-post-link:hover {
+  background-color: #059669;
+}
+
+.delete-post-link {
+  background-color: #ef4444;
+  color: white;
+}
+
+.delete-post-link:hover {
+  background-color: #dc2626;
+}
+
+.view-post-link:focus,
+.edit-post-link:focus,
+.delete-post-link:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
 }
@@ -365,6 +394,40 @@
   color: #94a3b8;
   font-size: 0.75rem;
   font-weight: 500;
+}
+
+.slide-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.slide-actions button {
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  border-radius: 4px;
+  border: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.edit-slide-btn {
+  background-color: #10b981;
+  color: white;
+}
+
+.edit-slide-btn:hover {
+  background-color: #059669;
+}
+
+.delete-slide-btn {
+  background-color: #ef4444;
+  color: white;
+}
+
+.delete-slide-btn:hover {
+  background-color: #dc2626;
 }
 
 /* Empty State */

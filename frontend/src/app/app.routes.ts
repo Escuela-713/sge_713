@@ -24,6 +24,7 @@ import { AgregarPosteoComponent } from './pages/gestion-home/agregar-posteo/agre
 import { EditarPosteoComponent } from './pages/gestion-home/editar-posteo/editar-posteo.component';
 import { NovedadComponent } from './pages/novedad/novedad.component';
 import { HomeGestionComponent } from './pages/gestion-home/home/home.component';
+import { AgregarSlideComponent } from './pages/gestion-home/agregar-slide/agregar-slide.component';
 
 export const routes: Routes = [
   { path: 'novedad/:slug', component: NovedadComponent },
@@ -70,7 +71,8 @@ export const routes: Routes = [
         children: [
           { path: '', component: HomeGestionComponent, pathMatch: 'full' },
           { path: 'agregar-posteo', component: AgregarPosteoComponent },
-          { path: 'editar-novedad/:slug', component: EditarPosteoComponent }
+          { path: 'editar-novedad/:slug', component: EditarPosteoComponent },
+          { path: 'agregar-slide', component: AgregarSlideComponent }
         ]
       },
     ],
