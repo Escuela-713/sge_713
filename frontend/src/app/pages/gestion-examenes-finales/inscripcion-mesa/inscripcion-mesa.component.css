@@ -1,6 +1,7 @@
-h2{
-    text-align: center;
-}
 form{
-   
+    text-align: center;
+    margin: 80px;
+    border-color: black; 
+    border-radius: 5px;
+    justify-content: left;
 }
