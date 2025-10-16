@@ -12,19 +12,15 @@
 
   <form action="procesar_inscripcion.php" method="POST">
     <!-- Datos del estudiante -->
-      <label for="nombre">Nombre completo</label>
+    <label for="cuit">CUIT</label><br>
+      <input type="text" id="cuit" name="cuit" required><br><br>
+    <label for="nombre">Nombre completo</label>
       <input type="text" id="nombre" name="nombre" required><br><br>
     <label for="dni">DNI</label>
-    <input type="text" id="dni" name="dni" required><br><br>
-
+      <input type="text" id="dni" name="dni" required><br><br>
+      <buttom type
     <label for="turno">Turno</label>
-    <select id="turno" name="turno" required>
-
-
-
-
-
-      
+    <select id="turno" name="turno" required> 
       <option value="">Seleccione un turno</option>
       <option value="manana">Mañana</option>
       <option value="tarde">Tarde</option>
