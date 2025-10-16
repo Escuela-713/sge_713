@@ -1,4 +1,4 @@
-.body {
+body {
 font-family: Arial, sans-serif;
 background-color: #eef2f3;
 display: flex;
@@ -7,7 +7,7 @@ align-items: center;
 height: 100vh;
 }
 
-.form { 
+form { 
 background-color: #8f4c4c;
 padding: 25px 30px;
 border-radius: 10px;
@@ -15,20 +15,20 @@ box-shadow: 0 0 10px;
 width: 340px;
 }
  
-.h2 {
+h2 {
 text-align: center;
-color: #333;
+color: white;
 margin-bottom: 15px;
 }
 
-.label {
+label {
     display: block;
     margin-top: 10px;
     font-weight: bold;
-    color: #555;
+    color: white;
 }
 
-.input, select {
+input, select {
 width: 100%;
 padding: 8px;
 margin-top: 5px;
@@ -36,7 +36,7 @@ border: 1px solid #ccc;
 border-radius: 5px;
 }
 
-.button {
+button {
     width: 100%;
     padding: 8px;
     background-color: #007bff;
@@ -49,6 +49,6 @@ border-radius: 5px;
     transition: background-color 0.2 ease;
 }
 
-.button:hover {
+button:hover {
 background-color: #0056b3;
 }
