@@ -28,6 +28,8 @@ import { GestionHomeComponent } from './pages/gestion-home/gestion-home.componen
 import { AgregarPosteoComponent } from './pages/gestion-home/agregar-posteo/agregar-posteo.component';
 import { EditarPosteoComponent } from './pages/gestion-home/editar-posteo/editar-posteo.component';
 import { NovedadComponent } from './pages/novedad/novedad.component';
+
+import { RegistroMesaExamenComponent } from './pages/gestion-examenes-finales/registro-mesa-examen/registro-mesa-examen.component';
 import { HomeGestionComponent } from './pages/gestion-home/home/home.component';
 
 export const routes: Routes = [
@@ -63,6 +65,14 @@ export const routes: Routes = [
       {
         path: 'incidencias-pendientes', component: IncidenciasPendientesComponent
       },
+       {
+        path: 'datos-academicos',
+        component: DatosAcademicosComponent,
+        children: [
+          {path: 'calificador',component: CalificadorComponent},
+        {path:'filtro/:tipo', component: FiltroCalificadorComponent},
+        ],
+      },
       {
         path: "home",
         component: GestionHomeComponent,
@@ -72,6 +82,7 @@ export const routes: Routes = [
           { path: 'editar-novedad/:slug', component: EditarPosteoComponent }
         ]
       },
+      { path: 'registro-mesa', component: RegistroMesaExamenComponent },
     ],
   },
   { path: 'iniciar-sesion', component: LoginComponent },
