@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesas de Exámenes Finales</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 40px 20px;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 200px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+        }
+
+        .card button {
+            padding: 10px 15px;
+            border: none;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .card button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mesas de Exámenes Finales</h1>
+        <p>Seleccione una mesa para más información</p>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h3>Matemáticas</h3>
+            <button onclick="verInfo('matematicas')">Ver información</button>
+        </div>
+        <div class="card">
+            <h3>Geografía</h3>
+            <button onclick="verInfo('geografia')">Ver información</button>
+        </div>
+        <div class="card">
+            <h3>Historia</h3>
+            <button onclick="verInfo('historia')">Ver información</button>
+        </div>
+        <div class="card">
+            <h3>Lengua</h3>
+            <button onclick="verInfo('lengua')">Ver información</button>
+        </div>
+        <div class="card">
+            <h3>Filosofía</h3>
+            <button onclick="verInfo('filosofia')">Ver información</button>
+        </div>
+        <div class="card">
+            <h3>Química</h3>
+            <button onclick="verInfo('quimica')">Ver información</button>
+        </div>
+        <div class="card">
+            <h3>Física</h3>
+            <button onclick="verInfo('fisica')">Ver información</button>
+        </div>
+        <div class="card">
+            <h3>Desarrollo</h3>
+            <button onclick="verInfo('desarrollo')">Ver información</button>
+        </
