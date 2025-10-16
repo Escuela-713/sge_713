@@ -22,6 +22,9 @@ import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/c
 import { BienesRegistradosComponent } from './pages/gestion-inventario/bienes-registrados/bienes-registrados.component';
 import { InventarioComponent } from './pages/gestion-inventario/inventario/inventario.component';
 import { RegistrarBienComponent } from './pages/gestion-inventario/registrar-bien/registrar-bien.component';
+import { RegistroIncidenciaComponent } from './pages/gestion-incidencias/registro-incidencia/registro-incidencia.component';
+import { IncidenciasPendientesComponent } from './pages/gestion-incidencias/incidencias-pendientes/incidencias-pendientes.component';
+
 export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   {
@@ -34,40 +37,29 @@ export const routes: Routes = [
       { path: 'editar-planes', component: FormPlanesComponent },
       { path: 'materias', component: MateriasComponent },
       { path: 'editar-materias', component: FormMateriasComponent },
-
       { path: 'datos-tutor-editar', component: EditarAgregarTutorComponent },
       { path: 'filtro', component: FiltroDatosPersonalesComponent },
-
       { path: 'datos-personales', component: DatosPersonalesComponent },
-      {
-        path: 'editar-datos-personales',
-        component: EditarDatosPersonalesComponent,
-      },
       { path: 'editar-datos-tutores', component: DatosTutoresComponent },
-      {path:"analitico", component:AnaliticoComponent},
-      {path: 'datos-academicos',
-        component:DatosAcademicosComponent,
+      { path: "analitico", component: AnaliticoComponent },
+      { path: 'datos-academicos', component: DatosAcademicosComponent,
         children: [
-          {path: 'boletin', component:BoletinComponent},
-        {path:'filtro/:tipo', component:FiltroCalificadorComponent},
+          { path: 'boletin', component: BoletinComponent },
+          { path: 'filtro/:tipo', component: FiltroCalificadorComponent },
         ],
       },
-
-  {path: 'bienes-registrados', component: BienesRegistradosComponent},
-  {path: 'inventario', component: InventarioComponent},
-  {path: 'registrar-bien', component: RegistrarBienComponent},
-
+      { path: 'bienes-registrados', component: BienesRegistradosComponent },
+      { path: 'inventario', component: InventarioComponent },
+      { path: 'registrar-bien', component: RegistrarBienComponent },
       {
-        path: 'datos-academicos',
-        component: DatosAcademicosComponent,
-        children: [
-          {path: 'calificador',component: CalificadorComponent},
-        {path:'filtro/:tipo', component: FiltroCalificadorComponent},
-        ],
+        path: 'registro-incidencias', component: RegistroIncidenciaComponent,
+      },
+      {
+        path: 'incidencias-pendientes', component: IncidenciasPendientesComponent
       },
     ],
   },
   { path: 'iniciar-sesion', component: LoginComponent },
-  {path: "registro",component: RegistroComponent},
+  { path: "registro", component: RegistroComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
