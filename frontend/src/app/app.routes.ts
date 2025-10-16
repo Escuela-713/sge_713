@@ -24,8 +24,14 @@ import { InventarioComponent } from './pages/gestion-inventario/inventario/inven
 import { RegistrarBienComponent } from './pages/gestion-inventario/registrar-bien/registrar-bien.component';
 import { RegistroIncidenciaComponent } from './pages/gestion-incidencias/registro-incidencia/registro-incidencia.component';
 import { IncidenciasPendientesComponent } from './pages/gestion-incidencias/incidencias-pendientes/incidencias-pendientes.component';
+import { GestionHomeComponent } from './pages/gestion-home/gestion-home.component';
+import { AgregarPosteoComponent } from './pages/gestion-home/agregar-posteo/agregar-posteo.component';
+import { EditarPosteoComponent } from './pages/gestion-home/editar-posteo/editar-posteo.component';
+import { NovedadComponent } from './pages/novedad/novedad.component';
+import { HomeGestionComponent } from './pages/gestion-home/home/home.component';
 
 export const routes: Routes = [
+  { path: 'novedad/:slug', component: NovedadComponent },
   { path: 'home', component: HomeComponent },
   {
     path: 'dashboard',
@@ -56,6 +62,15 @@ export const routes: Routes = [
       },
       {
         path: 'incidencias-pendientes', component: IncidenciasPendientesComponent
+      },
+      {
+        path: "home",
+        component: GestionHomeComponent,
+        children: [
+          { path: '', component: HomeGestionComponent, pathMatch: 'full' },
+          { path: 'agregar-posteo', component: AgregarPosteoComponent },
+          { path: 'editar-novedad/:slug', component: EditarPosteoComponent }
+        ]
       },
     ],
   },

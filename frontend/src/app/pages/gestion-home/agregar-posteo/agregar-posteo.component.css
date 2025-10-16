@@ -1,0 +1,282 @@
+.novedad-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Formulario */
+.novedad-form {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.novedad-form h2 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.tx-center {
+  text-align: center;
+}
+
+.form-container {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form label {
+  font-weight: 600;
+  color: #34495e;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.form input[type="text"],
+.form input[type="file"],
+.form select,
+.form textarea {
+  padding: 0.875rem;
+  border: 2px solid #e1e8ed;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.form input[type="text"]:focus,
+.form select:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form input[type="file"] {
+  padding: 0.75rem;
+  background: #f8f9fa;
+  cursor: pointer;
+}
+
+.form input[type="file"]:hover {
+  background: #e9ecef;
+}
+
+.form select {
+  cursor: pointer;
+  background-color: white;
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
+}
+
+.form input::placeholder,
+.form textarea::placeholder {
+  color: #95a5a6;
+}
+
+/* Preview */
+.novedad-preview {
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 2rem;
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.novedad-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  max-width: 500px;
+}
+
+.novedad-header {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  position: relative;
+  background-color: #3498db;
+}
+
+.novedad-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.novedad-header h1 {
+  color: white;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.novedad-content {
+  padding: 2rem;
+}
+
+.meta-info {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.location,
+.date {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+.location svg,
+.date svg {
+  width: 16px;
+  height: 16px;
+  fill: #95a5a6;
+}
+
+.description {
+  color: #2c3e50;
+  line-height: 1.6;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.preview-placeholder {
+  text-align: center;
+  color: #95a5a6;
+  font-size: 1.1rem;
+  font-style: italic;
+  padding: 3rem;
+}
+
+.preview-placeholder p {
+  margin: 0;
+}
+
+/* Estados de validación */
+.form input.ng-invalid.ng-touched,
+.form select.ng-invalid.ng-touched,
+.form textarea.ng-invalid.ng-touched {
+  border-color: #e74c3c;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.form input.ng-valid.ng-touched,
+.form select.ng-valid.ng-touched,
+.form textarea.ng-valid.ng-touched {
+  border-color: #27ae60;
+  box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .novedad-page {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .novedad-form {
+    position: static;
+  }
+  
+  .meta-info {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .novedad-page {
+    padding: 0.5rem;
+  }
+  
+  .novedad-form,
+  .novedad-preview {
+    padding: 1.5rem;
+  }
+  
+  .novedad-form h2 {
+    font-size: 1.5rem;
+  }
+  
+  .novedad-header {
+    height: 150px;
+    padding: 1.5rem;
+  }
+  
+  .novedad-header h1 {
+    font-size: 1.3rem;
+  }
+  
+  .novedad-content {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .novedad-page {
+    padding: 0.25rem;
+  }
+  
+  .novedad-form,
+  .novedad-preview {
+    padding: 1rem;
+  }
+  
+  .form {
+    gap: 1.25rem;
+  }
+  
+  .novedad-header {
+    height: 120px;
+    padding: 1rem;
+  }
+  
+  .novedad-header h1 {
+    font-size: 1.2rem;
+  }
+  
+  .novedad-content {
+    padding: 1rem;
+  }
+}

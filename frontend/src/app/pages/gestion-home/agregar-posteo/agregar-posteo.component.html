@@ -1,0 +1,76 @@
+<div class="novedad-page">
+  <!-- Formulario -->
+  <div class="novedad-form">
+    <h2 class="tx-center">Agregar un Posteo</h2>
+    <div class="form-container">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+        <label for="image">Agregue la imagen de portada</label>
+        <input id="image" type="file" accept="image/*" (change)="onImageChange($event)" />
+        @if(form.get('image')?.invalid && form.get('image')?.touched){
+          <p class="error">Por favor, agregue una imagen</p>
+        }
+
+        <label for="title">Título</label>
+        <input id="title" formControlName="title" placeholder="Ingrese el título de la novedad" />
+        @if(form.get('title')?.errors?.['required'] && form.get('title')?.touched){
+          <p class="error">El título es obligatorio</p>
+        }
+        @if(form.get('title')?.errors?.['minlength'] && form.get('title')?.touched){
+          <p class="error">El título debe tener al menos 5 caracteres</p>
+        }
+
+        <label for="categoria">Categoría:</label>
+        <select id="categoria" formControlName="categoria">
+          <option value="evento">Evento</option>
+          <option value="anuncio">Anuncio</option>
+          <option value="acto">Acto Escolar</option>
+        </select>
+        @if(form.get('categoria')?.invalid && form.get('categoria')?.touched){
+          <p class="error">Seleccione una categoría</p>
+        }
+
+        <label for="content">Contenido</label>
+        <textarea id="content" formControlName="content" placeholder="Ingrese el contenido de la novedad"></textarea>
+        @if(form.get('content')?.errors?.['required'] && form.get('content')?.touched){
+          <p class="error">El contenido es obligatorio</p>
+        }
+        @if(form.get('content')?.errors?.['minlength'] && form.get('content')?.touched){
+          <p class="error">El contenido debe tener al menos 10 caracteres</p>
+        }
+        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Guardar Posteo</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Preview -->
+  <div class="novedad-preview">
+    @if (novedad()) {
+      <div class="novedad-container">
+        <div class="novedad-header" [style.backgroundImage]="'url(' + novedad().backgroundImage + ')'">
+          <h1>{{ novedad().title }}</h1>
+        </div>
+        <div class="novedad-content">
+          <div class="meta-info">
+            <div class="location">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                <path [attr.d]="novedad().locationIcon"/>
+              </svg>
+              {{ novedad().location }}
+            </div>
+            <div class="date">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path [attr.d]="novedad().dateIcon"/>
+              </svg>
+              {{ novedad().date }}
+            </div>
+          </div>
+          <p class="description">{{ novedad().description }}</p>
+        </div>
+      </div>
+    } @else {
+      <div class="preview-placeholder">
+        <p>Completa el formulario para previsualizar la novedad aquí</p>
+      </div>
+    }
+  </div>
+</div>
