@@ -31,6 +31,10 @@ import { NovedadComponent } from './pages/novedad/novedad.component';
 
 import { RegistroMesaExamenComponent } from './pages/gestion-examenes-finales/registro-mesa-examen/registro-mesa-examen.component';
 import { HomeGestionComponent } from './pages/gestion-home/home/home.component';
+import { HistorialComponent } from './pages/gestion-cooperadora/historial/historial.component';
+import { FormularioComponent } from './pages/gestion-cooperadora/registrar-compra/formulario.component';
+import { RegistroIngresosComponent } from './pages/gestion-cooperadora/registro-ingresos/registro-ingresos.component';
+import { MovimientosComponent } from './pages/gestion-cooperadora/movimientos/movimientos.component';
 
 export const routes: Routes = [
   { path: 'novedad/:slug', component: NovedadComponent },
@@ -39,6 +43,10 @@ export const routes: Routes = [
     path: 'dashboard',
     component: DashboardComponent,
     children: [
+      { path: 'cooperadora-movimientos', component: MovimientosComponent },
+      { path: 'cooperadora-historial', component: HistorialComponent },
+      { path: 'cooperadora-compra', component: FormularioComponent },
+      {path: 'cooperadora-ingresos', component: RegistroIngresosComponent},
       { path: 'carreras', component: CarrerasComponent },
       { path: 'planes', component: PlanesComponent },
       { path: 'editar-carreras', component: FormCarreraComponent },
