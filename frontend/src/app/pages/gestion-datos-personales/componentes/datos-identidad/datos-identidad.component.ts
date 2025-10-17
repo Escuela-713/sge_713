@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { DatosPeronalesService } from '../../../../service/datos-personales.service';
+import { DatosPeronalesService } from '../../../../services/datos-personales.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
 @Component({

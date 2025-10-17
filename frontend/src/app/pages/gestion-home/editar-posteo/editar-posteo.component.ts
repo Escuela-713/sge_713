@@ -3,7 +3,7 @@ import { FormControl, FormGroup, FormBuilder, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
-import { NovedadesService, Card } from '../../../service/novedades.service';
+import { NovedadesService, Card } from '../../../services/novedades.service';
 
 interface Novedad {
   id: number;

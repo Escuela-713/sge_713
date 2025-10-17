@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RouterLink} from '@angular/router'
-import { NovedadesService, NovedadesData, Card } from '../../../service/novedades.service';
+import { NovedadesService, NovedadesData, Card } from '../../../services/novedades.service';
 
 export interface CarouselSlide {
   id: number;

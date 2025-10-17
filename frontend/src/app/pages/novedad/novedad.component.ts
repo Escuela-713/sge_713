@@ -5,7 +5,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { Location } from '@angular/common';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
-import { NovedadesService } from '../../service/novedades.service';
+import { NovedadesService } from '../../services/novedades.service';
 
 interface Novedad {
   id: number;

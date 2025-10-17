@@ -1,7 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { TutoresService } from 'src/app/service/tutores.service';
+import { TutoresService } from 'src/app/services/tutores.service';
 
 
 @Component({

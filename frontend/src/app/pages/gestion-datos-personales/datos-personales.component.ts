@@ -1,7 +1,7 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { DatosPeronalesService } from 'src/app/service/datos-personales.service';
+import { DatosPeronalesService } from 'src/app/services/datos-personales.service';
 
 @Component({
   selector: 'app-datos-personales',

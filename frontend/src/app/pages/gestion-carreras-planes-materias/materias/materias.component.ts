@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MateriasService } from 'src/app/service/materias.service';
+import { MateriasService } from 'src/app/services/materias.service';
 
 @Component({
   selector: 'app-materias',

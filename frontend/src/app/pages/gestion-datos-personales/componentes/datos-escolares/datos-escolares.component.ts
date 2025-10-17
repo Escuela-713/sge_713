@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { DatosPeronalesService } from '../../../../service/datos-personales.service';
+import { DatosPeronalesService } from '../../../../services/datos-personales.service';
 
 @Component({
   selector: 'app-datos-escolares',
