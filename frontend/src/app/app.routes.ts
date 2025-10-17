@@ -7,17 +7,11 @@ import { FormPlanesComponent } from './pages/gestion-carreras-planes-materias/pl
 import { MateriasComponent } from './pages/gestion-carreras-planes-materias/materias/materias.component';
 import { FormMateriasComponent } from './pages/gestion-carreras-planes-materias/materias/componentes/form-materias.component';
 import { DatosPersonalesComponent } from './pages/gestion-datos-personales/datos-personales.component';
-import { EditarDatosPersonalesComponent } from './pages/gestion-datos-personales/editar-datos-personales/editar-datos-personales.component';
-import { DatosAcademicosComponent } from './pages/gestion-datos-academicos/datos-academicos.component';
-import { AnaliticoComponent } from './pages/gestion-datos-academicos/analitico/analitico.component';
-import { CalificadorComponent } from './pages/gestion-datos-academicos/calificador/calificador.component';
-import { BoletinComponent } from './pages/gestion-datos-academicos/boletin/boletin.component';
 import { LoginComponent } from './pages/gestion-usuarios/login/login.component';
 import { DatosTutoresComponent } from './pages/gestion-datos-personales/componentes/datos-tutores/datos-tutores.component';
 import { EditarAgregarTutorComponent } from './pages/gestion-datos-personales/editar-agregar-tutor/editar-agregar-tutor.component';
 import { FiltroDatosPersonalesComponent } from './pages/gestion-datos-personales/filtro-datos-personales/filtro-datos-personales.component';
 import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.component';
-import { FiltroCalificadorComponent } from './pages/gestion-datos-academicos/filtro-calificador/filtro-calificador.component';
 import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
 import { BienesRegistradosComponent } from './pages/gestion-inventario/bienes-registrados/bienes-registrados.component';
 import { InventarioComponent } from './pages/gestion-inventario/inventario/inventario.component';
@@ -46,7 +40,7 @@ export const routes: Routes = [
       { path: 'cooperadora-movimientos', component: MovimientosComponent },
       { path: 'cooperadora-historial', component: HistorialComponent },
       { path: 'cooperadora-compra', component: FormularioComponent },
-      {path: 'cooperadora-ingresos', component: RegistroIngresosComponent},
+      { path: 'cooperadora-ingresos', component: RegistroIngresosComponent},
       { path: 'carreras', component: CarrerasComponent },
       { path: 'planes', component: PlanesComponent },
       { path: 'editar-carreras', component: FormCarreraComponent },
@@ -57,13 +51,6 @@ export const routes: Routes = [
       { path: 'filtro', component: FiltroDatosPersonalesComponent },
       { path: 'datos-personales', component: DatosPersonalesComponent },
       { path: 'editar-datos-tutores', component: DatosTutoresComponent },
-      { path: "analitico", component: AnaliticoComponent },
-      { path: 'datos-academicos', component: DatosAcademicosComponent,
-        children: [
-          { path: 'boletin', component: BoletinComponent },
-          { path: 'filtro/:tipo', component: FiltroCalificadorComponent },
-        ],
-      },
       { path: 'bienes-registrados', component: BienesRegistradosComponent },
       { path: 'inventario', component: InventarioComponent },
       { path: 'registrar-bien', component: RegistrarBienComponent },
@@ -72,14 +59,6 @@ export const routes: Routes = [
       },
       {
         path: 'incidencias-pendientes', component: IncidenciasPendientesComponent
-      },
-       {
-        path: 'datos-academicos',
-        component: DatosAcademicosComponent,
-        children: [
-          {path: 'calificador',component: CalificadorComponent},
-        {path:'filtro/:tipo', component: FiltroCalificadorComponent},
-        ],
       },
       {
         path: "home",
