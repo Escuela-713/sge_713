@@ -1,7 +1,6 @@
-<div class="dashboard-home">
   <!-- Header -->
   <div class="dashboard-header">
-    <h1 class="dashboard-title">Dashboard del CMS</h1>
+    <h1 class="dashboard-title">Dashboard de la landing</h1>
     <p class="dashboard-subtitle">Resumen de contenido institucional</p>
   </div>
 
@@ -19,7 +18,9 @@
       <div class="stats-grid">
         <div class="stat-card slides">
           <div class="stat-icon">
-            <!-- icono -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 14h16M4 10h16M4 18h7"/>
+            </svg>
           </div>
           <div class="stat-content">
             <h3 class="stat-number">{{ totalSlides }}</h3>
@@ -29,7 +30,9 @@
 
         <div class="stat-card contenido">
           <div class="stat-icon">
-            <!-- icono -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2z"/>
+            </svg>
           </div>
           <div class="stat-content">
             <h3 class="stat-number">{{ totalCards }}</h3>
@@ -39,7 +42,10 @@
 
         <div class="stat-card ubicaciones">
           <div class="stat-icon">
-            <!-- icono -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 21s-8-4.5-8-11a8 8 0 1116 0c0 6.5-8 11-8 11z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
           </div>
           <div class="stat-content">
             <h3 class="stat-number">{{ totalLocaciones }}</h3>
@@ -52,7 +58,9 @@
       <div class="recent-posts-section">
         <div class="section-header">
           <h2 class="section-title">Últimas Novedades del Colegio</h2>
-          <button class="view-all-btn">Ver todas</button>
+          <button class="view-all-btn" (click)="mostrarTodasLasNovedades()">
+            {{ mostrarTodas ? 'Ver menos' : 'Ver todas' }}
+          </button>
         </div>
 
         <div class="posts-grid">
@@ -98,19 +106,19 @@
             </div>
             <h3>No hay contenido disponible</h3>
             <p>No se encontraron artículos para mostrar</p>
-            <button class="create-post-btn">Agregar Contenido</button>
+            <button class="create-post-btn" routerLink="agregar-posteo">Agregar Contenido</button>
           </div>
         }
       </div>
 
       <!-- Información del Carousel -->
-      @if (novedadesData.carouselSlides.length > 0) {
-        <div class="carousel-info-section">
-          <div class="section-header">
-            <h2 class="section-title">Slides del Carousel Principal</h2>
-            <button class="btn btn-primary">Agregar Slide</button>
-          </div>
-          
+      <div class="carousel-info-section">
+        <div class="section-header">
+          <h2 class="section-title">Slides del Carousel Principal</h2>
+          <button class="btn btn-primary" routerLink="agregar-slide">Agregar Slide</button>
+        </div>
+        
+        @if (novedadesData.carouselSlides.length > 0) {
           <div class="carousel-preview">
             @for (slide of novedadesData.carouselSlides; track slide.id; let i = $index) {
               <div class="carousel-slide-preview">
@@ -121,12 +129,23 @@
                   <h4>{{ slide.title }}</h4>
                   <p>{{ slide.subtitle }}</p>
                   <small>Slide #{{ i + 1 }}</small>
+                  <div class="slide-actions">
+                    <button class="edit-slide-btn">Editar</button>
+                    <button class="delete-slide-btn" (click)="onDeleteSlide(slide)">Eliminar</button>
+                  </div>
                 </div>
               </div>
             }
           </div>
-        </div>
-      }
+        } @else {
+          <div class="empty-state">
+            <div class="empty-icon">
+              <!-- icono vacío -->
+            </div>
+            <h3>No hay slides disponibles</h3>
+            <p>El carousel está vacío. Agrega slides para mostrar en la página principal.</p>
+          </div>
+        }
+      </div>
     </div>
   }
-</div>

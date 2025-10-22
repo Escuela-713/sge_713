@@ -1,0 +1,86 @@
+<div class="slide-form-container">
+      <h2>Agregar Slide al Carousel</h2>
+      
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="slide-form">
+        <!-- Imagen -->
+        <div class="form-group">
+          <label for="image">Imagen del Slide*</label>
+          <input 
+            type="file" 
+            id="image" 
+            accept="image/*"
+            (change)="onImageChange($event)"
+          >
+          @if(form.get('image')?.invalid && form.get('image')?.touched) {
+            <p class="error">La imagen es obligatoria</p>
+          }
+
+          @if(imagePreview) {
+            <div class="image-preview">
+              <img [src]="imagePreview" alt="Preview">
+            </div>
+          }
+        </div>
+
+        <!-- Título -->
+        <div class="form-group">
+          <label for="title">Título del Slide*</label>
+          <input 
+            id="title"
+            type="text"
+            formControlName="title"
+            placeholder="Ingrese el título principal"
+          >
+          @if(form.get('title')?.errors?.['required'] && form.get('title')?.touched) {
+            <p class="error">El título es obligatorio</p>
+          }
+        </div>
+
+        <!-- Subtítulo -->
+        <div class="form-group">
+          <label for="subtitle">Subtítulo</label>
+          <input 
+            id="subtitle"
+            type="text"
+            formControlName="subtitle"
+            placeholder="Ingrese el subtítulo (opcional)"
+          >
+        </div>
+
+        <!-- Texto del Botón -->
+        <div class="form-group">
+          <label for="buttonText">Texto del Botón*</label>
+          <input 
+            id="buttonText"
+            type="text"
+            formControlName="buttonText"
+            placeholder="Ej: 'Leer más'"
+          >
+          @if(form.get('buttonText')?.errors?.['required'] && form.get('buttonText')?.touched) {
+            <p class="error">El texto del botón es obligatorio</p>
+          }
+        </div>
+
+        <!-- Link del Botón -->
+        <div class="form-group">
+          <label for="buttonLink">Link del Botón*</label>
+          <input 
+            id="buttonLink"
+            type="text"
+            formControlName="buttonLink"
+            placeholder="Ej: '/novedad/ejemplo'"
+          >
+          @if(form.get('buttonLink')?.errors?.['required'] && form.get('buttonLink')?.touched) {
+            <p class="error">El link es obligatorio</p>
+          }
+        </div>
+
+        <!-- Botones de acción -->
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
+          <button type="submit" class="btn-submit" [disabled]="form.invalid || isSubmitting">
+            {{ isSubmitting ? 'Guardando...' : 'Guardar Slide' }}
+          </button>
+        </div>
+      </form>
+    </div>
