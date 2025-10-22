@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NovedadesService } from '../../../service/novedades.service';
+import { NovedadesService } from '../../../services/novedades.service';
 
 @Component({
   selector: 'app-agregar-slide',
