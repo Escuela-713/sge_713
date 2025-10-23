@@ -2,9 +2,9 @@
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-2">
 
-      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
+      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" *ngIf="isAuthenticated">
         <a class="dropdown-toggle px-2 text-white" href="#" role="button" data-bs-toggle="dropdown"
-          aria-expanded="false">Datos Materias</a>
+          aria-expanded="false" style="display: none;">Datos Materias</a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" routerLink="/dashboard/carreras">Carreras</a></li>
           <li><a class="dropdown-item" routerLink="/dashboard/materias">Materias</a></li>
@@ -12,32 +12,32 @@
         </ul>
       </li>
 
-      <li>
+      <li *ngIf="isAuthenticated">
         <a class="text-end px-2 text-white" routerLink="/dashboard/filtro">Datos Personales</a>
       </li>
 
-      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
-        <a class="dropdown-toggle px-2 text-white" href="#" role="button" data-bs-toggle="dropdown"
+      <!-- Mesas de exámenes siempre visible -->
+        <li class="dropdown nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-start">
+          <a class="dropdown-toggle px-2 text-white text-start" href="#" role="button" data-bs-toggle="dropdown"
           aria-expanded="false">Mesas de examenes</a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" routerLink="/dashboard/inscripcion-mesa">Inscripcion</a></li>
-          <li><a class="dropdown-item" routerLink="/dashboard/registro-mesa">Registro</a></li>
-        </ul>
-      </li>
+            <li><a class="dropdown-item" routerLink="/dashboard/inscripcion-mesa">Inscripción</a></li>
+            <li><a class="dropdown-item" routerLink="/dashboard/registro-mesa">Registro</a></li>
+          </ul>
+        </li>
 
-      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
+      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" *ngIf="isAuthenticated">
         <a class="dropdown-toggle px-2 text-white" href="#" role="button" data-bs-toggle="dropdown"
           aria-expanded="false">Cooperadora</a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" routerLink="/dashboard/cooperadora-movimientos">Movimientos</a></li>
-
           <li><a class="dropdown-item" routerLink="/dashboard/cooperadora-historial">Historial</a></li>
           <li><a class="dropdown-item" routerLink="/dashboard/cooperadora-compra">Registrar Compra</a></li>
           <li><a class="dropdown-item" routerLink="/dashboard/cooperadora-ingresos">Registrar Ingreso</a></li>
         </ul>
       </li>
 
-      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
+      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" *ngIf="isAuthenticated">
         <a class="dropdown-toggle px-2 text-white" href="#" role="button" data-bs-toggle="dropdown"
           aria-expanded="false">Bienes registrados</a>
         <ul class="dropdown-menu">
@@ -46,7 +46,7 @@
         </ul>
       </li>
 
-      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
+      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" *ngIf="isAuthenticated">
         <a class="dropdown-toggle px-2 text-white" href="#" role="button" data-bs-toggle="dropdown"
           aria-expanded="false">Incidencias</a>
         <ul class="dropdown-menu">
