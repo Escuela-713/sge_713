@@ -130,7 +130,7 @@
                   <p>{{ slide.subtitle }}</p>
                   <small>Slide #{{ i + 1 }}</small>
                   <div class="slide-actions">
-                    <button class="edit-slide-btn">Editar</button>
+                    <button class="edit-slide-btn" (click)="onEditarSlide(slide)">Editar</button>
                     <button class="delete-slide-btn" (click)="onDeleteSlide(slide)">Eliminar</button>
                   </div>
                 </div>
@@ -146,6 +146,8 @@
             <p>El carousel está vacío. Agrega slides para mostrar en la página principal.</p>
           </div>
         }
+      <!-- Modal de edición de slide fuera del bucle -->
+      <app-editar-slide *ngIf="mostrarEditorSlide" [slide]="slideEditando" (guardar)="onGuardarSlideEditado($event)" (cancelar)="onCancelarEdicionSlide()"></app-editar-slide>
       </div>
     </div>
   }

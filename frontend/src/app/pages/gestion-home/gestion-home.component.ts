@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
+  import { EditarSlideComponent } from './editar-slide/editar-slide.component';
 
 @Component({
   selector: 'app-gestion-home',

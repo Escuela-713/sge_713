@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {RouterLink} from '@angular/router'
+import { EditarSlideComponent } from '../editar-slide/editar-slide.component';
+import {RouterLink, Router} from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { NovedadesService, NovedadesData, Card } from '../../../services/novedades.service';
 
 export interface CarouselSlide {
@@ -14,7 +16,7 @@ export interface CarouselSlide {
 
 @Component({
   selector: 'app-dashboard-home',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule, EditarSlideComponent],
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
@@ -27,6 +29,30 @@ export class HomeGestionComponent implements OnInit {
     cards: []
   };
 
+  slideEditando: CarouselSlide | null = null;
+  mostrarEditorSlide = false;
+  onEditarSlide(slide: CarouselSlide): void {
+    this.slideEditando = { ...slide };
+    this.mostrarEditorSlide = true;
+  }
+
+  async onGuardarSlideEditado(slideEditado: CarouselSlide) {
+    try {
+      await this.novedadesService.updateSlide(slideEditado);
+      await this.cargarDatos();
+      this.mostrarEditorSlide = false;
+      this.slideEditando = null;
+      alert('Slide editado correctamente');
+    } catch (err) {
+      alert('Error al editar el slide');
+    }
+  }
+
+  onCancelarEdicionSlide() {
+    this.mostrarEditorSlide = false;
+    this.slideEditando = null;
+  }
+
   totalSlides = 0;
   totalCards = 0;
   totalLocaciones = 0;
@@ -34,7 +60,7 @@ export class HomeGestionComponent implements OnInit {
   isLoading = false;
   mostrarTodas = false;
 
-  constructor(private novedadesService: NovedadesService) {}
+  constructor(private novedadesService: NovedadesService, private router: Router) {}
 
   ngOnInit(): void {
     this.cargarDatos();
@@ -133,5 +159,9 @@ export class HomeGestionComponent implements OnInit {
       console.error('Error eliminando slide:', err);
       alert('Error al eliminar el slide');
     }
+  }
+
+  agregarNovedad(): void {
+    this.router.navigate(['/dashboard/home/agregar-novedad']);
   }
 }
