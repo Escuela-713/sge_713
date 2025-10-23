@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+</head>
+<body>
+
+<form action="">
+<h2>Mesa de Examen</h2>
+
+    <label for="materia">Materia:</label>
+    <input type="text" id="materia" name="materia" required>
+
+    <label for="profesor">Profesor:</label>
+    <input type="text" id="profesor" name="profesor" required> 
+
+    <label for="fecha">Fecha del examen:</label>
+    <input type="date" id="fecha" name="fecha" required>
+
+    <label for="turno">Turno:</label>
+    <select name="turno" id="turno" required>
+        <option value="">Seleccionar...</option>
+        <option value="mañana">Mañana</option>
+        <option value="tarde">Tarde</option>
+        <option value="noche">Noche</option>
+    </select>
+
+    <button type="submit">Enviar inscripcion</button>
+    </form>
+</body>
+</html>
