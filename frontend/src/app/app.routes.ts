@@ -22,7 +22,7 @@ import { GestionHomeComponent } from './pages/gestion-home/gestion-home.componen
 import { AgregarPosteoComponent } from './pages/gestion-home/agregar-posteo/agregar-posteo.component';
 import { EditarPosteoComponent } from './pages/gestion-home/editar-posteo/editar-posteo.component';
 import { NovedadComponent } from './pages/novedad/novedad.component';
-
+import { InscripcionMesaComponent } from './pages/gestion-examenes-finales/inscripcion-mesa/inscripcion-mesa.component';
 import { RegistroMesaExamenComponent } from './pages/gestion-examenes-finales/registro-mesa-examen/registro-mesa-examen.component';
 import { HomeGestionComponent } from './pages/gestion-home/home/home.component';
 import { HistorialComponent } from './pages/gestion-cooperadora/historial/historial.component';
@@ -69,6 +69,8 @@ export const routes: Routes = [
           { path: 'editar-novedad/:slug', component: EditarPosteoComponent }
         ]
       },
+    
+      {path: 'inscripcion-mesa', component: InscripcionMesaComponent},
       { path: 'registro-mesa', component: RegistroMesaExamenComponent },
     ],
   },
