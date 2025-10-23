@@ -1,8 +1,6 @@
 form{
-   background-color:firebrick;
    padding: 25px 30px;
    border-radius: 12px;
-   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
    max-width: 500px;
    margin: 20px auto;
 }
@@ -13,9 +11,9 @@ h2{
 }
 label{
     font-weight: 500;
-    color:white;
+    color:black;
     display:block;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
 }
 input[type="text"],
 input[type="date"],
