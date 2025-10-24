@@ -29,6 +29,7 @@ import { FormularioComponent } from './pages/gestion-cooperadora/registrar-compr
 import { RegistroIngresosComponent } from './pages/gestion-cooperadora/registro-ingresos/registro-ingresos.component';
 import { MovimientosComponent } from './pages/gestion-cooperadora/movimientos/movimientos.component';
 import { CreacionDeMesaComponent } from './pages/gestion-examenes-finales/creacion-de-mesa/creacion-de-mesa.component';
+import { ActaVolanteComponent } from './pages/gestion-examenes-finales/acta-volante/acta-volante.component';
 
 export const routes: Routes = [
   { path: 'novedad/:slug', component: NovedadComponent },
@@ -73,6 +74,7 @@ export const routes: Routes = [
       {path: 'inscripcion-mesa', component: InscripcionMesaComponent},
   
       { path: 'crear-mesa', component: CreacionDeMesaComponent },
+      {path: 'acta-volante', component: ActaVolanteComponent},
     ],
   },
   { path: 'iniciar-sesion', component: LoginComponent },
