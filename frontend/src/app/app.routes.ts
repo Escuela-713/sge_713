@@ -71,7 +71,7 @@ export const routes: Routes = [
       },
     
       {path: 'inscripcion-mesa', component: InscripcionMesaComponent},
-  
+    
       { path: 'crear-mesa', component: CreacionDeMesaComponent },
     ],
   },
