@@ -1,3 +1,29 @@
+body {
+    font-family: "Times New Roman", serif;
+    margin: 40px;
+    color: #000;
+  }
+
+  h1{
+    text-align: center;
+    margin: 5px 0;
+  }
+
+  h1 {
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+
+  h2 {
+    font-size: 16px;
+    font-weight: normal;
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 5px 0;
+  }
 table {
       border-collapse: collapse;
       width: 100%;
@@ -16,3 +42,30 @@ table {
       font-size: 1.2em;
       margin-bottom: 15px;
     }
+th, td {
+    border: 1px solid #000;
+    padding: 4px 6px;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+  }
+
+  thead th {
+    vertical-align: middle;
+  }
+
+  /* Bordes más notorios en el encabezado principal */
+  thead tr:first-child th {
+    border-bottom: 2px solid #000;
+  }
+
+  /* Espaciado entre secciones */
+  br {
+    line-height: 2;
+  }
+
+ 
