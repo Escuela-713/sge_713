@@ -1,87 +1,96 @@
-<h1 class="datosPersonalesTitle">Incidencias Pendientes</h1>
+<div class="container">
+  <h2>Incidencias Pendientes</h2>
 
-<div id="datosAlumnos">
-  <div class="accordion" id="accordionExample">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Descripción</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Alquiler de SUM</td>
+        <td>10/09/25</td>
+        <td>Reserva de salón</td>
+        <td class="pendiente">Pendiente</td>
+        <td>
+          <button class="btn btnAdd">Editar</button>
+          <button class="btn btnDelete">Anular</button>
+          <button class="btn btnEye" data-bs-toggle="collapse" data-bs-target="#desc1" aria-expanded="false" aria-controls="desc1">
+            👁️
+          </button>
+        </td>
+      </tr>
+      <tr class="collapse" id="desc1">
+        <td colspan="5" class="descripcion">
+          <b>Descripción:</b> El salón fue reservado para un evento institucional el día 10/09/25.
+        </td>
+      </tr>
 
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingOne">
-        
-        <span>Alquiler de sum 10/09/25</span>
+      <tr>
+        <td>Reparación de proyector</td>
+        <td>12/09/25</td>
+        <td>Avería en sala multimedia</td>
+        <td class="pendiente">Pendiente</td>
+        <td>
+          <button class="btn btnAdd">Editar</button>
+          <button class="btn btnDelete">Anular</button>
+          <button class="btn btnEye" data-bs-toggle="collapse" data-bs-target="#desc2" aria-expanded="false" aria-controls="desc2">
+            👁️
+          </button>
+        </td>
+      </tr>
+      <tr class="collapse" id="desc2">
+        <td colspan="5" class="descripcion">
+          <b>Descripción:</b> El proyector de la sala multimedia dejó de funcionar y se encuentra en reparación.
+        </td>
+      </tr>
 
-        
-        <div align="right">
-          <a routerLink="#" class="btn btn-success">Editar</a>
-          <button type="button" class="btn btn-outline-danger">Anular</button>
+      <tr>
+        <td>Mantenimiento de computadoras</td>
+        <td>15/09/25</td>
+        <td>Limpieza y actualización de software</td>
+        <td class="resuelto">Pendiente</td>
+        <td>
+          <button class="btn btnAdd">Editar</button>
+          <button class="btn btnDelete">Anular</button>
+          <button class="btn btnEye" data-bs-toggle="collapse" data-bs-target="#desc3" aria-expanded="false" aria-controls="desc3">
+            👁️
+          </button>
+        </td>
+      </tr>
+      <tr class="collapse" id="desc3">
+        <td colspan="5" class="descripcion">
+          <b>Descripción:</b> Se realizó limpieza interna de CPU y reinstalación de sistema operativo.
+        </td>
+      </tr>
+      <tr class="collapse" id="desc4">
+        <td colspan="5" class="descripcion">
+          <b>Descripción:</b> Se detectaron aspas dañadas, en espera de repuestos.
+        </td>
+      </tr>
 
-        </div>
-
-        
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-          [attr.data-bs-target]="'#flushCollapse1'" aria-expanded="false" aria-controls="flushCollapse1">
-        </button>
-      </h2>
-
-      <div id="flushCollapse1" class="accordion-collapse collapse" aria-labelledby="headingOne"
-        data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <div id="alumnoInfo" class="alumnoInfo">
-            <span><b>Nombre:</b> Alquiler</span><br/>
-            <span><b>Fecha:</b> 10/09/25</span><br/>
-            <span><b>Descripción:</b> Reserva de salón</span><br/>
-            <span><b>Estado:</b> Pendiente</span><br/>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingTwo">
-        <span>Reparación de proyector 12/09/25</span>
-        <div align="right">
-          <a routerLink="#" class="btn btnAdd">Editar</a>
-          <button type="button" class="btn btnDelete">Anular</button>
-        </div>
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-          [attr.data-bs-target]="'#flushCollapse2'" aria-expanded="false" aria-controls="flushCollapse2">
-        </button>
-      </h2>
-      <div id="flushCollapse2" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-        data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <div id="alumnoInfo" class="alumnoInfo">
-            <span><b>Nombre:</b> Reparación Proyector</span><br />
-            <span><b>Fecha:</b> 12/09/25</span><br />
-            <span><b>Descripción:</b> Avería en sala multimedia</span><br />
-            <span><b>Estado:</b> Pendiente</span><br />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="accordion-item">
-      <h2 class="accordion-header" id="headingThree">
-        <span>Mantenimiento de computadoras 15/09/25</span>
-        <div align="right">
-          <a routerLink="#" class="btn btnAdd">Editar</a>
-          <button type="button" class="btn btnDelete">Anular</button>
-        </div>
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-          [attr.data-bs-target]="'#flushCollapse3'" aria-expanded="false" aria-controls="flushCollapse3">
-        </button>
-      </h2>
-      <div id="flushCollapse3" class="accordion-collapse collapse" aria-labelledby="headingThree"
-        data-bs-parent="#accordionExample">
-        <div class="accordion-body">
-          <div id="alumnoInfo" class="alumnoInfo">
-            <span><b>Nombre:</b> Mantenimiento PC</span><br />
-            <span><b>Fecha:</b> 15/09/25</span><br />
-            <span><b>Descripción:</b> Limpieza y actualización de software</span><br />
-            <span><b>Estado:</b> resuelto</span><br />
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+      <tr>
+        <td>Pintura del aula 1°ETP</td>
+        <td>25/09/25</td>
+        <td>Reacondicionamiento de paredes</td>
+        <td class="resuelto">Pendiente</td>
+        <td>
+          <button class="btn btnAdd">Editar</button>
+          <button class="btn btnDelete">Anular</button>
+          <button class="btn btnEye" data-bs-toggle="collapse" data-bs-target="#desc5" aria-expanded="false" aria-controls="desc5">
+            👁️
+          </button>
+        </td>
+      </tr>
+      <tr class="collapse" id="desc5">
+        <td colspan="5" class="descripcion">
+          <b>Descripción:</b> Se pintaron las paredes y se repararon grietas menores.
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

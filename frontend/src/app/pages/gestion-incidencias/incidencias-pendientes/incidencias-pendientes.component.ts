@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './incidencias-pendientes.component.css'
 })
 export class IncidenciasPendientesComponent {
-
+  constructor() {}
 }
+
