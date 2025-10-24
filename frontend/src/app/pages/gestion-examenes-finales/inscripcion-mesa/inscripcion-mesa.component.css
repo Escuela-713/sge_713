@@ -13,7 +13,7 @@ label{
     font-weight: 500;
     color:black;
     display:block;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
 }
 input[type="text"],
 input[type="date"],
@@ -21,12 +21,12 @@ select,
 textarea{
     width: 100%;
     padding: 10px;
-    border: 1.5px solid #ccc;
+    border: 1.5px solid black;
     border-radius: 8px;
     font-size: 15px;
     transition: border-color 0.3s ease,
     box-shadow 0.3s ease;
-    margin-bottom: 5px;
+    margin-bottom: 7px;
 }
 input:focus,
 select:focus,
