@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'gestion_datos_personales',
     'gestion_usuarios',
     'gestion_carrera_planes_materias'
+    'gestion_incidencias'
 ]
 
 MIDDLEWARE = [
