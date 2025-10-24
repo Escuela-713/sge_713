@@ -23,4 +23,5 @@ urlpatterns = [
     path('api/', include('gestion_carrera_planes_materias.urls')),
     path('api/', include('gestion_datos_personales.urls')),
     path('api/', include('gestion_usuarios.urls')),
-]
+    path('api/', include('gestion_mesas_examenes.urls')),
+]  
