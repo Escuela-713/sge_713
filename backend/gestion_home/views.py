@@ -1,7 +1,9 @@
 from rest_framework import viewsets, permissions
+from rest_framework.views import APIView
+from rest_framework.response import Response
 
-from .models import Publication
-from .serializers import PublicationSerializer
+from .models import Publication, CarouselSlide, HomePageSection
+from .serializers import PublicationSerializer, CarouselSlideSerializer, HomePageSectionSerializer
 
 
 class IsAdminAndAuthenticated(permissions.BasePermission):
@@ -35,3 +37,22 @@ class PublicationViewSet(viewsets.ModelViewSet):
 	# 	if not (user and user.is_staff):
 	# 		qs = qs.filter(is_published=True)
 	# 	return qs
+
+class HomePageDataView(APIView):
+    """API View to get all the data for the home page."""
+    permission_classes = [permissions.AllowAny]
+
+    def get(self, request, *args, **kwargs):
+        carousel_slides = CarouselSlide.objects.all()
+        # Assuming there is only one HomePageSection object
+        home_page_section = HomePageSection.objects.first()
+
+        carousel_serializer = CarouselSlideSerializer(carousel_slides, many=True)
+        section_serializer = HomePageSectionSerializer(home_page_section)
+
+        data = {
+            'carouselSlides': carousel_serializer.data,
+            'sectionTitle': section_serializer.data.get('sectionTitle') if home_page_section else '',
+        }
+
+        return Response(data)

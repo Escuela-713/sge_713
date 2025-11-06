@@ -16,3 +16,19 @@ class Publication(models.Model):
 
 	def __str__(self):
 		return self.title
+
+class CarouselSlide(models.Model):
+    image = models.CharField(max_length=255)
+    title = models.CharField(max_length=255)
+    subtitle = models.CharField(max_length=255)
+    buttonText = models.CharField(max_length=255)
+    buttonLink = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
+
+class HomePageSection(models.Model):
+    sectionTitle = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.sectionTitle
