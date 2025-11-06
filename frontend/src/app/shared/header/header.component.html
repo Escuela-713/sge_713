@@ -16,7 +16,7 @@
       <div class="text-end">
         <ng-container *ngIf="!isAuthenticated">
           <button type="button" class="btn btn-outline-light me-2" routerLink="/iniciar-sesion">Login</button>
-          <button type="button" class="btn btn-warning" routerLink="/registro">Sign-up</button>
+          <button type="button" class="btn btn-warning" routerLink="/registro" disabled >Sign-up</button>
         </ng-container>
         <ng-container *ngIf="isAuthenticated">
           <span class="text-white me-3">{{currentUser?.nombre}} ({{currentUser?.rol}})</span>
