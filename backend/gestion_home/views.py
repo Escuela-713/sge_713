@@ -38,21 +38,41 @@ class PublicationViewSet(viewsets.ModelViewSet):
 	# 		qs = qs.filter(is_published=True)
 	# 	return qs
 
+
+class CarouselSlideViewSet(viewsets.ModelViewSet):
+	"""CRUD para los slides del carrusel.
+
+	- GET (list, retrieve) es público para cualquiera.
+	- POST/PUT/PATCH/DELETE requieren usuario administrador (is_staff).
+	"""
+	queryset = CarouselSlide.objects.all()
+	serializer_class = CarouselSlideSerializer
+
+	def get_permissions(self):
+		# Lecturas públicas
+		if self.request and self.request.method in permissions.SAFE_METHODS:
+			return [permissions.AllowAny()]
+		# Escrituras sólo para admins
+		return [IsAdminAndAuthenticated()]
+
 class HomePageDataView(APIView):
-    """API View to get all the data for the home page."""
-    permission_classes = [permissions.AllowAny]
+	"""API View to get all the data for the home page."""
+	permission_classes = [permissions.AllowAny]
 
-    def get(self, request, *args, **kwargs):
-        carousel_slides = CarouselSlide.objects.all()
-        # Assuming there is only one HomePageSection object
-        home_page_section = HomePageSection.objects.first()
+	def get(self, request, *args, **kwargs):
+		carousel_slides = CarouselSlide.objects.all()
+		# Assuming there is only one HomePageSection object
+		home_page_section = HomePageSection.objects.first()
 
-        carousel_serializer = CarouselSlideSerializer(carousel_slides, many=True)
-        section_serializer = HomePageSectionSerializer(home_page_section)
+		carousel_serializer = CarouselSlideSerializer(carousel_slides, many=True)
+		section_serializer = HomePageSectionSerializer(home_page_section)
 
-        data = {
-            'carouselSlides': carousel_serializer.data,
-            'sectionTitle': section_serializer.data.get('sectionTitle') if home_page_section else '',
-        }
+		data = {
+			'carouselSlides': carousel_serializer.data,
+			'sectionTitle': section_serializer.data.get('sectionTitle') if home_page_section else '',
+		}
 
-        return Response(data)
+		return Response(data)
+
+	def post(self, request, *args, **kwargs):
+		return Response({"detail": "Method 'POST' not allowed."}, status=405)
