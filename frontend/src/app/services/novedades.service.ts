@@ -1,6 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
+export interface CarouselSlide {
+  id: number;
+  image: string;
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  buttonLink: string;
+}
+
 export interface Card {
   id: number;
   slug: string;
@@ -14,7 +23,7 @@ export interface Card {
 }
 
 export interface NovedadesData {
-  carouselSlides: any[];
+  carouselSlides: CarouselSlide[];
   sectionTitle: string;
   cards: Card[];
 }
@@ -112,5 +121,57 @@ export class NovedadesService {
     const newCards = cards.filter(c => c.id !== id);
     data.cards = newCards;
     this.saveToStorage(data);
+  }
+
+  // Métodos para gestionar slides del carousel
+  async addSlide(input: Partial<CarouselSlide>): Promise<CarouselSlide> {
+    const data = await this.getAll();
+    const slides = data.carouselSlides || [];
+    const newId = slides.length ? Math.max(...slides.map(s => s.id)) + 1 : 1;
+
+    const newSlide: CarouselSlide = {
+      id: newId,
+      image: input.image || '',
+      title: input.title || '',
+      subtitle: input.subtitle || '',
+      buttonText: input.buttonText || '',
+      buttonLink: input.buttonLink || ''
+    };
+
+    slides.push(newSlide);
+    data.carouselSlides = slides;
+    this.saveToStorage(data);
+    return newSlide;
+  }
+
+  async updateSlide(updated: CarouselSlide): Promise<void> {
+    const data = await this.getAll();
+    const slides = data.carouselSlides || [];
+    const idx = slides.findIndex(s => s.id === updated.id);
+    if (idx !== -1) {
+      slides[idx] = { ...slides[idx], ...updated };
+      data.carouselSlides = slides;
+      this.saveToStorage(data);
+    } else {
+      throw new Error('Slide not found');
+    }
+  }
+
+  async deleteSlideById(id: number): Promise<void> {
+    const data = await this.getAll();
+    const slides = data.carouselSlides || [];
+    const newSlides = slides.filter(s => s.id !== id);
+    data.carouselSlides = newSlides;
+    this.saveToStorage(data);
+  }
+
+  async getAllSlides(): Promise<CarouselSlide[]> {
+    const data = await this.getAll();
+    return data.carouselSlides || [];
+  }
+
+  async getSlideById(id: number): Promise<CarouselSlide | undefined> {
+    const data = await this.getAll();
+    return data.carouselSlides?.find(s => s.id === id);
   }
 }

@@ -1,0 +1,27 @@
+@if(slideEditado){
+    <div class="editar-slide-modal">
+  <h2>Editar Slide</h2>
+  <form (ngSubmit)="onGuardar()">
+
+  <label>Título:</label>
+  <input [(ngModel)]="slideEditado.title" name="title" required />
+
+  <label>Subtítulo:</label>
+  <input [(ngModel)]="slideEditado.subtitle" name="subtitle" />
+
+  <label>Imagen URL:</label>
+  <input [(ngModel)]="slideEditado.image" name="image" />
+
+  <label>Texto del botón:</label>
+  <input [(ngModel)]="slideEditado.buttonText" name="buttonText" />
+
+  <label>Enlace del botón:</label>
+  <input [(ngModel)]="slideEditado.buttonLink" name="buttonLink" />
+
+    <div class="botones">
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      <button type="button" class="btn btn-secondary" (click)="onCancelar()">Cancelar</button>
+    </div>
+  </form>
+</div>
+}

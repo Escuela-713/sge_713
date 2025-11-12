@@ -29,6 +29,7 @@ import { HistorialComponent } from './pages/gestion-cooperadora/historial/histor
 import { FormularioComponent } from './pages/gestion-cooperadora/registrar-compra/formulario.component';
 import { RegistroIngresosComponent } from './pages/gestion-cooperadora/registro-ingresos/registro-ingresos.component';
 import { MovimientosComponent } from './pages/gestion-cooperadora/movimientos/movimientos.component';
+import { AgregarSlideComponent } from './pages/gestion-home/agregar-slide/agregar-slide.component';
 
 export const routes: Routes = [
   { path: 'novedad/:slug', component: NovedadComponent },
@@ -66,7 +67,8 @@ export const routes: Routes = [
         children: [
           { path: '', component: HomeGestionComponent, pathMatch: 'full' },
           { path: 'agregar-posteo', component: AgregarPosteoComponent },
-          { path: 'editar-novedad/:slug', component: EditarPosteoComponent }
+          { path: 'editar-novedad/:slug', component: EditarPosteoComponent },
+          { path: 'agregar-slide', component: AgregarSlideComponent }
         ]
       },
       { path: 'registro-mesa', component: RegistroMesaExamenComponent },

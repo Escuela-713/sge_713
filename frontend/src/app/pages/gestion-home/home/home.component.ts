@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {RouterLink} from '@angular/router'
+import { EditarSlideComponent } from '../editar-slide/editar-slide.component';
+import {RouterLink, Router} from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { NovedadesService, NovedadesData, Card } from '../../../services/novedades.service';
 
 export interface CarouselSlide {
@@ -14,7 +16,7 @@ export interface CarouselSlide {
 
 @Component({
   selector: 'app-dashboard-home',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule, EditarSlideComponent],
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
@@ -27,13 +29,38 @@ export class HomeGestionComponent implements OnInit {
     cards: []
   };
 
+  slideEditando: CarouselSlide | null = null;
+  mostrarEditorSlide = false;
+  onEditarSlide(slide: CarouselSlide): void {
+    this.slideEditando = { ...slide };
+    this.mostrarEditorSlide = true;
+  }
+
+  async onGuardarSlideEditado(slideEditado: CarouselSlide) {
+    try {
+      await this.novedadesService.updateSlide(slideEditado);
+      await this.cargarDatos();
+      this.mostrarEditorSlide = false;
+      this.slideEditando = null;
+      alert('Slide editado correctamente');
+    } catch (err) {
+      alert('Error al editar el slide');
+    }
+  }
+
+  onCancelarEdicionSlide() {
+    this.mostrarEditorSlide = false;
+    this.slideEditando = null;
+  }
+
   totalSlides = 0;
   totalCards = 0;
   totalLocaciones = 0;
   ultimasCards: Card[] = [];
-  isLoading = true;
+  isLoading = false;
+  mostrarTodas = false;
 
-  constructor(private novedadesService: NovedadesService) {}
+  constructor(private novedadesService: NovedadesService, private router: Router) {}
 
   ngOnInit(): void {
     this.cargarDatos();
@@ -41,14 +68,12 @@ export class HomeGestionComponent implements OnInit {
 
   async cargarDatos(): Promise<void> {
     try {
-      this.isLoading = true;
+      // Como cargamos desde localStorage, no necesitamos mostrar loading
       this.novedadesData = await this.novedadesService.getAll();
       this.calcularEstadisticas();
       this.obtenerUltimasCards();
     } catch (err) {
       console.error('Error al cargar los datos:', err);
-    } finally {
-      this.isLoading = false;
     }
   }
 
@@ -75,14 +100,15 @@ export class HomeGestionComponent implements OnInit {
   }
 
   private obtenerUltimasCards(): void {
-    // Ordenar por fecha (más recientes primero) y tomar las últimas 4
-    this.ultimasCards = this.novedadesData.cards
-      .sort((a, b) => {
-        const dateA = this.parsearFecha(a.date);
-        const dateB = this.parsearFecha(b.date);
-        return dateB.getTime() - dateA.getTime();
-      })
-      .slice(0, 4);
+    // Ordenar por fecha (más recientes primero)
+    const ordenadas = this.novedadesData.cards.sort((a, b) => {
+      const dateA = this.parsearFecha(a.date);
+      const dateB = this.parsearFecha(b.date);
+      return dateB.getTime() - dateA.getTime();
+    });
+    
+    // Si mostrarTodas es true, mostrar todas las cards ordenadas
+    this.ultimasCards = this.mostrarTodas ? ordenadas : ordenadas.slice(0, 4);
   }
 
   private parsearFecha(fechaStr: string): Date {
@@ -115,5 +141,27 @@ export class HomeGestionComponent implements OnInit {
 
   getIconSvg(iconPath: string): string {
     return `<svg width="20" height="20" viewBox="0 0 512 512" fill="currentColor"><path d="${iconPath}"/></svg>`;
+  }
+
+  mostrarTodasLasNovedades(): void {
+    this.mostrarTodas = !this.mostrarTodas;
+    this.obtenerUltimasCards();
+  }
+
+  async onDeleteSlide(slide: CarouselSlide): Promise<void> {
+    const ok = confirm(`¿Eliminar slide "${slide.title}"? Esta acción no se puede deshacer.`);
+    if (!ok) return;
+    try {
+      await this.novedadesService.deleteSlideById(slide.id);
+      await this.cargarDatos();
+      alert('Slide eliminado correctamente');
+    } catch (err) {
+      console.error('Error eliminando slide:', err);
+      alert('Error al eliminar el slide');
+    }
+  }
+
+  agregarNovedad(): void {
+    this.router.navigate(['/dashboard/home/agregar-novedad']);
   }
 }

@@ -1,0 +1,27 @@
+.editar-slide-modal {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  padding: 24px;
+  max-width: 400px;
+  margin: 40px auto;
+}
+.editar-slide-modal h2 {
+  margin-top: 0;
+}
+.editar-slide-modal label {
+  display: block;
+  margin-top: 12px;
+}
+.editar-slide-modal input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+.botones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+}
