@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'gestion_datos_personales',
     'gestion_usuarios',
     'gestion_carrera_planes_materias',
-    'gestion_mesas_examenes',
+    'gestion_mesa_examenes',
 ]
 
 MIDDLEWARE = [
@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mydb',
         'USER': 'root',
-        'PASSWORD': '1234',
+        'PASSWORD': 'admin',
         'HOST': 'localhost', # Or an IP Address that your DB is hosted on
         'PORT': 3306,
     }

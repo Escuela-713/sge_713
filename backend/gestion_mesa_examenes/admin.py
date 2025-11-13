@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import MesasExamenes,Modalidades,Profesores
 
-# Register your models here.
+admin.site.register(MesasExamenes)
+admin.site.register(Modalidades)
+admin.site.register(Profesores) 
