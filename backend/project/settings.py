@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'gestion_datos_personales',
     'gestion_usuarios',
-    'gestion_carrera_planes_materias'
+    'gestion_carrera_planes_materias',
     'gestion_incidencias'
 ]
 
@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'mydb',
         'USER': 'root',
-        'PASSWORD': '1234',
+        'PASSWORD': 'juliana',
         'HOST': 'localhost', # Or an IP Address that your DB is hosted on
         'PORT': 3306,
     }
