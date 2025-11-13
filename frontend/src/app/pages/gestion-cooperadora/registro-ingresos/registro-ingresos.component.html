@@ -16,17 +16,17 @@
           </div>
           <div class="card-body">
             
-            <form class="needs-validation" novalidate>             
+            <form [formGroup]="form" >             
               <div class="mb-3">
                 <label for="monto" class="form-label">Monto</label>
                 <input type="number" class="form-control" id="monto" name="monto" 
-                       placeholder="Ingrese el monto" required min="1" step="0.01">
+                       placeholder="Ingrese el monto" required min="1" step="0.01" formControlName="monto">
                 <div class="invalid-feedback">Ingrese un monto válido (mayor a 0).</div>
               </div>
 
               <div class="mb-3">
                 <label for="fecha" class="form-label">Fecha</label>
-                <input type="date" class="form-control" id="fecha" name="fecha" required>
+                <input type="date" class="form-control" id="fecha" name="fecha" required fromControlName="fecha">
                 <div class="invalid-feedback">Seleccione una fecha válida.</div>
               </div>
 
@@ -34,7 +34,7 @@
               <div class="mb-3">
                 <label for="motivo" class="form-label">Motivo</label>
                 <textarea class="form-control" id="motivo" name="motivo" rows="3" 
-                          placeholder="Describa el motivo de la compra" required minlength="5" maxlength="200"></textarea>
+                          placeholder="Describa el motivo de la compra" required minlength="5" maxlength="200" formControlName="motivo"></textarea>
                 <div class="invalid-feedback">El motivo debe tener entre 5 y 200 caracteres.</div>
               </div>
 

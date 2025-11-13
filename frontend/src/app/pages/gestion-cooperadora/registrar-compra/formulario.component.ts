@@ -8,14 +8,14 @@ import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
   styleUrl: './formulario.component.css'
 })
 export class FormularioComponent {
-  
-  FormularioComponentForm: FormGroup;
+
+  form: FormGroup;
 
   constructor(private formbuilder: FormBuilder) {
-    this.FormularioComponentForm = this.formbuilder.group({
-
-    
-
+    this.form = this.formbuilder.group({
+      monto:['Ingresar monto'],
+      fecha:['Ingresar fecha'],
+      motivo:['Ingresar motivo']
     });
   }
 }

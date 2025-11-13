@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+
 @Component({
   selector: 'app-registro-ingresos',
   imports: [ReactiveFormsModule],
@@ -7,16 +8,16 @@ import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
   styleUrl: './registro-ingresos.component.css'
 })
 export class RegistroIngresosComponent {
-form!:FormGroup;
+
+form:FormGroup;
+
 constructor(private formBuilder:FormBuilder)
 {
   this.form = this.formBuilder.group(
     {
-      monto:[''],
-      fecha:[''],
-      motivo:['']
-
-    }
-  );
-}
+      monto:['Ingresar monto',[Validators.required, Validators.min(0.01)]],
+      fecha:['Ingresar fecha',[Validators.required]],
+      motivo:['Ingresar motivo',Validators.required]
+    });
+  }
 }
