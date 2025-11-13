@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from models import Incidencias
+from .models import Incidencias
 
 class IncidenciasSerializer(serializers.ModelSerializer):
     class Meta:

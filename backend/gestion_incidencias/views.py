@@ -12,9 +12,20 @@ class CrearIncidenciaView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 class IncidenciasPendientesView(APIView):
     def get(self, request):
-        pendientes = Incidencias.objects.filter(estado__iexact='pendiente')
-        serializer = IncidenciasSerializer(pendientes, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        pendientes = Incidencias.objects.filter(estado='pendiente')
+        resultado = []
+
+        for incidencia in pendientes:
+            resultado.append({
+                'id_incidencia': incidencia.id_incidencia,
+                'fecha': incidencia.fecha,
+                'asunto': incidencia.asunto,
+                'estado': incidencia.estado,
+                'descripcion': incidencia.descripcion,
+                'prioridad': incidencia.prioridad,
+                'tipo': incidencia.id_tipo.nombre  # ← aquí accedés al nombre del tipo
+            })
+
+        return Response(resultado)
