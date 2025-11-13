@@ -85,10 +85,10 @@ DATABASES = {
     },
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mydb',
-        'USER': 'root',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost', # Or an IP Address that your DB is hosted on
+        'NAME': 'bqh1xue1lw2u0uqyghhf',
+        'USER': 'uymhtyqufb651lru',
+        'PASSWORD': 'aCaL8Tj7CRkuNtepLVx1',
+        'HOST': 'bqh1xue1lw2u0uqyghhf-mysql.services.clever-cloud.com', # Or an IP Address that your DB is hosted on
         'PORT': 3306,
     }
 }
@@ -134,3 +134,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
