@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario',
@@ -13,9 +13,15 @@ export class FormularioComponent {
 
   constructor(private formbuilder: FormBuilder) {
     this.form = this.formbuilder.group({
-      monto:['Ingresar monto'],
-      fecha:['Ingresar fecha'],
-      motivo:['Ingresar motivo']
+      monto: ['', [Validators.required, Validators.min(0.01)]],
+      fecha: ['', [Validators.required]],
+      motivo: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]]
     });
   }
+
+  get Monto() { return this.form.get('monto'); }
+  get Fecha() { return this.form.get('fecha'); }
+  get Motivo() { return this.form.get('motivo'); }
 }
+
+ 
