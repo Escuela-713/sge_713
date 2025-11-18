@@ -17,8 +17,8 @@ class ProfesoresSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class MesasExamenesSerializer(serializers.ModelSerializer):
-    profesor = ProfesoresSerializer()
-    modalidad = ModalidadesSerializer()
+    id_profesores = ProfesoresSerializer()
+    id_modalidades = ModalidadesSerializer()
    
     class Meta:
         model = MesasExamenes

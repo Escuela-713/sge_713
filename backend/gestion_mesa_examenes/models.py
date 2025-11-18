@@ -14,10 +14,10 @@ class MesasExamenes(models.Model):
     dia = models.DateTimeField()
     hora = models.DateTimeField()
     tema = models.CharField(max_length=45)
-    id_profesores = models.ForeignKey('Profesores', models.DO_NOTHING, db_column='profesor', null=True)  # deberia ser un tribunal, es decir mas de un profesor. Hagan lo que puedan, mucha suerte.
-    id_materias = models.IntegerField(db_column='id_materias', null=True)  # Field renamed to remove unsuitable characters.
-    id_modalidades = models.ForeignKey('Modalidades', models.DO_NOTHING, db_column='modalidad', null=True)  # Field renamed to remove unsuitable characters.
-    id_alumno = models.IntegerField(db_column='id_alumno', null=True) # Revisar.
+    id_profesores = models.ForeignKey('Profesores', models.DO_NOTHING, null=True)  # deberia ser un tribunal, es decir mas de un profesor. Hagan lo que puedan, mucha suerte.
+    id_materias = models.IntegerField('Id_materias', null=True)  # Field renamed to remove unsuitable characters.
+    id_modalidades = models.ForeignKey('Modalidades', models.DO_NOTHING,  null=True)  # Field renamed to remove unsuitable characters.
+    id_alumno = models.IntegerField('Id_alumno', null=True) # Revisar.
     class Meta:
         managed = True
         db_table = 'mesas_examenes'
