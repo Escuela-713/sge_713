@@ -1,13 +1,7 @@
 from rest_framework import serializers
-from .models import MesasExamenes
-from .models import Profesores
-from .models import Modalidades
+from .models import MesasExamenes, Profesores, Modalidades
 from gestion_datos_personales.models import Alumno
 
-
-
-from rest_framework import serializers
-from .models import MesasExamenes
 
 class MesasExamenesSerializer(serializers.ModelSerializer):
     class Meta:
@@ -20,13 +14,20 @@ class MesasExamenesSerializer(serializers.ModelSerializer):
             'id_alumno': {'required': False, 'allow_null': True},
         }
 
+
 class ProfesoresSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profesores
         fields = '__all__'
 
 
-   
+class ModalidadesSerializer(serializers.ModelSerializer):
     class Meta:
-        model = MesasExamenes
+        model = Modalidades
+        fields = '__all__'
+
+
+class AlumnoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Alumno
         fields = '__all__'
