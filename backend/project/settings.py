@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,9 +26,17 @@ SECRET_KEY = 'django-insecure-$%+6=6f(@2&knn#-=(n3v$!h44t=(7si2e)*vw8n^x27h3tmg*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    "sge-713-nttb.onrender.com"
-]
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+# Prefer an explicit ALLOWED_HOSTS environment variable (comma separated),
+# otherwise use the Render provided hostname if present, otherwise allow all
+# hosts during deploy/testing.
+env_allowed = os.environ.get('ALLOWED_HOSTS')
+if env_allowed:
+    ALLOWED_HOSTS = [h.strip() for h in env_allowed.split(',') if h.strip()]
+elif RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME, 'localhost', '127.0.0.1']
+else:
+    ALLOWED_HOSTS = ['*']
 
 
 # Application definition
