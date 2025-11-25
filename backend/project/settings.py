@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'gestion_datos_personales',
     'gestion_usuarios',
-    'gestion_carrera_planes_materias'
-    , 'gestion_home'
+    'gestion_carrera_planes_materias',
+    'gestion_home'
 ]
 
 MIDDLEWARE = [
@@ -134,11 +134,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# REST framework + simple JWT-like authentication setup
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'gestion_usuarios.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-    ),
-}
