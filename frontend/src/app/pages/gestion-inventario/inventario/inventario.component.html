@@ -4,49 +4,12 @@
 		<input type="text" placeholder="Buscar bien por nombre, código o titular..." class="search-input" />
 	</div>
 	<div class="movements" style="margin-bottom:14px; display:flex; gap:16px;">
-		<div style="flex:1">
-			<strong>Ingresos recientes</strong>
-			<table>
-				<thead>
-					<tr>
-						<th>Fecha </th>
-						<th>Descripcion </th>
-						<th>Cantidad</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td> 2025-09-10 </td>
-						<td>
-							Kits Arduino UNO (20 unidades)
-						</td>
-						<td>Proveedor: Distribuciones Electrónica SA</td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td>
-							<button class="btn btnAdd">Editar</button>
-							<button class="btn btnDelete">Eliminar</button>
-							<button class="btn btnDelete">Ver más</button>
-						</td>
-					</tr>
-
-				</tbody>
-			</table>
-
-
-		</div>
-	</div>
-</div>
-<div class="movements" style="margin-bottom:14px; display:flex; gap:16px;">
-	<div style="flex:1">
-		
-		
+			
 		<!--Aca empieza -->
-			<div class="inventario-container">
+			<div class="container">
 		
         <strong>Egresos recientes</strong>
-        <table class="inventario-table">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Nombre</th>
@@ -55,8 +18,8 @@
                     <th>Código especial</th>
                     <th>Estado</th>
                     <th>Ubicación</th>
-                    <th>Fecha de adquisición</th>
-                    <th>Prestando</th>
+                    <th>Fecha</th>
+                    <th>Prestado</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
@@ -74,8 +37,24 @@
                     
                     <td>
                         <button class="btn btnAdd">Editar</button>
+						<button class="btn btnVerTabla">Ver más</button>
 						<button class="btn btnDelete">Eliminar</button>
-						<button class="btn btnDelete">Ver más</button>
+                    </td>
+                </tr>
+				<tr>
+                    <td>Sillas</td>
+                    <td>Mobiliario</td>
+                    <td>12</td>
+                    <td>Sill-004</td>
+                    <td>Bueno</td>
+                    <td>Aula 3ro 1ra ESB</td>
+                    <td>2020-08-01</td>
+                    <td>No</td>
+                    
+                    <td>
+                        <button class="btn btnAdd">Editar</button>
+						<button class="btn btnVerTabla">Ver más</button>
+						<button class="btn btnDelete">Eliminar</button>
                     </td>
                 </tr>
             </tbody>
@@ -84,4 +63,6 @@
     </div>
 	<!--no tocar por ahora-->
 	</div>
-	</div>
+
+</div>
+
