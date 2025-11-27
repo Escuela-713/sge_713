@@ -1,7 +1,7 @@
 <div>
   <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
     <section class="form-register" >
-      <h4>Formulario Registro</h4>
+      <h4>Registro</h4>
       <input class="form-control mb-2" formControlName="name" type="text" name="nombres" id="nombres" placeholder="Nombres">
       @if (Name?.errors && Name?.touched)
       {
@@ -53,13 +53,13 @@
       @if(Password?.hasError('required'))
       {
       <div class="text-danger">
-        El Password es requerido.
+        La contaseña es requerida.
       </div>
       }
       @else if (Password?.hasError('minlength') )
       {
       <div class="text-danger">
-        El Password requiere como mínimo 8 caracteres.
+        La contaseña requiere como mínimo 8 caracteres.
       </div>
       }
       }
@@ -70,14 +70,14 @@
       @if (Passwordconfirmation?.hasError('required'))
       {
       <div class="text-danger">
-        La confirmacion del password es requerida.
+        La confirmación de la contaseña es requerida.
       </div>
       }
       }
       @else if (errorPassword)
       {
         <div class="text-danger">
-          El Password debe ser igual.
+          La contraseña debe ser igual.
         </div>
       }
       <input class="form-control mb-2" (change)="onChangeCuil()" formControlName="cuil" type="number" name="cuil" id="cuil"
@@ -98,34 +98,34 @@
       @if (Cuilconfirmation?.hasError('required'))
       {
       <div class="text-danger">
-        La confirmacion del cuil es requerido.
+        La confirmación del cuil es requerido.
       </div>
       }
       }
       @else if (errorCuil)
       {
         <div class="text-danger">
-          El Cuil debe ser igual.
+          El cuil debe ser igual.
         </div>
       }
       <div class="mb-3 form-check">
         
         <input type="checkbox" class="form-check-input" >
-        <label for="exampleFormControlInput1" class="form-label"> Estoy de acuerdo con <a href="#">Terminos y Condiciones</a></label>
+        <label for="exampleFormControlInput1" class="form-label"> Estoy de acuerdo con <a href="#">Términos y Condiciones</a></label>
         
       @if (Aceptarterminos?.errors && Aceptarterminos?.touched)
       {
       @if (Aceptarterminos?.hasError('required'))
       {
       <p class="text-danger">
-        Aceptar los termino es requerido.
+        Aceptar los términos es requerido.
       </p>
       }
       }
 
       </div>      
       <input class="botons"  type="submit" value="Registrar">
-      <p><a routerLink="/iniciar-sesion">¿Ya tengo Cuenta?</a></p>
+      <p><a routerLink="/iniciar-sesion">¿Ya tengo cuenta?</a></p>
     </section>
   </form>
 </div>

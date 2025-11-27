@@ -1,52 +1,95 @@
-.form-login {
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100vh;
+  padding-top: 150px;
+}
+
+.form-login { 
   width: 500px;
   padding: 50px;
-  margin: auto;
- 
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
+  font-family: "calibri";
 }
+
 .form-login h4 {
   margin-bottom: 20px;
+  color: #a51c30;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
 }
+
 ::placeholder{
-  color: black;
+  color: #444;
 }  
 
-.controls {
-  width: 100%;    
-  background: transparent;
-  padding: 10px;
-  border-radius: 4px;
-  margin-bottom: 16px;
-  border: 1px solid black;
-  font-family: "calibri";
+.form-login .form-control {
+  margin-bottom: 16px !important;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: rgba(0,0,0,0.03);
+  padding: 12px;
   font-size: 18px;
-  color: black;
+  transition: border-color .25s ease, background .25s ease;
+}
+
+.form-login .form-control:focus {
+  border-color: #ffc107;
+  background: rgba(255, 193, 7, 0.1);
+  box-shadow: none;
+}
+
+.form-login .form-control.ng-valid.ng-touched {
+  border-color: #28a745;
+  background: rgba(40, 167, 69, 0.1);
+}
+
+.form-login .form-control.ng-invalid.ng-touched {
+  border-color: #dc3545;
+  background: rgba(220, 53, 69, 0.1);
 }
 
 .form-login p {
-  height: 40px;
+  height: auto;
   text-align: center;
   font-size: 18px;
-  line-height: 40px;
-  color: white;
+  line-height: 1.4;
+  color: #a51c30;
 }
 
 .form-login a {
-  color: black;
+  color: #a51c30;
   text-decoration: none;
+  font-weight: bold;
 }
 
 .form-login a:hover {
-  color: black;
+  color: #ffc107;
   text-decoration: underline;
 }
 
+
+/*botón*/
 .form-login .botons {
   width: 100%;
-  background: black;
+  background: #ffc107;
   border: none;
   padding: 12px;
-  color: white;
+  color: black;
   margin: 16px 0;
-  font-size: 16px;
+  font-size: 18px;
+
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.form-login .botons:hover {
+  background: #ffca2c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
 }

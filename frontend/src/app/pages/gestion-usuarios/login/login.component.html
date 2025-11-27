@@ -1,6 +1,6 @@
 <div class="login">
   <form class="form-login" [formGroup]="form" (ngSubmit)="onEnviar($event)">
-    <h4>Inicio De Sesion</h4>
+    <h4>Inicio De Sesión</h4>
     <input formControlName="cuil" class="form-control mb-2" type="text" name="nombres" id="nombres"
       placeholder="Ingrese su Cuit" />
     @if (Cuil?.errors && Cuil?.touched)
