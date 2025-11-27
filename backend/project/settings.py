@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'gestion_usuarios',
     'gestion_carrera_planes_materias',
     'gestion_home'
+    'gestion_inventario',
 ]
 
 MIDDLEWARE = [
