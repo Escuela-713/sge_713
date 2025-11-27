@@ -1,53 +1,87 @@
-
 .form-register {
-  
-    width: 500px;
-    padding: 50px;
-    margin: auto;
+  width: 500px;
+  padding: 50px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
+  font-family: "calibri";
+  margin: auto;
+}
 
-  }
-  .form-register h4 {
+.form-register h4 {
+  margin-bottom: 20px;
+  color: #a51c30;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
 
-    margin-bottom: 20px;
-  }
-::placeholder{
-    color: black;
-}  
-  .controls {
-    width: 100%;
-    background: transparent;
-    padding: 10px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-    border: 1px solid black;
-    font-family: 'calibri';
-    font-size: 18px;
-    color: black;
-  }
-  .form-register p {
-    height: 40px;
-    text-align: center;
-    font-size: 18px;
-    line-height: 40px;
-    color:white;
-  }
-  
-  .form-register a {
-    color:black;
-    text-decoration: none;
-  }
-  
-  .form-register a:hover {
-    color: black;
-    text-decoration: underline;
-  }
-  
-  .form-register .botons {
-    width: 100%;
-    background: black;
-    border: none;
-    padding: 12px;
-    color: white;
-    margin: 16px 0;
-    font-size: 16px;
-  }
+.form-register ::placeholder {
+  color: #444;
+}
+
+.form-register .form-control {
+  width: 100%;
+  background: rgba(0,0,0,0.03);
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 16px !important;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  transition: border-color .25s ease, background .25s ease;
+}
+
+.form-register .form-control:focus {
+  border-color: #ffc107;
+  background: rgba(255, 193, 7, 0.1);
+  box-shadow: none;
+}
+
+.form-register .form-control.ng-valid.ng-touched {
+  border-color: #28a745;
+  background: rgba(40,167,69,0.1);
+}
+
+.form-register .form-control.ng-invalid.ng-touched {
+  border-color: #dc3545;
+  background: rgba(220,53,69,0.1);
+}
+
+.form-register p {
+  text-align: center;
+  font-size: 18px;
+  line-height: 1.4;
+  color: #a51c30;
+}
+
+.form-register a {
+  color: #a51c30;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.form-register a:hover {
+  color: #ffc107;
+  text-decoration: underline;
+}
+
+/*botón*/
+.form-register .botons {
+  width: 100%;
+  background: #a51c30;
+  border: none;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  font-size: 18px;
+
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.form-register .botons:hover {
+  background: #bb243a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
