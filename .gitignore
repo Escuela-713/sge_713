@@ -1,3 +1,7 @@
 # Archivos y carpetas de VSCode
 .vscode/
 
+# Environment files
+.env
+backend/.env
+
