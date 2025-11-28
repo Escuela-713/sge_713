@@ -1,0 +1,14 @@
+.registro-mesa-examen-container {
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.registro-mesa-examen-container h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.registro-mesa-examen-container p {
+  color: #666;
+  font-size: 14px;
+}

@@ -147,7 +147,9 @@
           </div>
         }
       <!-- Modal de edición de slide fuera del bucle -->
-      <app-editar-slide *ngIf="mostrarEditorSlide" [slide]="slideEditando" (guardar)="onGuardarSlideEditado($event)" (cancelar)="onCancelarEdicionSlide()"></app-editar-slide>
+      @if (mostrarEditorSlide && slideEditando) {
+        <app-editar-slide [slide]="slideEditando" (guardar)="onGuardarSlideEditado($event)" (cancelar)="onCancelarEdicionSlide()"></app-editar-slide>
+      }
       </div>
     </div>
   }

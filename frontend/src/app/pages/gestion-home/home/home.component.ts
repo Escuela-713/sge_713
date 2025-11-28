@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { EditarSlideComponent } from '../editar-slide/editar-slide.component';
 import {RouterLink, Router} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NovedadesService, NovedadesData, Card } from '../../../services/novedades.service';
+import { EditarSlideComponent } from '../editar-slide/editar-slide.component';
 
 export interface CarouselSlide {
   id: number;
