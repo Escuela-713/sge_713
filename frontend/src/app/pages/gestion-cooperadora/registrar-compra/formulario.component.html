@@ -1,65 +1,93 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Registro de Compra</title>
 </head>
+
 <body class="bg-light">
- <div class="container mt-4">
+  <div class="container mt-4">
     <div class="row justify-content-center">
       <div class="col-md-6">
-        <div class="">
+        <div class="card shadow-lg">
           <div class="card-header text-center">
             <h4>Registro de Compra</h4>
           </div>
           <div class="card-body">
-            <form class="needs-validation" novalidate>
-              <!-- Monto -->
-              <div class="mb-3">
-                <label for="monto" class="form-label">Monto</label>
-                <input type="number" class="form-control" id="monto" placeholder="Ingrese el monto"required min="1" step="0.01">
-                <div class="invalid-feedback">Ingrese un monto válido (mayor a 0).</div>
-              </div>
+<form [formGroup]="form" class="mt-3">
 
-              <!-- Fecha -->
-              <div class="mb-3">
-                <label for="fecha" class="form-label">Fecha</label>
-                <input type="date" class="form-control" id="fecha" required>
-                <div class="invalid-feedback">Seleccione una fecha válida.</div>
-              </div>
+  <!-- Monto -->
+  <div class="mb-3">
+    <label for="monto" class="form-label">Monto</label>
+    <input 
+      type="number" 
+      class="form-control" 
+      id="monto"
+      placeholder="Ingrese el monto"
+      formControlName="monto"
+    >
 
-              <!-- Motivo -->
-              <div class="mb-3">
-                <label for="motivo" class="form-label">Motivo</label>
-                <textarea class="form-control" id="motivo" rows="3" placeholder="Describa el motivo de la compra" required minlength="5" maxlength="200"></textarea>
-              <div class="invalid-feedback">El motivo debe tener entre 5 y 200 caracteres.</div>
-              </div>
+    @if (Monto?.errors && Monto?.touched) {
+      @if (Monto?.hasError('required')) {
+        <div class="text-danger">Monto Requerido</div>
+      }
+      @if (Monto?.hasError('min')) {
+        <div class="text-danger">El monto debe ser mayor a 0</div>
+      }
+    }
+  </div>
 
-              <!-- Botón -->
-              <div class="">
-                <button type="submit" class="btn btn-primary mt-4">Registrar Compra</button>
-                <script>
-    // Activar validación de Bootstrap
-    (() => {
-      'use strict'
-      const forms = document.querySelectorAll('.needs-validation')
-      Array.from(forms).forEach(form => {
-        form.addEventListener('submit', event => {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-          form.classList.add('was-validated')
-        }, false)
-      })
-    })()
-  </script>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-  
+  <!-- Fecha -->
+  <div class="mb-3">
+    <label for="fecha" class="form-label">Fecha</label>
+    <input 
+      type="date"
+      class="form-control"
+      id="fecha"
+      formControlName="fecha"
+    >
 
-  
+    @if (Fecha?.errors && Fecha?.touched) {
+      @if (Fecha?.hasError('required')) {
+        <div class="text-danger">Seleccione una fecha válida</div>
+      }
+    }
+  </div>
+
+  <!-- Motivo -->
+  <div class="mb-3">
+    <label for="motivo" class="form-label">Motivo</label>
+    <textarea 
+      class="form-control" 
+      id="motivo" 
+      rows="3"
+      placeholder="Describa el motivo de la compra"
+      formControlName="motivo"></textarea>
+
+    @if (Motivo?.errors && Motivo?.touched) {
+      @if (Motivo?.hasError('required')) {
+        <div class="text-danger">Motivo requerido</div>
+      }
+      @if (Motivo?.hasError('minlength')) {
+        <div class="text-danger">Debe tener al menos 5 caracteres</div>
+      }
+      @if (Motivo?.hasError('maxlength')) {
+        <div class="text-danger">Máximo 200 caracteres</div>
+      }
+    }
+  </div>
+
+  <!-- Botón -->
+  <div class="d-flex justify-content-center">
+  <button 
+    type="submit" 
+    class="btn btn-primary mt-4"
+    [disabled]="form.invalid"
+  >
+    Registrar Compra
+  </button>
+</div>
+
+</form>
