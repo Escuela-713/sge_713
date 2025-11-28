@@ -1,8 +1,8 @@
 <div class="inventory">
-	<div class="header">
-		<h2 class="titulo">Inventario detallado — Estado y titularidad</h2>
-		<input type="text" placeholder="Buscar bien por nombre, código o titular..." class="search-input" />
-	</div>
+    <div class="header" style="display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center;">
+        <h2 class="titulo">Inventario detallado — Estado y titularidad</h2>
+        <input type="text" placeholder="Buscar bien por nombre, código o titular..." class="search-input" style="max-width:420px; width:90%;" />
+    </div>
 	<div class="movements" style="margin-bottom:14px; display:flex; gap:16px;">
 			
 		<!--Aca empieza -->
@@ -44,7 +44,7 @@
                 </tr>
 			
 				<!--2da tabla-->
-            <tr>
+                <tr>
             <td>Sillas</td>
             <td>Mobiliario</td>
             <td>12</td>
@@ -53,6 +53,11 @@
             <td>Aula 5to ETP</td>
             <td>N/D</td>
             <td>No</td>
+            <td>
+                <button class="btn btnAdd" style="display:inline-block;">Editar</button>
+                <button class="btn btnVerTabla" style="display:inline-block;">Ver más</button>
+                <button class="btn btnDelete" style="display:inline-block;">Eliminar</button>
+            </td>
                 </tr>
                 <!--3era tabla-->
                 <tr>
@@ -63,42 +68,61 @@
             <td>En préstamo</td>
             <td>N/D</td>
             <td>N/D</td>
-            <td>Sí</td> 
-        
+            <td>Sí</td>
+            <td>
+                <button class="btn btnAdd" style="display:inline-block;">Editar</button>
+                <button class="btn btnVerTabla" style="display:inline-block;">Ver más</button>
+                <button class="btn btnDelete" style="display:inline-block;">Eliminar</button>
+            </td>
                 </tr>
                 <!--4rta tabla-->
-                <tr>
-            <td>Proyector Epson X123</td>
-            <td>Equipamiento audiovisual</td>
-            <td>1</td>
-            <td>Pyt-001</td>
-            <td>Prestado</td>
-            <td>biblioteca</td>
-            <td>N/D</td>
-            <td>No</td> 
-              </tr>
+                                <tr>
+                        <td>Proyector Epson X123</td>
+                        <td>Equipamiento audiovisual</td>
+                        <td>1</td>
+                        <td>Pyt-001</td>
+                        <td>Prestado</td>
+                        <td>biblioteca</td>
+                        <td>N/D</td>
+                        <td>No</td>
+                        <td>
+                                <button class="btn btnAdd" style="display:inline-block;">Editar</button>
+                                <button class="btn btnVerTabla" style="display:inline-block;">Ver más</button>
+                                <button class="btn btnDelete" style="display:inline-block;">Eliminar</button>
+                        </td>
+                            </tr>
               <!--5ta tabla-->
-                <tr>
-            <td>Mesas</td>
-            <td>Mobiliario</td>
-            <td>24</td>
-            <td>Ms-004</td>
-            <td>Regular</td>
-            <td>Aula 4to ETP</td>
-            <td>2019-11-20</td>
-            <td>No</td>
-              </tr>
+                                <tr>
+                        <td>Mesas</td>
+                        <td>Mobiliario</td>
+                        <td>24</td>
+                        <td>Ms-004</td>
+                        <td>Regular</td>
+                        <td>Aula 4to ETP</td>
+                        <td>2019-11-20</td>
+                        <td>No</td>
+                        <td>
+                                <button class="btn btnAdd" style="display:inline-block;">Editar</button>
+                                <button class="btn btnVerTabla" style="display:inline-block;">Ver más</button>
+                                <button class="btn btnDelete" style="display:inline-block;">Eliminar</button>
+                        </td>
+                            </tr>
               <!--6ta tabla-->
-               <tr>
-            <td>Mesas grandes</td>
-            <td>Mobiliario</td>
-            <td>3</td>
-            <td>MsG 003</td>
-            <td>Bueno</td>
-            <td>Aula 7mo ETP</td>
-            <td>2021-03-12</td>
-            <td>No</td>
-               </tr>
+                    <tr>
+                <td>Mesas grandes</td>
+                <td>Mobiliario</td>
+                <td>3</td>
+                <td>MsG 003</td>
+                <td>Bueno</td>
+                <td>Aula 7mo ETP</td>
+                <td>2021-03-12</td>
+                <td>No</td>
+                <td>
+                     <button class="btn btnAdd" style="display:inline-block;">Editar</button>
+                     <button class="btn btnVerTabla" style="display:inline-block;">Ver más</button>
+                     <button class="btn btnDelete" style="display:inline-block;">Eliminar</button>
+                </td>
+                    </tr>
             </tbody>
             
         </table>
