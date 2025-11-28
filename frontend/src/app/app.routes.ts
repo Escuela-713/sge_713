@@ -22,13 +22,13 @@ import { GestionHomeComponent } from './pages/gestion-home/gestion-home.componen
 import { AgregarPosteoComponent } from './pages/gestion-home/agregar-posteo/agregar-posteo.component';
 import { EditarPosteoComponent } from './pages/gestion-home/editar-posteo/editar-posteo.component';
 import { NovedadComponent } from './pages/novedad/novedad.component';
-
-import { RegistroMesaExamenComponent } from './pages/gestion-examenes-finales/registro-mesa-examen/registro-mesa-examen.component';
+import { InscripcionMesaComponent } from './pages/gestion-examenes-finales/inscripcion-mesa/inscripcion-mesa.component';
 import { HomeGestionComponent } from './pages/gestion-home/home/home.component';
 import { HistorialComponent } from './pages/gestion-cooperadora/historial/historial.component';
 import { FormularioComponent } from './pages/gestion-cooperadora/registrar-compra/formulario.component';
 import { RegistroIngresosComponent } from './pages/gestion-cooperadora/registro-ingresos/registro-ingresos.component';
 import { MovimientosComponent } from './pages/gestion-cooperadora/movimientos/movimientos.component';
+import { CreacionDeMesaComponent } from './pages/gestion-examenes-finales/creacion-de-mesa/creacion-de-mesa.component';
 import { AgregarSlideComponent } from './pages/gestion-home/agregar-slide/agregar-slide.component';
 
 export const routes: Routes = [
@@ -71,7 +71,10 @@ export const routes: Routes = [
           { path: 'agregar-slide', component: AgregarSlideComponent }
         ]
       },
-      { path: 'registro-mesa', component: RegistroMesaExamenComponent },
+    
+      {path: 'inscripcion-mesa', component: InscripcionMesaComponent},
+  
+      { path: 'crear-mesa', component: CreacionDeMesaComponent },
     ],
   },
   { path: 'iniciar-sesion', component: LoginComponent },

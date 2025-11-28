@@ -9,34 +9,38 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
 from pathlib import Path
 import os
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / '.env')
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-$%+6=6f(@2&knn#-=(n3v$!h44t=(7si2e)*vw8n^x27h3tmg*'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-$%+6=6f(@2&knn#-=(n3v$!h44t=(7si2e)*vw8n^x27h3tmg*')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-# Prefer an explicit ALLOWED_HOSTS environment variable (comma separated),
+# Prefer an explicit DJANGO_ALLOWED_HOSTS environment variable (comma separated),
 # otherwise use the Render provided hostname if present, otherwise allow all
 # hosts during deploy/testing.
-env_allowed = os.environ.get('ALLOWED_HOSTS')
+env_allowed = os.environ.get('DJANGO_ALLOWED_HOSTS')
 if env_allowed:
     ALLOWED_HOSTS = [h.strip() for h in env_allowed.split(',') if h.strip()]
 elif RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS = [RENDER_EXTERNAL_HOSTNAME, 'localhost', '127.0.0.1']
 else:
     ALLOWED_HOSTS = ['*']
+# Additional hosts may be added via DJANGO_ALLOWED_HOSTS in the .env file
+
 
 
 # Application definition
@@ -52,8 +56,9 @@ INSTALLED_APPS = [
     'gestion_datos_personales',
     'gestion_usuarios',
     'gestion_carrera_planes_materias',
-    'gestion_home'
+    'gestion_home',
     'gestion_inventario',
+    'gestion_mesa_examenes',
 ]
 
 MIDDLEWARE = [
@@ -90,20 +95,26 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-DATABASES = {
-    'sqlite': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    },
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bbuzg3qs1qfjo1ppiw0w',
-        'USER': 'uscbt74kaoxbyvpa',
-        'PASSWORD': 'hkQG9O3nR5sy8d2nXIAk',
-        'HOST': 'bbuzg3qs1qfjo1ppiw0w-mysql.services.clever-cloud.com', # Or an IP Address that your DB is hosted on
-        'PORT': 3306,
+# Database configuration: prefer env vars, fall back to sensible defaults
+db_engine = os.getenv('DATABASE_ENGINE', 'django.db.backends.sqlite3')
+if db_engine == 'django.db.backends.sqlite3':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / os.getenv('DATABASE_NAME', 'db.sqlite3'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': db_engine,
+            'NAME': os.getenv('DATABASE_NAME', 'bqh1xue1lw2u0uqyghhf'),
+            'USER': os.getenv('DATABASE_USER', 'uymhtyqufb651lru'),
+            'PASSWORD': os.getenv('DATABASE_PASSWORD', 'aCaL8Tj7CRkuNtepLVx1'),
+            'HOST': os.getenv('DATABASE_HOST', 'bqh1xue1lw2u0uqyghhf-mysql.services.clever-cloud.com'),
+            'PORT': os.getenv('DATABASE_PORT', '3306'),
+        }
+    }
 
 
 # Password validation

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscripción a Mesas de Examen</title>
+</head>
+<body>
+
+
+  <h2>Formulario de Inscripción a Mesas de Examen</h2>
+
+  <form action="procesar_inscripcion.php" method="POST">
+    <!-- Datos del estudiante -->
+    <label for="cuit">CUIT</label><br>
+      <input type="text" id="cuit" name="cuit" required><br><br>
+     <label for="materia">Materia</label>
+    <select id="materia" name="materia" required>
+      <option value="">Seleccione una Materia</option>
+      <option value="Matematicas">Matematicas</option>
+      <option value="Lengua">Lengua</option>
+      <option value="Historia">Historia</option>
+      <option value="DesarrolloII">Desarrollo II</option>
+    </select><br><br>
+    <label for="turno">Turno</label>
+    <select id="turno" name="turno" required> 
+      <option value="">Seleccione un turno</option>
+      <option value="manana">Mañana</option>
+      <option value="tarde">Tarde</option>
+    </select><br><br>
+
+    <label for="condicion">Condición</label>
+    <select id="condicion" name="condicion" required>
+      <option value="">Seleccione condición</option>
+      <option value="regular">Regular</option>
+      <option value="recursa">Recursa</option>
+    </select><br><br>
+
+    <input type="submit" value="Inscribirse">
+  </form>
+
+</body>
+</html>
+

@@ -24,5 +24,6 @@ urlpatterns = [
     path('api/', include('gestion_datos_personales.urls')),
     path('api/', include('gestion_usuarios.urls')),
     path('api/', include('gestion_inventario.urls')),
-    path('api/', include('gestion_home.urls'))
-]
+    path('api/', include('gestion_home.urls')),
+    path('api/', include('gestion_mesa_examenes.urls')),
+]  
