@@ -29,12 +29,13 @@ Corresponde al núcleo del sistema, donde se gestionan los datos, se aplican las
   * `gestion_inventario`: Control del inventario físico (mobiliario, equipamiento, etc.).
   * `gestion_mesa_examenes`: Gestión de mesas de examen y su organización.
   * `gestion_usuarios`: Administración de usuarios y autenticación del sistema.
+  * `gestion_home`: Gestion del contenido de la pagina principal 
 
 ### **B. `frontend/` – Interfaz de usuario**
 
 Es la parte visual del sistema; permite que los usuarios interactúen de forma intuitiva con la plataforma.
 
-* **Tecnología utilizada:** *Angular*.
+* **Tecnología utilizada:** *Angular 20*.
 * **Función principal:** Solicita información al backend, la procesa visualmente y la presenta en pantallas claras y organizadas.
 
 ---
