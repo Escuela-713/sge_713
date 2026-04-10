@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
-import { CarouselSlide } from '../home/home.component';
+import { CarouselSlide } from '../home-dashboard/home-dashboard.component';
 
 @Component({
   selector: 'app-editar-slide',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule],
   templateUrl: './editar-slide.component.html',
   styleUrls: ['./editar-slide.component.css']
 })

@@ -23,25 +23,26 @@ import { AgregarPosteoComponent } from './pages/gestion-home/agregar-posteo/agre
 import { EditarPosteoComponent } from './pages/gestion-home/editar-posteo/editar-posteo.component';
 import { NovedadComponent } from './pages/novedad/novedad.component';
 import { InscripcionMesaComponent } from './pages/gestion-examenes-finales/inscripcion-mesa/inscripcion-mesa.component';
-import { HomeGestionComponent } from './pages/gestion-home/home/home.component';
+import { HomeDashboardComponent } from './pages/gestion-home/home-dashboard/home-dashboard.component';
 import { HistorialComponent } from './pages/gestion-cooperadora/historial/historial.component';
 import { FormularioComponent } from './pages/gestion-cooperadora/registrar-compra/formulario.component';
 import { RegistroIngresosComponent } from './pages/gestion-cooperadora/registro-ingresos/registro-ingresos.component';
 import { MovimientosComponent } from './pages/gestion-cooperadora/movimientos/movimientos.component';
 import { CreacionDeMesaComponent } from './pages/gestion-examenes-finales/creacion-de-mesa/creacion-de-mesa.component';
 import { AgregarSlideComponent } from './pages/gestion-home/agregar-slide/agregar-slide.component';
+import { Donar713Component } from './pages/donar-713/donar-713.component';
 
 export const routes: Routes = [
   { path: 'novedad/:slug', component: NovedadComponent },
   { path: 'home', component: HomeComponent },
-  {
-    path: 'dashboard',
+  { path: 'donar-713', component: Donar713Component},
+  { path: 'dashboard',
     component: DashboardComponent,
     children: [
       { path: 'cooperadora-movimientos', component: MovimientosComponent },
       { path: 'cooperadora-historial', component: HistorialComponent },
       { path: 'cooperadora-compra', component: FormularioComponent },
-      { path: 'cooperadora-ingresos', component: RegistroIngresosComponent},
+      { path: 'cooperadora-ingresos', component: RegistroIngresosComponent },
       { path: 'carreras', component: CarrerasComponent },
       { path: 'planes', component: PlanesComponent },
       { path: 'editar-carreras', component: FormCarreraComponent },
@@ -55,24 +56,17 @@ export const routes: Routes = [
       { path: 'bienes-registrados', component: BienesRegistradosComponent },
       { path: 'inventario', component: InventarioComponent },
       { path: 'registrar-bien', component: RegistrarBienComponent },
-      {
-        path: 'registro-incidencias', component: RegistroIncidenciaComponent,
-      },
-      {
-        path: 'incidencias-pendientes', component: IncidenciasPendientesComponent
-      },
-      {
-        path: "home",
-        component: GestionHomeComponent,
+      { path: 'registro-incidencias', component: RegistroIncidenciaComponent,},
+      { path: 'incidencias-pendientes', component: IncidenciasPendientesComponent},
+      { path: "home", component: GestionHomeComponent,
         children: [
-          { path: '', component: HomeGestionComponent, pathMatch: 'full' },
           { path: 'agregar-posteo', component: AgregarPosteoComponent },
           { path: 'editar-novedad/:slug', component: EditarPosteoComponent },
-          { path: 'agregar-slide', component: AgregarSlideComponent }
+          { path: 'agregar-slide', component: AgregarSlideComponent },
+          { path: '', component: HomeDashboardComponent, pathMatch: 'full' },
         ]
       },
-    
-      {path: 'inscripcion-mesa', component: InscripcionMesaComponent},
+      { path: 'inscripcion-mesa', component: InscripcionMesaComponent },
       { path: 'crear-mesa', component: CreacionDeMesaComponent },
     ],
   },

@@ -8,10 +8,14 @@
     <label for="inputPlan" class="col-sm-2 col-form-label">Plan</label>
     <div class="col-sm-10">
       <input type="number" formControlName="plan" class="form-control" id="id-carrera" placeholder="Numero de Plan">
-      <div *ngIf="plan.invalid && (plan.dirty || plan.touched)" class="alert text-danger">
-        <div *ngIf="plan.errors?.['required']">
-          El plan es requerido.</div>
-      </div>
+      @if (plan.invalid && (plan.dirty || plan.touched)) {
+        <div class="alert text-danger">
+          @if (plan.errors?.['required']) {
+            <div>
+            El plan es requerido.</div>
+          }
+        </div>
+      }
 
 
     </div>
@@ -21,28 +25,36 @@
     <div class="col-sm-10">
       <input type="number" formControlName="hsCatedra" class="form-control" id="horas-catedras"
         placeholder="Horas catedras semanales">
-        <div *ngIf="hsCatedras.invalid && (hsCatedras.dirty || hsCatedras.touched)" class="alert text-danger">
-          <div *ngIf="hsCatedras.errors?.['required']">
-            Las horas catedras son requeridas.</div>
-        </div>
+        @if (hsCatedras.invalid && (hsCatedras.dirty || hsCatedras.touched)) {
+          <div class="alert text-danger">
+            @if (hsCatedras.errors?.['required']) {
+              <div>
+              Las horas catedras son requeridas.</div>
+            }
+          </div>
+        }
+      </div>
     </div>
-  </div>
-  <div class="form-group row p-1">
-    <label for="horas-reloj" class="col-sm-2 col-form-label">Hs rerloj anuales</label>
-    <div class="col-sm-10">
-      <input type="number" formControlName="hsReloj" class="form-control" id="horas-reloj"
-        placeholder="Horas reloj anuales">
-        <div *ngIf="hsReloj.invalid && (hsReloj.dirty || hsReloj.touched)" class="alert text-danger">
-          <div *ngIf="hsReloj.errors?.['required']">
-            Las horas reloj son requeridas.</div>
+    <div class="form-group row p-1">
+      <label for="horas-reloj" class="col-sm-2 col-form-label">Hs rerloj anuales</label>
+      <div class="col-sm-10">
+        <input type="number" formControlName="hsReloj" class="form-control" id="horas-reloj"
+          placeholder="Horas reloj anuales">
+          @if (hsReloj.invalid && (hsReloj.dirty || hsReloj.touched)) {
+            <div class="alert text-danger">
+              @if (hsReloj.errors?.['required']) {
+                <div>
+                Las horas reloj son requeridas.</div>
+              }
+            </div>
+          }
         </div>
-    </div>
-  </div>
+      </div>
 
 
 
-  <div class="modal-footer">
-    <input type="submit" class="btn btn-primary m-1" (click)="guardarPlan()" value="Guardar datos">
-    <input type="button" class="btn btn-danger m-1" data-dismiss="modal" value="Cancelar">
-  </div>
-</form>
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-primary m-1" (click)="guardarPlan()" value="Guardar datos">
+        <input type="button" class="btn btn-danger m-1" data-dismiss="modal" value="Cancelar">
+      </div>
+    </form>

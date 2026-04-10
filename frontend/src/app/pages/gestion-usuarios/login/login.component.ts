@@ -28,8 +28,8 @@ export class LoginComponent {
     event.preventDefault;
     if (this.form.valid) {
       const usuarios = [
-        { cuil: "20478556331", password: "walter", rol: "admin", nombre: "walter" },
-        { cuil: "27123456789", password: "admin123", rol: "admin", nombre: "Usuario DEMO" }
+        { cuil: "123456", password: "admin", rol: "admin", nombre: "admin" },
+        { cuil: "12346789", password: "user", rol: "user", nombre: "user" }
       ];
 
       const usuario = usuarios.find(u => u.cuil === this.Cuil?.value && u.password === this.Password?.value);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
@@ -36,7 +36,7 @@ interface HomeData {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, NavComponent, HeaderComponent, FooterComponent, HttpClientModule, RouterModule],
+  imports: [NavComponent, HeaderComponent, FooterComponent, HttpClientModule, RouterModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RouterLink, Router} from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { NovedadesService, NovedadesData, Card } from '../../../services/novedades.service';
 import { EditarSlideComponent } from '../editar-slide/editar-slide.component';
 
@@ -16,12 +16,12 @@ export interface CarouselSlide {
 
 @Component({
   selector: 'app-dashboard-home',
-  imports: [RouterLink, CommonModule, EditarSlideComponent],
+  imports: [RouterLink, EditarSlideComponent],
   standalone: true,
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  templateUrl: './home-dashboard.component.html',
+  styleUrls: ['./home-dashboard.component.css']
 })
-export class HomeGestionComponent implements OnInit {
+export class HomeDashboardComponent implements OnInit {
   
   novedadesData: NovedadesData = {
     carouselSlides: [],

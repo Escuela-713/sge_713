@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DatosPeronalesService } from 'src/app/services/datos-personales.service';
@@ -6,7 +6,7 @@ import { DatosPeronalesService } from 'src/app/services/datos-personales.service
 @Component({
   selector: 'app-datos-personales',
   standalone: true,
-  imports: [NgFor, RouterLink],
+  imports: [RouterLink],
   templateUrl: './datos-personales.component.html',
   styleUrls: ['./datos-personales.component.css'],
 })

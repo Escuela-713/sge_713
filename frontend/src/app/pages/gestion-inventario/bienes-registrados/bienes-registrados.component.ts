@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { BienesService, Bien } from '../../../services/bienes.service';
@@ -9,7 +9,7 @@ import { BienesService, Bien } from '../../../services/bienes.service';
   templateUrl: './bienes-registrados.component.html',
   styleUrls: ['./bienes-registrados.component.css'],
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule]
+  imports: [RouterLink, FormsModule]
 })
 export class BienesRegistradosComponent implements OnInit {
   bienes: Bien[] = [];

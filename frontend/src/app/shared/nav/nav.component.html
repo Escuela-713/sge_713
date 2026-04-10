@@ -2,33 +2,31 @@
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-2">
 
-      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" *ngIf="isAuthenticated">
+      @if (isAuthenticated) {
+      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
         <a class="dropdown-toggle px-2 text-white" href="#" role="button" data-bs-toggle="dropdown"
-          aria-expanded="false" style="display: none;">Datos Materias</a>
+          aria-expanded="false">Datos Materias</a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" routerLink="/dashboard/carreras">Carreras</a></li>
           <li><a class="dropdown-item" routerLink="/dashboard/materias">Materias</a></li>
           <li><a class="dropdown-item" routerLink="/dashboard/planes">Planes</a></li>
         </ul>
       </li>
-
-      <li *ngIf="isAuthenticated">
+      <li>
         <a class="text-end px-2 text-white" routerLink="/dashboard/filtro">Datos Personales</a>
       </li>
-
       <!-- Mesas de exámenes siempre visible -->
-        <li class="dropdown nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-start">
-          <a class="dropdown-toggle px-2 text-white text-start" href="#" role="button" data-bs-toggle="dropdown"
+      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
+        <a class="dropdown-toggle px-2 text-white" href="#" role="button" data-bs-toggle="dropdown"
           aria-expanded="false">Mesas de examenes</a>
         <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/dashboard/inscripcion-mesa">Inscripción</a></li>
-            <li><a class="dropdown-item" routerLink="/dashboard/registro-mesa">Registro</a></li>
+          <li><a class="dropdown-item" routerLink="/dashboard/inscripcion-mesa">Inscripción</a></li>
+          <li><a class="dropdown-item" routerLink="/dashboard/registro-mesa">Registro</a></li>
           <li><a class="dropdown-item" routerLink="/dashboard/crear-mesa">Crear Mesa de Examen</a></li>
           <li><a class="dropdown-item" routerLink="/dashboard/registro-mesa">Lista Mesas de Examen</a></li>
         </ul>
       </li>
-
-      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" *ngIf="isAuthenticated">
+      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
         <a class="dropdown-toggle px-2 text-white" href="#" role="button" data-bs-toggle="dropdown"
           aria-expanded="false">Cooperadora</a>
         <ul class="dropdown-menu">
@@ -39,16 +37,16 @@
         </ul>
       </li>
 
-      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" *ngIf="isAuthenticated">
+      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
         <a class="dropdown-toggle px-2 text-white" href="#" role="button" data-bs-toggle="dropdown"
-          aria-expanded="false">Bienes registrados</a>
+          aria-expanded="false">Inventario</a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" routerLink="/dashboard/bienes-registrados">Ver bienes registrados</a></li>
+          <li><a class="dropdown-item" routerLink="/dashboard/bienes-registrados">Bienes</a></li>
           <li><a class="dropdown-item" routerLink="/dashboard/inventario">Inventario</a></li>
         </ul>
       </li>
 
-      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" *ngIf="isAuthenticated">
+      <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0">
         <a class="dropdown-toggle px-2 text-white" href="#" role="button" data-bs-toggle="dropdown"
           aria-expanded="false">Incidencias</a>
         <ul class="dropdown-menu">
@@ -56,6 +54,7 @@
           <li><a class="dropdown-item" routerLink="/dashboard/incidencias-pendientes">Incidencias Pendientes</a></li>
         </ul>
       </li>
+      }
     </div>
   </div>
 </nav>

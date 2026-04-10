@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { Subject, takeUntil } from 'rxjs';
 import { Location } from '@angular/common';
 import { HeaderComponent } from 'src/app/shared/header/header.component';
@@ -22,7 +22,7 @@ interface Novedad {
 @Component({
   selector: 'app-novedad',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent],
+  imports: [HeaderComponent, FooterComponent],
   templateUrl: './novedad.component.html',
   styleUrl: './novedad.component.css'
 })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { BienesService } from '../../../services/bienes.service';
@@ -7,7 +7,7 @@ import { BienesService } from '../../../services/bienes.service';
 @Component({
   selector: 'app-registrar-bien',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: './registrar-bien.component.html',
   styleUrl: './registrar-bien.component.css'
 })

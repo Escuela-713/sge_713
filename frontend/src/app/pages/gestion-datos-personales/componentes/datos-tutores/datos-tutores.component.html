@@ -1,61 +1,59 @@
 
 <div id="datosAlumnos">
   <div class="accordion" id="accordionExample">
-    <div class="accordion-item" *ngFor="let item of datostutor">
-      <h2 class="accordion-header" class="heading">
-        <span
-          >{{ item.nombre }}, {{ item.apellido }} - {{ item.dni }}
-        </span
-        >
-        <button type="button" class="btn btnDelete">Eliminar</button>
-        <a
-          routerLink="/dashboard/datos-tutor-editar"
-          class="btn btnAdd"
-          >Editar</a
-        >
-        <button
-        
-          class="accordion-button collapsed"
-          type="button"
-          data-bs-toggle="collapse"
-          [attr.data-bs-target]="'#flushCollapse' + item.id"
-          aria-expanded="false"
-          aria-controls="collapseOne"
-        ></button>
-      </h2>
-      <div
-        id="flushCollapse{{ item.id }}"
-        class="accordion-collapse collapse"
-        aria-labelledby="headingOne"
-        data-bs-parent="#accordionExample"
-      >
-
-        <div class="accordion-body">
-
-          <div id="alumnoInfo" class="alumnoInfo">
-            <span> <b>Nombre:</b> {{ item.nombre }} </span>
-            <span> <b>Apellido:</b> {{ item.apellido }} </span>
-            <span> <b>DNI:</b> {{ item.dni }} </span>
-            <span> <b>Telefono:</b> {{ item.telefono }} </span>
-            <span> <b>Cuil:</b> {{ item.cuil }} </span>
-            <span> <b>Fecha de nacimiento:</b> {{ item.fechaNac }} </span>
-            <span> <b>Profesion:</b> {{ item.profesion }} </span>
-            <span> <b>Lugar de trabajo:</b> {{ item.lugarTrabajo }} </span>
-            <span> <b>Pais:</b> {{ item.pais }} </span>
-            <span> <b>Provincia</b> {{ item.provincia }} </span>
-            <span> <b>Ciudad:</b> {{ item.ciudad }} </span>
-            <span> <b>Barrio:</b> {{ item.barrio }} </span>
-            <span> <b>Domicilio:</b> {{ item.domicilio }} </span>
-            <span> <b>Estado Civil:</b> {{ item.estadoCivil }} </span>
+    @for (item of datostutor; track item) {
+      <div class="accordion-item">
+        <h2 class="accordion-header" class="heading">
+          <span
+            >{{ item.nombre }}, {{ item.apellido }} - {{ item.dni }}
+            </span
+            >
+            <button type="button" class="btn btnDelete">Eliminar</button>
+            <a
+              routerLink="/dashboard/datos-tutor-editar"
+              class="btn btnAdd"
+              >Editar</a
+              >
+              <button
+                class="accordion-button collapsed"
+                type="button"
+                data-bs-toggle="collapse"
+                [attr.data-bs-target]="'#flushCollapse' + item.id"
+                aria-expanded="false"
+                aria-controls="collapseOne"
+              ></button>
+            </h2>
+            <div
+              id="flushCollapse{{ item.id }}"
+              class="accordion-collapse collapse"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+              >
+              <div class="accordion-body">
+                <div id="alumnoInfo" class="alumnoInfo">
+                  <span> <b>Nombre:</b> {{ item.nombre }} </span>
+                  <span> <b>Apellido:</b> {{ item.apellido }} </span>
+                  <span> <b>DNI:</b> {{ item.dni }} </span>
+                  <span> <b>Telefono:</b> {{ item.telefono }} </span>
+                  <span> <b>Cuil:</b> {{ item.cuil }} </span>
+                  <span> <b>Fecha de nacimiento:</b> {{ item.fechaNac }} </span>
+                  <span> <b>Profesion:</b> {{ item.profesion }} </span>
+                  <span> <b>Lugar de trabajo:</b> {{ item.lugarTrabajo }} </span>
+                  <span> <b>Pais:</b> {{ item.pais }} </span>
+                  <span> <b>Provincia</b> {{ item.provincia }} </span>
+                  <span> <b>Ciudad:</b> {{ item.ciudad }} </span>
+                  <span> <b>Barrio:</b> {{ item.barrio }} </span>
+                  <span> <b>Domicilio:</b> {{ item.domicilio }} </span>
+                  <span> <b>Estado Civil:</b> {{ item.estadoCivil }} </span>
+                </div>
+              </div>
+            </div>
           </div>
-          </div>
-        </div>
-
+        }
       </div>
     </div>
-  </div>
-  <div class="container"> 
-    <button routerLink="/dashboard/datos-tutor-editar" class="btn btnSave">
-      Agregar Tutor
-    </button>
-  </div>
+    <div class="container">
+      <button routerLink="/dashboard/datos-tutor-editar" class="btn btnSave">
+        Agregar Tutor
+      </button>
+    </div>

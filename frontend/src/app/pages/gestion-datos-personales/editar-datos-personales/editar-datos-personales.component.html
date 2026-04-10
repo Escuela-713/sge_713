@@ -10,7 +10,7 @@
       role="tab"
       aria-controls="nav-home"
       aria-selected="true"
-    >
+      >
       Datos Personales
     </button>
     <button
@@ -22,7 +22,7 @@
       role="tab"
       aria-controls="nav-profile"
       aria-selected="false"
-    >
+      >
       Datos Academicos
     </button>
     <button
@@ -34,7 +34,7 @@
       role="tab"
       aria-controls="nav-contact"
       aria-selected="false"
-    >
+      >
       Tutores
     </button>
   </div>
@@ -45,30 +45,36 @@
     id="nav-home"
     role="tabpanel"
     aria-labelledby="nav-home-tab"
-  >
-    <div class="seccion" *ngIf="componenteVisible === 'datosAlumno'">
-      <app-datos-escolares></app-datos-escolares>
-    </div>
+    >
+    @if (componenteVisible === 'datosAlumno') {
+      <div class="seccion">
+        <app-datos-escolares></app-datos-escolares>
+      </div>
+    }
   </div>
 
-<div
-  class="tab-pane fade"
-  id="nav-profile"
-  role="tabpanel"
-  aria-labelledby="nav-profile-tab"
->
-  <div class="seccion" *ngIf="componenteVisible === 'datosAlumno'">
-    <app-datos-identidad></app-datos-identidad>
+  <div
+    class="tab-pane fade"
+    id="nav-profile"
+    role="tabpanel"
+    aria-labelledby="nav-profile-tab"
+    >
+    @if (componenteVisible === 'datosAlumno') {
+      <div class="seccion">
+        <app-datos-identidad></app-datos-identidad>
+      </div>
+    }
   </div>
-</div>
 
-<div
-  class="tab-pane fade"
-  id="nav-contact"
-  role="tabpanel"
-  aria-labelledby="nav-contact-tab">
+  <div
+    class="tab-pane fade"
+    id="nav-contact"
+    role="tabpanel"
+    aria-labelledby="nav-contact-tab">
 
-  <div class="seccion" *ngIf="componenteVisible === 'datosAlumno'">
-    <app-datos-tutores></app-datos-tutores>
+    @if (componenteVisible === 'datosAlumno') {
+      <div class="seccion">
+        <app-datos-tutores></app-datos-tutores>
+      </div>
+    }
   </div>
-</div>
