@@ -109,10 +109,10 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': db_engine,
-            'NAME': os.getenv('DATABASE_NAME', 'bqh1xue1lw2u0uqyghhf'),
-            'USER': os.getenv('DATABASE_USER', 'uymhtyqufb651lru'),
-            'PASSWORD': os.getenv('DATABASE_PASSWORD', 'aCaL8Tj7CRkuNtepLVx1'),
-            'HOST': os.getenv('DATABASE_HOST', 'bqh1xue1lw2u0uqyghhf-mysql.services.clever-cloud.com'),
+            'NAME': os.getenv('DATABASE_NAME', 'mydb'),
+            'USER': os.getenv('DATABASE_USER', 'root'),
+            'PASSWORD': os.getenv('DATABASE_PASSWORD', '1234'),
+            'HOST': os.getenv('DATABASE_HOST', 'localhost'),
             'PORT': os.getenv('DATABASE_PORT', '3306'),
         }
     }
