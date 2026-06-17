@@ -18,7 +18,7 @@ export class AgregarPosteoComponent {
     this.form = this.fb.group({
       image: ['', Validators.required],
       title: ['', [Validators.required]],
-      categoria: ['evento', Validators.required],
+      categoria: ['Evento', Validators.required],
       content: ['', [Validators.required, Validators.minLength(10)]]
     });
 

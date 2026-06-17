@@ -19,9 +19,10 @@
 
         <label for="categoria">Categoría <span>*</span></label>
         <select id="categoria" formControlName="categoria">
-          <option value="evento">Evento</option>
-          <option value="anuncio">Anuncio</option>
-          <option value="acto">Acto Escolar</option>
+          <option value="Evento">Evento</option>
+          <option value="Anuncio">Anuncio</option>
+          <option value="Acto">Acto Escolar</option>
+          <option value="Publicidad">Publicidad</option>
         </select>
         @if(form.get('categoria')?.invalid && form.get('categoria')?.touched){
           <p class="error">Seleccione una categoría</p>
