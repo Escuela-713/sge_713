@@ -17,7 +17,7 @@ export class AgregarPosteoComponent {
   constructor(private fb: FormBuilder, private novedadesService: NovedadesService, private router: Router) {
     this.form = this.fb.group({
       image: ['', Validators.required],
-      title: ['', [Validators.required, Validators.minLength(5)]],
+      title: ['', [Validators.required]],
       categoria: ['evento', Validators.required],
       content: ['', [Validators.required, Validators.minLength(10)]]
     });
