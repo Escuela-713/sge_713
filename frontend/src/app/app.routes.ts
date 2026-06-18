@@ -1,42 +1,46 @@
 import { Routes } from '@angular/router';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { HomeComponent } from './pages/home/home.component';
+import { Donar713Component } from './pages/donar-713/donar-713.component';
 import { CarrerasComponent } from './pages/gestion-carreras-planes-materias/carreras/carreras.component';
-import { PlanesComponent } from './pages/gestion-carreras-planes-materias/planes/planes.component';
-import { FormPlanesComponent } from './pages/gestion-carreras-planes-materias/planes/componentes/form-planes.component';
-import { MateriasComponent } from './pages/gestion-carreras-planes-materias/materias/materias.component';
+import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
 import { FormMateriasComponent } from './pages/gestion-carreras-planes-materias/materias/componentes/form-materias.component';
-import { DatosPersonalesComponent } from './pages/gestion-datos-personales/datos-personales.component';
-import { LoginComponent } from './pages/gestion-usuarios/login/login.component';
+import { MateriasComponent } from './pages/gestion-carreras-planes-materias/materias/materias.component';
+import { FormPlanesComponent } from './pages/gestion-carreras-planes-materias/planes/componentes/form-planes.component';
+import { PlanesComponent } from './pages/gestion-carreras-planes-materias/planes/planes.component';
+import { HistorialComponent } from './pages/gestion-cooperadora/historial/historial.component';
+import { MovimientosComponent } from './pages/gestion-cooperadora/movimientos/movimientos.component';
+import { FormularioComponent } from './pages/gestion-cooperadora/registrar-compra/formulario.component';
+import { RegistroIngresosComponent } from './pages/gestion-cooperadora/registro-ingresos/registro-ingresos.component';
 import { DatosTutoresComponent } from './pages/gestion-datos-personales/componentes/datos-tutores/datos-tutores.component';
+import { DatosPersonalesComponent } from './pages/gestion-datos-personales/datos-personales.component';
 import { EditarAgregarTutorComponent } from './pages/gestion-datos-personales/editar-agregar-tutor/editar-agregar-tutor.component';
 import { FiltroDatosPersonalesComponent } from './pages/gestion-datos-personales/filtro-datos-personales/filtro-datos-personales.component';
-import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.component';
-import { FormCarreraComponent } from './pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component';
+import { CreacionDeMesaComponent } from './pages/gestion-examenes-finales/creacion-de-mesa/creacion-de-mesa.component';
+import { InscripcionMesaComponent } from './pages/gestion-examenes-finales/inscripcion-mesa/inscripcion-mesa.component';
+import { MesasIndexComponent } from './pages/gestion-examenes-finales/mesas-index';
+import { MesasInicioComponent } from './pages/gestion-examenes-finales/mesas-inicio/mesas-inicio';
+import { TablaMesaExamenComponent } from './pages/gestion-examenes-finales/tabla-mesa-examen/tabla-mesa-examen';
+import { AgregarPosteoComponent } from './pages/gestion-home/agregar-posteo/agregar-posteo.component';
+import { AgregarSlideComponent } from './pages/gestion-home/agregar-slide/agregar-slide.component';
+import { EditarPosteoComponent } from './pages/gestion-home/editar-posteo/editar-posteo.component';
+import { GestionHomeComponent } from './pages/gestion-home/gestion-home.component';
+import { HomeDashboardComponent } from './pages/gestion-home/home-dashboard/home-dashboard.component';
+import { IncidenciasPendientesComponent } from './pages/gestion-incidencias/incidencias-pendientes/incidencias-pendientes.component';
+import { RegistroIncidenciaComponent } from './pages/gestion-incidencias/registro-incidencia/registro-incidencia.component';
 import { BienesRegistradosComponent } from './pages/gestion-inventario/bienes-registrados/bienes-registrados.component';
 import { InventarioComponent } from './pages/gestion-inventario/inventario/inventario.component';
 import { RegistrarBienComponent } from './pages/gestion-inventario/registrar-bien/registrar-bien.component';
-import { RegistroIncidenciaComponent } from './pages/gestion-incidencias/registro-incidencia/registro-incidencia.component';
-import { IncidenciasPendientesComponent } from './pages/gestion-incidencias/incidencias-pendientes/incidencias-pendientes.component';
-import { GestionHomeComponent } from './pages/gestion-home/gestion-home.component';
-import { AgregarPosteoComponent } from './pages/gestion-home/agregar-posteo/agregar-posteo.component';
-import { EditarPosteoComponent } from './pages/gestion-home/editar-posteo/editar-posteo.component';
+import { LoginComponent } from './pages/gestion-usuarios/login/login.component';
+import { RegistroComponent } from './pages/gestion-usuarios/registro/registro.component';
+import { HomeComponent } from './pages/home/home.component';
 import { NovedadComponent } from './pages/novedad/novedad.component';
-import { InscripcionMesaComponent } from './pages/gestion-examenes-finales/inscripcion-mesa/inscripcion-mesa.component';
-import { HomeDashboardComponent } from './pages/gestion-home/home-dashboard/home-dashboard.component';
-import { HistorialComponent } from './pages/gestion-cooperadora/historial/historial.component';
-import { FormularioComponent } from './pages/gestion-cooperadora/registrar-compra/formulario.component';
-import { RegistroIngresosComponent } from './pages/gestion-cooperadora/registro-ingresos/registro-ingresos.component';
-import { MovimientosComponent } from './pages/gestion-cooperadora/movimientos/movimientos.component';
-import { CreacionDeMesaComponent } from './pages/gestion-examenes-finales/creacion-de-mesa/creacion-de-mesa.component';
-import { AgregarSlideComponent } from './pages/gestion-home/agregar-slide/agregar-slide.component';
-import { Donar713Component } from './pages/donar-713/donar-713.component';
 
 export const routes: Routes = [
   { path: 'novedad/:slug', component: NovedadComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'donar-713', component: Donar713Component},
-  { path: 'dashboard',
+  { path: 'donar-713', component: Donar713Component },
+  {
+    path: 'dashboard',
     component: DashboardComponent,
     children: [
       { path: 'cooperadora-movimientos', component: MovimientosComponent },
@@ -56,21 +60,41 @@ export const routes: Routes = [
       { path: 'bienes-registrados', component: BienesRegistradosComponent },
       { path: 'inventario', component: InventarioComponent },
       { path: 'registrar-bien', component: RegistrarBienComponent },
-      { path: 'registro-incidencias', component: RegistroIncidenciaComponent,},
-      { path: 'incidencias-pendientes', component: IncidenciasPendientesComponent},
-      { path: "home", component: GestionHomeComponent,
+      { path: 'registro-incidencias', component: RegistroIncidenciaComponent },
+      {
+        path: 'incidencias-pendientes',
+        component: IncidenciasPendientesComponent,
+      },
+      {
+        path: 'home',
+        component: GestionHomeComponent,
         children: [
           { path: 'agregar-posteo', component: AgregarPosteoComponent },
           { path: 'editar-novedad/:slug', component: EditarPosteoComponent },
           { path: 'agregar-slide', component: AgregarSlideComponent },
           { path: '', component: HomeDashboardComponent, pathMatch: 'full' },
-        ]
+        ],
       },
       { path: 'inscripcion-mesa', component: InscripcionMesaComponent },
       { path: 'crear-mesa', component: CreacionDeMesaComponent },
     ],
   },
+  {
+    path: 'mesas-de-examenes',
+    component: MesasIndexComponent,
+    children: [
+      {
+        path: 'inicio',
+        component: MesasInicioComponent,
+      },
+      {
+        path: 'tabla',
+        component: TablaMesaExamenComponent,
+      },
+      { path: '', component: MesasInicioComponent, pathMatch: 'full' },
+    ],
+  },
   { path: 'iniciar-sesion', component: LoginComponent },
-  { path: "registro", component: RegistroComponent },
+  { path: 'registro', component: RegistroComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
