@@ -182,7 +182,7 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
 
   onDelete(): void {
     if (this.originalNovedad) {
-      const confirmDelete = confirm(`¿Está seguro de que desea eliminar la novedad "${this.originalNovedad.title}"?\n\nEsta acción no se puede deshacer.`);
+      const confirmDelete = confirm(`¿Está seguro de querer eliminar esta publicación?`);
       
       if (confirmDelete) {
         (async () => {

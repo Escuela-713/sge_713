@@ -76,7 +76,7 @@ export class HomeDashboardComponent implements OnInit {
   }
 
   async onDeleteCard(card: Card): Promise<void> {
-    const ok = confirm(`¿Eliminar posteo "${card.title}"? Esta acción no se puede deshacer.`);
+    const ok = confirm(`¿Está seguro de querer eliminar esta publicación?`);
     if (!ok) return;
     try {
       await this.novedadesService.deleteCardById(card.id);
