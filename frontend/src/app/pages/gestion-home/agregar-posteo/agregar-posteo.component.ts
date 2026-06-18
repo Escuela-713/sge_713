@@ -69,11 +69,11 @@ export class AgregarPosteoComponent {
         dateIcon: ''
       };
       this.novedadesService.addCard(payload as any).then(() => {
-        alert('Posteo agregado');
+        alert('Publicación agregada correctamente');
         this.router.navigate(['/dashboard/home']);
       }).catch((err: any) => {
-        console.error('Error agregando posteo', err);
-        alert('No se pudo agregar el posteo');
+        console.error('Error agregando la publicación', err);
+        alert('No se pudo agregar la publicación');
       });
     } else {
       this.form.markAllAsTouched();
