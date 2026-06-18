@@ -9,8 +9,6 @@ export interface CarouselSlide {
   image: string;
   title: string;
   subtitle: string;
-  buttonText: string;
-  buttonLink: string;
 }
 // Card and NovedadesData types are declared in the service to avoid duplication
 
