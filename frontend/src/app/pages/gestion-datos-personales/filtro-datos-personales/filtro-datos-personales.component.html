@@ -1,4 +1,4 @@
-<h1 class="datosPersonalesTitle">Filtro de Gestión de Datos Personales</h1>
+<h1 class="datosPersonalesTitle">Buscador de Gestión de Datos Personales</h1>
 
 <form [formGroup]="filter">
   <div id="curso-division">
@@ -14,29 +14,25 @@
         <option value="7mo">7mo</option>
       </select>
       @if (curso.errors && curso.touched)
-                    {
-                        <div class="text-danger">{{ cursoErrors }}</div>
-                    }
+      {
+      <div class="text-danger">{{ cursoErrors }}</div>
+      }
     </div>
-    
-    <div>
-      <label for="division-select" class="form-label"
-        >Selecciona la división:</label
-      >
-      <select id="division-select" name="division" class="form-select" formControlName="division">
+
+    <!-- <div>
+      <label for="division-select" class="form-label">Selecciona la división:</label> -->
+    <!-- <select id="division-select" name="division" class="form-select" formControlName="division">
         <option value="1ra">1ra</option>
         <option value="2da">2da</option>
-      </select>
-      @if (division.errors && division.touched)
-                    {
-                        <div class="text-danger">{{ divisionErrors }}</div>
-                    }
-    </div>
+      </select> -->
+    <!-- @if (division.errors && division.touched)
+      {
+      <div class="text-danger">{{ divisionErrors }}</div>
+      } -->
+    <!-- </div> -->
   </div>
 
-  <label for="modalidad-select" class="form-label"
-    >Selecciona la modalidad:</label
-  >
+  <label for="modalidad-select" class="form-label">Selecciona la modalidad:</label>
   <select id="modalidad-select" name="modalidad" class="form-select" formControlName="modalidad">
     <option value="ETP">ETP</option>
     <option value="humanidades">Humanidades</option>
@@ -44,25 +40,21 @@
     <option value="ESB">ESB</option>
   </select>
   @if (modalidad.errors && modalidad.touched)
-                    {
-                        <div class="text-danger">{{ modalidadErrors }}</div>
-                    }
-  <label for="annoSelect" class="form-label">Año:</label>
+  {
+  <div class="text-danger">{{ modalidadErrors }}</div>
+  }
 
-  <input formControlName="year"
-    type="number"
-    min="2018"
-    max="2024"
-    value="2024"
-    class="form-control"
-    q
-    aria-label="Recipient's username with two button addons"
-  />
-  @if (year.errors && year.touched)
-                    {
-                        <div class="text-danger">{{ yearErrors }}</div>
-                    }
-  <a class="btn btnSave" routerLink="/dashboard/datos-personales"
-    >Filtrar</a
-  >
+  <!-- ! ESTO ANDA PENDIENTE DE UN HILO  -->
+  <!-- <label for="annoSelect" class="form-label">Año:</label>
+
+  <input formControlName="year" type="number" min="2018" max="2024" value="2024" class="form-control" q -->
+  <!-- aria-label="Recipient's username with two button addons" /> -->
+  <!-- @if (year.errors && year.touched)
+  {
+  <div class="text-danger">{{ yearErrors }}</div>
+  } -->
+
+  <button type="button" class="btn btnSave" (click)="filtrar()">Filtrar</button>
+
+
 </form>

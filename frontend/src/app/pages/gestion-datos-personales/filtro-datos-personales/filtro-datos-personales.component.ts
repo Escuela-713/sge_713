@@ -23,7 +23,7 @@ export class FiltroDatosPersonalesComponent {
   get curso() {
     return this.filter.controls['curso'];
   }
-   
+
   get division() {
     return this.filter.controls['division'];
   }
@@ -31,7 +31,7 @@ export class FiltroDatosPersonalesComponent {
   get modalidad() {
     return this.filter.controls['modalidad'];
   }
-   
+
   get year() {
     return this.filter.controls['year'];
   }
@@ -58,5 +58,18 @@ export class FiltroDatosPersonalesComponent {
   get yearErrors() {
     const errors = this.year?.errors;
     return errors ? (errors['required'] ? 'El año es obligatorio' : null) : null;
+  }
+
+  filtrar() {
+    console.log(this.filter)
+    // if (this.filter.invalid) {
+    //   this.filter.markAllAsTouched();
+    //   return;
+    // }
+    const { curso, modalidad } = this.filter.value;
+    this.router.navigate(['/dashboard/datos-personales'], {
+      queryParams: { curso, modalidad }
+    })
+
   }
 }

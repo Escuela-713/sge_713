@@ -1,6 +1,6 @@
 
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { DatosPeronalesService } from 'src/app/services/datos-personales.service';
 
 @Component({
@@ -13,11 +13,25 @@ import { DatosPeronalesService } from 'src/app/services/datos-personales.service
 export class DatosPersonalesComponent {
   datostutor: any;
   nombre: string = 'hola';
-  constructor(private serviciosge: DatosPeronalesService) {
+  sinResultados: boolean = false;
+
+  constructor(private serviciosge: DatosPeronalesService,
+    private route: ActivatedRoute
+  ) 
+  {
     this.serviciosge.obtenerdatosTutor().subscribe({
       next: (data) => {
         this.datostutor = data;
+        const params = this.route.snapshot.queryParams;
+        const cursoBuscado = `${params['curso']} ${params['modalidad']}`;
+
+        const filtrado = data.filter((alumno: any) =>
+          alumno.curso === cursoBuscado
+        );
+        this.datostutor = filtrado;
+        this.sinResultados = filtrado.length === 0;
       },
+
       error: (err) => {
         alert('Se ha producido un error. Por favor, intente nuevamente.');
         console.error(err);
