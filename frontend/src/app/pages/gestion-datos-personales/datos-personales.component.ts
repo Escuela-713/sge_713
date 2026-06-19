@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DatosPeronalesService } from 'src/app/services/datos-personales.service';
@@ -12,7 +11,6 @@ import { DatosPeronalesService } from 'src/app/services/datos-personales.service
 })
 export class DatosPersonalesComponent {
   datostutor: any;
-  nombre: string = 'hola';
   constructor(private serviciosge: DatosPeronalesService) {
     this.serviciosge.obtenerdatosTutor().subscribe({
       next: (data) => {
