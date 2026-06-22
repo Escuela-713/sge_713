@@ -9,7 +9,6 @@
 <!-- Error State -->
 @if (error) {
   <div class="error-container">
-    <div class="error-icon">⚠️</div>
     <h2>Error al cargar</h2>
     <p>{{ error }}</p>
     <button type="button" class="btn-secondary" (click)="goBack()">
@@ -53,13 +52,11 @@
               />
               @if(form.get('slug')?.errors?.['required'] && form.get('slug')?.touched) {
                 <div class="error-message">
-                  <span class="error-icon">⚠️</span>
                   El slug es obligatorio
                 </div>
               }
               @if(form.get('slug')?.errors?.['minlength'] && form.get('slug')?.touched) {
                 <div class="error-message">
-                  <span class="error-icon">⚠️</span>
                   El slug debe tener al menos 3 caracteres
                 </div>
               }
@@ -92,7 +89,6 @@
               </div>
               @if(form.get('image')?.invalid && form.get('image')?.touched) {
                 <div class="error-message">
-                  <span class="error-icon">⚠️</span>
                   Por favor, agregue una imagen
                 </div>
               }
@@ -110,13 +106,11 @@
               />
               @if(form.get('title')?.errors?.['required'] && form.get('title')?.touched) {
                 <div class="error-message">
-                  <span class="error-icon">⚠️</span>
                   El título es obligatorio
                 </div>
               }
               @if(form.get('title')?.errors?.['minlength'] && form.get('title')?.touched) {
                 <div class="error-message">
-                  <span class="error-icon">⚠️</span>
                   El título debe tener al menos 5 caracteres
                 </div>
               }
@@ -136,7 +130,6 @@
               </select>
               @if(form.get('categoria')?.invalid && form.get('categoria')?.touched) {
                 <div class="error-message">
-                  <span class="error-icon">⚠️</span>
                   Seleccione una categoría
                 </div>
               }
@@ -154,13 +147,11 @@
               ></textarea>
               @if(form.get('content')?.errors?.['required'] && form.get('content')?.touched) {
                 <div class="error-message">
-                  <span class="error-icon">⚠️</span>
                   El contenido es obligatorio
                 </div>
               }
               @if(form.get('content')?.errors?.['minlength'] && form.get('content')?.touched) {
                 <div class="error-message">
-                  <span class="error-icon">⚠️</span>
                   El contenido debe tener al menos 10 caracteres
                 </div>
               }
@@ -245,7 +236,6 @@
           </div>
         } @else {
           <div class="preview-placeholder">
-            <div class="placeholder-icon">👁️</div>
             <p>La vista previa aparecerá aquí mientras editas</p>
           </div>
         }
