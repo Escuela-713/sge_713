@@ -97,8 +97,8 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
         this.error = 'Novedad no encontrada';
       }
     } catch (error) {
-      console.error('Error loading novedad:', error);
-      this.error = 'Error al cargar la novedad';
+      console.error('Error cargando la publicación:', error);
+      this.error = 'Error al cargar la publicación';
     } finally {
       this.isLoading = false;
     }
@@ -159,8 +159,8 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
           }
           this.router.navigate(['/dashboard/home']);
         } catch (err) {
-          console.error('Error guardando novedad', err);
-          alert('Error al guardar la novedad');
+          console.error('Error guardando publicación', err);
+          alert('Error al guardar la publicación');
         }
       })();
     } else {
@@ -191,8 +191,8 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
             alert(`NOVEDAD ELIMINADA:\n"${this.originalNovedad!.title}" ha sido eliminada correctamente.`);
             this.router.navigate(['/dashboard/home']);
           } catch (err) {
-            console.error('Error eliminando novedad', err);
-            alert('No se pudo eliminar la novedad');
+            console.error('Error eliminando publicación', err);
+            alert('No se pudo eliminar la publicación');
           }
         })();
       }
