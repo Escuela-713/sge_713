@@ -7,11 +7,12 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CarrerasService {
+  private apiUrl = "http://localhost:3000/carreras"
 
   constructor(private http: HttpClient) { }
-  
+
   obtenerCarreras():Observable<any>
   {
-    return this.http.get("assets/carreras/carreras.json")
+    return this.http.get(this.apiUrl)
   }
 }
