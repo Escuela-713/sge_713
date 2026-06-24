@@ -3,6 +3,19 @@ import { Router, RouterLink } from '@angular/router';
 import { DatosPeronalesService } from '../../../../services/datos-personales.service';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
+interface datosIdentidad {
+  primer_nombre: string;
+  segundo_nombre: string;
+  tercer_nombre: string;
+  primer_apellido: string;
+  segundo_apellido: string;
+  dni: number;
+  genero: 'Femenino'| 'Masculino' | 'Otro';
+  email: string;
+  tipo_de_sangre: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-'
+  // seguir
+}
+
 @Component({
   selector: 'app-datos-identidad',
   standalone: true,

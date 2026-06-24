@@ -31,6 +31,7 @@ import { MovimientosComponent } from './pages/gestion-cooperadora/movimientos/mo
 import { CreacionDeMesaComponent } from './pages/gestion-examenes-finales/creacion-de-mesa/creacion-de-mesa.component';
 import { AgregarSlideComponent } from './pages/gestion-home/agregar-slide/agregar-slide.component';
 import { Donar713Component } from './pages/donar-713/donar-713.component';
+import { EditarDatosPersonalesComponent } from './pages/gestion-datos-personales/editar-datos-personales/editar-datos-personales.component';
 
 export const routes: Routes = [
   { path: 'novedad/:slug', component: NovedadComponent },
@@ -58,6 +59,7 @@ export const routes: Routes = [
       { path: 'registrar-bien', component: RegistrarBienComponent },
       { path: 'registro-incidencias', component: RegistroIncidenciaComponent,},
       { path: 'incidencias-pendientes', component: IncidenciasPendientesComponent},
+      { path: 'editar-datos-personales', component: EditarDatosPersonalesComponent},
       { path: "home", component: GestionHomeComponent,
         children: [
           { path: 'agregar-posteo', component: AgregarPosteoComponent },
