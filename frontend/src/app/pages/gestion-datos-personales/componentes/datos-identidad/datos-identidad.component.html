@@ -4,6 +4,65 @@
   <form id="formularioAlumno" [formGroup]="datosIdentidadForm">
     <div class="row mb-3">
       <div class="col-sm-6">
+        <label for="primerNombre" class="">Primer nombre:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="primerNombre"
+          formControlName="primerNombre"
+        />
+        @if (primerNombre.errors && primerNombre.touched) {
+          <div class="text-danger">{{ primerNombreErrors }}</div>
+        }
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="segundoNombre" class="">Segundo nombre:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="segundoNombre"
+          formControlName="segundoNombre"
+        />
+        @if (segundoNombre.errors && segundoNombre.touched) {
+          <div class="text-danger">{{ segundoNombreErrors }}</div>
+        }
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="tercerNombre" class="">Tercer nombre:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="tercerNombre"
+          formControlName="tercerNombre"
+        />
+        @if (tercerNombre.errors && tercerNombre.touched) {
+          <div class="text-danger">{{ tercerNombreErrors }}</div>
+        }
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="primerApellido" class="">Primer apellido:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="primerApellido"
+          formControlName="primerApellido"
+        />
+        @if (primerApellido.errors && primerApellido.touched) {
+          <div class="text-danger">{{ primerApellidoErrors }}</div>
+        }
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="segundoApellido" class="">Segundo apellido:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="segundoApellido"
+          formControlName="segundoApellido"
+        />
+        @if (segundoApellido.errors && segundoApellido.touched) {
+          <div class="text-danger">{{ segundoApellidoErrors }}</div>
+        }
+      <div class="col-sm-6">
         <label for="dni" class="">Documento:</label>
         <input
           type="text"
@@ -13,6 +72,21 @@
         />
         @if (dni.errors && dni.touched) {
           <div class="text-danger">{{ dniErrors }}</div>
+        }
+      </div>
+      <div class="col-sm-6">
+        <label for="genero" class="form-label">Genero:</label>
+        <select
+          type="text"
+          class="form-control"
+          id="genero"
+          formControlName="genero"
+        ><option value="M">Masculino</option>
+        <option value="F">Femenino</option>
+        <option value="O">Otro</option>
+        </select>
+        @if (genero.errors && genero.touched) {
+          <div class="text-danger">{{ generErrors }}</div>
         }
       </div>
     </div>
