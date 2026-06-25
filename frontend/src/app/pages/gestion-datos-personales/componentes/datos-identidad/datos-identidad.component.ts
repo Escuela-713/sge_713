@@ -125,6 +125,13 @@ export class DatosIdentidadComponent {
     const errors = this.segundoNombre.errors;
     return errors ? (errors[''] ? '' : null) : null;
   }
+  get tercerNombre() {
+    return this.datosIdentidadForm.controls['tercerNombre'];
+  }
+  get tercerNombreErrors() {
+    const errors = this.tercerNombre.errors;
+    return errors ? (errors[''] ? '' : null) : null;
+  }
   get primerApellido() {
     return this.datosIdentidadForm.controls['primerApellido'];
   }
