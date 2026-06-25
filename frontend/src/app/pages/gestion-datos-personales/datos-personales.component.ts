@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, ActivatedRoute } from '@angular/router';
-import { DatosPeronalesService } from 'src/app/services/datos-personales.service';
+import { DatosPersonalesService } from 'src/app/services/datos-personales.service';
 
 @Component({
   selector: 'app-datos-personales',
@@ -14,7 +14,7 @@ export class DatosPersonalesComponent {
   sinResultados: boolean = false;
 
   constructor(
-    private serviciosge: DatosPeronalesService,
+    private serviciosge: DatosPersonalesService,
     private route: ActivatedRoute,
   ) {
     this.serviciosge.obtenerdatosTutor().subscribe({
@@ -45,4 +45,3 @@ export class DatosPersonalesComponent {
     });
   }
 }
-

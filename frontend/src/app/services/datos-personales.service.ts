@@ -10,7 +10,7 @@ export class DatosPersonalesService {
 
   obtenerdatosTutor(): Observable<any> {
     return this.http.get(
-      'assets/datos-academicos/alumnos-ejemplo-bien-hecho.json'
+      'assets/datos-academicos/alumnos-ejemplo-bien-hecho.json',
     );
   }
   obtenerdatosFiltro(): Observable<any> {
