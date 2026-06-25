@@ -1,10 +1,10 @@
-[
+{"carreras": [
     {
         "id_carrera": 1,
         "nombre": "ETP",
         "titulo_egreso": "tecnio en informatica profesional y personal",
         "id_estado": 1,
-        "descripcion": "tecnico "
+        "descripcion": "tecnico"
     },
     {
         "id_carrera": 2,
@@ -19,7 +19,14 @@
         "titulo_egreso": "ciencias de la comunicacion ",
         "id_estado": 3,
         "descripcion": "manejan la radio y algo mas"
+    },
+    {
+        "id_carrera": 4,
+        "nombre": "Humanidades",
+        "titulo_egreso": "ciencias de la humanizacion ",
+        "id_estado": 4,
+        "descripcion": "manejan los humanos y algo mas"
     }
-]
+] }
 
 

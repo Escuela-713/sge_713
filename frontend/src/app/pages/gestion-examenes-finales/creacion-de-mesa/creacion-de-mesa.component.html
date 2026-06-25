@@ -11,10 +11,20 @@
 <h2>Mesa de Examen</h2>
 
     <label for="materia">Materia:</label>
-    <input type="text" id="materia" name="materia" required>
+    <select name="materia" id="materia" required>
+       @for(materia of materias; track materia.id_materia) {
+        <option [value]="materia.nombre">{{materia.nombre}}</option>
+       }
+    </select>
+     <label for="carrera">Carrera:</label>
+    <select name="carrera" id="carrera" required>
+       @for(carrera of carreras; track carrera.id_carrera) {
+        <option [value]="carrera.nombre">{{carrera.nombre}}</option>
+       }
+    </select>
 
     <label for="profesor">Profesor:</label>
-    <input type="text" id="profesor" name="profesor" required> 
+    <input type="text" id="profesor" name="profesor" required>
 
     <label for="fecha">Fecha del examen:</label>
     <input type="date" id="fecha" name="fecha" required>
