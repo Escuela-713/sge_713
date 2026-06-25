@@ -1,38 +1,39 @@
 import { Component } from '@angular/core';
-import { MateriasService } from '../../../services/materias.service'
-import { CarrerasService } from '../../../services/carreras.service'
+import { CarrerasService } from '../../../services/carreras.service';
+import { MateriasService } from '../../../services/materias.service';
 
 @Component({
   selector: 'app-creacion-de-mesa',
   imports: [],
   templateUrl: './creacion-de-mesa.component.html',
-  styleUrl: './creacion-de-mesa.component.css'
+  styleUrl: './creacion-de-mesa.component.css',
 })
 export class CreacionDeMesaComponent {
-  materias: any = []
-  carreras: any = []
+  materias: any = [];
+  carreras: any = [];
 
-  constructor (private servicioMateria: MateriasService, private servicioCarrera: CarrerasService) {
+  constructor(
+    private servicioMateria: MateriasService,
+    private servicioCarrera: CarrerasService,
+  ) {
     servicioMateria.obtenerMaterias().subscribe({
       next: (data) => {
-        this.materias = data
+        this.materias = data;
       },
       error: (error) => {
-        console.error(error)
+        console.error(error);
       },
-      complete: () => {}
-    })
+      complete: () => {},
+    });
 
     servicioCarrera.obtenerCarreras().subscribe({
       next: (data) => {
-        this.carreras = data
+        this.carreras = data;
       },
       error: (error) => {
-        console.error(error)
+        console.error(error);
       },
-      complete: () => {}
-    })
+      complete: () => {},
+    });
   }
-
-
 }
