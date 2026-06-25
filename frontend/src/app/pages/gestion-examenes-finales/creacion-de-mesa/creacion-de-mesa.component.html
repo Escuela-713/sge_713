@@ -9,22 +9,31 @@
 
 <form action="">
 <h2>Mesa de Examen</h2>
-
-    <label for="materia">Materia:</label>
-    <select name="materia" id="materia" required>
-       @for(materia of materias; track materia.id_materia) {
-        <option [value]="materia.nombre">{{materia.nombre}}</option>
-       }
+<label for="ano">Año:</label>
+    <select name="ano" id="ano" required>
+      @for(curso of cursos; track curso) {
+      <option [value]="curso">{{curso}}°</option>
+      }
     </select>
-     <label for="carrera">Carrera:</label>
-    <select name="carrera" id="carrera" required>
-       @for(carrera of carreras; track carrera.id_carrera) {
+<label for="carrera">Carrera:</label>
+<select name="carrera" id="carrera" required>
+    @for(carrera of carreras; track carrera.id_carrera) {
         <option [value]="carrera.nombre">{{carrera.nombre}}</option>
-       }
-    </select>
+    }
+</select>
+<label for="materia">Materia:</label>
+<select name="materia" id="materia" required>
+   @for(materia of materias; track materia.id_materia) {
+    <option [value]="materia.nombre">{{materia.nombre}}</option>
+   }
+</select>
 
-    <label for="profesor">Profesor:</label>
-    <input type="text" id="profesor" name="profesor" required>
+    <label for="profesor-titular">Profesor titular:</label>
+    <input type="text" id="profesor-titular" name="profesor-titular" required>
+     <label for="profesor-primer-vocal">Profesor primer vocal</label>
+    <input type="text" id="profesor-primer-vocal" name="profesor-primer-vocal" required>
+     <label for="profesor-segundo-vocal">Profesor segundo vocal:</label>
+    <input type="text" id="profesor-segundo-vocal" name="profesor-segundo-vocal" required>
 
     <label for="fecha">Fecha del examen:</label>
     <input type="date" id="fecha" name="fecha" required>

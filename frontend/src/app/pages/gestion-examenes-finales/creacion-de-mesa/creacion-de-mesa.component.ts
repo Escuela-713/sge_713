@@ -11,6 +11,7 @@ import { MateriasService } from '../../../services/materias.service';
 export class CreacionDeMesaComponent {
   materias: any = [];
   carreras: any = [];
+  cursos = [1, 2, 3, 4, 5, 6, 7];
 
   constructor(
     private servicioMateria: MateriasService,
