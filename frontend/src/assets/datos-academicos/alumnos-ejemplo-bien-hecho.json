@@ -27,7 +27,7 @@
     "cuil": "20876543210",
     "telefono": "(326) 247-7520",
     "legajo": "A002",
-    "curso": "6to Humanidades",
+    "curso": "6to humanidades",
     "fechaNac": "2001-02-02",
     "tutores": [
       {
@@ -77,5 +77,25 @@
     "curso": "2do ETP",
     "fechaNac": "2003-04-04",
     "tutores": []
+  },
+  {
+    "id": 5,
+    "nombre": "Oki",
+    "apellido": "Gigli",
+    "dni": "46912312",
+    "cuil": "20876543210",
+    "telefono": "(326) 247-7520",
+    "legajo": "A002",
+    "curso": "4to humanidades",
+    "fechaNac": "2001-02-02",
+    "tutores": [
+      {
+        "id": 2,
+        "nombre": "Maria",
+        "apellido": "Garcia",
+        "telefono": "987654321",
+        "dni": "34567890"
+      }
+    ]
   }
 ]

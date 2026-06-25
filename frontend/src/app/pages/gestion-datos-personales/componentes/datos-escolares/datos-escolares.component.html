@@ -1,4 +1,5 @@
 <div class="container">
+<<<<<<< HEAD
     <h1>Datos Académicos</h1>
     <form [formGroup]="datosEscolaresForm">
         <div class="row mb-3">
@@ -89,3 +90,80 @@
         <button type="submit" class="btn btnSave">Guardar Alumno</button>
     </form>
 </div>
+=======
+  <h1>Datos Escolares</h1>
+  <form [formGroup]="datosEscolaresForm">
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="genero" class="form-label">Escuela de Origen:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="escuelaOrigen"
+          placeholder="Ingrese la escuela de origen"
+          formControlName="escuelaOrigen"
+        />
+        @if (escuelaOrigen.errors && escuelaOrigen.touched) {
+          <div class="text-danger">{{ escuelaOrigenErrors }}</div>
+        }
+      </div>
+      <div class="col-sm-6">
+        <label for="legajo" class="form-label">Número de Legajo:</label>
+        <input
+          type="number"
+          class="form-control"
+          id="legajo"
+          placeholder="Ingrese el número de legajo"
+          formControlName="legajo"
+        />
+        @if (legajo.errors && legajo.touched) {
+          <div class="text-danger">{{ legajoErrors }}</div>
+        }
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="fechaIngreso" class="form-label">Fecha Ingreso:</label>
+        <input
+          type="date"
+          class="form-control"
+          id="fechaIngreso"
+          formControlName="fechaIngreso"
+        />
+        @if (fechaIngreso.errors && fechaIngreso.touched) {
+          <div class="text-danger">{{ fechaIngresoErrors }}</div>
+        }
+      </div>
+      <div class="col-sm-6">
+        <label for="libroMatriz" class="form-label"
+          >Número de Libro Matriz:</label
+        >
+        <input
+          type="number"
+          class="form-control"
+          id="libroMatriz"
+          placeholder="Ingrese el número de libro matriz"
+          formControlName="libroMatriz"
+        />
+        @if (libroMatriz.errors && libroMatriz.touched) {
+          <div class="text-danger">{{ libroMatrizErrors }}</div>
+        }
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <label for="fechaEgreso" class="form-label">Fecha Egreso:</label>
+      <input
+        type="date"
+        class="form-control"
+        id="fechaEgreso"
+        formControlName="fechaEgreso"
+      />
+      @if (fechaEgreso.errors && fechaEgreso.touched) {
+        <div class="text-danger">{{ fechaEgresoErrors }}</div>
+      }
+    </div>
+    <div class="col-sm-6"></div>
+    <button type="submit" class="btn btnSave">Guardar Alumno</button>
+  </form>
+</div>
+>>>>>>> 748e6ad28ceae2d5754353ff843431a12d96cb5a
