@@ -1,37 +1,50 @@
 <section>
-  <h2>Establecimiento: _____________</h2>
-  <h2>Año: 1º &nbsp;&nbsp;&nbsp;&nbsp; División: _____________</h2>
-
+  <form action="">
+    <label for="materia">Materia:</label>
+    <select name="materia" id="materia" required>
+      @for(materia of materias; track materia.id_materia) {
+      <option [value]="materia.nombre">{{materia.nombre}}</option>
+      }
+    </select>
+    <label for="carrera">Carrera:</label>
+    <select name="carrera" id="carrera" required>
+      @for(carrera of carreras; track carrera.id_carrera) {
+      <option [value]="carrera.nombre">{{carrera.nombre}}</option>
+      }
+    </select>
+    <label for="carrera">Año:</label>
+    <select name="carrera" id="carrera" required>
+      @for(curso of cursos; track curso) {
+      <option [value]="curso">{{curso}}°</option>
+      }
+    </select>
+    <input type="submit" value="Buscar mesa" />
+  </form>
   <table>
     <caption>
       Planilla de Evaluación
     </caption>
     <thead>
       <tr>
-        <th>Orden</th>
-        <th>Apellido y Nombre</th>
-        <th>DNI</th>
-        <th colspan="3">Calificación de la Evaluación</th>
-      </tr>
-      <tr>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th>Esc.</th>
-        <th>Oral</th>
-        <th>Final</th>
+        <th>Fecha</th>
+        <th>Curso</th>
+        <th>Materia</th>
+        <th>Turno</th>
+        <th>Tribunal</th>
+        <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>1</td>
-        <td>Pereira, Valentino</td>
-        <td>50215996</td>
         <td></td>
         <td></td>
         <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <button id="inscribirse-a-la-mesa">Inscribirse</button>
+        </td>
       </tr>
-      <!-- Puedes agregar más filas de estudiantes aquí -->
     </tbody>
   </table>
 </section>
