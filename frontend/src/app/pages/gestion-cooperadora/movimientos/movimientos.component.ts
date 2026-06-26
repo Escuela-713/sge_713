@@ -4,7 +4,7 @@ import { CurrencyPipe } from '@angular/common';
 @Component({
   selector: 'app-movimientos',
   standalone: true,
-  imports: [CurrencyPipe],   // 👈 acá agregás el pipe
+  imports: [CurrencyPipe],  
   templateUrl: './movimientos.component.html',
   styleUrls: ['./movimientos.component.css']
 })

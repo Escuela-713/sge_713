@@ -26,7 +26,6 @@ import { InscripcionMesaComponent } from './pages/gestion-examenes-finales/inscr
 import { HomeDashboardComponent } from './pages/gestion-home/home-dashboard/home-dashboard.component';
 import { HistorialComponent } from './pages/gestion-cooperadora/historial/historial.component';
 import { FormularioComponent } from './pages/gestion-cooperadora/registrar-compra/formulario.component';
-import { RegistroIngresosComponent } from './pages/gestion-cooperadora/registro-ingresos/registro-ingresos.component';
 import { MovimientosComponent } from './pages/gestion-cooperadora/movimientos/movimientos.component';
 import { CreacionDeMesaComponent } from './pages/gestion-examenes-finales/creacion-de-mesa/creacion-de-mesa.component';
 import { AgregarSlideComponent } from './pages/gestion-home/agregar-slide/agregar-slide.component';
@@ -42,7 +41,6 @@ export const routes: Routes = [
       { path: 'cooperadora-movimientos', component: MovimientosComponent },
       { path: 'cooperadora-historial', component: HistorialComponent },
       { path: 'cooperadora-compra', component: FormularioComponent },
-      { path: 'cooperadora-ingresos', component: RegistroIngresosComponent },
       { path: 'carreras', component: CarrerasComponent },
       { path: 'planes', component: PlanesComponent },
       { path: 'editar-carreras', component: FormCarreraComponent },
