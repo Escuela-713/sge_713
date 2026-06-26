@@ -22,6 +22,7 @@ export class FormularioComponent {
   get Monto() { return this.form.get('monto'); }
   get Fecha() { return this.form.get('fecha'); }
   get Motivo() { return this.form.get('motivo'); }
+  
 }
 
  
