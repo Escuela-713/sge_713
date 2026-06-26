@@ -1,0 +1,49 @@
+{
+  "mesas": [
+    {
+      "id": 1,
+      "fechaInicio": "10/4",
+      "fechaFin": "12/4",
+      "hora": "15:30",
+      "ano": 6,
+      "modalidad": "Humanidades",
+      "materia": "Matemática",
+      "turno": "Tarde",
+      "tribunal": {
+        "profesorTitular": "Lorena Aleuy",
+        "profesorPrimerVocal": "Analía Vivanco",
+        "profesorSegundoVocal": "Germán Passini"
+      }
+    },
+    {
+      "id": 2,
+      "fechaInicio": "10/4",
+      "fechaFin": "12/4",
+      "hora": "16:50",
+      "ano": 3,
+      "modalidad": "ESB",
+      "materia": "Lengua",
+      "turno": "Mañana",
+      "tribunal": {
+        "profesorTitular": "Patricia Barbieri",
+        "profesorPrimerVocal": "Rocío Gutierrez",
+        "profesorSegundoVocal": "Otro profe"
+      }
+    },
+    {
+      "id": 3,
+      "fechaInicio": "15/4",
+      "fechaFin": "15/4",
+      "hora": "14:00",
+      "ano": 4,
+      "modalidad": "ETP",
+      "materia": "Desarrollo I",
+      "turno": "Tarde",
+      "tribunal": {
+        "profesorTitular": "Ivana Rojas",
+        "profesorPrimerVocal": "Pablo Bersier",
+        "profesorSegundoVocal": "Manuel Carballido"
+      }
+    }
+  ]
+}
