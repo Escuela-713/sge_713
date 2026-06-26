@@ -1,0 +1,42 @@
+{
+   "movimientos": [
+    {
+        "id": 1,
+        "fecha": "03/09/2025",
+        "tipo": "Ingreso",
+        "monto": 2,
+        "origen": "Cuota familiar",
+        "destino": "Sanguchitos de miga",
+        "descripcion": "Pagado por familia Pérez "
+    },
+    {
+        "id": 2,
+        "fecha": "04/09/2025",
+        "tipo": "Egreso",
+        "monto": 3200,
+        "origen": "Venta de números",
+        "destino": "Compra útiles escolares",
+        "descripcion": "Se compraron cuadernos y lápices"
+    },
+    {
+        "id": 3,
+        "fecha": "05/09/2025",
+        "tipo": "Ingreso",
+        "monto": 1500,
+        "origen": "Donación",
+        "destino": "Sanguchitos de miga",
+        "descripcion": "Donación anónima"
+
+    },
+    {
+        "id": 4,
+        "fecha": "06/09/2025",
+        "tipo": "Egreso",
+        "monto": 2000,
+        "origen": "Venta de números",
+        "destino": "Pago a proveedores",
+        "descripcion": "Pago a Proveedor X"
+    }
+
+]
+}
