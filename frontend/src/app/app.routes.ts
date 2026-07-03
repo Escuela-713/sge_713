@@ -32,12 +32,14 @@ import { CreacionDeMesaComponent } from './pages/gestion-examenes-finales/creaci
 import { AgregarSlideComponent } from './pages/gestion-home/agregar-slide/agregar-slide.component';
 import { Donar713Component } from './pages/donar-713/donar-713.component';
 import { EditarEventoComponent } from './pages/donar-713/componentes/editar-evento/editar-evento.component';
+import { DonarHomeComponent } from './pages/donar-713/donar-home/donar-home.component';
 
 export const routes: Routes = [
   { path: 'novedad/:slug', component: NovedadComponent },
   { path: 'home', component: HomeComponent },
   { path: 'donar-713', component: Donar713Component,
     children:[
+      {path:'donar-home', component:DonarHomeComponent},
       {path:'editar-evento', component:EditarEventoComponent}
     ]
   },

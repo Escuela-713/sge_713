@@ -1,34 +1,50 @@
-<div style="padding: 20px;">
+<div class="gestion-container">
 
-  <h1>Gestión de Noticias</h1>
-  
-  <button (click)="abrirFormulario()" style="background: red; color: white; padding: 10px;">
-    + Agregar Noticia
-  </button>
+  <div class="header-section">
+    <h2>Gestión de Noticias</h2>
+    <button class="btn-agregar">
+      + Agregar Noticia
+    </button>
+  </div>
 
-  <hr>
-
-  <h3>Lista de Noticias Actuales:</h3>
-  @for (noticia of misNoticias; track noticia.titulo) {
-    <div style="background: #f0f0f0; margin: 10px 0; padding: 10px; border-radius: 8px;">
-      <h4>{{ noticia.titulo }}</h4>
-      <p>Fecha: {{ noticia.fecha }}</p>
-      <button style="color: red;"> Borrar</button>
+  <div class="noticia-card">
+    <img class="noticia-img" src="" alt="Exitosa Jornada de Donación">
+    <div class="noticia-info">
+      <h3>Exitosa Jornada de Donación</h3>
+      <p class="descripcion">Más de 50 estudiantes participaron en nuestra última campaña de donación de sangre, superando todas las expectativas.</p>
+      <p class="fecha">2024-03-15</p>
     </div>
-  }
-
-  @if (formularioVisible === true) {
-    <div style="position: fixed; top: 20%; left: 30%; background: white; border: 2px solid black; padding: 30px; z-index: 100;">
-      
-      <h2>Agregar Nueva Noticia</h2>
-      
-      <p>Título: <input type="text" placeholder="Escribe el título"></p>
-      <p>Descripción: <textarea placeholder="Escribe la descripción"></textarea></p>
-      
-      <button (click)="cerrarFormulario()">Cancelar</button>
-      <button (click)="cerrarFormulario()" style="background: red; color: white;">Guardar</button>
-      
+    <div class="noticia-acciones">
+      <button></button>
+      <button class="delete-btn"></button>
     </div>
-  }
+  </div>
+
+  <div class="noticia-card">
+    <img class="noticia-img" src="" alt="Alianza con Hospital Regional">
+    <div class="noticia-info">
+      <h3>Alianza con Hospital Regional</h3>
+      <p class="descripcion">Firmamos un convenio de colaboración con el Hospital Regional para facilitar el proceso de donación.</p>
+      <p class="fecha">2024-03-10</p>
+    </div>
+    <div class="noticia-acciones">
+      <button></button>
+      <button class="delete-btn"></button>
+    </div>
+  </div>
+
+  <div class="noticia-card">
+    <img class="noticia-img" src="" alt="Reconocimiento a Voluntarios">
+    <div class="noticia-info">
+      <h3>Reconocimiento a Voluntarios</h3>
+      <p class="descripcion">Nuestros voluntarios fueron reconocidos por su labor solidaria durante todo el año escolar.</p>
+      <p class="fecha">2024-03-05</p>
+    </div>
+    <div class="noticia-acciones">
+      <button></button>
+      <button class="delete-btn"></button>
+    </div>
+  </div>
+
 
 </div>
