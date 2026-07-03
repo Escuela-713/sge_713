@@ -1,1 +1,53 @@
-<p>eventos works!</p>
+  <!-- EVENTOS ACTIVOS -->
+    <section class="seccion">
+      <div class="seccion-titulo">
+        <span class="indicador activo"></span>
+        <h2>Eventos activos</h2>
+      </div>
+
+      <div class="cards-grid">
+        @for (evento of eventosActivos; track evento.id) {
+          <div class="card">
+            <div class="card-imagen">
+              <img [src]="evento.imagen" [alt]="evento.titulo" />
+              <span class="badge badge-activo">En curso</span>
+            </div>
+            <div class="card-body">
+              <h3>{{ evento.titulo }}</h3>
+              <p>{{ evento.descripcion }}</p>
+              <div class="card-footer">
+                <span class="fecha">📅 {{ evento.fecha }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- PRÓXIMOS EVENTOS -->
+    <section class="seccion">
+      <div class="seccion-titulo">
+        <span class="indicador proximo"></span>
+        <h2>Próximos eventos</h2>
+      </div>
+
+      <div class="cards-grid">
+        @for (evento of eventosFuturos; track evento.id) {
+          <div class="card card-proximo">
+            <div class="card-imagen">
+              <img [src]="evento.imagen" [alt]="evento.titulo" />
+              <span class="badge badge-proximo">Próximamente</span>
+            </div>
+            <div class="card-body">
+              <h3>{{ evento.titulo }}</h3>
+              <p>{{ evento.descripcion }}</p>
+              <div class="card-footer">
+                <span class="fecha">📅 {{ evento.fecha }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+
