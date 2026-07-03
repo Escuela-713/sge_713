@@ -1,8 +1,8 @@
 export type Fecha = `${string}/${string}`;
 
-type Modalidad = 'Humanidades' | 'ETP' | 'ESB' | 'Comunicaciones';
+export type Carrera = 'Humanidades' | 'ETP' | 'ESB' | 'Comunicaciones';
 
-type Materia = 'Matemática' | 'Desarrollo I' | 'Lengua';
+export type Materia = 'Matemática' | 'Desarrollo I' | 'Lengua';
 
 type Tribunal = {
   profesorTitular: string;
@@ -22,7 +22,7 @@ export interface Mesa {
   fechaFin: Fecha;
   hora: string;
   ano: Ano;
-  modalidad: Modalidad;
+  modalidad: Carrera;
   materia: Materia;
   turno: Turno;
   tribunal: Tribunal;

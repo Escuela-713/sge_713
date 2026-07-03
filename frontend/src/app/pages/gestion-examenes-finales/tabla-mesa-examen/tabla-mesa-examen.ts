@@ -1,8 +1,13 @@
 import { Component } from '@angular/core';
-import { Fecha, Mesa } from 'src/app/models/mesas-examenes.model';
-import { CarrerasService } from 'src/app/services/carreras.service';
-import { MateriasService } from 'src/app/services/materias.service';
-import { MesasExamenesService } from 'src/app/services/mesas-examenes.service';
+import type {
+  Fecha,
+  Mesa,
+  Carrera,
+  Materia,
+} from '@models/mesas-examenes.model';
+import { CarrerasService } from '@services/carreras.service';
+import { MateriasService } from '@services/materias.service';
+import { MesasExamenesService } from '@services/mesas-examenes.service';
 
 @Component({
   selector: 'app-tabla-mesa-examen',
@@ -13,6 +18,7 @@ export class TablaMesaExamenComponent {
   materias: any = [];
   carreras: any = [];
   mesas: Mesa[] = [];
+
   fechasMesas: {
     inicio: Set<Fecha> | string;
     fin: Set<Fecha> | string;
@@ -30,27 +36,27 @@ export class TablaMesaExamenComponent {
     private servicioMesasExamenes: MesasExamenesService,
   ) {
     servicioMateria.obtenerMaterias().subscribe({
-      next: (data) => {
+      next: (data: Materia[]) => {
         this.materias = data;
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error(error);
       },
       complete: () => {},
     });
 
     servicioCarrera.obtenerCarreras().subscribe({
-      next: (data) => {
+      next: (data: Carrera[]) => {
         this.carreras = data;
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error(error);
       },
       complete: () => {},
     });
 
     servicioMesasExamenes.obtenerMesas().subscribe({
-      next: (data) => {
+      next: (data: Mesa[]) => {
         this.mesas = data;
         this.fechasMesas = {
           inicio: new Set(this.mesas.map((mesa) => mesa.fechaInicio)),
@@ -58,7 +64,7 @@ export class TablaMesaExamenComponent {
           hora: new Set(this.mesas.map((mesa) => mesa.hora)),
         };
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error(error);
       },
       complete: () => {},

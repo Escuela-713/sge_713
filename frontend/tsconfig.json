@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "rootDir": "./src",
     "forceConsistentCasingInFileNames": true,
@@ -18,7 +17,15 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "es2020",
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths": {
+      "@models/*": [
+        "./src/app/models/*"
+      ],
+      "@services/*": [
+        "./src/app/services/*"
+      ]
+    }
   },
   "exclude": [
     "src/**/*.spec.ts",

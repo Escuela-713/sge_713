@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "dev": "npx json-server src/assets/materias.json -p 3001 & npx json-server src/assets/carreras/carreras.json & npx json-server src/assets/mesas-examenes.json -p 3002 & ng s"
   },
   "private": true,
   "dependencies": {
@@ -29,5 +30,11 @@
     "@angular/compiler-cli": "^21.2.8",
     "@types/jasmine": "^5.1.13",
     "typescript": "^5.8.4"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.5.6": true,
+    "esbuild@0.27.3": true,
+    "lmdb@3.5.1": true,
+    "msgpackr-extract@3.0.3": true
   }
 }
