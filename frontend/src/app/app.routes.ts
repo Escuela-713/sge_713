@@ -31,11 +31,16 @@ import { MovimientosComponent } from './pages/gestion-cooperadora/movimientos/mo
 import { CreacionDeMesaComponent } from './pages/gestion-examenes-finales/creacion-de-mesa/creacion-de-mesa.component';
 import { AgregarSlideComponent } from './pages/gestion-home/agregar-slide/agregar-slide.component';
 import { Donar713Component } from './pages/donar-713/donar-713.component';
+import { EditarEventoComponent } from './pages/donar-713/componentes/editar-evento/editar-evento.component';
 
 export const routes: Routes = [
   { path: 'novedad/:slug', component: NovedadComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'donar-713', component: Donar713Component},
+  { path: 'donar-713', component: Donar713Component,
+    children:[
+      {path:'editar-evento', component:EditarEventoComponent}
+    ]
+  },
   { path: 'dashboard',
     component: DashboardComponent,
     children: [

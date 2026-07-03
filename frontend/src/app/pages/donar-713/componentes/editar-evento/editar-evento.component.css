@@ -1,0 +1,137 @@
+.gestion-container {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fcfbfa;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.btn-agregar {
+  background-color: #cc001f;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Lista */
+.noticia-card {
+  display: flex;
+  background: #f5ece8;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 16px;
+  align-items: center;
+}
+
+.noticia-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.noticia-info {
+  flex-grow: 1;
+}
+
+.noticia-info h3 { margin: 0 0 5px 0; font-size: 1.1rem; color: #111; }
+.descripcion { margin: 0 0 5px 0; color: #666; font-size: 0.9rem; }
+.fecha { margin: 0; color: #999; font-size: 0.8rem; }
+
+.noticia-acciones button {
+  border: 1px solid #ccc;
+  background: white;
+  padding: 8px;
+  border-radius: 8px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+.noticia-acciones .delete-btn {
+  background-color: #cc001f;
+  color: white;
+  border: none;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+
+.form-group {
+  margin-top: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.modal-footer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-cancelar {
+  background: #f5ece8;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-guardar {
+  background: #cc001f;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
