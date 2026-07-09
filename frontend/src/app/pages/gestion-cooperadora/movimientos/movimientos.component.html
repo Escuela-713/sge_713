@@ -1,10 +1,7 @@
 <div class="container">
-  <h2>Movimientos de Cooperadora Escolar</h2>
+  <h2>Movimientos de cooperadora escolar</h2>
   <div class="balance">
     Balance total:
-    <span [class.positivo]="balance >= 0" [class.negativo]="balance < 0">
-      {{ balance | currency:'ARS':'symbol':'1.0-0' }}
-    </span>
   </div>
 </div>
 
@@ -16,12 +13,12 @@
       <th>Monto</th>
       <th>Origen</th>
       <th>Destino</th>
-      <th>Comentario</th>
-      <th>Acciones</th>
+      <th>Descripción</th>
+      <th>Opciones</th>
     </tr>
   </thead>
   <tbody>
-    @for (mov of movimientos; track mov) {
+    @for (mov of movimientos; track mov.id) {
     <tr>
       <td>{{ mov.fecha }}</td>
       <td [class.ingreso]="mov.tipo === 'Ingreso'" [class.egreso]="mov.tipo === 'Egreso'">
@@ -30,7 +27,7 @@
       <td>{{ mov.monto | currency:'ARS':'symbol':'1.0-0' }}</td>
       <td>{{ mov.origen }}</td>
       <td>{{ mov.destino }}</td>
-      <td>{{ mov.comentario }}</td>
+      <td>{{ mov.descripcion }}</td>
       <td>
         <button class="btn btnAdd">Editar</button>
         <button class="btn btnDelete">Eliminar</button>

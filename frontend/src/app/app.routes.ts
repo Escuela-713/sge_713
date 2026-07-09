@@ -12,7 +12,6 @@ import { PlanesComponent } from "./pages/gestion-carreras-planes-materias/planes
 import { HistorialComponent } from "./pages/gestion-cooperadora/historial/historial.component";
 import { MovimientosComponent } from "./pages/gestion-cooperadora/movimientos/movimientos.component";
 import { FormularioComponent } from "./pages/gestion-cooperadora/registrar-compra/formulario.component";
-import { RegistroIngresosComponent } from "./pages/gestion-cooperadora/registro-ingresos/registro-ingresos.component";
 import { DatosTutoresComponent } from "./pages/gestion-datos-personales/componentes/datos-tutores/datos-tutores.component";
 import { EditarAgregarTutorComponent } from "./pages/gestion-datos-personales/editar-agregar-tutor/editar-agregar-tutor.component";
 import { EditarDatosPersonalesComponent } from "./pages/gestion-datos-personales/editar-datos-personales/editar-datos-personales.component";
@@ -54,8 +53,7 @@ export const routes: Routes = [
     children: [
       { path: "cooperadora-movimientos", component: MovimientosComponent },
       { path: "cooperadora-historial", component: HistorialComponent },
-      { path: "cooperadora-compra", component: FormularioComponent },
-      { path: "cooperadora-ingresos", component: RegistroIngresosComponent },
+      { path: "cooperadora-registro", component: FormularioComponent },
       { path: "carreras", component: CarrerasComponent },
       { path: "planes", component: PlanesComponent },
       { path: "editar-carreras", component: FormCarreraComponent },
