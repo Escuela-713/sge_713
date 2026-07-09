@@ -1,1 +1,133 @@
-<p>donar-713 works!</p>
+<div class="home-container">
+
+<nav class="navbar">
+  <div class="navbar-brand">
+    <span class="brand-icon">
+      <svg viewBox="0 0 24 24" fill="white" width="18" height="18">
+        <path d="M12 21s-6.716-4.35-9.428-8.06C.55 10.24 1.2 6.6 4.2 5.1 6.6 3.9 9 4.6 12 7.5c3-2.9 5.4-3.6 7.8-2.4 3 1.5 3.65 5.14 1.628 7.84C18.716 16.65 12 21 12 21z"/>
+      </svg>
+    </span>
+    <span class="brand-text">Donar <span class="brand-accent">713</span></span>
+  </div>
+
+  <ul class="navbar-links">
+    <li>
+      <a routerLink="/donar-713/donar-home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+          <path d="M3 11l9-8 9 8"/>
+          <path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/>
+        </svg>
+        Inicio
+      </a>
+    </li>
+    <li><a routerLink="/noticias">Noticias</a></li>
+    <li><a routerLink="/eventos">Eventos</a></li>
+    <li><a routerLink="/informacion">Información</a></li>
+    <li><a routerLink="/contacto">Contacto</a></li>
+  </ul>
+
+  <button class="admin-btn" routerLink="/donar-713/editar-evento">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+      <circle cx="12" cy="8" r="4"/>
+      <path d="M4 21v-1a7 7 0 0 1 7-7h2a7 7 0 0 1 7 7v1"/>
+    </svg>
+    Panel Admin
+  </button>
+</nav>
+  <router-outlet></router-outlet>
+
+<footer class="footer">
+  <div class="footer-content">
+
+    <div class="footer-col">
+      <div class="footer-brand">
+        <span class="brand-icon">
+          <svg viewBox="0 0 24 24" fill="white" width="18" height="18">
+            <path d="M12 21s-6.716-4.35-9.428-8.06C.55 10.24 1.2 6.6 4.2 5.1 6.6 3.9 9 4.6 12 7.5c3-2.9 5.4-3.6 7.8-2.4 3 1.5 3.65 5.14 1.628 7.84C18.716 16.65 12 21 12 21z"/>
+          </svg>
+        </span>
+        <span class="brand-text">Donar <span class="brand-accent">713</span></span>
+      </div>
+      <p class="footer-desc">
+        Proyecto escolar dedicado a promover la donación de sangre y crear conciencia sobre la importancia de ayudar a quienes más lo necesitan.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">Enlaces Rápidos</h4>
+      <ul class="footer-links">
+        <li><a routerLink="/noticias">Noticias</a></li>
+        <li><a routerLink="/eventos">Eventos</a></li>
+        <li><a routerLink="/informacion">Información</a></li>
+        <li><a routerLink="/inicio">Inicio Principal</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">Contacto</h4>
+      <ul class="footer-contact">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path d="M12 21s-6-5.686-6-10a6 6 0 0 1 12 0c0 4.314-6 10-6 10z"/>
+            <circle cx="12" cy="11" r="2.5"/>
+          </svg>
+          Alsina 713
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.99.36 1.96.68 2.89a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.19-1.25a2 2 0 0 1 2.11-.45c.93.32 1.9.55 2.89.68A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          +1 234 567 890
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m2 7 10 7 10-7"/>
+          </svg>
+          contacto&#64;donar713.edu
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 class="footer-title">Síguenos</h4>
+      <p class="footer-desc">
+        Mantente al día con nuestras actividades y campañas.
+      </p>
+      <div class="footer-social">
+        <a href="#" class="social-icon" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+            <path d="M13.5 9H15V6.5h-1.5C11.6 6.5 10 8.1 10 10.2V12H8v2.5h2V21h2.5v-6.5H15l.5-2.5h-3v-1.8c0-.66.4-1.2 1-1.2z"/>
+          </svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="3.5"/>
+            <circle cx="17.3" cy="6.7" r="0.6" fill="currentColor" stroke="none"/>
+          </svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="Twitter">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+            <path d="M22 5.9c-.66.3-1.36.5-2.1.6a3.6 3.6 0 0 0 1.6-2 7.2 7.2 0 0 1-2.3.87 3.6 3.6 0 0 0-6.2 3.3A10.2 10.2 0 0 1 3.1 4.9a3.6 3.6 0 0 0 1.1 4.8 3.6 3.6 0 0 1-1.6-.45v.05a3.6 3.6 0 0 0 2.9 3.5 3.6 3.6 0 0 1-1.6.06 3.6 3.6 0 0 0 3.36 2.5A7.2 7.2 0 0 1 2 16.8a10.2 10.2 0 0 0 5.5 1.6c6.6 0 10.2-5.47 10.2-10.2v-.47A7.3 7.3 0 0 0 22 5.9z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <span>&copy; 2026 Donar 713. Todos los derechos reservados.</span>
+    <span class="footer-signature">
+      Proyecto escolar - Hecho con
+      <svg viewBox="0 0 24 24" fill="#e02b2b" width="14" height="14">
+        <path d="M12 21s-6.716-4.35-9.428-8.06C.55 10.24 1.2 6.6 4.2 5.1 6.6 3.9 9 4.6 12 7.5c3-2.9 5.4-3.6 7.8-2.4 3 1.5 3.65 5.14 1.628 7.84C18.716 16.65 12 21 12 21z"/>
+      </svg>
+      por estudiantes
+    </span>
+  </div>
+</footer>
+
+
+</div>

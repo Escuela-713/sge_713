@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Donar713Component } from './donar-713.component';
+import { DonarHomeComponent } from './donar-home.component';
 
-describe('Donar713Component', () => {
-  let component: Donar713Component;
-  let fixture: ComponentFixture<Donar713Component>;
+describe('DonarHomeComponent', () => {
+  let component: DonarHomeComponent;
+  let fixture: ComponentFixture<DonarHomeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Donar713Component]
+      imports: [DonarHomeComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Donar713Component);
+    fixture = TestBed.createComponent(DonarHomeComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

@@ -1,6 +1,8 @@
 import { Routes } from "@angular/router";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
+import { EditarEventoComponent } from "./pages/donar-713/componentes/editar-evento/editar-evento.component";
 import { Donar713Component } from "./pages/donar-713/donar-713.component";
+import { DonarHomeComponent } from "./pages/donar-713/donar-home/donar-home.component";
 import { CarrerasComponent } from "./pages/gestion-carreras-planes-materias/carreras/carreras.component";
 import { FormCarreraComponent } from "./pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component";
 import { FormMateriasComponent } from "./pages/gestion-carreras-planes-materias/materias/componentes/form-materias.component";
@@ -38,7 +40,14 @@ import { NovedadComponent } from "./pages/novedad/novedad.component";
 export const routes: Routes = [
   { path: "novedad/:slug", component: NovedadComponent },
   { path: "home", component: HomeComponent },
-  { path: "donar-713", component: Donar713Component },
+  {
+    path: "donar-713",
+    component: Donar713Component,
+    children: [
+      { path: "donar-home", component: DonarHomeComponent },
+      { path: "editar-evento", component: EditarEventoComponent },
+    ],
+  },
   {
     path: "dashboard",
     component: DashboardComponent,

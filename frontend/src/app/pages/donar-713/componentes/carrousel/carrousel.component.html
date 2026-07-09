@@ -1,0 +1,46 @@
+<section class="hero-carousel">
+
+  @for (slide of slides; track $index) {
+
+    <div
+      class="slide"
+      [class.active]="$index === currentSlide"
+      [style.background-image]="'url(' + slide.image + ')'">
+
+      <div class="overlay"></div>
+
+      <div class="hero-content">
+
+        <h1>{{ slide.title }}</h1>
+
+        <p>{{ slide.description }}</p>
+
+        <button class="hero-button">
+          {{ slide.buttonText }}
+        </button>
+
+      </div>
+
+    </div>
+
+  }
+
+  <button
+    class="carousel-arrow left"
+    aria-label="Anterior"
+    (click)="previousSlide()">
+
+    ❮
+
+  </button>
+
+  <button
+    class="carousel-arrow right"
+    aria-label="Siguiente"
+    (click)="nextSlide()">
+
+    ❯
+
+  </button>
+
+</section>

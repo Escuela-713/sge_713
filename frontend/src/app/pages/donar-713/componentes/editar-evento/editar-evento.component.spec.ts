@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Donar713Component } from './donar-713.component';
+import { EditarEventoComponent } from './editar-evento.component';
 
-describe('Donar713Component', () => {
-  let component: Donar713Component;
-  let fixture: ComponentFixture<Donar713Component>;
+describe('EditarEventoComponent', () => {
+  let component: EditarEventoComponent;
+  let fixture: ComponentFixture<EditarEventoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Donar713Component]
+      imports: [EditarEventoComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Donar713Component);
+    fixture = TestBed.createComponent(EditarEventoComponent);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
