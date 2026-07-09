@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import type {
-  Fecha,
-  Mesa,
   Carrera,
+  Fecha,
   Materia,
+  Mesa,
 } from '@models/mesas-examenes.model';
 import { CarrerasService } from '@services/carreras.service';
 import { MateriasService } from '@services/materias.service';
@@ -20,12 +20,10 @@ export class TablaMesaExamenComponent {
   mesas: Mesa[] = [];
 
   fechasMesas: {
-    inicio: Set<Fecha> | string;
-    fin: Set<Fecha> | string;
+    fecha: Set<Fecha> | string;
     hora: Set<string> | string;
   } = {
-    inicio: '',
-    fin: '',
+    fecha: '',
     hora: '',
   };
   cursos = [1, 2, 3, 4, 5, 6, 7];
@@ -59,8 +57,7 @@ export class TablaMesaExamenComponent {
       next: (data: Mesa[]) => {
         this.mesas = data;
         this.fechasMesas = {
-          inicio: new Set(this.mesas.map((mesa) => mesa.fechaInicio)),
-          fin: new Set(this.mesas.map((mesa) => mesa.fechaFin)),
+          fecha: new Set(this.mesas.map((mesa) => mesa.fecha)),
           hora: new Set(this.mesas.map((mesa) => mesa.hora)),
         };
       },

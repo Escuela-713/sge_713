@@ -3,15 +3,7 @@
     <label for="fecha-inicio">
       Fecha de inicio:
       <select name="fecha-inicio" id="fecha-inicio">
-        @for (fecha of fechasMesas.inicio; track fecha) {
-        <option>{{fecha}}</option>
-        }
-      </select>
-    </label>
-    <label for="fecha-fin">
-      Fecha de finalización:
-      <select name="fecha-fin" id="fecha-fin">
-        @for (fecha of fechasMesas.fin; track fecha) {
+        @for (fecha of fechasMesas.fecha; track fecha) {
         <option>{{fecha}}</option>
         }
       </select>
@@ -63,7 +55,6 @@
         <th>Año</th>
         <th>Modalidad</th>
         <th>Materia</th>
-        <th>Turno</th>
         <th>Tribunal</th>
         <th>Acciones</th>
       </tr>
@@ -71,11 +62,10 @@
     <tbody>
       @for(mesa of mesas; track mesa.id) {
       <tr>
-        <td>{{mesa.fechaInicio}} - {{mesa.fechaFin}}</td>
+        <td>{{mesa.fecha}}</td>
         <td>{{mesa.ano}}</td>
         <td>{{mesa.modalidad}}</td>
         <td>{{mesa.materia}}</td>
-        <td>{{mesa.turno}}</td>
         <td>
           {{mesa.tribunal.profesorTitular}},
           {{mesa.tribunal.profesorPrimerVocal}},
