@@ -1,34 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { MateriasService } from 'src/app/services/materias.service';
+import { Component, OnInit } from "@angular/core";
+import { MateriasService } from "@services/materias.service";
 
 @Component({
-  selector: 'app-materias',
+  selector: "app-materias",
   standalone: true,
   imports: [],
-  templateUrl: './materias.component.html',
-  styleUrls: ['./materias.component.css']
+  templateUrl: "./materias.component.html",
+  styleUrls: ["./materias.component.css"],
 })
 export class MateriasComponent implements OnInit {
-  materias:any;
+  materias: any;
 
-
-  constructor(private MateriasService: MateriasService) { }
+  constructor(private MateriasService: MateriasService) {}
 
   ngOnInit(): void {
-    this.MateriasService.obtenerMaterias().subscribe(
-      {
-        next: (data) => {
-          this.materias=data;
-         console.log(this.materias)
-          
-        },
-        error:(err) => {
-          alert("Se ha producido un error.Por favor, intente nuevamente");
-         // console.error(err);
-
-        }
-      }
-    )
+    this.MateriasService.obtenerMaterias().subscribe({
+      next: (data) => {
+        this.materias = data;
+        console.log(this.materias);
+      },
+      error: (err) => {
+        alert("Se ha producido un error.Por favor, intente nuevamente");
+        // console.error(err);
+      },
+    });
   }
-
 }

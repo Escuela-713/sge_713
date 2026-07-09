@@ -22,7 +22,8 @@
       "@/*": ["./src/*"],
       "@models/*": ["./src/app/models/*"],
       "@services/*": ["./src/app/services/*"],
-      "@shared/*": ["./src/app/shared/*"]
+      "@shared/*": ["./src/app/shared/*"],
+      "@pages/*": ["./src/app/pages/*"]
     }
   },
   "exclude": ["src/**/*.spec.ts", "src/test.ts"],

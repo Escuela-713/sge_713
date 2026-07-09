@@ -1,11 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
-import { Subject, takeUntil } from 'rxjs';
-import { Location } from '@angular/common';
-import { HeaderComponent } from 'src/app/shared/header/header.component';
-import { FooterComponent } from 'src/app/shared/footer/footer.component';
-import { NovedadesService } from '../../services/novedades.service';
+import { Location } from "@angular/common";
+import { FooterComponent } from "@shared/footer/footer.component";
+import { HeaderComponent } from "@shared/header/header.component";
+import { Subject, takeUntil } from "rxjs";
+import { NovedadesService } from "../../services/novedades.service";
 
 interface Novedad {
   id: number;
@@ -20,11 +20,11 @@ interface Novedad {
 }
 
 @Component({
-  selector: 'app-novedad',
+  selector: "app-novedad",
   standalone: true,
   imports: [HeaderComponent, FooterComponent],
-  templateUrl: './novedad.component.html',
-  styleUrl: './novedad.component.css'
+  templateUrl: "./novedad.component.html",
+  styleUrl: "./novedad.component.css",
 })
 export class NovedadComponent implements OnInit, OnDestroy {
   novedad: Novedad | undefined;
@@ -32,19 +32,17 @@ export class NovedadComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private location: Location,
-    private novedadesService: NovedadesService
+    private novedadesService: NovedadesService,
   ) {}
 
   ngOnInit(): void {
     // Subscribe to route parameter changes
-    this.route.paramMap
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(params => {
-        const slug = params.get('slug');
-        if (slug) {
-          this.loadNovedad(slug);
-        }
-      });
+    this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((params) => {
+      const slug = params.get("slug");
+      if (slug) {
+        this.loadNovedad(slug);
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -65,7 +63,7 @@ export class NovedadComponent implements OnInit, OnDestroy {
         document.title = `${this.novedad.title} - Novedades`;
       }
     } catch (error) {
-      console.error('Error loading novedad:', error);
+      console.error("Error loading novedad:", error);
       this.novedad = undefined;
     }
   }
