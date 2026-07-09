@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class DatosPeronalesService {
+export class DatosPersonalesService {
   constructor(private http: HttpClient) {}
 
   obtenerdatosTutor(): Observable<any> {
     return this.http.get(
-      'assets/datos-academicos/alumnos-ejemplo-bien-hecho.json'
+      'assets/datos-academicos/alumnos-ejemplo-bien-hecho.json',
     );
   }
   obtenerdatosFiltro(): Observable<any> {

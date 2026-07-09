@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev": "npx json-server src/assets/materias.json -p 3001 & npx json-server src/assets/carreras/carreras.json & npx json-server src/assets/mesas-examenes.json -p 3002 & ng s"
+    "dev": "npx json-server src/assets/gestion-mesas-examenes/materias.json -p 3001 & npx json-server src/assets/gestion-mesas-examenes/carreras/carreras.json & npx json-server src/assets/gestion-mesas-examenes/mesas-examenes.json -p 3002 & ng s"
   },
   "private": true,
   "dependencies": {

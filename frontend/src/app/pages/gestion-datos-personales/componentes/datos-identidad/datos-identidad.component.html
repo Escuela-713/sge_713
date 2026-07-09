@@ -1,105 +1,378 @@
 <div class="container">
-    <h1>Datos Académicos</h1>
+  <h1>Datos Personales</h1>
+  <form id="formularioAlumno" [formGroup]="datosIdentidadForm">
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="primerNombre" class="">Primer nombre:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="primerNombre"
+          formControlName="primerNombre"
+        />
+        <div
+          [hidden]="!(primerNombre.errors && primerNombre.touched)"
+          class="text-danger"
+        >
+          {{ primerNombreErrors }}
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label for="segundoNombre" class="">Segundo nombre:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="segundoNombre"
+          formControlName="segundoNombre"
+        />
+        <div
+          [hidden]="!(segundoNombre.errors && segundoNombre.touched)"
+          class="text-danger"
+        >
+          {{ segundoNombreErrors }}
+        </div>
+      </div>
+    </div>
 
-    <form id="formularioAlumno" [formGroup]="datosIdentidadForm">
-        <div class="row mb-3">
-            <div class="col-sm-6">
-                <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento:</label>
-                <input type="date" class="form-control" id="fechaNacimiento" formControlName="fechaNacimiento">
-                @if (fechaNacimiento.errors && fechaNacimiento.touched)
-                {
-                    <div class="text-danger">{{ fechaNacimientoErrors }}</div>
-                }
-            </div>
-            <div class="col-sm-6">
-                <label for="provinciaNacimiento" class="form-label">Provincia de Nacimiento:</label>
-                <select class="form-select" id="provinciaNacimiento" formControlName="provinciaNacimiento"></select>
-                @if (provinciaNacimiento.errors && provinciaNacimiento.touched)
-                {
-                    <div class="text-danger">{{ provinciaNacimientoErrors }}</div>
-                }
-            </div>
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="tercerNombre" class="">Tercer nombre:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="tercerNombre"
+          formControlName="tercerNombre"
+        />
+        <div
+          [hidden]="!(tercerNombre.errors && tercerNombre.touched)"
+          class="text-danger"
+        >
+          {{ tercerNombreErrors }}
         </div>
-        <div class="row mb-3">
-            <div class="col-sm-6">
-                <label for="localidadNacimiento" class="form-label">Localidad de Nacimiento:</label>
-                <input type="text" class="form-control" id="localidadNacimiento" placeholder="Ingrese la localidad" formControlName="localidadNacimiento">
-                @if (localidadNacimiento.errors && localidadNacimiento.touched)
-                {
-                    <div class="text-danger">{{ localidadNacimientoErrors }}</div>
-                }
-            </div>
-            <div class="col-sm-6">
-                <label for="domicilioPais" class="form-label">País de Domicilio:</label>
-                <select class="form-select" id="domicilioPais" formControlName="paisDomicilio">
-                    </select>
-                    @if (paisDomicilio.errors && paisDomicilio.touched)
-                    {
-                        <div class="text-danger">{{ paisDomicilioErrors }}</div>
-                    }
-            </div>
+      </div>
+      <div class="col-sm-6">
+        <label for="primerApellido" class="">Primer apellido:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="primerApellido"
+          formControlName="primerApellido"
+        />
+        <div
+          [hidden]="!(primerApellido.errors && primerApellido.touched)"
+          class="text-danger"
+        >
+          {{ primerApellidoErrors }}
         </div>
-        <div class="row mb-3">
-            <div class="col-sm-6">
-                <label for="domicilioProvincia" class="form-label">Provincia del Domicilio:</label>
-                <select class="form-select" id="domicilioProvincia" formControlName="provinciaDomicilio">
-                    </select>
-                    @if (provinciaDomicilio.errors && provinciaDomicilio.touched)
-                    {
-                        <div class="text-danger">{{ provinciaDomicilioErrors }}</div>
-                    }
-                </div>
-            <div class="col-sm-6">
-                <label for="domicilioLocalidad" class="form-label">Localidad del Domicilio:</label>
-                <input type="text" class="form-control" id="domicilioLocalidad" placeholder="Ingrese la localidad" formControlName="localidadDomicilio">
-                @if (localidadDomicilio.errors && localidadDomicilio.touched)
-                {
-                    <div class="text-danger">{{ localidadDomicilioErrors }}</div>
-                }
-            </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="segundoApellido" class="">Segundo apellido:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="segundoApellido"
+          formControlName="segundoApellido"
+        />
+        <div
+          [hidden]="!(segundoApellido.errors && segundoApellido.touched)"
+          class="text-danger"
+        >
+          {{ segundoApellidoErrors }}
         </div>
-        <div class="row mb-3">
-            <div class="col-sm-6">
-                <label for="domicilioBarrio" class="form-label">Barrio del domicilio:</label>
-                <input type="text" class="form-control" id="domicilioBarrio" placeholder="Ingrese el barrio" formControlName="barrio">
-                @if (barrio.errors && barrio.touched)
-                {
-                    <div class="text-danger">{{ barrioErrors }}</div>
-                }
-            </div>
-            <div class="col-sm-6">
-                <label for="domicilioBarrio" class="form-label">Calle:</label>
-                <input type="text" class="form-control" id="domicilioBarrio" placeholder="Ingrese la calle" formControlName="calle">
-                @if (calle.errors && calle.touched)
-                {
-                    <div class="text-danger">{{ calleErrors }}</div>
-                }
-            </div>
+      </div>
+      <div class="col-sm-6">
+        <label for="dni" class="">Documento:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="dni"
+          formControlName="dni"
+        />
+        <div [hidden]="!(dni.errors && dni.touched)" class="text-danger">
+          {{ dniErrors }}
         </div>
-        <div class="row mb-3">
-            <div class="col-sm-6">
-                <label for="numeroPiso" class="form-label">Número de piso:</label>
-                <input type="text" class="form-control" id="numeroPiso" placeholder="Ingrese el número de piso" formControlName="nroPiso">
-            </div>
-            <div class="col-sm-6">
-                <label for="numeroDepartamento" class="form-label">Número de departamento:</label>
-                <input type="text" class="form-control" id="numeroDepartamento" placeholder="Ingrese el número de departamento" formControlName="nroDpto">
-            </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="tipoSangre" class="form-label">Tipo de Sangre:</label>
+        <select
+          class="form-control"
+          id="tipoSangre"
+          formControlName="tipoSangre"
+        >
+          <option value="A+">A+</option>
+          <option value="B+">B+</option>
+          <option value="AB+">AB+</option>
+          <option value="O+">O+</option>
+          <option value="A-">A-</option>
+          <option value="B-">B-</option>
+          <option value="AB-">AB-</option>
+          <option value="O-">O-</option>
+        </select>
+      </div>
+      <div class="col-sm-6">
+        <label for="genero" class="form-label">Genero:</label>
+        <select class="form-control" id="genero" formControlName="genero">
+          <option value="M">Masculino</option>
+          <option value="F">Femenino</option>
+          <option value="O">Otro</option>
+        </select>
+        <div [hidden]="!(genero.errors && genero.touched)" class="text-danger">
+          {{ generoErrors }}
         </div>
-        <div class="row mb-3">
-            <div class="col-sm-6">
-                <label for="localidadNacimiento" class="form-label">Télefono:</label>
-                <input type="tel" class="form-control" id="numeroTelefono" placeholder="Ingrese el número de teléfono" formControlName="telefono">
-            </div>
-            <div class="col-sm-6">
-                <label for="domicilioPais" class="form-label">Email del alumno:</label>
-                <input type="email" class="form-control" id="emailAlumno" placeholder="Ingrese el email del alumno" formControlName="mailAlumno">
-                @if (mailAlumno.errors && mailAlumno.touched)
-                {
-                    <div class="text-danger">{{ mailAlumnoErrors }}</div>
-                }
-            </div>
-            
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="fechaNacimiento" class="form-label"
+          >Fecha de Nacimiento:</label
+        >
+        <input
+          type="date"
+          class="form-control"
+          id="fechaNacimiento"
+          formControlName="fechaNacimiento"
+        />
+        <div
+          [hidden]="!(fechaNacimiento.errors && fechaNacimiento.touched)"
+          class="text-danger"
+        >
+          {{ fechaNacimientoErrors }}
         </div>
-        <button type="submit" class="btn btnSave">Guardar Alumno</button>
-    </form>
+      </div>
+      <div class="col-sm-6">
+        <label for="paisNacimiento" class="form-label"
+          >País de Nacimiento:</label
+        >
+        <select
+          class="form-select"
+          id="paisNacimiento"
+          formControlName="paisNacimiento"
+        >
+          <option value="" disabled selected>Seleccione un pais</option>
+          <option *ngFor="let p of paisesDomicilio" [value]="p.id">
+            {{ p.nombre }}
+          </option>
+        </select>
+        <div
+          [hidden]="!(paisNacimiento.errors && paisNacimiento.touched)"
+          class="text-danger"
+        >
+          {{ paisNacimientoErrors }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="provinciaNacimiento" class="form-label"
+          >Provincia de Nacimiento:</label
+        >
+        <select
+          class="form-select"
+          id="provinciaNacimiento"
+          formControlName="provinciaNacimiento"
+        >
+          <option value="" disabled selected>Seleccione una provincia</option>
+          <option *ngFor="let pro of provinciasNacimientoList" [value]="pro.id">
+            {{ pro.nombre }}
+          </option>
+        </select>
+        <div
+          [hidden]="
+            !(provinciaNacimiento.errors && provinciaNacimiento.touched)
+          "
+          class="text-danger"
+        >
+          {{ provinciaNacimientoErrors }}
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label for="localidadNacimiento" class="form-label"
+          >Localidad de Nacimiento:</label
+        >
+        <select
+          class="form-select"
+          id="localidadNacimiento"
+          formControlName="localidadNacimiento"
+        >
+          <option value="" disabled selected>Seleccione una localidad</option>
+          <option
+            *ngFor="let loc of localidadesNacimientoList"
+            [value]="loc.id"
+          >
+            {{ loc.nombre }}
+          </option>
+        </select>
+        <div
+          [hidden]="
+            !(localidadNacimiento.errors && localidadNacimiento.touched)
+          "
+          class="text-danger"
+        >
+          {{ localidadNacimientoErrors }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="domicilioPais" class="form-label">País de Domicilio:</label>
+        <select
+          class="form-select"
+          id="domicilioPais"
+          formControlName="paisDomicilio"
+        >
+          <option value="" disabled selected>Seleccione un pais</option>
+          <option *ngFor="let p of paisesDomicilio" [value]="p.id">
+            {{ p.nombre }}
+          </option>
+        </select>
+        <div
+          [hidden]="!(paisDomicilio.errors && paisDomicilio.touched)"
+          class="text-danger"
+        >
+          {{ paisDomicilioErrors }}
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label for="domicilioProvincia" class="form-label"
+          >Provincia del Domicilio:</label
+        >
+        <select
+          class="form-select"
+          id="domicilioProvincia"
+          formControlName="provinciaDomicilio"
+        >
+          <option value="" disabled selected>Seleccione una provincia</option>
+          <option *ngFor="let pro of provinciasDomicilio" [value]="pro.id">
+            {{ pro.nombre }}
+          </option>
+        </select>
+        <div
+          [hidden]="!(provinciaDomicilio.errors && provinciaDomicilio.touched)"
+          class="text-danger"
+        >
+          {{ provinciaDomicilioErrors }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="domicilioLocalidad" class="form-label"
+          >Localidad del Domicilio:</label
+        >
+        <select
+          class="form-select"
+          id="localidadDomicilio"
+          formControlName="localidadDomicilio"
+        >
+          <option value="" disabled selected>Seleccione una localidad</option>
+          <option *ngFor="let loc of localidadesDomicilio" [value]="loc.id">
+            {{ loc.nombre }}
+          </option>
+        </select>
+        <div
+          [hidden]="!(localidadDomicilio.errors && localidadDomicilio.touched)"
+          class="text-danger"
+        >
+          {{ localidadDomicilioErrors }}
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label for="domicilioBarrio" class="form-label"
+          >Barrio del domicilio:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="domicilioBarrio"
+          placeholder="Ingrese el barrio"
+          formControlName="barrio"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="domicilioCalle" class="form-label">Calle:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="domicilioCalle"
+          placeholder="Ingrese la calle"
+          formControlName="calle"
+        />
+        <div [hidden]="!(calle.errors && calle.touched)" class="text-danger">
+          {{ calleErrors }}
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label for="numeroPiso" class="form-label">Número de piso:</label>
+        <input
+          type="text"
+          class="form-control"
+          id="numeroPiso"
+          placeholder="Ingrese el número de piso"
+          formControlName="piso"
+        />
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="numeroDepartamento" class="form-label"
+          >Número de departamento:</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          id="numeroDepartamento"
+          placeholder="Ingrese el número de departamento"
+          formControlName="departamento"
+        />
+      </div>
+      <div class="col-sm-6">
+        <label for="numeroTelefono" class="form-label">Télefono:</label>
+        <input
+          type="tel"
+          class="form-control"
+          id="numeroTelefono"
+          placeholder="Ingrese el número de teléfono"
+          formControlName="telefono"
+        />
+        <div
+          [hidden]="!(telefono.errors && telefono.touched)"
+          class="text-danger"
+        >
+          {{ telefonoErrors }}
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-sm-6">
+        <label for="emailAlumno" class="form-label">Email del alumno:</label>
+        <input
+          type="email"
+          class="form-control"
+          id="emailAlumno"
+          placeholder="Ingrese el email del alumno"
+          formControlName="mailAlumno"
+        />
+        <div [hidden]="!(mail.errors && mail.touched)" class="text-danger">
+          {{ mailErrors }}
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btnSave">Guardar Alumno</button>
+  </form>
+</div>

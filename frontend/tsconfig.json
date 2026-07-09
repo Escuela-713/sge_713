@@ -19,18 +19,13 @@
     "module": "es2020",
     "useDefineForClassFields": false,
     "paths": {
-      "@models/*": [
-        "./src/app/models/*"
-      ],
-      "@services/*": [
-        "./src/app/services/*"
-      ]
+      "@/*": ["./src/*"],
+      "@models/*": ["./src/app/models/*"],
+      "@services/*": ["./src/app/services/*"],
+      "@shared/*": ["./src/app/shared/*"]
     }
   },
-  "exclude": [
-    "src/**/*.spec.ts",
-    "src/test.ts"
-  ],
+  "exclude": ["src/**/*.spec.ts", "src/test.ts"],
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
