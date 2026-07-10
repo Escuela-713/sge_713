@@ -1,0 +1,17 @@
+{
+  "paises": [
+    { "id": 1, "nombre": "Argentina" },
+    { "id": 2, "nombre": "Chile" }
+  ],
+  "provincias": [
+    { "id": 10, "paisId": 1, "nombre": "Chubut" },
+    { "id": 11, "paisId": 1, "nombre": "Río Negro" },
+    { "id": 20, "paisId": 2, "nombre": "Santiago" }
+  ],
+  "localidades": [
+    { "id": 100, "provinciaId": 10, "nombre": "Esquel" },
+    { "id": 101, "provinciaId": 10, "nombre": "Trevelin" },
+    { "id": 110, "provinciaId": 11, "nombre": "Bariloche" },
+    { "id": 111, "provinciaId": 20, "nombre": "Santiago de Chile" }
+  ]
+}

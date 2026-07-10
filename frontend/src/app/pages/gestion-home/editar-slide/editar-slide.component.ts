@@ -19,9 +19,7 @@ export class EditarSlideComponent {
     id: 0,
     image: '',
     title: '',
-    subtitle: '',
-    buttonText: '',
-    buttonLink: ''
+    subtitle: ''
   };
 
   ngOnChanges() {

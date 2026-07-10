@@ -6,8 +6,6 @@ export interface CarouselSlide {
   image: string;
   title: string;
   subtitle: string;
-  buttonText: string;
-  buttonLink: string;
 }
 
 export interface Card {
@@ -134,8 +132,6 @@ export class NovedadesService {
       image: input.image || '',
       title: input.title || '',
       subtitle: input.subtitle || '',
-      buttonText: input.buttonText || '',
-      buttonLink: input.buttonLink || ''
     };
 
     slides.push(newSlide);

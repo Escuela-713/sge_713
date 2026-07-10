@@ -47,34 +47,6 @@
           >
         </div>
 
-        <!-- Texto del Botón -->
-        <div class="form-group">
-          <label for="buttonText">Texto del Botón*</label>
-          <input 
-            id="buttonText"
-            type="text"
-            formControlName="buttonText"
-            placeholder="Ej: 'Leer más'"
-          >
-          @if(form.get('buttonText')?.errors?.['required'] && form.get('buttonText')?.touched) {
-            <p class="error">El texto del botón es obligatorio</p>
-          }
-        </div>
-
-        <!-- Link del Botón -->
-        <div class="form-group">
-          <label for="buttonLink">Link del Botón*</label>
-          <input 
-            id="buttonLink"
-            type="text"
-            formControlName="buttonLink"
-            placeholder="Ej: '/novedad/ejemplo'"
-          >
-          @if(form.get('buttonLink')?.errors?.['required'] && form.get('buttonLink')?.touched) {
-            <p class="error">El link es obligatorio</p>
-          }
-        </div>
-
         <!-- Botones de acción -->
         <div class="form-actions">
           <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>

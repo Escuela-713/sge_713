@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+/*import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
@@ -23,7 +23,7 @@ export class FiltroDatosPersonalesComponent {
   get curso() {
     return this.filter.controls['curso'];
   }
-   
+
   get division() {
     return this.filter.controls['division'];
   }
@@ -31,7 +31,7 @@ export class FiltroDatosPersonalesComponent {
   get modalidad() {
     return this.filter.controls['modalidad'];
   }
-   
+
   get year() {
     return this.filter.controls['year'];
   }
@@ -58,5 +58,55 @@ export class FiltroDatosPersonalesComponent {
   get yearErrors() {
     const errors = this.year?.errors;
     return errors ? (errors['required'] ? 'El año es obligatorio' : null) : null;
+  }
+
+  filtrar() {
+    console.log(this.filter)
+    // if (this.filter.invalid) {
+    //   this.filter.markAllAsTouched();
+    //   return;
+    // }
+    const { curso, modalidad } = this.filter.value;
+    this.router.navigate(['/dashboard/datos-personales'], {
+      queryParams: { curso, modalidad }
+    })
+
+  }
+}*/
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+
+@Component({
+  selector: 'app-filtro-datos-personales',
+  standalone: true,
+  imports: [ReactiveFormsModule],
+  templateUrl: './filtro-datos-personales.component.html',
+  styleUrl: './filtro-datos-personales.component.css',
+})
+export class FiltroDatosPersonalesComponent {
+  filter: FormGroup;
+
+  constructor(private formBuilder: FormBuilder, private router: Router) {
+    this.filter = this.formBuilder.group({
+      nombreApellido: [''],
+      dni: ['']
+    });
+  }
+
+  get nombreApellido() { return this.filter.controls['nombreApellido']; }
+  get dni() { return this.filter.controls['dni']; }
+
+  filtrar() {
+    const { nombreApellido, dni } = this.filter.value;
+
+    // Si ambos están vacíos, no navegamos
+    if (!nombreApellido.trim() && !dni.trim()) {
+      return;
+    }
+
+    this.router.navigate(['/dashboard/datos-personales'], {
+      queryParams: { nombreApellido: nombreApellido.trim(), dni: dni.trim() }
+    });
   }
 }

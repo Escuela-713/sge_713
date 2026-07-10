@@ -1,15 +1,15 @@
-[
+{"materias":[
     {
         "id_materia": 1,
-        "nombre": "desarrollo I",
+        "nombre": "Desarrollo I",
         "anio": 4,
         "horasCatedrasSemanales": 5,
         "horasRelojAnuales": 120,
-        "descripcion": "introduccion a html,css,bootrsap y javascript"
+        "descripcion": "introduccion a html, css, bootstrap y javascript"
     },
     {
         "id_materia": 2,
-        "nombre": "lengua",
+        "nombre": "Lengua",
         "anio": 4,
         "horasCatedrasSemanales": 5,
         "horasRelojAnuales": 120,
@@ -17,10 +17,10 @@
     },
     {
         "id_materia": 3,
-        "nombre": "Matematica",
+        "nombre": "Matemática",
         "anio": 1,
         "horasCatedrasSemanales": 5,
         "horasRelojAnuales": 120,
         "descripcion": "contar manzanas y ovejas"
     }
-]
+] }

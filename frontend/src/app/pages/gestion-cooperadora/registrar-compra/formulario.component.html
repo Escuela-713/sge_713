@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Registro de Compra</title>
+  
 </head>
 
 <body class="bg-light">
@@ -13,7 +13,6 @@
       <div class="col-md-6">
         <div class="card shadow-lg">
           <div class="card-header text-center">
-            <h4>Registro de Compra</h4>
           </div>
           <div class="card-body">
 <form [formGroup]="form" class="mt-3">
@@ -79,9 +78,33 @@
     }
   </div>
 
+  <!-- Tipo -->
+  <div class="mb-3">
+    <label for="tipo" class="form-label">Tipo</label>
+    <input 
+      type="text"
+      class="form-control"
+      id="tipo"
+      placeholder="Ingrese el tipo de compra"
+      formControlName="tipo"
+    >
+
+    @if (tipo?.errors && tipo?.touched) {
+      @if (tipo?.hasError('required')) {
+        <div class="text-danger">Tipo requerido</div>
+      }
+      @if (tipo?.hasError('minlength')) {
+        <div class="text-danger">Debe tener al menos 3 caracteres</div>
+      }
+      @if (tipo?.hasError('maxlength')) {
+        <div class="text-danger">Máximo 100 caracteres</div>
+      }
+    }
+  </div>
+
   <!-- Botón -->
   <div class="d-flex justify-content-center">
-  <button 
+  <button  
     type="submit" 
     class="btn btn-primary mt-4"
     [disabled]="form.invalid"
