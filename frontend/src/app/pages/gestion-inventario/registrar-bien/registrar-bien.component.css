@@ -391,4 +391,32 @@ h3 {
   padding: 8px 15px;
   border-radius: 20px;
   font-size: 14px;
+} 
+
+.form-control.error {
+  border-color: #e53935;
+}
+
+.error-message {
+  color: #e53935;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  display: block;
+}
+
+.mensaje {
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.mensaje-error {
+  background-color: #fdecea;
+  color: #e53935;
+}
+
+.mensaje-exito {
+  background-color: #e8f5e9;
+  color: #2e7d32;
 }
