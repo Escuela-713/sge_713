@@ -22,33 +22,23 @@ export interface Localidad {
   providedIn: 'root',
 })
 export class RegionService {
-  private jsonUrl = 'assets/datos-personales/regiones.json';
+  private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
   getPaises(): Observable<Pais[]> {
-    return this.http.get<any>(this.jsonUrl).pipe(map((data) => data.paises));
+    return this.http.get<Pais[]>(`${this.apiUrl}/paises`);
   }
 
   getProvinciasByPais(paisId: number): Observable<Provincia[]> {
-    return this.http
-      .get<any>(this.jsonUrl)
-      .pipe(
-        map((data) =>
-          data.provincias.filter((p: Provincia) => p.paisId === paisId),
-        ),
-      );
+    return this.http.get<Provincia[]>(
+      `${this.apiUrl}/provincias?paisId=${paisId}`,
+    );
   }
 
   getLocalidadesByProvincia(provinciaId: number): Observable<Localidad[]> {
-    return this.http
-      .get<any>(this.jsonUrl)
-      .pipe(
-        map((data) =>
-          data.localidades.filter(
-            (l: Localidad) => l.provinciaId === provinciaId,
-          ),
-        ),
-      );
+    return this.http.get<Localidad[]>(
+      `${this.apiUrl}/localidades?provinciaId=${provinciaId}`,
+    );
   }
 }
