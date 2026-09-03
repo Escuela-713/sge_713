@@ -1,6 +1,11 @@
 <div class="login">
   <form class="form-login" [formGroup]="form" (ngSubmit)="onEnviar($event)">
     <h4>Inicio De Sesión</h4>
+    @if (errorMessage) {
+      <div class="alert alert-danger py-2 text-center" role="alert">
+        {{ errorMessage }}
+      </div>
+    }
     <input formControlName="cuil" class="form-control mb-2" type="text" name="nombres" id="nombres"
       placeholder="Ingrese su Cuil" />
     @if (Cuil?.errors && Cuil?.touched)
