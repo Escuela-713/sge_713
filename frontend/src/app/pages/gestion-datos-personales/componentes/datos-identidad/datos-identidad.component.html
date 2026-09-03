@@ -9,6 +9,7 @@
           class="form-control"
           id="primerNombre"
           formControlName="primerNombre"
+          placeholder="Ingrese su primer nombre"
         />
         <div
           [hidden]="!(primerNombre.errors && primerNombre.touched)"
@@ -17,13 +18,14 @@
           {{ primerNombreErrors }}
         </div>
       </div>
-      <div class="col-sm-6">
-        <label for="segundoNombre" class="">Segundo nombre:</label>
+    <div class="col-sm-6">
+        <label for="segundoNombre" class="">(Opcional) Segundo nombre:</label>
         <input
           type="text"
           class="form-control"
           id="segundoNombre"
           formControlName="segundoNombre"
+          placeholder="Ingrese su segundo nombre"
         />
         <div
           [hidden]="!(segundoNombre.errors && segundoNombre.touched)"
@@ -36,12 +38,13 @@
 
     <div class="row mb-3">
       <div class="col-sm-6">
-        <label for="tercerNombre" class="">Tercer nombre:</label>
+        <label for="tercerNombre" class="">(Opcional) Tercer nombre:</label>
         <input
           type="text"
           class="form-control"
           id="tercerNombre"
           formControlName="tercerNombre"
+          placeholder="Ingrese su tercer nombre"
         />
         <div
           [hidden]="!(tercerNombre.errors && tercerNombre.touched)"
@@ -57,6 +60,7 @@
           class="form-control"
           id="primerApellido"
           formControlName="primerApellido"
+          placeholder="Ingrese su primer apellido"
         />
         <div
           [hidden]="!(primerApellido.errors && primerApellido.touched)"
@@ -69,12 +73,13 @@
 
     <div class="row mb-3">
       <div class="col-sm-6">
-        <label for="segundoApellido" class="">Segundo apellido:</label>
+        <label for="segundoApellido" class="">(Opcional) Segundo apellido:</label>
         <input
           type="text"
           class="form-control"
           id="segundoApellido"
           formControlName="segundoApellido"
+          placeholder="Ingrese su segundo apellido"
         />
         <div
           [hidden]="!(segundoApellido.errors && segundoApellido.touched)"
@@ -90,6 +95,7 @@
           class="form-control"
           id="dni"
           formControlName="dni"
+          placeholder="Ingrese su documento"
         />
         <div [hidden]="!(dni.errors && dni.touched)" class="text-danger">
           {{ dniErrors }}
@@ -104,6 +110,7 @@
           class="form-control"
           id="tipoSangre"
           formControlName="tipoSangre"
+          placeholder="Seleccione su tipo de sangre"
         >
           <option value="A+">A+</option>
           <option value="B+">B+</option>
@@ -113,15 +120,22 @@
           <option value="B-">B-</option>
           <option value="AB-">AB-</option>
           <option value="O-">O-</option>
+        <option value="" disabled selected>Seleccione su tipo de sangre</option>
         </select>
       </div>
       <div class="col-sm-6">
         <label for="genero" class="form-label">Genero:</label>
-        <select class="form-control" id="genero" formControlName="genero">
+        <select
+          class="form-control"
+          id="genero"
+          formControlName="genero"
+        >
+        <option value="" disabled selected>Seleccione su genero</option>
           <option value="M">Masculino</option>
           <option value="F">Femenino</option>
           <option value="O">Otro</option>
         </select>
+        
         <div [hidden]="!(genero.errors && genero.touched)" class="text-danger">
           {{ generoErrors }}
         </div>
@@ -179,10 +193,7 @@
           id="provinciaNacimiento"
           formControlName="provinciaNacimiento"
         >
-          <option value="" disabled selected>Seleccione una provincia</option>
-          <option *ngFor="let pro of provinciasNacimientoList" [value]="pro.id">
-            {{ pro.nombre }}
-          </option>
+        <option value="" disabled selected>Seleccione una provincia</option>
         </select>
         <div
           [hidden]="
