@@ -30,8 +30,9 @@ export class FiltroDatosPersonalesComponent {
       return;
     }
 
-    this.router.navigate(['/dashboard/datos-personales'], {
-      queryParams: { nombreApellido: nombreApellido.trim(), dni: dni.trim() }
-    });
+  }
+
+  redirigir() {
+    this.router.navigate(['/dashboard/datos-personales']);
   }
 }
