@@ -161,10 +161,10 @@
           </option>
         </select>
         <div
-          [hidden]="!(paisNacimiento.errors && paisNacimiento.touched)"
+          [hidden]="!(datosIdentidadForm.get('paisNacimiento')?.errors && datosIdentidadForm.get('paisNacimiento')?.touched)"
           class="text-danger"
         >
-          {{ paisNacimientoErrors }}
+          {{ datosIdentidadForm.get('paisNacimiento')?.hasError('required') ? 'El país de nacimiento es obligatorio' : '' }}
         </div>
       </div>
     </div>

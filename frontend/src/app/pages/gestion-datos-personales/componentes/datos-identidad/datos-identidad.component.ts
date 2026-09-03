@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatosPersonalesService } from '../../../../services/datos-personales.service';
 import {
@@ -34,6 +34,7 @@ export class DatosIdentidadComponent implements OnInit {
   localidadesNacimientoList: Localidad[] = [];
 
   constructor(
+    @Inject(DatosPersonalesService)
     private serviciosge: DatosPersonalesService,
     private regionService: RegionService,
     private formBuilder: FormBuilder,
@@ -61,7 +62,7 @@ export class DatosIdentidadComponent implements OnInit {
       calle: ['', [Validators.required, Validators.maxLength(63)]],
       piso: ['', Validators.maxLength(3)],
       departamento: ['', Validators.maxLength(3)],
-      telefono: ['', Validators.maxLength(63)],
+      telefono: ['', Validators.required, Validators.maxLength(63)],
       mailAlumno: [
         '',
         [Validators.required, Validators.email, Validators.maxLength(63)],
