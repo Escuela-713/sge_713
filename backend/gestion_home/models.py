@@ -9,7 +9,6 @@ class Publication(models.Model):
 	image = models.ImageField(upload_to="home/", null=True, blank=True)
 	is_published = models.BooleanField(default=True)
 	created_at = models.DateTimeField(auto_now_add=True)
-	updated_at = models.DateTimeField(auto_now=True)
 
 	class Meta:
 		ordering = ["-created_at"]
