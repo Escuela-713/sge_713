@@ -13,15 +13,20 @@ class IsAdminAndAuthenticated(permissions.BasePermission):
 		return bool(request.user and request.user.is_authenticated and request.user.is_staff)
 
 
-class PublicationViewSet(viewsets.ModelViewSet):
+class PublicationViewSet(APIView):
 	"""CRUD para publicaciones de la página home.
 
 	- GET (list, retrieve) es público para cualquiera.
 	- POST/PUT/PATCH/DELETE requieren usuario administrador (is_staff).
 	Además, usuarios no administradores sólo ven publicaciones con is_published=True.
 	"""
-	queryset = Publication.objects.all()
-	serializer_class = PublicationSerializer
+	def get (self, request, *args, **kwargs):
+
+		queryset = Publication.objects.all()
+
+		serializer_class = PublicationSerializer (many=True)
+
+		return Response(serializer_class.data)
 
 	# def get_permissions(self):
 	# 	# Lecturas públicas
