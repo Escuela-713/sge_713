@@ -31,7 +31,7 @@
             formControlName="title"
             placeholder="Ingrese el título principal"
           >
-          @if(form.get('title')?.errors?.['required'] && form.get('title')?.touched) {
+          @if(form.get('title')?.required && form.get('title')?.touched) {
             <p class="error">El título es obligatorio</p>
           }
         </div>
