@@ -11,7 +11,7 @@
           formControlName="primerNombre"
         />
         <div
-          [hidden]="!(primerNombre.errors && primerNombre.touched)"
+          [hidden]="!(primerNombre.errors && primerNombre.dirty)"
           class="text-danger"
         >
           {{ primerNombreErrors }}
@@ -26,7 +26,7 @@
           formControlName="segundoNombre"
         />
         <div
-          [hidden]="!(segundoNombre.errors && segundoNombre.touched)"
+          [hidden]="!(segundoNombre.errors && segundoNombre.dirty)"
           class="text-danger"
         >
           {{ segundoNombreErrors }}
@@ -44,7 +44,7 @@
           formControlName="tercerNombre"
         />
         <div
-          [hidden]="!(tercerNombre.errors && tercerNombre.touched)"
+          [hidden]="!(tercerNombre.errors && tercerNombre.dirty)"
           class="text-danger"
         >
           {{ tercerNombreErrors }}
@@ -59,7 +59,7 @@
           formControlName="primerApellido"
         />
         <div
-          [hidden]="!(primerApellido.errors && primerApellido.touched)"
+          [hidden]="!(primerApellido.errors && primerApellido.dirty)"
           class="text-danger"
         >
           {{ primerApellidoErrors }}
@@ -77,8 +77,9 @@
           formControlName="segundoApellido"
         />
         <div
-          [hidden]="!(segundoApellido.errors && segundoApellido.touched)"
+          [hidden]="!(segundoApellido.errors && segundoApellido.dirty)"
           class="text-danger"
+          
         >
           {{ segundoApellidoErrors }}
         </div>
@@ -91,7 +92,7 @@
           id="dni"
           formControlName="dni"
         />
-        <div [hidden]="!(dni.errors && dni.touched)" class="text-danger">
+        <div [hidden]="!(dni.errors && dni.dirty)" class="text-danger">
           {{ dniErrors }}
         </div>
       </div>
@@ -122,7 +123,7 @@
           <option value="F">Femenino</option>
           <option value="O">Otro</option>
         </select>
-        <div [hidden]="!(genero.errors && genero.touched)" class="text-danger">
+        <div [hidden]="!(genero.errors && genero.dirty)" class="text-danger">
           {{ generoErrors }}
         </div>
       </div>
@@ -140,7 +141,7 @@
           formControlName="fechaNacimiento"
         />
         <div
-          [hidden]="!(fechaNacimiento.errors && fechaNacimiento.touched)"
+          [hidden]="!(fechaNacimiento.errors && fechaNacimiento.dirty)"
           class="text-danger"
         >
           {{ fechaNacimientoErrors }}
@@ -161,7 +162,7 @@
           </option>
         </select>
         <div
-          [hidden]="!(datosIdentidadForm.get('paisNacimiento')?.errors && datosIdentidadForm.get('paisNacimiento')?.touched)"
+          [hidden]="!(datosIdentidadForm.get('paisNacimiento')?.errors && datosIdentidadForm.get('paisNacimiento')?.dirty)"
           class="text-danger"
         >
           {{ datosIdentidadForm.get('paisNacimiento')?.hasError('required') ? 'El país de nacimiento es obligatorio' : '' }}
@@ -186,7 +187,7 @@
         </select>
         <div
           [hidden]="
-            !(provinciaNacimiento.errors && provinciaNacimiento.touched)
+            !(provinciaNacimiento.errors && provinciaNacimiento.dirty)
           "
           class="text-danger"
         >
@@ -212,7 +213,7 @@
         </select>
         <div
           [hidden]="
-            !(localidadNacimiento.errors && localidadNacimiento.touched)
+            !(localidadNacimiento.errors && localidadNacimiento.dirty)
           "
           class="text-danger"
         >
@@ -235,7 +236,7 @@
           </option>
         </select>
         <div
-          [hidden]="!(paisDomicilio.errors && paisDomicilio.touched)"
+          [hidden]="!(paisDomicilio.errors && paisDomicilio.dirty)"
           class="text-danger"
         >
           {{ paisDomicilioErrors }}
@@ -256,7 +257,7 @@
           </option>
         </select>
         <div
-          [hidden]="!(provinciaDomicilio.errors && provinciaDomicilio.touched)"
+          [hidden]="!(provinciaDomicilio.errors && provinciaDomicilio.dirty)"
           class="text-danger"
         >
           {{ provinciaDomicilioErrors }}
@@ -280,16 +281,14 @@
           </option>
         </select>
         <div
-          [hidden]="!(localidadDomicilio.errors && localidadDomicilio.touched)"
+          [hidden]="!(localidadDomicilio.errors && localidadDomicilio.dirty)"
           class="text-danger"
         >
           {{ localidadDomicilioErrors }}
         </div>
       </div>
       <div class="col-sm-6">
-        <label for="domicilioBarrio" class="form-label"
-          >Barrio del domicilio:</label
-        >
+        <label for="domicilioBarrio" class="form-label">Barrio del domicilio:</label>
         <input
           type="text"
           class="form-control"
@@ -297,6 +296,9 @@
           placeholder="Ingrese el barrio"
           formControlName="barrio"
         />
+        <div [hidden]="!(barrio.errors && barrio.dirty)" class="text-danger">
+          {{ barrioErrors }}
+        </div>
       </div>
     </div>
 
@@ -310,7 +312,7 @@
           placeholder="Ingrese la calle"
           formControlName="calle"
         />
-        <div [hidden]="!(calle.errors && calle.touched)" class="text-danger">
+        <div [hidden]="!(calle.errors && calle.dirty)" class="text-danger">
           {{ calleErrors }}
         </div>
       </div>
@@ -349,7 +351,7 @@
           formControlName="telefono"
         />
         <div
-          [hidden]="!(telefono.errors && telefono.touched)"
+          [hidden]="!(telefono.errors && telefono.dirty)"
           class="text-danger"
         >
           {{ telefonoErrors }}
@@ -367,7 +369,7 @@
           placeholder="Ingrese el email del alumno"
           formControlName="mailAlumno"
         />
-        <div [hidden]="!(mail.errors && mail.touched)" class="text-danger">
+        <div [hidden]="!(mail.errors && mail.dirty)" class="text-danger">
           {{ mailErrors }}
         </div>
       </div>
