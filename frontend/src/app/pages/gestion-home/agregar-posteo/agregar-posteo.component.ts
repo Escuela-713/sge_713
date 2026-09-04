@@ -79,4 +79,12 @@ export class AgregarPosteoComponent {
       this.form.markAllAsTouched();
     }
   }
+
+  onCancel(): void {
+    if (this.form.dirty) {
+      const confirm = window.confirm('¿Está seguro que desea cancelar? Se perderán los cambios no guardados.');
+      if (!confirm) return;
+    }
+    this.router.navigate(['/dashboard/home']);
+  }
 }
