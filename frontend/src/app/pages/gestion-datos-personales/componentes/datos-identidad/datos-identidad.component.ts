@@ -61,11 +61,11 @@ export class DatosIdentidadComponent implements OnInit {
       provinciaDomicilio: [{ value: '', disabled: true }, Validators.required],
       localidadDomicilio: [{ value: '', disabled: true }, Validators.required],
 
-      barrio: ['', [Validators.required, Validators.maxLength(127)]],
-      calle: ['', [Validators.required, Validators.maxLength(63)]],
-      piso: ['', Validators.maxLength(3)],
-      departamento: ['', Validators.maxLength(3)],
-      telefono: ['', Validators.maxLength(63)],
+      barrio: ['', [Validators.required, Validators.maxLength(127), Validators.pattern(this.letrasYNumerosPattern)]],
+      calle: ['', [Validators.required, Validators.maxLength(63), Validators.pattern(this.letrasYNumerosPattern)]],
+      piso: ['', [Validators.maxLength(3), Validators.pattern(this.soloNumerosPattern)]],
+      departamento: ['', [Validators.maxLength(3), Validators.pattern(this.letrasYNumerosPattern)]],
+      telefono: ['', [Validators.required, Validators.maxLength(63), Validators.pattern(this.soloNumerosPattern)]],
       mailAlumno: [
         '',
         [Validators.required, Validators.email, Validators.maxLength(63)],
