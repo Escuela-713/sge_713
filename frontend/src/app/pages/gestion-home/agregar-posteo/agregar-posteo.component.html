@@ -5,7 +5,7 @@
     <div class="form-container">
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
         <!-- los span (etiquetas donde están los *) tienen que tener color rojo -->
-        <label for="image">Agregue la imagen de portada <span>*</span></label>
+        <label for="image">Imagen de portada <span>*</span></label>
         <input id="image" type="file" accept="image/*" (change)="onImageChange($event)" />
         @if(form.get('image')?.invalid && form.get('image')?.touched){
           <p class="error">Seleccione una imagen</p>
