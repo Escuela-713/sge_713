@@ -4,7 +4,7 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="slide-form">
         <!-- Imagen -->
         <div class="form-group">
-          <label for="image">Imagen del Slide*</label>
+          <label for="image">Imagen del Slide <span>*</span></label>
           <input 
             type="file" 
             id="image" 
@@ -24,7 +24,7 @@
 
         <!-- Título -->
         <div class="form-group">
-          <label for="title">Título del Slide*</label>
+          <label for="title">Título del Slide <span>*</span></label>
           <input 
             id="title"
             type="text"
@@ -43,7 +43,7 @@
             id="subtitle"
             type="text"
             formControlName="subtitle"
-            placeholder="Ingrese el subtítulo (opcional)"
+            placeholder="Ingrese el subtítulo"
           >
         </div>
 
