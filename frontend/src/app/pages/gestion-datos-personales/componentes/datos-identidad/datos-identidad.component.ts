@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatosPersonalesService } from '../../../../services/datos-personales.service';
 import {
@@ -25,6 +25,9 @@ import { CommonModule } from '@angular/common';
 export class DatosIdentidadComponent implements OnInit {
   datosIdentidadForm: FormGroup;
   datostutor: any;
+  private soloLetrasPattern = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s'@]*$/;
+  private soloNumerosPattern =/^[0-9]+$/;
+  private letrasYNumerosPattern = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s'.,-]*$/;
 
   paisesDomicilio: Pais[] = [];
   provinciasDomicilio: Provincia[] = [];
@@ -34,20 +37,21 @@ export class DatosIdentidadComponent implements OnInit {
   localidadesNacimientoList: Localidad[] = [];
 
   constructor(
+    @Inject(DatosPersonalesService)
     private serviciosge: DatosPersonalesService,
     private regionService: RegionService,
     private formBuilder: FormBuilder,
     private router: Router,
   ) {
     this.datosIdentidadForm = this.formBuilder.group({
-      dni: ['', [Validators.required, Validators.maxLength(31)]],
+      dni: ['', [Validators.required, Validators.maxLength(31), Validators.pattern(this.soloNumerosPattern)]],
       genero: ['', [Validators.required, Validators.maxLength(15)]],
-      primerNombre: ['', [Validators.required, Validators.maxLength(127)]],
-      segundoNombre: ['', Validators.maxLength(127)],
-      tercerNombre: ['', Validators.maxLength(127)],
-      primerApellido: ['', [Validators.required, Validators.maxLength(127)]],
-      segundoApellido: ['', Validators.maxLength(127)],
-      fechaNacimiento: ['', Validators.required],
+      primerNombre: ['', [Validators.required, Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
+      segundoNombre: ['', [Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
+      tercerNombre: ['',[Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
+      primerApellido: ['', [Validators.required, Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
+      segundoApellido: ['',[Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
+      fechaNacimiento: ['', [Validators.required]],
 
       paisNacimiento: ['', Validators.required],
       provinciaNacimiento: [{ value: '', disabled: true }, Validators.required],
@@ -57,11 +61,11 @@ export class DatosIdentidadComponent implements OnInit {
       provinciaDomicilio: [{ value: '', disabled: true }, Validators.required],
       localidadDomicilio: [{ value: '', disabled: true }, Validators.required],
 
-      barrio: ['', [Validators.required, Validators.maxLength(127)]],
-      calle: ['', [Validators.required, Validators.maxLength(63)]],
-      piso: ['', Validators.maxLength(3)],
-      departamento: ['', Validators.maxLength(3)],
-      telefono: ['', Validators.maxLength(63)],
+      barrio: ['', [Validators.required, Validators.maxLength(127), Validators.pattern(this.letrasYNumerosPattern)]],
+      calle: ['', [Validators.required, Validators.maxLength(63), Validators.pattern(this.letrasYNumerosPattern)]],
+      piso: ['', [Validators.maxLength(3), Validators.pattern(this.soloNumerosPattern)]],
+      departamento: ['', [Validators.maxLength(3), Validators.pattern(this.letrasYNumerosPattern)]],
+      telefono: ['', [Validators.required, Validators.maxLength(63), Validators.pattern(this.soloNumerosPattern)]],
       mailAlumno: [
         '',
         [Validators.required, Validators.email, Validators.maxLength(63)],
@@ -180,11 +184,10 @@ export class DatosIdentidadComponent implements OnInit {
   }
   get dniErrors() {
     const errors = this.dni.errors;
-    return errors
-      ? errors['required']
-        ? 'El DNI es obligatorio.'
-        : null
-      : null;
+      if (!errors) return null;
+      if (errors['required']) return 'El DNI es obligatorio.';
+      if (errors['pattern']) return 'Solo se permiten caracteres validos.';
+      return null;
   }
   get genero() {
     return this.datosIdentidadForm.controls['genero'];
@@ -202,40 +205,44 @@ export class DatosIdentidadComponent implements OnInit {
   }
   get primerNombreErrors() {
     const errors = this.primerNombre.errors;
-    return errors
-      ? errors['required']
-        ? 'El primer nombre es obligatorio.'
-        : null
-      : null;
+      if (!errors) return null;
+      if (errors['required']) return 'El primer nombre es obligatorio.';
+      if (errors['pattern']) return 'Solo se permiten caracteres validos.';
+      return null;
   }
   get segundoNombre() {
     return this.datosIdentidadForm.controls['segundoNombre'];
   }
   get segundoNombreErrors() {
-    return null;
+    const errors = this.segundoNombre.errors;
+      if (!errors) return null;
+      return errors['pattern'] ? 'Solo se permiten caracteres validos.' : null;
   }
   get tercerNombre() {
     return this.datosIdentidadForm.controls['tercerNombre'];
   }
   get tercerNombreErrors() {
-    return null;
+    const errors = this.tercerNombre.errors;
+      if (!errors) return null;
+      return errors['pattern'] ? 'Solo se permiten caracteres validos.' : null;
   }
   get primerApellido() {
     return this.datosIdentidadForm.controls['primerApellido'];
   }
   get primerApellidoErrors() {
     const errors = this.primerApellido.errors;
-    return errors
-      ? errors['required']
-        ? 'El primer apellido es obligatorio.'
-        : null
-      : null;
+      if (!errors) return null;
+      if (errors['required']) return 'El primer apellido es obligatorio.';
+      if (errors['pattern']) return 'Solo se permiten caracteres validos..';
+      return null;
   }
   get segundoApellido() {
     return this.datosIdentidadForm.controls['segundoApellido'];
   }
   get segundoApellidoErrors() {
-    return null;
+    const errors = this.segundoApellido.errors;
+      if (!errors) return null;
+      return errors['pattern'] ? 'Solo se permiten caracteres validos.' : null;
   }
   get fechaNacimiento() {
     return this.datosIdentidadForm.controls['fechaNacimiento'];
@@ -322,45 +329,39 @@ export class DatosIdentidadComponent implements OnInit {
   }
   get barrioErrors() {
     const errors = this.barrio.errors;
-    return errors
-      ? errors['required']
-        ? 'El barrio es obligatorio.'
-        : null
-      : null;
+      if (!errors) return null;
+      if (errors['required']) return 'El barrio es obligatorio.';
+      if (errors['pattern']) return 'Solo se permiten caracteres validos.';
+      return null;
   }
   get telefono() {
     return this.datosIdentidadForm.controls['telefono'];
   }
   get telefonoErrors() {
     const errors = this.telefono.errors;
-    return errors
-      ? errors['required']
-        ? 'El número de telefono es obligatorio.'
-        : null
-      : null;
+      if (!errors) return null;
+      if (errors['required']) return 'El número de telefono es obligatorio.';
+      if (errors['pattern']) return 'Solo se permiten caracteres validos.';
+      return null;
   }
   get calle() {
     return this.datosIdentidadForm.controls['calle'];
   }
   get calleErrors() {
     const errors = this.calle.errors;
-    return errors
-      ? errors['maxLength']
-        ? 'Excede el máximo de carácteres.'
-        : null
-      : null;
+      if (!errors) return null;
+      if (errors['required']) return 'El nombre de la calle es obligatorio.';
+      if (errors['pattern']) return 'Solo se permiten caracteres validos.';
+      return null; 
   }
   get mail() {
     return this.datosIdentidadForm.controls['mailAlumno'];
   }
   get mailErrors() {
-    const errors = this.mail?.errors;
-    return errors
-      ? errors['required']
-        ? 'El email es obligatorio.'
-        : errors['email']
-          ? 'El mail ingresado es invalido.'
-          : null
-      : null;
+    const errors = this.mail.errors;
+      if (!errors) return null;
+      if (errors['required']) return 'El mail es obligatorio.';
+      if (errors['pattern']) return 'Solo se permiten caracteres validos.';
+      return null;
   }
 }
