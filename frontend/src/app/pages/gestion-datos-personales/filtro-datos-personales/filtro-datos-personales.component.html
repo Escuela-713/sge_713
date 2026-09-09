@@ -1,10 +1,7 @@
-
 <h1 class="datosPersonalesTitle">Buscador de Gestión de Datos Personales</h1>
 
 <form [formGroup]="filter">
-
   <div id="curso-division">
-
     <div>
       <label for="nombre-input" class="form-label">Nombre y apellido</label>
       <input
@@ -17,7 +14,7 @@
     </div>
 
     <div>
-      <label for="dni-input" class="form-label">DNI</label>
+      <label for="dni-input" class="form-label">DNI (Sin puntos)</label>
       <input
         id="dni-input"
         type="text"
@@ -26,9 +23,13 @@
         placeholder="Ej: 45423912"
       />
     </div>
-
   </div>
 
-  <button type="button" class="btn btnSave" (click)="filtrar()">Buscar</button>
-
+  <button type="button" class="btn btnSave mb-2 mt-2" (click)="filtrar()">
+    Buscar
+  </button>
+  <button type="button" class="btn btnSave" (click)="redirigir()">
+    Cargar Alumno
+  </button>
 </form>
+

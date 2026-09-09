@@ -23,9 +23,7 @@ export class AgregarSlideComponent {
     this.form = this.fb.group({
       image: ['', Validators.required],
       title: ['', Validators.required],
-      subtitle: [''],
-      buttonText: ['', Validators.required],
-      buttonLink: ['', Validators.required]
+      subtitle: ['']
     });
   }
 
@@ -56,8 +54,6 @@ export class AgregarSlideComponent {
         image: values.image,
         title: values.title,
         subtitle: values.subtitle,
-        buttonText: values.buttonText,
-        buttonLink: values.buttonLink
       });
 
       alert('Slide agregado correctamente');

@@ -17,8 +17,8 @@ export class AgregarPosteoComponent {
   constructor(private fb: FormBuilder, private novedadesService: NovedadesService, private router: Router) {
     this.form = this.fb.group({
       image: ['', Validators.required],
-      title: ['', [Validators.required, Validators.minLength(5)]],
-      categoria: ['evento', Validators.required],
+      title: ['', [Validators.required]],
+      categoria: ['', Validators.required],
       content: ['', [Validators.required, Validators.minLength(10)]]
     });
 
@@ -69,11 +69,11 @@ export class AgregarPosteoComponent {
         dateIcon: ''
       };
       this.novedadesService.addCard(payload as any).then(() => {
-        alert('Posteo agregado');
+        alert('Publicación agregada correctamente');
         this.router.navigate(['/dashboard/home']);
       }).catch((err: any) => {
-        console.error('Error agregando posteo', err);
-        alert('No se pudo agregar el posteo');
+        console.error('Error agregando la publicación', err);
+        alert('No se pudo agregar la publicación');
       });
     } else {
       this.form.markAllAsTouched();

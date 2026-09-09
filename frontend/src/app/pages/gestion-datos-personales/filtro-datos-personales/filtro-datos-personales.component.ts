@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -13,15 +12,22 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 export class FiltroDatosPersonalesComponent {
   filter: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+  ) {
     this.filter = this.formBuilder.group({
       nombreApellido: [''],
-      dni: ['']
+      dni: [''],
     });
   }
 
-  get nombreApellido() { return this.filter.controls['nombreApellido']; }
-  get dni() { return this.filter.controls['dni']; }
+  get nombreApellido() {
+    return this.filter.controls['nombreApellido'];
+  }
+  get dni() {
+    return this.filter.controls['dni'];
+  }
 
   filtrar() {
     const { nombreApellido, dni } = this.filter.value;
@@ -30,9 +36,10 @@ export class FiltroDatosPersonalesComponent {
     if (!nombreApellido.trim() && !dni.trim()) {
       return;
     }
+  }
 
-    this.router.navigate(['/dashboard/datos-personales'], {
-      queryParams: { nombreApellido: nombreApellido.trim(), dni: dni.trim() }
-    });
+  redirigir() {
+    this.router.navigate(['/dashboard/datos-personales']);
   }
 }
+
