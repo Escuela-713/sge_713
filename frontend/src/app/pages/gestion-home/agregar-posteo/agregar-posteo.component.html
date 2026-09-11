@@ -19,7 +19,7 @@
 
         <label for="categoria">Categoría <span>*</span></label>
         <select id="categoria" formControlName="categoria">
-        <option value="">Seleccione una categoría</option>
+        <option value="" hidden selected>Seleccione una categoría</option>
         @for (categoria of categorias; track categoria.id) {
         <option [value]="categoria.nombre">{{ categoria.nombre }}</option>
         }
