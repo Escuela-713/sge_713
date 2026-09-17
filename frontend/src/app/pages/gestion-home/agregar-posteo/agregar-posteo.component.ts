@@ -2,6 +2,7 @@ import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NovedadesService } from '../../../services/novedades.service';
+import { CategoriasService, Categoria } from '../../../services/categorias.service';
 
 @Component({
   selector: 'app-agregar-posteo',
@@ -13,8 +14,9 @@ import { NovedadesService } from '../../../services/novedades.service';
 export class AgregarPosteoComponent {
   form: FormGroup;
   novedad = signal<any | null>(null);
+  categorias: Categoria[] = [];
 
-  constructor(private fb: FormBuilder, private novedadesService: NovedadesService, private router: Router) {
+  constructor(private fb: FormBuilder, private novedadesService: NovedadesService, private router: Router, private categoriasService: CategoriasService) {
     this.form = this.fb.group({
       image: ['', Validators.required],
       title: ['', [Validators.required]],
@@ -32,6 +34,19 @@ export class AgregarPosteoComponent {
         dateIcon: 'M0 64C0 46 ...', // ícono de fecha
         description: val.content
       });
+    });
+     this.obtenerCategorias();
+  }
+
+  obtenerCategorias(): void {
+    this.categoriasService.obtenerCategorias().subscribe({
+      next: (data) => {
+        this.categorias = data;
+        console.log('Categorías cargadas:', this.categorias);
+      },
+      error: (err) => {
+        console.error('Error al cargar categorías:', err);
+      }
     });
   }
 

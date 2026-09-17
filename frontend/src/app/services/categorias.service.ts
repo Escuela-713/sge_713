@@ -13,9 +13,9 @@ export interface Categoria {
 export class CategoriasService {
     private categorias: Categoria[] = [
         { id: 1, nombre: 'Evento' },
-        { id: 1, nombre: 'Anuncio' },
-        { id: 1, nombre: 'Acto Escolar' },
-        { id: 1, nombre: 'Publicidad' },
+        { id: 2, nombre: 'Anuncio' },
+        { id: 3, nombre: 'Acto Escolar' },
+        { id: 4, nombre: 'Publicidad' },
     ];
 
     constructor() { }

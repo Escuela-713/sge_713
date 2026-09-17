@@ -19,10 +19,10 @@
 
         <label for="categoria">Categoría <span>*</span></label>
         <select id="categoria" formControlName="categoria">
-          <option value="Evento">Evento</option>
-          <option value="Anuncio">Anuncio</option>
-          <option value="Acto">Acto Escolar</option>
-          <option value="Publicidad">Publicidad</option>
+        <option value="" hidden selected>Seleccione una categoría</option>
+        @for (categoria of categorias; track categoria.id) {
+        <option [value]="categoria.nombre">{{ categoria.nombre }}</option>
+        }
         </select>
         @if(form.get('categoria')?.invalid && form.get('categoria')?.touched){
           <p class="error">Seleccione una categoría</p>
