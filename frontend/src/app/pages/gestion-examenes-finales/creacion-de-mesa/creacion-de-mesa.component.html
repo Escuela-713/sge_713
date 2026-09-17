@@ -1,52 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario</title>
-</head>
-<body>
-
-<form action="">
-<h2>Mesa de Examen</h2>
-<label for="ano">Año:</label>
-    <select name="ano" id="ano" required>
-      @for(curso of cursos; track curso) {
-      <option [value]="curso">{{curso}}°</option>
+<form [formGroup]="formularioMesaExamen">
+  <h2>Mesa de Examen</h2>
+  <label>
+    Año:
+    <select formControlName="ano" required>
+      @for (curso of cursos; track curso) {
+        <option [value]="curso">{{ curso }}°</option>
       }
     </select>
-<label for="carrera">Carrera:</label>
-<select name="carrera" id="carrera" required>
-    @for(carrera of carreras; track carrera.id_carrera) {
-        <option [value]="carrera.nombre">{{carrera.nombre}}</option>
-    }
-</select>
-<label for="materia">Materia:</label>
-<select name="materia" id="materia" required>
-   @for(materia of materias; track materia.id_materia) {
-    <option [value]="materia.nombre">{{materia.nombre}}</option>
-   }
-</select>
-
-    <label for="profesor-titular">Profesor titular:</label>
-    <input type="text" id="profesor-titular" name="profesor-titular" required>
-     <label for="profesor-primer-vocal">Profesor primer vocal</label>
-    <input type="text" id="profesor-primer-vocal" name="profesor-primer-vocal" required>
-     <label for="profesor-segundo-vocal">Profesor segundo vocal:</label>
-    <input type="text" id="profesor-segundo-vocal" name="profesor-segundo-vocal" required>
-
-    <label for="fecha">Fecha del examen:</label>
-    <input type="date" id="fecha" name="fecha" required>
-
-    <label for="turno">Turno:</label>
-    <select name="turno" id="turno" required>
-        <option value="">Seleccionar...</option>
-        <option value="mañana">Mañana</option>
-        <option value="tarde">Tarde</option>
-        <option value="noche">Noche</option>
+  </label>
+  <label>
+    Carrera:
+    <select formControlName="carrera" required>
+      @for (carrera of carreras; track carrera.id_carrera) {
+        <option [value]="carrera.nombre">{{ carrera.nombre }}</option>
+      }
     </select>
+  </label>
 
-    <button type="submit">Enviar inscripcion</button>
-    </form>
-</body>
-</html>
+  <label>
+    Materia:
+    <select formControlName="materia" required>
+      @for (materia of materias; track materia.id_materia) {
+        <option [value]="materia.nombre">{{ materia.nombre }}</option>
+      }
+    </select>
+  </label>
+  <label>
+    Profesor titular:
+    <input type="text" formControlName="profesorTitular" required />
+  </label>
+  <label>
+    Profesor primer vocal:
+    <input
+      type="text"
+      formControlName="profesorPrimerVocal"
+      required
+    />
+  </label>
+  <label>
+    Profesor segundo vocal:
+    <input
+      type="text"
+      formControlName="profesorSegundoVocal"
+      required
+    />
+  </label>
+
+  <label>
+    Fecha del examen:
+
+    <input type="date" formControlName="fecha" required />
+  </label>
+
+  <label>
+    Turno:
+    <select formControlName="turno" required>
+      <option value="">Seleccionar...</option>
+      <option value="mañana">Mañana</option>
+      <option value="tarde">Tarde</option>
+      <option value="noche">Noche</option>
+    </select>
+  </label>
+  <button type="submit">Enviar inscripcion</button>
+</form>

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CarrerasService } from '../../../services/carreras.service';
 import { MateriasService } from '../../../services/materias.service';
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms'
 
 @Component({
   selector: 'app-creacion-de-mesa',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './creacion-de-mesa.component.html',
   styleUrl: './creacion-de-mesa.component.css',
 })
@@ -16,6 +17,7 @@ export class CreacionDeMesaComponent {
   constructor(
     private servicioMateria: MateriasService,
     private servicioCarrera: CarrerasService,
+    private fb: FormBuilder,
   ) {
     servicioMateria.obtenerMaterias().subscribe({
       next: (data) => {
@@ -37,4 +39,15 @@ export class CreacionDeMesaComponent {
       complete: () => {},
     });
   }
+
+  formularioMesaExamen = this.fb.group({
+    ano: ['', [ Validators.required, Validators.min(1), Validators.max(7)]],
+    carrera: ['', [Validators.required]],
+    materia: ['', [Validators.required]],
+    profesorTitular: ['', [Validators.required, Validators.minLength(3)]],
+    profesorPrimerVocal: ['', [Validators.required, Validators.minLength(3)]],
+    profesorSegundoVocal: ['', [Validators.required, Validators.minLength(3)]],
+    fecha: ['', [Validators.required]],
+    turno: ['', [Validators.required]],
+  })
 }
