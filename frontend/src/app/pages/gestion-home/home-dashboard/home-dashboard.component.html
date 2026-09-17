@@ -8,7 +8,7 @@
   @if (isLoading) {
     <div class="loading-container">
       <div class="loading-spinner"></div>
-      <p>Cargando información de las novedades de la escuela...</p>
+      <p>Cargando información de las publicaciones de la escuela...</p>
     </div>
   } @else {
     <!-- Dashboard Content -->
@@ -57,7 +57,7 @@
       <!-- Sección de Últimas Publicaciones -->
       <div class="recent-posts-section">
         <div class="section-header">
-          <h2 class="section-title">Últimas Novedades del Colegio</h2>
+          <h2 class="section-title">Últimas Publiaciones del Colegio</h2>
           <button class="view-all-btn" (click)="mostrarTodasLasNovedades()">
             {{ mostrarTodas ? 'Ver menos' : 'Ver todas' }}
           </button>
@@ -89,8 +89,8 @@
                     <span>{{ formatearFecha(card.date) }}</span>
                   </div>
                   <div class="post-actions">
-                    <a class="view-post-link" [routerLink]="['/novedad', card.slug]">Ver Novedad</a>
-                    <a class="edit-post-link" [routerLink]="['/dashboard/home/editar-novedad', card.slug]">Editar Novedad</a>
+                    <a class="view-post-link" [routerLink]="['/novedad', card.slug]">Ver Publicación</a>
+                    <a class="edit-post-link" [routerLink]="['/dashboard/home/editar-novedad', card.slug]">Editar Publicación</a>
                     <button class="delete-post-link" (click)="onDeleteCard(card)">Eliminar</button>
                   </div>
                 </div>
@@ -105,7 +105,7 @@
               <!-- icono vacío -->
             </div>
             <h3>No hay contenido disponible</h3>
-            <p>No se encontraron artículos para mostrar</p>
+            <p>No se encontraron publicaciones para mostrar</p>
             <button class="create-post-btn" routerLink="agregar-posteo">Agregar Contenido</button>
           </div>
         }
