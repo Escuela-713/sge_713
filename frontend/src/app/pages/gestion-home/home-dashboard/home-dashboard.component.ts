@@ -81,10 +81,10 @@ export class HomeDashboardComponent implements OnInit {
     try {
       await this.novedadesService.deleteCardById(card.id);
       await this.cargarDatos();
-      alert('Posteo eliminado');
+      alert('Publicaión eliminada');
     } catch (err) {
       console.error('Error eliminando card:', err);
-      alert('Error al eliminar el posteo');
+      alert('Error al eliminar la puublicación');
     }
   }
 
