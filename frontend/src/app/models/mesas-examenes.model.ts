@@ -1,14 +1,14 @@
-export type Fecha = `${string}/${string}`;
+export type Fecha = `${number}/${number}`;
 
-export type Carrera = 'Humanidades' | 'ETP' | 'ESB' | 'Comunicaciones';
+export interface Carrera {
+  id_carrera: number;
+  nombre: string;
+}
 
-export type Materia = 'Matemática' | 'Desarrollo I' | 'Lengua';
-
-type Tribunal = {
-  profesorTitular: string;
-  profesorPrimerVocal: string;
-  profesorSegundoVocal: string;
-};
+export interface Materia {
+  id_materia: number;
+  nombre: string;
+}
 
 type Id = number;
 
@@ -21,5 +21,7 @@ export interface Mesa {
   ano: Ano;
   modalidad: Carrera;
   materia: Materia;
-  tribunal: Tribunal;
+  profesorTitular: string;
+  profesorPrimerVocal: string;
+  profesorSegundoVocal: string;
 }
