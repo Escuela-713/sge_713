@@ -2,13 +2,20 @@
   "mesas": [
     {
       "id": 1,
+<<<<<<< HEAD
       "fechaInicio": "10/4",
       "fechaFin": "12/4",
+=======
+      "fecha": "10/4",
+>>>>>>> valen
       "hora": "15:30",
       "ano": 6,
       "modalidad": "Humanidades",
       "materia": "Matemática",
+<<<<<<< HEAD
       "turno": "Tarde",
+=======
+>>>>>>> valen
       "tribunal": {
         "profesorTitular": "Lorena Aleuy",
         "profesorPrimerVocal": "Analía Vivanco",
@@ -17,13 +24,20 @@
     },
     {
       "id": 2,
+<<<<<<< HEAD
       "fechaInicio": "10/4",
       "fechaFin": "12/4",
+=======
+      "fecha": "10/4",
+>>>>>>> valen
       "hora": "16:50",
       "ano": 3,
       "modalidad": "ESB",
       "materia": "Lengua",
+<<<<<<< HEAD
       "turno": "Mañana",
+=======
+>>>>>>> valen
       "tribunal": {
         "profesorTitular": "Patricia Barbieri",
         "profesorPrimerVocal": "Rocío Gutierrez",
@@ -32,13 +46,20 @@
     },
     {
       "id": 3,
+<<<<<<< HEAD
       "fechaInicio": "15/4",
       "fechaFin": "15/4",
+=======
+      "fecha": "15/4",
+>>>>>>> valen
       "hora": "14:00",
       "ano": 4,
       "modalidad": "ETP",
       "materia": "Desarrollo I",
+<<<<<<< HEAD
       "turno": "Tarde",
+=======
+>>>>>>> valen
       "tribunal": {
         "profesorTitular": "Ivana Rojas",
         "profesorPrimerVocal": "Pablo Bersier",

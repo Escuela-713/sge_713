@@ -6,13 +6,13 @@
     "angular": {
       "projectType": "application",
       "schematics": {
-          "@schematics/angular:component": {
-            "type": "component"
-          },
-          "@schematics/angular:service": {
-            "type": "service"
-          }
+        "@schematics/angular:component": {
+          "type": "component"
         },
+        "@schematics/angular:service": {
+          "type": "service"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -37,7 +37,7 @@
               "src/styles.css"
             ],
             "scripts": [
-             "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "./node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ],
             "browser": "src/main.ts"
           },
@@ -67,7 +67,13 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"

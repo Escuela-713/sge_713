@@ -1,73 +1,67 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core'
 import type {
-  Fecha,
-  Mesa,
   Carrera,
+  Fecha,
   Materia,
-} from '@models/mesas-examenes.model';
-import { CarrerasService } from '@services/carreras.service';
-import { MateriasService } from '@services/materias.service';
-import { MesasExamenesService } from '@services/mesas-examenes.service';
+  Mesa,
+} from '@models/mesas-examenes.model'
+import { CarrerasService } from '@services/carreras.service'
+import { MateriasService } from '@services/materias.service'
+import { MesasExamenesService } from '@services/mesas-examenes.service'
+
+interface FechasMesas {
+  fecha: Set<Fecha> | string
+  hora: Set<string> | string
+}
 
 @Component({
   selector: 'app-tabla-mesa-examen',
   templateUrl: './tabla-mesa-examen.html',
   styleUrl: './tabla-mesa-examen.css',
 })
-export class TablaMesaExamenComponent {
-  materias: any = [];
-  carreras: any = [];
-  mesas: Mesa[] = [];
+export class TablaMesaExamenComponent implements OnInit {
+  private servicioMateria = inject(MateriasService)
+  private servicioCarrera = inject(CarrerasService)
+  private servicioMesasExamenes = inject(MesasExamenesService)
+  private cdr = inject(ChangeDetectorRef)
 
-  fechasMesas: {
-    inicio: Set<Fecha> | string;
-    fin: Set<Fecha> | string;
-    hora: Set<string> | string;
-  } = {
-    inicio: '',
-    fin: '',
+  materias: Materia[] = []
+  carreras: Carrera[] = []
+  mesas: Mesa[] = []
+
+  fechasMesas: FechasMesas = {
+    fecha: '',
     hora: '',
-  };
-  cursos = [1, 2, 3, 4, 5, 6, 7];
+  }
+  cursos = [1, 2, 3, 4, 5, 6, 7]
 
-  constructor(
-    private servicioMateria: MateriasService,
-    private servicioCarrera: CarrerasService,
-    private servicioMesasExamenes: MesasExamenesService,
-  ) {
-    servicioMateria.obtenerMaterias().subscribe({
+  ngOnInit(): void {
+    this.servicioMateria.obtenerMaterias().subscribe({
       next: (data: Materia[]) => {
-        this.materias = data;
+        this.materias = data
       },
-      error: (error: any) => {
-        console.error(error);
+      error: (error: unknown) => {
+        console.error(error)
       },
-      complete: () => {},
-    });
+      complete: () => this.cdr.detectChanges(),
+    })
 
-    servicioCarrera.obtenerCarreras().subscribe({
-      next: (data: Carrera[]) => {
-        this.carreras = data;
-      },
-      error: (error: any) => {
-        console.error(error);
-      },
+    this.servicioCarrera.obtenerCarreras().subscribe({
+      next: (data: Carrera[]) => (this.carreras = data),
+      error: (error: unknown) => console.error(error),
       complete: () => {},
-    });
+    })
 
-    servicioMesasExamenes.obtenerMesas().subscribe({
+    this.servicioMesasExamenes.obtenerMesas().subscribe({
       next: (data: Mesa[]) => {
-        this.mesas = data;
+        this.mesas = data
         this.fechasMesas = {
-          inicio: new Set(this.mesas.map((mesa) => mesa.fechaInicio)),
-          fin: new Set(this.mesas.map((mesa) => mesa.fechaFin)),
+          fecha: new Set(this.mesas.map((mesa) => mesa.fecha)),
           hora: new Set(this.mesas.map((mesa) => mesa.hora)),
-        };
+        }
       },
-      error: (error: any) => {
-        console.error(error);
-      },
-      complete: () => {},
-    });
+      error: (error: unknown) => console.error(error),
+      complete: () => this.cdr.detectChanges(),
+    })
   }
 }

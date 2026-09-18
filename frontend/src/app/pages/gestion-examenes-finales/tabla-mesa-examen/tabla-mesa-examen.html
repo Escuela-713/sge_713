@@ -3,16 +3,8 @@
     <label for="fecha-inicio">
       Fecha de inicio:
       <select name="fecha-inicio" id="fecha-inicio">
-        @for (fecha of fechasMesas.inicio; track fecha) {
-        <option>{{fecha}}</option>
-        }
-      </select>
-    </label>
-    <label for="fecha-fin">
-      Fecha de finalización:
-      <select name="fecha-fin" id="fecha-fin">
-        @for (fecha of fechasMesas.fin; track fecha) {
-        <option>{{fecha}}</option>
+        @for (fecha of fechasMesas.fecha; track fecha) {
+          <option>{{fecha}}</option>
         }
       </select>
     </label>
@@ -20,7 +12,7 @@
       Hora:
       <select name="hora" id="hora">
         @for (hora of fechasMesas.hora; track hora) {
-        <option>{{hora}}</option>
+          <option>{{hora}}</option>
         }
       </select>
     </label>
@@ -29,7 +21,7 @@
 
       <select name="materia" id="materia" required>
         @for(materia of materias; track materia.id_materia) {
-        <option [value]="materia.nombre">{{materia.nombre}}</option>
+          <option [value]="materia.nombre">{{materia.nombre}}</option>
         }
       </select>
     </label>
@@ -38,7 +30,7 @@
 
       <select name="carrera" id="carrera" required>
         @for(carrera of carreras; track carrera.id_carrera) {
-        <option [value]="carrera.nombre">{{carrera.nombre}}</option>
+          <option [value]="carrera.nombre">{{carrera.nombre}}</option>
         }
       </select>
     </label>
@@ -47,7 +39,7 @@
 
       <select name="ano" id="ano" required>
         @for(curso of cursos; track curso) {
-        <option [value]="curso">{{curso}}°</option>
+          <option [value]="curso">{{curso}}°</option>
         }
       </select>
     </label>
@@ -63,28 +55,26 @@
         <th>Año</th>
         <th>Modalidad</th>
         <th>Materia</th>
-        <th>Turno</th>
         <th>Tribunal</th>
         <th>Acciones</th>
       </tr>
     </thead>
     <tbody>
       @for(mesa of mesas; track mesa.id) {
-      <tr>
-        <td>{{mesa.fechaInicio}} - {{mesa.fechaFin}}</td>
-        <td>{{mesa.ano}}</td>
-        <td>{{mesa.modalidad}}</td>
-        <td>{{mesa.materia}}</td>
-        <td>{{mesa.turno}}</td>
-        <td>
-          {{mesa.tribunal.profesorTitular}},
-          {{mesa.tribunal.profesorPrimerVocal}},
-          {{mesa.tribunal.profesorSegundoVocal}}
-        </td>
-        <td>
-          <button id="inscribirse-a-la-mesa">Inscribirse</button>
-        </td>
-      </tr>
+        <tr>
+          <td>{{mesa.fecha}}</td>
+          <td>{{mesa.ano}}</td>
+          <td>{{mesa.modalidad}}</td>
+          <td>{{mesa.materia}}</td>
+          <td>
+            {{mesa.profesorTitular}},
+            {{mesa.profesorPrimerVocal}},
+            {{mesa.profesorSegundoVocal}}
+          </td>
+          <td>
+            <button id="inscribirse-a-la-mesa">Inscribirse</button>
+          </td>
+        </tr>
       }
     </tbody>
   </table>

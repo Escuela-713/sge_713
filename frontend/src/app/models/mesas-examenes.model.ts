@@ -1,29 +1,27 @@
-export type Fecha = `${string}/${string}`;
+export type Fecha = `${number}/${number}`
 
-export type Carrera = 'Humanidades' | 'ETP' | 'ESB' | 'Comunicaciones';
+export interface Carrera {
+  id_carrera: number
+  nombre: string
+}
 
-export type Materia = 'Matemática' | 'Desarrollo I' | 'Lengua';
+export interface Materia {
+  id_materia: number
+  nombre: string
+}
 
-type Tribunal = {
-  profesorTitular: string;
-  profesorPrimerVocal: string;
-  profesorSegundoVocal: string;
-};
+type Id = number
 
-type Turno = 'Mañana' | 'Tarde' | 'Noche'; // TODO: Normalizar en todos lados "Noche" por "Vespertino"
-
-type Id = number;
-
-type Ano = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+type Ano = 1 | 2 | 3 | 4 | 5 | 6 | 7
 
 export interface Mesa {
-  id: Id;
-  fechaInicio: Fecha;
-  fechaFin: Fecha;
-  hora: string;
-  ano: Ano;
-  modalidad: Carrera;
-  materia: Materia;
-  turno: Turno;
-  tribunal: Tribunal;
+  id: Id
+  fecha: Fecha
+  hora: string
+  ano: Ano
+  modalidad: Carrera
+  materia: Materia
+  profesorTitular: string
+  profesorPrimerVocal: string
+  profesorSegundoVocal: string
 }
