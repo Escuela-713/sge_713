@@ -1,0 +1,72 @@
+<div class="modal-overlay" (click)="onCancelar()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+      <h3>{{ modoEdicion ? 'Editar Evento' : 'Agregar Evento' }}</h3>
+      <button type="button" class="close-btn" (click)="onCancelar()">&times;</button>
+    </div>
+
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="titulo">Título</label>
+        <input id="titulo" type="text" formControlName="titulo" placeholder="Ej: Campaña de donación de sangre"
+          [class.input-invalido]="campoInvalido('titulo')">
+        @if (campoInvalido('titulo')) {
+          <span class="error-msg">
+            @if (formulario.get('titulo')?.errors?.['required']) {
+              El título es obligatorio.
+            } @else if (formulario.get('titulo')?.errors?.['minlength']) {
+              El título debe tener al menos 3 caracteres.
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="descripcion">Descripción</label>
+        <textarea id="descripcion" formControlName="descripcion" rows="3"
+          placeholder="Detalles del evento..." [class.input-invalido]="campoInvalido('descripcion')"></textarea>
+        @if (campoInvalido('descripcion')) {
+          <span class="error-msg">
+            @if (formulario.get('descripcion')?.errors?.['required']) {
+              La descripción es obligatoria.
+            } @else if (formulario.get('descripcion')?.errors?.['minlength']) {
+              La descripción debe tener al menos 10 caracteres.
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fecha">Fecha</label>
+          <input id="fecha" type="text" formControlName="fecha" placeholder="Ej: 28 de junio de 2026"
+            [class.input-invalido]="campoInvalido('fecha')">
+          @if (campoInvalido('fecha')) {
+            <span class="error-msg">La fecha es obligatoria.</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <select id="estado" formControlName="estado">
+            <option value="activo">Activo</option>
+            <option value="historial">Historial</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="imagen">Imagen (URL)</label>
+        <input id="imagen" type="text" formControlName="imagen" placeholder="https://...">
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-cancelar" (click)="onCancelar()">Cancelar</button>
+        <button type="submit" class="btn-guardar">{{ modoEdicion ? 'Guardar cambios' : 'Crear evento' }}</button>
+      </div>
+
+    </form>
+  </div>
+</div>

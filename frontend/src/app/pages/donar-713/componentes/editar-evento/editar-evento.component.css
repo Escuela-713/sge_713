@@ -1,23 +1,78 @@
-.gestion-container {
-  font-family: Arial, sans-serif;
-  max-width: 800px;
+.admin-container {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  max-width: 900px;
   margin: 20px auto;
   padding: 20px;
+}
+
+.admin-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.admin-header h1 {
+  margin: 0 0 6px 0;
+  font-size: 1.8rem;
+  color: #1a1a2e;
+}
+
+.admin-header p {
+  margin: 0;
+  color: #666;
+}
+
+/* ===== NAVBAR PRINCIPAL ===== */
+.main-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  background: #f5ece8;
+  padding: 6px;
+  border-radius: 12px;
+  max-width: 420px;
+  margin: 0 auto 28px auto;
+}
+
+.main-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #555;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.main-tab.active {
+  background: #cc001f;
+  color: white;
+}
+
+/* ===== APARTADO (sección Eventos / Noticias) ===== */
+.apartado {
   background-color: #fcfbfa;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  margin-bottom: 24px;
 }
-.header-section {
+
+.apartado-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
-.header-section h2 {
+
+.apartado-header h2 {
   margin: 0;
   font-size: 1.15rem;
   color: #111;
 }
+
 .btn-agregar {
   background-color: #cc001f;
   color: white;
@@ -27,97 +82,110 @@
   cursor: pointer;
   font-weight: bold;
 }
-.noticia-card {
+
+.btn-agregar:hover {
+  background-color: #a80019;
+}
+
+/* ===== SUB NAVBAR (centrado, dentro del apartado) ===== */
+.sub-navbar {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  background: #eee;
+  padding: 5px;
+  border-radius: 10px;
+  max-width: 380px;
+  margin: 0 auto 20px auto;
+}
+
+.sub-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 8px 14px;
+  border-radius: 7px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sub-tab.active {
+  background: white;
+  color: #cc001f;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== LISTA DE ITEMS (eventos / noticias) ===== */
+.lista-items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.lista-vacia {
+  text-align: center;
+  color: #999;
+  padding: 24px 0;
+}
+
+.item-card {
   display: flex;
   background: #f5ece8;
   padding: 15px;
-  margin-bottom: 15px;
   border-radius: 16px;
   align-items: center;
 }
-.noticia-img {
+
+.item-img {
   width: 80px;
   height: 80px;
   border-radius: 12px;
   object-fit: cover;
   margin-right: 15px;
+  background-color: #e0d5d0;
+  flex-shrink: 0;
 }
-.noticia-info {
+
+.item-info {
   flex-grow: 1;
 }
-.noticia-info h3 { margin: 0 0 5px 0; font-size: 1.1rem; color: #111; }
+
+.item-info h3 { margin: 0 0 5px 0; font-size: 1.1rem; color: #111; }
 .descripcion { margin: 0 0 5px 0; color: #666; font-size: 0.9rem; }
 .fecha { margin: 0; color: #999; font-size: 0.8rem; }
-.noticia-acciones button {
+
+.item-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item-acciones button {
   border: 1px solid #ccc;
   background: white;
   padding: 8px;
+  min-width: 36px;
   border-radius: 8px;
-  margin-left: 8px;
   cursor: pointer;
 }
-.noticia-acciones .delete-btn {
+
+.item-acciones .delete-btn {
   background-color: #cc001f;
   color: white;
   border: none;
 }
-.modal-overlay {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 16px;
-  width: 100%;
-  max-width: 500px;
-}
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
-}
-.close-btn { background: none; border: none; font-size: 1.5rem; cursor: pointer; }
-.form-group {
-  margin-top: 15px;
-}
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-  font-size: 0.9rem;
-}
-.form-group input, .form-group textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-sizing: border-box;
-}
-.modal-footer {
-  margin-top: 20px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-.btn-cancelar {
-  background: #f5ece8;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-.btn-guardar {
-  background: #cc001f;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  cursor: pointer;
+
+@media (max-width: 480px) {
+  .item-card {
+    flex-wrap: wrap;
+  }
+  .item-acciones {
+    flex-direction: row;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: flex-end;
+  }
 }

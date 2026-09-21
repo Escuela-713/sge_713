@@ -1,50 +1,146 @@
-<div class="gestion-container">
+<div class="admin-container">
 
-  <div class="header-section">
-    <h2>Gestión de Noticias</h2>
-    <button class="btn-agregar">
-      + Agregar Noticia
+  <div class="admin-header">
+    <h1>Panel de Administración</h1>
+    <p>Gestioná los eventos y las noticias que se muestran en Donar 713.</p>
+  </div>
+
+  <!-- NAVBAR PRINCIPAL: Eventos / Noticias -->
+  <nav class="main-tabs">
+    <button
+      type="button"
+      class="main-tab"
+      [class.active]="seccionActiva === 'eventos'"
+      (click)="cambiarSeccion('eventos')">
+      Eventos
     </button>
-  </div>
+    <button
+      type="button"
+      class="main-tab"
+      [class.active]="seccionActiva === 'noticias'"
+      (click)="cambiarSeccion('noticias')">
+      Noticias
+    </button>
+  </nav>
 
-  <div class="noticia-card">
-    <img class="noticia-img" src="" alt="Exitosa Jornada de Donación">
-    <div class="noticia-info">
-      <h3>Exitosa Jornada de Donación</h3>
-      <p class="descripcion">Más de 50 estudiantes participaron en nuestra última campaña de donación de sangre, superando todas las expectativas.</p>
-      <p class="fecha">2024-03-15</p>
-    </div>
-    <div class="noticia-acciones">
-      <button></button>
-      <button class="delete-btn"></button>
-    </div>
-  </div>
+  <!-- ================= SECCIÓN EVENTOS ================= -->
+  @if (seccionActiva === 'eventos') {
+    <section class="apartado">
 
-  <div class="noticia-card">
-    <img class="noticia-img" src="" alt="Alianza con Hospital Regional">
-    <div class="noticia-info">
-      <h3>Alianza con Hospital Regional</h3>
-      <p class="descripcion">Firmamos un convenio de colaboración con el Hospital Regional para facilitar el proceso de donación.</p>
-      <p class="fecha">2024-03-10</p>
-    </div>
-    <div class="noticia-acciones">
-      <button></button>
-      <button class="delete-btn"></button>
-    </div>
-  </div>
+      <div class="apartado-header">
+        <h2>Gestión de Eventos</h2>
+        <button class="btn-agregar" (click)="abrirFormularioEvento()">
+          + Agregar Evento
+        </button>
+      </div>
 
-  <div class="noticia-card">
-    <img class="noticia-img" src="" alt="Reconocimiento a Voluntarios">
-    <div class="noticia-info">
-      <h3>Reconocimiento a Voluntarios</h3>
-      <p class="descripcion">Nuestros voluntarios fueron reconocidos por su labor solidaria durante todo el año escolar.</p>
-      <p class="fecha">2024-03-05</p>
-    </div>
-    <div class="noticia-acciones">
-      <button></button>
-      <button class="delete-btn"></button>
-    </div>
-  </div>
+      <!-- SUB NAVBAR: Eventos activos / Historial de eventos -->
+      <div class="sub-navbar">
+        <button
+          type="button"
+          class="sub-tab"
+          [class.active]="tabEventos === 'activo'"
+          (click)="cambiarTabEventos('activo')">
+          Eventos activos
+        </button>
+        <button
+          type="button"
+          class="sub-tab"
+          [class.active]="tabEventos === 'historial'"
+          (click)="cambiarTabEventos('historial')">
+          Historial de eventos
+        </button>
+      </div>
 
+      <div class="lista-items">
+        @for (evento of eventosFiltrados; track evento.id) {
+          <div class="item-card">
+            <img class="item-img" [src]="evento.imagen" [alt]="evento.titulo">
+            <div class="item-info">
+              <h3>{{ evento.titulo }}</h3>
+              <p class="descripcion">{{ evento.descripcion }}</p>
+              <p class="fecha">{{ evento.fecha }}</p>
+            </div>
+            <div class="item-acciones">
+              <button class="edit-btn" (click)="abrirFormularioEvento(evento)" aria-label="Editar evento">✎</button>
+              <button class="delete-btn" (click)="eliminarEvento(evento)" aria-label="Eliminar evento">🗑</button>
+            </div>
+          </div>
+        } @empty {
+          <p class="lista-vacia">No hay eventos en esta categoría todavía.</p>
+        }
+      </div>
+
+    </section>
+  }
+
+  <!-- ================= SECCIÓN NOTICIAS ================= -->
+  @if (seccionActiva === 'noticias') {
+    <section class="apartado">
+
+      <div class="apartado-header">
+        <h2>Gestión de Noticias</h2>
+        <button class="btn-agregar" (click)="abrirFormularioNoticia()">
+          + Agregar Noticia
+        </button>
+      </div>
+
+      <!-- SUB NAVBAR: Noticias recientes / Historial de noticias -->
+      <div class="sub-navbar">
+        <button
+          type="button"
+          class="sub-tab"
+          [class.active]="tabNoticias === 'reciente'"
+          (click)="cambiarTabNoticias('reciente')">
+          Noticias recientes
+        </button>
+        <button
+          type="button"
+          class="sub-tab"
+          [class.active]="tabNoticias === 'historial'"
+          (click)="cambiarTabNoticias('historial')">
+          Historial de noticias
+        </button>
+      </div>
+
+      <div class="lista-items">
+        @for (noticia of noticiasFiltradas; track noticia.id) {
+          <div class="item-card">
+            <img class="item-img" [src]="noticia.imagen" [alt]="noticia.titulo">
+            <div class="item-info">
+              <h3>{{ noticia.titulo }}</h3>
+              <p class="descripcion">{{ noticia.descripcion }}</p>
+              <p class="fecha">{{ noticia.fecha }}</p>
+            </div>
+            <div class="item-acciones">
+              <button class="edit-btn" (click)="abrirFormularioNoticia(noticia)" aria-label="Editar noticia">✎</button>
+              <button class="delete-btn" (click)="eliminarNoticia(noticia)" aria-label="Eliminar noticia">🗑</button>
+            </div>
+          </div>
+        } @empty {
+          <p class="lista-vacia">No hay noticias en esta categoría todavía.</p>
+        }
+      </div>
+
+    </section>
+  }
 
 </div>
+
+<!-- FORMULARIO DE EVENTO (reactive form) -->
+@if (formularioEventoVisible) {
+  <app-formulario-evento
+    [eventoEditar]="eventoSeleccionado"
+    (guardar)="guardarEvento($event)"
+    (cancelar)="cerrarFormularioEvento()">
+  </app-formulario-evento>
+}
+
+<!-- FORMULARIO DE NOTICIA (reactive form) -->
+@if (formularioNoticiaVisible) {
+  <app-formulario-noticia
+    [noticiaEditar]="noticiaSeleccionada"
+    (guardar)="guardarNoticia($event)"
+    (cancelar)="cerrarFormularioNoticia()">
+  </app-formulario-noticia>
+}
