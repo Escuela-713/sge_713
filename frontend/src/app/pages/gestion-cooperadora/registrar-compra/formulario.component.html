@@ -62,7 +62,7 @@
       class="form-control" 
       id="motivo" 
       rows="3"
-      placeholder="Describa el motivo de la compra"
+      placeholder="Describa el motivo del movimiento"
       formControlName="motivo"></textarea>
 
     @if (Motivo?.errors && Motivo?.touched) {
@@ -85,7 +85,7 @@
       type="text"
       class="form-control"
       id="tipo"
-      placeholder="Ingrese el tipo de compra"
+      placeholder="Ingrese el tipo de movimiento"
       formControlName="tipo"
     >
 
@@ -109,7 +109,7 @@
     class="btn btn-primary mt-4"
     [disabled]="form.invalid"
   >
-    Registrar Compra
+    Registrar movimiento
   </button>
 </div>
 
