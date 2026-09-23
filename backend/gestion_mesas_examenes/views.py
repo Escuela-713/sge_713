@@ -1,4 +1,4 @@
-from rest_framework.status import HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST
+from rest_framework.status import HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER_ERROR
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView as ApiView
@@ -21,19 +21,23 @@ class MesasExamenesView(ApiView):
 
     # Crear nueva mesa
     def post(self, req: Request):
-        body = req.data
+        try:
+            body = req.data
 
-        if (not body):
-            return Response({'error': 'Complete los datos para subir una nueva mesa.'}, status=HTTP_400_BAD_REQUEST)
+            if (not body):
+                return Response({'error': 'Complete los datos para subir una nueva mesa.'}, status=HTTP_400_BAD_REQUEST)
 
-        if (isinstance(body, list)):
-            return Response({'error': 'El cuerpo de la petición debe ser un objeto.'}, status=HTTP_400_BAD_REQUEST)
+            if (isinstance(body, list)):
+                return Response({'error': 'El cuerpo de la petición debe ser un objeto.'}, status=HTTP_400_BAD_REQUEST)
 
-        nueva_mesa = MesaExamenSerializer(data=body)
+            nueva_mesa = MesaExamenSerializer(data=body)
 
-        if (not nueva_mesa.is_valid()):
-            return Response({'error': nueva_mesa.errors}, status=HTTP_400_BAD_REQUEST)
+            if (not nueva_mesa.is_valid()):
+                return Response({'error': nueva_mesa.errors}, status=HTTP_400_BAD_REQUEST)
 
-        mesa_guardada = nueva_mesa.save()
+            mesa_guardada = nueva_mesa.save()
 
-        return Response({'message': f'Nueva mesa creada, ID: {mesa_guardada.id_mesa_examen}'}, status=HTTP_201_CREATED)
+            return Response({'message': f'Nueva mesa creada, ID: {mesa_guardada.id_mesa_examen}.'}, status=HTTP_201_CREATED)
+        except Exception as exception:
+            print(exception)
+            return Response({'error': 'Hubo un error inesperado en el servidor, estamos trabajando para solucionarlo.'}, status=HTTP_500_INTERNAL_SERVER_ERROR)
