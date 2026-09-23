@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Publication, CarouselSlide, HomePageSection
+from .models import Publication, Carrousel, HomePageSection
 
 
 class PublicationSerializer(serializers.ModelSerializer):
@@ -9,9 +9,9 @@ class PublicationSerializer(serializers.ModelSerializer):
         fields = "__all__"
         read_only_fields = ("created_at", "updated_at")
 
-class CarouselSlideSerializer(serializers.ModelSerializer):
+class CarrouselSerializer(serializers.ModelSerializer):
     class Meta:
-        model = CarouselSlide
+        model = Carrousel
         fields = "__all__"
 
 class HomePageSectionSerializer(serializers.ModelSerializer):
