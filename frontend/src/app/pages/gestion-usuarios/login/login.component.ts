@@ -7,10 +7,11 @@ import { Router, RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   form!: FormGroup;
+  errorMessage: string | null = null;
   constructor(private formBuilder: FormBuilder, private router:Router) {
 
     this.form = this.formBuilder.group(
@@ -24,6 +25,7 @@ export class LoginComponent {
 
   onEnviar(event: Event) {
     console.log(this.form.value)
+    this.errorMessage = null
 
     event.preventDefault;
     if (this.form.valid) {
@@ -45,7 +47,7 @@ export class LoginComponent {
         console.log(`Ingreso exitoso - Usuario: ${usuario.nombre}, Rol: ${usuario.rol}`);
         this.router.navigate(["/dashboard/home"]);
       } else {
-        alert("Credenciales incorrectas");
+        this.errorMessage = "Credenciales incorrectas";
       }
     } else {
       this.form.markAllAsTouched();
