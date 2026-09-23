@@ -87,14 +87,11 @@
       <div class="col-sm-6">
         <label for="dni" class="">Documento:</label>
         <input
-          type="text"
+          type="number"
           class="form-control"
           id="dni"
           formControlName="dni"
         />
-        <div [hidden]="!(dni.errors && dni.dirty)" class="text-danger">
-          {{ dniErrors }}
-        </div>
       </div>
     </div>
 
@@ -319,7 +316,7 @@
       <div class="col-sm-6">
         <label for="numeroPiso" class="form-label">Número de piso:</label>
         <input
-          type="text"
+          type="number"
           class="form-control"
           id="numeroPiso"
           placeholder="Ingrese el número de piso"
@@ -334,7 +331,7 @@
           >Número de departamento:</label
         >
         <input
-          type="text"
+          type="number"
           class="form-control"
           id="numeroDepartamento"
           placeholder="Ingrese el número de departamento"
@@ -344,7 +341,7 @@
       <div class="col-sm-6">
         <label for="numeroTelefono" class="form-label">Télefono:</label>
         <input
-          type="tel"
+          type="number"
           class="form-control"
           id="numeroTelefono"
           placeholder="Ingrese el número de teléfono"
