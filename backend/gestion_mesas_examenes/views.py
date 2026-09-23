@@ -10,9 +10,8 @@ from gestion_mesas_examenes.serializer import MesaExamenSerializer
 class MesasExamenesView(ApiView):
     # Obtener las mesas según el filtro especificado, en caso de no tener, se deberían recuperar todas las mesas
     def get(self, req: Request):
-        filters = req.query_params
-        # mesas = MesaExamen.objects.filter(filters if filters else '')
-        mesas = MesaExamen.objects.all()
+        filters = req.query_params.dict()
+        mesas = MesaExamen.objects.complex_filter(filters) if filters else MesaExamen.objects.all()
         mesas_serializadas = MesaExamenSerializer(mesas, many=True).data
     
         if (len(mesas_serializadas) == 0):
