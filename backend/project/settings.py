@@ -59,7 +59,8 @@ INSTALLED_APPS = [
     'gestion_home',
     'gestion_inventario',
     'gestion_mesa_examenes',
-    'gestion_incidencias'
+    'gestion_incidencias',
+    'gestion_cooperadora'
 ]
 
 MIDDLEWARE = [

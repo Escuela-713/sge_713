@@ -15,7 +15,7 @@
           <div class="card-header text-center">
           </div>
           <div class="card-body">
-<form [formGroup]="form" class="mt-3">
+<form [formGroup]="form" (ngSubmit)="registrarMovimiento()" class="mt-3">
 
   <!-- Monto -->
   <div class="mb-3">
@@ -28,11 +28,11 @@
       formControlName="monto"
     >
 
-    @if (Monto?.errors && Monto?.touched) {
-      @if (Monto?.hasError('required')) {
+    @if (Monto.errors && Monto.touched) {
+      @if (Monto.hasError('required')) {
         <div class="text-danger">Monto Requerido</div>
       }
-      @if (Monto?.hasError('min')) {
+      @if (Monto.hasError('min')) {
         <div class="text-danger">El monto debe ser mayor a 0</div>
       }
     }
@@ -48,11 +48,55 @@
       formControlName="fecha"
     >
 
-    @if (Fecha?.errors && Fecha?.touched) {
-      @if (Fecha?.hasError('required')) {
+    @if (Fecha.errors && Fecha.touched) {
+      @if (Fecha.hasError("required")) {
         <div class="text-danger">Seleccione una fecha válida</div>
       }
     }
+  </div>
+
+  <div class="row compact-fields">
+  <!-- Origen -->
+  <div class="col-sm-6 mb-3">
+    <label for="origen" class="form-label">Origen</label>
+    <input
+      type="text"
+      class="form-control"
+      id="origen"
+      placeholder="Ingrese el origen del movimiento"
+      formControlName="origen"
+    >
+
+    @if (Origen.errors && Origen.touched) {
+      @if (Origen.hasError('required')) {
+        <div class="text-danger">Origen requerido</div>
+      }
+      @if (Origen.hasError('maxlength')) {
+        <div class="text-danger">Máximo 100 caracteres</div>
+      }
+    }
+  </div>
+
+  <!-- Destino -->
+  <div class="col-sm-6 mb-3">
+    <label for="destino" class="form-label">Destino</label>
+    <input
+      type="text"
+      class="form-control"
+      id="destino"
+      placeholder="Ingrese el destino del movimiento"
+      formControlName="destino"
+    >
+
+    @if (Destino.errors && Destino.touched) {
+      @if (Destino.hasError('required')) {
+        <div class="text-danger">Destino requerido</div>
+      }
+      @if (Destino.hasError('maxlength')) {
+        <div class="text-danger">Máximo 100 caracteres</div>
+      }
+    }
+  </div>
   </div>
 
   <!-- Motivo -->
@@ -65,14 +109,14 @@
       placeholder="Describa el motivo del movimiento"
       formControlName="motivo"></textarea>
 
-    @if (Motivo?.errors && Motivo?.touched) {
-      @if (Motivo?.hasError('required')) {
+    @if (Motivo.errors && Motivo.touched) {
+      @if (Motivo.hasError('required')) {
         <div class="text-danger">Motivo requerido</div>
       }
-      @if (Motivo?.hasError('minlength')) {
+      @if (Motivo.hasError('minlength')) {
         <div class="text-danger">Debe tener al menos 5 caracteres</div>
       }
-      @if (Motivo?.hasError('maxlength')) {
+      @if (Motivo.hasError('maxlength')) {
         <div class="text-danger">Máximo 200 caracteres</div>
       }
     }
@@ -81,23 +125,19 @@
   <!-- Tipo -->
   <div class="mb-3">
     <label for="tipo" class="form-label">Tipo</label>
-    <input 
-      type="text"
-      class="form-control"
+    <select
+      class="form-select"
       id="tipo"
-      placeholder="Ingrese el tipo de movimiento"
       formControlName="tipo"
     >
+      <option value="" disabled>Seleccione el tipo de movimiento</option>
+      <option value="Ingreso">Ingreso</option>
+      <option value="Egreso">Egreso</option>
+    </select>
 
-    @if (tipo?.errors && tipo?.touched) {
-      @if (tipo?.hasError('required')) {
+    @if (tipo.errors && tipo.touched) {
+      @if (tipo.hasError('required')) {
         <div class="text-danger">Tipo requerido</div>
-      }
-      @if (tipo?.hasError('minlength')) {
-        <div class="text-danger">Debe tener al menos 3 caracteres</div>
-      }
-      @if (tipo?.hasError('maxlength')) {
-        <div class="text-danger">Máximo 100 caracteres</div>
       }
     }
   </div>
@@ -107,10 +147,16 @@
   <button  
     type="submit" 
     class="btn btn-primary mt-4"
-    [disabled]="form.invalid"
+    [disabled]="form.invalid || enviando"
   >
-    Registrar movimiento
+    {{ enviando ? 'Registrando...' : 'Registrar movimiento' }}
   </button>
 </div>
+
+@if (mensaje) {
+  <div class="alert mt-3" [class.alert-success]="registroExitoso" [class.alert-danger]="!registroExitoso">
+    {{ mensaje }}
+  </div>
+}
 
 </form>
