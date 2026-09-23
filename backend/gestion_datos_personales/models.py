@@ -1,5 +1,11 @@
 from django.db import models
 
+
+class Rol(models.Model):
+    id_rol = models.AutoField(primary_key=True)
+    rol = models.CharField(max_length=32)
+
+
 class Persona(models.Model):
     id_persona = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=45)
@@ -9,16 +15,21 @@ class Persona(models.Model):
     telefono = models.CharField(max_length=45)
     id_genero = models.SmallIntegerField()
     dni = models.IntegerField()
-    grupo_sanguineo = models.CharField(db_column='grupo sanguineo', max_length=2, blank=True, null=True)  # Field renamed to remove unsuitable characters.
+    grupo_sanguineo = models.CharField(
+        db_column="grupo sanguineo", max_length=2, blank=True, null=True
+    )
     calle = models.CharField(max_length=45)
     numero = models.SmallIntegerField()
     barrio = models.CharField(max_length=45)
     id_localidad = models.IntegerField()
     id_localidad_nacimiento = models.IntegerField()
 
+    id_rol = models.ForeignKey(Rol, models.DO_NOTHING, db_column="id_rol")
+
     class Meta:
         managed = True
-        db_table = 'persona'
+        db_table = "persona"
+
 
 class Alumno(models.Model):
     id_alumno = models.AutoField(primary_key=True)
@@ -27,15 +38,17 @@ class Alumno(models.Model):
     legajo = models.IntegerField(blank=True, null=True)
     fecha_ingreso = models.DateField(blank=True, null=True)
     n_libro_matriz = models.IntegerField(blank=True, null=True)
-    fecha_egreso = models.DateField(db_column='fecha egreso', blank=True, null=True)  # Field renamed to remove unsuitable characters.
+    fecha_egreso = models.DateField(db_column="fecha egreso", blank=True, null=True)
     cuil = models.CharField(max_length=15)
 
-    id_persona = models.ForeignKey(Persona, models.DO_NOTHING, db_column='id_persona', null=True)
-
+    id_persona = models.ForeignKey(
+        Persona, models.DO_NOTHING, db_column="id_persona", null=True
+    )
 
     class Meta:
         managed = True
-        db_table = 'alumno'
+        db_table = "alumno"
+
 
 class Tutor(models.Model):
     id_tutor = models.AutoField(primary_key=True)
@@ -43,7 +56,8 @@ class Tutor(models.Model):
     lugar_trabajo = models.CharField(max_length=45)
     telefono = models.CharField(max_length=45)
 
-    id_persona = models.ForeignKey(Persona, models.DO_NOTHING, db_column='id_persona')
+    id_persona = models.ForeignKey(Persona, models.DO_NOTHING, db_column="id_persona")
+
     class Meta:
         managed = True
-        db_table = 'tutor'
+        db_table = "tutor"
