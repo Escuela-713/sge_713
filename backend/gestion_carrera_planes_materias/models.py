@@ -16,47 +16,47 @@ def validar_lista_de_anos(lista_anos):
             raise ValidationError('Ingrese años permitidos (entre 1 y 7).')
 
 class Carrera(models.Model):
-    id_carrera = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=200, null=False)
-    titulo_egreso = models.CharField(max_length=200, null=False)
-    id_estado = models.IntegerField()
-    descripcion = models.CharField(max_length=400, null=False)
+    id_carrera = models.AutoField(primary_key=True, db_column='id_carrera', verbose_name='Id carrera')
+    nombre = models.CharField(max_length=200, null=False, db_column='nombre', verbose_name='Nombre')
+    titulo_egreso = models.CharField(max_length=200, null=False, db_column='titulo_egreso', verbose_name='Título egreso')
+    id_estado = models.IntegerField(db_column='id_estado', verbose_name='Id estado', null=False)
+    descripcion = models.CharField(max_length=400, null=False, db_column='descripcion', verbose_name='Descripción')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'carrera'
 
 class Materia(models.Model):
-    id_materia = models.AutoField(primary_key=True)
-    nombre = models.CharField(max_length=200, null=False)
-    ano = models.JSONField(default=list, validators=[validar_lista_de_anos])
-    minutos_catedra_semanales = models.IntegerField()
-    minutos_reloj_anuales = models.IntegerField()
-    descripcion = models.CharField(max_length=400, null=False)
+    id_materia = models.AutoField(primary_key=True, db_column='id_materia', verbose_name='Id materia')
+    nombre = models.CharField(max_length=200, null=False, db_column='nombre', verbose_name='Nombre')
+    ano = models.JSONField(default=list, null=False, validators=[validar_lista_de_anos], db_column='ano', verbose_name='Año')
+    minutos_catedra_semanales = models.IntegerField(db_column='minutos_catedra_semanales', verbose_name='Minutos cátedra semanales', null=False)
+    minutos_reloj_anuales = models.IntegerField(db_column='minutos_reloj_anuales', verbose_name='Minutos reloj anuales', null=False)
+    descripcion = models.CharField(max_length=400, null=False, db_column='descripcion', verbose_name='Descripción')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'materia'
 
 class Plan(models.Model):
     id_plan = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=200, null=False)
-    estado = models.IntegerField()
-    horas_catedras = models.IntegerField()
-    horas_reloj = models.IntegerField()
-    id_carrera = models.ForeignKey(Carrera, models.DO_NOTHING, db_column='id_carrera')
+    estado = models.IntegerField(null=False)
+    horas_catedras = models.IntegerField(null=False)
+    horas_reloj = models.IntegerField(null=False)
+    id_carrera = models.ForeignKey(Carrera, models.DO_NOTHING, db_column='id_carrera', null=False)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'plan'
 
 class MateriaXPlan(models.Model):
-    id_materia = models.ForeignKey(Materia, models.DO_NOTHING, db_column='id_materia')
-    id_plan = models.ForeignKey(Plan, models.DO_NOTHING, db_column='id_plan')
-    horas_semanales = models.IntegerField()
-    horas_anuales = models.IntegerField()
+    id_materia = models.ForeignKey(Materia, models.DO_NOTHING, db_column='id_materia', null=False)
+    id_plan = models.ForeignKey(Plan, models.DO_NOTHING, db_column='id_plan', null=False)
+    horas_semanales = models.IntegerField(null=False)
+    horas_anuales = models.IntegerField(null=False)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'materia_x_plan'
 
