@@ -12,16 +12,16 @@ class JWTAuthentication(BaseAuthentication):
     Devuelve la instancia de `Usuario` como `request.user` si el token es válido.
     """
 
-    keyword = 'Bearer'
+    keyword = "Bearer"
 
     def authenticate(self, request):
-        auth_header = request.META.get('HTTP_AUTHORIZATION')
+        auth_header = request.META.get("HTTP_AUTHORIZATION")
         if not auth_header:
             return None
 
         parts = auth_header.split()
         if len(parts) != 2:
-            raise exceptions.AuthenticationFailed('Cabecera Authorization inválida')
+            raise exceptions.AuthenticationFailed("Cabecera Authorization inválida")
 
         if parts[0] != self.keyword:
             return None
@@ -29,20 +29,20 @@ class JWTAuthentication(BaseAuthentication):
         token = parts[1]
 
         try:
-            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=['HS256'])
+            payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
         except jwt.ExpiredSignatureError:
-            raise exceptions.AuthenticationFailed('Token expirado')
+            raise exceptions.AuthenticationFailed("Token expirado")
         except jwt.InvalidTokenError:
-            raise exceptions.AuthenticationFailed('Token inválido')
+            raise exceptions.AuthenticationFailed("Token inválido")
 
-        user_id = payload.get('user_id')
+        user_id = payload.get("user_id")
         if not user_id:
-            raise exceptions.AuthenticationFailed('Token inválido: falta user_id')
+            raise exceptions.AuthenticationFailed("Token inválido: falta user_id")
 
         try:
             usuario = Usuario.objects.get(id_usuario=user_id)
         except Usuario.DoesNotExist:
-            raise exceptions.AuthenticationFailed('Usuario no encontrado')
+            raise exceptions.AuthenticationFailed("Usuario no encontrado")
 
-        # `authenticate` returns a tuple (user, auth) where `auth` is the token
+        # 'authenticate' devuelve una tupla (user, auth) donde 'auth' es el token
         return (usuario, token)

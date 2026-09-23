@@ -37,9 +37,7 @@ export class FiltroDatosPersonalesComponent {
       return;
     }
   }
-
   redirigir() {
     this.router.navigate(['/dashboard/datos-personales']);
   }
 }
-
