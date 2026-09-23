@@ -8,5 +8,6 @@ config.ini
 
 # Ignorar directorios de dependencias
 env/
+venv/
 
 los-backend/
