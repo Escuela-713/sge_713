@@ -26,7 +26,7 @@ export class DatosIdentidadComponent implements OnInit {
   datosIdentidadForm: FormGroup;
   datostutor: any;
   private soloLetrasPattern = /^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s'@]*$/;
-  private soloNumerosPattern =/^[0-9]+$/;
+  private soloNumerosPattern = /^[0-9]+$/;
   private letrasYNumerosPattern = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑüÜ\s'.,-]*$/;
 
   paisesDomicilio: Pais[] = [];
@@ -48,9 +48,9 @@ export class DatosIdentidadComponent implements OnInit {
       genero: ['', [Validators.required, Validators.maxLength(15)]],
       primerNombre: ['', [Validators.required, Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
       segundoNombre: ['', [Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
-      tercerNombre: ['',[Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
+      tercerNombre: ['', [Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
       primerApellido: ['', [Validators.required, Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
-      segundoApellido: ['',[Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
+      segundoApellido: ['', [Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
       fechaNacimiento: ['', [Validators.required]],
 
       paisNacimiento: ['', Validators.required],
@@ -184,10 +184,10 @@ export class DatosIdentidadComponent implements OnInit {
   }
   get dniErrors() {
     const errors = this.dni.errors;
-      if (!errors) return null;
-      if (errors['required']) return 'El DNI es obligatorio.';
-      if (errors['pattern']) return 'Solo se permiten caracteres validos.';
-      return null;
+    if (!errors) return null;
+    if (errors['required']) return 'El DNI es obligatorio.';
+    if (errors['pattern']) return 'Solo se permiten caracteres validos.';
+    return null;
   }
   get genero() {
     return this.datosIdentidadForm.controls['genero'];
@@ -205,44 +205,44 @@ export class DatosIdentidadComponent implements OnInit {
   }
   get primerNombreErrors() {
     const errors = this.primerNombre.errors;
-      if (!errors) return null;
-      if (errors['required']) return 'El primer nombre es obligatorio.';
-      if (errors['pattern']) return 'Solo se permiten caracteres validos.';
-      return null;
+    if (!errors) return null;
+    if (errors['required']) return 'El primer nombre es obligatorio.';
+    if (errors['pattern']) return 'Solo se permiten caracteres validos.';
+    return null;
   }
   get segundoNombre() {
     return this.datosIdentidadForm.controls['segundoNombre'];
   }
   get segundoNombreErrors() {
     const errors = this.segundoNombre.errors;
-      if (!errors) return null;
-      return errors['pattern'] ? 'Solo se permiten caracteres validos.' : null;
+    if (!errors) return null;
+    return errors['pattern'] ? 'Solo se permiten caracteres validos.' : null;
   }
   get tercerNombre() {
     return this.datosIdentidadForm.controls['tercerNombre'];
   }
   get tercerNombreErrors() {
     const errors = this.tercerNombre.errors;
-      if (!errors) return null;
-      return errors['pattern'] ? 'Solo se permiten caracteres validos.' : null;
+    if (!errors) return null;
+    return errors['pattern'] ? 'Solo se permiten caracteres validos.' : null;
   }
   get primerApellido() {
     return this.datosIdentidadForm.controls['primerApellido'];
   }
   get primerApellidoErrors() {
     const errors = this.primerApellido.errors;
-      if (!errors) return null;
-      if (errors['required']) return 'El primer apellido es obligatorio.';
-      if (errors['pattern']) return 'Solo se permiten caracteres validos..';
-      return null;
+    if (!errors) return null;
+    if (errors['required']) return 'El primer apellido es obligatorio.';
+    if (errors['pattern']) return 'Solo se permiten caracteres validos..';
+    return null;
   }
   get segundoApellido() {
     return this.datosIdentidadForm.controls['segundoApellido'];
   }
   get segundoApellidoErrors() {
     const errors = this.segundoApellido.errors;
-      if (!errors) return null;
-      return errors['pattern'] ? 'Solo se permiten caracteres validos.' : null;
+    if (!errors) return null;
+    return errors['pattern'] ? 'Solo se permiten caracteres validos.' : null;
   }
   get fechaNacimiento() {
     return this.datosIdentidadForm.controls['fechaNacimiento'];
@@ -329,39 +329,38 @@ export class DatosIdentidadComponent implements OnInit {
   }
   get barrioErrors() {
     const errors = this.barrio.errors;
-      if (!errors) return null;
-      if (errors['required']) return 'El barrio es obligatorio.';
-      if (errors['pattern']) return 'Solo se permiten caracteres validos.';
-      return null;
+    if (!errors) return null;
+    if (errors['required']) return 'El barrio es obligatorio.';
+    if (errors['pattern']) return 'Solo se permiten caracteres validos.';
+    return null;
   }
   get telefono() {
     return this.datosIdentidadForm.controls['telefono'];
   }
   get telefonoErrors() {
     const errors = this.telefono.errors;
-      if (!errors) return null;
-      if (errors['required']) return 'El número de telefono es obligatorio.';
-      if (errors['pattern']) return 'Solo se permiten caracteres validos.';
-      return null;
+    if (!errors) return null;
+    if (errors['required']) return 'El número de telefono es obligatorio.';
+    return null;
   }
   get calle() {
     return this.datosIdentidadForm.controls['calle'];
   }
   get calleErrors() {
     const errors = this.calle.errors;
-      if (!errors) return null;
-      if (errors['required']) return 'El nombre de la calle es obligatorio.';
-      if (errors['pattern']) return 'Solo se permiten caracteres validos.';
-      return null; 
+    if (!errors) return null;
+    if (errors['required']) return 'El nombre de la calle es obligatorio.';
+    if (errors['pattern']) return 'Solo se permiten caracteres validos.';
+    return null;
   }
   get mail() {
     return this.datosIdentidadForm.controls['mailAlumno'];
   }
   get mailErrors() {
     const errors = this.mail.errors;
-      if (!errors) return null;
-      if (errors['required']) return 'El mail es obligatorio.';
-      if (errors['pattern']) return 'Solo se permiten caracteres validos.';
-      return null;
+    if (!errors) return null;
+    if (errors['required']) return 'El mail es obligatorio.';
+    if (errors['pattern']) return 'Solo se permiten caracteres validos.';
+    return null;
   }
 }
