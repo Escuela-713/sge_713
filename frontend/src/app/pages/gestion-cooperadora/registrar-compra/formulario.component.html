@@ -17,7 +17,7 @@
           <div class="card-body">
 <form [formGroup]="form" (ngSubmit)="registrarMovimiento()" class="mt-3">
 
-  <!-- Monto -->
+  
   <div class="mb-3">
     <label for="monto" class="form-label">Monto</label>
     <input 
@@ -99,7 +99,7 @@
   </div>
   </div>
 
-  <!-- Motivo -->
+  
   <div class="mb-3">
     <label for="motivo" class="form-label">Motivo</label>
     <textarea 
@@ -122,7 +122,7 @@
     }
   </div>
 
-  <!-- Tipo -->
+  
   <div class="mb-3">
     <label for="tipo" class="form-label">Tipo</label>
     <select
@@ -142,14 +142,14 @@
     }
   </div>
 
-  <!-- Botón -->
+  
   <div class="d-flex justify-content-center">
   <button  
     type="submit" 
     class="btn btn-primary mt-4"
     [disabled]="form.invalid || enviando"
   >
-    {{ enviando ? 'Registrando...' : 'Registrar movimiento' }}
+    Registrar Compra
   </button>
 </div>
 
