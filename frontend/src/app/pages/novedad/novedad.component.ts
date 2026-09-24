@@ -63,7 +63,7 @@ export class NovedadComponent implements OnInit, OnDestroy {
         document.title = `${this.novedad.title} - Novedades`;
       }
     } catch (error) {
-      console.error("Error loading novedad:", error);
+      console.error("Error cargando la publicación:", error);
       this.novedad = undefined;
     }
   }
