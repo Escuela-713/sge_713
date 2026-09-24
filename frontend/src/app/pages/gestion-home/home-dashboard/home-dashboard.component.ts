@@ -1,8 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {RouterLink, Router} from '@angular/router';
 
-import { NovedadesService, NovedadesData, Card } from '../../../services/novedades.service';
+import { NovedadesService } from '../../../services/novedades.service';
 import { EditarSlideComponent } from '../editar-slide/editar-slide.component';
+
+interface Card {
+  id: number;
+  title: string;
+  description?: string;
+  image?: string;
+  location: string;
+  date: string;
+  [key: string]: unknown;
+}
 
 export interface CarouselSlide {
   id: number;
@@ -10,7 +20,12 @@ export interface CarouselSlide {
   title: string;
   subtitle: string;
 }
-// Card and NovedadesData types are declared in the service to avoid duplication
+
+interface NovedadesData {
+  carouselSlides: CarouselSlide[];
+  sectionTitle: string;
+  cards: Card[];
+}
 
 @Component({
   selector: 'app-dashboard-home',
