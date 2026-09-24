@@ -22,7 +22,6 @@ class RegisterAPIView(APIView):
         payload = {
             "user_id": usuario.id_usuario,
             "persona_id": usuario.id_persona.id_persona,
-            "rol": usuario.roles,
             "exp": datetime.utcnow() + timedelta(hours=2),
         }
         token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
@@ -46,7 +45,6 @@ class LoginAPIView(APIView):
         payload = {
             "user_id": usuario.id_usuario,
             "persona_id": usuario.id_persona.id_persona,
-            "rol": usuario.roles,
             "exp": datetime.utcnow() + timedelta(hours=2),
         }
         token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
