@@ -1,4 +1,4 @@
-export type Fecha = `${number}/${number}`
+export type Dia = `${number}:${number}`
 
 export interface Carrera {
   id_carrera: number
@@ -16,12 +16,12 @@ type Ano = 1 | 2 | 3 | 4 | 5 | 6 | 7
 
 export interface Mesa {
   id: Id
-  fecha: Fecha
+  dia: Dia
   hora: string
   ano: Ano
-  modalidad: Carrera
-  materia: Materia
-  profesorTitular: string
-  profesorPrimerVocal: string
-  profesorSegundoVocal: string
+  carrera: Pick<Carrera, 'nombre'>
+  materia: Pick<Materia, 'nombre'>
+  profesor_titular: string
+  profesor_primer_vocal: string
+  profesor_segundo_vocal: string
 }
