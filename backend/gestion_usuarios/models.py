@@ -10,4 +10,3 @@ class Usuario(models.Model):
     class Meta:
         managed = True
         db_table = "usuario"
-
