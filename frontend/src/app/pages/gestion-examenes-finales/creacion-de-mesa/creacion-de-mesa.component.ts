@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core'
 import { CarrerasService } from '@services/carreras.service'
 import { MateriasService } from '@services/materias.service'
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms'
+import { MesasExamenesService } from '@/app/services/mesas-examenes.service'
+import { Mesa } from '@/app/models/mesas-examenes.model'
 
 @Component({
   selector: 'app-creacion-de-mesa',
@@ -14,6 +16,7 @@ export class CreacionDeMesaComponent implements OnInit {
   private servicioCarrera = inject(CarrerasService)
   private fb = inject(FormBuilder)
   private cdr = inject(ChangeDetectorRef)
+  private servicioMesas = inject(MesasExamenesService)
 
   materias: any = []
   carreras: any = []
@@ -51,4 +54,10 @@ export class CreacionDeMesaComponent implements OnInit {
     fecha: ['', [Validators.required]],
     turno: ['', [Validators.required]],
   })
+
+  subirMesa() {
+    if (!this.formularioMesaExamen.valid) return console.error(this.formularioMesaExamen.errors)
+
+    this.servicioMesas.subirMesa(this.formularioMesaExamen.value as unknown as Mesa)
+  }
 }
