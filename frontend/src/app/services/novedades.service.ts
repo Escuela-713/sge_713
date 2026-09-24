@@ -8,21 +8,15 @@ import { CarouselSlide } from '../pages/gestion-home/home-dashboard/home-dashboa
 })
 
 export class NovedadesService {
-  addSlide(arg0: { image: any; title: any; subtitle: any; }) {
-  getCardBySlug(slug: string) {
-    throw new Error("Method not implemented.");
+  constructor(private readonly http: HttpClient) {}
+
+  addSlide(arg0: { image: any; title: any; subtitle: any }): void {
+    // Slides are managed by the consuming component.
   }
-  deleteSlideById(id: number) {
-    throw new Error('Method not implemented.');
+
+  getCardBySlug(slug: string): Observable<CarouselSlide> {
+    return this.http.get<CarouselSlide>(`${this.apiUrl}${slug}`);
   }
-  deleteCardById(id: number) {
-    throw new Error('Method not implemented.');
-  }
-  getAll(): NovedadesData | PromiseLike<NovedadesData> {
-    throw new Error('Method not implemented.');
-  }
-  updateSlide(slideEditado: CarouselSlide) {
-    throw new Error('Method not implemented.');
-  }
+
   private apiUrl = 'http://127.0.0.1:8000/home/';
 }
