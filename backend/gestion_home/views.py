@@ -1,83 +1,27 @@
-from rest_framework import viewsets, permissions
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from gestion_home.models import  Carrousel, Categories, Publication
+from gestion_home.serializers import CarrouselSerializer, CategoriesSerializer, PublicationSerializer
 
-from .models import Publication, CarouselSlide, HomePageSection
-from .serializers import PublicationSerializer, CarouselSlideSerializer, HomePageSectionSerializer
+class PublicationView(APIView):
+    def get(self, request):
+        publications = Publication.objects.all()
+        serializer = PublicationSerializer(publications, many=True)
+        return Response(serializer.data, status=200)
 
+    def post(self, request):
+        serializer = PublicationSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
 
-class IsAdminAndAuthenticated(permissions.BasePermission):
-	"""Permiso combinado: usuario autenticado y staff/administrador."""
+class PublicationDetailView(APIView):
+    def get(self, request, pk):
+        try:
+            publication = Publication.objects.get(pk=pk)
+        except Publication.DoesNotExist:
+            return Response({'error': 'Publicación no encontrada'}, status=404)
 
-	def has_permission(self, request, view):
-		return bool(request.user and request.user.is_authenticated and request.user.is_staff)
-
-
-class PublicationViewSet(APIView):
-	"""CRUD para publicaciones de la página home.
-
-	- GET (list, retrieve) es público para cualquiera.
-	- POST/PUT/PATCH/DELETE requieren usuario administrador (is_staff).
-	Además, usuarios no administradores sólo ven publicaciones con is_published=True.
-	"""
-	def get (self, request, *args, **kwargs):
-
-		queryset = Publication.objects.all()
-
-		serializer_class = PublicationSerializer (many=True)
-
-		return Response(serializer_class.data)
-
-	# def get_permissions(self):
-	# 	# Lecturas públicas
-	# 	if self.request and self.request.method in permissions.SAFE_METHODS:
-	# 		return [permissions.AllowAny()]
-	# 	# Escrituras sólo para admins
-	# 	return [permissions.IsAdminUser()]
-
-	# def get_queryset(self):
-	# 	qs = Publication.objects.all()
-	# 	# Si el usuario no es staff, sólo mostrar publicaciones publicadas
-	# 	user = getattr(self.request, "user", None)
-	# 	if not (user and user.is_staff):
-	# 		qs = qs.filter(is_published=True)
-	# 	return qs
-
-
-class CarouselSlideViewSet(viewsets.ModelViewSet):
-	"""CRUD para los slides del carrusel.
-
-	- GET (list, retrieve) es público para cualquiera.
-	- POST/PUT/PATCH/DELETE requieren usuario administrador (is_staff).
-	"""
-	queryset = CarouselSlide.objects.all()
-	serializer_class = CarouselSlideSerializer
-
-	def get_permissions(self):
-		# Lecturas públicas
-		if self.request and self.request.method in permissions.SAFE_METHODS:
-			return [permissions.AllowAny()]
-		# Escrituras sólo para admins
-		return [IsAdminAndAuthenticated()]
-
-class HomePageDataView(APIView):
-	"""API View to get all the data for the home page."""
-	permission_classes = [permissions.AllowAny]
-
-	def get(self, request, *args, **kwargs):
-		carousel_slides = CarouselSlide.objects.all()
-		# Assuming there is only one HomePageSection object
-		home_page_section = HomePageSection.objects.first()
-
-		carousel_serializer = CarouselSlideSerializer(carousel_slides, many=True)
-		section_serializer = HomePageSectionSerializer(home_page_section)
-
-		data = {
-			'carouselSlides': carousel_serializer.data,
-			'sectionTitle': section_serializer.data.get('sectionTitle') if home_page_section else '',
-		}
-
-		return Response(data)
-
-	def post(self, request, *args, **kwargs):
-		return Response({"detail": "Method 'POST' not allowed."}, status=405)
+        serializer = PublicationSerializer(publication)
+        return Response(serializer.data, status=200)
