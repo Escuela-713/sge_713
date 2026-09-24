@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import choices
 
 
 class Rol(models.Model):
@@ -8,20 +7,20 @@ class Rol(models.Model):
 
 class Persona(models.Model):
     class Genero(models.TextChoices):
-        FEMENINO = str(("F", "Femenino"))
-        MASCULINO = str(("M", "Masculino"))
-        OTRO = str(("O", "Otro"))
-        SIN_ESPECIFICAR = str(("S", "Sin especificar"))
+        FEMENINO = "F", "Femenino"
+        MASCULINO = "M", "Masculino"
+        OTRO = "O", "Otro"
+        SIN_ESPECIFICAR = "S", "Sin especificar"
 
     class TipoSanguineo(models.TextChoices):
-        A_P = str(("A+", "A+"))
-        A_N = str(("A-", "A-"))
-        B_P = str(("B+", "B+"))
-        B_N = str(("B-", "B-"))
-        AB_P = str(("AB+", "AB+"))
-        AB_N = str(("AB-", "AB-"))
-        O_P = str(("O+", "O+"))
-        O_N = str(("O-", "O-"))
+        A_P = "A+", "A+"
+        A_N = "A-", "A-"
+        B_P = "B+", "B+"
+        B_N = "B-", "B-"
+        AB_P = "AB+", "AB+"
+        AB_N = "AB-", "AB-"
+        O_P = "O+", "O+"
+        O_N = "O-", "O-"
 
     id_persona = models.AutoField(primary_key=True)
     primer_nombre = models.CharField(max_length=128)
@@ -39,9 +38,9 @@ class Persona(models.Model):
     tipo_sangre = models.CharField(
         max_length=3, choices=TipoSanguineo.choices, blank=True, null=True
     )
-    calle = models.CharField(max_length=45)
-    numero_calle = models.SmallIntegerField()
-    barrio = models.CharField(max_length=45)
+    calle = models.CharField(max_length=64)
+    numero_calle = models.SmallIntegerField(max_length=16)
+    barrio = models.CharField(max_length=128)
     id_localidad = models.IntegerField()
     id_localidad_nacimiento = models.IntegerField()
 
@@ -59,11 +58,15 @@ class Alumno(models.Model):
     legajo = models.IntegerField(blank=True, null=True)
     fecha_ingreso = models.DateField(blank=True, null=True)
     n_libro_matriz = models.IntegerField(blank=True, null=True)
-    fecha_egreso = models.DateField(db_column="fecha egreso", blank=True, null=True)
+    fecha_egreso = models.DateField(db_column="fecha_egreso", blank=True, null=True)
     cuil = models.CharField(max_length=15)
 
-    id_persona = models.ForeignKey(
-        Persona, models.DO_NOTHING, db_column="id_persona", null=True
+    persona = models.ForeignKey(
+        Persona,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="alumnos",
     )
 
     class Meta:
@@ -75,9 +78,10 @@ class Tutor(models.Model):
     id_tutor = models.AutoField(primary_key=True)
     profesion = models.CharField(max_length=45)
     lugar_trabajo = models.CharField(max_length=45)
-    telefono = models.CharField(max_length=45)
 
-    id_persona = models.ForeignKey(Persona, models.DO_NOTHING, db_column="id_persona")
+    persona = models.ForeignKey(
+        Persona, on_delete=models.CASCADE, related_name="tutores"
+    )
 
     class Meta:
         managed = True
