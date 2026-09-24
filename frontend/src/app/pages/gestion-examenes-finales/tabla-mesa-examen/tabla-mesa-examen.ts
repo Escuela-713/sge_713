@@ -85,10 +85,6 @@ export class TablaMesaExamenComponent implements OnInit {
       .subscribe({
         next: (data: Mesa[]) => {
           this.mesas = data
-          this.fechasMesas = {
-            dia: new Set(this.mesas.map((mesa) => mesa.dia)),
-            hora: new Set(this.mesas.map((mesa) => mesa.hora)),
-          }
         },
         error: (error: unknown) => console.error(error),
         complete: () => this.cdr.detectChanges(),
