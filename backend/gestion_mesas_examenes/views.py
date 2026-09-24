@@ -2,7 +2,8 @@ from rest_framework.status import HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_400
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView as ApiView
-from gestion_carrera_planes_materias.models import Materia
+from gestion_carrera_planes_materias.models import Carrera, Materia
+from gestion_carrera_planes_materias.serializers import CarreraSerializer, MateriaSerializer
 from gestion_mesas_examenes.models import MesaExamen
 from gestion_mesas_examenes.serializer import MesaExamenSerializer
 
@@ -11,9 +12,15 @@ class MesasExamenesView(ApiView):
     # Obtener las mesas según el filtro especificado, en caso de no tener, se deberían recuperar todas las mesas
     def get(self, req: Request):
         filters = req.query_params.dict()
-        mesas = MesaExamen.objects.complex_filter(filters) if filters else MesaExamen.objects.all()
+        mesas_con_fks_cambiadas = MesaExamen.objects.select_related('id_materia', 'id_carrera')
+
+        if (filters):
+            mesas = mesas_con_fks_cambiadas.complex_filter(filters) 
+        else:
+            mesas = mesas_con_fks_cambiadas.all()
+
         mesas_serializadas = MesaExamenSerializer(mesas, many=True).data
-    
+
         if (len(mesas_serializadas) == 0):
             return Response({'error': 'No hay mesas para mostrar.'}, status=HTTP_404_NOT_FOUND)
 
