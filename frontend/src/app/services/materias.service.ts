@@ -13,6 +13,6 @@ export class MateriasService {
   constructor(private http: HttpClient) {}
 
   obtenerMaterias(): Observable<Materia[]> {
-    return this.http.get<Materia[]>(`${this.apiUrl}/materias`)
+    return this.http.get<Materia[]>(`${this.apiUrl}/materia`)
   }
 }
