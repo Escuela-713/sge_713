@@ -4,8 +4,10 @@ from gestion_datos_personales.models import Persona
 
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
-    id_persona = models.ForeignKey(Persona, models.DO_NOTHING, db_column="id_persona")
-    contrasenia = models.CharField(max_length=45)
+    persona = models.ForeignKey(
+        Persona, on_delete=models.CASCADE, related_name="usuarios"
+    )
+    contrasenia = models.CharField(max_length=128)
 
     class Meta:
         managed = True
