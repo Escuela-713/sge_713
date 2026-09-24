@@ -62,14 +62,14 @@
     <tbody>
       @for(mesa of mesas; track mesa.id) {
         <tr>
-          <td>{{mesa.fecha}}</td>
+          <td>{{mesa.dia}}</td>
           <td>{{mesa.ano}}</td>
-          <td>{{mesa.modalidad}}</td>
+          <td>{{mesa.carrera}}</td>
           <td>{{mesa.materia}}</td>
           <td>
-            {{mesa.profesorTitular}},
-            {{mesa.profesorPrimerVocal}},
-            {{mesa.profesorSegundoVocal}}
+            {{mesa.profesor_titular}},
+            {{mesa.profesor_primer_vocal}},
+            {{mesa.profesor_segundo_vocal}}
           </td>
           <td>
             <button id="inscribirse-a-la-mesa">Inscribirse</button>

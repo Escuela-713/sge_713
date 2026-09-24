@@ -1,16 +1,11 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core'
-import type {
-  Carrera,
-  Fecha,
-  Materia,
-  Mesa,
-} from '@models/mesas-examenes.model'
+import type { Carrera, Dia, Materia, Mesa } from '@models/mesas-examenes.model'
 import { CarrerasService } from '@services/carreras.service'
 import { MateriasService } from '@services/materias.service'
 import { MesasExamenesService } from '@services/mesas-examenes.service'
 
 interface FechasMesas {
-  fecha: Set<Fecha> | string
+  fecha: Set<Dia> | string
   hora: Set<string> | string
 }
 
@@ -56,7 +51,7 @@ export class TablaMesaExamenComponent implements OnInit {
       next: (data: Mesa[]) => {
         this.mesas = data
         this.fechasMesas = {
-          fecha: new Set(this.mesas.map((mesa) => mesa.fecha)),
+          fecha: new Set(this.mesas.map((mesa) => mesa.dia)),
           hora: new Set(this.mesas.map((mesa) => mesa.hora)),
         }
       },
