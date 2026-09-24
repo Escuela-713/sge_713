@@ -1,4 +1,4 @@
-  <!-- EVENTOS ACTIVOS -->
+<!-- EVENTOS ACTIVOS -->
     <section class="seccion">
       <div class="seccion-titulo">
         <span class="indicador activo"></span>
@@ -10,14 +10,40 @@
           <div class="card">
             <div class="card-imagen">
               <img [src]="evento.imagen" [alt]="evento.titulo" />
-              <span class="badge badge-activo">En curso</span>
+              <div class="fecha-badge">
+                <span class="dia">{{ obtenerDia(evento.fecha) }}</span>
+                <span class="mes">{{ obtenerMes(evento.fecha) }}</span>
+              </div>
             </div>
             <div class="card-body">
               <h3>{{ evento.titulo }}</h3>
-              <p>{{ evento.descripcion }}</p>
-              <div class="card-footer">
-                <span class="fecha"> {{ evento.fecha }}</span>
+
+              <div class="card-info">
+                <span class="info-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 3"></path>
+                  </svg>
+                  {{ evento.horario }}
+                </span>
+                <span class="info-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"></path>
+                    <circle cx="12" cy="10" r="2.5"></circle>
+                  </svg>
+                  {{ evento.lugar }}
+                </span>
               </div>
+
+              <p>{{ evento.descripcion }}</p>
+
+              <button class="btn-inscribirse" type="button">
+                Inscribirse
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14"></path>
+                  <path d="M13 6l6 6-6 6"></path>
+                </svg>
+              </button>
             </div>
           </div>
         }
@@ -36,18 +62,42 @@
           <div class="card card-proximo">
             <div class="card-imagen">
               <img [src]="evento.imagen" [alt]="evento.titulo" />
-              <span class="badge badge-proximo">Próximamente</span>
+              <div class="fecha-badge">
+                <span class="dia">{{ obtenerDia(evento.fecha) }}</span>
+                <span class="mes">{{ obtenerMes(evento.fecha) }}</span>
+              </div>
             </div>
             <div class="card-body">
               <h3>{{ evento.titulo }}</h3>
-              <p>{{ evento.descripcion }}</p>
-              <div class="card-footer">
-                <span class="fecha"> {{ evento.fecha }}</span>
+
+              <div class="card-info">
+                <span class="info-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="9"></circle>
+                    <path d="M12 7v5l3 3"></path>
+                  </svg>
+                  {{ evento.horario }}
+                </span>
+                <span class="info-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"></path>
+                    <circle cx="12" cy="10" r="2.5"></circle>
+                  </svg>
+                  {{ evento.lugar }}
+                </span>
               </div>
+
+              <p>{{ evento.descripcion }}</p>
+
+              <button class="btn-inscribirse" type="button">
+                Inscribirse
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14"></path>
+                  <path d="M13 6l6 6-6 6"></path>
+                </svg>
+              </button>
             </div>
           </div>
         }
       </div>
     </section>
-
-

@@ -18,7 +18,7 @@
 }
 
 .page-header h1 span {
-  color: #e74c3c;
+  color: #dc2626;
 }
 
 .page-header p {
@@ -67,7 +67,7 @@
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.5rem;
 }
 
@@ -75,8 +75,11 @@
   background: white;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0d9d9;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
 .card:hover {
@@ -85,7 +88,7 @@
 }
 
 .card-proximo {
-  opacity: 0.85;
+  opacity: 0.95;
 }
 
 .card-imagen {
@@ -94,56 +97,104 @@
 
 .card-imagen img {
   width: 100%;
-  height: 180px;
+  height: 190px;
   object-fit: cover;
   display: block;
 }
 
-.badge {
+/* Cartel rojo de fecha, estilo página modelo */
+.fecha-badge {
   position: absolute;
   top: 12px;
-  right: 12px;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 0.75rem;
-  font-weight: 700;
+  left: 12px;
+  background-color: #dc2626;
+  color: white;
+  border-radius: 8px;
+  padding: 6px 10px;
+  text-align: center;
+  line-height: 1.1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.fecha-badge .dia {
+  display: block;
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.fecha-badge .mes {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
   letter-spacing: 0.5px;
-}
-
-.badge-activo {
-  background-color: #2ecc71;
-  color: white;
-}
-
-.badge-proximo {
-  background-color: #3498db;
-  color: white;
 }
 
 .card-body {
   padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .card-body h3 {
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: #1a1a2e;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.9rem;
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.info-item svg {
+  width: 16px;
+  height: 16px;
+  color: #dc2626;
+  flex-shrink: 0;
 }
 
 .card-body p {
   font-size: 0.9rem;
   color: #666;
   line-height: 1.5;
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
-.card-footer {
-  border-top: 1px solid #f0f0f0;
-  padding-top: 0.75rem;
+.btn-inscribirse {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  border: none;
+  border-radius: 999px;
+  background-color: #dc2626;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
-.fecha {
-  font-size: 0.85rem;
-  color: #999;
+.btn-inscribirse svg {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-inscribirse:hover {
+  background-color: #b91c1c;
 }
