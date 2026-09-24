@@ -14,5 +14,9 @@ export class CooperadoraMovimientosService {
    {
     return this.http.get(this.url);
   }
+
+  crearMovimiento(movimiento: any): Observable<any> {
+    return this.http.post(this.url, movimiento);
+  }
   
 }
