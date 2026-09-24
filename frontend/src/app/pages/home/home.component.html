@@ -42,11 +42,13 @@
               <div class="carousel-caption d-flex gap-2 flex-column text-start text-md-center">
                 <h1 class="fw-bold display-4 slide-title">{{ slide.title }}</h1>
                 <p class="fw-bold fs-5 slide-subtitle">{{ slide.subtitle }}</p>
+                @if (slide.buttonText) {
                 <p>
                   <a class="btn btn-lg btn-primary btn-modern" [href]="slide.buttonLink">
                     {{ slide.buttonText }}
                   </a>
                 </p>
+              }
               </div>
             </div>
           </div>
