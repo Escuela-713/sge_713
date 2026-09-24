@@ -1,25 +1,25 @@
 <section>
-  <form action="">
+  <form [formGroup]="formularioTablaDeMesas">
     <label for="fecha-inicio">
       Fecha de inicio:
       <select name="fecha-inicio" id="fecha-inicio">
-        @for (fecha of fechasMesas.fecha; track fecha) {
-          <option>{{fecha}}</option>
+        @for (dia of fechasMesas.dia; track dia) {
+          <option>{{dia}}</option>
         }
       </select>
     </label>
     <label for="hora">
       Hora:
-      <select name="hora" id="hora">
+      <select formControlName="hora">
         @for (hora of fechasMesas.hora; track hora) {
-          <option>{{hora}}</option>
+          <option>{{hora}}</option> 
         }
       </select>
     </label>
     <label for="materia"
       >Materia:
 
-      <select name="materia" id="materia" required>
+      <select formControlName="materia">
         @for(materia of materias; track materia.id_materia) {
           <option [value]="materia.nombre">{{materia.nombre}}</option>
         }
@@ -28,7 +28,7 @@
     <label for="carrera"
       >Modalidad:
 
-      <select name="carrera" id="carrera" required>
+      <select formControlName="carrera" >
         @for(carrera of carreras; track carrera.id_carrera) {
           <option [value]="carrera.nombre">{{carrera.nombre}}</option>
         }
@@ -37,7 +37,7 @@
     <label for="ano"
       >Año:
 
-      <select name="ano" id="ano" required>
+      <select formControlName="curso">
         @for(curso of cursos; track curso) {
           <option [value]="curso">{{curso}}°</option>
         }

@@ -3,9 +3,10 @@ import type { Carrera, Dia, Materia, Mesa } from '@models/mesas-examenes.model'
 import { CarrerasService } from '@services/carreras.service'
 import { MateriasService } from '@services/materias.service'
 import { MesasExamenesService } from '@services/mesas-examenes.service'
+import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms'
 
 interface FechasMesas {
-  fecha: Set<Dia> | string
+  dia: Set<Dia> | string
   hora: Set<string> | string
 }
 
@@ -13,22 +14,25 @@ interface FechasMesas {
   selector: 'app-tabla-mesa-examen',
   templateUrl: './tabla-mesa-examen.html',
   styleUrl: './tabla-mesa-examen.css',
+  imports: [ReactiveFormsModule]
 })
 export class TablaMesaExamenComponent implements OnInit {
   private servicioMateria = inject(MateriasService)
   private servicioCarrera = inject(CarrerasService)
   private servicioMesasExamenes = inject(MesasExamenesService)
   private cdr = inject(ChangeDetectorRef)
+  private fb = inject(FormBuilder)
 
   materias: Materia[] = []
   carreras: Carrera[] = []
   mesas: Mesa[] = []
 
   fechasMesas: FechasMesas = {
-    fecha: '',
+    dia: '',
     hora: '',
   }
   cursos = [1, 2, 3, 4, 5, 6, 7]
+
 
   ngOnInit(): void {
     this.servicioMateria.obtenerMaterias().subscribe({
@@ -51,7 +55,7 @@ export class TablaMesaExamenComponent implements OnInit {
       next: (data: Mesa[]) => {
         this.mesas = data
         this.fechasMesas = {
-          fecha: new Set(this.mesas.map((mesa) => mesa.dia)),
+          dia: new Set(this.mesas.map((mesa) => mesa.dia)),
           hora: new Set(this.mesas.map((mesa) => mesa.hora)),
         }
       },
@@ -59,4 +63,12 @@ export class TablaMesaExamenComponent implements OnInit {
       complete: () => this.cdr.detectChanges(),
     })
   }
+
+  formularioTablaDeMesas = this.fb.group({
+    hora:[""],
+    materia:[""],
+    carrera:[""],
+    ano:[""],
+    curso:[""]
+  })
 }

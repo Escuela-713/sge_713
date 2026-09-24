@@ -45,9 +45,9 @@ export class CreacionDeMesaComponent implements OnInit {
     ano: ['', [Validators.required, Validators.min(1), Validators.max(7)]],
     carrera: ['', [Validators.required]],
     materia: ['', [Validators.required]],
-    profesorTitular: ['', [Validators.required, Validators.minLength(3)]],
-    profesorPrimerVocal: ['', [Validators.required, Validators.minLength(3)]],
-    profesorSegundoVocal: ['', [Validators.required, Validators.minLength(3)]],
+    profesor_titular: ['', [Validators.required, Validators.minLength(3)]],
+    profesor_primer_vocal: ['', [Validators.required, Validators.minLength(3)]],
+    profesor_segundo_vocal: ['', [Validators.required, Validators.minLength(3)]],
     fecha: ['', [Validators.required]],
     turno: ['', [Validators.required]],
   })
