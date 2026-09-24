@@ -25,3 +25,7 @@ export interface Mesa {
   profesor_primer_vocal: string
   profesor_segundo_vocal: string
 }
+
+export type FiltroMesaExamen = Partial<
+  Pick<Mesa, 'ano' | 'carrera' | 'hora' | 'dia' | 'materia'>
+> & { curso?: string }
