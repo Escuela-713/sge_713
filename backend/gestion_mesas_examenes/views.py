@@ -49,8 +49,9 @@ class MesasExamenesView(ApiView):
         except Exception as exception:
             print(exception)
             return Response({'error': 'Hubo un error inesperado en el servidor, estamos trabajando para solucionarlo.'}, status=HTTP_500_INTERNAL_SERVER_ERROR)
-    
-    def inscripcion(self, req: Request):
+
+class InscripcionView(ApiView):
+    def post(self, req: Request):
         body = req.data
 
         if (not body):
