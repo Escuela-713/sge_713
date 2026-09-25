@@ -5,15 +5,10 @@ from gestion_datos_personales.models import Persona
 
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
-<<<<<<< HEAD
     id_persona = models.ForeignKey(
         Persona, on_delete=models.CASCADE,
         related_name="usuario",
         db_column="persona_id"
-=======
-    user_django = models.OneToOneField(
-        User, on_delete=models.CASCADE, related_name="perfil_usuario"
->>>>>>> gestion-usuarios
     )
     id_persona = models.OneToOneField(Persona, on_delete=models.CASCADE, default=1)
 
