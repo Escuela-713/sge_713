@@ -1,39 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, Router, RouterOutlet } from '@angular/router';
-
+import { CommonModule } from '@angular/common';
+import { AuthService } from '@/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterOutlet],
+  imports: [RouterLink, RouterOutlet, CommonModule],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
-  isAuthenticated = false;
-  currentUser: any = null;
-
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
-    this.checkAuth();
-  }
-
-  checkAuth(): void {
-    const userData = localStorage.getItem('currentUser');
-    if (userData) {
-      this.isAuthenticated = true;
-      this.currentUser = JSON.parse(userData);
-    } else {
-      this.isAuthenticated = false;
-      this.currentUser = null;
-    }
-  }
+export class HeaderComponent {
+  public authService = inject(AuthService);
+  private router = inject(Router);
 
   logout(): void {
-    localStorage.removeItem('currentUser');
-    this.isAuthenticated = false;
-    this.currentUser = null;
+    this.authService.logout();
     this.router.navigate(['/']);
   }
 }

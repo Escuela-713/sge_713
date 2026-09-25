@@ -22,7 +22,7 @@
       </ul>
 
       <div class="text-end">
-        @if (!isAuthenticated) {
+        @if (!authService.isAuthenticated()) {
           <button
             type="button"
             class="btn btn-outline-light me-2"
@@ -34,9 +34,9 @@
             Sign-up
           </button>
         }
-        @if (isAuthenticated) {
+        @if (authService.isAuthenticated()) {
           <span class="text-white me-3"
-            >{{ currentUser?.nombre }} ({{ currentUser?.rol }})</span
+            >{{ authService.currentUser()?.nombre }} ({{ authService.currentUser()?.rol }})</span
           >
           <button type="button" class="btn btn-warning" (click)="logout()">
             Cerrar Sesión
@@ -46,4 +46,3 @@
     </div>
   </div>
 </header>
-
