@@ -1,76 +1,81 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-
-
+import { AuthService } from '@/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-registro',
   standalone: true,
-  imports: [RouterLink,ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './registro.component.html',
   styleUrl: './registro.component.css'
-  
 })
 export class RegistroComponent {
-  form!:FormGroup;
-  errorPassword:boolean=false;
-  errorCuil:boolean=false;
-  constructor(private formBuilder: FormBuilder, private router:Router )
-  { 
+  form!: FormGroup;
+  errorPassword: boolean = false;
+  errorCuil: boolean = false;
+  
+  // Variables para feedback visual en el HTML
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
 
-    this.form=this.formBuilder.group(
-      {
-        email:['',[Validators.email,Validators.required]],
-        password:['',[Validators.required]],
-        passwordconfirmation:['',[Validators.required]],
-        name:['',[Validators.required]],
-        surname:['',[Validators.required]],
-        cuil:['',[Validators.required]],
-        cuilconfirmation:['',[Validators.required]],
-        aceptoterminos:['',[Validators.required]],
-      } 
-    )
-
+  constructor(private formBuilder: FormBuilder, private router: Router, private authService: AuthService) { 
+    this.form = this.formBuilder.group({
+      cuil: ['', [Validators.required]],
+      cuilconfirmation: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      passwordconfirmation: ['', [Validators.required]],
+    });
   }
   
-  onChangeCuil()
-  {
-    if (this.Cuil?.value==this.Cuilconfirmation?.value )
-      {
-        this.errorCuil=false;
-      }
-      else{
-        this.errorCuil=true;
-      }
+  onChangeCuil() {
+    if (this.Cuil?.value === this.Cuilconfirmation?.value) {
+      this.errorCuil = false;
+    } else {
+      this.errorCuil = true;
+    }
   }
 
-onChangePassword()
-{
-
-    if (this.Password?.value==this.Passwordconfirmation?.value)
-    {
-      this.errorPassword=false;
+  onChangePassword() {
+    if (this.Password?.value === this.Passwordconfirmation?.value) {
+      this.errorPassword = false;
+    } else {
+      this.errorPassword = true;
     }
-    else{
-      this.errorPassword=true;
-    }
-}
+  }
 
   onEnviar(event: Event) {
-    console.log(this.form.value)
+    event.preventDefault();
+    
+    // Limpiamos mensajes anteriores al intentar enviar
+    this.errorMessage = null;
+    this.successMessage = null;
 
-    event.preventDefault;
-    if (this.form.valid) 
-      {
-        
-          alert("Enviar al servidor...")
-          this.router.navigate(["/iniciar-sesion"]);
-    }
-    else {
+    this.onChangeCuil();
+    this.onChangePassword();
 
+    if (this.form.valid && !this.errorPassword && !this.errorCuil) {
+      const datosRegistro = {
+        cuil: this.form.value.cuil.toString(),
+        contrasenia: this.form.value.password
+      };
 
-      
+      this.authService.register(datosRegistro).subscribe({
+        next: (response) => {
+          console.log("Registro exitoso:", response);
+          this.successMessage = "¡Usuario registrado con éxito! Redirigiendo...";
+          setTimeout(() => {
+            this.router.navigate(["/iniciar-sesion"]);
+          }, 1500);
+        },
+        error: (err) => {
+          console.error("Error del backend:", err);
+          this.errorMessage = err.error?.error || "Ocurrió un error al registrarse. Verifique el CUIL.";
+        }
+      });
+
+    } else {
+      console.warn("El formulario tiene errores o campos pendientes.");
       this.form.markAllAsTouched();
     }
   }
@@ -81,24 +86,10 @@ onChangePassword()
   get Passwordconfirmation() {
     return this.form.get("passwordconfirmation");
   }
-  get Email() {
-    return this.form.get("email");
-  }
-  get Name() {
-    return this.form.get("name");
-  }
-  get Surname() {
-    return this.form.get("surname");
-  }
   get Cuil() {
     return this.form.get("cuil");
   }
   get Cuilconfirmation() {
     return this.form.get("cuilconfirmation");
   }
-  get Aceptarterminos() {
-    return this.form.get("aceptarterminos");
-  }
-
 }
-

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
 export interface RegisterRequest {
-  email: string;
+  cuil: string;
   contrasenia: string;
 }
 
@@ -19,8 +19,8 @@ export interface UserData {
 }
 
 export interface AuthResponse {
-  token: string;
-  usuario?: UserData; // Por si el backend también te devuelve los datos del usuario
+  mensaje?: string;
+  usuario?: UserData;
 }
 
 @Injectable({
@@ -29,53 +29,48 @@ export interface AuthResponse {
 export class AuthService {
   private http = inject(HttpClient);
   private readonly API_URL = 'http://127.0.0.1:8000/api/auth';
-  private readonly TOKEN_KEY = 'auth_token';
   private readonly USER_KEY = 'currentUser';
 
-  isAuthenticated = signal<boolean>(this.hasToken());
+  isAuthenticated = signal<boolean>(!!this.getStoredUser());
   currentUser = signal<UserData | null>(this.getStoredUser());
 
   register(credentials: RegisterRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.API_URL}/register/`, credentials).pipe(
-      tap(response => this.saveSession(response.token, { cuil: credentials.email }))
+    return this.http.post<AuthResponse>(`${this.API_URL}/register/`, credentials, {
+      withCredentials: true // Necesario para enviar/recibir cookies entre dominios/puertos
+    }).pipe(
+      tap(response => {
+        const user: UserData = response.usuario || { cuil: credentials.cuil };
+        this.saveUserSession(user);
+      })
     );
   }
 
   login(credentials: LoginRequest): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.API_URL}/login/`, credentials).pipe(
+    return this.http.post<AuthResponse>(`${this.API_URL}/login/`, credentials, {
+      withCredentials: true // Fundamental para que el navegador acepte la cookie Set-Cookie del backend
+    }).pipe(
       tap(response => {
-        // Podés armar el objeto con lo que devuelva el backend o usar el cuil
         const user: UserData = response.usuario || { cuil: credentials.cuil, nombre: 'Usuario', rol: 'Admin' };
-        this.saveSession(response.token, user);
+        this.saveUserSession(user);
       })
     );
   }
 
   logout(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
-    localStorage.removeItem(this.USER_KEY);
+    sessionStorage.removeItem(this.USER_KEY);
     this.isAuthenticated.set(false);
     this.currentUser.set(null);
   }
 
-  getToken(): string | null {
-    return localStorage.getItem(this.TOKEN_KEY);
-  }
-
-  private saveSession(token: string, user: UserData): void {
-    localStorage.setItem(this.TOKEN_KEY, token);
-    localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+  private saveUserSession(user: UserData): void {
+    sessionStorage.setItem(this.USER_KEY, JSON.stringify(user));
     
     this.isAuthenticated.set(true);
     this.currentUser.set(user);
   }
 
-  private hasToken(): boolean {
-    return !!localStorage.getItem(this.TOKEN_KEY);
-  }
-
   private getStoredUser(): UserData | null {
-    const user = localStorage.getItem(this.USER_KEY);
+    const user = sessionStorage.getItem(this.USER_KEY);
     return user ? JSON.parse(user) : null;
   }
 }
