@@ -1,16 +1,27 @@
+from django.contrib.auth.models import User
 from django.db import models
 from gestion_datos_personales.models import Persona
 
 
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
+<<<<<<< HEAD
     id_persona = models.ForeignKey(
         Persona, on_delete=models.CASCADE,
         related_name="usuario",
         db_column="persona_id"
+=======
+    user_django = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="perfil_usuario"
+>>>>>>> gestion-usuarios
     )
-    contrasenia = models.CharField(max_length=128)
+    id_persona = models.OneToOneField(Persona, on_delete=models.CASCADE, default=1)
 
-    class Meta:
-        managed = True
-        db_table = "usuario"
+    def __str__(self):
+        return (
+            f"Usuario: {self.user_django.username} - Persona: {self.id_persona.email}"
+        )
+
+    @property
+    def is_authenticated(self):
+        return True

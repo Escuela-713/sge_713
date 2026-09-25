@@ -29,17 +29,15 @@ export class LoginComponent {
   }
 
   onEnviar(event: Event) {
-    event.preventDefault(); // <--- Corregido con paréntesis
+    event.preventDefault();
     this.errorMessage = null;
 
     if (this.form.valid) {
-      // Extraemos los datos del formulario adaptándolos al payload que espera Django
       const credentials = {
         cuil: this.Cuil?.value,
-        contrasenia: this.Password?.value // El backend espera 'contrasenia'
+        contrasenia: this.Password?.value
       };
 
-      // Llamada real al backend mediante el servicio
       this.authService.login(credentials).subscribe({
         next: (response) => {
           console.log('Ingreso exitoso, token recibido');
