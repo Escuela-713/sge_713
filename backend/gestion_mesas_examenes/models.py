@@ -26,8 +26,8 @@ class MesaExamen(models.Model):
         db_table = 'mesa_examen'
 
 class AlumnosAnotadosAMesas(models.Model):
-    id_mesa_examen = models.IntegerField()
-    id_alumno = models.ForeignKey(MesaExamen, models.DO_NOTHING, db_column='id_alumno')
+    id_mesa_examen = models.ForeignKey(MesaExamen, on_delete=models.CASCADE, db_column='id_mesa_examen')
+    id_alumno = models.ForeignKey(Alumno, models.DO_NOTHING, db_column='id_alumno')
 
     class Meta:
         managed = True

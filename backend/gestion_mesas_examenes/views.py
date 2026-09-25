@@ -5,7 +5,7 @@ from rest_framework.views import APIView as ApiView
 from gestion_carrera_planes_materias.models import Carrera, Materia
 from gestion_carrera_planes_materias.serializers import CarreraSerializer, MateriaSerializer
 from gestion_mesas_examenes.models import MesaExamen
-from gestion_mesas_examenes.serializer import MesaExamenSerializer
+from gestion_mesas_examenes.serializer import AlumnosAnotadosAMesasSerializer, MesaExamenSerializer
 
 # Create your views here.
 class MesasExamenesView(ApiView):
@@ -45,6 +45,22 @@ class MesasExamenesView(ApiView):
             mesa_guardada = nueva_mesa.save()
 
             return Response({'message': f'Nueva mesa creada, ID: {mesa_guardada.id_mesa_examen}.'}, status=HTTP_201_CREATED)
+        
         except Exception as exception:
             print(exception)
             return Response({'error': 'Hubo un error inesperado en el servidor, estamos trabajando para solucionarlo.'}, status=HTTP_500_INTERNAL_SERVER_ERROR)
+    
+    def inscripcion(self, req: Request):
+        body = req.data
+
+        if (not body):
+            return Response({'error':'No hay información que pueda usarse.'}, status=HTTP_400_BAD_REQUEST)
+
+        inscripcion = AlumnosAnotadosAMesasSerializer(data=body)
+
+        if (not inscripcion.is_valid()):
+          return Response({'error':inscripcion.errors}, status=HTTP_400_BAD_REQUEST)
+
+        inscripcion_guardada = inscripcion.save()
+
+        return Response({"data": "inscripcion creada"}, status=HTTP_201_CREATED)
