@@ -20,13 +20,17 @@
   
   <div class="mb-3">
     <label for="monto" class="form-label">Monto</label>
-    <input 
-      type="number" 
-      class="form-control" 
+    <input
+      type="number"
+      class="form-control"
       id="monto"
+      autocomplete="off"
       placeholder="Ingrese el monto"
-      formControlName="monto"
+      [value]="montoFormateado"
+      (input)="actualizarMonto($event)"
+      aria-describedby="monto-ayuda"
     >
+    
 
     @if (Monto.errors && Monto.touched) {
       @if (Monto.hasError('required')) {

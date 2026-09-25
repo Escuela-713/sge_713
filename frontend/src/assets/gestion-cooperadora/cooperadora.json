@@ -45,10 +45,12 @@
     },
     {
       "monto": 10000,
-      "fecha": "2026-03-01",
+      "fecha": "2026-06-03",
+      "origen": "pmanadería",
+      "destino": "escuela",
       "tipo": "Ingreso",
-      "descripcion": "pan y queso",
-      "id": "F0C1Wy-8l9k"
+      "descripcion": "hay hambre",
+      "id": "1DO4PlvibeQ"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
