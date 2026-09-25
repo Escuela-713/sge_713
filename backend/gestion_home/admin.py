@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Publication, CarouselSlide, HomePageSection
+from .models import Publication, Carrousel, Categories
 
-# Register your models here.
 admin.site.register(Publication)
-admin.site.register(CarouselSlide)
-admin.site.register(HomePageSection)
+admin.site.register(Carrousel)
+admin.site.register(Categories)

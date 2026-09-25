@@ -1,10 +1,10 @@
 <div class="slide-form-container">
-      <h2>Agregar Slide al Carousel</h2>
+      <h2>Agregar apartado al carrusel</h2>
       
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="slide-form">
         <!-- Imagen -->
         <div class="form-group">
-          <label for="image">Imagen del Slide*</label>
+          <label for="image">Imagen <span>*</span></label>
           <input 
             type="file" 
             id="image" 
@@ -24,14 +24,14 @@
 
         <!-- Título -->
         <div class="form-group">
-          <label for="title">Título del Slide*</label>
+          <label for="title">Título <span>*</span></label>
           <input 
             id="title"
             type="text"
             formControlName="title"
             placeholder="Ingrese el título principal"
           >
-          @if(form.get('title')?.errors?.['required'] && form.get('title')?.touched) {
+          @if(form.get('title')?.invalid && form.get('title')?.touched) {
             <p class="error">El título es obligatorio</p>
           }
         </div>
@@ -43,7 +43,7 @@
             id="subtitle"
             type="text"
             formControlName="subtitle"
-            placeholder="Ingrese el subtítulo (opcional)"
+            placeholder="Ingrese el subtítulo"
           >
         </div>
 
@@ -51,7 +51,7 @@
         <div class="form-actions">
           <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
           <button type="submit" class="btn-submit" [disabled]="form.invalid || isSubmitting">
-            {{ isSubmitting ? 'Guardando...' : 'Guardar Slide' }}
+            {{ isSubmitting ? 'Guardando...' : 'Guardar' }}
           </button>
         </div>
       </form>
