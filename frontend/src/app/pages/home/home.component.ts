@@ -1,11 +1,11 @@
-import { Component, Injectable, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 import { HttpClient } from "@angular/common/http";
 import { RouterModule, ActivatedRoute } from "@angular/router";
 import { FooterComponent } from "@shared/footer/footer.component";
 import { HeaderComponent } from "@shared/header/header.component";
 import { NavComponent } from "@shared/nav/nav.component";
-import { Observable } from "rxjs";
+import { PublicationService } from "@services/novedades.service";
 
 interface CarouselSlide {
   id: number;
@@ -62,12 +62,22 @@ export class HomeComponent implements OnInit {
   isLoading: boolean = true;
   error: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private publicationService: PublicationService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
     this.loadHomeData();
     //Poner como titulo "Escuela 713 - Home" para que no se cargue SGE 713
     document.title = `Escuela 713 - Home`;
+        const id = Number(this.route.snapshot.paramMap.get('id'));
+
+    this.publicationService.getPublicationById(id).subscribe({
+      next: (data) => this.publication = data,
+      error: (error) => console.error("Error al obtener la publicación:", error)
+      });
   }
 
   private loadHomeData(): void {
@@ -93,4 +103,8 @@ export class HomeComponent implements OnInit {
   trackByCardId(index: number, card: Card): number {
     return card.id;
   }
+
+  publication?: Publication;
 }
+
+

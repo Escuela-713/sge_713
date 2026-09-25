@@ -9,7 +9,7 @@ interface NovedadesData {
   }
   
 export interface Publication {
-  id : string
+  id : number
 	title : string
 	content : string
 	image : string
@@ -22,7 +22,7 @@ export interface Publication {
 @Injectable({
   providedIn: 'root'
 })
-export class NovedadesService {
+export class PublicationService {
   deleteSlideById(id: number) {
     throw new Error('Method not implemented.');
   }
@@ -50,4 +50,8 @@ export class NovedadesService {
   postNovedad(newNovedad: any): Observable<any> {
     return this.http.post(this.apiUrl, newNovedad);
   } 
+
+  getPublicationById(id: number): Observable<Publication> {
+    return this.http.get<Publication>(`${this.apiUrl}${id}/`);
+  }
 }
