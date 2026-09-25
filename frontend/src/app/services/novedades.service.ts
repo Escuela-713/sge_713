@@ -46,13 +46,8 @@ export class NovedadesService {
   }
 
   private apiUrl = 'http://127.0.0.1:8000/home/';
-<<<<<<< HEAD
-}
-=======
-  constructor(private http: HttpClient) {}
 
   postNovedad(newNovedad: any): Observable<any> {
     return this.http.post(this.apiUrl, newNovedad);
   } 
 }
->>>>>>> angeles
