@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { DatosPersonalesService } from '../../../../services/datos-personales.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface datosEscolares {
   fechaIngreso: Date;
@@ -44,10 +45,17 @@ export class DatosEscolaresComponent {
         console.log('datosTutor');
         console.log(this.datostutor);
       },
-      error: (err) => {
-        alert('Se ha producido un error. Por favor, intente nuevamente.');
-        console.error(err);
-      },
+  error: (err: HttpErrorResponse) => {
+    console.error(err);
+      
+    if (err.status === 400) {
+      alert('La solicitud no es válida. Verifique los datos ingresados.');
+    } else if (err.status === 500) {
+      alert('Ocurrió un error interno del servidor. Intente nuevamente más tarde.');
+    } else {
+      alert('Se ha producido un error. Por favor, intente nuevamente.');
+    }
+  },
     });
   }
   get escuelaOrigen() {
