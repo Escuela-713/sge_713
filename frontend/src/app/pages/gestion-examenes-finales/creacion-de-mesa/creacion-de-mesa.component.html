@@ -8,6 +8,19 @@
       }
     </select>
   </label>
+  @if (Ano.invalid && (Ano.touched || Ano.dirty)) {
+    @if (Ano.hasError('required')) {
+      <span>El año.</span>
+    }
+
+    @if (Ano.hasError('min')) {
+      <span>El mínimo tiene que ser 1.</span>
+    }
+
+    @if (Ano.hasError('max')) {
+      <span>El máximo tiene que ser 7.</span>
+    }
+  }
   <label>
     Carrera:
     <select formControlName="carrera" required>
@@ -16,7 +29,11 @@
       }
     </select>
   </label>
-
+  @if (Carrera.invalid && (Carrera.touched || Carrera.dirty)) {
+    @if (Carrera.hasError('required')) {
+      <span>El nombre de la carrera es requerido.</span>
+    }
+  }
   <label>
     Materia:
     <select formControlName="materia" required>
@@ -25,33 +42,69 @@
       }
     </select>
   </label>
+  @if (Materia.invalid && (Materia.touched || Materia.dirty)) {
+    @if (Materia.hasError('required')) {
+      <span>El nombre de la materia es requerido.</span>
+    }
+  }
   <label>
     Profesor titular:
-    <input type="text" formControlName="profesorTitular" required />
+    <input type="text" formControlName="profesor_titular" required />
   </label>
+  @if (
+    ProfesorTitular.invalid &&
+    (ProfesorTitular.touched || ProfesorTitular.dirty)
+  ) {
+    @if (ProfesorTitular.hasError('required')) {
+      <span>El nombre del profesor titular es requerido.</span>
+    }
+
+    @if (ProfesorTitular.hasError('minlength')) {
+      <span>Se requiere un mínimo de 3 carácteres.</span>
+    }
+  }
   <label>
     Profesor primer vocal:
-    <input
-      type="text"
-      formControlName="profesorPrimerVocal"
-      required
-    />
+    <input type="text" formControlName="profesor_primer_vocal" required />
   </label>
+  @if (
+    ProfesorPrimerVocal.invalid &&
+    (ProfesorPrimerVocal.touched || ProfesorPrimerVocal.dirty)
+  ) {
+    @if (ProfesorPrimerVocal.hasError('required')) {
+      <span>El nombre del profesor primer vocal es requerido.</span>
+    }
+
+    @if (ProfesorPrimerVocal.hasError('minlength')) {
+      <span>Se requiere un mínimo de 3 carácteres.</span>
+    }
+  }
   <label>
     Profesor segundo vocal:
-    <input
-      type="text"
-      formControlName="profesorSegundoVocal"
-      required
-    />
+    <input type="text" formControlName="profesor_segundo_vocal" required />
   </label>
+  @if (
+    ProfesorSegundoVocal.invalid &&
+    (ProfesorSegundoVocal.touched || ProfesorSegundoVocal.dirty)
+  ) {
+    @if (ProfesorSegundoVocal.hasError('required')) {
+      <span>El nombre del profesor segundo vocal es requerido.</span>
+    }
 
+    @if (ProfesorSegundoVocal.hasError('minlength')) {
+      <span>Se requiere un minimo de 3 carácteres.</span>
+    }
+  }
   <label>
     Fecha del examen:
 
-    <input type="date" formControlName="fecha" required />
+    <input type="date" formControlName="dia" required />
   </label>
-
+  @if (Fecha.invalid && (Fecha.touched || Fecha.dirty)) {
+    @if (Fecha.hasError('required')) {
+      <span>La fecha es requerida.</span>
+    }
+  }
   <label>
     Turno:
     <select formControlName="turno" required>
@@ -61,5 +114,10 @@
       <option value="noche">Noche</option>
     </select>
   </label>
+  @if (Turno.invalid && (Turno.touched || Turno.dirty)) {
+    @if (Turno.hasError('required')) {
+      <span>El turno es requerida.</span>
+    }
+  }
   <button type="submit">Enviar inscripcion</button>
 </form>

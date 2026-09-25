@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core'
 import { CarrerasService } from '@services/carreras.service'
 import { MateriasService } from '@services/materias.service'
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms'
+import { ReactiveFormsModule, FormBuilder, Validators, AbstractControl } from '@angular/forms'
 import { MesasExamenesService } from '@/app/services/mesas-examenes.service'
 import { Mesa } from '@/app/models/mesas-examenes.model'
 
@@ -51,7 +51,7 @@ export class CreacionDeMesaComponent implements OnInit {
     profesor_titular: ['', [Validators.required, Validators.minLength(3)]],
     profesor_primer_vocal: ['', [Validators.required, Validators.minLength(3)]],
     profesor_segundo_vocal: ['', [Validators.required, Validators.minLength(3)]],
-    fecha: ['', [Validators.required]],
+    dia: ['', [Validators.required]],
     turno: ['', [Validators.required]],
   })
 
@@ -59,5 +59,37 @@ export class CreacionDeMesaComponent implements OnInit {
     if (!this.formularioMesaExamen.valid) return console.error(this.formularioMesaExamen.errors)
 
     this.servicioMesas.subirMesa(this.formularioMesaExamen.value as unknown as Mesa)
+  }
+
+  get Ano() {
+    return this.formularioMesaExamen.get("ano") as AbstractControl
+  }
+
+   get Carrera() {
+    return this.formularioMesaExamen.get("carrera") as AbstractControl
+  }
+
+  get Materia() {
+    return this.formularioMesaExamen.get("materia") as AbstractControl
+  }
+
+  get ProfesorTitular() {
+    return this.formularioMesaExamen.get("profesor_titular") as AbstractControl
+  }
+
+  get ProfesorPrimerVocal() {
+    return this.formularioMesaExamen.get("profesor_primer_vocal") as AbstractControl
+  }
+
+  get ProfesorSegundoVocal() {
+    return this.formularioMesaExamen.get("profesor_segundo_vocal") as AbstractControl
+  }
+
+   get Fecha() {
+    return this.formularioMesaExamen.get("fecha") as AbstractControl
+  }
+
+   get Turno() {
+    return this.formularioMesaExamen.get("turno") as AbstractControl
   }
 }
