@@ -1,7 +1,11 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable, inject } from '@angular/core'
 import { Observable } from 'rxjs'
-import { FiltroMesaExamen, Mesa } from '../models/mesas-examenes.model'
+import {
+  FiltroMesaExamen,
+  Inscripcion,
+  Mesa,
+} from '../models/mesas-examenes.model'
 import { environment } from '@/environments/environment.development'
 
 @Injectable({
@@ -9,22 +13,24 @@ import { environment } from '@/environments/environment.development'
 })
 export class MesasExamenesService {
   private http = inject(HttpClient)
-  private apiUrl = environment.API_URL
+  private apiUrl = `${environment.API_URL}/mesas_examenes`
 
   obtenerMesas(filtros?: FiltroMesaExamen): Observable<Mesa[]> {
-    if (!filtros) return this.http.get<Mesa[]>(`${this.apiUrl}/mesas_examenes`)
+    if (!filtros) return this.http.get<Mesa[]>(this.apiUrl)
 
     const filtrosParseados = Object.entries(filtros)
       .filter((filtro) => filtro[1])
       .map((filtro) => `${filtro[0]}=${filtro[1]}`)
       .join('&')
 
-    return this.http.get<Mesa[]>(
-      `${this.apiUrl}/mesas_examenes/?${filtrosParseados}`,
-    )
+    return this.http.get<Mesa[]>(`${this.apiUrl}/?${filtrosParseados}`)
   }
 
-  subirMesa(nuevaMesa: Mesa) {
-    return this.http.post(`${this.apiUrl}/mesas_examenes`, nuevaMesa)
+  subirMesa(nuevaMesa: Mesa): Observable<any> {
+    return this.http.post(this.apiUrl, nuevaMesa)
+  }
+
+  inscribirse(inscripcion: Inscripcion): Observable<any> {
+    return this.http.post(`${this.apiUrl}/inscripcion`, inscripcion)
   }
 }
