@@ -1,6 +1,8 @@
 <div class="container">
   <h2>Movimientos de cooperadora escolar</h2>
-  
+  @if (mensaje) {
+    <div class="alert alert-info">{{ mensaje }}</div>
+  }
 </div>
 
 <table class="table">
@@ -18,19 +20,36 @@
   <tbody>
     @for (mov of movimientos; track mov.id) {
     <tr>
-      <td>{{ mov.fecha }}</td>
+      <td>{{ formatearFecha(mov.fecha) }}</td>
       <td [class.ingreso]="mov.tipo === 'Ingreso'" [class.egreso]="mov.tipo === 'Egreso'">
         {{ mov.tipo }}
       </td>
-      <td>{{ mov.monto | currency:'ARS':'symbol':'1.0-0' }}</td>
+      <td>{{ formatearMonto(mov.monto) }}</td>
       <td>{{ mov.origen }}</td>
       <td>{{ mov.destino }}</td>
       <td>{{ mov.descripcion }}</td>
       <td>
-        <button class="btn btnAdd">Editar</button>
-        <button class="btn btnDelete">Eliminar</button>
+        <button class="btn btnAdd" type="button" (click)="editarMovimiento(mov)">Editar</button>
+        <button class="btn btnDelete" type="button" (click)="eliminarMovimiento(mov)">Eliminar</button>
       </td>
     </tr>
     }
   </tbody>
 </table>
+
+@if (movimientoEditando) {
+  <form class="edicion-movimiento" (ngSubmit)="guardarEdicion()">
+    <h3>Editar movimiento</h3>
+    <input type="date" name="fecha" [(ngModel)]="movimientoEditando.fecha" required>
+    <select name="tipo" [(ngModel)]="movimientoEditando.tipo" required>
+      <option value="Ingreso">Ingreso</option>
+      <option value="Egreso">Egreso</option>
+    </select>
+    <input type="number" name="monto" [(ngModel)]="movimientoEditando.monto" min="0.01" required>
+    <input type="text" name="origen" [(ngModel)]="movimientoEditando.origen" placeholder="Origen">
+    <input type="text" name="destino" [(ngModel)]="movimientoEditando.destino" placeholder="Destino">
+    <textarea name="descripcion" [(ngModel)]="movimientoEditando.descripcion" placeholder="Descripción"></textarea>
+    <button class="btn btn-primary" type="submit">Guardar</button>
+    <button class="btn btn-secondary" type="button" (click)="cancelarEdicion()">Cancelar</button>
+  </form>
+}
