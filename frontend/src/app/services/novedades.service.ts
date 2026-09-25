@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
+import { CarouselSlide } from '../pages/gestion-home/home-dashboard/home-dashboard.component';
 
 export interface Publication {
   id : string
@@ -16,6 +17,22 @@ export interface Publication {
   providedIn: 'root'
 })
 export class NovedadesService {
+  addSlide(arg0: { image: any; title: any; subtitle: any; }) {
+  getCardBySlug(slug: string) {
+    throw new Error("Method not implemented.");
+  }
+  deleteSlideById(id: number) {
+    throw new Error('Method not implemented.');
+  }
+  deleteCardById(id: number) {
+    throw new Error('Method not implemented.');
+  }
+  getAll(): NovedadesData | PromiseLike<NovedadesData> {
+    throw new Error('Method not implemented.');
+  }
+  updateSlide(slideEditado: CarouselSlide) {
+    throw new Error('Method not implemented.');
+  }
   private apiUrl = 'http://127.0.0.1:8000/home/';
   constructor(private http: HttpClient) {}
 
