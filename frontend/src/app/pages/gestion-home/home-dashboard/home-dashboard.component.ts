@@ -82,7 +82,12 @@ export class HomeDashboardComponent implements OnInit {
   async cargarDatos(): Promise<void> {
     try {
       // Como cargamos desde localStorage, no necesitamos mostrar loading
-      this.novedadesData = await this.novedadesService.getAll();
+      const data = await this.novedadesService.getAll() as unknown as Partial<NovedadesData>;
+      this.novedadesData = {
+        carouselSlides: data.carouselSlides ?? [],
+        sectionTitle: data.sectionTitle ?? '',
+        cards: data.cards ?? []
+      };
       this.calcularEstadisticas();
       this.obtenerUltimasCards();
     } catch (err) {

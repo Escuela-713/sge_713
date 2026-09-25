@@ -3,6 +3,11 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import { CarouselSlide } from '../pages/gestion-home/home-dashboard/home-dashboard.component';
 
+interface NovedadesData {
+  slides: CarouselSlide[];
+  cards: CarouselSlide[];
+  }
+  
 export interface Publication {
   id : string
 	title : string
@@ -18,10 +23,6 @@ export interface Publication {
   providedIn: 'root'
 })
 export class NovedadesService {
-  addSlide(arg0: { image: any; title: any; subtitle: any; }) {
-  getCardBySlug(slug: string) {
-    throw new Error("Method not implemented.");
-  }
   deleteSlideById(id: number) {
     throw new Error('Method not implemented.');
   }
@@ -34,8 +35,17 @@ export class NovedadesService {
   updateSlide(slideEditado: CarouselSlide) {
     throw new Error('Method not implemented.');
   }
+  constructor(private readonly http: HttpClient) {}
+
+  addSlide(arg0: { image: any; title: any; subtitle: any }): void {
+    // Slides are managed by the consuming component.
+  }
+
+  getCardBySlug(slug: string): Observable<CarouselSlide> {
+    return this.http.get<CarouselSlide>(`${this.apiUrl}${slug}`);
+  }
+
   private apiUrl = 'http://127.0.0.1:8000/home/';
-  constructor(private http: HttpClient) {}
 
   postNovedad(newNovedad: any): Observable<any> {
     return this.http.post(this.apiUrl, newNovedad);

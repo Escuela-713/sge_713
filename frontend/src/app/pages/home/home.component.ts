@@ -1,10 +1,24 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Injectable, OnInit } from "@angular/core";
 
-import { HttpClient, HttpClientModule } from "@angular/common/http";
-import { RouterModule } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
+import { RouterModule, ActivatedRoute } from "@angular/router";
 import { FooterComponent } from "@shared/footer/footer.component";
 import { HeaderComponent } from "@shared/header/header.component";
 import { NavComponent } from "@shared/nav/nav.component";
+import { Observable } from "rxjs";
+
+@Component({
+  selector: "app-home",
+  standalone: true,
+  imports: [
+    NavComponent,
+    HeaderComponent,
+    FooterComponent,
+    RouterModule,
+  ],
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"],
+})
 
 interface CarouselSlide {
   id: number;
@@ -33,19 +47,16 @@ interface HomeData {
   cards: Card[];
 }
 
-@Component({
-  selector: "app-home",
-  standalone: true,
-  imports: [
-    NavComponent,
-    HeaderComponent,
-    FooterComponent,
-    HttpClientModule,
-    RouterModule,
-  ],
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
-})
+export interface Publication {
+  id: number;
+  title: string;
+  content: string;
+  image: string;
+  is_published: boolean;
+  upload_date: string;
+  update_date: string;
+}
+
 export class HomeComponent implements OnInit {
   homeData: HomeData | null = null;
   isLoading: boolean = true;
