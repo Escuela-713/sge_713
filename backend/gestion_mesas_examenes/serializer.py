@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from gestion_carrera_planes_materias.models import Materia, Carrera
 from gestion_mesas_examenes.models import MesaExamen
 
 class MesaExamenSerializer(serializers.ModelSerializer):
@@ -42,7 +43,18 @@ class MesaExamenSerializer(serializers.ModelSerializer):
         required=True
     )
 
-    # Estos últimos 2 campos van a transformar la id de la materia y la carrera a su respectivo nombre en cada caso para en el JSON final devolver directamente la materia y la carrera y no el id de c/u.
+    # Estos tienen write_only para que funcionen únicamente en la escritura de la mesa
+    id_materia = serializers.PrimaryKeyRelatedField(
+        queryset=Materia.objects.all(),
+        write_only=True
+    )
+
+    id_carrera = serializers.PrimaryKeyRelatedField(
+        queryset=Carrera.objects.all(),
+        write_only=True
+    )
+
+    # Estos últimos 2 campos van a transformar la id de la materia y la carrera a su respectivo nombre en cada caso para en el JSON final devolver directamente la materia y la carrera y no el id de c/u, no hay que pasarselos por el método de creación gracias al read_only, lo cual hace que se manden únicamente en la respuesta (la pedida de datos).
     materia = serializers.SlugRelatedField(
         source='id_materia', 
         read_only=True,
@@ -68,6 +80,8 @@ class MesaExamenSerializer(serializers.ModelSerializer):
             'profesor_segundo_vocal', 
             'ruta_al_examen_model',
             'materia',
-            'carrera' 
+            'carrera',
+            'id_materia',
+            'id_carrera'
         ]
 

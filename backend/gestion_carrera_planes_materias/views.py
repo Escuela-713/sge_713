@@ -7,7 +7,7 @@ from gestion_carrera_planes_materias.serializers import CarreraSerializer, PlanS
 
 class CarreraApiViewSet(APIView):
 
-    def get(self, request):
+    def get(self, _):
        carreras = CarreraSerializer(Carrera.objects.all(), many=True).data
 
        return Response(carreras)
@@ -20,17 +20,17 @@ class CarreraApiViewSet(APIView):
 
             if serializer.is_valid():
                 serializer.save()
-                return Response({'message': 'Carrera registrada exitosamente'}, status=HTTP_201_CREATED)
+                return Response({'data': 'Carrera registrada exitosamente'}, status=HTTP_201_CREATED)
             else:
-                return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
+                return Response({'error': serializer.errors}, status=HTTP_400_BAD_REQUEST)
         except Exception as ex:
             print(ex)
-            return Response({'details':'Internal server error'}, status=HTTP_500_INTERNAL_SERVER_ERROR) 
+            return Response({'error': 'Hubo un error inesperado en el servidor, estamos trabajando para solucionarlo.'}, status=HTTP_500_INTERNAL_SERVER_ERROR) 
         
 class PlanesApiView(APIView):
     def get(self, request):
            planes = PlanSerializer(Plan.objects.all(), many=True).data
-           return Response(planes)
+           return Response({'data': planes})
      
 class MateriasApiViewSet(APIView):
     def get(self, request):
@@ -40,7 +40,7 @@ class MateriasApiViewSet(APIView):
            if (len(materias) == 0):
                 return Response({'error': 'No hay materias para mostrar'}, status=HTTP_404_NOT_FOUND)
             
-           return Response(materias)
+           return Response({'data': materias})
 
     def post(self, request: Request):
         body = request.data
@@ -53,6 +53,6 @@ class MateriasApiViewSet(APIView):
         if (not nueva_materia.is_valid()):
             return Response({'error': nueva_materia.errors}, status=400)
 
-        materia_guardada = Materia.objects.create(**nueva_materia.data)
+        materia_guardada = nueva_materia.save()
 
-        return Response({'message': f'Nueva materia creada, {MateriaSerializer(materia_guardada).data.get('id_materia')}'}, status=HTTP_201_CREATED)
+        return Response({'data': f'Nueva materia creada, {materia_guardada.id_materia}'}, status=HTTP_201_CREATED)
