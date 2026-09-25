@@ -1,5 +1,11 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core'
-import type { Carrera, Dia, Materia, Mesa } from '@models/mesas-examenes.model'
+import type {
+  Carrera,
+  Dia,
+  FiltroMesaExamen,
+  Materia,
+  Mesa,
+} from '@models/mesas-examenes.model'
 import { CarrerasService } from '@services/carreras.service'
 import { MateriasService } from '@services/materias.service'
 import { MesasExamenesService } from '@services/mesas-examenes.service'
@@ -14,7 +20,7 @@ interface FechasMesas {
   selector: 'app-tabla-mesa-examen',
   templateUrl: './tabla-mesa-examen.html',
   styleUrl: './tabla-mesa-examen.css',
-  imports: [ReactiveFormsModule]
+  imports: [ReactiveFormsModule],
 })
 export class TablaMesaExamenComponent implements OnInit {
   private servicioMateria = inject(MateriasService)
@@ -33,6 +39,14 @@ export class TablaMesaExamenComponent implements OnInit {
   }
   cursos = [1, 2, 3, 4, 5, 6, 7]
 
+  formularioTablaDeMesas = this.fb.group({
+    dia: [''],
+    hora: [''],
+    materia: [''],
+    carrera: [''],
+    ano: [''],
+    curso: [''],
+  })
 
   ngOnInit(): void {
     this.servicioMateria.obtenerMaterias().subscribe({
@@ -64,11 +78,16 @@ export class TablaMesaExamenComponent implements OnInit {
     })
   }
 
-  formularioTablaDeMesas = this.fb.group({
-    hora:[""],
-    materia:[""],
-    carrera:[""],
-    ano:[""],
-    curso:[""]
-  })
+  obtenerMesasConFiltros() {
+    const filtros = this.formularioTablaDeMesas.value
+    this.servicioMesasExamenes
+      .obtenerMesas(filtros as FiltroMesaExamen)
+      .subscribe({
+        next: (data: Mesa[]) => {
+          this.mesas = data
+        },
+        error: (error: unknown) => console.error(error),
+        complete: () => this.cdr.detectChanges(),
+      })
+  }
 }
