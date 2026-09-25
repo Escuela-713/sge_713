@@ -1,16 +1,20 @@
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 from django.db import models
 from gestion_datos_personales.models import Persona
 
 
-class Usuario(AbstractUser):
-    email = models.EmailField(unique=True)
-    id_persona = models.OneToOneField(
-        Persona, on_delete=models.CASCADE, related_name="usuario", null=True, blank=True
+class Usuario(models.Model):
+    id_usuario = models.AutoField(primary_key=True)
+    user_django = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="perfil_usuario"
     )
-
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["username"]
+    id_persona = models.OneToOneField(Persona, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.email
+        return (
+            f"Usuario: {self.user_django.username} - Persona: {self.id_persona.email}"
+        )
+
+    @property
+    def is_authenticated(self):
+        return True

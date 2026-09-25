@@ -3,8 +3,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.throttling import ScopedRateThrottle
 from django.conf import settings
+from django.utils import timezone
+from datetime import timedelta
 import jwt
-from datetime import datetime, timedelta
 
 from .serializers import RegisterSerializer, LoginSerializer
 
@@ -22,11 +23,10 @@ class RegisterAPIView(APIView):
 
         usuario = serializer.save()
 
-        # Generar token
         payload = {
             "user_id": usuario.id_usuario,
-            "persona_id": usuario.id_usuario.id_persona,
-            "exp": datetime.utcnow() + timedelta(hours=2),
+            "persona_id": usuario.id_persona.id_persona,
+            "exp": timezone.now() + timedelta(hours=2),
         }
         token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
@@ -49,8 +49,9 @@ class LoginAPIView(APIView):
         payload = {
             "user_id": usuario.id_usuario,
             "persona_id": usuario.id_persona.id_persona,
-            "exp": datetime.utcnow() + timedelta(hours=2),
+            "exp": timezone.now() + timedelta(hours=2),
         }
         token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
         return Response({"token": token}, status=status.HTTP_200_OK)
+

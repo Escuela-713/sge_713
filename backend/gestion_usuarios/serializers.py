@@ -1,3 +1,5 @@
+from django.contrib.auth.hashers import check_password
+from django.contrib.auth.models import make_password
 from rest_framework import serializers
 from gestion_datos_personales.models import Persona
 from .models import Usuario
@@ -39,7 +41,7 @@ class RegisterSerializer(serializers.Serializer):
     def create(self, validated_data):
         persona = Persona.objects.get(email=validated_data["email"])
         usuario = Usuario.objects.create(
-            id_persona=persona, contrasenia=validated_data["contrasenia"]
+            id_persona=persona, contrasenia=make_password(validated_data["contrasenia"])
         )
         return usuario
 
@@ -58,7 +60,7 @@ class LoginSerializer(serializers.Serializer):
         except (Persona.DoesNotExist, Usuario.DoesNotExist):
             raise serializers.ValidationError("Credenciales inválidas")
 
-        if usuario.contrasenia != contrasenia:
+        if not check_password(contrasenia, usuario.contrasenia):
             raise serializers.ValidationError("Credenciales inválidas")
 
         data["usuario"] = usuario
