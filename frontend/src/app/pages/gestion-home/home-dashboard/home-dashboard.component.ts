@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import {RouterLink, Router} from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 import { NovedadesService } from '../../../services/novedades.service';
 import { EditarSlideComponent } from '../editar-slide/editar-slide.component';
 
+interface Categoria {
+  id: number;
+  title: string;
+}
+
 interface Card {
   id: number;
   title: string;
-  description?: string;
-  image?: string;
-  location: string;
-  date: string;
-  [key: string]: unknown;
+  content: string;
+  image: string;
+  categoria: Categoria;
+  is_published: boolean;
+  upload_date: string;
+  update_date: string;
 }
 
 export interface CarouselSlide {
@@ -35,7 +41,7 @@ interface NovedadesData {
   styleUrls: ['./home-dashboard.component.css']
 })
 export class HomeDashboardComponent implements OnInit {
-  
+
   novedadesData: NovedadesData = {
     carouselSlides: [],
     sectionTitle: '',
@@ -44,6 +50,35 @@ export class HomeDashboardComponent implements OnInit {
 
   slideEditando: CarouselSlide | null = null;
   mostrarEditorSlide = false;
+
+  totalSlides = 0;
+  totalCards = 0;
+  totalCategorias = 0;
+  ultimasCards: Card[] = [];
+  isLoading = false;
+  mostrarTodas = false;
+
+  constructor(private novedadesService: NovedadesService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.cargarDatos();
+  }
+
+  async cargarDatos(): Promise<void> {
+    try {
+      const data = await this.novedadesService.getAll() as unknown as Partial<NovedadesData>;
+      this.novedadesData = {
+        carouselSlides: data.carouselSlides ?? [],
+        sectionTitle: data.sectionTitle ?? '',
+        cards: data.cards ?? []
+      };
+      this.calcularEstadisticas();
+      this.obtenerUltimasCards();
+    } catch (err) {
+      console.error('Error al cargar los datos:', err);
+    }
+  }
+
   onEditarSlide(slide: CarouselSlide): void {
     this.slideEditando = { ...slide };
     this.mostrarEditorSlide = true;
@@ -66,104 +101,17 @@ export class HomeDashboardComponent implements OnInit {
     this.slideEditando = null;
   }
 
-  totalSlides = 0;
-  totalCards = 0;
-  totalLocaciones = 0;
-  ultimasCards: Card[] = [];
-  isLoading = false;
-  mostrarTodas = false;
-
-  constructor(private novedadesService: NovedadesService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.cargarDatos();
-  }
-
-  async cargarDatos(): Promise<void> {
-    try {
-      // Como cargamos desde localStorage, no necesitamos mostrar loading
-      const data = await this.novedadesService.getAll() as unknown as Partial<NovedadesData>;
-      this.novedadesData = {
-        carouselSlides: data.carouselSlides ?? [],
-        sectionTitle: data.sectionTitle ?? '',
-        cards: data.cards ?? []
-      };
-      this.calcularEstadisticas();
-      this.obtenerUltimasCards();
-    } catch (err) {
-      console.error('Error al cargar los datos:', err);
-    }
-  }
-
   async onDeleteCard(card: Card): Promise<void> {
-    const ok = confirm(`¿Está seguro de querer eliminar esta publicación?`);
+    const ok = confirm('¿Está seguro de querer eliminar esta publicación?');
     if (!ok) return;
     try {
       await this.novedadesService.deleteCardById(card.id);
       await this.cargarDatos();
-      alert('Publicaión eliminada');
+      alert('Publicación eliminada');
     } catch (err) {
       console.error('Error eliminando card:', err);
-      alert('Error al eliminar la puublicación');
+      alert('Error al eliminar la publicación');
     }
-  }
-
-  private calcularEstadisticas(): void {
-    this.totalSlides = this.novedadesData.carouselSlides.length;
-    this.totalCards = this.novedadesData.cards.length;
-    
-    // Contar ubicaciones únicas
-    const ubicacionesUnicas = new Set(this.novedadesData.cards.map(card => card.location));
-    this.totalLocaciones = ubicacionesUnicas.size;
-  }
-
-  private obtenerUltimasCards(): void {
-    // Ordenar por fecha (más recientes primero)
-    const ordenadas = this.novedadesData.cards.sort((a, b) => {
-      const dateA = this.parsearFecha(a.date);
-      const dateB = this.parsearFecha(b.date);
-      return dateB.getTime() - dateA.getTime();
-    });
-    
-    // Si mostrarTodas es true, mostrar todas las cards ordenadas
-    this.ultimasCards = this.mostrarTodas ? ordenadas : ordenadas.slice(0, 4);
-  }
-
-  private parsearFecha(fechaStr: string): Date {
-    // Manejar diferentes formatos de fecha
-    if (fechaStr.includes('/')) {
-      const partes = fechaStr.split('/');
-      if (partes.length === 2) {
-        // Formato MM/YYYY
-        return new Date(parseInt(partes[1]), parseInt(partes[0]) - 1, 1);
-      } else if (partes.length === 3) {
-        // Formato DD/MM/YYYY
-        return new Date(parseInt(partes[2]), parseInt(partes[1]) - 1, parseInt(partes[0]));
-      }
-    }
-    return new Date(fechaStr);
-  }
-
-  formatearFecha(fecha: string): string {
-    const date = this.parsearFecha(fecha);
-    return date.toLocaleDateString('es-ES', {
-      day: '2-digit',
-      month: 'short',
-      year: 'numeric'
-    });
-  }
-
-  truncarTexto(texto: string, limite: number = 100): string {
-    return texto.length > limite ? texto.substring(0, limite) + '...' : texto;
-  }
-
-  getIconSvg(iconPath: string): string {
-    return `<svg width="20" height="20" viewBox="0 0 512 512" fill="currentColor"><path d="${iconPath}"/></svg>`;
-  }
-
-  mostrarTodasLasNovedades(): void {
-    this.mostrarTodas = !this.mostrarTodas;
-    this.obtenerUltimasCards();
   }
 
   async onDeleteSlide(slide: CarouselSlide): Promise<void> {
@@ -177,6 +125,41 @@ export class HomeDashboardComponent implements OnInit {
       console.error('Error eliminando slide:', err);
       alert('Error al eliminar el slide');
     }
+  }
+
+  private calcularEstadisticas(): void {
+    this.totalSlides = this.novedadesData.carouselSlides.length;
+    this.totalCards = this.novedadesData.cards.length;
+
+    const categoriasUnicas = new Set(
+      this.novedadesData.cards.map(card => card.categoria?.id)
+    );
+    this.totalCategorias = categoriasUnicas.size;
+  }
+
+  private obtenerUltimasCards(): void {
+    const ordenadas = [...this.novedadesData.cards].sort((a, b) =>
+      new Date(b.upload_date).getTime() - new Date(a.upload_date).getTime()
+    );
+    this.ultimasCards = this.mostrarTodas ? ordenadas : ordenadas.slice(0, 4);
+  }
+
+  formatearFecha(fecha: string): string {
+    const date = new Date(fecha);
+    return date.toLocaleDateString('es-ES', {
+      day: '2-digit',
+      month: 'short',
+      year: 'numeric'
+    });
+  }
+
+  truncarTexto(texto: string, limite: number = 100): string {
+    return texto.length > limite ? texto.substring(0, limite) + '...' : texto;
+  }
+
+  mostrarTodasLasNovedades(): void {
+    this.mostrarTodas = !this.mostrarTodas;
+    this.obtenerUltimasCards();
   }
 
   agregarNovedad(): void {

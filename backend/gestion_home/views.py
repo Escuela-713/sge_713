@@ -16,15 +16,7 @@ class PublicationView(APIView):
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
 
-class PublicationDetailView(APIView):
-    def get(self, request, pk):
-        try:
-            publication = Publication.objects.get(pk=pk)
-        except Publication.DoesNotExist:
-            return Response({'error': 'Publicación no encontrada'}, status=404)
 
-        serializer = PublicationSerializer(publication)
-        return Response(serializer.data, status=200)
 
 class CategoriesView(APIView):
     def get(self, request):

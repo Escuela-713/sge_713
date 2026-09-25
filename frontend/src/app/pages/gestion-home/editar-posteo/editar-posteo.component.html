@@ -39,28 +39,7 @@
       <div class="form-section">
         <div class="form-card">
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <!-- Slug -->
-            <div class="form-group">
-              <label for="slug" class="form-label">Slug</label>
-              <input 
-                id="slug" 
-                type="text"
-                formControlName="slug" 
-                placeholder="Identificador único (ej: sus-pasillos)"
-                class="form-input"
-                [class.error]="form.get('slug')?.invalid && form.get('slug')?.touched"
-              />
-              @if(form.get('slug')?.errors?.['required'] && form.get('slug')?.touched) {
-                <div class="error-message">
-                  El slug es obligatorio
-                </div>
-              }
-              @if(form.get('slug')?.errors?.['minlength'] && form.get('slug')?.touched) {
-                <div class="error-message">
-                  El slug debe tener al menos 3 caracteres
-                </div>
-              }
-            </div>
+
             <!-- Image Upload -->
             <div class="form-group">
               <label for="image" class="form-label">Imagen de portada</label>
@@ -79,10 +58,10 @@
                     </div>
                   </div>
                 }
-                <input 
-                  id="image" 
-                  type="file" 
-                  accept="image/*" 
+                <input
+                  id="image"
+                  type="file"
+                  accept="image/*"
                   (change)="onImageChange($event)"
                   [class.hidden]="form.get('image')?.value"
                 />
@@ -93,13 +72,14 @@
                 </div>
               }
             </div>
+
             <!-- Title -->
             <div class="form-group">
               <label for="title" class="form-label">Título</label>
-              <input 
-                id="title" 
+              <input
+                id="title"
                 type="text"
-                formControlName="title" 
+                formControlName="title"
                 placeholder="Ingrese el título de la publicación"
                 class="form-input"
                 [class.error]="form.get('title')?.invalid && form.get('title')?.touched"
@@ -115,18 +95,19 @@
                 </div>
               }
             </div>
-            <!-- Category -->
+
             <div class="form-group">
               <label for="categoria" class="form-label">Categoría</label>
-              <select 
-                id="categoria" 
+              <select
+                id="categoria"
                 formControlName="categoria"
                 class="form-select"
                 [class.error]="form.get('categoria')?.invalid && form.get('categoria')?.touched"
               >
-                <option value="evento">Evento</option>
-                <option value="anuncio">Anuncio</option>
-                <option value="acto">Acto Escolar</option>
+                <option value="" disabled>Seleccione una categoría</option>
+                @for (cat of categorias; track cat.id) {
+                  <option [value]="cat.id">{{ cat.title }}</option>
+                }
               </select>
               @if(form.get('categoria')?.invalid && form.get('categoria')?.touched) {
                 <div class="error-message">
@@ -134,12 +115,13 @@
                 </div>
               }
             </div>
+
             <!-- Content -->
             <div class="form-group">
               <label for="content" class="form-label">Contenido</label>
-              <textarea 
-                id="content" 
-                formControlName="content" 
+              <textarea
+                id="content"
+                formControlName="content"
                 placeholder="Ingrese el contenido de la publicación"
                 class="form-textarea"
                 rows="6"
@@ -156,19 +138,20 @@
                 </div>
               }
             </div>
+
             <!-- Action Buttons -->
             <div class="form-actions">
-              <button 
-                type="button" 
-                class="btn-secondary" 
+              <button
+                type="button"
+                class="btn-secondary"
                 (click)="onCancel()"
               >
                 Cancelar
               </button>
               <div class="primary-actions">
-                <button 
-                  type="button" 
-                  class="btn-danger" 
+                <button
+                  type="button"
+                  class="btn-danger"
                   (click)="onDelete()"
                   title="Eliminar publicación"
                 >
@@ -180,9 +163,9 @@
                   </svg>
                   Eliminar
                 </button>
-                <button 
-                  type="submit" 
-                  class="btn-primary" 
+                <button
+                  type="submit"
+                  class="btn-primary"
                   [disabled]="form.invalid"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -195,43 +178,24 @@
           </form>
         </div>
       </div>
-  <!-- Removed stray closing block '}' -->
-      <!-- Preview Section -->
+
       <div class="preview-section">
         <div class="preview-header">
           <h3>Vista Previa</h3>
           <span class="preview-badge">Preview</span>
         </div>
-        
+
         @if (novedad()) {
           <div class="preview-card">
-            <div class="preview-image" [style.backgroundImage]="'url(' + novedad().backgroundImage + ')'">
+            <div class="preview-image" [style.backgroundImage]="'url(' + novedad().image + ')'">
               <h2 class="preview-title">{{ novedad().title }}</h2>
             </div>
             <div class="preview-details">
-              <p><strong>Slug:</strong> {{ novedad().slug || form.get('slug')?.value }}</p>
-              <p><strong>Descripción:</strong> {{ novedad().description }}</p>
-              <p><strong>Categoría:</strong> {{ form.get('categoria')?.value }}</p>
-              <p><strong>Fecha:</strong> {{ novedad().date }}</p>
-              <p><strong>locationIcon:</strong> <span>{{ novedad().locationIcon }}</span></p>
-              <p><strong>dateIcon:</strong> <span>{{ novedad().dateIcon }}</span></p>
+              <p><strong>Categoría:</strong> {{ novedad().categoriaTitle }}</p>
+              <p><strong>Contenido:</strong> {{ novedad().content }}</p>
             </div>
             <div class="preview-content">
-              <div class="preview-meta">
-                <div class="meta-item">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 384 512">
-                    <path [attr.d]="novedad().locationIcon"/>
-                  </svg>
-                  <span>{{ novedad().location }}</span>
-                </div>
-                <div class="meta-item">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 448 512">
-                    <path [attr.d]="novedad().dateIcon"/>
-                  </svg>
-                  <span>{{ novedad().date }}</span>
-                </div>
-              </div>
-              <p class="preview-description">{{ novedad().description }}</p>
+              <p class="preview-description">{{ novedad().content }}</p>
             </div>
           </div>
         } @else {

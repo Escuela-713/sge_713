@@ -1,21 +1,10 @@
 import { Component, OnInit, OnDestroy, signal } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { Subject, takeUntil } from 'rxjs';
-import { NovedadesService, Card } from '../../../services/novedades.service';
-
-interface Novedad {
-  id: number;
-  slug: string;
-  backgroundImage: string;
-  title: string;
-  description: string;
-  location: string;
-  date: string;
-  locationIcon: string;
-  dateIcon: string;
-}
+import { Subject, takeUntil, firstValueFrom } from 'rxjs';
+import { NovedadesService, Publication } from '../../../services/novedades.service';
+import { CategoriasService, Categoria } from '../../../services/categorias.service';
 
 @Component({
   selector: 'app-editar-posteo',
@@ -27,7 +16,8 @@ interface Novedad {
 export class EditarPosteoComponent implements OnInit, OnDestroy {
   form: FormGroup;
   novedad = signal<any | null>(null);
-  originalNovedad: Novedad | null = null;
+  originalNovedad: Publication | null = null;
+  categorias: Categoria[] = [];
   isLoading = true;
   error: string | null = null;
   private destroy$ = new Subject<void>();
@@ -37,28 +27,30 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private location: Location,
-    private novedadesService: NovedadesService
+    private novedadesService: NovedadesService,
+    private categoriasService: CategoriasService
   ) {
     this.form = this.fb.group({
-      slug: ['', [Validators.required, Validators.minLength(3)]],
       image: ['', Validators.required],
       title: ['', [Validators.required, Validators.minLength(5)]],
-      categoria: ['evento', Validators.required],
+      categoria: ['', Validators.required],
       content: ['', [Validators.required, Validators.minLength(10)]]
     });
 
     this.form.valueChanges.subscribe(val => {
       this.updatePreview(val);
     });
+
+    this.obtenerCategorias();
   }
 
   ngOnInit(): void {
     this.route.paramMap
       .pipe(takeUntil(this.destroy$))
       .subscribe(params => {
-        const slug = params.get('slug');
-        if (slug) {
-          this.loadNovedad(slug);
+        const id = Number(params.get('id'));
+        if (id) {
+          this.loadNovedad(id);
         }
       });
   }
@@ -68,28 +60,30 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
-  private async loadNovedad(slug: string): Promise<void> {
+  obtenerCategorias(): void {
+    this.categoriasService.obtenerCategorias().subscribe({
+      next: (data) => {
+        this.categorias = data;
+      },
+      error: (err) => {
+        console.error('Error al cargar categorías:', err);
+      }
+    });
+  }
+
+  private async loadNovedad(id: number): Promise<void> {
     try {
       this.isLoading = true;
       this.error = null;
-      const card = await this.novedadesService.getCardBySlug(slug);
+      const card = await firstValueFrom(this.novedadesService.getCardById(id));
       this.originalNovedad = card || null;
+
       if (this.originalNovedad) {
-        let categoria = 'evento';
-        if (this.originalNovedad.location && typeof this.originalNovedad.location === 'string') {
-          const loc = this.originalNovedad.location.toLowerCase();
-          if (loc.includes('anuncio')) {
-            categoria = 'anuncio';
-          } else if (loc.includes('acto')) {
-            categoria = 'acto';
-          }
-        }
         this.form.patchValue({
-          slug: this.originalNovedad.slug,
-          image: this.originalNovedad.backgroundImage,
+          image: this.originalNovedad.image,
           title: this.originalNovedad.title,
-          categoria: categoria,
-          content: this.originalNovedad.description
+          categoria: this.originalNovedad.categoria,
+          content: this.originalNovedad.content
         });
         document.title = `Editando: ${this.originalNovedad.title} - SGE 713`;
         this.updatePreview(this.form.value);
@@ -105,24 +99,14 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
   }
 
   private updatePreview(val: any): void {
+    const categoriaSeleccionada = this.categorias.find(c => c.id === val.categoria);
     this.novedad.set({
-      backgroundImage: val.image || (this.originalNovedad?.backgroundImage || ''),
+      image: val.image || (this.originalNovedad?.image || ''),
       title: val.title || 'Título de ejemplo',
-      location: this.getCategoriaDisplay(val.categoria),
-      locationIcon: 'M192 0C139.5 0 96 43.5 96 96c0 35.4 19.4 72.4 56.1 100.8L96 512l96-96c36.7-28.4 56.1-65.4 56.1-100.8 0-52.5-43.5-96-96-96z',
-      date: new Date().toLocaleDateString(),
-      dateIcon: 'M0 64C0 46.3 14.3 32 32 32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64z',
-      description: val.content || 'Contenido de ejemplo'
+      categoriaTitle: categoriaSeleccionada?.title || 'Sin categoría',
+      content: val.content || 'Contenido de ejemplo',
+      upload_date: this.originalNovedad?.upload_date || new Date().toISOString()
     });
-  }
-
-  private getCategoriaDisplay(categoria: string): string {
-    switch(categoria) {
-      case 'evento': return 'Evento Escolar';
-      case 'anuncio': return 'Anuncio Importante';
-      case 'acto': return 'Acto Escolar';
-      default: return 'Evento Escolar';
-    }
   }
 
   onImageChange(event: Event): void {
@@ -138,25 +122,22 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      const updatedData = {
-        ...this.originalNovedad,
-        slug: this.form.value.slug,
-        title: this.form.value.title,
-        description: this.form.value.content,
-        location: this.getCategoriaDisplay(this.form.value.categoria),
-        backgroundImage: this.form.value.image,
-        updatedAt: new Date().toISOString()
+    if (this.form.valid && this.originalNovedad) {
+      const val = this.form.value;
+      const payload: Partial<Publication> = {
+        title: val.title,
+        content: val.content,
+        image: val.image,
+        categoria: val.categoria,
+        update_date: new Date().toISOString()
       };
+
       (async () => {
         try {
-          if (this.originalNovedad) {
-            await this.novedadesService.updateCard(updatedData as Card);
-            alert('Posteo actualizado');
-          } else {
-            await this.novedadesService.addCard(updatedData as any);
-            alert('Posteo creado');
-          }
+          await firstValueFrom(
+            this.novedadesService.updateCard(this.originalNovedad!.id, payload)
+          );
+          alert('Publicación actualizada');
           this.router.navigate(['/dashboard/home']);
         } catch (err) {
           console.error('Error guardando publicación', err);
@@ -182,13 +163,13 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
 
   onDelete(): void {
     if (this.originalNovedad) {
-      const confirmDelete = confirm(`¿Está seguro de querer eliminar esta publicación?`);
-      
+      const confirmDelete = confirm('¿Está seguro de querer eliminar esta publicación?');
+
       if (confirmDelete) {
         (async () => {
           try {
-            await this.novedadesService.deleteCardById(this.originalNovedad!.id);
-            alert(`NOVEDAD ELIMINADA:\n"${this.originalNovedad!.title}" ha sido eliminada correctamente.`);
+            await firstValueFrom(this.novedadesService.deleteCardById(this.originalNovedad!.id));
+            alert(`PUBLICACIÓN ELIMINADA:\n"${this.originalNovedad!.title}" ha sido eliminada correctamente.`);
             this.router.navigate(['/dashboard/home']);
           } catch (err) {
             console.error('Error eliminando publicación', err);
@@ -201,12 +182,13 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
 
   private hasChanges(): boolean {
     if (!this.originalNovedad) return false;
-    
+
     const currentValues = this.form.value;
     return (
       currentValues.title !== this.originalNovedad.title ||
-      currentValues.content !== this.originalNovedad.description ||
-      currentValues.image !== this.originalNovedad.backgroundImage
+      currentValues.content !== this.originalNovedad.content ||
+      currentValues.image !== this.originalNovedad.image ||
+      currentValues.categoria !== this.originalNovedad.categoria
     );
   }
 

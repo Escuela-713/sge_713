@@ -21,7 +21,7 @@
         <select id="categoria" formControlName="categoria">
         <option value="" hidden selected>Seleccione una categoría</option>
         @for (categoria of categorias; track categoria.id) {
-        <option [value]="categoria.id">{{ categoria.nombre }}</option>
+        <option [value]="categoria.id">{{ categoria.title }}</option>
         }
         </select>
         @if(form.get('categoria')?.invalid && form.get('categoria')?.touched){

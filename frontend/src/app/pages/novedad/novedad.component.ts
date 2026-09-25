@@ -4,19 +4,18 @@ import { ActivatedRoute } from "@angular/router";
 import { Location } from "@angular/common";
 import { FooterComponent } from "@shared/footer/footer.component";
 import { HeaderComponent } from "@shared/header/header.component";
-import { Subject, takeUntil } from "rxjs";
+import { Subject, takeUntil, firstValueFrom } from "rxjs";
 import { NovedadesService } from "../../services/novedades.service";
 
 interface Novedad {
   id: number;
-  slug: string;
-  backgroundImage: string;
   title: string;
-  description: string;
-  location: string;
-  date: string;
-  locationIcon: string;
-  dateIcon: string;
+  content: string;
+  image: string;
+  categoria: number;
+  is_published: boolean;
+  upload_date: string;
+  update_date: string;
 }
 
 @Component({
@@ -36,11 +35,12 @@ export class NovedadComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // Subscribe to route parameter changes
+   
     this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((params) => {
-      const slug = params.get("slug");
-      if (slug) {
-        this.loadNovedad(slug);
+      
+      const id = Number(params.get("id"));
+      if (id) {
+        this.loadNovedad(id);
       }
     });
   }
@@ -54,9 +54,10 @@ export class NovedadComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  private async loadNovedad(slug: string): Promise<void> {
+  private async loadNovedad(id: number): Promise<void> {
     try {
-      const card = await this.novedadesService.getCardBySlug(slug);
+      
+      const card = await firstValueFrom(this.novedadesService.getCardById(id));
       this.novedad = card as unknown as Novedad | undefined;
 
       if (this.novedad) {
