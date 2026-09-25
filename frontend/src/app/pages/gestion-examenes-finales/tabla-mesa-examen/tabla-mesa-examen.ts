@@ -9,7 +9,7 @@ import type {
 import { CarrerasService } from '@services/carreras.service'
 import { MateriasService } from '@services/materias.service'
 import { MesasExamenesService } from '@services/mesas-examenes.service'
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms'
+import { ReactiveFormsModule, FormBuilder } from '@angular/forms'
 
 interface FechasMesas {
   dia: Set<Dia> | string
@@ -50,8 +50,8 @@ export class TablaMesaExamenComponent implements OnInit {
 
   ngOnInit(): void {
     this.servicioMateria.obtenerMaterias().subscribe({
-      next: (data: Materia[]) => {
-        this.materias = data
+      next: (materias) => {
+        this.materias = materias.data
       },
       error: (error: unknown) => {
         console.error(error)
@@ -60,17 +60,17 @@ export class TablaMesaExamenComponent implements OnInit {
     })
 
     this.servicioCarrera.obtenerCarreras().subscribe({
-      next: (data: Carrera[]) => (this.carreras = data),
+      next: (carreras) => (this.carreras = carreras.data),
       error: (error: unknown) => console.error(error),
       complete: () => {},
     })
 
     this.servicioMesasExamenes.obtenerMesas().subscribe({
-      next: (data: Mesa[]) => {
-        this.mesas = data
+      next: (mesas) => {
+        this.mesas = mesas.data
         this.fechasMesas = {
-          dia: new Set(this.mesas.map((mesa) => mesa.dia)),
-          hora: new Set(this.mesas.map((mesa) => mesa.hora)),
+          dia: new Set(mesas.data.map((mesa) => mesa.dia)),
+          hora: new Set(mesas.data.map((mesa) => mesa.hora)),
         }
       },
       error: (error: unknown) => console.error(error),
@@ -83,8 +83,8 @@ export class TablaMesaExamenComponent implements OnInit {
     this.servicioMesasExamenes
       .obtenerMesas(filtros as FiltroMesaExamen)
       .subscribe({
-        next: (data: Mesa[]) => {
-          this.mesas = data
+        next: (mesas) => {
+          this.mesas = mesas.data
         },
         error: (error: unknown) => console.error(error),
         complete: () => this.cdr.detectChanges(),

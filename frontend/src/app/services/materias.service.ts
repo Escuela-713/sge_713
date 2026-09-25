@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core'
 import { Observable } from 'rxjs'
 import type { Materia } from '../models/mesas-examenes.model'
 import { environment } from '@/environments/environment.development'
+import { ApiResponse } from '../models/responses.model'
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class MateriasService {
 
   constructor(private http: HttpClient) {}
 
-  obtenerMaterias(): Observable<Materia[]> {
-    return this.http.get<Materia[]>(`${this.apiUrl}/materia`)
+  obtenerMaterias(): Observable<ApiResponse<Materia[]>> {
+    return this.http.get<ApiResponse<Materia[]>>(`${this.apiUrl}/materia`)
   }
 }
