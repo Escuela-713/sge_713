@@ -32,7 +32,7 @@ class Persona(models.Model):
         O_P = "O+", "O+"
         O_N = "O-", "O-"
 
-    id_persona = models.AutoField(primary_key=True)
+    persona = models.AutoField(primary_key=True, db_column="id_persona")
     primer_nombre = models.CharField(max_length=128)
     segundo_nombre = models.CharField(max_length=128, blank=True, null=True)
     tercer_nombre = models.CharField(max_length=128, blank=True, null=True)

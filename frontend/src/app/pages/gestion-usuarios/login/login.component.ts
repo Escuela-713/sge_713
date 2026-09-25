@@ -1,6 +1,7 @@
-import { Component, numberAttribute } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '@/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,11 @@ import { Router, RouterLink } from '@angular/router';
 export class LoginComponent {
   form!: FormGroup;
   errorMessage: string | null = null;
-  constructor(private formBuilder: FormBuilder, private router:Router) {
+  private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
+  private authService = inject(AuthService);
+  
+  constructor() {
 
     this.form = this.formBuilder.group(
       {
@@ -24,31 +29,28 @@ export class LoginComponent {
   }
 
   onEnviar(event: Event) {
-    console.log(this.form.value)
-    this.errorMessage = null
+    event.preventDefault(); // <--- Corregido con paréntesis
+    this.errorMessage = null;
 
-    event.preventDefault;
     if (this.form.valid) {
-      const usuarios = [
-        { cuil: "123456", password: "admin", rol: "admin", nombre: "admin" },
-        { cuil: "12346789", password: "user", rol: "user", nombre: "user" }
-      ];
+      // Extraemos los datos del formulario adaptándolos al payload que espera Django
+      const credentials = {
+        cuil: this.Cuil?.value,
+        contrasenia: this.Password?.value // El backend espera 'contrasenia'
+      };
 
-      const usuario = usuarios.find(u => u.cuil === this.Cuil?.value && u.password === this.Password?.value);
+      // Llamada real al backend mediante el servicio
+      this.authService.login(credentials).subscribe({
+        next: (response) => {
+          console.log('Ingreso exitoso, token recibido');
+          this.router.navigate(["/dashboard/home"]);
+        },
+        error: (err) => {
+          console.error('Error de autenticación:', err);
+          this.errorMessage = "Credenciales incorrectas o error en el servidor";
+        }
+      });
 
-      if (usuario) {
-        // Simular almacenamiento de sesión
-        localStorage.setItem('currentUser', JSON.stringify({
-          cuil: usuario.cuil,
-          rol: usuario.rol,
-          nombre: usuario.nombre
-        }));
-
-        console.log(`Ingreso exitoso - Usuario: ${usuario.nombre}, Rol: ${usuario.rol}`);
-        this.router.navigate(["/dashboard/home"]);
-      } else {
-        this.errorMessage = "Credenciales incorrectas";
-      }
     } else {
       this.form.markAllAsTouched();
     }
@@ -57,9 +59,8 @@ export class LoginComponent {
   get Password() {
     return this.form.get("password");
   }
+  
   get Cuil() {
     return this.form.get("cuil");
   }
-
-
 }

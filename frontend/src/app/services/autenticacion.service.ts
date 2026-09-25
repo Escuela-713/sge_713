@@ -8,7 +8,7 @@ export interface RegisterRequest {
 }
 
 export interface LoginRequest {
-  email: string;
+  cuil: string; // Cambiado a cuil para coincidir con tu backend
   contrasenia: string;
 }
 
@@ -21,10 +21,10 @@ export interface AuthResponse {
 })
 export class AuthService {
   private http = inject(HttpClient);
-  private readonly API_URL = 'http://localhost:8000/api';
+  // Corregido a la ruta exacta donde responde Django
+  private readonly API_URL = 'http://127.0.0.1:8000/api/auth';
   private readonly TOKEN_KEY = 'auth_token';
 
-  // Signal para manejar el estado de autenticación de forma reactiva
   isAuthenticated = signal<boolean>(this.hasToken());
 
   /**

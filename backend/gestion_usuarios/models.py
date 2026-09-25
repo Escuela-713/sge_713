@@ -6,7 +6,7 @@ class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
     id_persona = models.ForeignKey(
         Persona, on_delete=models.CASCADE,
-        related_name="persona",
+        related_name="usuario",
         db_column="persona_id"
     )
     contrasenia = models.CharField(max_length=128)

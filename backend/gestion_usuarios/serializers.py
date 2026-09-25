@@ -45,15 +45,15 @@ class RegisterSerializer(serializers.Serializer):
 
 
 class LoginSerializer(serializers.Serializer):
-    email = serializers.EmailField()
+    cuil = serializers.CharField()
     contrasenia = serializers.CharField(write_only=True)
 
     def validate(self, data):
-        email = data.get("email")
+        cuil = data.get("cuil")
         contrasenia = data.get("contrasenia")
 
         try:
-            persona = Persona.objects.get(email=email)
+            persona = Persona.objects.get(dni=cuil)
             usuario = Usuario.objects.get(id_persona=persona)
         except (Persona.DoesNotExist, Usuario.DoesNotExist):
             raise serializers.ValidationError("Credenciales inválidas")
