@@ -8,6 +8,7 @@ export interface Publication {
 	title : string
 	content : string
 	image : string
+  categoria: number;
 	is_published : boolean 
 	upload_date : string
 	update_date : string

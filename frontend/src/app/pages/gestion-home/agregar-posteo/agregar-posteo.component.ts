@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NovedadesService } from '../../../services/novedades.service';
+import { NovedadesService, Publication } from '../../../services/novedades.service';
 import { CategoriasService, Categoria } from '../../../services/categorias.service';
 
 @Component({
@@ -26,13 +26,14 @@ export class AgregarPosteoComponent {
 
     this.form.valueChanges.subscribe(val => {
       this.novedad.set({
-        backgroundImage: val.image,
+        id: '',
         title: val.title || 'Título de ejemplo',
-        location: val.categoria,
-        locationIcon: 'M192 0 ...', // ícono de ubicación
-        date: new Date().toLocaleDateString(),
-        dateIcon: 'M0 64C0 46 ...', // ícono de fecha
-        description: val.content
+        content: val.content,
+        image: val.image,
+        categoria: val.categoria,
+        is_published: false,
+        upload_date: new Date().toISOString(),
+        update_date: new Date().toISOString()
       });
     });
      this.obtenerCategorias();
@@ -64,31 +65,27 @@ export class AgregarPosteoComponent {
 
   onSubmit() {
     if (this.form.valid) {
-      // Guardar usando el servicio
       const val = this.form.value;
-      this.novedad.set({
-        backgroundImage: val.image,
+       const payload: Publication = {
+        id: '',
         title: val.title,
-        location: val.categoria,
-        date: new Date().toLocaleDateString(),
-        description: val.content
-      });
-      // Añadir al storage (async)
-      const payload = {
-        title: val.title,
-        description: val.content,
-        backgroundImage: val.image,
-        location: val.categoria,
-        date: new Date().toLocaleDateString(),
-        locationIcon: '',
-        dateIcon: ''
+        content: val.content,
+        image: val.image,
+        categoria: val.categoria,
+        is_published: false,
+        upload_date: new Date().toISOString(),
+        update_date: new Date().toISOString()
       };
-      this.novedadesService.addCard(payload as any).then(() => {
-        alert('Publicación agregada correctamente');
-        this.router.navigate(['/dashboard/home']);
-      }).catch((err: any) => {
-        console.error('Error agregando la publicación', err);
-        alert('No se pudo agregar la publicación');
+
+      this.novedadesService.postNovedad(payload).subscribe({
+        next: () => {
+          alert('Publicación agregada correctamente');
+          this.router.navigate(['/dashboard/home']);
+        },
+        error: (err) => {
+          console.error('Error agregando la publicación', err);
+          alert('No se pudo agregar la publicación');
+        }
       });
     } else {
       this.form.markAllAsTouched();

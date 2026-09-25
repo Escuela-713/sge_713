@@ -25,3 +25,16 @@ class PublicationDetailView(APIView):
 
         serializer = PublicationSerializer(publication)
         return Response(serializer.data, status=200)
+
+class CategoriesView(APIView):
+    def get(self, request):
+        categorias = Categories.objects.all()
+        serializer = CategoriesSerializer(categorias, many=True)
+        return Response(serializer.data, status=200)
+
+    def post(self, request):
+        serializer = CategoriesSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
