@@ -112,6 +112,19 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.InvitadoRateThrottle",
+        "rest_framework.throttling.UsuarioRateThrottle",
+    ],
+    "DEFAULT_THROTTLE_RATES": {
+        "invitado": "100/day",  # Tasa general para anónimos
+        "usuario": "1000/day",  # Tasa general para autenticados
+        "auth_register": "5/minute",  # Límite personalizado para Registro
+        "auth_login": "5/minute",  # Límite personalizado para Login
+    },
+}
+
 WSGI_APPLICATION = "project.wsgi.application"
 
 

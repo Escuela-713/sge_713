@@ -56,7 +56,6 @@ class LoginSerializer(serializers.Serializer):
         except Usuario.DoesNotExist:
             raise serializers.ValidationError("Credenciales inválidas")
 
-        # Nota: comparacion directa para mantener compatibilidad con DB existente
         if usuario.contrasenia != contrasenia:
             raise serializers.ValidationError("Credenciales inválidas")
 

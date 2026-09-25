@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 from django.conf import settings
 import jwt
 from datetime import datetime, timedelta
@@ -9,7 +10,10 @@ from .serializers import RegisterSerializer, LoginSerializer
 
 
 class RegisterAPIView(APIView):
-    """Registra un `Usuario` ligado a una `Persona` ya existente (buscada por email)."""
+    """Registra un `Usuario` ligado a una `Persona` ya existente."""
+
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "auth_register"
 
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -18,10 +22,10 @@ class RegisterAPIView(APIView):
 
         usuario = serializer.save()
 
-        # generar token
+        # Generar token
         payload = {
             "user_id": usuario.id_usuario,
-            "persona_id": usuario.id_persona.id_persona,
+            "persona_id": usuario.id_usuario.id_persona,
             "exp": datetime.utcnow() + timedelta(hours=2),
         }
         token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
@@ -30,10 +34,10 @@ class RegisterAPIView(APIView):
 
 
 class LoginAPIView(APIView):
-    """Login con email (campo en Persona) y contrasenia (campo en Usuario).
+    """Login con email y contrasenia."""
 
-    Retorna un JWT simple con `user_id` y `persona_id`.
-    """
+    throttle_classes = [ScopedRateThrottle]
+    throttle_scope = "auth_login"
 
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
