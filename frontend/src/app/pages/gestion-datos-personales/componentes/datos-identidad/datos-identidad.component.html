@@ -190,7 +190,10 @@
           id="provinciaNacimiento"
           formControlName="provinciaNacimiento"
         >
-        <option value="" disabled selected>Seleccione una provincia</option>
+          <option value="" disabled selected>Seleccione una provincia</option>
+          <option *ngFor="let pro of provinciasNacimientoList" [value]="pro.id">
+            {{ pro.nombre }}
+          </option>
         </select>
         <div
           [hidden]="

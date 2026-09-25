@@ -22,7 +22,7 @@ export interface Localidad {
   providedIn: 'root',
 })
 export class RegionService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'http://localhost:3001';
 
   constructor(private http: HttpClient) {}
 
