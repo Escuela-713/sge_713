@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectorRef, Component, signal } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NovedadesService, Publication } from '../../../services/novedades.service';
@@ -16,7 +16,7 @@ export class AgregarPosteoComponent {
   novedad = signal<any | null>(null);
   categorias: Categoria[] = [];
 
-  constructor(private fb: FormBuilder, private novedadesService: NovedadesService, private router: Router, private categoriasService: CategoriasService) {
+  constructor(private fb: FormBuilder, private novedadesService: NovedadesService, private router: Router, private categoriasService: CategoriasService, private chr: ChangeDetectorRef) {
     this.form = this.fb.group({
       image: ['', Validators.required],
       title: ['', [Validators.required]],
@@ -26,7 +26,6 @@ export class AgregarPosteoComponent {
 
     this.form.valueChanges.subscribe(val => {
       this.novedad.set({
-        id: '',
         title: val.title || 'Título de ejemplo',
         content: val.content,
         image: val.image,
@@ -47,7 +46,8 @@ export class AgregarPosteoComponent {
       },
       error: (err) => {
         console.error('Error al cargar categorías:', err);
-      }
+      },
+      complete: ()=> {this.chr.detectChanges()}
     });
   }
 
@@ -66,8 +66,7 @@ export class AgregarPosteoComponent {
   onSubmit() {
     if (this.form.valid) {
       const val = this.form.value;
-       const payload: Publication = {
-        id: '',
+      const publicacion: Omit<Publication, 'id'> = {
         title: val.title,
         content: val.content,
         image: val.image,
@@ -76,17 +75,18 @@ export class AgregarPosteoComponent {
         upload_date: new Date().toISOString(),
         update_date: new Date().toISOString()
       };
-
-      this.novedadesService.postNovedad(payload).subscribe({
-        next: () => {
-          alert('Publicación agregada correctamente');
-          this.router.navigate(['/dashboard/home']);
-        },
-        error: (err) => {
-          console.error('Error agregando la publicación', err);
-          alert('No se pudo agregar la publicación');
-        }
-      });
+      console.log (publicacion)
+      this.novedadesService.crearPublicacion(publicacion).subscribe({
+      next: (response) => {
+        console.log('Publicación guardada:', response);
+        alert('Publicación agregada correctamente');
+        this.router.navigate(['/dashboard/home']);
+      },
+      error: (err) => {
+        console.error('Error al guardar la publicación:', err);
+        alert('No se pudo guardar la publicación');
+      }
+    });
     } else {
       this.form.markAllAsTouched();
     }

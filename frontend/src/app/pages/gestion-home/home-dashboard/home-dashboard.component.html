@@ -1,155 +1,155 @@
   <!-- Header -->
-  <div class="dashboard-header">
-    <h1 class="dashboard-title">Dashboard de la landing</h1>
-    <p class="dashboard-subtitle">Resumen de contenido institucional</p>
+<div class="dashboard-header">
+  <h1 class="dashboard-title">Dashboard de la landing</h1>
+  <p class="dashboard-subtitle">Resumen de contenido institucional</p>
+</div>
+
+<!-- Loading State -->
+@if (isLoading) {
+  <div class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Cargando información de las publicaciones de la escuela...</p>
   </div>
+} @else {
+  <!-- Dashboard Content -->
+  <div class="dashboard-content">
 
-  <!-- Loading State -->
-  @if (isLoading) {
-    <div class="loading-container">
-      <div class="loading-spinner"></div>
-      <p>Cargando información de las publicaciones de la escuela...</p>
-    </div>
-  } @else {
-    <!-- Dashboard Content -->
-    <div class="dashboard-content">
-      
-      <!-- Cards de Estadísticas -->
-      <div class="stats-grid">
-        <div class="stat-card slides">
-          <div class="stat-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M4 14h16M4 10h16M4 18h7"/>
-            </svg>
-          </div>
-          <div class="stat-content">
-            <h3 class="stat-number">{{ totalSlides }}</h3>
-            <p class="stat-label">Slides del Carousel</p>
-          </div>
+    <!-- Cards de Estadísticas -->
+    <div class="stats-grid">
+      <div class="stat-card slides">
+        <div class="stat-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 14h16M4 10h16M4 18h7"/>
+          </svg>
         </div>
-
-        <div class="stat-card contenido">
-          <div class="stat-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2z"/>
-            </svg>
-          </div>
-          <div class="stat-content">
-            <h3 class="stat-number">{{ totalCards }}</h3>
-            <p class="stat-label">Artículos Publicados</p>
-          </div>
-        </div>
-
-        <div class="stat-card ubicaciones">
-          <div class="stat-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 21s-8-4.5-8-11a8 8 0 1116 0c0 6.5-8 11-8 11z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-          </div>
-          <div class="stat-content">
-            <h3 class="stat-number">{{ totalLocaciones }}</h3>
-            <p class="stat-label">Ubicaciones Diferentes</p>
-          </div>
+        <div class="stat-content">
+          <h3 class="stat-number">{{ totalSlides }}</h3>
+          <p class="stat-label">Slides del Carousel</p>
         </div>
       </div>
 
-      <!-- Sección de Últimas Publicaciones -->
-      <div class="recent-posts-section">
-        <div class="section-header">
-          <h2 class="section-title">Últimas Publiaciones del Colegio</h2>
-          <button class="view-all-btn" (click)="mostrarTodasLasNovedades()">
-            {{ mostrarTodas ? 'Ver menos' : 'Ver todas' }}
-          </button>
+      <div class="stat-card contenido">
+        <div class="stat-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10l6 6v8a2 2 0 01-2 2z"/>
+          </svg>
         </div>
+        <div class="stat-content">
+          <h3 class="stat-number">{{ totalCards }}</h3>
+          <p class="stat-label">Artículos Publicados</p>
+        </div>
+      </div>
 
-        <div class="posts-grid">
-          @for (card of ultimasCards; track card.id) {
-            <div class="post-card">
-              <div class="post-image">
-                <img [src]="card.backgroundImage" [alt]="card.title" />
+      <div class="stat-card categorias">
+        <div class="stat-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"/>
+          </svg>
+        </div>
+        <div class="stat-content">
+          <h3 class="stat-number">{{ totalCategorias }}</h3>
+          <p class="stat-label">Categorías Diferentes</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección de Últimas Publicaciones -->
+    <div class="recent-posts-section">
+      <div class="section-header">
+        <h2 class="section-title">Últimas Publicaciones del Colegio</h2>
+        <button class="view-all-btn" (click)="mostrarTodasLasNovedades()">
+          {{ mostrarTodas ? 'Ver menos' : 'Ver todas' }}
+        </button>
+      </div>
+
+      <div class="posts-grid">
+        @for (card of ultimasCards; track card.id) {
+          <div class="post-card">
+            <div class="post-image">
+              <img [src]="card.image" [alt]="card.title" />
+            </div>
+
+            <div class="post-content">
+              <div class="post-header">
+                <h3 class="post-title">{{ card.title }}</h3>
+                <span class="post-categoria">{{ card.categoria.title }}</span>
               </div>
-              
-              <div class="post-content">
-                <div class="post-header">
-                  <h3 class="post-title">{{ card.title }}</h3>
+              <p class="post-excerpt">{{ truncarTexto(card.content, 120) }}</p>
+              <div class="post-meta">
+                <div class="meta-item">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2"/>
+                    <path d="M16 2v4M8 2v4M3 10h18"/>
+                  </svg>
+                  <span>{{ formatearFecha(card.upload_date) }}</span>
                 </div>
-                <p class="post-excerpt">{{ truncarTexto(card.description, 120) }}</p>
-                <div class="post-meta">
-                  <div class="meta-item">
-                    <svg width="16" height="16" viewBox="0 0 512 512" fill="currentColor">
-                      <path [attr.d]="card.locationIcon"/>
-                    </svg>
-                    <span>{{ card.location }}</span>
-                  </div>
-                  <div class="meta-item">
-                    <svg width="16" height="16" viewBox="0 0 512 512" fill="currentColor">
-                      <path [attr.d]="card.dateIcon"/>
-                    </svg>
-                    <span>{{ formatearFecha(card.date) }}</span>
-                  </div>
-                  <div class="post-actions">
-                    <a class="view-post-link" [routerLink]="['/novedad', card.slug]">Ver Publicación</a>
-                    <a class="edit-post-link" [routerLink]="['/dashboard/home/editar-novedad', card.slug]">Editar Publicación</a>
-                    <button class="delete-post-link" (click)="onDeleteCard(card)">Eliminar</button>
-                  </div>
+                <div class="post-actions">
+                  <a class="view-post-link" [routerLink]="['/novedad', card.id]">Ver Publicación</a>
+                  <a class="edit-post-link" [routerLink]="['/dashboard/home/editar-novedad', card.id]">Editar Publicación</a>
+                  <button class="delete-post-link" (click)="onDeleteCard(card)">Eliminar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+
+      @if (ultimasCards.length === 0) {
+        <div class="empty-state">
+          <div class="empty-icon">
+            <!-- icono vacío -->
+          </div>
+          <h3>No hay contenido disponible</h3>
+          <p>No se encontraron publicaciones para mostrar</p>
+          <button class="create-post-btn" routerLink="agregar-posteo">Agregar Contenido</button>
+        </div>
+      }
+    </div>
+
+    <!-- Información del Carousel -->
+    <div class="carousel-info-section">
+      <div class="section-header">
+        <h2 class="section-title">Slides del Carousel Principal</h2>
+        <button class="btn btn-primary" routerLink="agregar-slide">Agregar Slide</button>
+      </div>
+
+      @if (novedadesData.carouselSlides.length > 0) {
+        <div class="carousel-preview">
+          @for (slide of novedadesData.carouselSlides; track slide.id; let i = $index) {
+            <div class="carousel-slide-preview">
+              <div class="slide-image">
+                <img [src]="slide.image" [alt]="slide.title" />
+              </div>
+              <div class="slide-info">
+                <h4>{{ slide.title }}</h4>
+                <p>{{ slide.subtitle }}</p>
+                <small>Slide #{{ i + 1 }}</small>
+                <div class="slide-actions">
+                  <button class="edit-slide-btn" (click)="onEditarSlide(slide)">Editar</button>
+                  <button class="delete-slide-btn" (click)="onDeleteSlide(slide)">Eliminar</button>
                 </div>
               </div>
             </div>
           }
         </div>
-
-        @if (ultimasCards.length === 0) {
-          <div class="empty-state">
-            <div class="empty-icon">
-              <!-- icono vacío -->
-            </div>
-            <h3>No hay contenido disponible</h3>
-            <p>No se encontraron publicaciones para mostrar</p>
-            <button class="create-post-btn" routerLink="agregar-posteo">Agregar Contenido</button>
+      } @else {
+        <div class="empty-state">
+          <div class="empty-icon">
+            <!-- icono vacío -->
           </div>
-        }
-      </div>
-
-      <!-- Información del Carousel -->
-      <div class="carousel-info-section">
-        <div class="section-header">
-          <h2 class="section-title">Slides del Carousel Principal</h2>
-          <button class="btn btn-primary" routerLink="agregar-slide">Agregar Slide</button>
+          <h3>No hay slides disponibles</h3>
+          <p>El carousel está vacío. Agrega slides para mostrar en la página principal.</p>
         </div>
-        
-        @if (novedadesData.carouselSlides.length > 0) {
-          <div class="carousel-preview">
-            @for (slide of novedadesData.carouselSlides; track slide.id; let i = $index) {
-              <div class="carousel-slide-preview">
-                <div class="slide-image">
-                  <img [src]="slide.image" [alt]="slide.title" />
-                </div>
-                <div class="slide-info">
-                  <h4>{{ slide.title }}</h4>
-                  <p>{{ slide.subtitle }}</p>
-                  <small>Slide #{{ i + 1 }}</small>
-                  <div class="slide-actions">
-                    <button class="edit-slide-btn" (click)="onEditarSlide(slide)">Editar</button>
-                    <button class="delete-slide-btn" (click)="onDeleteSlide(slide)">Eliminar</button>
-                  </div>
-                </div>
-              </div>
-            }
-          </div>
-        } @else {
-          <div class="empty-state">
-            <div class="empty-icon">
-              <!-- icono vacío -->
-            </div>
-            <h3>No hay slides disponibles</h3>
-            <p>El carousel está vacío. Agrega slides para mostrar en la página principal.</p>
-          </div>
-        }
+      }
+
       <!-- Modal de edición de slide fuera del bucle -->
       @if (mostrarEditorSlide && slideEditando) {
-        <app-editar-slide [slide]="slideEditando" (guardar)="onGuardarSlideEditado($event)" (cancelar)="onCancelarEdicionSlide()"></app-editar-slide>
+        <app-editar-slide
+          [slide]="slideEditando"
+          (guardar)="onGuardarSlideEditado($event)"
+          (cancelar)="onCancelarEdicionSlide()">
+        </app-editar-slide>
       }
-      </div>
     </div>
-  }
+  </div>
+}

@@ -1,7 +1,8 @@
 <app-header />
 @if (novedad) {
     <div class="novedad-container">
-        <div class="novedad-header" [style.backgroundImage]="'url(' + novedad.backgroundImage + ')'">
+
+        <div class="novedad-header" [style.backgroundImage]="'url(' + novedad.image + ')'">
             <button class="back-button" (click)="goBack()" aria-label="Volver atrás">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M19 12H6m0 0l6 6m-6-6l6-6"/>
@@ -11,20 +12,17 @@
         </div>
         <div class="novedad-content">
             <div class="meta-info">
-                <div class="location">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                        <path [attr.d]="novedad.locationIcon"/>
-                    </svg>
-                    {{ novedad.location }}
-                </div>
+                
                 <div class="date">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                        <path [attr.d]="novedad.dateIcon"/>
+                    <!-- ANTES: <path [attr.d]="novedad.dateIcon"/> (ícono dinámico que ya no existe) -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/>
+                        <path d="M16 2v4M8 2v4M3 10h18"/>
                     </svg>
-                    {{ novedad.date }}
+                    {{ novedad.upload_date }}
                 </div>
             </div>
-            <p class="description">{{ novedad.description }}</p>
+            <p class="description">{{ novedad.content }}</p>
         </div>
     </div>
 } @else {

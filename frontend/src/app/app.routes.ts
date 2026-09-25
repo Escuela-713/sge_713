@@ -37,7 +37,7 @@ import { HomeComponent } from "@pages/home/home.component";
 import { NovedadComponent } from "@pages/novedad/novedad.component";
 
 export const routes: Routes = [
-  { path: "novedad/:slug", component: NovedadComponent },
+  { path: "novedad/:id", component: NovedadComponent },
   { path: "home", component: HomeComponent },
   {
     path: "donar-713",
@@ -81,7 +81,7 @@ export const routes: Routes = [
         component: GestionHomeComponent,
         children: [
           { path: "agregar-posteo", component: AgregarPosteoComponent },
-          { path: "editar-novedad/:slug", component: EditarPosteoComponent },
+          { path: "editar-novedad/:id", component: EditarPosteoComponent },
           { path: "agregar-slide", component: AgregarSlideComponent },
           { path: "", component: HomeDashboardComponent, pathMatch: "full" },
         ],

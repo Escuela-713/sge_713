@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 
 export interface Categoria {
   id: number;
-  nombre: string;
+  title: string;
   descripcion?: string;
 }
 
@@ -12,7 +12,7 @@ export interface Categoria {
   providedIn: 'root'
 })
 export class CategoriasService {
-  private apiUrl = 'http://127.0.0.1:8000/home/categories/';
+  private apiUrl = 'http://127.0.0.1:8000/api/v1/home/categories/';
 
   constructor(private http: HttpClient) {}
   obtenerCategorias(): Observable<Categoria[]> {
