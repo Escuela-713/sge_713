@@ -57,7 +57,7 @@ export class NovedadComponent implements OnInit, OnDestroy {
   private async loadNovedad(slug: string): Promise<void> {
     try {
       const card = await this.novedadesService.getCardBySlug(slug);
-      this.novedad = card as Novedad | undefined;
+      this.novedad = card as unknown as Novedad | undefined;
 
       if (this.novedad) {
         document.title = `${this.novedad.title} - Novedades`;
