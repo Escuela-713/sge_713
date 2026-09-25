@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { NovedadesService } from '../../../services/novedades.service';
+import { PublicationService } from '@/app/services/novedades.service';
 
 @Component({
   selector: 'app-agregar-slide',
@@ -17,7 +17,7 @@ export class AgregarSlideComponent {
 
   constructor(
     private fb: FormBuilder,
-    private novedadesService: NovedadesService,
+    private novedadesService: PublicationService,
     private router: Router
   ) {
     this.form = this.fb.group({
