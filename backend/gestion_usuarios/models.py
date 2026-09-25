@@ -1,14 +1,16 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from gestion_datos_personales.models import Persona
 
 
-class Usuario(models.Model):
-    id_usuario = models.AutoField(primary_key=True)
-    persona = models.ForeignKey(
-        Persona, on_delete=models.CASCADE, related_name="usuarios"
+class Usuario(AbstractUser):
+    email = models.EmailField(unique=True)
+    id_persona = models.OneToOneField(
+        Persona, on_delete=models.CASCADE, related_name="usuario", null=True, blank=True
     )
-    contrasenia = models.CharField(max_length=128)
 
-    class Meta:
-        managed = True
-        db_table = "usuario"
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username"]
+
+    def __str__(self):
+        return self.email
