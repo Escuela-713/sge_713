@@ -1,5 +1,9 @@
 <section>
-  <form [formGroup]="formularioTablaDeMesas" (ngSubmit)="obtenerMesasConFiltros()">
+  <form
+    [formGroup]="formularioTablaDeMesas"
+    (ngSubmit)="obtenerMesasConFiltros()"
+  >
+    <button (click)="inscribirse($event)" id="aaddds">Prueba</button>
     <label for="">
       Fecha de inicio:
       <select formControlName="dia">
@@ -60,7 +64,7 @@
       </tr>
     </thead>
     <tbody>
-      @for(mesa of mesas; track mesa.id) {
+      @for(mesa of mesas; track mesa.id_mesa_examen) {
       <tr>
         <td>{{mesa.dia}}</td>
         <td>{{mesa.ano}}</td>
@@ -71,7 +75,9 @@
           {{mesa.profesor_segundo_vocal}}
         </td>
         <td>
-          <button id="inscribirse-a-la-mesa">Inscribirse</button>
+          <button [id]="mesa.id_mesa_examen" (click)="inscribirse($event)">
+            Inscribirse
+          </button>
         </td>
       </tr>
       }
