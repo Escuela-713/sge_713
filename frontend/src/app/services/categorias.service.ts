@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
@@ -11,16 +12,10 @@ export interface Categoria {
   providedIn: 'root'
 })
 export class CategoriasService {
-    private categorias: Categoria[] = [
-        { id: 1, nombre: 'Evento' },
-        { id: 2, nombre: 'Anuncio' },
-        { id: 3, nombre: 'Acto Escolar' },
-        { id: 4, nombre: 'Publicidad' },
-    ];
+  private apiUrl = 'http://127.0.0.1:8000/home/categories/';
 
-    constructor() { }
-
-    obtenerCategorias(): Observable<Categoria[]> {
-        return of (this.categorias);
-    }
+  constructor(private http: HttpClient) {}
+  obtenerCategorias(): Observable<Categoria[]> {
+    return this.http.get<Categoria[]>(this.apiUrl);
+  }
 }

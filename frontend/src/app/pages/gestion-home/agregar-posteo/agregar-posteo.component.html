@@ -21,7 +21,7 @@
         <select id="categoria" formControlName="categoria">
         <option value="" hidden selected>Seleccione una categoría</option>
         @for (categoria of categorias; track categoria.id) {
-        <option [value]="categoria.nombre">{{ categoria.nombre }}</option>
+        <option [value]="categoria.id">{{ categoria.nombre }}</option>
         }
         </select>
         @if(form.get('categoria')?.invalid && form.get('categoria')?.touched){
@@ -43,34 +43,27 @@
   </div>
 
   <!-- Preview -->
-  <div class="novedad-preview">
-    @if (novedad()) {
-      <div class="novedad-container">
-        <div class="novedad-header" [style.backgroundImage]="'url(' + novedad().backgroundImage + ')'">
-          <h1>{{ novedad().title }}</h1>
-        </div>
-        <div class="novedad-content">
-          <div class="meta-info">
-            <div class="location">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                <path [attr.d]="novedad().locationIcon"/>
-              </svg>
-              {{ novedad().location }}
-            </div>
-            <div class="date">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path [attr.d]="novedad().dateIcon"/>
-              </svg>
-              {{ novedad().date }}
-            </div>
+ <div class="novedad-preview">
+  @if (novedad()) {
+    <div class="novedad-container">
+      <div class="novedad-header" [style.backgroundImage]="'url(' + novedad().image + ')'">
+        <h1>{{ novedad().title }}</h1>
+      </div>
+      <div class="novedad-content">
+        <div class="meta-info">
+          <div class="date">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path [attr.d]="novedad().dateIcon"/>
+            </svg>
+            {{ novedad().upload_date }}
           </div>
-          <p class="description">{{ novedad().description }}</p>
         </div>
+        <p class="description">{{ novedad().content }}</p>
       </div>
-    } @else {
-      <div class="preview-placeholder">
-        <p>Completa el formulario para previsualizar la publicación aquí</p>
-      </div>
-    }
-  </div>
+    </div>
+  } @else {
+    <div class="preview-placeholder">
+      <p>Completa el formulario para previsualizar la publicación aquí</p>
+    </div>
+  }
 </div>
