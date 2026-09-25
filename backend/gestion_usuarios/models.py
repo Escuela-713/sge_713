@@ -8,7 +8,7 @@ class Usuario(models.Model):
     user_django = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="perfil_usuario"
     )
-    id_persona = models.OneToOneField(Persona, on_delete=models.CASCADE)
+    id_persona = models.OneToOneField(Persona, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return (
