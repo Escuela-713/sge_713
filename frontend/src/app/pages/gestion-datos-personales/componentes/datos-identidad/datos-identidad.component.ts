@@ -14,6 +14,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-datos-identidad',
@@ -44,7 +45,7 @@ export class DatosIdentidadComponent implements OnInit {
     private router: Router,
   ) {
     this.datosIdentidadForm = this.formBuilder.group({
-      dni: ['', [Validators.required, Validators.maxLength(31), Validators.pattern(this.soloNumerosPattern)]],
+      dni: ['', [Validators.required, Validators.maxLength(31)]],
       genero: ['', [Validators.required, Validators.maxLength(15)]],
       primerNombre: ['', [Validators.required, Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
       segundoNombre: ['', [Validators.maxLength(127), Validators.pattern(this.soloLetrasPattern)]],
@@ -79,8 +80,15 @@ export class DatosIdentidadComponent implements OnInit {
         console.log('datosTutor', this.datostutor);
       },
       error: (err) => {
-        alert('Se ha producido un error. Por favor, intente nuevamente.');
         console.error(err);
+
+        if (err.status === 400) {
+          alert('La solicitud no es válida. Verifique los datos ingresados.');
+        } else if (err.status === 500) {
+          alert('Ocurrió un error interno del servidor. Intente nuevamente más tarde.');
+        } else {
+          alert('Se ha producido un error. Por favor, intente nuevamente.');
+        }
       },
     });
   }
@@ -186,7 +194,6 @@ export class DatosIdentidadComponent implements OnInit {
     const errors = this.dni.errors;
     if (!errors) return null;
     if (errors['required']) return 'El DNI es obligatorio.';
-    if (errors['pattern']) return 'Solo se permiten caracteres validos.';
     return null;
   }
   get genero() {
