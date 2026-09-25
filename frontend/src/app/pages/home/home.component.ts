@@ -7,19 +7,6 @@ import { HeaderComponent } from "@shared/header/header.component";
 import { NavComponent } from "@shared/nav/nav.component";
 import { Observable } from "rxjs";
 
-@Component({
-  selector: "app-home",
-  standalone: true,
-  imports: [
-    NavComponent,
-    HeaderComponent,
-    FooterComponent,
-    RouterModule,
-  ],
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
-})
-
 interface CarouselSlide {
   id: number;
   image: string;
@@ -56,6 +43,19 @@ export interface Publication {
   upload_date: string;
   update_date: string;
 }
+
+@Component({
+  selector: "app-home",
+  standalone: true,
+  imports: [
+    NavComponent,
+    HeaderComponent,
+    FooterComponent,
+    RouterModule,
+  ],
+  templateUrl: "./home.component.html",
+  styleUrls: ["./home.component.css"],
+})
 
 export class HomeComponent implements OnInit {
   homeData: HomeData | null = null;
