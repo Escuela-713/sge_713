@@ -13,6 +13,7 @@ export interface LoginRequest {
 }
 
 export interface UserData {
+  id?: number;
   nombre?: string;
   rol?: string;
   cuil?: string;
@@ -28,49 +29,58 @@ export interface AuthResponse {
 })
 export class AuthService {
   private http = inject(HttpClient);
-  private readonly API_URL = 'http://127.0.0.1:8000/api/auth';
-  private readonly USER_KEY = 'currentUser';
+  private readonly API_URL = '/api/auth';
 
-  isAuthenticated = signal<boolean>(!!this.getStoredUser());
-  currentUser = signal<UserData | null>(this.getStoredUser());
+  isAuthenticated = signal<boolean>(false);
+  currentUser = signal<UserData | null>(null);
+
+  constructor() {
+    this.checkAuthStatus();
+  }
+
+  checkAuthStatus(): void {
+    this.http.get<UserData>(`${this.API_URL}/me/`, {
+      withCredentials: true
+    }).subscribe({
+      next: (user) => {
+        this.currentUser.set(user);
+        this.isAuthenticated.set(true);
+      },
+      error: () => {
+        this.currentUser.set(null);
+        this.isAuthenticated.set(false);
+      }
+    });
+  }
 
   register(credentials: RegisterRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.API_URL}/register/`, credentials, {
-      withCredentials: true // Necesario para enviar/recibir cookies entre dominios/puertos
+      withCredentials: true
     }).pipe(
       tap(response => {
-        const user: UserData = response.usuario || { cuil: credentials.cuil };
-        this.saveUserSession(user);
+        if (response.usuario) {
+          this.currentUser.set(response.usuario);
+          this.isAuthenticated.set(true);
+        }
       })
     );
   }
 
   login(credentials: LoginRequest): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(`${this.API_URL}/login/`, credentials, {
-      withCredentials: true // Fundamental para que el navegador acepte la cookie Set-Cookie del backend
+      withCredentials: true
     }).pipe(
       tap(response => {
-        const user: UserData = response.usuario || { cuil: credentials.cuil, nombre: 'Usuario', rol: 'Admin' };
-        this.saveUserSession(user);
+        if (response.usuario) {
+          this.currentUser.set(response.usuario);
+          this.isAuthenticated.set(true);
+        }
       })
     );
   }
 
   logout(): void {
-    sessionStorage.removeItem(this.USER_KEY);
-    this.isAuthenticated.set(false);
     this.currentUser.set(null);
-  }
-
-  private saveUserSession(user: UserData): void {
-    sessionStorage.setItem(this.USER_KEY, JSON.stringify(user));
-    
-    this.isAuthenticated.set(true);
-    this.currentUser.set(user);
-  }
-
-  private getStoredUser(): UserData | null {
-    const user = sessionStorage.getItem(this.USER_KEY);
-    return user ? JSON.parse(user) : null;
+    this.isAuthenticated.set(false);
   }
 }

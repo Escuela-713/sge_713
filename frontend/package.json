@@ -3,11 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "dev": "npx json-server src/assets/gestion-mesas-examenes/materias.json -p 3001 & npx json-server src/assets/gestion-mesas-examenes/carreras/carreras.json & npx json-server src/assets/gestion-mesas-examenes/mesas-examenes.json -p 3002 & ng s"
+    "dev": "npx json-server src/assets/gestion-mesas-examenes/materias.json -p 3001 & npx json-server src/assets/gestion-mesas-examenes/carreras/carreras.json & npx json-server src/assets/gestion-mesas-examenes/mesas-examenes.json -p 3002 & ng s --proxy-config proxy.conf.json"
   },
   "private": true,
   "dependencies": {

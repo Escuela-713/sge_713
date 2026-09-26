@@ -30,10 +30,11 @@ class RegisterAPIView(APIView):
     }
     token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
-    # Datos adicionales del usuario para el frontend (ajustados al modelo real)
     usuario_data = {
         "id": usuario.id_usuario,
-        "cuil": usuario.id_persona.dni, # Accedemos a través de la relación id_persona
+        "cuil": usuario.id_persona.dni,
+        "nombre": f"{usuario.id_persona.primer_nombre} {usuario.id_persona.primer_apellido}",
+        "rol": getattr(usuario, "rol", None) or "Usuario"
     }
 
     # Creamos la respuesta JSON (sin el token dentro del body)
