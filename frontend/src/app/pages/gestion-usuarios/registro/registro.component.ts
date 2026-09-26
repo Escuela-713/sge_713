@@ -70,7 +70,28 @@ export class RegistroComponent {
         },
         error: (err) => {
           console.error("Error del backend:", err);
-          this.errorMessage = err.error?.error || "Ocurrió un error al registrarse. Verifique el CUIL.";
+          const errorData = err.error;
+
+          if (errorData) {
+            // Si Django devuelve un error específico por campo (ej: cuil: [...])
+            if (errorData.cuil) {
+              this.errorMessage = errorData.cuil[0];
+            } else if (errorData.contrasenia) {
+              this.errorMessage = errorData.contrasenia[0];
+            } else if (errorData.detail) {
+              // Si DRF devuelve un error general del tipo 'detail'
+              this.errorMessage = errorData.detail;
+            } else if (typeof errorData === 'object') {
+              // Si viene otro objeto, tomamos el primer mensaje disponible
+              const firstKey = Object.keys(errorData)[0];
+              const firstError = errorData[firstKey];
+              this.errorMessage = Array.isArray(firstError) ? firstError[0] : "Ocurrió un error de validación.";
+            } else {
+              this.errorMessage = "Ocurrió un error al registrarse.";
+            }
+          } else {
+            this.errorMessage = "No se pudo conectar con el servidor.";
+          }
         }
       });
 

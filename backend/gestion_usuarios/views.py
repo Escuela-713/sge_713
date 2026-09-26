@@ -25,16 +25,15 @@ class RegisterAPIView(APIView):
 
     payload = {
         "user_id": usuario.id_usuario,
-        "persona_id": usuario.id_persona.persona,
+        "persona_id": usuario.id_persona.pk, # Usamos .pk para asegurar el ID de la persona
         "exp": timezone.now() + timedelta(hours=2),
     }
     token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
-    # Datos adicionales del usuario para el frontend
+    # Datos adicionales del usuario para el frontend (ajustados al modelo real)
     usuario_data = {
         "id": usuario.id_usuario,
-        "cuil": usuario.cuil,
-        "rol": getattr(usuario.id_rol, "nombre", None),
+        "cuil": usuario.id_persona.dni, # Accedemos a través de la relación id_persona
     }
 
     # Creamos la respuesta JSON (sin el token dentro del body)
@@ -72,16 +71,15 @@ class LoginAPIView(APIView):
 
     payload = {
         "user_id": usuario.id_usuario,
-        "persona_id": usuario.id_persona.persona,
+        "persona_id": usuario.id_persona.pk,
         "exp": timezone.now() + timedelta(hours=2),
     }
     token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
-    # Datos adicionales del usuario para el frontend
+    # Datos adicionales del usuario para el frontend (corregidos)
     usuario_data = {
         "id": usuario.id_usuario,
-        "cuil": usuario.cuil,
-        "rol": getattr(usuario.id_rol, "nombre", None),
+        "cuil": usuario.id_persona.dni, # Corregido: se accede desde id_persona
     }
 
     # Creamos la respuesta JSON con el payload del usuario

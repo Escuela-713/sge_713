@@ -56,18 +56,14 @@ class LoginSerializer(serializers.Serializer):
         contrasenia = data.get('contrasenia')
 
         try:
-            # Buscamos a la persona primero por su DNI/CUIL
             persona = Persona.objects.get(dni=cuil)
-            # Buscamos el usuario asociado a esa persona
             usuario = Usuario.objects.get(id_persona=persona)
         except (Persona.DoesNotExist, Usuario.DoesNotExist):
             raise serializers.ValidationError({"error": "Credenciales inválidas o usuario no registrado."})
-
-        # Verificamos la contraseña hasheada
+   
         from django.contrib.auth.hashers import check_password
         if not check_password(contrasenia, usuario.contrasenia):
             raise serializers.ValidationError({"error": "Credenciales inválidas."})
 
-        # Adjuntamos el usuario validado al diccionario de datos
         data['usuario'] = usuario
         return data
