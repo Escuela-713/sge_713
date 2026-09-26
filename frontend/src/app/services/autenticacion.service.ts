@@ -29,7 +29,7 @@ export interface AuthResponse {
 })
 export class AuthService {
   private http = inject(HttpClient);
-  private readonly API_URL = 'http://localhost:8000/api/auth';
+  private readonly API_URL = 'api/auth';
 
   isAuthenticated = signal<boolean>(false);
   currentUser = signal<UserData | null>(null);
