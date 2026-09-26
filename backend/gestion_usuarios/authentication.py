@@ -7,27 +7,31 @@ from .models import Usuario
 
 
 class JWTAuthentication(BaseAuthentication):
-    """Autenticación simple basada en JWT ( Authorization: Bearer <token> ).
-
-    Devuelve la instancia de `Usuario` como `request.user` si el token es válido.
+    """Autenticación por JWT.
+    Busca primero en cookies HttpOnly y luego en el header 'Authorization: Bearer <token>'.
     """
 
     keyword = "Bearer"
 
     def authenticate(self, request):
-        auth_header = request.META.get("HTTP_AUTHORIZATION")
-        if not auth_header:
+        token = None
+
+        # 1. Intentar obtener el token desde la cookie HttpOnly
+        token = request.COOKIES.get("auth_token")
+
+        # 2. Si no hay cookie, buscar en la cabecera Authorization
+        if not token:
+            auth_header = request.META.get("HTTP_AUTHORIZATION")
+            if auth_header:
+                parts = auth_header.split()
+                if len(parts) == 2 and parts[0] == self.keyword:
+                    token = parts[1]
+
+        # Si no hay token en ninguna parte, DRF pasa al siguiente método o devuelve 401
+        if not token:
             return None
 
-        parts = auth_header.split()
-        if len(parts) != 2:
-            raise exceptions.AuthenticationFailed("Cabecera Authorization inválida")
-
-        if parts[0] != self.keyword:
-            return None
-
-        token = parts[1]
-
+        # 3. Decodificar y validar el token
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
         except jwt.ExpiredSignatureError:
@@ -44,5 +48,4 @@ class JWTAuthentication(BaseAuthentication):
         except Usuario.DoesNotExist:
             raise exceptions.AuthenticationFailed("Usuario no encontrado")
 
-        # 'authenticate' devuelve una tupla (user, auth) donde 'auth' es el token
         return (usuario, token)

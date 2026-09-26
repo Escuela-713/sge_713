@@ -40,30 +40,55 @@ class RegisterSerializer(serializers.Serializer):
     def create(self, validated_data):
         persona = Persona.objects.get(dni=validated_data["cuil"])
         usuario = Usuario.objects.create(
-            id_persona=persona, 
-            contrasenia=make_password(validated_data["contrasenia"])
+            id_persona=persona, contrasenia=make_password(validated_data["contrasenia"])
         )
         return usuario
 
+
 class LoginSerializer(serializers.Serializer):
     """Serializador para el inicio de sesión basado en CUIL y contraseña."""
-    
+
     cuil = serializers.CharField(required=True)
-    contrasenia = serializers.CharField(required=True, write_only=True, style={"input_type": "password"})
+    contrasenia = serializers.CharField(
+        required=True, write_only=True, style={"input_type": "password"}
+    )
 
     def validate(self, data):
-        cuil = data.get('cuil')
-        contrasenia = data.get('contrasenia')
+        cuil = data.get("cuil")
+        contrasenia = data.get("contrasenia")
 
         try:
             persona = Persona.objects.get(dni=cuil)
             usuario = Usuario.objects.get(id_persona=persona)
         except (Persona.DoesNotExist, Usuario.DoesNotExist):
-            raise serializers.ValidationError({"error": "Credenciales inválidas o usuario no registrado."})
-   
+            raise serializers.ValidationError(
+                {"error": "Credenciales inválidas o usuario no registrado."}
+            )
+
         from django.contrib.auth.hashers import check_password
+
         if not check_password(contrasenia, usuario.contrasenia):
             raise serializers.ValidationError({"error": "Credenciales inválidas."})
 
-        data['usuario'] = usuario
+        data["usuario"] = usuario
         return data
+
+
+class UserSerializer(serializers.ModelSerializer):
+    """Serializador para exponer la información del usuario autenticado."""
+
+    cuil = serializers.CharField(source="id_persona.dni", read_only=True)
+    nombre = serializers.SerializerMethodField()
+    rol = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Usuario
+        fields = ["id_usuario", "cuil", "nombre", "rol"]
+
+    def get_nombre(self, obj):
+        if obj.id_persona:
+            return f"{obj.id_persona.primer_nombre} {obj.id_persona.primer_apellido}"
+        return ""
+
+    def get_rol(self, obj):
+        return getattr(obj, "rol", None) or "Usuario"
