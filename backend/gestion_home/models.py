@@ -15,7 +15,8 @@ class Publication(models.Model):
 	categoria = models.ForeignKey(           
         Categories,
         on_delete=models.CASCADE,
-        related_name='publications'
+        related_name='publications',
+        default=0
     )
 
 	is_published = models.BooleanField(default=True)

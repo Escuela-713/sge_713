@@ -1,49 +1,11 @@
-import { Component, Injectable, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
-import { HttpClient } from "@angular/common/http";
-import { RouterModule, ActivatedRoute } from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { FooterComponent } from "@shared/footer/footer.component";
 import { HeaderComponent } from "@shared/header/header.component";
 import { NavComponent } from "@shared/nav/nav.component";
-import { Observable } from "rxjs";
-import { NovedadesService } from "@/app/services/novedades.service";
-
-interface CarouselSlide {
-  id: number;
-  image: string;
-  title: string;
-  subtitle: string;
-  buttonText: string;
-  buttonLink: string;
-}
-
-interface Card {
-  id: number;
-  slug: string;
-  backgroundImage: string;
-  title: string;
-  description: string;
-  location: string;
-  date: string;
-  locationIcon: string;
-  dateIcon: string;
-}
-
-interface HomeData {
-  carouselSlides: CarouselSlide[];
-  sectionTitle: string;
-  cards: Card[];
-}
-
-export interface Publication {
-  id: number;
-  title: string;
-  content: string;
-  image: string;
-  is_published: boolean;
-  upload_date: string;
-  update_date: string;
-}
+import { NovedadesService, Publication, NovedadesData } from "@/app/services/novedades.service";
+import { DatePipe, SlicePipe } from "@angular/common";
 
 @Component({
   selector: "app-home",
@@ -53,46 +15,34 @@ export interface Publication {
     HeaderComponent,
     FooterComponent,
     RouterModule,
+    SlicePipe,
+    DatePipe,
   ],
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"],
 })
-
 export class HomeComponent implements OnInit {
-  homeData: HomeData | null = null;
+  homeData: NovedadesData | null = null;
   isLoading: boolean = true;
   error: string | null = null;
 
-  constructor(
-    private http: HttpClient,
-    private publicationService: NovedadesService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private readonly publicationService: NovedadesService) {}
 
   ngOnInit(): void {
     this.loadHomeData();
-    //Poner como titulo "Escuela 713 - Home" para que no se cargue SGE 713
+    // Poner como titulo "Escuela 713 - Home" para que no se cargue SGE 713
     document.title = `Escuela 713 - Home`;
-        const id = Number(this.route.snapshot.paramMap.get('id'));
-
-    this.publicationService.getPublicationById(id).subscribe({
-      next: (data) => this.publication = data,
-      error: (error) => console.error("Error al obtener la publicación:", error)
-      });
   }
 
-  private loadHomeData(): void {
-    this.http.get<HomeData>("assets/novedades-home.json").subscribe({
-      next: (data) => {
-        this.homeData = data;
-        this.isLoading = false;
-      },
-      error: (error) => {
-        console.error("Error loading home data:", error);
-        this.error = "Error al cargar los datos";
-        this.isLoading = false;
-      },
-    });
+  private async loadHomeData(): Promise<void> {
+    try {
+      this.homeData = await this.publicationService.getAll();
+      this.isLoading = false;
+    } catch (error) {
+      console.error("Error loading home data:", error);
+      this.error = "Error al cargar los datos";
+      this.isLoading = false;
+    }
   }
 
   // Método para generar números únicos para el carousel
@@ -100,12 +50,8 @@ export class HomeComponent implements OnInit {
     return `${prefix}-${index}`;
   }
 
-  // Método trackBy para @For de las cards
-  trackByCardId(index: number, card: Card): number {
+  // Método trackBy para @for de las cards
+  trackByCardId(index: number, card: Publication): number {
     return card.id;
   }
-
-  publication?: Publication;
 }
-
-

@@ -14,7 +14,7 @@ export interface Publication {
   update_date: string;
 }
 
-interface NovedadesData {
+export interface NovedadesData {
   carouselSlides: CarouselSlide[];
   sectionTitle: string;
   cards: Publication[];
@@ -25,7 +25,7 @@ interface NovedadesData {
 })
 export class NovedadesService {
   private apiUrl = 'http://127.0.0.1:8000/api/v1/home/publications/';
-  private carouselUrl = 'http://127.0.0.1:8000/carrousel/';
+  private carouselUrl = 'http://127.0.0.1:8000/api/v1/home/carrousel/';
 
   constructor(private readonly http: HttpClient) {}
 

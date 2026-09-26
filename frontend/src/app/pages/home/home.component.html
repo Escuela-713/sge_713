@@ -1,10 +1,15 @@
 <main>
   <app-header></app-header>
+
   <app-nav></app-nav>
-  
+
   <!-- Loading State -->
+
   @if (isLoading) {
-    <div class="d-flex justify-content-center align-items-center" style="min-height: 300px;">
+    <div
+      class="d-flex justify-content-center align-items-center"
+      style="min-height: 300px"
+    >
       <div class="spinner-border text-primary" role="status">
         <span class="visually-hidden">Cargando...</span>
       </div>
@@ -12,51 +17,57 @@
   }
 
   <!-- Error State -->
+
   @if (error) {
     <div class="container my-5">
       <div class="alert alert-danger text-center" role="alert">
         <h4 class="alert-heading">¡Error!</h4>
+
         <p>{{ error }}</p>
       </div>
     </div>
   }
 
   <!-- Main Content -->
+
   @if (homeData && !isLoading) {
     <!-- Carousel Section -->
+
     <div id="homeCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
       <div class="carousel-inner h-100">
-        @for (slide of homeData.carouselSlides; track slide.id; let i = $index) {
-          <div 
-            class="carousel-item"
-            [class.active]="i === 0"
-          >
+        @for (
+          slide of homeData.carouselSlides;
+          track slide.id;
+          let i = $index
+        ) {
+          <div class="carousel-item" [class.active]="i === 0">
             <img
               class="bd-placeholder-img object-fit-cover w-100"
-              style="height: 80vh; min-height: 400px;"
+              style="height: 80vh; min-height: 400px"
               [src]="slide.image"
               [alt]="slide.title"
               loading="lazy"
             />
+
             <div class="container">
-              <div class="carousel-caption d-flex gap-2 flex-column text-start text-md-center">
+              <div
+                class="carousel-caption d-flex gap-2 flex-column text-start text-md-center"
+              >
                 <h1 class="fw-bold display-4 slide-title">{{ slide.title }}</h1>
+
                 <p class="fw-bold fs-5 slide-subtitle">{{ slide.subtitle }}</p>
-                @if (slide.buttonText) {
-                <p>
-                  <a class="btn btn-lg btn-primary btn-modern" [href]="slide.buttonLink">
-                    {{ slide.buttonText }}
-                  </a>
-                </p>
-              }
               </div>
             </div>
           </div>
         }
       </div>
-      
+
       <div class="carousel-indicators">
-        @for (slide of homeData.carouselSlides; track slide.id; let i = $index) {
+        @for (
+          slide of homeData.carouselSlides;
+          track slide.id;
+          let i = $index
+        ) {
           <button
             type="button"
             data-bs-target="#homeCarousel"
@@ -67,7 +78,7 @@
           ></button>
         }
       </div>
-      
+
       <button
         class="carousel-control-prev"
         type="button"
@@ -75,8 +86,10 @@
         data-bs-slide="prev"
       >
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
         <span class="visually-hidden">Anterior</span>
       </button>
+
       <button
         class="carousel-control-next"
         type="button"
@@ -84,66 +97,79 @@
         data-bs-slide="next"
       >
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
         <span class="visually-hidden">Siguiente</span>
       </button>
     </div>
 
     <!-- Cards Section -->
+
     <div class="container-fluid px-3 px-md-4 py-5 bg-light" id="custom-cards">
       <div class="container">
-        <h2 class="pb-3 mb-5 border-bottom border-3 border-primary text-center text-dark fw-bold display-5">
+        <h2
+          class="pb-3 mb-5 border-bottom border-3 border-primary text-center text-dark fw-bold display-5"
+        >
           {{ homeData.sectionTitle }}
         </h2>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 align-items-stretch g-4">
-          @for (card of homeData.cards; track card.id) {
-            <div class="col">
-              <div
-                class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg card-hover"
-                [style.background-image]="'url(' + card.backgroundImage + ')'"
-              >
-              <div class="card-overlay d-flex flex-column h-100 p-4 p-lg-5 pb-3 text-white">
-                <div class="card-content flex-grow-1 d-flex flex-column justify-content-end">
-                  <h3 class="mb-3 display-6 lh-1 card-title">
-                    <span class="fw-bold">{{ card.title }}</span>
-                  </h3>
-                  
-                  <p class="card-description text-white mb-3">{{ card.description }}</p>
-                  <div class="card-meta d-flex flex-column flex-sm-row gap-3 mt-auto">
-                    <div class="d-flex align-items-center">
-                      <svg
-                        class="me-2 icon-location"
-                        width="1em"
-                        height="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 384 512"
-                        fill="currentColor"
+        <div
+          class="row row-cols-1 row-cols-md-2 row-cols-xl-3 align-items-stretch g-4"
+        >
+          @for (publication of homeData.cards; track publication.id) {
+            @if (publication.is_published) {
+              <div class="col">
+                <div
+                  class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg card-hover"
+                  [style.background-image]="'url(' + publication.image + ')'"
+                >
+                  <div
+                    class="card-overlay d-flex flex-column h-100 p-4 p-lg-5 pb-3 text-white"
+                  >
+                    <div
+                      class="card-content flex-grow-1 d-flex flex-column justify-content-end"
+                    >
+                      <h3 class="mb-3 display-6 lh-1 card-title">
+                        <span class="fw-bold">{{ publication.title }}</span>
+                      </h3>
+
+                      <p class="card-description text-white mb-3">
+                        {{ publication.content | slice: 0 : 150 }}...
+                      </p>
+
+                      <div
+                        class="card-meta d-flex flex-column flex-sm-row gap-3 mt-auto"
                       >
-                        <path [attr.d]="card.locationIcon" />
-                      </svg>
-                      <small class="fw-medium">{{ card.location }}</small>
-                    </div>
-                    
-                    <div class="d-flex align-items-center">
-                      <svg
-                        class="me-2 icon-date"
-                        width="1em"
-                        height="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 448 512"
-                        fill="currentColor"
+                        <div class="d-flex align-items-center">
+                          <svg
+                            class="me-2 icon-date"
+                            width="1em"
+                            height="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 448 512"
+                            fill="currentColor"
+                          >
+                            <path
+                              d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H320V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z"
+                            />
+                          </svg>
+
+                          <small class="fw-medium">{{
+                            publication.upload_date | date: "dd/MM/yyyy"
+                          }}</small>
+                        </div>
+                      </div>
+
+                      <a
+                        [routerLink]="['/novedad', publication.id]"
+                        class="btn btn-warning"
+                        >Ver más</a
                       >
-                        <path [attr.d]="card.dateIcon" />
-                      </svg>
-                      <small class="fw-medium">{{ card.date }}</small>
                     </div>
                   </div>
-                  <a [routerLink]="['/novedad', card.slug]" class="btn btn-warning">Ver más</a>
                 </div>
               </div>
-            </div>
-          </div>
-        }
+            }
+          }
         </div>
       </div>
     </div>

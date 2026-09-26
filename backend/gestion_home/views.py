@@ -30,3 +30,9 @@ class CategoriesView(APIView):
             serializer.save()
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
+
+class CarrouselView(APIView):
+    def get(self, request):
+        carrousel = Carrousel.objects.all()
+        serializer = CarrouselSerializer(carrousel, many=True)
+        return Response(serializer.data, status=200)
