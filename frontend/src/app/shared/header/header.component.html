@@ -16,7 +16,11 @@
         class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
       >
         <li><a href="#" class="nav-link px-4 pe-2 text-warning">Home</a></li>
-        <li><a href="#" class="nav-link px-2 text-white" routerLink="/donar-713" >Donar 713</a></li>
+        <li>
+          <a href="#" class="nav-link px-2 text-white" routerLink="/donar-713"
+            >Donar 713</a
+          >
+        </li>
         <li><a href="#" class="nav-link px-2 text-white">Nosotros</a></li>
         <li><a href="#" class="nav-link px-2 text-white">Contactanos</a></li>
       </ul>
@@ -34,11 +38,18 @@
             Sign-up
           </button>
         }
+
         @if (authService.isAuthenticated()) {
-          <span class="text-white me-3"
-            >{{ authService.currentUser()?.nombre }} ({{ authService.currentUser()?.rol }})</span
+          <span class="text-white me-3">
+            {{ authService.currentUser()?.nombre }} ({{
+              authService.currentUser()?.rol
+            }})
+          </span>
+          <button
+            type="button"
+            class="btn btn-warning"
+            (click)="authService.logout()"
           >
-          <button type="button" class="btn btn-warning" (click)="logout()">
             Cerrar Sesión
           </button>
         }

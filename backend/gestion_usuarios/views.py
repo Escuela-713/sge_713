@@ -79,19 +79,18 @@ class LoginAPIView(APIView):
         }
         token = jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
-        # Datos adicionales del usuario para el frontend (corregidos)
         usuario_data = {
             "id": usuario.id_usuario,
-            "cuil": usuario.id_persona.dni,  # Corregido: se accede desde id_persona
+            "cuil": usuario.id_persona.dni,
+            "nombre": f"{usuario.id_persona.primer_nombre} {usuario.id_persona.primer_apellido}",
+            "rol": getattr(usuario, "rol", None) or "Usuario",
         }
 
-        # Creamos la respuesta JSON con el payload del usuario
         response = Response(
             {"mensaje": "Login exitoso", "usuario": usuario_data},
             status=status.HTTP_200_OK,
         )
 
-        # Inyectamos la cookie HttpOnly
         response.set_cookie(
             key="auth_token",
             value=token,
