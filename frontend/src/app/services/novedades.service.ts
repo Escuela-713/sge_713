@@ -2,11 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, firstValueFrom } from 'rxjs';
 import { CarouselSlide } from '../pages/gestion-home/home-dashboard/home-dashboard.component';
-
-interface NovedadesData {
-  slides: CarouselSlide[];
-  cards: CarouselSlide[];
-  }
   
 export interface Publication {
   id: number;
