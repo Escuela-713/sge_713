@@ -1,17 +1,17 @@
 from django.db import models
 
 class Categories(models.Model):
-	id = models.IntegerField(primary_key=True)
+	id = models.AutoField(primary_key=True)
 	title = models.TextField(blank=False,  null = False, max_length=50)
 	class Meta:
 		managed = True
 		db_table = 'gestion_home_categories'
 
 class Publication(models.Model):
-	id = models.IntegerField(primary_key=True)
+	id = models.AutoField(primary_key=True)
 	title = models.TextField(blank=False,  null = False, max_length=50)
 	content = models.TextField(blank=False, null=False, max_length=150)
-	image = models.ImageField(blank=False, null=False)
+	image = models.ImageField(blank=False, null=False, upload_to='publications/')
 	categoria = models.ForeignKey(           
         Categories,
         on_delete=models.CASCADE,
@@ -28,8 +28,8 @@ class Publication(models.Model):
 		
 
 class Carrousel(models.Model):
-	id = models.IntegerField(primary_key=True)
-	image = models.ImageField(blank=False, null=False)
+	id = models.AutoField(primary_key=True)
+	image = models.ImageField(blank=False, null=False, upload_to='carrousel/')
 	title = models.TextField(blank=False,  null = False, max_length=50)
 	subtitle = models.TextField(blank=False, null=False, max_length=50)
 	class Meta:
