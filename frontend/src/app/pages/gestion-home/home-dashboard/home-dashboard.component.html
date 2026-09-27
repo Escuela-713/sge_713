@@ -72,7 +72,7 @@
             <div class="post-content">
               <div class="post-header">
                 <h3 class="post-title">{{ card.title }}</h3>
-                <span class="post-categoria">{{ card.categoria.title }}</span>
+                <span class="post-categoria">{{ getCategoriaTitle(card.categoria) }}</span>
               </div>
               <p class="post-excerpt">{{ truncarTexto(card.content, 120) }}</p>
               <div class="post-meta">

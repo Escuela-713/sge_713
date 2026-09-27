@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 
 import { NovedadesService } from '../../../services/novedades.service';
+import { CategoriasService } from '../../../services/categorias.service';
 import { EditarSlideComponent } from '../editar-slide/editar-slide.component';
 
 interface Categoria {
@@ -14,7 +16,7 @@ interface Card {
   title: string;
   content: string;
   image: string;
-  categoria: Categoria;
+  categoria: number; // el backend devuelve el ID, no el objeto completo
   is_published: boolean;
   upload_date: string;
   update_date: string;
@@ -48,6 +50,8 @@ export class HomeDashboardComponent implements OnInit {
     cards: []
   };
 
+  categorias: Categoria[] = [];
+
   slideEditando: CarouselSlide | null = null;
   mostrarEditorSlide = false;
 
@@ -58,25 +62,40 @@ export class HomeDashboardComponent implements OnInit {
   isLoading = false;
   mostrarTodas = false;
 
-  constructor(private novedadesService: NovedadesService, private router: Router) {}
+  constructor(
+    private novedadesService: NovedadesService,
+    private categoriasService: CategoriasService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.cargarDatos();
   }
 
-  async cargarDatos(): Promise<void> {
-    try {
-      const data = await this.novedadesService.getAll() as unknown as Partial<NovedadesData>;
-      this.novedadesData = {
-        carouselSlides: data.carouselSlides ?? [],
-        sectionTitle: data.sectionTitle ?? '',
-        cards: data.cards ?? []
-      };
-      this.calcularEstadisticas();
-      this.obtenerUltimasCards();
-    } catch (err) {
-      console.error('Error al cargar los datos:', err);
-    }
+  cargarDatos(): void {
+    this.isLoading = true;
+
+    // Se piden en paralelo: los datos del home y las categorías (para resolver los nombres)
+    forkJoin({
+      data: this.novedadesService.getAll(),
+      categorias: this.categoriasService.obtenerCategorias(),
+    }).subscribe({
+      next: ({ data, categorias }) => {
+        this.categorias = categorias;
+        this.novedadesData = {
+          carouselSlides: data.carouselSlides ?? [],
+          sectionTitle: data.sectionTitle ?? '',
+          cards: (data.cards as unknown as Card[]) ?? []
+        };
+        this.calcularEstadisticas();
+        this.obtenerUltimasCards();
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Error al cargar los datos:', err);
+        this.isLoading = false;
+      }
+    });
   }
 
   onEditarSlide(slide: CarouselSlide): void {
@@ -84,47 +103,56 @@ export class HomeDashboardComponent implements OnInit {
     this.mostrarEditorSlide = true;
   }
 
-  async onGuardarSlideEditado(slideEditado: CarouselSlide) {
-    try {
-      await this.novedadesService.updateSlide(slideEditado);
-      await this.cargarDatos();
-      this.mostrarEditorSlide = false;
-      this.slideEditando = null;
-      alert('Slide editado correctamente');
-    } catch (err) {
-      alert('Error al editar el slide');
-    }
+  onGuardarSlideEditado(slideEditado: CarouselSlide): void {
+    this.novedadesService.updateSlide(slideEditado).subscribe({
+      next: () => {
+        this.cargarDatos();
+        this.mostrarEditorSlide = false;
+        this.slideEditando = null;
+        alert('Slide editado correctamente');
+      },
+      error: (err) => {
+        console.error('Error al editar el slide:', err);
+        alert('Error al editar el slide');
+      }
+    });
   }
 
-  onCancelarEdicionSlide() {
+  onCancelarEdicionSlide(): void {
     this.mostrarEditorSlide = false;
     this.slideEditando = null;
   }
 
-  async onDeleteCard(card: Card): Promise<void> {
+  onDeleteCard(card: Card): void {
     const ok = confirm('¿Está seguro de querer eliminar esta publicación?');
     if (!ok) return;
-    try {
-      await this.novedadesService.deleteCardById(card.id);
-      await this.cargarDatos();
-      alert('Publicación eliminada');
-    } catch (err) {
-      console.error('Error eliminando card:', err);
-      alert('Error al eliminar la publicación');
-    }
+
+    this.novedadesService.deleteCardById(card.id).subscribe({
+      next: () => {
+        this.cargarDatos();
+        alert('Publicación eliminada');
+      },
+      error: (err) => {
+        console.error('Error eliminando card:', err);
+        alert('Error al eliminar la publicación');
+      }
+    });
   }
 
-  async onDeleteSlide(slide: CarouselSlide): Promise<void> {
+  onDeleteSlide(slide: CarouselSlide): void {
     const ok = confirm(`¿Eliminar slide "${slide.title}"? Esta acción no se puede deshacer.`);
     if (!ok) return;
-    try {
-      await this.novedadesService.deleteSlideById(slide.id);
-      await this.cargarDatos();
-      alert('Slide eliminado correctamente');
-    } catch (err) {
-      console.error('Error eliminando slide:', err);
-      alert('Error al eliminar el slide');
-    }
+
+    this.novedadesService.deleteSlideById(slide.id).subscribe({
+      next: () => {
+        this.cargarDatos();
+        alert('Slide eliminado correctamente');
+      },
+      error: (err) => {
+        console.error('Error eliminando slide:', err);
+        alert('Error al eliminar el slide');
+      }
+    });
   }
 
   private calcularEstadisticas(): void {
@@ -132,7 +160,7 @@ export class HomeDashboardComponent implements OnInit {
     this.totalCards = this.novedadesData.cards.length;
 
     const categoriasUnicas = new Set(
-      this.novedadesData.cards.map(card => card.categoria?.id)
+      this.novedadesData.cards.map(card => card.categoria)
     );
     this.totalCategorias = categoriasUnicas.size;
   }
@@ -142,6 +170,12 @@ export class HomeDashboardComponent implements OnInit {
       new Date(b.upload_date).getTime() - new Date(a.upload_date).getTime()
     );
     this.ultimasCards = this.mostrarTodas ? ordenadas : ordenadas.slice(0, 4);
+  }
+
+  // Resuelve el nombre de la categoría a partir del ID, para usar en el template
+  // en vez de card.categoria.title (que rompería porque categoria es solo un número)
+  getCategoriaTitle(categoriaId: number): string {
+    return this.categorias.find(c => c.id === categoriaId)?.title ?? 'Sin categoría';
   }
 
   formatearFecha(fecha: string): string {
