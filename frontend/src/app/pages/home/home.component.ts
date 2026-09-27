@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 
+import { DatePipe, SlicePipe } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { FooterComponent } from "@shared/footer/footer.component";
 import { HeaderComponent } from "@shared/header/header.component";
 import { NavComponent } from "@shared/nav/nav.component";
 import { NovedadesService, Publication, NovedadesData } from "@/app/services/novedades.service";
-import { DatePipe, SlicePipe } from "@angular/common";
 
 @Component({
   selector: "app-home",
@@ -34,15 +34,18 @@ export class HomeComponent implements OnInit {
     document.title = `Escuela 713 - Home`;
   }
 
-  private async loadHomeData(): Promise<void> {
-    try {
-      this.homeData = await this.publicationService.getAll();
-      this.isLoading = false;
-    } catch (error) {
-      console.error("Error loading home data:", error);
-      this.error = "Error al cargar los datos";
-      this.isLoading = false;
-    }
+  private loadHomeData(): void {
+    this.publicationService.getAll().subscribe({
+      next: (data) => {
+        this.homeData = data;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error("Error loading home data:", error);
+        this.error = "Error al cargar los datos";
+        this.isLoading = false;
+      },
+    });
   }
 
   // Método para generar números únicos para el carousel
