@@ -10,5 +10,3 @@ config.ini
 env/
 
 los-backend/
-
-db.sqlite3

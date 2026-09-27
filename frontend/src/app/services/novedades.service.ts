@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, firstValueFrom } from 'rxjs';
+import { Observable, forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { CarouselSlide } from '../pages/gestion-home/home-dashboard/home-dashboard.component';
-  
+
 export interface Publication {
   id: number;
   title: string;
@@ -21,7 +22,7 @@ export interface NovedadesData {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class NovedadesService {
   private apiUrl = 'http://127.0.0.1:8000/api/v1/home/publications/';
@@ -30,16 +31,17 @@ export class NovedadesService {
   constructor(private readonly http: HttpClient) {}
 
   // ---------- Lectura general ----------
-  async getAll(): Promise<NovedadesData> {
-    const [carouselSlides, cards] = await Promise.all([
-      firstValueFrom(this.http.get<CarouselSlide[]>(this.carouselUrl)),
-      firstValueFrom(this.http.get<Publication[]>(this.apiUrl)),
-    ]);
-    return {
-      carouselSlides: carouselSlides ?? [],
-      sectionTitle: '',
-      cards: cards ?? [],
-    };
+  getAll(): Observable<NovedadesData> {
+    return forkJoin({
+      carouselSlides: this.http.get<CarouselSlide[]>(this.carouselUrl),
+      cards: this.http.get<Publication[]>(this.apiUrl),
+    }).pipe(
+      map(({ carouselSlides, cards }) => ({
+        carouselSlides: carouselSlides ?? [],
+        sectionTitle: '',
+        cards: cards ?? [],
+      }))
+    );
   }
 
   // ---------- Publicaciones (Cards) ----------
@@ -47,18 +49,37 @@ export class NovedadesService {
     return this.http.get<Publication>(`${this.apiUrl}${id}/`);
   }
 
-  addCard(newCard: Partial<Publication>): Observable<Publication> {
-    return this.http.post<Publication>(this.apiUrl, newCard);
+  // Crea una publicación. Recibe los datos y, opcionalmente, un archivo de imagen.
+  // Si se pasa imageFile, arma un FormData (necesario para subir archivos).
+  crearPublicacion(
+    nuevaPublicacion: Omit<Publication, 'id' | 'image' | 'upload_date' | 'update_date'>,
+    imageFile: File
+  ): Observable<Publication> {
+    const formData = new FormData();
+    formData.append('title', nuevaPublicacion.title);
+    formData.append('content', nuevaPublicacion.content);
+    formData.append('categoria', String(nuevaPublicacion.categoria));
+    formData.append('is_published', String(nuevaPublicacion.is_published));
+    formData.append('image', imageFile, imageFile.name);
+
+    return this.http.post<Publication>(this.apiUrl, formData);
   }
 
-  crearPublicacion(nuevaPublicacion: Omit<Publication, 'id'>): Observable<Publication> {
-  return this.http.post<Publication>(this.apiUrl, nuevaPublicacion);
-  // NUEVO método POST
-  
-  }
+  // Actualiza una publicación. La imagen es opcional: si no se manda,
+  // el backend conserva la imagen existente.
+  updateCard(
+    id: number,
+    updatedCard: Partial<Omit<Publication, 'id' | 'image'>>,
+    imageFile?: File
+  ): Observable<Publication> {
+    const formData = new FormData();
+    if (updatedCard.title !== undefined) formData.append('title', updatedCard.title);
+    if (updatedCard.content !== undefined) formData.append('content', updatedCard.content);
+    if (updatedCard.categoria !== undefined) formData.append('categoria', String(updatedCard.categoria));
+    if (updatedCard.is_published !== undefined) formData.append('is_published', String(updatedCard.is_published));
+    if (imageFile) formData.append('image', imageFile, imageFile.name);
 
-  updateCard(id: number, updatedCard: Partial<Publication>): Observable<Publication> {
-    return this.http.patch<Publication>(`${this.apiUrl}${id}/`, updatedCard);
+    return this.http.patch<Publication>(`${this.apiUrl}${id}/`, formData);
   }
 
   deleteCardById(id: number): Observable<void> {
@@ -77,18 +98,4 @@ export class NovedadesService {
   deleteSlideById(id: number): Observable<void> {
     return this.http.delete<void>(`${this.carouselUrl}${id}/`);
   }
-
-  // ---------- Legacy / compatibilidad ----------
-  postNovedad(newNovedad: any): Observable<any> {
-    return this.http.post(this.apiUrl, newNovedad);
-  } 
-
-  getPublicationById(id: number): Observable<Publication> {
-    return this.http.get<Publication>(`${this.apiUrl}${id}/`);
-  }
-
-  getPublications(): Observable<any> {
-    return this.http.get(this.apiUrl)
-  }
 }
-
