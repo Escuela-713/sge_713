@@ -42,7 +42,7 @@ class MesasExamenesView(ApiView):
 
             mesa_guardada = nueva_mesa.save()
 
-            return Response({'message': f'Nueva mesa creada, ID: {mesa_guardada.id_mesa_examen}.'}, status=HTTP_201_CREATED)
+            return Response({'data': f'Nueva mesa creada, ID: {mesa_guardada.id_mesa_examen}.'}, status=HTTP_201_CREATED)
         
         except Exception as exception:
             print(exception)
