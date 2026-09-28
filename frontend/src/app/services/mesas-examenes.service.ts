@@ -30,7 +30,7 @@ export class MesasExamenesService {
   }
 
   subirMesa(nuevaMesa: Mesa): Observable<any> {
-    return this.http.post(this.apiUrl, nuevaMesa)
+    return this.http.post(`${this.apiUrl}/`, nuevaMesa)
   }
 
   inscribirse(inscripcion: Inscripcion): Observable<any> {

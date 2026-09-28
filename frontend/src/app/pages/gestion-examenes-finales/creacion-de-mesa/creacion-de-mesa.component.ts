@@ -9,6 +9,7 @@ import { CarrerasService } from '@services/carreras.service'
 import { MateriasService } from '@services/materias.service'
 import { MesasExamenesService } from '@services/mesas-examenes.service'
 import { Carrera, Materia, Mesa } from '@models/mesas-examenes.model'
+import { environment } from '@/environments/environment.development'
 
 @Component({
   selector: 'app-creacion-de-mesa',
@@ -24,7 +25,7 @@ export class CreacionDeMesaComponent implements OnInit {
 
   materias: Materia[] = []
   carreras: Carrera[] = []
-  anos = [1, 2, 3, 4, 5, 6, 7]
+  anos = environment.anos
 
   ngOnInit(): void {
     this.servicioMateria.obtenerMaterias().subscribe({
@@ -50,15 +51,16 @@ export class CreacionDeMesaComponent implements OnInit {
 
   formularioMesaExamen = this.fb.group({
     ano: ['', [Validators.required, Validators.min(1), Validators.max(7)]],
-    carrera: ['', [Validators.required]],
-    materia: ['', [Validators.required]],
-    profesor_titular: ['', [Validators.required, Validators.minLength(3)]],
-    profesor_primer_vocal: ['', [Validators.required, Validators.minLength(3)]],
+    id_carrera: ['', [Validators.required]],
+    id_materia: ['', [Validators.required]],
+    profesor_titular: ['', [Validators.required, Validators.minLength(10)]],
+    profesor_primer_vocal: ['', [Validators.required, Validators.minLength(10)]],
     profesor_segundo_vocal: [
       '',
-      [Validators.required, Validators.minLength(3)],
+      [Validators.required, Validators.minLength(10)],
     ],
     dia: ['', [Validators.required]],
+    hora: ['', [Validators.required]],
   })
 
   get Ano() {
@@ -93,12 +95,30 @@ export class CreacionDeMesaComponent implements OnInit {
     return this.formularioMesaExamen.get('dia') as AbstractControl
   }
 
+  get Hora() {
+    return this.formularioMesaExamen.get('hora') as AbstractControl
+  }
+
   subirMesa() {
     if (!this.formularioMesaExamen.valid)
       return console.error(this.formularioMesaExamen.errors)
 
-    this.servicioMesas.subirMesa(
-      this.formularioMesaExamen.value as unknown as Mesa,
-    )
+    this.servicioMesas
+      .subirMesa(this.formularioMesaExamen.value as unknown as Mesa)
+      .subscribe({
+        next: (data) => {
+          console.log(data)
+          alert(data.data)
+        },
+        error: (error) => {
+          const errores = error.error.message
+          if (Array.isArray(errores)) return alert(Object.values(errores).join(' '))
+
+          alert(errores)
+        },
+        complete: () => {
+          this.formularioMesaExamen.reset()
+        },
+      })
   }
 }

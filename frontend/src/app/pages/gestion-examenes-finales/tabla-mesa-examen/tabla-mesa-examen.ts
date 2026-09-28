@@ -11,6 +11,7 @@ import { CarrerasService } from '@services/carreras.service'
 import { MateriasService } from '@services/materias.service'
 import { MesasExamenesService } from '@services/mesas-examenes.service'
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms'
+import { environment } from '@/environments/environment.development'
 
 interface FechasMesas {
   dia: Set<Dia> | string
@@ -41,7 +42,7 @@ export class TablaMesaExamenComponent implements OnInit {
     dia: '',
     hora: '',
   }
-  anos = [1, 2, 3, 4, 5, 6, 7]
+  anos = environment.anos
 
   formularioTablaDeMesas = this.fb.group({
     dia: [null],

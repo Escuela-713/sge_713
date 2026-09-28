@@ -23,7 +23,7 @@
   }
   <label>
     Carrera:
-    <select formControlName="carrera" required>
+    <select formControlName="id_carrera" required>
       @for (carrera of carreras; track carrera.id_carrera) {
         <option [value]="carrera.id_carrera">{{ carrera.nombre }}</option>
       }
@@ -36,7 +36,7 @@
   }
   <label>
     Materia:
-    <select formControlName="materia" required>
+    <select formControlName="id_materia" required>
       @for (materia of materias; track materia.id_materia) {
         <option [value]="materia.id_materia">{{ materia.nombre }}</option>
       }
@@ -60,7 +60,7 @@
     }
 
     @if (ProfesorTitular.hasError('minlength')) {
-      <span>Se requiere un mínimo de 3 carácteres.</span>
+      <span>Se requiere un mínimo de 10 carácteres.</span>
     }
   }
   <label>
@@ -76,7 +76,7 @@
     }
 
     @if (ProfesorPrimerVocal.hasError('minlength')) {
-      <span>Se requiere un mínimo de 3 carácteres.</span>
+      <span>Se requiere un mínimo de 10 carácteres.</span>
     }
   }
   <label>
@@ -92,7 +92,7 @@
     }
 
     @if (ProfesorSegundoVocal.hasError('minlength')) {
-      <span>Se requiere un minimo de 3 carácteres.</span>
+      <span>Se requiere un minimo de 10 carácteres.</span>
     }
   }
   <label>
@@ -103,6 +103,16 @@
   @if (Dia?.invalid && (Dia?.touched || Dia?.dirty)) {
     @if (Dia.hasError('required')) {
       <span>La día es requerido.</span>
+    }
+  }
+  <label>
+    Hora del examen:
+
+    <input type="time" formControlName="hora" required />
+  </label>
+  @if (Hora?.invalid && (Hora?.touched || Hora?.dirty)) {
+    @if (Hora.hasError('required')) {
+      <span>La hora es requerida.</span>
     }
   }
   <button type="submit">Subir mesa</button>
