@@ -6,6 +6,7 @@
     <label for="">
       Fecha de inicio:
       <select formControlName="dia">
+        <option [ngValue]="null" disabled>Seleccione el día...</option>
         @for (dia of fechasMesas.dia; track dia) {
           <option>{{dia}}</option>
         }
@@ -14,6 +15,7 @@
     <label for="hora">
       Hora:
       <select formControlName="hora">
+        <option [ngValue]="null" disabled>Seleccione la hora...</option>
         @for (hora of fechasMesas.hora; track hora) {
           <option>{{hora}}</option>
         }
@@ -23,7 +25,7 @@
       >Materia:
 
       <select formControlName="id_materia">
-        <option [defaultSelected]="true" disabled>Seleccione una materia</option>
+        <option [ngValue]="null" disabled>Seleccione una materia...</option>
         @for(materia of materias; track materia.id_materia) {
           <option [value]="materia.id_materia">{{materia.nombre}}</option>
         }
@@ -33,7 +35,7 @@
       >Carrera:
 
       <select formControlName="id_carrera">
-        <option [defaultSelected]="true" disabled>Seleccione una carrera</option>
+        <option [ngValue]="null" disabled>Seleccione una carrera...</option>
         @for(carrera of carreras; track carrera.id_carrera) {
           <option [value]="carrera.id_carrera">{{carrera.nombre}}</option>
         }
@@ -43,16 +45,18 @@
       >Año:
 
       <select formControlName="ano">
+        <option [ngValue]="null" disabled>Seleccione un año...</option>
         @for(ano of anos; track ano) {
         <option [value]="ano">{{ano}}°</option>
         }
       </select>
     </label>
     <input type="submit" value="Buscar mesa" />
+    <button (click)="reiniciarFiltros()">Reiniciar filtros</button>
   </form>
   <table>
     <caption>
-      Planilla de Evaluación
+      Planilla de Mesas de exámenes
     </caption>
     <thead>
       <tr>

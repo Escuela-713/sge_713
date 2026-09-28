@@ -32,6 +32,8 @@ export class TablaMesaExamenComponent implements OnInit {
 
   materias: Materia[] = []
   carreras: Carrera[] = []
+  todasLasMesas: Mesa[] = []
+  mesasConFiltros: Mesa[] = []
   mesas: Mesa[] = []
   error: string = ''
 
@@ -42,11 +44,11 @@ export class TablaMesaExamenComponent implements OnInit {
   anos = [1, 2, 3, 4, 5, 6, 7]
 
   formularioTablaDeMesas = this.fb.group({
-    dia: [''],
-    hora: [''],
-    id_materia: [''],
-    id_carrera: [''],
-    ano: [''],
+    dia: [null],
+    hora: [null],
+    id_materia: [null],
+    id_carrera: [null],
+    ano: [null],
   })
 
   ngOnInit(): void {
@@ -63,7 +65,6 @@ export class TablaMesaExamenComponent implements OnInit {
     this.servicioCarrera.obtenerCarreras().subscribe({
       next: (carreras) => {
         this.carreras = carreras.data
-        console.log(this.carreras)
       },
       error: (error: unknown) => console.error(error),
       complete: () => this.cdr.detectChanges(),
@@ -71,11 +72,12 @@ export class TablaMesaExamenComponent implements OnInit {
 
     this.servicioMesasExamenes.obtenerMesas().subscribe({
       next: (mesas) => {
-        this.mesas = mesas.data
+        this.todasLasMesas = mesas.data
         this.fechasMesas = {
           dia: new Set(mesas.data.map((mesa) => mesa.dia)),
           hora: new Set(mesas.data.map((mesa) => mesa.hora)),
         }
+        this.mesas = this.todasLasMesas
       },
       error: (error) => {
         if (error.status === 404) {
@@ -88,11 +90,16 @@ export class TablaMesaExamenComponent implements OnInit {
 
   obtenerMesasConFiltros() {
     const filtros = this.formularioTablaDeMesas.value
+
+    // Esto verifica que no haya ningún valor en los filtros para evitar hacer llamadas innecesarias a la api
+    if (Object.values(filtros).every(valor => valor === '' || !valor)) return
+
     this.servicioMesasExamenes
       .obtenerMesas(filtros as FiltroMesaExamen)
       .subscribe({
         next: (mesas) => {
-          this.mesas = mesas.data
+          this.mesasConFiltros = mesas.data
+          this.mesas = this.mesasConFiltros
         },
         error: (error) => {
           if (error.status === 404) {
@@ -127,5 +134,10 @@ export class TablaMesaExamenComponent implements OnInit {
       error: (error: unknown) => console.error(error),
       complete: () => this.cdr.detectChanges(),
     })
+  }
+
+  reiniciarFiltros() {
+    this.formularioTablaDeMesas.reset()
+    this.mesas = this.todasLasMesas
   }
 }
