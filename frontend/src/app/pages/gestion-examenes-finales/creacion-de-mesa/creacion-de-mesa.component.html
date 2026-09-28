@@ -1,16 +1,16 @@
-<form [formGroup]="formularioMesaExamen">
+<form [formGroup]="formularioMesaExamen" (ngSubmit)="subirMesa()">
   <h2>Mesa de Examen</h2>
   <label>
     Año:
     <select formControlName="ano" required>
-      @for (curso of cursos; track curso) {
-        <option [value]="curso">{{ curso }}°</option>
+      @for (ano of anos; track ano) {
+        <option [value]="ano">{{ ano }}°</option>
       }
     </select>
   </label>
-  @if (Ano.invalid && (Ano.touched || Ano.dirty)) {
+  @if (Ano?.invalid && (Ano?.touched || Ano?.dirty)) {
     @if (Ano.hasError('required')) {
-      <span>El año.</span>
+      <span>El año es requerido.</span>
     }
 
     @if (Ano.hasError('min')) {
@@ -25,11 +25,11 @@
     Carrera:
     <select formControlName="carrera" required>
       @for (carrera of carreras; track carrera.id_carrera) {
-        <option [value]="carrera.nombre">{{ carrera.nombre }}</option>
+        <option [value]="carrera.id_carrera">{{ carrera.nombre }}</option>
       }
     </select>
   </label>
-  @if (Carrera.invalid && (Carrera.touched || Carrera.dirty)) {
+  @if (Carrera?.invalid && (Carrera?.touched || Carrera?.dirty)) {
     @if (Carrera.hasError('required')) {
       <span>El nombre de la carrera es requerido.</span>
     }
@@ -38,11 +38,11 @@
     Materia:
     <select formControlName="materia" required>
       @for (materia of materias; track materia.id_materia) {
-        <option [value]="materia.nombre">{{ materia.nombre }}</option>
+        <option [value]="materia.id_materia">{{ materia.nombre }}</option>
       }
     </select>
   </label>
-  @if (Materia.invalid && (Materia.touched || Materia.dirty)) {
+  @if (Materia?.invalid && (Materia?.touched || Materia?.dirty)) {
     @if (Materia.hasError('required')) {
       <span>El nombre de la materia es requerido.</span>
     }
@@ -52,8 +52,8 @@
     <input type="text" formControlName="profesor_titular" required />
   </label>
   @if (
-    ProfesorTitular.invalid &&
-    (ProfesorTitular.touched || ProfesorTitular.dirty)
+    ProfesorTitular?.invalid &&
+    (ProfesorTitular?.touched || ProfesorTitular?.dirty)
   ) {
     @if (ProfesorTitular.hasError('required')) {
       <span>El nombre del profesor titular es requerido.</span>
@@ -68,8 +68,8 @@
     <input type="text" formControlName="profesor_primer_vocal" required />
   </label>
   @if (
-    ProfesorPrimerVocal.invalid &&
-    (ProfesorPrimerVocal.touched || ProfesorPrimerVocal.dirty)
+    ProfesorPrimerVocal?.invalid &&
+    (ProfesorPrimerVocal?.touched || ProfesorPrimerVocal?.dirty)
   ) {
     @if (ProfesorPrimerVocal.hasError('required')) {
       <span>El nombre del profesor primer vocal es requerido.</span>
@@ -84,8 +84,8 @@
     <input type="text" formControlName="profesor_segundo_vocal" required />
   </label>
   @if (
-    ProfesorSegundoVocal.invalid &&
-    (ProfesorSegundoVocal.touched || ProfesorSegundoVocal.dirty)
+    ProfesorSegundoVocal?.invalid &&
+    (ProfesorSegundoVocal?.touched || ProfesorSegundoVocal?.dirty)
   ) {
     @if (ProfesorSegundoVocal.hasError('required')) {
       <span>El nombre del profesor segundo vocal es requerido.</span>
@@ -100,24 +100,10 @@
 
     <input type="date" formControlName="dia" required />
   </label>
-  @if (Fecha.invalid && (Fecha.touched || Fecha.dirty)) {
-    @if (Fecha.hasError('required')) {
-      <span>La fecha es requerida.</span>
+  @if (Dia?.invalid && (Dia?.touched || Dia?.dirty)) {
+    @if (Dia.hasError('required')) {
+      <span>La día es requerido.</span>
     }
   }
-  <label>
-    Turno:
-    <select formControlName="turno" required>
-      <option value="">Seleccionar...</option>
-      <option value="mañana">Mañana</option>
-      <option value="tarde">Tarde</option>
-      <option value="noche">Noche</option>
-    </select>
-  </label>
-  @if (Turno.invalid && (Turno.touched || Turno.dirty)) {
-    @if (Turno.hasError('required')) {
-      <span>El turno es requerida.</span>
-    }
-  }
-  <button type="submit">Enviar inscripcion</button>
+  <button type="submit">Subir mesa</button>
 </form>

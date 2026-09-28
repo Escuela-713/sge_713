@@ -1,15 +1,19 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core'
+import {
+  ReactiveFormsModule,
+  FormBuilder,
+  Validators,
+  AbstractControl,
+} from '@angular/forms'
 import { CarrerasService } from '@services/carreras.service'
 import { MateriasService } from '@services/materias.service'
-import { ReactiveFormsModule, FormBuilder, Validators, AbstractControl } from '@angular/forms'
-import { MesasExamenesService } from '@/app/services/mesas-examenes.service'
-import { Mesa } from '@/app/models/mesas-examenes.model'
+import { MesasExamenesService } from '@services/mesas-examenes.service'
+import { Carrera, Materia, Mesa } from '@models/mesas-examenes.model'
 
 @Component({
   selector: 'app-creacion-de-mesa',
   imports: [ReactiveFormsModule],
   templateUrl: './creacion-de-mesa.component.html',
-  styleUrl: './creacion-de-mesa.component.css',
 })
 export class CreacionDeMesaComponent implements OnInit {
   private servicioMateria = inject(MateriasService)
@@ -18,14 +22,14 @@ export class CreacionDeMesaComponent implements OnInit {
   private cdr = inject(ChangeDetectorRef)
   private servicioMesas = inject(MesasExamenesService)
 
-  materias: any = []
-  carreras: any = []
-  cursos = [1, 2, 3, 4, 5, 6, 7]
+  materias: Materia[] = []
+  carreras: Carrera[] = []
+  anos = [1, 2, 3, 4, 5, 6, 7]
 
   ngOnInit(): void {
     this.servicioMateria.obtenerMaterias().subscribe({
-      next: (data) => {
-        this.materias = data
+      next: (materias) => {
+        this.materias = materias.data
       },
       error: (error) => {
         console.error(error)
@@ -34,8 +38,8 @@ export class CreacionDeMesaComponent implements OnInit {
     })
 
     this.servicioCarrera.obtenerCarreras().subscribe({
-      next: (data) => {
-        this.carreras = data
+      next: (carreras) => {
+        this.carreras = carreras.data
       },
       error: (error) => {
         console.error(error)
@@ -50,46 +54,51 @@ export class CreacionDeMesaComponent implements OnInit {
     materia: ['', [Validators.required]],
     profesor_titular: ['', [Validators.required, Validators.minLength(3)]],
     profesor_primer_vocal: ['', [Validators.required, Validators.minLength(3)]],
-    profesor_segundo_vocal: ['', [Validators.required, Validators.minLength(3)]],
+    profesor_segundo_vocal: [
+      '',
+      [Validators.required, Validators.minLength(3)],
+    ],
     dia: ['', [Validators.required]],
-    turno: ['', [Validators.required]],
   })
 
-  subirMesa() {
-    if (!this.formularioMesaExamen.valid) return console.error(this.formularioMesaExamen.errors)
-
-    this.servicioMesas.subirMesa(this.formularioMesaExamen.value as unknown as Mesa)
-  }
-
   get Ano() {
-    return this.formularioMesaExamen.get("ano") as AbstractControl
+    return this.formularioMesaExamen.get('ano') as AbstractControl
   }
 
-   get Carrera() {
-    return this.formularioMesaExamen.get("carrera") as AbstractControl
+  get Carrera() {
+    return this.formularioMesaExamen.get('carrera') as AbstractControl
   }
 
   get Materia() {
-    return this.formularioMesaExamen.get("materia") as AbstractControl
+    return this.formularioMesaExamen.get('materia') as AbstractControl
   }
 
   get ProfesorTitular() {
-    return this.formularioMesaExamen.get("profesor_titular") as AbstractControl
+    return this.formularioMesaExamen.get('profesor_titular') as AbstractControl
   }
 
   get ProfesorPrimerVocal() {
-    return this.formularioMesaExamen.get("profesor_primer_vocal") as AbstractControl
+    return this.formularioMesaExamen.get(
+      'profesor_primer_vocal',
+    ) as AbstractControl
   }
 
   get ProfesorSegundoVocal() {
-    return this.formularioMesaExamen.get("profesor_segundo_vocal") as AbstractControl
+    return this.formularioMesaExamen.get(
+      'profesor_segundo_vocal',
+    ) as AbstractControl
   }
 
-   get Fecha() {
-    return this.formularioMesaExamen.get("fecha") as AbstractControl
+  get Dia() {
+    return this.formularioMesaExamen.get('dia') as AbstractControl
   }
 
-   get Turno() {
-    return this.formularioMesaExamen.get("turno") as AbstractControl
+  subirMesa() {
+    if (!this.formularioMesaExamen.valid)
+      return console.error(this.formularioMesaExamen.errors)
+
+    this.servicioMesas.subirMesa(
+      this.formularioMesaExamen.value as unknown as Mesa,
+    )
   }
 }
