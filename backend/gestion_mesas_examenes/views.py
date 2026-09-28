@@ -20,7 +20,7 @@ class MesasExamenesView(ApiView):
         mesas_serializadas = MesaExamenSerializer(mesas, many=True).data
 
         if (len(mesas_serializadas) == 0):
-            return Response({'error': 'No hay mesas para mostrar.'}, status=HTTP_404_NOT_FOUND)
+            return Response({'message': 'No hay mesas para mostrar.'}, status=HTTP_404_NOT_FOUND)
 
         return Response({'data': mesas_serializadas})
 
@@ -30,15 +30,15 @@ class MesasExamenesView(ApiView):
             body = req.data
 
             if (not body):
-                return Response({'error': 'Complete los datos para subir una nueva mesa.'}, status=HTTP_400_BAD_REQUEST)
+                return Response({'message': 'Complete los datos para subir una nueva mesa.'}, status=HTTP_400_BAD_REQUEST)
 
             if (isinstance(body, list)):
-                return Response({'error': 'El cuerpo de la petición debe ser un objeto.'}, status=HTTP_400_BAD_REQUEST)
+                return Response({'message': 'El cuerpo de la petición debe ser un objeto.'}, status=HTTP_400_BAD_REQUEST)
 
             nueva_mesa = MesaExamenSerializer(data=body)
 
             if (not nueva_mesa.is_valid()):
-                return Response({'error': nueva_mesa.errors}, status=HTTP_400_BAD_REQUEST)
+                return Response({'message': nueva_mesa.errors}, status=HTTP_400_BAD_REQUEST)
 
             mesa_guardada = nueva_mesa.save()
 
@@ -46,19 +46,19 @@ class MesasExamenesView(ApiView):
         
         except Exception as exception:
             print(exception)
-            return Response({'error': 'Hubo un error inesperado en el servidor, estamos trabajando para solucionarlo.'}, status=HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'message': 'Hubo un error inesperado en el servidor, estamos trabajando para solucionarlo.'}, status=HTTP_500_INTERNAL_SERVER_ERROR)
 
 class InscripcionView(ApiView):
     def post(self, req: Request):
         body = req.data
 
         if (not body):
-            return Response({'error':'No hay información que pueda usarse.'}, status=HTTP_400_BAD_REQUEST)
+            return Response({'message':'No hay información que pueda usarse.'}, status=HTTP_400_BAD_REQUEST)
 
         inscripcion = AlumnosAnotadosAMesasSerializer(data=body)
 
         if (not inscripcion.is_valid()):
-          return Response({'error':inscripcion.errors}, status=HTTP_400_BAD_REQUEST)
+          return Response({'message':inscripcion.errors}, status=HTTP_400_BAD_REQUEST)
 
         inscripcion_guardada = inscripcion.save()
 

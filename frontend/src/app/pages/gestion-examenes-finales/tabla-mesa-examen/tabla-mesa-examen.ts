@@ -33,20 +33,20 @@ export class TablaMesaExamenComponent implements OnInit {
   materias: Materia[] = []
   carreras: Carrera[] = []
   mesas: Mesa[] = []
+  error: string = ''
 
   fechasMesas: FechasMesas = {
     dia: '',
     hora: '',
   }
-  cursos = [1, 2, 3, 4, 5, 6, 7]
+  anos = [1, 2, 3, 4, 5, 6, 7]
 
   formularioTablaDeMesas = this.fb.group({
     dia: [''],
     hora: [''],
-    materia: [''],
-    carrera: [''],
+    id_materia: [''],
+    id_carrera: [''],
     ano: [''],
-    curso: [''],
   })
 
   ngOnInit(): void {
@@ -61,9 +61,12 @@ export class TablaMesaExamenComponent implements OnInit {
     })
 
     this.servicioCarrera.obtenerCarreras().subscribe({
-      next: (carreras) => (this.carreras = carreras.data),
+      next: (carreras) => {
+        this.carreras = carreras.data
+        console.log(this.carreras)
+      },
       error: (error: unknown) => console.error(error),
-      complete: () => {},
+      complete: () => this.cdr.detectChanges(),
     })
 
     this.servicioMesasExamenes.obtenerMesas().subscribe({
@@ -74,7 +77,11 @@ export class TablaMesaExamenComponent implements OnInit {
           hora: new Set(mesas.data.map((mesa) => mesa.hora)),
         }
       },
-      error: (error: unknown) => console.error(error),
+      error: (error) => {
+        if (error.status === 404) {
+          this.error = error.error.message
+        }
+      },
       complete: () => this.cdr.detectChanges(),
     })
   }
@@ -87,7 +94,12 @@ export class TablaMesaExamenComponent implements OnInit {
         next: (mesas) => {
           this.mesas = mesas.data
         },
-        error: (error: unknown) => console.error(error),
+        error: (error) => {
+          if (error.status === 404) {
+            this.mesas = []
+            this.error = error.error.message
+          }
+        },
         complete: () => this.cdr.detectChanges(),
       })
   }

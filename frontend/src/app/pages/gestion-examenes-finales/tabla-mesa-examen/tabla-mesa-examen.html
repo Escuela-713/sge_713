@@ -3,12 +3,11 @@
     [formGroup]="formularioTablaDeMesas"
     (ngSubmit)="obtenerMesasConFiltros()"
   >
-    <button (click)="inscribirse($event)" id="aaddds">Prueba</button>
     <label for="">
       Fecha de inicio:
       <select formControlName="dia">
         @for (dia of fechasMesas.dia; track dia) {
-        <option>{{dia}}</option>
+          <option>{{dia}}</option>
         }
       </select>
     </label>
@@ -16,34 +15,36 @@
       Hora:
       <select formControlName="hora">
         @for (hora of fechasMesas.hora; track hora) {
-        <option>{{hora}}</option>
+          <option>{{hora}}</option>
         }
       </select>
     </label>
-    <label for="materia"
+    <label
       >Materia:
 
-      <select formControlName="materia">
+      <select formControlName="id_materia">
+        <option [defaultSelected]="true" disabled>Seleccione una materia</option>
         @for(materia of materias; track materia.id_materia) {
-        <option [value]="materia.nombre">{{materia.nombre}}</option>
+          <option [value]="materia.id_materia">{{materia.nombre}}</option>
         }
       </select>
     </label>
     <label for="carrera"
-      >Modalidad:
+      >Carrera:
 
-      <select formControlName="carrera">
+      <select formControlName="id_carrera">
+        <option [defaultSelected]="true" disabled>Seleccione una carrera</option>
         @for(carrera of carreras; track carrera.id_carrera) {
-        <option [value]="carrera.nombre">{{carrera.nombre}}</option>
+          <option [value]="carrera.id_carrera">{{carrera.nombre}}</option>
         }
       </select>
     </label>
     <label for="ano"
       >Año:
 
-      <select formControlName="curso">
-        @for(curso of cursos; track curso) {
-        <option [value]="curso">{{curso}}°</option>
+      <select formControlName="ano">
+        @for(ano of anos; track ano) {
+        <option [value]="ano">{{ano}}°</option>
         }
       </select>
     </label>
@@ -80,6 +81,12 @@
           </button>
         </td>
       </tr>
+      } @empty {
+        <tr>
+          <td>
+            {{error}}
+          </td>
+        </tr>
       }
     </tbody>
   </table>

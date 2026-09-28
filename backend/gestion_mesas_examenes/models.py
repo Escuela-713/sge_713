@@ -7,6 +7,7 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 from gestion_carrera_planes_materias.models import Carrera, Materia
+from gestion_datos_personales.models import Alumno
 
 class MesaExamen(models.Model):
     id_mesa_examen = models.AutoField(primary_key=True)

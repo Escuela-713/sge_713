@@ -1,9 +1,9 @@
+import type { Carrera } from '@models/mesas-examenes.model'
+import type { ApiResponse } from '@models/responses.model'
 import { Injectable } from '@angular/core'
-import type { Carrera } from '../models/mesas-examenes.model'
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs'
 import { environment } from '@/environments/environment.development'
-import { ApiResponse } from '../models/responses.model'
 
 @Injectable({
   providedIn: 'root',

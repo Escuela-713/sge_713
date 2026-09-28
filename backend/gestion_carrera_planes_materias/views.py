@@ -10,9 +10,9 @@ class CarreraApiViewSet(APIView):
     def get(self, _):
        carreras = CarreraSerializer(Carrera.objects.all(), many=True).data
 
-       return Response(carreras)
+       return Response({'data': carreras})
     
-    def post(self, request):
+    def post(self, request: Request):
         try:
             data = request.data
 
