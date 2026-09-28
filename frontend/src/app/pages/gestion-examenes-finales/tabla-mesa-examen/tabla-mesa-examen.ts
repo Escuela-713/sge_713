@@ -3,6 +3,7 @@ import type {
   Carrera,
   Dia,
   FiltroMesaExamen,
+  Inscripcion,
   Materia,
   Mesa,
 } from '@models/mesas-examenes.model'
@@ -89,5 +90,30 @@ export class TablaMesaExamenComponent implements OnInit {
         error: (error: unknown) => console.error(error),
         complete: () => this.cdr.detectChanges(),
       })
+  }
+
+  inscribirse(event: any) {
+    const idMesa = event.target.id
+    const idAlumno = Number(window.localStorage.getItem('auth_token'))
+    const objetoDeInscripcion: Inscripcion = {
+      id_mesa_examen: idMesa,
+      id_alumno: idAlumno,
+    }
+
+    if (!objetoDeInscripcion.id_alumno) {
+      alert('inicie sesion para inscribirse a la mesa.')
+    }
+
+    if (!objetoDeInscripcion.id_mesa_examen) {
+      alert('hubo un error inesperado.')
+    }
+
+    this.servicioMesasExamenes.inscribirse(objetoDeInscripcion).subscribe({
+      next: (data) => {
+        alert(data.data)
+      },
+      error: (error: unknown) => console.error(error),
+      complete: () => this.cdr.detectChanges(),
+    })
   }
 }

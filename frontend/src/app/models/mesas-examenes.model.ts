@@ -15,7 +15,7 @@ type Id = number
 type Ano = 1 | 2 | 3 | 4 | 5 | 6 | 7
 
 export interface Mesa {
-  id: Id
+  id_mesa_examen: Id
   dia: Dia
   hora: string
   ano: Ano
@@ -29,3 +29,8 @@ export interface Mesa {
 export type FiltroMesaExamen = Partial<
   Pick<Mesa, 'ano' | 'carrera' | 'hora' | 'dia' | 'materia'>
 > & { curso?: string }
+
+export interface Inscripcion {
+  id_mesa_examen: number
+  id_alumno: number
+}

@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from gestion_carrera_planes_materias.models import Materia, Carrera
-from gestion_mesas_examenes.models import MesaExamen
+from gestion_mesas_examenes.models import AlumnosAnotadosAMesas, MesaExamen
 
 class MesaExamenSerializer(serializers.ModelSerializer):
     dia = serializers.DateField(
@@ -85,3 +85,7 @@ class MesaExamenSerializer(serializers.ModelSerializer):
             'id_carrera'
         ]
 
+class AlumnosAnotadosAMesasSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = AlumnosAnotadosAMesas
+        fields = "__all__"
