@@ -9,17 +9,17 @@ from django.db import models
 
 
 class Bienes(models.Model):
-    codigo_especial = models.CharField(max_length=45, blank=True, null=True)
+    nombre = models.CharField(max_length=45, blank=True, null=True)
     estado = models.CharField(max_length=15, blank=True, null=True)
     id_bien = models.AutoField(primary_key=True)
     categoria = models.CharField(max_length=45, blank=True, null=True)
     prestado = models.IntegerField(blank=True, null=True)
-    stock = models.IntegerField(blank=True, null=True)
+    cantidad = models.IntegerField(blank=True, null=True)
     descripcion = models.CharField(max_length=150, blank=True, null=True)
     ubicacion = models.CharField(max_length=100, blank=True, null=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'bienes'
 
 
@@ -30,7 +30,7 @@ class DetalleInventario(models.Model):
     id_bien = models.ForeignKey(Bienes, models.DO_NOTHING, db_column='id_bien')
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'detalle_inventario'
 
 
@@ -43,5 +43,5 @@ class RegistroInventario(models.Model):
     id_inventario = models.AutoField(primary_key=True)
 
     class Meta:
-        managed = False
+        managed = True
         db_table = 'registro_inventario'
