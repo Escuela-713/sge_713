@@ -5,61 +5,101 @@
 
       <!-- Alerta de Error del Servidor -->
       @if (errorMessage) {
-        <div class="alert alert-danger mb-3 p-2 text-center" style="font-size: 14px; border-radius: 6px;">
+        <div
+          class="alert alert-danger mb-3 p-2 text-center"
+          style="font-size: 14px; border-radius: 6px"
+        >
           {{ errorMessage }}
         </div>
       }
 
       <!-- Alerta de Éxito -->
       @if (successMessage) {
-        <div class="alert alert-success mb-3 p-2 text-center" style="font-size: 14px; border-radius: 6px;">
+        <div
+          class="alert alert-success mb-3 p-2 text-center"
+          style="font-size: 14px; border-radius: 6px"
+        >
           {{ successMessage }}
         </div>
       }
 
       <!-- CUIL -->
-      <input class="form-control mb-2" formControlName="cuil" type="number" placeholder="Ingresar CUIL/DNI">
+      <input
+        class="form-control mb-2"
+        formControlName="cuil"
+        type="number"
+        placeholder="Ingresar CUIL"
+      />
       @if (Cuil?.errors && Cuil?.touched) {
-        @if (Cuil?.hasError('required')) {
-          <div class="text-danger mb-2" style="font-size: 13px;">El CUIL es requerido.</div>
+        @if (Cuil?.hasError("required")) {
+          <div class="text-danger mb-2" style="font-size: 13px">
+            El CUIL es requerido.
+          </div>
         }
       }
 
       <!-- Confirmar CUIL -->
-      <input class="form-control mb-2" formControlName="cuilconfirmation" type="number" placeholder="Confirmar CUIL/DNI">
+      <input
+        class="form-control mb-2"
+        formControlName="cuilconfirmation"
+        type="number"
+        placeholder="Confirmar CUIL"
+      />
       @if (Cuilconfirmation?.errors && Cuilconfirmation?.touched) {
-        @if (Cuilconfirmation?.hasError('required')) {
-          <div class="text-danger mb-2" style="font-size: 13px;">La confirmación del CUIL es requerida.</div>
+        @if (Cuilconfirmation?.hasError("required")) {
+          <div class="text-danger mb-2" style="font-size: 13px">
+            La confirmación del CUIL es requerida.
+          </div>
         }
-      }
-      @else if (errorCuil) {
-        <div class="text-danger mb-2" style="font-size: 13px;">El CUIL debe ser igual.</div>
+      } @else if (errorCuil) {
+        <div class="text-danger mb-2" style="font-size: 13px">
+          El CUIL debe ser igual.
+        </div>
       }
 
       <!-- Contraseña -->
-      <input class="form-control mb-2" formControlName="password" type="password" placeholder="Ingresar Contraseña">
+      <input
+        class="form-control mb-2"
+        formControlName="password"
+        type="password"
+        placeholder="Ingresar Contraseña"
+      />
       @if (Password?.errors && Password?.touched) {
-        @if (Password?.hasError('required')) {
-          <div class="text-danger mb-2" style="font-size: 13px;">La contraseña es requerida.</div>
-        }
-        @else if (Password?.hasError('minlength')) {
-          <div class="text-danger mb-2" style="font-size: 13px;">La contraseña requiere como mínimo 8 caracteres.</div>
+        @if (Password?.hasError("required")) {
+          <div class="text-danger mb-2" style="font-size: 13px">
+            La contraseña es requerida.
+          </div>
+        } @else if (Password?.hasError("minlength")) {
+          <div class="text-danger mb-2" style="font-size: 13px">
+            La contraseña requiere como mínimo 8 caracteres.
+          </div>
         }
       }
 
       <!-- Confirmar Contraseña -->
-      <input class="form-control mb-3" formControlName="passwordconfirmation" type="password" placeholder="Confirmar contraseña">
+      <input
+        class="form-control mb-3"
+        formControlName="passwordconfirmation"
+        type="password"
+        placeholder="Confirmar contraseña"
+      />
       @if (Passwordconfirmation?.errors && Passwordconfirmation?.touched) {
-        @if (Passwordconfirmation?.hasError('required')) {
-          <div class="text-danger mb-2" style="font-size: 13px;">La confirmación de la contraseña es requerida.</div>
+        @if (Passwordconfirmation?.hasError("required")) {
+          <div class="text-danger mb-2" style="font-size: 13px">
+            La confirmación de la contraseña es requerida.
+          </div>
         }
+      } @else if (errorPassword) {
+        <div class="text-danger mb-2" style="font-size: 13px">
+          Las contraseñas deben ser iguales.
+        </div>
       }
-      @else if (errorPassword) {
-        <div class="text-danger mb-2" style="font-size: 13px;">Las contraseñas deben ser iguales.</div>
-      }     
 
-      <input class="botons w-100 mb-3" type="submit" value="Registrar">
-      <p class="text-center m-0"><a routerLink="/iniciar-sesion">¿Ya tenés cuenta?</a></p>
+      <input class="botons w-100 mb-3" type="submit" value="Registrar" />
+      <p class="text-center m-0">
+        <a routerLink="/iniciar-sesion">¿Ya tenés cuenta?</a>
+      </p>
     </section>
   </form>
 </div>
+
