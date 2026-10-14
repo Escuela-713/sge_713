@@ -4,6 +4,7 @@ from rest_framework import status
 from .models import Bienes
 from .serializers import BienesSerializer
 
+<<<<<<< HEAD
 
 class CrearBienView(APIView):
     """
@@ -23,3 +24,14 @@ class CrearBienView(APIView):
                 status=status.HTTP_201_CREATED
             )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+=======
+# Create your views here.
+from rest_framework import viewsets
+from .models import Bienes
+from .serialzers import BienesSerializer
+
+
+class BienesViewSet(viewsets.ModelViewSet):
+    queryset = Bienes.objects.all()
+    serializer_class = BienesSerializer
+>>>>>>> mateo
