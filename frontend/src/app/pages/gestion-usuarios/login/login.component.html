@@ -12,11 +12,11 @@
       type="text"
       name="nombres"
       id="nombres"
-      placeholder="Ingrese su Cuil"
+      placeholder="Ingrese su DNI"
     />
     @if (Cuil?.errors && Cuil?.touched) {
       @if (Cuil?.hasError("required")) {
-        <div class="text-danger">El Cuil es requerido.</div>
+        <div class="text-danger">El DNI es requerido.</div>
       }
     }
     <input

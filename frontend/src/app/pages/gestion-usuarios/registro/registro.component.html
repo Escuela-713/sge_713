@@ -28,12 +28,12 @@
         class="form-control mb-2"
         formControlName="cuil"
         type="number"
-        placeholder="Ingresar CUIL"
+        placeholder="Ingresar DNI"
       />
       @if (Cuil?.errors && Cuil?.touched) {
         @if (Cuil?.hasError("required")) {
           <div class="text-danger mb-2" style="font-size: 13px">
-            El CUIL es requerido.
+            El DNI es requerido.
           </div>
         }
       }
@@ -43,17 +43,17 @@
         class="form-control mb-2"
         formControlName="cuilconfirmation"
         type="number"
-        placeholder="Confirmar CUIL"
+        placeholder="Confirmar DNI"
       />
       @if (Cuilconfirmation?.errors && Cuilconfirmation?.touched) {
         @if (Cuilconfirmation?.hasError("required")) {
           <div class="text-danger mb-2" style="font-size: 13px">
-            La confirmación del CUIL es requerida.
+            La confirmación del DNI es requerida.
           </div>
         }
       } @else if (errorCuil) {
         <div class="text-danger mb-2" style="font-size: 13px">
-          El CUIL debe ser igual.
+          El DNI debe ser igual.
         </div>
       }
 

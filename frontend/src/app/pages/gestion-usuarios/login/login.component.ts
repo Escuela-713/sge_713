@@ -45,7 +45,7 @@ export class LoginComponent {
         },
         error: (err) => {
           console.error('Error de autenticación:', err);
-          this.errorMessage = "Credenciales incorrectas o error en el servidor";
+          this.errorMessage = "Error de autenticacion!";
         }
       });
 

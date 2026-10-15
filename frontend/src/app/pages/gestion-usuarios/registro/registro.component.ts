@@ -65,7 +65,7 @@ export class RegistroComponent {
           console.log("Registro exitoso:", response);
           this.successMessage = "¡Usuario registrado con éxito! Redirigiendo...";
           setTimeout(() => {
-            this.router.navigate(["/iniciar-sesion"]);
+            this.router.navigate(["/"]);
           }, 1500);
         },
         error: (err) => {
