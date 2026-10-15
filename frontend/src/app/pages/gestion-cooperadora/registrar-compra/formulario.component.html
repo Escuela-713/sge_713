@@ -21,7 +21,8 @@
   <div class="mb-3">
     <label for="monto" class="form-label">Monto</label>
     <input
-      type="number"
+      type="text"
+      inputmode="numeric"
       class="form-control"
       id="monto"
       autocomplete="off"
@@ -111,7 +112,7 @@
       id="motivo" 
       rows="3"
       placeholder="Describa el motivo del movimiento"
-      formControlName="motivo"></textarea>
+      formControlName="motivo"></textarea>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
 
     @if (Motivo.errors && Motivo.touched) {
       @if (Motivo.hasError('required')) {
@@ -151,9 +152,9 @@
   <button  
     type="submit" 
     class="btn btn-primary mt-4"
-    [disabled]="form.invalid || enviando"
+    [disabled]="enviando"
   >
-    Registrar Compra
+    Registrar movimiento
   </button>
 </div>
 
