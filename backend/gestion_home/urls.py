@@ -1,12 +1,12 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from .views import PublicationViewSet, HomePageDataView
-
-router = DefaultRouter()
-router.register(r"novedades", PublicationViewSet, basename="novedad")
+from gestion_home.views import CategoriesView, PublicationView, CarrouselView, PublicationDetailView
 
 urlpatterns = [
-	path("", include(router.urls)),
-    path("home-data/", HomePageDataView.as_view(), name="home-data"),
+	path('home/', PublicationView.as_view()),
+    path('home/publications/', PublicationView.as_view()),
+    path('home/publications/<int:pk>/', PublicationDetailView.as_view()),
+    path('home/categories/', CategoriesView.as_view()),
+    path('home/carrousel/', CarrouselView.as_view())
 ]

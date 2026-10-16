@@ -1,15 +1,15 @@
 @if(slideEditado){
     <div class="editar-slide-modal">
-  <h2>Editar Slide</h2>
+  <h2>Editar apartado</h2>
   <form (ngSubmit)="onGuardar()">
 
-  <label>Título:</label>
+  <label>Título</label>
   <input [(ngModel)]="slideEditado.title" name="title" required />
 
-  <label>Subtítulo:</label>
+  <label>Subtítulo</label>
   <input [(ngModel)]="slideEditado.subtitle" name="subtitle" />
 
-  <label>Imagen URL:</label>
+  <label>Imagen URL</label>
   <input [(ngModel)]="slideEditado.image" name="image" />
 
     <div class="botones">

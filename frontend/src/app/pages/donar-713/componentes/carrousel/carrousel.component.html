@@ -15,9 +15,11 @@
 
         <p>{{ slide.description }}</p>
 
+        @if (slide.buttonText) {
         <button class="hero-button">
-          {{ slide.buttonText }}
+        {{ slide.buttonText }}
         </button>
+        }
 
       </div>
 

@@ -1,37 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 
-import { HttpClient, HttpClientModule } from "@angular/common/http";
+import { DatePipe, SlicePipe } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { FooterComponent } from "@shared/footer/footer.component";
 import { HeaderComponent } from "@shared/header/header.component";
 import { NavComponent } from "@shared/nav/nav.component";
-
-interface CarouselSlide {
-  id: number;
-  image: string;
-  title: string;
-  subtitle: string;
-  buttonText: string;
-  buttonLink: string;
-}
-
-interface Card {
-  id: number;
-  slug: string;
-  backgroundImage: string;
-  title: string;
-  description: string;
-  location: string;
-  date: string;
-  locationIcon: string;
-  dateIcon: string;
-}
-
-interface HomeData {
-  carouselSlides: CarouselSlide[];
-  sectionTitle: string;
-  cards: Card[];
-}
+import { NovedadesService, Publication, NovedadesData } from "@/app/services/novedades.service";
 
 @Component({
   selector: "app-home",
@@ -40,27 +14,28 @@ interface HomeData {
     NavComponent,
     HeaderComponent,
     FooterComponent,
-    HttpClientModule,
     RouterModule,
+    SlicePipe,
+    DatePipe,
   ],
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  homeData: HomeData | null = null;
+  homeData: NovedadesData | null = null;
   isLoading: boolean = true;
   error: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private readonly publicationService: NovedadesService) {}
 
   ngOnInit(): void {
     this.loadHomeData();
-    //Poner como titulo "Escuela 713 - Home" para que no se cargue SGE 713
+    // Poner como titulo "Escuela 713 - Home" para que no se cargue SGE 713
     document.title = `Escuela 713 - Home`;
   }
 
   private loadHomeData(): void {
-    this.http.get<HomeData>("assets/novedades-home.json").subscribe({
+    this.publicationService.getAll().subscribe({
       next: (data) => {
         this.homeData = data;
         this.isLoading = false;
@@ -78,8 +53,8 @@ export class HomeComponent implements OnInit {
     return `${prefix}-${index}`;
   }
 
-  // Método trackBy para @For de las cards
-  trackByCardId(index: number, card: Card): number {
+  // Método trackBy para @for de las cards
+  trackByCardId(index: number, card: Publication): number {
     return card.id;
   }
 }

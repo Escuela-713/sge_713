@@ -1,75 +1,71 @@
 <div class="novedad-page">
   <!-- Formulario -->
   <div class="novedad-form">
-    <h2 class="tx-center">Agregar un Posteo</h2>
+    <h2 class="tx-center">Agregar Publicación</h2>
     <div class="form-container">
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
         <!-- los span (etiquetas donde están los *) tienen que tener color rojo -->
-        <label for="image">Agregue la imagen de portada <span>*</span></label>
+        <label for="image">Imagen de portada <span>*</span></label>
         <input id="image" type="file" accept="image/*" (change)="onImageChange($event)" />
         @if(form.get('image')?.invalid && form.get('image')?.touched){
           <p class="error">Seleccione una imagen</p>
         }
 
         <label for="title">Título <span>*</span></label>
-        <input id="title" formControlName="title" placeholder="Ingrese el título de la novedad" />
+        <input id="title" formControlName="title" placeholder="Ingrese el título de la publicación" />
         @if(form.get('title')?.errors?.['required'] && form.get('title')?.touched){
           <p class="error">Ingrese un título</p>
         }
 
         <label for="categoria">Categoría <span>*</span></label>
         <select id="categoria" formControlName="categoria">
-          <option value="Evento">Evento</option>
-          <option value="Anuncio">Anuncio</option>
-          <option value="Acto">Acto Escolar</option>
-          <option value="Publicidad">Publicidad</option>
+        <option value="" hidden selected>Seleccione una categoría</option>
+        @for (categoria of categorias; track categoria.id) {
+        <option [value]="categoria.id">{{ categoria.title }}</option>
+        }
         </select>
         @if(form.get('categoria')?.invalid && form.get('categoria')?.touched){
           <p class="error">Seleccione una categoría</p>
         }
 
         <label for="content">Contenido <span>*</span></label>
-        <textarea id="content" formControlName="content" placeholder="Ingrese el contenido de la novedad"></textarea>
+        <textarea id="content" formControlName="content" placeholder="Ingrese el contenido de la publicación"></textarea>
         @if(form.get('content')?.errors?.['required'] && form.get('content')?.touched){
           <p class="error">Escriba contenido</p>
         }
         @if(form.get('content')?.errors?.['minlength'] && form.get('content')?.touched){
           <p class="error">El contenido debe tener al menos 10 caracteres</p>
         }
-        <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Publicar</button>
+        <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
+        <button type="submit" [disabled]="form.invalid || isSubmitting" class="btn btn-primary">
+          {{ isSubmitting ? 'Guardando...' : 'Publicar' }}
+        </button>
       </form>
     </div>
   </div>
 
   <!-- Preview -->
-  <div class="novedad-preview">
-    @if (novedad()) {
-      <div class="novedad-container">
-        <div class="novedad-header" [style.backgroundImage]="'url(' + novedad().backgroundImage + ')'">
-          <h1>{{ novedad().title }}</h1>
-        </div>
-        <div class="novedad-content">
-          <div class="meta-info">
-            <div class="location">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                <path [attr.d]="novedad().locationIcon"/>
-              </svg>
-              {{ novedad().location }}
-            </div>
-            <div class="date">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path [attr.d]="novedad().dateIcon"/>
-              </svg>
-              {{ novedad().date }}
-            </div>
+ <div class="novedad-preview">
+  @if (novedad) {
+    <div class="novedad-container">
+      <div class="novedad-header" [style.backgroundImage]="'url(' + novedad.image + ')'">
+        <h1>{{ novedad.title }}</h1>
+      </div>
+      <div class="novedad-content">
+        <div class="meta-info">
+          <div class="date">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path d="M152 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H64C28.7 64 0 92.7 0 128v16 48V448c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V192 144 128c0-35.3-28.7-64-64-64H320V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H152V24zM48 192H400V448c0 8.8-7.2 16-16 16H64c-8.8 0-16-7.2-16-16V192z"/>
+            </svg>
+            {{ novedad.upload_date }}
           </div>
-          <p class="description">{{ novedad().description }}</p>
         </div>
+        <p class="description">{{ novedad.content }}</p>
       </div>
-    } @else {
-      <div class="preview-placeholder">
-        <p>Completa el formulario para previsualizar la novedad aquí</p>
-      </div>
-    }
-  </div>
+    </div>
+  } @else {
+    <div class="preview-placeholder">
+      <p>Completa el formulario para previsualizar la publicación aquí</p>
+    </div>
+  }
 </div>

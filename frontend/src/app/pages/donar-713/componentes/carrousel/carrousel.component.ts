@@ -4,7 +4,7 @@ interface Slide {
   image: string;
   title: string;
   description: string;
-  buttonText: string;
+  buttonText?: string;
 }
 
 @Component({
@@ -29,8 +29,7 @@ export class CarrouselComponent implements OnInit, OnDestroy {
     {
       image: '../../../../../assets/imgs/sumate-campana.jpg',
       title: 'Súmate a la Campaña',
-      description: 'Estudiantes y comunidad unidos por una causa solidaria. Tu ayuda marca la diferencia.',
-      buttonText: 'Más Información'
+      description: 'Estudiantes y comunidad unidos por una causa solidaria. Tu ayuda marca la diferencia.'
     },
     {
       image: '../../../../../assets/imgs/cada-gota-cuenta.jpg',

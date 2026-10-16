@@ -4,25 +4,19 @@
       "id": 1,
       "image": "assets/imgs/colegio1.jpg",
       "title": "Colegio 713",
-      "subtitle": "\"Juan Abdala Chayep\"",
-      "buttonText": "Más Información",
-      "buttonLink": "#"
+      "subtitle": "\"Juan Abdala Chayep\""
     },
     {
       "id": 2,
       "image": "assets/imgs/colegio2.jpg",
       "title": "Colegio 713",
-      "subtitle": "\"Juan Abdala Chayep\"",
-      "buttonText": "Más Información",
-      "buttonLink": "#"
+      "subtitle": "\"Juan Abdala Chayep\""
     },
     {
       "id": 3,
       "image": "assets/imgs/colegio3.jpg",
       "title": "Colegio 713",
-      "subtitle": "\"Juan Abdala Chayep\"",
-      "buttonText": "Más Información",
-      "buttonLink": "#"
+      "subtitle": "\"Juan Abdala Chayep\""
     }
   ],
   "sectionTitle": "Nuestro Colegio",
