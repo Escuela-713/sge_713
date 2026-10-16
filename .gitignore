@@ -1,0 +1,10 @@
+# Carpetas de los IDE
+.vscode/
+
+# Inicializaciones accidentales del frontend
+package.json
+package-lock.json
+
+# Inicializaciones accidentales del backend
+venv/
+env/
