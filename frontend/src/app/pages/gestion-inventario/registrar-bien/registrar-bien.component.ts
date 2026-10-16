@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { BienesService } from '../../../services/bienes.service';
@@ -7,7 +7,7 @@ import { BienesService } from '../../../services/bienes.service';
 @Component({
   selector: 'app-registrar-bien',
   standalone: true,
-  imports: [RouterLink, FormsModule, ReactiveFormsModule],
+  imports: [RouterLink, FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './registrar-bien.component.html',
   styleUrl: './registrar-bien.component.css'
 })
@@ -30,7 +30,7 @@ export class RegistrarBienComponent implements OnInit {
   inicializarFormulario() {
     this.formulario = this.fb.group({
       nombre: ['', [Validators.required, Validators.minLength(3)]],
-      codigo: ['', [Validators.required, Validators.minLength(2)]],
+      categoria: ['', [Validators.required]],
       ubicacion: ['', [Validators.required]],
       cantidad: [1, [Validators.required, Validators.min(1)]],
       estado: ['', [Validators.required]],
@@ -51,7 +51,7 @@ export class RegistrarBienComponent implements OnInit {
       next: (respuesta) => {
         this.mostrarMensaje('¡Bien registrado exitosamente!', 'exito');
         this.formulario.reset({ cantidad: 1 });
-        
+
         setTimeout(() => {
           this.router.navigate(['/gestion-inventario/bienes-registrados']);
         }, 2000);
@@ -78,7 +78,7 @@ export class RegistrarBienComponent implements OnInit {
   }
 
   get nombre() { return this.formulario.get('nombre'); }
-  get codigo() { return this.formulario.get('codigo'); }
+  get categoria() { return this.formulario.get('categoria'); }
   get ubicacion() { return this.formulario.get('ubicacion'); }
   get cantidad() { return this.formulario.get('cantidad'); }
   get estado() { return this.formulario.get('estado'); }

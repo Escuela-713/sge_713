@@ -1,41 +1,62 @@
 <div class="container">
   <h1>Registrar bien nuevo</h1>
 
-  <form class="edit-form">
+  <form class="edit-form" [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Nombre del bien:</label>
-      <input type="text" class="form-control" placeholder="Ingrese el nombre del bien">
+      <input type="text" class="form-control" formControlName="nombre" placeholder="Ingrese el nombre del bien">
+      <small class="error" *ngIf="nombre?.invalid && nombre?.touched">
+        El nombre es obligatorio (mínimo 3 caracteres).
+      </small>
     </div>
 
     <div class="form-group">
-      <label>Código:</label>
-      <input type="text" class="form-control" placeholder="Ingrese el código">
+      <label>Categoría:</label>
+      <input type="text" class="form-control" formControlName="categoria" placeholder="Ingrese la categoría">
+      <small class="error" *ngIf="categoria?.invalid && categoria?.touched">
+        La categoría es obligatoria.
+      </small>
     </div>
 
     <div class="form-group">
       <label>Ubicación:</label>
-      <input type="text" class="form-control" placeholder="Ingrese la ubicación">
+      <input type="text" class="form-control" formControlName="ubicacion" placeholder="Ingrese la ubicación">
+      <small class="error" *ngIf="ubicacion?.invalid && ubicacion?.touched">
+        La ubicación es obligatoria.
+      </small>
     </div>
 
     <div class="form-row">
       <div class="form-group half">
         <label>Cantidad:</label>
-        <input type="number" class="form-control" placeholder="0">
-       </div>
+        <input type="number" class="form-control" formControlName="cantidad" placeholder="0">
+        <small class="error" *ngIf="cantidad?.invalid && cantidad?.touched">
+          Ingresá una cantidad válida (mínimo 1).
+        </small>
+      </div>
       <div class="form-group half">
         <label>Estado:</label>
-        <input type="text" class="form-control" placeholder="Ingrese el estado">
+        <input type="text" class="form-control" formControlName="estado" placeholder="Ingrese el estado">
+        <small class="error" *ngIf="estado?.invalid && estado?.touched">
+          El estado es obligatorio.
+        </small>
       </div>
     </div>
 
     <div class="form-group">
       <label>Descripción:</label>
-      <textarea class="form-control" rows="3" placeholder="Ingrese una descripción"></textarea>
+      <textarea class="form-control" rows="3" formControlName="descripcion" placeholder="Ingrese una descripción"></textarea>
     </div>
 
-      <div class="form-actions">
-      <button type="submit" class="button button-primary">Guardar cambios</button>
-      <button type="button" class="button button-secondary">Cancelar</button>
+    <div class="mensaje" *ngIf="mensaje" [class.exito]="tipoMensaje === 'exito'" [class.error]="tipoMensaje === 'error'">
+      {{ mensaje }}
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="button button-primary" [disabled]="enviando">
+        {{ enviando ? 'Guardando...' : 'Guardar cambios' }}
+      </button>
+      <button type="button" class="button button-secondary" (click)="onCancelar()">Cancelar</button>
     </div>
   </form>
 </div>
