@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DonarService } from '../../../../services/donar.service';
 
 interface Slide {
   image: string;
@@ -19,6 +20,8 @@ export class CarrouselComponent implements OnInit, OnDestroy {
 
   private intervalId?: ReturnType<typeof setInterval>;
 
+  // Slides por defecto: se muestran mientras carga el backend o si todavía
+  // no se cargó ningún slide desde el panel de administración.
   slides: Slide[] = [
     {
       image: '../../../../../assets/imgs/dona-sangre.avif',
@@ -39,8 +42,30 @@ export class CarrouselComponent implements OnInit, OnDestroy {
     }
   ];
 
+  constructor(private donarService: DonarService) {}
+
   ngOnInit(): void {
+    this.cargarSlides();
     this.startAutoplay();
+  }
+
+  private cargarSlides(): void {
+    this.donarService.getCarrusel().subscribe({
+      next: (slides) => {
+        if (slides && slides.length > 0) {
+          this.slides = slides.map((s) => ({
+            image: s.imagen || '../../../../../assets/imgs/dona-sangre.avif',
+            title: s.titulo,
+            description: s.descripcion,
+            buttonText: s.boton_texto || 'Ver más',
+          }));
+          this.currentSlide = 0;
+        }
+      },
+      error: () => {
+        // Si el backend no está disponible, se mantienen los slides por defecto.
+      },
+    });
   }
 
   ngOnDestroy(): void {
