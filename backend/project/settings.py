@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     'gestion_mesas_examenes',
     'gestion_incidencias',
     'gestion_donar_713',
+    'gestion_cooperadora'
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,29 @@
+.card-body {
+	padding: 0.75rem 1rem;
+}
+
+.form-label {
+	font-size: 1rem;
+	margin-bottom: 0.25rem;
+}
+
+.form-control,
+.form-select {
+	padding: 0.35rem 0.6rem;
+}
+
+.mb-3 {
+	margin-bottom: 0.6rem !important;
+}
+
+.compact-fields {
+	margin-inline: -0.4rem;
+}
+
+.compact-fields > div {
+	padding-inline: 0.4rem;
+}
+
+textarea.form-control {
+	min-height: 4.5rem;
+}

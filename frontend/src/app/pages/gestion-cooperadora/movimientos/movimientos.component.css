@@ -23,3 +23,16 @@
   color: red;
   font-weight: bold;
 }
+
+.edicion-movimiento {
+  max-width: 700px;
+  margin: 1.5rem auto;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.edicion-movimiento input,
+.edicion-movimiento select,
+.edicion-movimiento textarea {
+  padding: 0.5rem;
+}
