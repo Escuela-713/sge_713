@@ -1,40 +1,44 @@
 <div class="login">
   <form class="form-login" [formGroup]="form" (ngSubmit)="onEnviar($event)">
     <h4>Inicio De Sesión</h4>
-    <input formControlName="cuil" class="form-control mb-2" type="text" name="nombres" id="nombres"
-      placeholder="Ingrese su Cuit" />
-    @if (Cuil?.errors && Cuil?.touched)
-    {
-    @if (Cuil?.hasError('required'))
-    {
-    <div class="text-danger">
-      El Cuil es requerido.
-    </div>
+    @if (errorMessage) {
+      <div class="alert alert-danger py-2 text-center" role="alert">
+        {{ errorMessage }}
+      </div>
     }
+    <input
+      formControlName="cuil"
+      class="form-control mb-2"
+      type="text"
+      name="nombres"
+      id="nombres"
+      placeholder="Ingrese su DNI"
+    />
+    @if (Cuil?.errors && Cuil?.touched) {
+      @if (Cuil?.hasError("required")) {
+        <div class="text-danger">El DNI es requerido.</div>
+      }
     }
-    <input formControlName="password" class="form-control mb-2" type="password" name="apellidos" id="apellidos"
-      placeholder="Ingrese su Contraseña" />
-    @if(Password?.errors && Password?.touched)
-    {
-    @if(Password?.hasError('required'))
-    {
-    <div class="text-danger">
-      La contraseña es requerida.
-    </div>
-    }
-    @else if (Password?.hasError('minlength') )
-    {
-    <div class="text-danger">
-      La contraseña requiere como mínimo 8 caracteres.
-    </div>
-    }
+    <input
+      formControlName="password"
+      class="form-control mb-2"
+      type="password"
+      name="apellidos"
+      id="apellidos"
+      placeholder="Ingrese su Contraseña"
+    />
+    @if (Password?.errors && Password?.touched) {
+      @if (Password?.hasError("required")) {
+        <div class="text-danger">La contraseña es requerida.</div>
+      } @else if (Password?.hasError("minlength")) {
+        <div class="text-danger">
+          La contraseña requiere como mínimo 8 caracteres.
+        </div>
+      }
     }
 
     <p><a href="#">Home</a></p>
-    <input class="botons" type="submit" value="Iniciar Sesion" />
+    <input class="botons" type="submit" value="Iniciar Sesión" />
     <p><a routerLink="/registro">No tengo cuenta</a></p>
-
-
-
   </form>
-</div> 
+</div>

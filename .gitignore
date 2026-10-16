@@ -8,3 +8,5 @@ package-lock.json
 # Inicializaciones accidentales del backend
 venv/
 env/
+pyrightconfig.json
+.env

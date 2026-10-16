@@ -1,17 +1,23 @@
-import { Component, numberAttribute } from '@angular/core';
+import { Component, inject} from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '@/app/services/autenticacion.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
   form!: FormGroup;
-  constructor(private formBuilder: FormBuilder, private router:Router) {
+  errorMessage: string | null = null;
+  private formBuilder = inject(FormBuilder);
+  private router = inject(Router);
+  private authService = inject(AuthService);
+  
+  constructor() {
 
     this.form = this.formBuilder.group(
       {
@@ -23,30 +29,26 @@ export class LoginComponent {
   }
 
   onEnviar(event: Event) {
-    console.log(this.form.value)
+    event.preventDefault();
+    this.errorMessage = null;
 
-    event.preventDefault;
     if (this.form.valid) {
-      const usuarios = [
-        { cuil: "123456", password: "admin", rol: "admin", nombre: "admin" },
-        { cuil: "12346789", password: "user", rol: "user", nombre: "user" }
-      ];
+      const credentials = {
+        cuil: this.Cuil?.value,
+        contrasenia: this.Password?.value
+      };
 
-      const usuario = usuarios.find(u => u.cuil === this.Cuil?.value && u.password === this.Password?.value);
+      this.authService.login(credentials).subscribe({
+        next: (response) => {
+          console.log('Ingreso exitoso, token recibido');
+          this.router.navigate(["/dashboard/home"]);
+        },
+        error: (err) => {
+          console.error('Error de autenticación:', err);
+          this.errorMessage = "Error de autenticacion!";
+        }
+      });
 
-      if (usuario) {
-        // Simular almacenamiento de sesión
-        localStorage.setItem('currentUser', JSON.stringify({
-          cuil: usuario.cuil,
-          rol: usuario.rol,
-          nombre: usuario.nombre
-        }));
-
-        console.log(`Ingreso exitoso - Usuario: ${usuario.nombre}, Rol: ${usuario.rol}`);
-        this.router.navigate(["/dashboard/home"]);
-      } else {
-        alert("Credenciales incorrectas");
-      }
     } else {
       this.form.markAllAsTouched();
     }
@@ -55,9 +57,8 @@ export class LoginComponent {
   get Password() {
     return this.form.get("password");
   }
+  
   get Cuil() {
     return this.form.get("cuil");
   }
-
-
 }

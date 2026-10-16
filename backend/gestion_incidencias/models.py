@@ -24,7 +24,7 @@ class Incidencias(models.Model):
 
 
 class Personas(models.Model):
-    id_persona = models.AutoField(primary_key=True)
+    persona = models.AutoField(primary_key=True)
     nombre = models.CharField(max_length=45)
     apellido = models.CharField(max_length=45)
     numero_de_telefono = models.CharField(db_column='numero de telefono', max_length=20)  # Field renamed to remove unsuitable characters.

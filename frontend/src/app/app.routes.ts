@@ -33,6 +33,7 @@ import { LoginComponent } from '@pages/gestion-usuarios/login/login.component'
 import { RegistroComponent } from '@pages/gestion-usuarios/registro/registro.component'
 import { HomeComponent } from '@pages/home/home.component'
 import { NovedadComponent } from '@pages/novedad/novedad.component'
+import { authGuard } from './guards/auth.guard'
 
 export const routes: Routes = [
   { path: 'novedad/:id', component: NovedadComponent },
@@ -48,6 +49,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [authGuard],
     children: [
       { path: 'cooperadora-movimientos', component: MovimientosComponent },
       { path: 'cooperadora-historial', component: HistorialComponent },

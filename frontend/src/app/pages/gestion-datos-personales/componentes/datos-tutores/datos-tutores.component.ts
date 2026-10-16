@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { RouterLink } from "@angular/router";
 import { TutoresService } from "@services/tutores.service";
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: "app-datos-tutores",
@@ -18,10 +19,17 @@ export class DatosTutoresComponent {
         this.datostutor = data["tutor"];
         console.log(data);
       },
-      error: (err) => {
-        alert("Se ha producido un error. Por favor, intente nuevamente.");
-        console.error(err);
-      },
+    error: (err: HttpErrorResponse) => {
+      console.error(err);
+
+      if (err.status === 400) {
+        alert('La solicitud no es válida. Verifique los datos ingresados.');
+      } else if (err.status === 500) {
+        alert('Ocurrió un error interno del servidor. Intente nuevamente más tarde.');
+      } else {
+        alert('Se ha producido un error. Por favor, intente nuevamente.');
+      }
+    },
     });
   }
 }
