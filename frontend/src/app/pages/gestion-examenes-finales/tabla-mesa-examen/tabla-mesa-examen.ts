@@ -141,4 +141,10 @@ export class TablaMesaExamenComponent implements OnInit {
     this.formularioTablaDeMesas.reset()
     this.mesas = this.todasLasMesas
   }
+
+  formatearHora(paramHora: string) {
+    const [hora, minuto, _segundo] = paramHora.split(':')
+
+    return `${hora}:${minuto}`
+  }
 }

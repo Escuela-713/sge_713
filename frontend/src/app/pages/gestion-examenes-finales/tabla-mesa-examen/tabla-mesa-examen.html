@@ -17,7 +17,7 @@
       <select formControlName="hora">
         <option [ngValue]="null" disabled>Seleccione la hora...</option>
         @for (hora of fechasMesas.hora; track hora) {
-          <option>{{hora}}</option>
+          <option>{{formatearHora(hora)}}</option>
         }
       </select>
     </label>
@@ -61,6 +61,7 @@
     <thead>
       <tr>
         <th>Fecha</th>
+        <th>Hora</th>
         <th>Año</th>
         <th>Modalidad</th>
         <th>Materia</th>
@@ -72,6 +73,7 @@
       @for(mesa of mesas; track mesa.id_mesa_examen) {
       <tr>
         <td>{{mesa.dia}}</td>
+        <td>{{formatearHora(mesa.hora)}}</td>
         <td>{{mesa.ano}}</td>
         <td>{{mesa.carrera}}</td>
         <td>{{mesa.materia}}</td>
