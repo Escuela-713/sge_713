@@ -72,7 +72,6 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -189,16 +188,16 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 # CORS: permite que el frontend Angular (ng serve, normalmente http://localhost:4200)
 # consuma la API durante el desarrollo.
-env_cors_origins = os.environ.get('CORS_ALLOWED_ORIGINS')
-if env_cors_origins:
-    CORS_ALLOWED_ORIGINS = [o.strip() for o in env_cors_origins.split(',') if o.strip()]
-else:
-    CORS_ALLOW_ALL_ORIGINS = DEBUG
+# env_cors_origins = os.environ.get('CORS_ALLOWED_ORIGINS')
+# if env_cors_origins:
+#     CORS_ALLOWED_ORIGINS = [o.strip() for o in env_cors_origins.split(',') if o.strip()]
+# else:
+#     CORS_ALLOW_ALL_ORIGINS = DEBUG
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = True
 
