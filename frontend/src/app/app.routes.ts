@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router'
+import type { Route, Routes } from '@angular/router'
 import { DashboardComponent } from '@pages/dashboard/dashboard.component'
 import { EditarEventoComponent } from '@pages/donar-713/componentes/editar-evento/editar-evento.component'
 import { Donar713Component } from '@pages/donar-713/donar-713.component'
@@ -17,7 +17,6 @@ import { EditarAgregarTutorComponent } from '@pages/gestion-datos-personales/edi
 import { EditarDatosPersonalesComponent } from '@pages/gestion-datos-personales/editar-datos-personales/editar-datos-personales.component'
 import { FiltroDatosPersonalesComponent } from '@pages/gestion-datos-personales/filtro-datos-personales/filtro-datos-personales.component'
 import { CreacionDeMesaComponent } from '@pages/gestion-examenes-finales/creacion-de-mesa/creacion-de-mesa.component'
-import { MesasIndexComponent } from '@pages/gestion-examenes-finales/mesas-index'
 import { TablaMesaExamenComponent } from '@pages/gestion-examenes-finales/tabla-mesa-examen/tabla-mesa-examen'
 import { AgregarPosteoComponent } from '@pages/gestion-home/agregar-posteo/agregar-posteo.component'
 import { AgregarSlideComponent } from '@pages/gestion-home/agregar-slide/agregar-slide.component'
@@ -26,14 +25,19 @@ import { GestionHomeComponent } from '@pages/gestion-home/gestion-home.component
 import { HomeDashboardComponent } from '@pages/gestion-home/home-dashboard/home-dashboard.component'
 import { IncidenciasPendientesComponent } from '@pages/gestion-incidencias/incidencias-pendientes/incidencias-pendientes.component'
 import { RegistroIncidenciaComponent } from '@pages/gestion-incidencias/registro-incidencia/registro-incidencia.component'
-import { BienesRegistradosComponent } from '@pages/gestion-inventario/bienes-registrados/bienes-registrados.component'
 import { InventarioComponent } from '@pages/gestion-inventario/inventario/inventario.component'
 import { RegistrarBienComponent } from '@pages/gestion-inventario/registrar-bien/registrar-bien.component'
 import { LoginComponent } from '@pages/gestion-usuarios/login/login.component'
 import { RegistroComponent } from '@pages/gestion-usuarios/registro/registro.component'
 import { HomeComponent } from '@pages/home/home.component'
 import { NovedadComponent } from '@pages/novedad/novedad.component'
-import { authGuard } from './guards/auth.guard'
+import { authGuard } from '@guards/auth.guard'
+
+const indexarRuta = (componenteIndex: any): Route => {
+  const rutaIndex: Route = { path: '', component: componenteIndex, pathMatch: 'full' }
+
+  return rutaIndex
+}
 
 export const routes: Routes = [
   { path: 'novedad/:id', component: NovedadComponent },
@@ -51,51 +55,79 @@ export const routes: Routes = [
     component: DashboardComponent,
     canActivate: [authGuard],
     children: [
-      { path: 'cooperadora-movimientos', component: MovimientosComponent },
-      { path: 'cooperadora-historial', component: HistorialComponent },
-      { path: 'cooperadora-registro', component: FormularioComponent },
-      { path: 'carreras', component: CarrerasComponent },
-      { path: 'planes', component: PlanesComponent },
-      { path: 'editar-carreras', component: FormCarreraComponent },
-      { path: 'editar-planes', component: FormPlanesComponent },
-      { path: 'materias', component: MateriasComponent },
-      { path: 'editar-materias', component: FormMateriasComponent },
-      { path: 'datos-tutor-editar', component: EditarAgregarTutorComponent },
-      { path: 'filtro', component: FiltroDatosPersonalesComponent },
-      { path: 'datos-personales', component: EditarDatosPersonalesComponent },
       {
-        path: 'editar-datos-personales',
-        component: EditarDatosPersonalesComponent,
+        path: 'cooperadora',
+        children: [
+          { path: 'movimientos', component: MovimientosComponent },
+          { path: 'historial', component: HistorialComponent },
+          { path: 'registro', component: FormularioComponent },
+        ]
       },
-      { path: 'editar-datos-tutores', component: DatosTutoresComponent },
-      { path: 'bienes-registrados', component: BienesRegistradosComponent },
-      { path: 'inventario', component: InventarioComponent },
-      { path: 'registrar-bien', component: RegistrarBienComponent },
-      { path: 'registro-incidencias', component: RegistroIncidenciaComponent },
       {
-        path: 'incidencias-pendientes',
-        component: IncidenciasPendientesComponent,
+        path: 'carreras',
+        children: [
+          indexarRuta(CarrerasComponent),
+          { path: 'editar', component: FormCarreraComponent },
+        ]
+      },
+      {
+        path: 'planes',
+        children: [
+          indexarRuta(PlanesComponent),
+          { path: 'editar', component: FormPlanesComponent },
+        ]
+      },
+      {
+        path: 'materias',
+        children: [
+          indexarRuta(MateriasComponent),
+          { path: 'editar', component: FormMateriasComponent },
+        ]
+      },
+      {
+        path: 'datos-tutores',
+        children: [
+          indexarRuta(DatosTutoresComponent),
+          { path: 'editar/:id_tutor', component: EditarAgregarTutorComponent },
+        ]
+      },
+      {
+        path: 'datos-personales',
+        children: [
+          { path: 'filtro', component: FiltroDatosPersonalesComponent },
+          { path: 'editar/:id_persona', component: EditarDatosPersonalesComponent },
+        ]
+      },
+      {
+        path: 'inventario',
+        children: [
+          indexarRuta(InventarioComponent),
+          { path: 'registrar', component: RegistrarBienComponent },
+        ]
+      },
+      {
+        path: 'incidencias',
+        children: [
+          indexarRuta(IncidenciasPendientesComponent),
+          { path: 'registrar', component: RegistroIncidenciaComponent },
+        ]
       },
       {
         path: 'home',
         component: GestionHomeComponent,
         children: [
+          indexarRuta(HomeDashboardComponent),
           { path: 'agregar-posteo', component: AgregarPosteoComponent },
           { path: 'editar-novedad/:id', component: EditarPosteoComponent },
           { path: 'agregar-slide', component: AgregarSlideComponent },
-          { path: '', component: HomeDashboardComponent, pathMatch: 'full' },
         ],
       },
-    ],
-  },
-  {
-    path: 'mesas-de-examenes',
-    component: MesasIndexComponent,
-    children: [
-      { path: 'crear-mesa', component: CreacionDeMesaComponent },
       {
-        path: 'tabla',
-        component: TablaMesaExamenComponent,
+        path: 'mesas-de-examenes',
+        children: [
+          indexarRuta(TablaMesaExamenComponent),
+          { path: 'crear-mesa', component: CreacionDeMesaComponent },
+        ],
       },
     ],
   },
