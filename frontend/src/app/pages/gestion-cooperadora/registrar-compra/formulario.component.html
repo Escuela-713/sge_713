@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
 </head>
 
 <body class="bg-light">
@@ -17,7 +17,7 @@
           <div class="card-body">
 <form [formGroup]="form" (ngSubmit)="registrarMovimiento()" class="mt-3">
 
-  
+
   <div class="mb-3">
     <label for="monto" class="form-label">Monto</label>
     <input
@@ -31,7 +31,7 @@
       (input)="actualizarMonto($event)"
       aria-describedby="monto-ayuda"
     >
-    
+
 
     @if (Monto.errors && Monto.touched) {
       @if (Monto.hasError('required')) {
@@ -46,7 +46,7 @@
   <!-- Fecha -->
   <div class="mb-3">
     <label for="fecha" class="form-label">Fecha</label>
-    <input 
+    <input
       type="date"
       class="form-control"
       id="fecha"
@@ -104,15 +104,15 @@
   </div>
   </div>
 
-  
+
   <div class="mb-3">
     <label for="motivo" class="form-label">Motivo</label>
-    <textarea 
-      class="form-control" 
-      id="motivo" 
+    <textarea
+      class="form-control"
+      id="motivo"
       rows="3"
       placeholder="Describa el motivo del movimiento"
-      formControlName="motivo"></textarea>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+      formControlName="motivo"></textarea>
 
     @if (Motivo.errors && Motivo.touched) {
       @if (Motivo.hasError('required')) {
@@ -127,7 +127,7 @@
     }
   </div>
 
-  
+
   <div class="mb-3">
     <label for="tipo" class="form-label">Tipo</label>
     <select
@@ -147,10 +147,10 @@
     }
   </div>
 
-  
+
   <div class="d-flex justify-content-center">
-  <button  
-    type="submit" 
+  <button
+    type="submit"
     class="btn btn-primary mt-4"
     [disabled]="enviando"
   >

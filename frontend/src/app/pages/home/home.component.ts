@@ -1,60 +1,53 @@
-import { Component, OnInit } from "@angular/core";
-
-import { DatePipe, SlicePipe } from "@angular/common";
-import { RouterModule } from "@angular/router";
-import { FooterComponent } from "@shared/footer/footer.component";
-import { HeaderComponent } from "@shared/header/header.component";
-import { NavComponent } from "@shared/nav/nav.component";
-import { NovedadesService, Publication, NovedadesData } from "@/app/services/novedades.service";
+import { Component, OnInit } from '@angular/core'
+import { DatePipe, SlicePipe } from '@angular/common'
+import { RouterModule } from '@angular/router'
+import {
+  NovedadesService,
+  Publication,
+  NovedadesData,
+} from '@/app/services/novedades.service'
 
 @Component({
-  selector: "app-home",
+  selector: 'app-home',
   standalone: true,
-  imports: [
-    NavComponent,
-    HeaderComponent,
-    FooterComponent,
-    RouterModule,
-    SlicePipe,
-    DatePipe,
-  ],
-  templateUrl: "./home.component.html",
-  styleUrls: ["./home.component.css"],
+  imports: [RouterModule, SlicePipe, DatePipe],
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  homeData: NovedadesData | null = null;
-  isLoading: boolean = true;
-  error: string | null = null;
+  homeData: NovedadesData | null = null
+  isLoading: boolean = true
+  error: string | null = null
 
   constructor(private readonly publicationService: NovedadesService) {}
 
   ngOnInit(): void {
-    this.loadHomeData();
+    this.loadHomeData()
     // Poner como titulo "Escuela 713 - Home" para que no se cargue SGE 713
-    document.title = `Escuela 713 - Home`;
+    document.title = `Escuela 713 - Home`
   }
 
   private loadHomeData(): void {
     this.publicationService.getAll().subscribe({
       next: (data) => {
-        this.homeData = data;
-        this.isLoading = false;
+        this.homeData = data
+        this.isLoading = false
       },
       error: (error) => {
-        console.error("Error loading home data:", error);
-        this.error = "Error al cargar los datos";
-        this.isLoading = false;
+        console.error('Error loading home data:', error)
+        this.error = 'Error al cargar los datos'
+        this.isLoading = false
       },
-    });
+    })
   }
 
   // Método para generar números únicos para el carousel
   generateCarouselId(prefix: string, index: number): string {
-    return `${prefix}-${index}`;
+    return `${prefix}-${index}`
   }
 
   // Método trackBy para @for de las cards
   trackByCardId(index: number, card: Publication): number {
-    return card.id;
+    return card.id
   }
 }
