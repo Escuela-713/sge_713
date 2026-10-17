@@ -1,0 +1,17 @@
+#content {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100dvh;
+
+  #header-section {
+    height: 100%;
+  }
+
+  #main-section {
+    height: 100%;
+  }
+
+  #footer-section {
+    height: 100%;
+  }
+}
