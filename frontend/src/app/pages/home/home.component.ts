@@ -6,11 +6,21 @@ import {
   Publication,
   NovedadesData,
 } from '@/app/services/novedades.service'
+import { HeaderComponent } from '@/app/shared/header/header.component'
+import { NavComponent } from '@/app/shared/nav/nav.component'
+import { FooterComponent } from '@/app/shared/footer/footer.component'
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, SlicePipe, DatePipe],
+  imports: [
+    RouterModule,
+    SlicePipe,
+    DatePipe,
+    HeaderComponent,
+    NavComponent,
+    FooterComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
