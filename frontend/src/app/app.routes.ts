@@ -31,7 +31,7 @@ import { LoginComponent } from '@pages/gestion-usuarios/login/login.component'
 import { RegistroComponent } from '@pages/gestion-usuarios/registro/registro.component'
 import { HomeComponent } from '@pages/home/home.component'
 import { NovedadComponent } from '@pages/novedad/novedad.component'
-import { authGuard } from '@guards/auth.guard'
+// import { authGuard } from '@guards/auth.guard'
 
 const indexarRuta = (componenteIndex: any): Route => {
   const rutaIndex: Route = {
@@ -57,7 +57,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       {
         path: 'cooperadora',
