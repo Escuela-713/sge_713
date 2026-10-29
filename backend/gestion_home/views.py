@@ -78,3 +78,8 @@ class CarrouselView(APIView):
             serializer.save()
             return Response(serializer.data, status=201)
         return Response(serializer.errors, status=400)
+
+    def delete(self, request, pk):
+        carrousel_item = get_object_or_404(Carrousel, pk=pk)
+        carrousel_item.delete()
+        return Response(status=204)
