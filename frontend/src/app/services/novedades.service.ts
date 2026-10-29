@@ -87,9 +87,17 @@ export class NovedadesService {
   }
 
   // ---------- Slides del Carousel ----------
-  addSlide(newSlide: Partial<CarouselSlide>): Observable<CarouselSlide> {
-    return this.http.post<CarouselSlide>(this.carouselUrl, newSlide);
-  }
+addSlide(
+  newSlide: { title: string; subtitle: string },
+  imageFile: File
+): Observable<CarouselSlide> {
+  const formData = new FormData();
+  formData.append('title', newSlide.title);
+  formData.append('subtitle', newSlide.subtitle);
+  formData.append('image', imageFile, imageFile.name);
+
+  return this.http.post<CarouselSlide>(this.carouselUrl, formData);
+}
 
   updateSlide(slideEditado: CarouselSlide): Observable<CarouselSlide> {
     return this.http.patch<CarouselSlide>(`${this.carouselUrl}${slideEditado.id}/`, slideEditado);

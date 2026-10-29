@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 import { NovedadesService } from '@/app/services/novedades.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class AgregarSlideComponent {
   form: FormGroup;
   imagePreview: string | null = null;
   isSubmitting = false;
+  private imageFile: File | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +33,8 @@ export class AgregarSlideComponent {
     const file = (event.target as HTMLInputElement)?.files?.[0];
     if (!file) return;
 
+    this.imageFile = file;
+
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result as string;
@@ -41,7 +45,7 @@ export class AgregarSlideComponent {
   }
 
   async onSubmit(): Promise<void> {
-    if (this.form.invalid) {
+    if (this.form.invalid || !this.imageFile) {
       this.form.markAllAsTouched();
       return;
     }
@@ -49,12 +53,13 @@ export class AgregarSlideComponent {
     try {
       this.isSubmitting = true;
       const values = this.form.value;
-      
-      await this.novedadesService.addSlide({
-        image: values.image,
-        title: values.title,
-        subtitle: values.subtitle,
-      });
+
+      await firstValueFrom(
+        this.novedadesService.addSlide(
+          { title: values.title, subtitle: values.subtitle },
+          this.imageFile
+        )
+      );
 
       alert('Slide agregado correctamente');
       this.router.navigate(['/dashboard/home']);

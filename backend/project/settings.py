@@ -200,5 +200,5 @@ else:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-ORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = True
 

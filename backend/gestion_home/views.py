@@ -71,3 +71,10 @@ class CarrouselView(APIView):
         carrousel = Carrousel.objects.all()
         serializer = CarrouselSerializer(carrousel, many=True, context={'request': request})
         return Response(serializer.data, status=200)
+
+    def post(self, request):
+        serializer = CarrouselSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=201)
+        return Response(serializer.errors, status=400)
