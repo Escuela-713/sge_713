@@ -1,7 +1,8 @@
-from rest_framework.status import HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER_ERROR
+from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER_ERROR
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView as ApiView
+from gestion_datos_personales.models import Alumno
 from gestion_mesas_examenes.models import MesaExamen
 from gestion_mesas_examenes.serializer import AlumnosAnotadosAMesasSerializer, MesaExamenSerializer
 
@@ -48,18 +49,65 @@ class MesasExamenesView(ApiView):
             print(exception)
             return Response({'message': 'Hubo un error inesperado en el servidor, estamos trabajando para solucionarlo.'}, status=HTTP_500_INTERNAL_SERVER_ERROR)
 
-class InscripcionView(ApiView):
+class InscripcionAlumnoView(ApiView):
     def post(self, req: Request):
         body = req.data
 
         if (not body):
-            return Response({'message':'No hay información que pueda usarse.'}, status=HTTP_400_BAD_REQUEST)
+            return Response({'message': 'Ingrese los datos de para la inscripcion (ID del alumno y la mesa).'}, status=HTTP_400_BAD_REQUEST)
 
         inscripcion = AlumnosAnotadosAMesasSerializer(data=body)
 
         if (not inscripcion.is_valid()):
-          return Response({'message':inscripcion.errors}, status=HTTP_400_BAD_REQUEST)
+          return Response({'message': inscripcion.errors}, status=HTTP_400_BAD_REQUEST)
 
-        inscripcion_guardada = inscripcion.save()
+        inscripcion.save()
 
-        return Response({"data": "inscripcion creada"}, status=HTTP_201_CREATED)
+        return Response({"data": "Inscripción creada."}, status=HTTP_201_CREATED)
+
+class InscripcionPreceptorView(ApiView):
+    # A primera vista pareciera funcionar, pero hay que probarlo con datos "reales", con alguna persona existente, el tema es que haya una persona existente para probar esto, por la complejidad de la tabla de personas.
+    def post(self, req: Request):
+        body = req.data
+
+        if (not body):
+            return Response({'message': 'Ingrese los datos de para la inscripcion (DNI e ID de la mesa).'}, status=HTTP_400_BAD_REQUEST)
+
+        if (not isinstance(body, dict)):
+            return Response({'message': 'El cuerpo de la petición debe ser un diccionario.'}, status=HTTP_400_BAD_REQUEST)
+
+        id_mesa_examen = body['id_mesa_examen']
+        dni = body['dni']
+
+        if (not id_mesa_examen):
+            return Response({'message': 'Seleccione la mesa en la que quiere inscribir a un alumno.'})
+
+
+        mesa_encontrada = MesaExamen.objects.filter(id_mesa_examen=id_mesa_examen)
+
+        if (len(mesa_encontrada) == 0):
+            return Response({'message': f'No se encontró la mesa de examen con ID {id_mesa_examen}.'}, status=HTTP_404_NOT_FOUND)
+
+        if (len(mesa_encontrada) > 1):
+            return Response({'message': f'Existe más de una mesa de examen con ID {id_mesa_examen}.'}, status=HTTP_400_BAD_REQUEST)
+
+        if (not dni):
+            return Response({'message': 'Pase el DNI del alumno que quiere inscribir.'})
+
+        alumno_encontrado = Alumno.objects.filter(dni=dni)
+
+        if (len(alumno_encontrado) == 0):
+            return Response({'message': f'No se encontró alumno con DNI {dni}'}, status=HTTP_404_NOT_FOUND)
+
+        if (len(alumno_encontrado) > 1):
+            return Response({'message': f'Existe más de un alumno con DNI {dni}'}, status=HTTP_400_BAD_REQUEST)
+
+        inscripcion = {
+            'id_mesa_examen': id_mesa_examen,
+            'id_alumno': alumno_encontrado[0].id_alumno
+        }
+
+        AlumnosAnotadosAMesasSerializer(data=inscripcion).save()
+
+        return Response({'data': f'Se inscribió al alumno de DNI {dni}'}, status=HTTP_200_OK)
+
