@@ -34,7 +34,11 @@ import { NovedadComponent } from '@pages/novedad/novedad.component'
 import { authGuard } from '@guards/auth.guard'
 
 const indexarRuta = (componenteIndex: any): Route => {
-  const rutaIndex: Route = { path: '', component: componenteIndex, pathMatch: 'full' }
+  const rutaIndex: Route = {
+    path: '',
+    component: componenteIndex,
+    pathMatch: 'full',
+  }
 
   return rutaIndex
 }
@@ -61,56 +65,59 @@ export const routes: Routes = [
           { path: 'movimientos', component: MovimientosComponent },
           { path: 'historial', component: HistorialComponent },
           { path: 'registro', component: FormularioComponent },
-        ]
+        ],
       },
       {
         path: 'carreras',
         children: [
           indexarRuta(CarrerasComponent),
           { path: 'editar', component: FormCarreraComponent },
-        ]
+        ],
       },
       {
         path: 'planes',
         children: [
           indexarRuta(PlanesComponent),
           { path: 'editar', component: FormPlanesComponent },
-        ]
+        ],
       },
       {
         path: 'materias',
         children: [
           indexarRuta(MateriasComponent),
           { path: 'editar', component: FormMateriasComponent },
-        ]
+        ],
       },
       {
         path: 'datos-tutores',
         children: [
           indexarRuta(DatosTutoresComponent),
           { path: 'editar/:id_tutor', component: EditarAgregarTutorComponent },
-        ]
+        ],
       },
       {
         path: 'datos-personales',
         children: [
           { path: 'filtro', component: FiltroDatosPersonalesComponent },
-          { path: 'editar/:id_persona', component: EditarDatosPersonalesComponent },
-        ]
+          {
+            path: 'editar/:id_persona',
+            component: EditarDatosPersonalesComponent,
+          },
+        ],
       },
       {
         path: 'inventario',
         children: [
           indexarRuta(InventarioComponent),
           { path: 'registrar', component: RegistrarBienComponent },
-        ]
+        ],
       },
       {
         path: 'incidencias',
         children: [
           indexarRuta(IncidenciasPendientesComponent),
           { path: 'registrar', component: RegistroIncidenciaComponent },
-        ]
+        ],
       },
       {
         path: 'home',
@@ -133,5 +140,5 @@ export const routes: Routes = [
   },
   { path: 'iniciar-sesion', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ]
