@@ -49,6 +49,32 @@ class MesasExamenesView(ApiView):
             print(exception)
             return Response({'message': 'Hubo un error inesperado en el servidor, estamos trabajando para solucionarlo.'}, status=HTTP_500_INTERNAL_SERVER_ERROR)
 
+    def patch(self, req: Request, id_mesa_examen=None):
+        body = req.data
+
+        if (not body):
+            return Response({'message': 'Ingrese los nuevos datos para la mesa.'}, status=HTTP_400_BAD_REQUEST)
+
+        if (not id_mesa_examen or id_mesa_examen is None):
+            return Response({'message': 'Pase el ID de la mesa que quiere editar.'}, status=HTTP_400_BAD_REQUEST)
+
+        mesa = MesaExamen.objects.filter(id_mesa_examen=id_mesa_examen)
+
+        if (len(mesa) == 0):
+            return Response({'message': f'No existe una mesa con ID {id_mesa_examen}'}, status=HTTP_404_NOT_FOUND)
+
+        body = dict(body)
+
+        mesa_actualizada = MesaExamenSerializer(mesa[0], data=body, partial=True)
+
+        if (not mesa_actualizada.is_valid()):
+            return Response({'message': mesa_actualizada.errors}, status=HTTP_400_BAD_REQUEST)
+
+        mesa_actualizada.save()
+
+        return Response({'data': 'La mesa se actualizó con éxito.'}, status=HTTP_200_OK)
+
+
 class InscripcionAlumnoView(ApiView):
     def post(self, req: Request):
         body = req.data
