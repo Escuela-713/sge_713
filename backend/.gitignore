@@ -11,3 +11,7 @@ env/
 venv/
 
 los-backend/
+
+# Base de datos
+db.sqlite3
+mydb
