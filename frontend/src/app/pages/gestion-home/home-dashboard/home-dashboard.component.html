@@ -1,4 +1,4 @@
-  <!-- Header -->
+<!-- Header -->
 <div class="dashboard-header">
   <h1 class="dashboard-title">Dashboard de la landing</h1>
   <p class="dashboard-subtitle">Resumen de contenido institucional</p>
@@ -57,7 +57,7 @@
     <div class="recent-posts-section">
       <div class="section-header">
         <h2 class="section-title">Últimas Publicaciones del Colegio</h2>
-        <button class="view-all-btn" (click)="mostrarTodasLasNovedades()">
+        <button class="btn btn-verDetalle" (click)="mostrarTodasLasNovedades()">
           {{ mostrarTodas ? 'Ver menos' : 'Ver todas' }}
         </button>
       </div>
@@ -77,16 +77,12 @@
               <p class="post-excerpt">{{ truncarTexto(card.content, 120) }}</p>
               <div class="post-meta">
                 <div class="meta-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2"/>
-                    <path d="M16 2v4M8 2v4M3 10h18"/>
-                  </svg>
                   <span>{{ formatearFecha(card.upload_date) }}</span>
                 </div>
                 <div class="post-actions">
-                  <a class="view-post-link" [routerLink]="['/novedad', card.id]">Ver Publicación</a>
-                  <a class="edit-post-link" [routerLink]="['/dashboard/home/editar-novedad', card.id]">Editar Publicación</a>
-                  <button class="delete-post-link" (click)="onDeleteCard(card)">Eliminar</button>
+                  <a class="btn btn-verDetalle" [routerLink]="['/novedad', card.id]">Ver</a>
+                  <a class="btn btn-editar" [routerLink]="['/dashboard/home/editar-novedad', card.id]">Editar</a>
+                  <button class="btn btn-eliminar" (click)="onDeleteCard(card)">Eliminar</button>
                 </div>
               </div>
             </div>
@@ -96,12 +92,9 @@
 
       @if (ultimasCards.length === 0) {
         <div class="empty-state">
-          <div class="empty-icon">
-            <!-- icono vacío -->
-          </div>
           <h3>No hay contenido disponible</h3>
           <p>No se encontraron publicaciones para mostrar</p>
-          <button class="create-post-btn" routerLink="agregar-posteo">Agregar Contenido</button>
+          <button class="btn btn-gral" routerLink="agregar-posteo">Agregar Contenido</button>
         </div>
       }
     </div>
@@ -110,7 +103,7 @@
     <div class="carousel-info-section">
       <div class="section-header">
         <h2 class="section-title">Slides del Carousel Principal</h2>
-        <button class="btn btn-primary" routerLink="agregar-slide">Agregar Slide</button>
+        <button class="btn btn-gral" routerLink="agregar-slide">Agregar Slide</button>
       </div>
 
       @if (novedadesData.carouselSlides.length > 0) {
@@ -125,8 +118,8 @@
                 <p>{{ slide.subtitle }}</p>
                 <small>Slide #{{ i + 1 }}</small>
                 <div class="slide-actions">
-                  <button class="edit-slide-btn" (click)="onEditarSlide(slide)">Editar</button>
-                  <button class="delete-slide-btn" (click)="onDeleteSlide(slide)">Eliminar</button>
+                  <button class="btn btn-editar" (click)="onEditarSlide(slide)">Editar</button>
+                  <button class="btn btn-eliminar" (click)="onDeleteSlide(slide)">Eliminar</button>
                 </div>
               </div>
             </div>
@@ -134,15 +127,11 @@
         </div>
       } @else {
         <div class="empty-state">
-          <div class="empty-icon">
-            <!-- icono vacío -->
-          </div>
           <h3>No hay slides disponibles</h3>
           <p>El carousel está vacío. Agrega slides para mostrar en la página principal.</p>
         </div>
       }
 
-      <!-- Modal de edición de slide fuera del bucle -->
       @if (mostrarEditorSlide && slideEditando) {
         <app-editar-slide
           [slide]="slideEditando"
