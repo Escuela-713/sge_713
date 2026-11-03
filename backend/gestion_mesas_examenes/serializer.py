@@ -65,7 +65,13 @@ class MesaExamenSerializer(serializers.ModelSerializer):
         source='id_carrera',
         read_only=True,
         slug_field='nombre'
-    )   
+    )
+
+    eliminada = serializers.BooleanField(
+        allow_null=False,
+        default=False,
+        write_only=True
+    )
 
     # Y en Meta en vez de poner __all__ para seleccionar todos los campos, escribimos los mismos manualmente, agregando al final los campos personalizados (carrera y materia) para evitar que el serializer devuelva las ids como antes aclaramos.
     class Meta:
@@ -82,7 +88,8 @@ class MesaExamenSerializer(serializers.ModelSerializer):
             'materia',
             'carrera',
             'id_materia',
-            'id_carrera'
+            'id_carrera',
+            'eliminada'
         ]
 
 class AlumnosAnotadosAMesasSerializer(serializers.ModelSerializer):
