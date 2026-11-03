@@ -1,4 +1,4 @@
-from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER_ERROR
+from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT, HTTP_404_NOT_FOUND, HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER_ERROR
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.views import APIView as ApiView
@@ -6,22 +6,25 @@ from gestion_datos_personales.models import Alumno
 from gestion_mesas_examenes.models import MesaExamen
 from gestion_mesas_examenes.serializer import AlumnosAnotadosAMesasSerializer, MesaExamenSerializer
 
+def debug_print(to_debug):
+        print('='*60)
+        print(to_debug)
+        print('='*60)
+
 # Create your views here.
 class MesasExamenesView(ApiView):
     # Obtener las mesas según el filtro especificado, en caso de no tener, se recuperan todas las mesas
     def get(self, req: Request):
         filtros = req.query_params.dict()
         mesas_con_fks_cambiadas = MesaExamen.objects.select_related('id_materia', 'id_carrera')
+        filtro_no_eliminadas = { 'eliminada': 0 }
 
         if (filtros):
-            mesas = mesas_con_fks_cambiadas.complex_filter(filtros)
+            mesas = mesas_con_fks_cambiadas.complex_filter(filtros).filter(eliminada=0)
         else:
-            mesas = mesas_con_fks_cambiadas.all()
+            mesas = mesas_con_fks_cambiadas.filter(eliminada=0)
 
         mesas_serializadas = MesaExamenSerializer(mesas, many=True).data
-
-        if (len(mesas_serializadas) == 0):
-            return Response({'message': 'No hay mesas para mostrar.'}, status=HTTP_404_NOT_FOUND)
 
         return Response({'data': mesas_serializadas})
 
@@ -49,13 +52,19 @@ class MesasExamenesView(ApiView):
             print(exception)
             return Response({'message': 'Hubo un error inesperado en el servidor, estamos trabajando para solucionarlo.'}, status=HTTP_500_INTERNAL_SERVER_ERROR)
 
+    # Actualización parcial de una mesa
     def patch(self, req: Request, id_mesa_examen=None):
         body = req.data
 
         if (not body):
             return Response({'message': 'Ingrese los nuevos datos para la mesa.'}, status=HTTP_400_BAD_REQUEST)
 
-        if (not id_mesa_examen or id_mesa_examen is None):
+        body = dict(body)
+
+        if ('id_mesa_examen' in body.keys()):
+            return Response({'message': 'No se puede editar la ID de una mesa.'}, status=HTTP_400_BAD_REQUEST)
+
+        if (id_mesa_examen is None):
             return Response({'message': 'Pase el ID de la mesa que quiere editar.'}, status=HTTP_400_BAD_REQUEST)
 
         mesa = MesaExamen.objects.filter(id_mesa_examen=id_mesa_examen)
@@ -63,7 +72,6 @@ class MesasExamenesView(ApiView):
         if (len(mesa) == 0):
             return Response({'message': f'No existe una mesa con ID {id_mesa_examen}'}, status=HTTP_404_NOT_FOUND)
 
-        body = dict(body)
 
         mesa_actualizada = MesaExamenSerializer(mesa[0], data=body, partial=True)
 
@@ -73,6 +81,25 @@ class MesasExamenesView(ApiView):
         mesa_actualizada.save()
 
         return Response({'data': 'La mesa se actualizó con éxito.'}, status=HTTP_200_OK)
+
+    # Eliminar una mesa por su ID
+    def delete(self, _: Request, id_mesa_examen=None):
+        if (id_mesa_examen is None):
+            return Response({'message': 'Pase el ID de la mesa que quiere eliminar.'}, status=HTTP_400_BAD_REQUEST)
+
+        mesa = MesaExamen.objects.filter(id_mesa_examen=id_mesa_examen, eliminada=0)
+
+        if (len(mesa) == 0):
+            return Response({'message': f'No existe una mesa con ID {id_mesa_examen}'}, status=HTTP_404_NOT_FOUND)
+
+        mesa_eliminada = MesaExamenSerializer(mesa[0], data={'eliminada': 1}, partial=True)
+
+        if (not mesa_eliminada.is_valid()):
+            return Response({'message': 'No se pudo eliminar la mesa por un problema inesperado. Vuelva a intentarlo más tarde'}, status=HTTP_500_INTERNAL_SERVER_ERROR)
+
+        mesa_eliminada.save()
+
+        return Response(status=HTTP_204_NO_CONTENT)
 
 
 class InscripcionAlumnoView(ApiView):
