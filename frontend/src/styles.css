@@ -207,3 +207,25 @@ label {
 .ng-invalid:not(form).ng-touched {
   border: 2px solid #ff0400;
 }
+/* =========================================
+   FONDO ROJO PARA EL NAVBAR Y HEADER
+   ========================================= */
+app-header header, 
+app-nav nav, 
+app-nav .navbar,
+app-header .navbar {
+  background-color: #8F0A0A !important;
+}
+
+/* Textos blancos en el menú */
+app-nav a, 
+app-header a, 
+app-nav .nav-link,
+app-header .nav-link {
+  color: #FFFFFF !important;
+}
+
+app-nav a:hover, 
+app-header a:hover {
+  color: #FE6602 !important; 
+}
