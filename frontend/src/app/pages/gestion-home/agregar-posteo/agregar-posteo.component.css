@@ -2,13 +2,13 @@
   color: #e74c3c;
   font-size: 0.85rem;
   font-weight: 500;
-  margin: -0.5rem 0 0.5rem 0;
+  margin: 0.25rem 0 0 0;
   padding-left: 0.25rem;
 }
 
 .novedad-page {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 2rem;
   max-width: 1400px;
   margin: 0 auto;
@@ -19,20 +19,26 @@
 
 /* Formulario */
 .novedad-form {
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  min-width: 0;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 30px rgb(170, 170, 170);
+  padding: 1.7rem 2rem;
   height: fit-content;
   position: sticky;
   top: 2rem;
 }
 
 .novedad-form h2 {
-  color: #2c3e50;
-  margin-bottom: 2rem;
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-weight: 800;
+  font-size: 32px;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  border-bottom: 2px solid #fe6602;
+  padding-bottom: 0.7rem;
 }
 
 .tx-center {
@@ -43,20 +49,6 @@
   width: 100%;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.form label {
-  font-weight: 600;
-  color: #34495e;
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
-}
-
-.form input[type="text"],
 .form input[type="file"],
 .form select,
 .form textarea {
@@ -68,6 +60,11 @@
   font-family: inherit;
 }
 
+.novedad-form select,
+.novedad-form textarea {
+  width: 100%;
+}
+
 .form input[type="text"]:focus,
 .form select:focus,
 .form textarea:focus {
@@ -76,31 +73,6 @@
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
-.form input[type="file"] {
-  padding: 0.75rem;
-  background: #f8f9fa;
-  cursor: pointer;
-}
-
-.form input[type="file"]:hover {
-  background: #e9ecef;
-}
-
-.form select {
-  cursor: pointer;
-  background-color: white;
-}
-
-.form textarea {
-  resize: vertical;
-  min-height: 120px;
-  font-family: inherit;
-}
-
-.form input::placeholder,
-.form textarea::placeholder {
-  color: #95a5a6;
-}
 
 /* Preview */
 .novedad-preview {
@@ -213,6 +185,44 @@
 .form textarea.ng-valid.ng-touched {
   border-color: #27ae60;
   box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.1);
+}
+
+.btn-primary {
+  background-color: #198754;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #198754;
+  text-align: center; transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+}
+
+.btn-primary:hover {
+  color: #198754;
+  background-color: #FFFFFF;
+  border-color: #198754;
+}
+
+.btn-cancel {
+  background-color: #726e6e;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #726e6e;
+  text-align: center;
+  transition: all 0.3s ease;
+  padding: 0.5rem 1rem;
+}
+
+.btn-cancel:hover {
+  background-color: #FFFFFF;
+  border-color: #726e6e;
+  color: #726e6e;
+}
+
+.btn-grupo {
+  text-align: right;
+  margin-top: 1em;
 }
 
 /* Responsive */
