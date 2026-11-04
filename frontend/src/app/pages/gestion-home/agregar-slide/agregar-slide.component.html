@@ -3,13 +3,14 @@
       
       <form [formGroup]="form" (ngSubmit)="onSubmit()" class="slide-form">
         <!-- Imagen -->
-        <div class="form-group">
+        <div class="mb-3">
           <label for="image">Imagen <span>*</span></label>
           <input 
             type="file" 
             id="image" 
             accept="image/*"
-            (change)="onImageChange($event)"
+            class="form-control"
+            (change)="onImageChange($event)" required
           >
           @if(form.get('image')?.invalid && form.get('image')?.touched) {
             <p class="error">La imagen es obligatoria</p>
@@ -23,11 +24,12 @@
         </div>
 
         <!-- Título -->
-        <div class="form-group">
+        <div class="mb-3">
           <label for="title">Título <span>*</span></label>
           <input 
             id="title"
             type="text"
+            class="form-control"
             formControlName="title"
             placeholder="Ingrese el título principal"
           >
@@ -37,22 +39,23 @@
         </div>
 
         <!-- Subtítulo -->
-        <div class="form-group">
+        <div class="mb-3">
           <label for="subtitle">Subtítulo</label>
           <input 
             id="subtitle"
             type="text"
+            class="form-control"
             formControlName="subtitle"
             placeholder="Ingrese el subtítulo"
           >
         </div>
 
         <!-- Botones de acción -->
-        <div class="form-actions">
-          <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
-          <button type="submit" class="btn-submit" [disabled]="form.invalid || isSubmitting">
+        <div class="d-flex justify-contend-end gap-2 mt-3">
+          <button type="submit" class="btn btn-submit" [disabled]="form.invalid || isSubmitting">
             {{ isSubmitting ? 'Guardando...' : 'Guardar' }}
           </button>
+          <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancelar</button>
         </div>
       </form>
     </div>
