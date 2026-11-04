@@ -2,46 +2,38 @@
 @import url(assets/fonts/Zodiak/zodiak.css);
 
 :root {
-  --color1: #A51C30;
-  --color2: #1E1E1E;
-  --color3: #F3F3F1;
-  --color4: #8C8179;
-  --color5: #8996A0;
-  --color6: #8F8FFF;
-  --font1: PlusJakartaSans-Variable;
-  --font2: Zodiak-Variable;
+  --color-blanco: #FFFFFF;
+  --color-naranja: #FE6602;
+  --color-rojo-oscuro: #8F0A0A;
+  --color-rojo-brillante: #FB1414;
+  --color-negro: #010101;
+
+   --btn-success: #198754;
+  --btn-cancel: #726e6e;
+
+  --font-principal: 'Plus Jakarta Sans', sans-serif;
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: var(--color2);
-  font-family: var(--font1);
-  font-weight: 500;
+  color: var(--color-negro);
+  font-family: var(--font-principal);
 }
 
-html,
-body {
+html, body {
   height: 100dvh;
   font-size: 16px;
 }
 
 body {
-  background-color: var(--color3);
-  color: var(--color2);
-  font-family: var(--font1);
-  letter-spacing: 1px;
+ background-color: #F3F3F1;
+  letter-spacing: 0.5px;
   position: relative;
 }
 
-h1,
-h2,
-h3,
-span,
-a,
-p,
-i {
+h1, h2, h3, span, a, p, i {
   text-decoration: none;
   padding: 0;
   margin: 0;
@@ -56,72 +48,158 @@ svg {
   height: 2rem;
 }
 
-/* H1 USADO EN DATOS PERSONALES */
-.datosPersonalesTitle {
+/* -------TIPOGRAFIA-------- */
+
+h1, h2, h3, .titulo-pagina {
+  font-weight: 800;
+  font-size: 32px;
+}
+
+h4, h5, h6, .subtitulo, .fecha {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+p, span, .texto-normal {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+label {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+/* ----------BOTONES-------- */
+/* Crear / guardar */
+.btn-gral, .btn-outline-success {
+  background-color: #198754;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #198754;
   text-align: center;
-  color: var(--color2);
-  padding: 10px;
+  transition: all 0.3s ease;
+}
+.btn-gral:hover, .btn-outline-success:hover {
+  color: #198754;
+  background-color: #FFFFFF;
+  border-color: #198754;
 }
 
-/* BOTON USADO EN GESTION DE DATOS PERSONALES */
-.btnSave {
-  background-color: var(#F3F3F1);
-  border: solid 3px var(--color2);
-  text-transform: uppercase;
-  font-size: 1rem;
-  font-weight: 900;
-  margin: auto;
-  display: block;
-  max-width: max-content;
-  padding: .5% 2%;
-
-  &:hover {
-    background-color: var(--color2);
-    color: var(--color3);
-    border: solid 3px var(--color2);
-  }
+/* Editar */
+.btn-editar, .btn-outline-warning {
+  background-color: #FE6602;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #FE6602;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.btn-editar:hover, .btn-outline-warning:hover {
+  color: #FE6602;
+  background-color: #FFFFFF;
+  border-color: #FE6602;
 }
 
-.btnVerTabla {
-  background-color: var(--color6);
-  border: solid 3px var(--color6);
-  color: var(--color3);
-  font-weight: 700;
-
-  &:hover {
-    background-color: var(--color3);
-    color: var(--color6);
-    border: var(--color6);
-  }
+/* Ver / Detalle */
+.btn-verDetalle, .btn-outline-info {
+  background-color: #0084ff;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #0084ff;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.btn-verDetalle:hover, .btn-outline-info:hover {
+  color: #0084ff;
+  background-color: #FFFFFF;
+  border-color: #0084ff;
 }
 
-/* BOTON USADO EN GESTION DE DATOS PERSONALES */
-.btnDelete {
-  background-color: var(--color3);
-  border: solid 3px var(--color1);
-  color: var(--color1);
-  font-weight: 700;
-
-  &:hover {
-    background-color: var(--color1);
-    color: var(--color3);
-  }
+/* Eliminar */
+.btn-eliminar, .btn-outline-danger {
+  background-color: #DC3545;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #DC3545;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.btn-eliminar:hover, .btn-outline-danger:hover {
+  color: #DC3545;
+  background-color: #FFFFFF;
+  border-color: #DC3545;
 }
 
-/* BOTON USADO EN GESTION DE DATOS PERSONALES */
-.btnAdd {
-  background-color: green;
-  border: solid 3px green;
-  color: var(--color3);
-  font-weight: 700;
-
-  &:hover {
-    background-color: var(--color3);
-    color: green;
-    border: solid 3px green;
-  }
+/* Cancelar */
+.btn-cancelar {
+  background-color: #726e6e;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #726e6e;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.btn-cancelar:hover {
+  color: #726e6e;
+  background-color: #FFFFFF;
+  border-color: #726e6e;
 }
 
+/* Iniciar Sesión */
+.btn-iniciarSession {
+  background-color: #8F0A0A;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.btn-iniciarSession:hover {
+  color: #8F0A0A;
+  background-color: #FFFFFF;
+  border-color: #ffffff;
+}
+
+/* Registrarse */
+.btn-registrarse {
+  background-color: #ffffff;
+  color: #8F0A0A;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.btn-registrarse:hover {
+  color: #FFFFFF;
+  background-color: #8F0A0A;
+  border-color: #FFFFFF;
+}
+
+/* Guardar Sesión (Registro/Login) */
+.btn-guardarSession, .btn-guardarSesion {
+  background-color: #FE6602;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #FE6602;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.btn-guardarSession:hover, .btn-guardarSesion:hover {
+  color: #FE6602;
+  background-color: #FFFFFF;
+  border-color: #FE6602;
+}
+
+/* ------------------ */
 .ng-valid:not(form).ng-touched {
   border: 2px solid #42A948;
 }
