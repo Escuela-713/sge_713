@@ -99,11 +99,24 @@ addSlide(
   return this.http.post<CarouselSlide>(this.carouselUrl, formData);
 }
 
-  updateSlide(slideEditado: CarouselSlide): Observable<CarouselSlide> {
-    return this.http.patch<CarouselSlide>(`${this.carouselUrl}${slideEditado.id}/`, slideEditado);
+updateSlide(
+  id: number,
+  updatedSlide: { title: string; subtitle: string },
+  imageFile?: File 
+): Observable<CarouselSlide> {
+  const formData = new FormData();
+    
+  formData.append('title', updatedSlide.title);
+  formData.append('subtitle', updatedSlide.subtitle);
+    
+  if (imageFile) {
+    formData.append('image', imageFile, imageFile.name);
   }
 
-  deleteSlideById(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.carouselUrl}${id}/`);
-  }
+  return this.http.patch<CarouselSlide>(`${this.carouselUrl}${id}/`, formData);
+}
+
+deleteSlideById(id: number): Observable<void> {
+  return this.http.delete<void>(`${this.carouselUrl}${id}/`);
+}
 }

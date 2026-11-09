@@ -82,7 +82,25 @@ class CarrouselView(APIView):
 
 class CarrouselDetailView(APIView):
     parser_classes = [MultiPartParser, FormParser]
+    def put(self, request, pk):
+        carrousel_item = get_object_or_404(Carrousel, pk=pk)
+        serializer = CarrouselSerializer(
+            carrousel_item, data=request.data, context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=200)
+        return Response(serializer.errors, status=400)
 
+    def patch(self, request, pk):
+        carrousel_item = get_object_or_404(Carrousel, pk=pk)
+        serializer = CarrouselSerializer(
+            carrousel_item, data=request.data, partial=True, context={'request': request}
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=200)
+        return Response(serializer.errors, status=400)
     def delete(self, request, pk):
         carrousel_item = get_object_or_404(Carrousel, pk=pk)
         carrousel_item.delete()
