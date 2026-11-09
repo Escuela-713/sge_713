@@ -103,8 +103,12 @@ export class HomeDashboardComponent implements OnInit {
     this.mostrarEditorSlide = true;
   }
 
-  onGuardarSlideEditado(slideEditado: CarouselSlide): void {
-    this.novedadesService.updateSlide(slideEditado).subscribe({
+  onGuardarSlideEditado(evento: { slide: CarouselSlide, imageFile: File | null }): void {
+    this.novedadesService.updateSlide(
+      evento.slide.id, 
+      { title: evento.slide.title, subtitle: evento.slide.subtitle }, 
+      evento.imageFile || undefined
+    ).subscribe({
       next: () => {
         this.cargarDatos();
         this.mostrarEditorSlide = false;
@@ -113,7 +117,7 @@ export class HomeDashboardComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error al editar el slide:', err);
-        alert('Error al editar el slide');
+        alert('Error al editar el slide.');
       }
     });
   }
