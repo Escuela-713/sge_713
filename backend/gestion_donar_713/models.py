@@ -2,14 +2,10 @@ from django.db import models
 
 
 class CarruselSlide(models.Model):
-	"""Slides del carrusel principal de la página de inicio de Donar 713."""
-
 	titulo = models.CharField(max_length=255)
 	descripcion = models.TextField(blank=True, default="")
 	boton_texto = models.CharField(max_length=100, blank=True, default="Ver más")
-	# Imagen subida desde el panel de administración (multipart/form-data).
 	imagen = models.ImageField(upload_to="donar713/carrusel/", null=True, blank=True)
-	# Alternativa: URL externa/estática (ej. assets del propio frontend), por si no se sube archivo.
 	imagen_url = models.CharField(max_length=500, blank=True, default="")
 	orden = models.PositiveIntegerField(default=0)
 	activo = models.BooleanField(default=True)
@@ -24,8 +20,6 @@ class CarruselSlide(models.Model):
 
 
 class Evento(models.Model):
-	"""Eventos solidarios/de donación mostrados en Donar 713."""
-
 	ESTADO_CHOICES = [
 		("activo", "Activo"),
 		("proximo", "Próximo"),
@@ -51,8 +45,6 @@ class Evento(models.Model):
 
 
 class Noticia(models.Model):
-	"""Noticias/novedades publicadas por el equipo de Donar 713."""
-
 	ESTADO_CHOICES = [
 		("reciente", "Reciente"),
 		("historial", "Historial"),
@@ -69,6 +61,39 @@ class Noticia(models.Model):
 
 	class Meta:
 		ordering = ["-fecha"]
+
+	def __str__(self):
+		return self.titulo
+
+
+class Informacion(models.Model):
+	TIPO_CHOICES = [
+		("requisito", "Requisito para donar"),
+		("pregunta", "Pregunta frecuente"),
+	]
+	ICONO_CHOICES = [
+		("edad", "Persona"),
+		("peso", "Balanza"),
+		("salud", "Corazón"),
+		("identificacion", "Documento"),
+		("descanso", "Reloj"),
+		("alimentacion", "Cubiertos"),
+		("gota", "Gota"),
+		("calendario", "Calendario"),
+	]
+
+	tipo = models.CharField(max_length=10, choices=TIPO_CHOICES, default="requisito")
+	titulo = models.CharField(max_length=255)
+	descripcion = models.TextField()
+	icono = models.CharField(max_length=20, choices=ICONO_CHOICES, blank=True, default="salud")
+	orden = models.PositiveIntegerField(default=0)
+	activo = models.BooleanField(default=True)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
+
+	class Meta:
+		ordering = ["orden", "id"]
+		verbose_name_plural = "información"
 
 	def __str__(self):
 		return self.titulo

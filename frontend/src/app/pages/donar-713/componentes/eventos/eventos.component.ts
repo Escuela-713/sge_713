@@ -39,8 +39,6 @@ const MESES_ABREVIADOS_POR_NUMERO = [
   styleUrl: './eventos.component.css',
 })
 export class EventosComponent implements OnInit {
-  // Eventos de ejemplo: se muestran mientras carga el backend o si todavía
-  // no se cargó ningún evento desde el panel de administración.
   eventos: Evento[] = [
     {
       id: 1,
@@ -123,22 +121,16 @@ export class EventosComponent implements OnInit {
           this.eventos = [...activos, ...proximos];
         }
       },
-      error: () => {
-        // Si el backend no está disponible, se mantienen los eventos de ejemplo.
-      },
     });
   }
 
-  get eventosActivos(): Evento[] {
-    return this.eventos.filter(e => e.estado === 'activo');
+  get eventosVisibles(): Evento[] {
+    return [
+      ...this.eventos.filter(e => e.estado === 'activo'),
+      ...this.eventos.filter(e => e.estado === 'proximo'),
+    ];
   }
 
-  get eventosFuturos(): Evento[] {
-    return this.eventos.filter(e => e.estado === 'proximo');
-  }
-
-  // Extrae el número de día. Soporta fecha ISO (yyyy-MM-dd, viene del backend)
-  // y el formato de texto anterior ("28 de junio de 2026").
   obtenerDia(fecha: string): string {
     const iso = fecha.match(/^\d{4}-\d{2}-(\d{2})/);
     if (iso) return String(Number(iso[1]));
@@ -146,8 +138,6 @@ export class EventosComponent implements OnInit {
     return match ? match[0] : '';
   }
 
-  // Extrae el mes en formato abreviado (ENE, FEB, ...). Soporta fecha ISO
-  // (yyyy-MM-dd) y el formato de texto anterior ("28 de junio de 2026").
   obtenerMes(fecha: string): string {
     const iso = fecha.match(/^\d{4}-(\d{2})-\d{2}/);
     if (iso) return MESES_ABREVIADOS_POR_NUMERO[Number(iso[1]) - 1] ?? '';
@@ -156,4 +146,4 @@ export class EventosComponent implements OnInit {
     const mes = match[1].toLowerCase();
     return MESES_ABREVIADOS[mes] ?? '';
   }
-}
+}

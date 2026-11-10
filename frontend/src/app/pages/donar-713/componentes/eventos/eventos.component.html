@@ -1,103 +1,61 @@
-<!-- EVENTOS ACTIVOS -->
-    <section class="seccion">
-      <div class="seccion-titulo">
-        <span class="indicador activo"></span>
-        <h2>Eventos activos</h2>
-      </div>
+<section class="evt-seccion" id="eventos">
+  <div class="evt-cabecera">
+    <span class="evt-pildora">Participa con Nosotros</span>
+    <h2>Próximos Eventos</h2>
+    <p>Únete a nuestras campañas y eventos. Cada participación cuenta para ayudar a quienes más lo necesitan.</p>
+  </div>
 
-      <div class="cards-grid">
-        @for (evento of eventosActivos; track evento.id) {
-          <div class="card">
-            <div class="card-imagen">
-              <img [src]="evento.imagen" [alt]="evento.titulo" />
-              <div class="fecha-badge">
-                <span class="dia">{{ obtenerDia(evento.fecha) }}</span>
-                <span class="mes">{{ obtenerMes(evento.fecha) }}</span>
-              </div>
-            </div>
-            <div class="card-body">
-              <h3>{{ evento.titulo }}</h3>
-
-              <div class="card-info">
-                <span class="info-item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="9"></circle>
-                    <path d="M12 7v5l3 3"></path>
-                  </svg>
-                  {{ evento.horario }}
-                </span>
-                <span class="info-item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"></path>
-                    <circle cx="12" cy="10" r="2.5"></circle>
-                  </svg>
-                  {{ evento.lugar }}
-                </span>
-              </div>
-
-              <p>{{ evento.descripcion }}</p>
-
-              <button class="btn-inscribirse" type="button">
-                Inscribirse
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14"></path>
-                  <path d="M13 6l6 6-6 6"></path>
-                </svg>
-              </button>
-            </div>
+  <div class="evt-grid">
+    @for (evento of eventosVisibles; track evento.id) {
+      <article class="evt-card">
+        <div class="evt-imagen">
+          @if (evento.imagen) {
+            <img [src]="evento.imagen" [alt]="evento.titulo" />
+          }
+          <div class="evt-fecha">
+            <span class="dia">{{ obtenerDia(evento.fecha) }}</span>
+            <span class="mes">{{ obtenerMes(evento.fecha) }}</span>
           </div>
-        }
-      </div>
-    </section>
+          @if (evento.estado === 'activo') {
+            <span class="evt-estado">En curso</span>
+          }
+        </div>
 
-    <!-- PRÓXIMOS EVENTOS -->
-    <section class="seccion">
-      <div class="seccion-titulo">
-        <span class="indicador proximo"></span>
-        <h2>Próximos eventos</h2>
-      </div>
+        <div class="evt-cuerpo">
+          <h3>{{ evento.titulo }}</h3>
 
-      <div class="cards-grid">
-        @for (evento of eventosFuturos; track evento.id) {
-          <div class="card card-proximo">
-            <div class="card-imagen">
-              <img [src]="evento.imagen" [alt]="evento.titulo" />
-              <div class="fecha-badge">
-                <span class="dia">{{ obtenerDia(evento.fecha) }}</span>
-                <span class="mes">{{ obtenerMes(evento.fecha) }}</span>
-              </div>
-            </div>
-            <div class="card-body">
-              <h3>{{ evento.titulo }}</h3>
-
-              <div class="card-info">
-                <span class="info-item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="12" cy="12" r="9"></circle>
-                    <path d="M12 7v5l3 3"></path>
-                  </svg>
-                  {{ evento.horario }}
-                </span>
-                <span class="info-item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"></path>
-                    <circle cx="12" cy="10" r="2.5"></circle>
-                  </svg>
-                  {{ evento.lugar }}
-                </span>
-              </div>
-
-              <p>{{ evento.descripcion }}</p>
-
-              <button class="btn-inscribirse" type="button">
-                Inscribirse
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14"></path>
-                  <path d="M13 6l6 6-6 6"></path>
+          <div class="evt-datos">
+            @if (evento.horario) {
+              <span class="evt-dato">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="9"></circle>
+                  <path d="M12 7v5l3 3"></path>
                 </svg>
-              </button>
-            </div>
+                {{ evento.horario }}
+              </span>
+            }
+            @if (evento.lugar) {
+              <span class="evt-dato">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"></path>
+                  <circle cx="12" cy="10" r="2.5"></circle>
+                </svg>
+                {{ evento.lugar }}
+              </span>
+            }
           </div>
-        }
-      </div>
-    </section>
+
+          <p class="evt-descripcion">{{ evento.descripcion }}</p>
+
+          <button class="evt-boton" type="button">
+            Inscribirse
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14"></path>
+              <path d="M13 6l6 6-6 6"></path>
+            </svg>
+          </button>
+        </div>
+      </article>
+    }
+  </div>
+</section>

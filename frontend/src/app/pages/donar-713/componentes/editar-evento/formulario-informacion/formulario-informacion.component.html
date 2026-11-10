@@ -1,0 +1,89 @@
+<div class="modal-overlay" (click)="onCancelar()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+      <h3>
+        @if (esRequisito) {
+          {{ modoEdicion ? 'Editar requisito' : 'Agregar requisito' }}
+        } @else {
+          {{ modoEdicion ? 'Editar pregunta' : 'Agregar pregunta' }}
+        }
+      </h3>
+      <button type="button" class="close-btn" (click)="onCancelar()">&times;</button>
+    </div>
+
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="info-tipo">Tipo</label>
+        <select id="info-tipo" formControlName="tipo">
+          <option value="requisito">Requisito para donar</option>
+          <option value="pregunta">Pregunta frecuente</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="info-titulo">{{ esRequisito ? 'Título' : 'Pregunta' }}</label>
+        <input id="info-titulo" type="text" formControlName="titulo"
+          [placeholder]="esRequisito ? 'Ej: Edad' : 'Ej: ¿Quién puede donar sangre?'"
+          [class.input-invalido]="campoInvalido('titulo')">
+        @if (campoInvalido('titulo')) {
+          <span class="error-msg">
+            @if (formulario.get('titulo')?.errors?.['required']) {
+              Este campo es obligatorio.
+            } @else if (formulario.get('titulo')?.errors?.['minlength']) {
+              Debe tener al menos 3 caracteres.
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="info-descripcion">{{ esRequisito ? 'Detalle' : 'Respuesta' }}</label>
+        <textarea id="info-descripcion" formControlName="descripcion" [rows]="esRequisito ? 2 : 5"
+          [placeholder]="esRequisito ? 'Ej: Entre 18 y 65 años' : 'Escribí la respuesta que se muestra al abrir la pregunta'"
+          [class.input-invalido]="campoInvalido('descripcion')"></textarea>
+        @if (campoInvalido('descripcion')) {
+          <span class="error-msg">
+            @if (formulario.get('descripcion')?.errors?.['required']) {
+              Este campo es obligatorio.
+            } @else if (formulario.get('descripcion')?.errors?.['minlength']) {
+              Debe tener al menos 3 caracteres.
+            }
+          </span>
+        }
+      </div>
+
+      @if (esRequisito) {
+        <div class="form-group">
+          <label for="info-icono">Ícono</label>
+          <select id="info-icono" formControlName="icono">
+            @for (icono of iconos; track icono.valor) {
+              <option [value]="icono.valor">{{ icono.etiqueta }}</option>
+            }
+          </select>
+        </div>
+      }
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="info-orden">Posición</label>
+          <input id="info-orden" type="number" min="0" formControlName="orden">
+        </div>
+
+        <div class="form-group">
+          <label class="check-linea">
+            <input type="checkbox" formControlName="activo">
+            Mostrar en la página
+          </label>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-cancelar" (click)="onCancelar()">Cancelar</button>
+        <button type="submit" class="btn-guardar">{{ modoEdicion ? 'Guardar cambios' : 'Guardar' }}</button>
+      </div>
+
+    </form>
+  </div>
+</div>

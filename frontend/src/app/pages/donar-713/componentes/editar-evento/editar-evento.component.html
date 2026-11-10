@@ -2,28 +2,62 @@
 
   <div class="admin-header">
     <h1>Panel de Administración</h1>
-    <p>Gestioná los eventos y las noticias que se muestran en Donar 713.</p>
+    <p>Gestioná el carrusel, los eventos, las noticias y la información sobre donación que se muestran en Donar 713.</p>
   </div>
 
-  <!-- NAVBAR PRINCIPAL: Eventos / Noticias -->
   <nav class="main-tabs">
-    <button
-      type="button"
-      class="main-tab"
-      [class.active]="seccionActiva === 'eventos'"
-      (click)="cambiarSeccion('eventos')">
+    <button type="button" class="main-tab" [class.active]="seccionActiva === 'carrusel'" (click)="cambiarSeccion('carrusel')">
+      Carrusel
+    </button>
+    <button type="button" class="main-tab" [class.active]="seccionActiva === 'eventos'" (click)="cambiarSeccion('eventos')">
       Eventos
     </button>
-    <button
-      type="button"
-      class="main-tab"
-      [class.active]="seccionActiva === 'noticias'"
-      (click)="cambiarSeccion('noticias')">
+    <button type="button" class="main-tab" [class.active]="seccionActiva === 'noticias'" (click)="cambiarSeccion('noticias')">
       Noticias
+    </button>
+    <button type="button" class="main-tab" [class.active]="seccionActiva === 'informacion'" (click)="cambiarSeccion('informacion')">
+      Información
     </button>
   </nav>
 
-  <!-- ================= SECCIÓN EVENTOS ================= -->
+  @if (seccionActiva === 'carrusel') {
+    <section class="apartado">
+
+      <div class="apartado-header">
+        <h2>Carrusel de inicio</h2>
+        <button class="btn-agregar" (click)="abrirFormularioSlide()">
+          + Agregar Slide
+        </button>
+      </div>
+
+      <p class="ayuda">Elegí la foto, el título y el texto de cada slide. Se muestran en el orden de la posición indicada.</p>
+
+      @if (errorCarrusel) {
+        <p class="lista-vacia">{{ errorCarrusel }}</p>
+      }
+
+      <div class="lista-items">
+        @for (slide of slidesOrdenados; track slide.id) {
+          <div class="item-card">
+            <img class="item-img" [src]="slide.imagen" [alt]="slide.titulo">
+            <div class="item-info">
+              <h3>{{ slide.titulo }}</h3>
+              <p class="descripcion">{{ slide.descripcion }}</p>
+              <p class="fecha">Posición {{ slide.orden }} · {{ slide.activo ? 'Visible' : 'Oculto' }}</p>
+            </div>
+            <div class="item-acciones">
+              <button class="edit-btn" (click)="abrirFormularioSlide(slide)" aria-label="Editar slide">✎</button>
+              <button class="delete-btn" (click)="eliminarSlide(slide)" aria-label="Eliminar slide">🗑</button>
+            </div>
+          </div>
+        } @empty {
+          <p class="lista-vacia">Todavía no hay slides en el carrusel.</p>
+        }
+      </div>
+
+    </section>
+  }
+
   @if (seccionActiva === 'eventos') {
     <section class="apartado">
 
@@ -34,27 +68,14 @@
         </button>
       </div>
 
-      <!-- SUB NAVBAR: Eventos activos / Historial de eventos -->
       <div class="sub-navbar">
-        <button
-          type="button"
-          class="sub-tab"
-          [class.active]="tabEventos === 'activo'"
-          (click)="cambiarTabEventos('activo')">
+        <button type="button" class="sub-tab" [class.active]="tabEventos === 'activo'" (click)="cambiarTabEventos('activo')">
           Eventos activos
         </button>
-        <button
-          type="button"
-          class="sub-tab"
-          [class.active]="tabEventos === 'proximo'"
-          (click)="cambiarTabEventos('proximo')">
+        <button type="button" class="sub-tab" [class.active]="tabEventos === 'proximo'" (click)="cambiarTabEventos('proximo')">
           Próximos eventos
         </button>
-        <button
-          type="button"
-          class="sub-tab"
-          [class.active]="tabEventos === 'historial'"
-          (click)="cambiarTabEventos('historial')">
+        <button type="button" class="sub-tab" [class.active]="tabEventos === 'historial'" (click)="cambiarTabEventos('historial')">
           Historial de eventos
         </button>
       </div>
@@ -88,7 +109,6 @@
     </section>
   }
 
-  <!-- ================= SECCIÓN NOTICIAS ================= -->
   @if (seccionActiva === 'noticias') {
     <section class="apartado">
 
@@ -99,20 +119,11 @@
         </button>
       </div>
 
-      <!-- SUB NAVBAR: Noticias recientes / Historial de noticias -->
       <div class="sub-navbar">
-        <button
-          type="button"
-          class="sub-tab"
-          [class.active]="tabNoticias === 'reciente'"
-          (click)="cambiarTabNoticias('reciente')">
+        <button type="button" class="sub-tab" [class.active]="tabNoticias === 'reciente'" (click)="cambiarTabNoticias('reciente')">
           Noticias recientes
         </button>
-        <button
-          type="button"
-          class="sub-tab"
-          [class.active]="tabNoticias === 'historial'"
-          (click)="cambiarTabNoticias('historial')">
+        <button type="button" class="sub-tab" [class.active]="tabNoticias === 'historial'" (click)="cambiarTabNoticias('historial')">
           Historial de noticias
         </button>
       </div>
@@ -143,9 +154,66 @@
     </section>
   }
 
+  @if (seccionActiva === 'informacion') {
+    <section class="apartado">
+
+      <div class="apartado-header">
+        <h2>Información sobre Donación</h2>
+        <button class="btn-agregar" (click)="abrirFormularioInfo()">
+          {{ tabInformacion === 'requisito' ? '+ Agregar Requisito' : '+ Agregar Pregunta' }}
+        </button>
+      </div>
+
+      <div class="sub-navbar">
+        <button type="button" class="sub-tab" [class.active]="tabInformacion === 'requisito'" (click)="cambiarTabInformacion('requisito')">
+          Requisitos para donar
+        </button>
+        <button type="button" class="sub-tab" [class.active]="tabInformacion === 'pregunta'" (click)="cambiarTabInformacion('pregunta')">
+          Preguntas frecuentes
+        </button>
+      </div>
+
+      <p class="ayuda">
+        @if (tabInformacion === 'requisito') {
+          Cada requisito se muestra como una tarjeta con su ícono, en el orden de la posición indicada.
+        } @else {
+          Cada pregunta se despliega en la página y muestra su respuesta, en el orden de la posición indicada.
+        }
+      </p>
+
+      @if (errorInformacion) {
+        <p class="lista-vacia">{{ errorInformacion }}</p>
+      }
+
+      <div class="lista-items">
+        @for (info of informacionFiltrada; track info.id) {
+          <div class="item-card">
+            <div class="item-info">
+              <h3>{{ info.titulo }}</h3>
+              <p class="descripcion">{{ info.descripcion }}</p>
+              <p class="fecha">Posición {{ info.orden }} · {{ info.activo ? 'Visible' : 'Oculta' }}</p>
+            </div>
+            <div class="item-acciones">
+              <button class="edit-btn" (click)="abrirFormularioInfo(info)" aria-label="Editar información">✎</button>
+              <button class="delete-btn" (click)="eliminarInfo(info)" aria-label="Eliminar información">🗑</button>
+            </div>
+          </div>
+        } @empty {
+          <p class="lista-vacia">
+            @if (tabInformacion === 'requisito') {
+              Todavía no hay requisitos cargados.
+            } @else {
+              Todavía no hay preguntas frecuentes cargadas.
+            }
+          </p>
+        }
+      </div>
+
+    </section>
+  }
+
 </div>
 
-<!-- FORMULARIO DE EVENTO (reactive form) -->
 @if (formularioEventoVisible) {
   <app-formulario-evento
     [eventoEditar]="eventoSeleccionado"
@@ -154,11 +222,28 @@
   </app-formulario-evento>
 }
 
-<!-- FORMULARIO DE NOTICIA (reactive form) -->
 @if (formularioNoticiaVisible) {
   <app-formulario-noticia
     [noticiaEditar]="noticiaSeleccionada"
     (guardar)="guardarNoticia($event)"
     (cancelar)="cerrarFormularioNoticia()">
   </app-formulario-noticia>
+}
+
+@if (formularioSlideVisible) {
+  <app-formulario-slide
+    [slideEditar]="slideSeleccionado"
+    [imagenesExistentes]="imagenesExistentes"
+    (guardar)="guardarSlide($event)"
+    (cancelar)="cerrarFormularioSlide()">
+  </app-formulario-slide>
+}
+
+@if (formularioInfoVisible) {
+  <app-formulario-informacion
+    [infoEditar]="infoSeleccionada"
+    [tipoInicial]="tipoInfoNueva"
+    (guardar)="guardarInfo($event)"
+    (cancelar)="cerrarFormularioInfo()">
+  </app-formulario-informacion>
 }

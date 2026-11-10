@@ -1,12 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { FormularioEventoComponent, GuardarEventoPayload } from './formulario-evento/formulario-evento.component';
 import { FormularioNoticiaComponent, GuardarNoticiaPayload } from './formulario-noticia/formulario-noticia.component';
-import { Evento, Noticia } from './editar-evento.models';
-import { DonarService, EventoApi, NoticiaApi } from '../../../../services/donar.service';
+import { FormularioSlideComponent, GuardarSlidePayload } from './formulario-slide/formulario-slide.component';
+import { FormularioInformacionComponent, GuardarInformacionPayload } from './formulario-informacion/formulario-informacion.component';
+import { Evento, Informacion, Noticia, Slide } from './editar-evento.models';
+import {
+  CarruselSlideApi,
+  DonarService,
+  EventoApi,
+  InformacionApi,
+  NoticiaApi,
+} from '../../../../services/donar.service';
 
-type SeccionAdmin = 'eventos' | 'noticias';
+type SeccionAdmin = 'carrusel' | 'eventos' | 'noticias' | 'informacion';
 type TabEventos = 'activo' | 'proximo' | 'historial';
 type TabNoticias = 'reciente' | 'historial';
+type TabInformacion = 'requisito' | 'pregunta';
 
 function eventoDeApi(e: EventoApi): Evento {
   return {
@@ -32,44 +41,85 @@ function noticiaDeApi(n: NoticiaApi): Noticia {
   };
 }
 
+function slideDeApi(s: CarruselSlideApi): Slide {
+  return {
+    id: s.id,
+    titulo: s.titulo,
+    descripcion: s.descripcion,
+    botonTexto: s.boton_texto,
+    imagen: s.imagen,
+    orden: s.orden,
+    activo: s.activo,
+  };
+}
+
+function informacionDeApi(i: InformacionApi): Informacion {
+  return {
+    id: i.id,
+    tipo: i.tipo,
+    titulo: i.titulo,
+    descripcion: i.descripcion,
+    icono: i.icono,
+    orden: i.orden,
+    activo: i.activo,
+  };
+}
+
 @Component({
   selector: 'app-editar-evento',
   standalone: true,
-  imports: [FormularioEventoComponent, FormularioNoticiaComponent],
+  imports: [
+    FormularioEventoComponent,
+    FormularioNoticiaComponent,
+    FormularioSlideComponent,
+    FormularioInformacionComponent,
+  ],
   templateUrl: './editar-evento.component.html',
   styleUrl: './editar-evento.component.css',
 })
 export class EditarEventoComponent implements OnInit {
 
-  // --- Navegación principal del panel ---
   seccionActiva: SeccionAdmin = 'eventos';
 
-  // --- Sub-navbars ---
   tabEventos: TabEventos = 'activo';
   tabNoticias: TabNoticias = 'reciente';
+  tabInformacion: TabInformacion = 'requisito';
 
-  // --- Datos (se cargan desde el backend de Donar 713 en ngOnInit) ---
   eventos: Evento[] = [];
   misNoticias: Noticia[] = [];
+  slides: Slide[] = [];
+  informacion: Informacion[] = [];
 
   cargandoEventos = false;
   cargandoNoticias = false;
+  cargandoCarrusel = false;
+  cargandoInformacion = false;
   errorEventos = '';
   errorNoticias = '';
+  errorCarrusel = '';
+  errorInformacion = '';
 
-  // --- Estado del formulario de evento ---
   formularioEventoVisible = false;
   eventoSeleccionado: Evento | null = null;
 
-  // --- Estado del formulario de noticia ---
   formularioNoticiaVisible = false;
   noticiaSeleccionada: Noticia | null = null;
+
+  formularioSlideVisible = false;
+  slideSeleccionado: Slide | null = null;
+  imagenesExistentes: string[] = [];
+
+  formularioInfoVisible = false;
+  infoSeleccionada: Informacion | null = null;
+  tipoInfoNueva: TabInformacion = 'requisito';
 
   constructor(private donarService: DonarService) {}
 
   ngOnInit(): void {
     this.cargarEventos();
     this.cargarNoticias();
+    this.cargarCarrusel();
+    this.cargarInformacion();
   }
 
   private cargarEventos(): void {
@@ -100,7 +150,34 @@ export class EditarEventoComponent implements OnInit {
     });
   }
 
-  // --- Getters de listas filtradas por sub-navbar ---
+  private cargarCarrusel(): void {
+    this.cargandoCarrusel = true;
+    this.donarService.getCarrusel().subscribe({
+      next: (slides) => {
+        this.slides = slides.map(slideDeApi);
+        this.cargandoCarrusel = false;
+      },
+      error: () => {
+        this.errorCarrusel = 'No se pudo cargar el carrusel desde el servidor.';
+        this.cargandoCarrusel = false;
+      },
+    });
+  }
+
+  private cargarInformacion(): void {
+    this.cargandoInformacion = true;
+    this.donarService.getInformacion().subscribe({
+      next: (items) => {
+        this.informacion = items.map(informacionDeApi);
+        this.cargandoInformacion = false;
+      },
+      error: () => {
+        this.errorInformacion = 'No se pudo cargar la información desde el servidor.';
+        this.cargandoInformacion = false;
+      },
+    });
+  }
+
   get eventosFiltrados(): Evento[] {
     return this.eventos.filter(e => e.estado === this.tabEventos);
   }
@@ -109,7 +186,16 @@ export class EditarEventoComponent implements OnInit {
     return this.misNoticias.filter(n => n.estado === this.tabNoticias);
   }
 
-  // --- Navegación ---
+  get slidesOrdenados(): Slide[] {
+    return [...this.slides].sort((a, b) => a.orden - b.orden || a.id - b.id);
+  }
+
+  get informacionFiltrada(): Informacion[] {
+    return this.informacion
+      .filter(i => i.tipo === this.tabInformacion)
+      .sort((a, b) => a.orden - b.orden || a.id - b.id);
+  }
+
   cambiarSeccion(seccion: SeccionAdmin): void {
     this.seccionActiva = seccion;
   }
@@ -122,7 +208,10 @@ export class EditarEventoComponent implements OnInit {
     this.tabNoticias = tab;
   }
 
-  // --- CRUD Eventos ---
+  cambiarTabInformacion(tab: TabInformacion): void {
+    this.tabInformacion = tab;
+  }
+
   abrirFormularioEvento(evento?: Evento): void {
     this.eventoSeleccionado = evento ?? null;
     this.formularioEventoVisible = true;
@@ -166,7 +255,6 @@ export class EditarEventoComponent implements OnInit {
     });
   }
 
-  // --- CRUD Noticias ---
   abrirFormularioNoticia(noticia?: Noticia): void {
     this.noticiaSeleccionada = noticia ?? null;
     this.formularioNoticiaVisible = true;
@@ -208,5 +296,105 @@ export class EditarEventoComponent implements OnInit {
         this.errorNoticias = 'No se pudo eliminar la noticia.';
       },
     });
+  }
+
+  abrirFormularioSlide(slide?: Slide): void {
+    this.slideSeleccionado = slide ?? null;
+    this.imagenesExistentes = this.calcularImagenesExistentes();
+    this.formularioSlideVisible = true;
+  }
+
+  cerrarFormularioSlide(): void {
+    this.formularioSlideVisible = false;
+    this.slideSeleccionado = null;
+  }
+
+  guardarSlide(payload: GuardarSlidePayload): void {
+    const peticion = payload.id
+      ? this.donarService.actualizarSlide(payload.id, payload.formData)
+      : this.donarService.crearSlide(payload.formData);
+
+    peticion.subscribe({
+      next: (slideGuardado) => {
+        const slide = slideDeApi(slideGuardado);
+        const indice = this.slides.findIndex(s => s.id === slide.id);
+        if (indice !== -1) {
+          this.slides[indice] = slide;
+          this.slides = [...this.slides];
+        } else {
+          this.slides = [...this.slides, slide];
+        }
+        this.cerrarFormularioSlide();
+      },
+      error: () => {
+        this.errorCarrusel = 'No se pudo guardar el slide. Revisá los datos e intentá nuevamente.';
+      },
+    });
+  }
+
+  eliminarSlide(slide: Slide): void {
+    this.donarService.eliminarSlide(slide.id).subscribe({
+      next: () => {
+        this.slides = this.slides.filter(s => s.id !== slide.id);
+      },
+      error: () => {
+        this.errorCarrusel = 'No se pudo eliminar el slide.';
+      },
+    });
+  }
+
+  abrirFormularioInfo(info?: Informacion): void {
+    this.infoSeleccionada = info ?? null;
+    this.tipoInfoNueva = this.tabInformacion;
+    this.formularioInfoVisible = true;
+  }
+
+  cerrarFormularioInfo(): void {
+    this.formularioInfoVisible = false;
+    this.infoSeleccionada = null;
+  }
+
+  guardarInfo(payload: GuardarInformacionPayload): void {
+    const peticion = payload.id
+      ? this.donarService.actualizarInformacion(payload.id, payload.datos)
+      : this.donarService.crearInformacion(payload.datos);
+
+    peticion.subscribe({
+      next: (infoGuardada) => {
+        const info = informacionDeApi(infoGuardada);
+        const indice = this.informacion.findIndex(i => i.id === info.id);
+        if (indice !== -1) {
+          this.informacion[indice] = info;
+          this.informacion = [...this.informacion];
+        } else {
+          this.informacion = [...this.informacion, info];
+        }
+        this.tabInformacion = info.tipo;
+        this.cerrarFormularioInfo();
+      },
+      error: () => {
+        this.errorInformacion = 'No se pudo guardar la información. Revisá los datos e intentá nuevamente.';
+      },
+    });
+  }
+
+  eliminarInfo(info: Informacion): void {
+    this.donarService.eliminarInformacion(info.id).subscribe({
+      next: () => {
+        this.informacion = this.informacion.filter(i => i.id !== info.id);
+      },
+      error: () => {
+        this.errorInformacion = 'No se pudo eliminar la información.';
+      },
+    });
+  }
+
+  private calcularImagenesExistentes(): string[] {
+    const rutas = [
+      ...this.eventos.map(e => e.imagen),
+      ...this.misNoticias.map(n => n.imagen),
+      ...this.slides.map(s => s.imagen),
+    ].filter(ruta => !!ruta);
+    return Array.from(new Set(rutas));
   }
 }
