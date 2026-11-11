@@ -10,17 +10,27 @@ import { CooperadoraMovimientosService } from "@services/cooperadora-movimientos
   styleUrls: ["./movimientos.component.css"],
 })
 export class MovimientosComponent {
-  movimientos: any;
+  movimientos: any[] = [];
   movimientoEditando: any = null;
   mensaje = '';
+  cargando = false;
+  error = '';
 
   constructor(private movimientosService: CooperadoraMovimientosService) {
+    this.cargarMovimientos();
+  }
+
+  cargarMovimientos(): void {
+    this.cargando = true;
+    this.error = '';
     this.movimientosService.getMovimientos().subscribe({
       next: (data) => {
         this.movimientos = data;
+        this.cargando = false;
       },
-      error: (error) => {
-        console.error("Error al obtener los movimientos:", error);
+      error: () => {
+        this.error = 'No se pudieron cargar los movimientos.';
+        this.cargando = false;
       },
     });
   }

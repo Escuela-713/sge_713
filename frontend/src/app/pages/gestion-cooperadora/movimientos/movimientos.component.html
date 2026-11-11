@@ -1,5 +1,11 @@
 <div class="container">
   <h2>Movimientos de cooperadora escolar</h2>
+  @if (cargando) {
+    <p role="status">Cargando movimientos...</p>
+  }
+  @if (error) {
+    <div class="alert alert-danger" role="alert">{{ error }}</div>
+  }
   @if (mensaje) {
     <div class="alert alert-info">{{ mensaje }}</div>
   }
@@ -33,6 +39,11 @@
         <button class="btn btnDelete" type="button" (click)="eliminarMovimiento(mov)">Eliminar</button>
       </td>
     </tr>
+    }
+    @if (!cargando && !error && movimientos.length === 0) {
+      <tr>
+        <td colspan="7" class="text-center">No hay movimientos para mostrar.</td>
+      </tr>
     }
   </tbody>
 </table>

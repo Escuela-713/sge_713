@@ -1,6 +1,8 @@
 # Ignorar archivos de caché
 __pycache__/
-migrations/
+*/migrations/
+!gestion_cooperadora/migrations/
+!gestion_cooperadora/migrations/**
 *.pyc
 
 # Ignorar archivos de configuración local

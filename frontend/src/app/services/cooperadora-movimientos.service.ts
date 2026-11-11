@@ -6,13 +6,12 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root',
 })
 export class CooperadoraMovimientosService {
-  url: string = 'http://localhost:3001/movimientos';
+  private readonly url = '/api/v1/cooperadora/movimientos/';
 
   constructor(private http: HttpClient) { }
 
-  getMovimientos(): Observable<any>
-   {
-    return this.http.get(this.url);
+  getMovimientos(): Observable<any[]> {
+    return this.http.get<any[]>(this.url);
   }
 
   crearMovimiento(movimiento: any): Observable<any> {
@@ -20,11 +19,11 @@ export class CooperadoraMovimientosService {
   }
 
   actualizarMovimiento(id: string, movimiento: any): Observable<any> {
-    return this.http.put(`${this.url}/${id}`, movimiento);
+    return this.http.put(`${this.url}${id}/`, movimiento);
   }
 
   eliminarMovimiento(id: string): Observable<any> {
-    return this.http.delete(`${this.url}/${id}`);
+    return this.http.delete(`${this.url}${id}/`);
   }
   
 }
