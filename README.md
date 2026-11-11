@@ -57,7 +57,7 @@ El funcionamiento del SGE 713 sigue un ciclo simple y eficiente:
 
 1. Abrir la terminal y escribir el siguiente comando:
 
-```bash
+   ```bash
       git clone https://github.com/Escuela-713/sge_713
    ```
 
@@ -66,19 +66,19 @@ El funcionamiento del SGE 713 sigue un ciclo simple y eficiente:
 1. Abrir una terminal o consola de comandos.
 2. Acceder al directorio del backend:
 
-```bash
+   ```bash
    cd backend
    ```
 
 3. Crear el entorno virtual:
 
-```bash
+   ```bash
       python -m venv env
    ```
 
 4. Abrir el entorno:
 
-```bash
+   ```bash
       cd env
    ```
 
@@ -86,27 +86,27 @@ El funcionamiento del SGE 713 sigue un ciclo simple y eficiente:
 
    * **Linux/MacOS:**
 
-```bash
-     source "env/bin/activate"
-   ```
+      ```bash
+      source "env/bin/activate"
+      ```
 
    * **Windows:**
 
-```bash
-     cd Scripts
-   ```
+      ```bash
+      cd Scripts
+      ```
 
-```bash
+   ```bash
      Activate
    ```
 6. Ejecutar el backend:
 
-```bash
+   ```bash
    python manage.py runserver
    ```
 7. En backend ejecutar el comando:
 
-```bash
+   ```bash
    pip install -r requirements.txt
    ```
 ### **C. Iniciar el Frontend**
@@ -114,12 +114,12 @@ El funcionamiento del SGE 713 sigue un ciclo simple y eficiente:
 1. Abrir una **segunda** terminal.
 2. Acceder al directorio del frontend:
 
-```bash
+   ```bash
    cd frontend
    ```
 3. Iniciar el servidor de Angular:
 
-```bash
+   ```bash
    ng serve
    ```
 4. Ingresar en el navegador a:
