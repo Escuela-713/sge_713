@@ -1,7 +1,7 @@
 
 # **SGE 713 – Sistema de Gestión Escolar**
 
->**Versión 0.25.2-Alpha**
+>**Versión 0.26.1-Alpha**
 
 ## **1. Introducción**
 
@@ -53,43 +53,73 @@ El funcionamiento del SGE 713 sigue un ciclo simple y eficiente:
 
 ## **4. Puesta en marcha del sistema**
 
-### **A. Iniciar el Backend**
+### **A. Clonar el proyecto**
+
+1. Abrir la terminal y escribir el siguiente comando:
+
+```bash
+      git clone https://github.com/Escuela-713/sge_713
+   ```
+
+### **B. Iniciar el Backend**
 
 1. Abrir una terminal o consola de comandos.
 2. Acceder al directorio del backend:
 
-   ```bash
+```bash
    cd backend
    ```
-3. (Opcional) Activar el entorno virtual:
+
+3. Crear el entorno virtual:
+
+```bash
+      python -m venv env
+   ```
+
+4. Abrir el entorno:
+
+```bash
+      cd env
+   ```
+
+5. Activar el entorno virtual:
 
    * **Linux/MacOS:**
 
-     ```bash
-     source env/bin/activate
-     ```
-   * **Windows:**
-
-     ```bash
-     env\Scripts\activate
-     ```
-4. Ejecutar el servidor de desarrollo:
-
-   ```bash
-   python manage.py runserver
+```bash
+     source "env/bin/activate"
    ```
 
-### **B. Iniciar el Frontend**
+   * **Windows:**
+
+```bash
+     cd Scripts
+   ```
+
+```bash
+     Activate
+   ```
+6. Ejecutar el backend:
+
+```bash
+   python manage.py runserver
+   ```
+7. En backend ejecutar el comando:
+
+```bash
+   pip install -r requirements.txt
+   ```
+### **C. Iniciar el Frontend**
 
 1. Abrir una **segunda** terminal.
 2. Acceder al directorio del frontend:
 
-   ```bash
+```bash
    cd frontend
    ```
 3. Iniciar el servidor de Angular:
 
-   ```bash
+```bash
    ng serve
    ```
 4. Ingresar en el navegador a:
