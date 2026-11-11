@@ -96,9 +96,9 @@ El funcionamiento del SGE 713 sigue un ciclo simple y eficiente:
       cd Scripts
       ```
 
-   ```bash
-     Activate
-   ```
+      ```bash
+      Activate
+      ```
 6. Ejecutar el backend:
 
    ```bash
