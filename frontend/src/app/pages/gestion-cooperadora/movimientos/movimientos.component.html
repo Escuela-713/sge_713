@@ -1,5 +1,37 @@
-<div class="container">
+ <div class="container">
   <h2>Movimientos de cooperadora escolar</h2>
+   <div class="row g-3 mt-1 mb-3" aria-label="Filtros de movimientos">
+     <div class="col-12 col-md-6">
+       <label class="form-label" for="tipo-filtro">Tipo de movimiento</label>
+       <select
+         class="form-select"
+         id="tipo-filtro"
+         name="tipoFiltro"
+         [(ngModel)]="tipoFiltro"
+         (ngModelChange)="aplicarFiltros()"
+       >
+         <option value="">Todos</option>
+         <option value="Ingreso">Ingresos</option>
+         <option value="Egreso">Egresos</option>
+       </select>
+     </div>
+     <div class="col-12 col-md-6">
+       <label class="form-label" for="fecha-filtro">Fecha</label>
+       <input
+         class="form-control"
+         type="text"
+         id="fecha-filtro"
+         name="fechaFiltro"
+         inputmode="numeric"
+         placeholder="D/M/AAAA"
+         [ngModel]="fechaFiltroTexto"
+         (ngModelChange)="actualizarFechaFiltro($event)"
+       />
+       @if (fechaInvalida) {
+         <div class="form-text text-danger">Ingresá una fecha válida como 1/9/2025.</div>
+       }
+     </div>
+   </div>
   @if (mensaje) {
     <div class="alert alert-info">{{ mensaje }}</div>
   }
@@ -33,6 +65,11 @@
         <button class="btn btnDelete" type="button" (click)="eliminarMovimiento(mov)">Eliminar</button>
       </td>
     </tr>
+    }
+    @if (movimientos.length === 0) {
+      <tr>
+        <td colspan="7" class="text-center">No hay movimientos para mostrar.</td>
+      </tr>
     }
   </tbody>
 </table>

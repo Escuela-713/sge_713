@@ -11,7 +11,7 @@ import { FormPlanesComponent } from '@pages/gestion-carreras-planes-materias/pla
 import { PlanesComponent } from '@pages/gestion-carreras-planes-materias/planes/planes.component'
 import { HistorialComponent } from '@pages/gestion-cooperadora/historial/historial.component'
 import { MovimientosComponent } from '@pages/gestion-cooperadora/movimientos/movimientos.component'
-import { FormularioComponent } from '@pages/gestion-cooperadora/registrar-compra/formulario.component'
+import { FormularioComponent } from '@pages/gestion-cooperadora/registrar-movimiento/formulario.component'
 import { DatosTutoresComponent } from '@pages/gestion-datos-personales/componentes/datos-tutores/datos-tutores.component'
 import { EditarAgregarTutorComponent } from '@pages/gestion-datos-personales/editar-agregar-tutor/editar-agregar-tutor.component'
 import { EditarDatosPersonalesComponent } from '@pages/gestion-datos-personales/editar-datos-personales/editar-datos-personales.component'
