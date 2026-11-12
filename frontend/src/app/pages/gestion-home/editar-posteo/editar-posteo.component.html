@@ -1,4 +1,4 @@
-<!-- Loading State -->
+ <!-- Loading State -->
 @if (isLoading) {
   <div class="loading-container">
     <div class="loading-spinner"></div>
@@ -20,24 +20,14 @@
 <!-- Main Edit Form -->
 @if (!isLoading && !error && originalNovedad) {
   <div class="editar-page">
-    <!-- Header -->
-    <div class="page-header">
-      <button class="back-btn" (click)="goBack()" type="button" aria-label="Volver atrás">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M19 12H6m0 0l6 6m-6-6l6-6"/>
-        </svg>
-      </button>
-      <div class="header-content">
-        <h1 class="page-title">Editar Publicación</h1>
-        <p class="page-subtitle">Modificar "{{ originalNovedad.title }}"</p>
-      </div>
-    </div>
 
     <!-- Form and Preview Container -->
     <div class="content-container">
       <!-- Form Section -->
       <div class="form-section">
         <div class="form-card">
+          <h2 class="tx-center">Editar Publicación</h2>
+
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
 
             <!-- Image Upload -->
@@ -155,12 +145,6 @@
                   (click)="onDelete()"
                   title="Eliminar publicación"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="3,6 5,6 21,6"/>
-                    <path d="m19,6v14a2,2 0 0,1 -2,2H7a2,2 0 0,1 -2,-2V6m3,0V4a2,2 0 0,1 2,-2h4a2,2 0 0,1 2,2v2"/>
-                    <line x1="10" y1="11" x2="10" y2="17"/>
-                    <line x1="14" y1="11" x2="14" y2="17"/>
-                  </svg>
                   Eliminar
                 </button>
                 <button
@@ -168,10 +152,7 @@
                   class="btn-primary"
                   [disabled]="form.invalid"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="20,6 9,17 4,12"/>
-                  </svg>
-                  Guardar Cambios
+                  Guardar
                 </button>
               </div>
             </div>
@@ -181,18 +162,15 @@
 
       <div class="preview-section">
         <div class="preview-header">
-          <h3>Vista Previa</h3>
+          <h2>Vista Previa</h2>
           <span class="preview-badge">Preview</span>
         </div>
 
         @if (novedad()) {
           <div class="preview-card">
             <div class="preview-image" [style.backgroundImage]="'url(' + novedad().image + ')'">
-              <h2 class="preview-title">{{ novedad().title }}</h2>
-            </div>
-            <div class="preview-details">
-              <p><strong>Categoría:</strong> {{ novedad().categoriaTitle }}</p>
-              <p><strong>Contenido:</strong> {{ novedad().content }}</p>
+              <span class="preview-category">{{ novedad().categoriaTitle }}</span>
+              <h3 class="preview-title">{{ novedad().title }}</h3>
             </div>
             <div class="preview-content">
               <p class="preview-description">{{ novedad().content }}</p>
