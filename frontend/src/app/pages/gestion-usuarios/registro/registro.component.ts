@@ -25,6 +25,9 @@ export class RegistroComponent {
       cuilconfirmation: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(8)]],
       passwordconfirmation: ['', [Validators.required]],
+      nombre: ['', Validators.required],
+      apellido: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
     });
   }
   
@@ -100,7 +103,17 @@ export class RegistroComponent {
       this.form.markAllAsTouched();
     }
   }
+  get Nombre() {
+    return this.form.get('nombre');
+  }
 
+  get Apellido() {
+    return this.form.get('apellido');
+  }
+
+  get Email() {
+    return this.form.get('email');
+  }
   get Password() {
     return this.form.get("password");
   }

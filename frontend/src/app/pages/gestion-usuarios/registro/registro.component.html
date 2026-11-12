@@ -1,3 +1,4 @@
+
 <div>
   <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
     <section class="form-register">
@@ -5,29 +6,75 @@
 
       <!-- Alerta de Error del Servidor -->
       @if (errorMessage) {
-        <div
-          class="alert alert-danger mb-3 p-2 text-center"
-          style="font-size: 14px; border-radius: 6px"
-        >
+        <div class="alert alert-danger mb-3 p-2 text-center"
+          style="font-size: 14px; border-radius: 6px">
           {{ errorMessage }}
         </div>
       }
 
       <!-- Alerta de Éxito -->
       @if (successMessage) {
-        <div
-          class="alert alert-success mb-3 p-2 text-center"
-          style="font-size: 14px; border-radius: 6px"
-        >
+        <div class="alert alert-success mb-3 p-2 text-center"
+          style="font-size: 14px; border-radius: 6px">
           {{ successMessage }}
         </div>
       }
 
-      <!-- CUIL -->
+      <!-- Nombre -->
+      <input
+        class="form-control mb-2"
+        formControlName="nombre"
+        type="text"
+        placeholder="Ingresar nombre"
+      />
+      @if (Nombre?.errors && Nombre?.touched) {
+        @if (Nombre?.hasError("required")) {
+          <div class="text-danger mb-2" style="font-size: 13px">
+            El nombre es requerido.
+          </div>
+        }
+      }
+
+      <!-- Apellido -->
+      <input
+        class="form-control mb-2"
+        formControlName="apellido"
+        type="text"
+        placeholder="Ingresar apellido"
+      />
+      @if (Apellido?.errors && Apellido?.touched) {
+        @if (Apellido?.hasError("required")) {
+          <div class="text-danger mb-2" style="font-size: 13px">
+            El apellido es requerido.
+          </div>
+        }
+      }
+
+      <!-- Email -->
+      <input
+        class="form-control mb-2"
+        formControlName="email"
+        type="email"
+        placeholder="Ingresar correo electrónico"
+      />
+      @if (Email?.errors && Email?.touched) {
+        @if (Email?.hasError("required")) {
+          <div class="text-danger mb-2" style="font-size: 13px">
+            El correo electrónico es requerido.
+          </div>
+        } @else if (Email?.hasError("email")) {
+          <div class="text-danger mb-2" style="font-size: 13px">
+            Ingresá un correo electrónico válido.
+          </div>
+        }
+      }
+
+      <!-- DNI -->
       <input
         class="form-control mb-2"
         formControlName="cuil"
-        type="number"
+        type="text"
+        inputmode="numeric"
         placeholder="Ingresar DNI"
       />
       @if (Cuil?.errors && Cuil?.touched) {
@@ -38,11 +85,12 @@
         }
       }
 
-      <!-- Confirmar CUIL -->
+      <!-- Confirmar DNI -->
       <input
         class="form-control mb-2"
         formControlName="cuilconfirmation"
-        type="number"
+        type="text"
+        inputmode="numeric"
         placeholder="Confirmar DNI"
       />
       @if (Cuilconfirmation?.errors && Cuilconfirmation?.touched) {
@@ -62,7 +110,7 @@
         class="form-control mb-2"
         formControlName="password"
         type="password"
-        placeholder="Ingresar Contraseña"
+        placeholder="Ingresar contraseña"
       />
       @if (Password?.errors && Password?.touched) {
         @if (Password?.hasError("required")) {
@@ -76,7 +124,7 @@
         }
       }
 
-      <!-- Confirmar Contraseña -->
+      <!-- Confirmar contraseña -->
       <input
         class="form-control mb-3"
         formControlName="passwordconfirmation"
@@ -96,6 +144,7 @@
       }
 
       <input class="botons w-100 mb-3" type="submit" value="Registrar" />
+
       <p class="text-center m-0">
         <a routerLink="/iniciar-sesion">¿Ya tenés cuenta?</a>
       </p>
