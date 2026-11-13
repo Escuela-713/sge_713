@@ -1,0 +1,39 @@
+@if (noticias.length > 0) {
+  <section class="not-seccion" id="noticias">
+    <div class="not-cabecera">
+      <span class="not-pildora">Mantente Informado</span>
+      <h2>Últimas Noticias</h2>
+      <p>Conoce las novedades de nuestras campañas y todo lo que está pasando en la comunidad.</p>
+    </div>
+
+    <div class="not-grid">
+      @for (noticia of noticias; track noticia.id) {
+        <article class="not-card">
+          <div class="not-imagen">
+            @if (noticia.imagen) {
+              <img [src]="noticia.imagen" [alt]="noticia.titulo" />
+            }
+            <div class="not-fecha">
+              <span class="dia">{{ obtenerDia(noticia.fecha) }}</span>
+              <span class="mes">{{ obtenerMes(noticia.fecha) }}</span>
+            </div>
+          </div>
+
+          <div class="not-cuerpo">
+            <h3>{{ noticia.titulo }}</h3>
+            <span class="not-dato">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+                <path d="M3 10h18"></path>
+                <path d="M8 3v4"></path>
+                <path d="M16 3v4"></path>
+              </svg>
+              {{ formatearFecha(noticia.fecha) }}
+            </span>
+            <p class="not-descripcion">{{ noticia.descripcion }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+}

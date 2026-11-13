@@ -1,0 +1,85 @@
+<div class="modal-overlay" (click)="onCancelar()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+      <h3>{{ modoEdicion ? 'Editar slide' : 'Agregar slide' }}</h3>
+      <button type="button" class="close-btn" (click)="onCancelar()">&times;</button>
+    </div>
+
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="slide-titulo">Título</label>
+        <input id="slide-titulo" type="text" formControlName="titulo" placeholder="Ej: Dona Sangre, Dona Vida"
+          [class.input-invalido]="campoInvalido('titulo')">
+        @if (campoInvalido('titulo')) {
+          <span class="error-msg">
+            @if (formulario.get('titulo')?.errors?.['required']) {
+              El título es obligatorio.
+            } @else if (formulario.get('titulo')?.errors?.['minlength']) {
+              El título debe tener al menos 3 caracteres.
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="slide-descripcion">Texto</label>
+        <textarea id="slide-descripcion" formControlName="descripcion" rows="3"
+          placeholder="Frase que acompaña al título..."></textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="slide-boton">Texto del botón</label>
+          <input id="slide-boton" type="text" formControlName="botonTexto" placeholder="Ej: Ver más">
+        </div>
+
+        <div class="form-group">
+          <label for="slide-orden">Posición</label>
+          <input id="slide-orden" type="number" min="0" formControlName="orden"
+            [class.input-invalido]="campoInvalido('orden')">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="check-linea">
+          <input type="checkbox" formControlName="activo">
+          Mostrar en el carrusel
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>Foto del slide</label>
+        <div class="opciones-imagen">
+          @for (opcion of opcionesImagen; track opcion.ruta) {
+            <button type="button" class="opcion-imagen"
+              [class.seleccionada]="estaSeleccionada(opcion.ruta)"
+              [attr.aria-label]="'Usar foto ' + opcion.nombre"
+              (click)="seleccionarRuta(opcion.ruta)">
+              <img [src]="opcion.ruta" [alt]="opcion.nombre">
+              <span>{{ opcion.nombre }}</span>
+            </button>
+          }
+        </div>
+
+        <span class="separador-imagen">O subí una foto propia:</span>
+        <input #inputArchivo id="slide-imagen" type="file" accept="image/*" (change)="onArchivoSeleccionado($event)">
+
+        @if (previewImagen) {
+          <img [src]="previewImagen" alt="Vista previa de la foto del slide" class="imagen-preview">
+        }
+
+        @if (errorImagen) {
+          <span class="error-msg">{{ errorImagen }}</span>
+        }
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-cancelar" (click)="onCancelar()">Cancelar</button>
+        <button type="submit" class="btn-guardar">{{ modoEdicion ? 'Guardar cambios' : 'Crear slide' }}</button>
+      </div>
+
+    </form>
+  </div>
+</div>

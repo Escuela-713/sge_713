@@ -1,0 +1,110 @@
+@if (requisitos.length > 0 || preguntas.length > 0) {
+  <section class="info-seccion" id="informacion">
+    <div class="info-cabecera">
+      <span class="info-pildora">Todo lo que Necesitas Saber</span>
+      <h2>Información sobre Donación</h2>
+      <p>Conoce los requisitos, beneficios y resuelve tus dudas sobre la donación de sangre.</p>
+    </div>
+
+    <div class="info-columnas">
+      @if (requisitos.length > 0) {
+        <div class="info-columna">
+          <div class="info-titulo">
+            <span class="info-titulo-icono">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6.716-4.35-9.428-8.06C.55 10.24 1.2 6.6 4.2 5.1 6.6 3.9 9 4.6 12 7.5c3-2.9 5.4-3.6 7.8-2.4 3 1.5 3.65 5.14 1.628 7.84C18.716 16.65 12 21 12 21z"></path>
+              </svg>
+            </span>
+            <h3>Requisitos para Donar</h3>
+          </div>
+
+          <div class="requisitos-grid">
+            @for (item of requisitos; track item.id) {
+              <article class="requisito">
+                <span class="requisito-icono">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    @switch (item.icono) {
+                      @case ('edad') {
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 21v-1a7 7 0 0 1 7-7h2a7 7 0 0 1 7 7v1"></path>
+                      }
+                      @case ('peso') {
+                        <path d="M12 3v18"></path>
+                        <path d="M7 21h10"></path>
+                        <path d="M5 7h14"></path>
+                        <path d="M5 7l-3 7a3 3 0 0 0 6 0z"></path>
+                        <path d="M19 7l-3 7a3 3 0 0 0 6 0z"></path>
+                      }
+                      @case ('identificacion') {
+                        <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                        <path d="M2 10h20"></path>
+                      }
+                      @case ('descanso') {
+                        <circle cx="12" cy="12" r="9"></circle>
+                        <path d="M12 7v5l3 3"></path>
+                      }
+                      @case ('alimentacion') {
+                        <path d="M4 3v5a3 3 0 0 0 6 0V3"></path>
+                        <path d="M7 3v18"></path>
+                        <path d="M17 3c-2 1.5-3 4-3 7h3v11"></path>
+                      }
+                      @case ('gota') {
+                        <path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"></path>
+                      }
+                      @case ('calendario') {
+                        <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+                        <path d="M3 10h18"></path>
+                        <path d="M8 3v4"></path>
+                        <path d="M16 3v4"></path>
+                      }
+                      @default {
+                        <path d="M12 21s-6.716-4.35-9.428-8.06C.55 10.24 1.2 6.6 4.2 5.1 6.6 3.9 9 4.6 12 7.5c3-2.9 5.4-3.6 7.8-2.4 3 1.5 3.65 5.14 1.628 7.84C18.716 16.65 12 21 12 21z"></path>
+                      }
+                    }
+                  </svg>
+                </span>
+                <div class="requisito-texto">
+                  <h4>{{ item.titulo }}</h4>
+                  <p>{{ item.descripcion }}</p>
+                </div>
+              </article>
+            }
+          </div>
+        </div>
+      }
+
+      @if (preguntas.length > 0) {
+        <div class="info-columna">
+          <div class="info-titulo">
+            <span class="info-titulo-icono">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </span>
+            <h3>Preguntas Frecuentes</h3>
+          </div>
+
+          <div class="preguntas">
+            @for (item of preguntas; track item.id) {
+              <div class="pregunta" [class.abierta]="preguntaAbierta === item.id">
+                <button
+                  type="button"
+                  class="pregunta-boton"
+                  [attr.aria-expanded]="preguntaAbierta === item.id"
+                  (click)="alternarPregunta(item.id)">
+                  <span>{{ item.titulo }}</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M6 9l6 6 6-6"></path>
+                  </svg>
+                </button>
+                @if (preguntaAbierta === item.id) {
+                  <p class="pregunta-respuesta">{{ item.descripcion }}</p>
+                }
+              </div>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+}
