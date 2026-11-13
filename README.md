@@ -104,7 +104,7 @@ El funcionamiento del SGE 713 sigue un ciclo simple y eficiente:
 **Aclaración:** Los nombres de las aplicaciones están organizados según el nombre de cada gestión. Por ejemplo, `gestion_home`.
 
    ```bash
-   python manage.py makemigrations <nombre-de-la-aplicacion>
+   python manage.py makemigrations nombre_de_la_aplicacion
    python manage.py migrate
    ```
 6. Ejecutar el backend:
