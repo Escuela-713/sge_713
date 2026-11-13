@@ -52,7 +52,7 @@
 
         <!-- Botones de acción -->
         <div class="d-flex justify-contend-end gap-2 mt-3">
-          <button type="submit" class="btn btn-submit" [disabled]="form.invalid || isSubmitting">
+          <button type="submit" class="btn btn-submit">
             {{ isSubmitting ? 'Guardando...' : 'Guardar' }}
           </button>
           <button type="button" class="btn btn-cancel" (click)="onCancel()">Cancelar</button>
