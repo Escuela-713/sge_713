@@ -198,3 +198,8 @@
 .btn-inscribirse:hover {
   background-color: #b91c1c;
 }
+
+/* Deja espacio para la navbar sticky al scrollear a #eventos */
+#eventos {
+  scroll-margin-top: 90px;
+}

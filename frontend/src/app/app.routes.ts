@@ -2,6 +2,7 @@ import type { Route, Routes } from '@angular/router'
 import { DashboardComponent } from '@pages/dashboard/dashboard.component'
 import { EditarEventoComponent } from '@pages/donar-713/componentes/editar-evento/editar-evento.component'
 import { Donar713Component } from '@pages/donar-713/donar-713.component'
+import { HistoriaComponent } from '@pages/donar-713/componentes/historia/historia.component'
 import { DonarHomeComponent } from '@pages/donar-713/donar-home/donar-home.component'
 import { CarrerasComponent } from '@pages/gestion-carreras-planes-materias/carreras/carreras.component'
 import { FormCarreraComponent } from '@pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component'
@@ -50,7 +51,9 @@ export const routes: Routes = [
     path: 'donar-713',
     component: Donar713Component,
     children: [
+      { path: '', redirectTo: 'donar-home', pathMatch: 'full' },
       { path: 'donar-home', component: DonarHomeComponent },
+      { path: 'historia', component: HistoriaComponent },
       { path: 'editar-evento', component: EditarEventoComponent },
     ],
   },

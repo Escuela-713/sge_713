@@ -1,0 +1,112 @@
+:host {
+  display: block;
+}
+
+/* Página completa: ocupa al menos la pantalla para que el footer quede abajo */
+.pagina {
+  max-width: 960px;
+  min-height: 70vh;
+  margin: 0 auto;
+  padding: 3rem 2rem 4rem;
+}
+
+.pagina-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.pagina-titulo h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a2e;
+}
+
+.indicador {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: #dc2626;
+  display: inline-block;
+}
+
+.introduccion {
+  max-width: 760px;
+  font-size: 1.02rem;
+  line-height: 1.75;
+  color: #555;
+  margin-bottom: 2.5rem;
+}
+
+/* ---- Línea de tiempo ---- */
+.linea-tiempo {
+  list-style: none;
+  max-width: 760px;
+  padding-left: 1.75rem;
+  border-left: 3px solid #f0d4d0;
+}
+
+.hito {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.hito:last-child {
+  margin-bottom: 0;
+}
+
+.hito-punto {
+  position: absolute;
+  left: calc(-1.75rem - 9px);
+  top: 1.35rem;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #dc2626;
+  border: 3px solid #fff;
+  box-shadow: 0 0 0 2px #dc2626;
+}
+
+.hito-card {
+  background: white;
+  border-radius: 16px;
+  border: 1px solid #f0d9d9;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hito-card:hover {
+  transform: translateX(6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.hito-etapa {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #dc2626;
+  margin-bottom: 0.35rem;
+}
+
+.hito-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 0.5rem;
+}
+
+.hito-card p {
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: #666;
+}
+
+@media (max-width: 480px) {
+  .pagina {
+    padding: 2rem 1rem 3rem;
+  }
+}
