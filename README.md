@@ -107,16 +107,19 @@ El funcionamiento del SGE 713 sigue un ciclo simple y eficiente:
    python manage.py makemigrations nombre_de_la_aplicacion
    python manage.py migrate
    ```
-6. Ejecutar el backend:
 
-   ```bash
-   python manage.py runserver
-   ```
-7. En backend ejecutar el comando:
+6. En backend ejecutar el comando:
 
    ```bash
    pip install -r requirements.txt
    ```
+
+7. Ejecutar el backend:
+
+   ```bash
+   python manage.py runserver
+   ```
+   
 ### **C. Iniciar el Frontend**
 
 1. Abrir una **segunda** terminal.
