@@ -2,30 +2,35 @@
   <div class="modal-content" (click)="$event.stopPropagation()">
 
     <div class="modal-header">
-      <h3>
-        @if (esRequisito) {
-          {{ modoEdicion ? 'Editar requisito' : 'Agregar requisito' }}
-        } @else {
-          {{ modoEdicion ? 'Editar pregunta' : 'Agregar pregunta' }}
-        }
-      </h3>
-      <button type="button" class="close-btn" (click)="onCancelar()">&times;</button>
+      <h3>{{ modoEdicion ? 'Editar información' : 'Agregar información' }}</h3>
+      <button type="button" class="close-btn" (click)="onCancelar()" aria-label="Cerrar">&times;</button>
     </div>
 
     <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
 
       <div class="form-group">
-        <label for="info-tipo">Tipo</label>
-        <select id="info-tipo" formControlName="tipo">
-          <option value="requisito">Requisito para donar</option>
-          <option value="pregunta">Pregunta frecuente</option>
-        </select>
+        <div class="label-fila">
+          <label for="info-tipo">Tipo</label>
+          <button type="button" class="link-btn" (click)="administrarTipos.emit()">Administrar tipos</button>
+        </div>
+        @if (tipos.length > 0) {
+          <select id="info-tipo" formControlName="tipo">
+            @for (tipo of tipos; track tipo.id) {
+              <option [value]="tipo.nombre">{{ tipo.nombre }}</option>
+            }
+          </select>
+        } @else {
+          <p class="aviso">Todavía no hay tipos cargados. Creá el primero desde «Administrar tipos».</p>
+        }
+        @if (campoInvalido('tipo')) {
+          <span class="error-msg">Elegí un tipo.</span>
+        }
       </div>
 
       <div class="form-group">
-        <label for="info-titulo">{{ esRequisito ? 'Título' : 'Pregunta' }}</label>
+        <label for="info-titulo">Título</label>
         <input id="info-titulo" type="text" formControlName="titulo"
-          [placeholder]="esRequisito ? 'Ej: Edad' : 'Ej: ¿Quién puede donar sangre?'"
+          placeholder="Ej: Corazón"
           [class.input-invalido]="campoInvalido('titulo')">
         @if (campoInvalido('titulo')) {
           <span class="error-msg">
@@ -39,9 +44,21 @@
       </div>
 
       <div class="form-group">
-        <label for="info-descripcion">{{ esRequisito ? 'Detalle' : 'Respuesta' }}</label>
-        <textarea id="info-descripcion" formControlName="descripcion" [rows]="esRequisito ? 2 : 5"
-          [placeholder]="esRequisito ? 'Ej: Entre 18 y 65 años' : 'Escribí la respuesta que se muestra al abrir la pregunta'"
+        <label for="info-imagen">Imagen</label>
+        <input id="info-imagen" type="file" accept="image/*" (change)="onArchivoSeleccionado($event)">
+        <span class="ayuda-campo">Se sube desde tu computadora (no se aceptan enlaces). Máximo 5 MB.</span>
+        @if (errorImagen) {
+          <span class="error-msg">{{ errorImagen }}</span>
+        }
+        @if (previewImagen) {
+          <img [src]="previewImagen" alt="Vista previa de la imagen" class="imagen-preview">
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="info-contenido">Contenido</label>
+        <textarea id="info-contenido" formControlName="descripcion" rows="6"
+          placeholder="Escribí lo que se muestra cuando se abre la tarjeta"
           [class.input-invalido]="campoInvalido('descripcion')"></textarea>
         @if (campoInvalido('descripcion')) {
           <span class="error-msg">
@@ -53,17 +70,6 @@
           </span>
         }
       </div>
-
-      @if (esRequisito) {
-        <div class="form-group">
-          <label for="info-icono">Ícono</label>
-          <select id="info-icono" formControlName="icono">
-            @for (icono of iconos; track icono.valor) {
-              <option [value]="icono.valor">{{ icono.etiqueta }}</option>
-            }
-          </select>
-        </div>
-      }
 
       <div class="form-row">
         <div class="form-group">

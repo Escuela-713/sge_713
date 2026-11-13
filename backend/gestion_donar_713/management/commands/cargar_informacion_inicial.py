@@ -1,14 +1,17 @@
 from django.core.management.base import BaseCommand
 
-from gestion_donar_713.models import Informacion
+from gestion_donar_713.models import Informacion, TipoInformacion
+
+TIPO_REQUISITOS = "Requisitos para donar"
+TIPO_PREGUNTAS = "Preguntas frecuentes"
 
 REQUISITOS = [
-	("Edad", "Entre 18 y 65 años", "edad"),
-	("Peso", "Mínimo 50 kg", "peso"),
-	("Salud", "Buen estado de salud general", "salud"),
-	("Identificación", "Documento de identidad vigente", "identificacion"),
-	("Descanso", "Haber dormido al menos 6 horas", "descanso"),
-	("Alimentación", "Haber comido en las últimas 4 horas", "alimentacion"),
+	("Edad", "Entre 18 y 65 años"),
+	("Peso", "Mínimo 50 kg"),
+	("Salud", "Buen estado de salud general"),
+	("Identificación", "Documento de identidad vigente"),
+	("Descanso", "Haber dormido al menos 6 horas"),
+	("Alimentación", "Haber comido en las últimas 4 horas"),
 ]
 
 PREGUNTAS = [
@@ -43,21 +46,22 @@ class Command(BaseCommand):
 			self.stdout.write("Ya hay información cargada. No se agregó nada.")
 			return
 
-		for orden, (titulo, descripcion, icono) in enumerate(REQUISITOS, start=1):
+		TipoInformacion.objects.get_or_create(nombre=TIPO_REQUISITOS, defaults={"orden": 0})
+		TipoInformacion.objects.get_or_create(nombre=TIPO_PREGUNTAS, defaults={"orden": 1})
+
+		for orden, (titulo, descripcion) in enumerate(REQUISITOS, start=1):
 			Informacion.objects.create(
-				tipo="requisito",
+				tipo=TIPO_REQUISITOS,
 				titulo=titulo,
 				descripcion=descripcion,
-				icono=icono,
 				orden=orden,
 			)
 
 		for orden, (titulo, descripcion) in enumerate(PREGUNTAS, start=1):
 			Informacion.objects.create(
-				tipo="pregunta",
+				tipo=TIPO_PREGUNTAS,
 				titulo=titulo,
 				descripcion=descripcion,
-				icono="",
 				orden=orden,
 			)
 

@@ -160,25 +160,23 @@
       <div class="apartado-header">
         <h2>Información sobre Donación</h2>
         <button class="btn-agregar" (click)="abrirFormularioInfo()">
-          {{ tabInformacion === 'requisito' ? '+ Agregar Requisito' : '+ Agregar Pregunta' }}
+          + Agregar información
         </button>
       </div>
 
-      <div class="sub-navbar">
-        <button type="button" class="sub-tab" [class.active]="tabInformacion === 'requisito'" (click)="cambiarTabInformacion('requisito')">
-          Requisitos para donar
-        </button>
-        <button type="button" class="sub-tab" [class.active]="tabInformacion === 'pregunta'" (click)="cambiarTabInformacion('pregunta')">
-          Preguntas frecuentes
+      <div class="sub-navbar sub-navbar-info">
+        @for (tipo of tiposInformacion; track tipo.id) {
+          <button type="button" class="sub-tab" [class.active]="tabInformacion === tipo.nombre" (click)="cambiarTabInformacion(tipo.nombre)">
+            {{ tipo.nombre }}
+          </button>
+        }
+        <button type="button" class="sub-tab sub-tab-gestion" (click)="abrirGestorTipos()">
+          ⚙ Administrar tipos
         </button>
       </div>
 
       <p class="ayuda">
-        @if (tabInformacion === 'requisito') {
-          Cada requisito se muestra como una tarjeta con su ícono, en el orden de la posición indicada.
-        } @else {
-          Cada pregunta se despliega en la página y muestra su respuesta, en el orden de la posición indicada.
-        }
+        Cada tarjeta se muestra en la página con su imagen y su título; al hacer clic se abre a pantalla completa con el contenido.
       </p>
 
       @if (errorInformacion) {
@@ -188,6 +186,11 @@
       <div class="lista-items">
         @for (info of informacionFiltrada; track info.id) {
           <div class="item-card">
+            @if (info.imagen) {
+              <img class="item-img" [src]="info.imagen" [alt]="info.titulo">
+            } @else {
+              <div class="item-img item-img-vacia">Sin imagen</div>
+            }
             <div class="item-info">
               <h3>{{ info.titulo }}</h3>
               <p class="descripcion">{{ info.descripcion }}</p>
@@ -200,10 +203,10 @@
           </div>
         } @empty {
           <p class="lista-vacia">
-            @if (tabInformacion === 'requisito') {
-              Todavía no hay requisitos cargados.
+            @if (tiposInformacion.length === 0) {
+              Todavía no hay tipos. Creá el primero desde «Administrar tipos».
             } @else {
-              Todavía no hay preguntas frecuentes cargadas.
+              Todavía no hay información cargada en este tipo.
             }
           </p>
         }
@@ -242,8 +245,18 @@
 @if (formularioInfoVisible) {
   <app-formulario-informacion
     [infoEditar]="infoSeleccionada"
+    [tipos]="tiposInformacion"
     [tipoInicial]="tipoInfoNueva"
     (guardar)="guardarInfo($event)"
-    (cancelar)="cerrarFormularioInfo()">
+    (cancelar)="cerrarFormularioInfo()"
+    (administrarTipos)="abrirGestorTipos()">
   </app-formulario-informacion>
+}
+
+@if (gestorTiposVisible) {
+  <app-gestor-tipos-informacion
+    [tipos]="tiposInformacion"
+    (cambio)="alCambiarTipos()"
+    (cerrar)="cerrarGestorTipos()">
+  </app-gestor-tipos-informacion>
 }

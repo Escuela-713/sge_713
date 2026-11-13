@@ -1,0 +1,62 @@
+<div class="modal-overlay" (click)="cerrar.emit()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+      <h3>Administrar tipos</h3>
+      <button type="button" class="close-btn" (click)="cerrar.emit()" aria-label="Cerrar">&times;</button>
+    </div>
+
+    <p class="ayuda">
+      Los tipos son las secciones en las que se agrupan las tarjetas en la página.
+      Se muestran en el orden de esta lista.
+    </p>
+
+    <form class="fila-nuevo" (ngSubmit)="agregar()">
+      <input type="text" name="nuevoTipo" [(ngModel)]="nuevoNombre" maxlength="100"
+        placeholder="Nuevo tipo (ej: Órganos)" aria-label="Nombre del nuevo tipo">
+      <button type="submit" class="btn-guardar" [disabled]="ocupado">Agregar</button>
+    </form>
+
+    @if (error) {
+      <p class="error-msg">{{ error }}</p>
+    }
+
+    <ul class="lista-tipos">
+      @for (tipo of tipos; track tipo.id; let i = $index; let primero = $first; let ultimo = $last) {
+        <li class="tipo-fila">
+          @if (editandoId === tipo.id) {
+            <input type="text" class="tipo-input" maxlength="100"
+              [(ngModel)]="nombreEditado"
+              (keydown.enter)="guardarEdicion(tipo)"
+              (keydown.escape)="cancelarEdicion()"
+              aria-label="Nuevo nombre del tipo">
+            <button type="button" class="btn-mini principal" [disabled]="ocupado" (click)="guardarEdicion(tipo)">Guardar</button>
+            <button type="button" class="btn-mini" (click)="cancelarEdicion()">Cancelar</button>
+          } @else {
+            <div class="tipo-texto">
+              <span class="tipo-nombre">{{ tipo.nombre }}</span>
+              <span class="tipo-cantidad">{{ tipo.cantidad }} {{ tipo.cantidad === 1 ? 'tarjeta' : 'tarjetas' }}</span>
+            </div>
+            <div class="tipo-acciones">
+              <button type="button" class="btn-mini" [disabled]="primero || ocupado" (click)="mover(i, -1)"
+                [attr.aria-label]="'Subir ' + tipo.nombre">▲</button>
+              <button type="button" class="btn-mini" [disabled]="ultimo || ocupado" (click)="mover(i, 1)"
+                [attr.aria-label]="'Bajar ' + tipo.nombre">▼</button>
+              <button type="button" class="btn-mini" [disabled]="ocupado" (click)="empezarEdicion(tipo)"
+                [attr.aria-label]="'Renombrar ' + tipo.nombre">✎</button>
+              <button type="button" class="btn-mini peligro" [disabled]="ocupado" (click)="eliminar(tipo)"
+                [attr.aria-label]="'Eliminar ' + tipo.nombre">🗑</button>
+            </div>
+          }
+        </li>
+      } @empty {
+        <li class="tipo-vacio">Todavía no hay tipos. Escribí un nombre arriba y apretá «Agregar».</li>
+      }
+    </ul>
+
+    <div class="modal-footer">
+      <button type="button" class="btn-cancelar" (click)="cerrar.emit()">Listo</button>
+    </div>
+
+  </div>
+</div>

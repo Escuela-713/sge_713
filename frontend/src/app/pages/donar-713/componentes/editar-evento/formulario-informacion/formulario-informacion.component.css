@@ -139,3 +139,51 @@
   width: 18px;
   height: 18px;
 }
+
+.label-fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.label-fila label {
+  margin-bottom: 5px;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #cc001f;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.aviso {
+  margin: 0;
+  padding: 10px 12px;
+  background: #fdf2f2;
+  border: 1px dashed #cc001f;
+  border-radius: 8px;
+  color: #7a1a27;
+  font-size: 0.85rem;
+}
+
+.ayuda-campo {
+  display: block;
+  margin-top: 4px;
+  color: #777;
+  font-size: 0.78rem;
+}
+
+.imagen-preview {
+  margin-top: 8px;
+  max-width: 100%;
+  max-height: 160px;
+  border-radius: 8px;
+  object-fit: cover;
+  display: block;
+}

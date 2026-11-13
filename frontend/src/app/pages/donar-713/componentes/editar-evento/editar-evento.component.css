@@ -115,6 +115,30 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
+/* Pestañas de información: los tipos los carga el usuario, así que pueden ser muchos */
+.sub-navbar-info {
+  max-width: none;
+  flex-wrap: wrap;
+}
+
+.sub-navbar-info .sub-tab {
+  flex: 0 1 auto;
+}
+
+.sub-tab-gestion {
+  margin-left: auto;
+  border: 1px dashed #bbb;
+}
+
+.item-img-vacia {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 0.72rem;
+  color: #999;
+}
+
 .lista-items {
   display: flex;
   flex-direction: column;

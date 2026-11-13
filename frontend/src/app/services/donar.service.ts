@@ -34,29 +34,22 @@ export interface NoticiaApi {
   estado: 'reciente' | 'historial';
 }
 
-export type TipoInformacion = 'requisito' | 'pregunta';
-
-export type IconoInformacion =
-  | 'edad'
-  | 'peso'
-  | 'salud'
-  | 'identificacion'
-  | 'descanso'
-  | 'alimentacion'
-  | 'gota'
-  | 'calendario';
-
 export interface InformacionApi {
   id: number;
-  tipo: TipoInformacion;
+  tipo: string;
   titulo: string;
   descripcion: string;
-  icono: IconoInformacion | '';
+  imagen: string | null;
   orden: number;
   activo: boolean;
 }
 
-export type InformacionPayload = Omit<InformacionApi, 'id'>;
+export interface TipoInformacionApi {
+  id: number;
+  nombre: string;
+  orden: number;
+  cantidad: number;
+}
 
 export interface DonarHomeData {
   carrusel: CarruselSlideApi[];
@@ -64,6 +57,7 @@ export interface DonarHomeData {
   eventosProximos: EventoApi[];
   noticias: NoticiaApi[];
   informacion: InformacionApi[];
+  tiposInformacion: TipoInformacionApi[];
 }
 
 @Injectable({ providedIn: 'root' })
@@ -126,15 +120,34 @@ export class DonarService {
     return this.http.get<InformacionApi[]>(`${API_BASE}/informacion/`);
   }
 
-  crearInformacion(payload: InformacionPayload): Observable<InformacionApi> {
+  crearInformacion(payload: FormData): Observable<InformacionApi> {
     return this.http.post<InformacionApi>(`${API_BASE}/informacion/`, payload);
   }
 
-  actualizarInformacion(id: number, payload: InformacionPayload): Observable<InformacionApi> {
+  actualizarInformacion(id: number, payload: FormData): Observable<InformacionApi> {
     return this.http.patch<InformacionApi>(`${API_BASE}/informacion/${id}/`, payload);
   }
 
   eliminarInformacion(id: number): Observable<void> {
     return this.http.delete<void>(`${API_BASE}/informacion/${id}/`);
+  }
+
+  getTiposInformacion(): Observable<TipoInformacionApi[]> {
+    return this.http.get<TipoInformacionApi[]>(`${API_BASE}/tipos-informacion/`);
+  }
+
+  crearTipoInformacion(nombre: string): Observable<TipoInformacionApi> {
+    return this.http.post<TipoInformacionApi>(`${API_BASE}/tipos-informacion/`, { nombre });
+  }
+
+  actualizarTipoInformacion(
+    id: number,
+    cambios: Partial<Pick<TipoInformacionApi, 'nombre' | 'orden'>>,
+  ): Observable<TipoInformacionApi> {
+    return this.http.patch<TipoInformacionApi>(`${API_BASE}/tipos-informacion/${id}/`, cambios);
+  }
+
+  eliminarTipoInformacion(id: number): Observable<void> {
+    return this.http.delete<void>(`${API_BASE}/tipos-informacion/${id}/`);
   }
 }

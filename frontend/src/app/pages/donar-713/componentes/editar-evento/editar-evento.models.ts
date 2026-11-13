@@ -30,10 +30,17 @@ export interface Slide {
 
 export interface Informacion {
   id: number;
-  tipo: 'requisito' | 'pregunta';
+  tipo: string;
   titulo: string;
   descripcion: string;
-  icono: string;
+  imagen: string;
   orden: number;
   activo: boolean;
+}
+
+export interface TipoInformacion {
+  id: number;
+  nombre: string;
+  orden: number;
+  cantidad: number;
 }

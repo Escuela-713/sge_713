@@ -3,7 +3,8 @@ import { FormularioEventoComponent, GuardarEventoPayload } from './formulario-ev
 import { FormularioNoticiaComponent, GuardarNoticiaPayload } from './formulario-noticia/formulario-noticia.component';
 import { FormularioSlideComponent, GuardarSlidePayload } from './formulario-slide/formulario-slide.component';
 import { FormularioInformacionComponent, GuardarInformacionPayload } from './formulario-informacion/formulario-informacion.component';
-import { Evento, Informacion, Noticia, Slide } from './editar-evento.models';
+import { GestorTiposInformacionComponent } from './gestor-tipos-informacion/gestor-tipos-informacion.component';
+import { Evento, Informacion, Noticia, Slide, TipoInformacion } from './editar-evento.models';
 import {
   CarruselSlideApi,
   DonarService,
@@ -15,7 +16,6 @@ import {
 type SeccionAdmin = 'carrusel' | 'eventos' | 'noticias' | 'informacion';
 type TabEventos = 'activo' | 'proximo' | 'historial';
 type TabNoticias = 'reciente' | 'historial';
-type TabInformacion = 'requisito' | 'pregunta';
 
 function eventoDeApi(e: EventoApi): Evento {
   return {
@@ -59,7 +59,7 @@ function informacionDeApi(i: InformacionApi): Informacion {
     tipo: i.tipo,
     titulo: i.titulo,
     descripcion: i.descripcion,
-    icono: i.icono,
+    imagen: i.imagen ?? '',
     orden: i.orden,
     activo: i.activo,
   };
@@ -73,6 +73,7 @@ function informacionDeApi(i: InformacionApi): Informacion {
     FormularioNoticiaComponent,
     FormularioSlideComponent,
     FormularioInformacionComponent,
+    GestorTiposInformacionComponent,
   ],
   templateUrl: './editar-evento.component.html',
   styleUrl: './editar-evento.component.css',
@@ -83,12 +84,13 @@ export class EditarEventoComponent implements OnInit {
 
   tabEventos: TabEventos = 'activo';
   tabNoticias: TabNoticias = 'reciente';
-  tabInformacion: TabInformacion = 'requisito';
+  tabInformacion = '';
 
   eventos: Evento[] = [];
   misNoticias: Noticia[] = [];
   slides: Slide[] = [];
   informacion: Informacion[] = [];
+  tiposInformacion: TipoInformacion[] = [];
 
   cargandoEventos = false;
   cargandoNoticias = false;
@@ -111,7 +113,9 @@ export class EditarEventoComponent implements OnInit {
 
   formularioInfoVisible = false;
   infoSeleccionada: Informacion | null = null;
-  tipoInfoNueva: TabInformacion = 'requisito';
+  tipoInfoNueva = '';
+
+  gestorTiposVisible = false;
 
   constructor(private donarService: DonarService) {}
 
@@ -119,6 +123,7 @@ export class EditarEventoComponent implements OnInit {
     this.cargarEventos();
     this.cargarNoticias();
     this.cargarCarrusel();
+    this.cargarTiposInformacion();
     this.cargarInformacion();
   }
 
@@ -178,6 +183,20 @@ export class EditarEventoComponent implements OnInit {
     });
   }
 
+  private cargarTiposInformacion(): void {
+    this.donarService.getTiposInformacion().subscribe({
+      next: (tipos) => {
+        this.tiposInformacion = tipos;
+        if (!tipos.some(t => t.nombre === this.tabInformacion)) {
+          this.tabInformacion = tipos[0]?.nombre ?? '';
+        }
+      },
+      error: () => {
+        this.errorInformacion = 'No se pudieron cargar los tipos de información desde el servidor.';
+      },
+    });
+  }
+
   get eventosFiltrados(): Evento[] {
     return this.eventos.filter(e => e.estado === this.tabEventos);
   }
@@ -208,7 +227,7 @@ export class EditarEventoComponent implements OnInit {
     this.tabNoticias = tab;
   }
 
-  cambiarTabInformacion(tab: TabInformacion): void {
+  cambiarTabInformacion(tab: string): void {
     this.tabInformacion = tab;
   }
 
@@ -356,8 +375,8 @@ export class EditarEventoComponent implements OnInit {
 
   guardarInfo(payload: GuardarInformacionPayload): void {
     const peticion = payload.id
-      ? this.donarService.actualizarInformacion(payload.id, payload.datos)
-      : this.donarService.crearInformacion(payload.datos);
+      ? this.donarService.actualizarInformacion(payload.id, payload.formData)
+      : this.donarService.crearInformacion(payload.formData);
 
     peticion.subscribe({
       next: (infoGuardada) => {
@@ -376,6 +395,20 @@ export class EditarEventoComponent implements OnInit {
         this.errorInformacion = 'No se pudo guardar la información. Revisá los datos e intentá nuevamente.';
       },
     });
+  }
+
+  abrirGestorTipos(): void {
+    this.gestorTiposVisible = true;
+  }
+
+  cerrarGestorTipos(): void {
+    this.gestorTiposVisible = false;
+  }
+
+  // Se cambiaron tipos (alta, renombre, orden o baja): se vuelve a cargar todo para que quede al día.
+  alCambiarTipos(): void {
+    this.cargarTiposInformacion();
+    this.cargarInformacion();
   }
 
   eliminarInfo(info: Informacion): void {
