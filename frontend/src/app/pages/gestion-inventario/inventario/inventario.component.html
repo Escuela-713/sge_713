@@ -1,134 +1,83 @@
 <div class="inventory">
-    <div class="header" style="display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center;">
-        <h2 class="titulo">Inventario detallado — Estado y titularidad</h2>
-        <input type="text" placeholder="Buscar bien por nombre, código o titular..." class="search-input" style="max-width:420px; width:90%;" />
+  <div class="header">
+    <h2 class="titulo">Inventario detallado</h2>
+    <div class="barra">
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Buscar bien..."
+        [(ngModel)]="busqueda"
+        name="busqueda"
+      />
+      <a class="btn btnAdd" routerLink="registrar">Registrar bien</a>
     </div>
-	<div class="movements" style="margin-bottom:14px; display:flex; gap:16px;">
-			
-		<!--Aca empieza -->
-			<div class="container">
-		
-        <strong>Egresos recientes</strong>
-        <table class="table">
-            <thead>
-                <!--1ra tabla-->
-                <tr>
-                    <th>Nombre</th>
-                    <th>Categoría</th>
-                    <th>Cantidad</th>
-                    <th>Código especial</th>
-                    <th>Estado</th>
-                    <th>Ubicación</th>
-                    <th>Fecha</th>
-                    <th>Prestado</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            
-            <tbody>
-                <tr>
-                    <td>Sillas</td>
-                    <td>Mobiliario</td>
-                    <td>12</td>
-                    <td>Sill-004</td>
-                    <td>Bueno</td>
-                    <td>Aula 3ro 1ra ESB</td>
-                    <td>2020-08-01</td>
-                    <td>No</td>
-                    
-                    <td>
-                        <button class="btn btnAdd">Editar</button>
-						<button class="btn btnVerTabla">Ver más</button>
-						<button class="btn btnDelete">Eliminar</button>
-                    </td>
-                </tr>
-			
-				<!--2da tabla-->
-                <tr>
-            <td>Sillas</td>
-            <td>Mobiliario</td>
-            <td>12</td>
-            <td>Sill-001</td>
-            <td>En uso</td>
-            <td>Aula 5to ETP</td>
-            <td>N/D</td>
-            <td>No</td>
-            <td>
-                <button class="btn btnAdd" style="display:inline-block;">Editar</button>
-                <button class="btn btnVerTabla" style="display:inline-block;">Ver más</button>
-                <button class="btn btnDelete" style="display:inline-block;">Eliminar</button>
-            </td>
-                </tr>
-                <!--3era tabla-->
-                <tr>
-            <td>Equipo de Sonido — Micrófono</td>
-            <td>Equipamiento</td>
-            <td>1</td>
-            <td>Mic-001</td>
-            <td>En préstamo</td>
-            <td>N/D</td>
-            <td>N/D</td>
-            <td>Sí</td>
-            <td>
-                <button class="btn btnAdd" style="display:inline-block;">Editar</button>
-                <button class="btn btnVerTabla" style="display:inline-block;">Ver más</button>
-                <button class="btn btnDelete" style="display:inline-block;">Eliminar</button>
-            </td>
-                </tr>
-                <!--4rta tabla-->
-                                <tr>
-                        <td>Proyector Epson X123</td>
-                        <td>Equipamiento audiovisual</td>
-                        <td>1</td>
-                        <td>Pyt-001</td>
-                        <td>Prestado</td>
-                        <td>biblioteca</td>
-                        <td>N/D</td>
-                        <td>No</td>
-                        <td>
-                                <button class="btn btnAdd" style="display:inline-block;">Editar</button>
-                                <button class="btn btnVerTabla" style="display:inline-block;">Ver más</button>
-                                <button class="btn btnDelete" style="display:inline-block;">Eliminar</button>
-                        </td>
-                            </tr>
-              <!--5ta tabla-->
-                                <tr>
-                        <td>Mesas</td>
-                        <td>Mobiliario</td>
-                        <td>24</td>
-                        <td>Ms-004</td>
-                        <td>Regular</td>
-                        <td>Aula 4to ETP</td>
-                        <td>2019-11-20</td>
-                        <td>No</td>
-                        <td>
-                                <button class="btn btnAdd" style="display:inline-block;">Editar</button>
-                                <button class="btn btnVerTabla" style="display:inline-block;">Ver más</button>
-                                <button class="btn btnDelete" style="display:inline-block;">Eliminar</button>
-                        </td>
-                            </tr>
-              <!--6ta tabla-->
-                    <tr>
-                <td>Mesas grandes</td>
-                <td>Mobiliario</td>
-                <td>3</td>
-                <td>MsG 003</td>
-                <td>Bueno</td>
-                <td>Aula 7mo ETP</td>
-                <td>2021-03-12</td>
-                <td>No</td>
-                <td>
-                     <button class="btn btnAdd" style="display:inline-block;">Editar</button>
-                     <button class="btn btnVerTabla" style="display:inline-block;">Ver más</button>
-                     <button class="btn btnDelete" style="display:inline-block;">Eliminar</button>
+  </div>
+
+  @if (mensajeError) {
+    <p class="mensaje mensaje-error">{{ mensajeError }}</p>
+  }
+
+  @if (cargando) {
+    <p class="mensaje">Cargando inventario...</p>
+  } @else if (error) {
+    <div class="mensaje mensaje-error">
+      {{ error }}
+      <button type="button" class="btn btnVerTabla" (click)="cargar()">Reintentar</button>
+    </div>
+  } @else if (bienes.length === 0) {
+    <p class="mensaje">Todavía no hay bienes registrados.</p>
+  } @else if (bienesFiltrados.length === 0) {
+    <p class="mensaje">No se encontraron bienes que coincidan con «{{ busqueda }}».</p>
+  } @else {
+    <div class="table-responsive">
+      <table class="table table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Categoría</th>
+            <th>Cantidad</th>
+            <th>Código especial</th>
+            <th>Estado</th>
+            <th>Ubicación</th>
+            <th>Fecha</th>
+            <th>Prestado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (bien of bienesFiltrados; track bien.id_bien ?? $index) {
+            <tr>
+              <td>{{ bien.nombre }}</td>
+              <td>{{ categoriaDe(bien) }}</td>
+              <td>{{ bien.cantidad }}</td>
+              <td>{{ bien.codigo_especial || 'N/D' }}</td>
+              <td>{{ bien.estado || 'N/D' }}</td>
+              <td>{{ ubicacionDe(bien) }}</td>
+              <td>{{ bien.fecha_adquisicion || 'N/D' }}</td>
+              <td>{{ prestadoDe(bien) }}</td>
+              <td class="acciones">
+                <a
+                  class="btn btnAdd"
+                  [routerLink]="['/dashboard/inventario/editar', bien.id_bien]"
+                >Editar</a>
+                <button type="button" class="btn btnVerTabla" (click)="verMas(bien)">
+                  {{ expandido === bien.id_bien ? 'Ver menos' : 'Ver más' }}
+                </button>
+                <button type="button" class="btn btnDelete" (click)="eliminar(bien)">Eliminar</button>
+              </td>
+            </tr>
+            @if (expandido === bien.id_bien) {
+              <tr class="detalle">
+                <td colspan="9">
+                  <p><strong>Descripción:</strong> {{ bien.descripcion || 'Sin descripción' }}</p>
+                  <p><strong>Código especial:</strong> {{ bien.codigo_especial || 'N/D' }}</p>
+                  <p><strong>Fecha de adquisición:</strong> {{ bien.fecha_adquisicion || 'N/D' }}</p>
                 </td>
-                    </tr>
-            </tbody>
-            
-        </table>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
     </div>
-	<!--no tocar por ahora-->
-	</div>
-
+  }
 </div>
-

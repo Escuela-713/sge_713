@@ -110,6 +110,7 @@ export const routes: Routes = [
         children: [
           indexarRuta(InventarioComponent),
           { path: 'registrar', component: RegistrarBienComponent },
+          { path: 'editar/:id', component: RegistrarBienComponent },
         ],
       },
       {

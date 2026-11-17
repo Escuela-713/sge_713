@@ -1,5 +1,7 @@
 <div class="container">
-  <h1>Registrar bien nuevo</h1>
+  <h1>{{ modoEdicion ? 'Editar bien' : 'Registrar bien nuevo' }}</h1>
+
+  <p *ngIf="cargandoBien">Cargando bien...</p>
 
   <form class="edit-form" [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="form-group">
@@ -11,8 +13,16 @@
     </div>
 
     <div class="form-group">
+      <label>Código especial (opcional):</label>
+      <input type="text" class="form-control" formControlName="codigo_especial" placeholder="Ej: Sill-004">
+    </div>
+
+    <div class="form-group">
       <label>Categoría:</label>
-      <input type="text" class="form-control" formControlName="categoria" placeholder="Ingrese la categoría">
+      <select class="form-control form-select" formControlName="categoria">
+        <option [ngValue]="null" disabled>Seleccioná una categoría</option>
+        <option *ngFor="let c of categorias" [ngValue]="c.id">{{ c.nombre }}</option>
+      </select>
       <small class="error" *ngIf="categoria?.invalid && categoria?.touched">
         La categoría es obligatoria.
       </small>
@@ -20,7 +30,10 @@
 
     <div class="form-group">
       <label>Ubicación:</label>
-      <input type="text" class="form-control" formControlName="ubicacion" placeholder="Ingrese la ubicación">
+      <select class="form-control form-select" formControlName="ubicacion">
+        <option [ngValue]="null" disabled>Seleccioná una ubicación</option>
+        <option *ngFor="let u of ubicaciones" [ngValue]="u.id">{{ u.nombre }}</option>
+      </select>
       <small class="error" *ngIf="ubicacion?.invalid && ubicacion?.touched">
         La ubicación es obligatoria.
       </small>
@@ -36,7 +49,10 @@
       </div>
       <div class="form-group half">
         <label>Estado:</label>
-        <input type="text" class="form-control" formControlName="estado" placeholder="Ingrese el estado">
+        <select class="form-control form-select" formControlName="estado">
+          <option [ngValue]="null" disabled>Seleccioná un estado</option>
+          <option *ngFor="let e of estados" [ngValue]="e">{{ e }}</option>
+        </select>
         <small class="error" *ngIf="estado?.invalid && estado?.touched">
           El estado es obligatorio.
         </small>
@@ -54,7 +70,7 @@
 
     <div class="form-actions">
       <button type="submit" class="button button-primary" [disabled]="enviando">
-        {{ enviando ? 'Guardando...' : 'Guardar cambios' }}
+        {{ enviando ? 'Guardando...' : (modoEdicion ? 'Guardar cambios' : 'Registrar') }}
       </button>
       <button type="button" class="button button-secondary" (click)="onCancelar()">Cancelar</button>
     </div>
