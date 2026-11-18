@@ -44,6 +44,8 @@ export class AgregarSlideComponent {
     reader.readAsDataURL(file);
   }
 
+showSuccessToast = false
+
   async onSubmit(): Promise<void> {
     if (this.form.invalid || !this.imageFile) {
       this.form.markAllAsTouched();
@@ -61,8 +63,12 @@ export class AgregarSlideComponent {
         )
       );
 
-      alert('Slide agregado correctamente');
-      this.router.navigate(['/dashboard/home']);
+      this.showSuccessToast = true
+          setTimeout(() => {
+            this.showSuccessToast = false;
+            this.router.navigate(['/dashboard/home']);
+          }, 2000);
+          return;
     } catch (error) {
       console.error('Error al guardar el slide:', error);
       alert('Error al guardar el slide');

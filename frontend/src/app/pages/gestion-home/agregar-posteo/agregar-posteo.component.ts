@@ -130,15 +130,12 @@ export class AgregarPosteoComponent implements OnDestroy {
       this.novedadesService.crearPublicacion(publicacion, this.selectedFile).subscribe({
         next: (response) => {
           console.log('Publicación guardada:', response);
-          
           this.isSubmitting = false;
-          
           this.showSuccessToast = true
           setTimeout(() => {
             this.showSuccessToast = false;
             this.router.navigate(['/dashboard/home']);
           }, 2000);
-          
           return;
         },
         error: (err) => {
