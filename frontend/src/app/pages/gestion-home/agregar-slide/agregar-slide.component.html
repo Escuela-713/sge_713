@@ -74,3 +74,17 @@
     </div>
   </div>
 }
+@if (showErrorToast) {
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+   <div id="toastDanger" class="toast text-bg-danger show" role="alert" aria-live="assertive" aria-atomic="true">
+     <div class="toast-header bg-danger">
+       <strong class="me-auto text-white">Error</strong>
+       <small class="text-white">Ahora</small>
+       <button type="button" class="btn-close btn-close-white" (click)="showErrorToast = false" aria-label="Close"></button>
+     </div>
+     <div class="toast-body text-white">
+       No se guardaron los datos. Intente nuevamente.
+     </div>
+   </div>
+ </div>
+}

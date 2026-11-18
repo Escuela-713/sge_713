@@ -45,6 +45,7 @@ export class AgregarSlideComponent {
   }
 
 showSuccessToast = false
+showErrorToast = false
 
   async onSubmit(): Promise<void> {
     if (this.form.invalid || !this.imageFile) {
@@ -71,7 +72,11 @@ showSuccessToast = false
           return;
     } catch (error) {
       console.error('Error al guardar el slide:', error);
-      alert('Error al guardar el slide');
+      this.showErrorToast = true
+          setTimeout(() => {
+            this.showErrorToast = false;
+          }, 4000);
+          return;
     } finally {
       this.isSubmitting = false;
     }
