@@ -93,25 +93,25 @@ class LoginSerializer(serializers.Serializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    dni = serializers.CharField(source="id_persona.dni", read_only=True)
+    dni = serializers.CharField(
+        source="id_persona.dni",
+        read_only=True,
+    )
+
     nombre = serializers.SerializerMethodField()
     roles = serializers.SerializerMethodField()
-    rol = serializers.SerializerMethodField()
 
     class Meta:
         model = Usuario
-        fields = ["id_usuario", "dni", "nombre", "rol", "roles"]
+        fields = [
+            "id_usuario",
+            "dni",
+            "nombre",
+            "roles",
+        ]
 
     def get_nombre(self, obj):
         return f"{obj.id_persona.primer_nombre} {obj.id_persona.primer_apellido}"
 
     def get_roles(self, obj):
         return list(obj.id_persona.roles.values_list("rol", flat=True))
-
-    def get_rol(self, obj):
-        roles = self.get_roles(obj)
-
-        if not roles:
-            return "invitado"
-
-        return roles[0]

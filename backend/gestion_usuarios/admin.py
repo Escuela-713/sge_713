@@ -39,13 +39,10 @@ class UsuarioAdminForm(forms.ModelForm):
         if self.instance and self.instance.pk:
             self.fields["roles"].initial = self.instance.id_persona.roles.all()
 
-    def save(self, commit=True):
-        usuario = super().save(commit=commit)
+    def _save_m2m(self):
+        super()._save_m2m()
 
-        if commit:
-            usuario.id_persona.roles.set(self.cleaned_data["roles"])
-
-        return usuario
+        self.instance.id_persona.roles.set(self.cleaned_data["roles"])
 
 
 admin.site.login_form = DNIAdminAuthenticationForm
