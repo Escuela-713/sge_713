@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 import { NovedadesService, Publication } from '../../../services/novedades.service';
 import { CategoriasService, Categoria } from '../../../services/categorias.service';
+import { state } from '@angular/animations';
 
 interface NovedadPreview {
   title: string;
@@ -111,6 +112,8 @@ export class AgregarPosteoComponent implements OnDestroy {
   }
 
   showAlertToast = false
+  showErrorToast = false
+  showSuccessToast = false
 
   onSubmit(): void {
     if (this.form.valid && this.selectedFile) {
@@ -127,14 +130,25 @@ export class AgregarPosteoComponent implements OnDestroy {
       this.novedadesService.crearPublicacion(publicacion, this.selectedFile).subscribe({
         next: (response) => {
           console.log('Publicación guardada:', response);
+          
           this.isSubmitting = false;
-          alert('Publicación agregada correctamente');
-          this.router.navigate(['/dashboard/home']);
+          
+          this.showSuccessToast = true
+          setTimeout(() => {
+            this.showSuccessToast = false;
+            this.router.navigate(['/dashboard/home']);
+          }, 2000);
+          
+          return;
         },
         error: (err) => {
           console.error('Error al guardar la publicación:', err);
           this.isSubmitting = false;
-          alert('No se pudo guardar la publicación');
+          this.showErrorToast = true
+          setTimeout(() => {
+            this.showErrorToast = false;
+          }, 4000);
+          return;
         }
       });
     } else {
