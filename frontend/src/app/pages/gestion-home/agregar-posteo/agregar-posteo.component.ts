@@ -110,7 +110,7 @@ export class AgregarPosteoComponent implements OnDestroy {
     this.chr.detectChanges();
   }
 
-  showErrorToast = false
+  showAlertToast = false
 
   onSubmit(): void {
     if (this.form.valid && this.selectedFile) {
@@ -140,9 +140,9 @@ export class AgregarPosteoComponent implements OnDestroy {
     } else {
       this.form.markAllAsTouched();
       if (!this.selectedFile) {
-        this.showErrorToast = true
+        this.showAlertToast = true
         setTimeout(() => {
-          this.showErrorToast = false;
+          this.showAlertToast = false;
         }, 4000);
         return;
       }
