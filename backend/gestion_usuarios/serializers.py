@@ -1,10 +1,11 @@
-from django.contrib.auth.hashers import make_password, check_password
+from django.contrib.auth import authenticate
 from django.contrib.auth.password_validation import validate_password
 from django.core.exceptions import ValidationError as DjangoValidationError
 from django.db import transaction
+
 from rest_framework import serializers
 
-from gestion_datos_personales.models import Persona, Rol
+from gestion_datos_personales.models import Persona
 from .models import Usuario
 
 
@@ -59,8 +60,9 @@ class RegisterSerializer(serializers.Serializer):
 
         persona = Persona.objects.create(**validated_data)
 
-        usuario = Usuario.objects.create(
-            id_persona=persona, contrasenia=make_password(contrasenia)
+        usuario = Usuario.objects.create_user(
+            id_persona=persona,
+            password=contrasenia,
         )
 
         return usuario
@@ -69,20 +71,22 @@ class RegisterSerializer(serializers.Serializer):
 class LoginSerializer(serializers.Serializer):
     dni = serializers.CharField(required=True)
     contrasenia = serializers.CharField(
-        required=True, write_only=True, style={"input_type": "password"}
+        required=True,
+        write_only=True,
+        style={"input_type": "password"},
     )
 
     def validate(self, data):
-        try:
-            persona = Persona.objects.get(dni=data["dni"])
-            usuario = Usuario.objects.get(id_persona=persona)
-        except (Persona.DoesNotExist, Usuario.DoesNotExist):
+        usuario = authenticate(
+            request=self.context.get("request"),
+            dni=data["dni"],
+            password=data["contrasenia"],
+        )
+
+        if usuario is None:
             raise serializers.ValidationError(
                 {"error": "Credenciales inválidas o usuario no registrado."}
             )
-
-        if not check_password(data["contrasenia"], usuario.contrasenia):
-            raise serializers.ValidationError({"error": "Credenciales inválidas."})
 
         data["usuario"] = usuario
         return data

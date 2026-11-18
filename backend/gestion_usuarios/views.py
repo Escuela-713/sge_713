@@ -55,7 +55,10 @@ class LoginAPIView(APIView):
     throttle_scope = "auth_login"
 
     def post(self, request):
-        serializer = LoginSerializer(data=request.data)
+        serializer = LoginSerializer(
+            data=request.data,
+            context={"request": request},
+        )
         serializer.is_valid(raise_exception=True)
 
         usuario = serializer.validated_data["usuario"]
