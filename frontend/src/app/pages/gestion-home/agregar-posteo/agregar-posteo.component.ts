@@ -110,6 +110,8 @@ export class AgregarPosteoComponent implements OnDestroy {
     this.chr.detectChanges();
   }
 
+  showErrorToast = false
+
   onSubmit(): void {
     if (this.form.valid && this.selectedFile) {
       const val = this.form.value;
@@ -138,7 +140,11 @@ export class AgregarPosteoComponent implements OnDestroy {
     } else {
       this.form.markAllAsTouched();
       if (!this.selectedFile) {
-        alert('Debe seleccionar una imagen');
+        this.showErrorToast = true
+        setTimeout(() => {
+          this.showErrorToast = false;
+        }, 4000);
+        return;
       }
     }
   }
