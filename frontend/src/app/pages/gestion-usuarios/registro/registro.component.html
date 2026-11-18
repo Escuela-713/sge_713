@@ -23,12 +23,12 @@
       <!-- Nombre -->
       <input
         class="form-control mb-2"
-        formControlName="nombre"
+        formControlName="primer_nombre"
         type="text"
         placeholder="Ingresar nombre"
       />
-      @if (Nombre?.errors && Nombre?.touched) {
-        @if (Nombre?.hasError("required")) {
+      @if (PrimerNombre?.errors && PrimerNombre?.touched) {
+        @if (PrimerNombre?.hasError("required")) {
           <div class="text-danger mb-2" style="font-size: 13px">
             El nombre es requerido.
           </div>
@@ -38,12 +38,12 @@
       <!-- Apellido -->
       <input
         class="form-control mb-2"
-        formControlName="apellido"
+        formControlName="primer_apellido"
         type="text"
         placeholder="Ingresar apellido"
       />
-      @if (Apellido?.errors && Apellido?.touched) {
-        @if (Apellido?.hasError("required")) {
+      @if (PrimerApellido?.errors && PrimerApellido?.touched) {
+        @if (PrimerApellido?.hasError("required")) {
           <div class="text-danger mb-2" style="font-size: 13px">
             El apellido es requerido.
           </div>
@@ -72,13 +72,13 @@
       <!-- DNI -->
       <input
         class="form-control mb-2"
-        formControlName="cuil"
+        formControlName="dni"
         type="text"
         inputmode="numeric"
         placeholder="Ingresar DNI"
       />
-      @if (Cuil?.errors && Cuil?.touched) {
-        @if (Cuil?.hasError("required")) {
+      @if (Dni?.errors && Dni?.touched) {
+        @if (Dni?.hasError("required")) {
           <div class="text-danger mb-2" style="font-size: 13px">
             El DNI es requerido.
           </div>
@@ -88,22 +88,120 @@
       <!-- Confirmar DNI -->
       <input
         class="form-control mb-2"
-        formControlName="cuilconfirmation"
+        formControlName="dniConfirmation"
         type="text"
         inputmode="numeric"
         placeholder="Confirmar DNI"
       />
-      @if (Cuilconfirmation?.errors && Cuilconfirmation?.touched) {
-        @if (Cuilconfirmation?.hasError("required")) {
+      @if (DniConfirmation?.errors && DniConfirmation?.touched) {
+        @if (DniConfirmation?.hasError("required")) {
           <div class="text-danger mb-2" style="font-size: 13px">
             La confirmación del DNI es requerida.
           </div>
         }
-      } @else if (errorCuil) {
+      } @else if (errorDni) {
         <div class="text-danger mb-2" style="font-size: 13px">
           El DNI debe ser igual.
         </div>
       }
+
+
+<!-- Segundo nombre -->
+<input
+  class="form-control mb-2"
+  formControlName="segundo_nombre"
+  type="text"
+  placeholder="Segundo nombre (opcional)"
+/>
+
+<!-- Tercer nombre -->
+<input
+  class="form-control mb-2"
+  formControlName="tercer_nombre"
+  type="text"
+  placeholder="Tercer nombre (opcional)"
+/>
+
+<!-- Segundo apellido -->
+<input
+  class="form-control mb-2"
+  formControlName="segundo_apellido"
+  type="text"
+  placeholder="Segundo apellido (opcional)"
+/>
+
+<!-- Fecha de nacimiento -->
+<input
+  class="form-control mb-2"
+  formControlName="fecha_nacimiento"
+  type="date"
+/>
+
+<!-- Teléfono -->
+<input
+  class="form-control mb-2"
+  formControlName="telefono"
+  type="tel"
+  placeholder="Teléfono"
+/>
+
+<!-- Género -->
+<select class="form-control mb-2" formControlName="genero">
+  <option value="S">Sin especificar</option>
+  <option value="F">Femenino</option>
+  <option value="M">Masculino</option>
+  <option value="O">Otro</option>
+</select>
+
+<!-- Tipo sanguíneo -->
+<select class="form-control mb-2" formControlName="tipo_sangre">
+  <option value="">Tipo sanguíneo (opcional)</option>
+  <option value="A+">A+</option>
+  <option value="A-">A-</option>
+  <option value="B+">B+</option>
+  <option value="B-">B-</option>
+  <option value="AB+">AB+</option>
+  <option value="AB-">AB-</option>
+  <option value="O+">O+</option>
+  <option value="O-">O-</option>
+</select>
+
+<!-- Dirección -->
+<input
+  class="form-control mb-2"
+  formControlName="calle"
+  type="text"
+  placeholder="Calle"
+/>
+
+<input
+  class="form-control mb-2"
+  formControlName="numero_calle"
+  type="number"
+  placeholder="Número de calle"
+/>
+
+<input
+  class="form-control mb-2"
+  formControlName="barrio"
+  type="text"
+  placeholder="Barrio"
+/>
+
+<!-- Localidades -->
+<input
+  class="form-control mb-2"
+  formControlName="id_localidad"
+  type="number"
+  placeholder="ID de localidad"
+/>
+
+<input
+  class="form-control mb-2"
+  formControlName="id_localidad_nacimiento"
+  type="number"
+  placeholder="ID de localidad de nacimiento"
+/>
 
       <!-- Contraseña -->
       <input
@@ -127,12 +225,12 @@
       <!-- Confirmar contraseña -->
       <input
         class="form-control mb-3"
-        formControlName="passwordconfirmation"
+        formControlName="passwordConfirmation"
         type="password"
         placeholder="Confirmar contraseña"
       />
-      @if (Passwordconfirmation?.errors && Passwordconfirmation?.touched) {
-        @if (Passwordconfirmation?.hasError("required")) {
+      @if (PasswordConfirmation?.errors && PasswordConfirmation?.touched) {
+        @if (PasswordConfirmation?.hasError("required")) {
           <div class="text-danger mb-2" style="font-size: 13px">
             La confirmación de la contraseña es requerida.
           </div>

@@ -1,5 +1,11 @@
-import { Component, inject} from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+
+import { Component, inject } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '@/app/services/autenticacion.service';
 
@@ -13,19 +19,16 @@ import { AuthService } from '@/app/services/autenticacion.service';
 export class LoginComponent {
   form!: FormGroup;
   errorMessage: string | null = null;
+
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
   private authService = inject(AuthService);
-  
+
   constructor() {
-
-    this.form = this.formBuilder.group(
-      {
-        cuil: ['', [Validators.required,]],
-        password: ['', [Validators.required]]
-      }
-    )
-
+    this.form = this.formBuilder.group({
+      dni: ['', Validators.required],
+      contrasenia: ['', Validators.required]
+    });
   }
 
   onEnviar(event: Event) {
@@ -34,31 +37,30 @@ export class LoginComponent {
 
     if (this.form.valid) {
       const credentials = {
-        cuil: this.Cuil?.value,
-        contrasenia: this.Password?.value
+        dni: this.form.value.dni,
+        contrasenia: this.form.value.contrasenia
       };
 
       this.authService.login(credentials).subscribe({
         next: (response) => {
-          console.log('Ingreso exitoso, token recibido');
-          this.router.navigate(["/dashboard/home"]);
+          console.log('Ingreso exitoso');
+          this.router.navigate(['/dashboard/home']);
         },
         error: (err) => {
           console.error('Error de autenticación:', err);
-          this.errorMessage = "Error de autenticacion!";
+          this.errorMessage = 'Error de autenticación';
         }
       });
-
     } else {
       this.form.markAllAsTouched();
     }
   }
 
   get Password() {
-    return this.form.get("password");
+    return this.form.get('contrasenia');
   }
-  
-  get Cuil() {
-    return this.form.get("cuil");
+
+  get Dni() {
+    return this.form.get('dni');
   }
 }

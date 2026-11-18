@@ -3,25 +3,41 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 
 export interface RegisterRequest {
-  cuil: string;
+  dni: string;
+  primer_nombre: string;
+  segundo_nombre?: string;
+  tercer_nombre?: string;
+  primer_apellido: string;
+  segundo_apellido?: string;
+  fecha_nacimiento: string;
+  email: string;
+  telefono: string;
+  genero?: string;
+  tipo_sangre?: string | null;
+  calle: string;
+  numero_calle: number;
+  barrio: string;
+  id_localidad: number;
+  id_localidad_nacimiento: number;
   contrasenia: string;
 }
 
 export interface LoginRequest {
-  cuil: string;
+  dni: string;
   contrasenia: string;
 }
 
 export interface UserData {
-  id?: number;
-  nombre?: string;
-  rol?: string;
-  cuil?: string;
+  id_usuario: number;
+  nombre: string;
+  dni: string;
+  rol: string;
+  roles: string[];
 }
 
 export interface AuthResponse {
-  mensaje?: string;
-  usuario?: UserData;
+  mensaje: string;
+  usuario: UserData;
 }
 
 @Injectable({
@@ -29,7 +45,7 @@ export interface AuthResponse {
 })
 export class AuthService {
   private http = inject(HttpClient);
-  private readonly API_URL = 'api/auth';
+  private readonly API_URL = 'api/v1/auth';
 
   isAuthenticated = signal<boolean>(false);
   currentUser = signal<UserData | null>(null);
