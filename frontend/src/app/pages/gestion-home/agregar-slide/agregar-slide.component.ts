@@ -46,10 +46,16 @@ export class AgregarSlideComponent {
 
 showSuccessToast = false
 showErrorToast = false
+showAlertToast = false
 
   async onSubmit(): Promise<void> {
     if (this.form.invalid || !this.imageFile) {
       this.form.markAllAsTouched();
+      this.showAlertToast = true
+        setTimeout(() => {
+          this.showAlertToast = false;
+        }, 4000);
+        return;
       return;
     }
 
