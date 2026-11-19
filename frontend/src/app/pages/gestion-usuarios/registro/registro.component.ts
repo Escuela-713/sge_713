@@ -17,10 +17,10 @@ import { AuthService } from '@/app/services/autenticacion.service';
   styleUrl: './registro.component.css'
 })
 export class RegistroComponent {
-  form!: FormGroup;
+  form: FormGroup;
 
+  errorDni = false;
   errorPassword = false;
-  errorDni: string | null = null;
 
   errorMessage: string | null = null;
   successMessage: string | null = null;
@@ -31,45 +31,49 @@ export class RegistroComponent {
     private authService: AuthService
   ) {
     this.form = this.formBuilder.group({
+      primer_nombre: ['', Validators.required],
+      primer_apellido: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+
       dni: ['', Validators.required],
       dniConfirmation: ['', Validators.required],
 
-      primer_nombre: ['', Validators.required],
       segundo_nombre: [''],
       tercer_nombre: [''],
-      primer_apellido: ['', Validators.required],
       segundo_apellido: [''],
 
       fecha_nacimiento: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
       telefono: ['', Validators.required],
-
       genero: ['S'],
-      tipo_sangre: [''],
+      tipo_sangre: [null],
 
       calle: ['', Validators.required],
       numero_calle: ['', [Validators.required, Validators.min(1)]],
       barrio: ['', Validators.required],
-
       id_localidad: ['', Validators.required],
       id_localidad_nacimiento: ['', Validators.required],
 
-      // Credenciales
       password: ['', [Validators.required, Validators.minLength(8)]],
       passwordConfirmation: ['', Validators.required]
     });
   }
 
-  onChangeDni() {
-    this.Dni?.value !== this.DniConfirmation?.value;
+  onChangeDni(): void {
+    const dni = this.Dni?.value;
+    const confirmacion = this.DniConfirmation?.value;
+
+    this.errorDni = !!confirmacion && dni !== confirmacion;
   }
 
-  onChangePassword() {
+  onChangePassword(): void {
+    const password = this.Password?.value;
+    const confirmacion = this.PasswordConfirmation?.value;
+
     this.errorPassword =
-      this.Password?.value !== this.PasswordConfirmation?.value;
+      !!confirmacion && password !== confirmacion;
   }
 
-  onEnviar(event: Event) {
+  onEnviar(event: Event): void {
     event.preventDefault();
 
     this.errorMessage = null;
@@ -78,82 +82,67 @@ export class RegistroComponent {
     this.onChangeDni();
     this.onChangePassword();
 
-    if (
-      this.form.valid &&
-      !this.errorPassword &&
-      !this.errorDni
-    ) {
-      const {
-        dniConfirmation,
-        password,
-        passwordConfirmation,
-        ...persona
-      } = this.form.getRawValue();
-
-      const datosRegistro = {
-        ...persona,
-        dni: String(persona.dni),
-        numero_calle: Number(persona.numero_calle),
-        id_localidad: Number(persona.id_localidad),
-        id_localidad_nacimiento: Number(
-          persona.id_localidad_nacimiento
-        ),
-        tipo_sangre: persona.tipo_sangre || null,
-        contrasenia: password
-      };
-
-      this.authService.register(datosRegistro).subscribe({
-        next: (response) => {
-          console.log('Registro exitoso:', response);
-
-          this.successMessage =
-            '¡Usuario registrado con éxito! Redirigiendo...';
-
-          setTimeout(() => {
-            this.router.navigate(['/']);
-          }, 1500);
-        },
-
-        error: (err) => {
-          console.error('Error del backend:', err);
-
-          const errors = err.error;
-
-          if (errors && typeof errors === 'object') {
-            if (errors.detail) {
-              this.errorMessage = errors.detail;
-            } else if (errors.error) {
-              this.errorMessage = Array.isArray(errors.error)
-                ? errors.error[0]
-                : errors.error;
-            } else {
-              const firstError = Object.values(errors)[0];
-
-              this.errorMessage = Array.isArray(firstError)
-                ? String(firstError[0])
-                : String(firstError);
-            }
-          } else {
-            this.errorMessage =
-              'No se pudo conectar con el servidor.';
-          }
-        }
-      });
-
-    } else {
-      console.warn('El formulario tiene errores o campos pendientes.');
+    if (this.form.invalid || this.errorDni || this.errorPassword) {
       this.form.markAllAsTouched();
+      return;
     }
-  }
 
-  // Getters para el HTML
+    const valores = this.form.value;
 
-  get Dni() {
-    return this.form.get('dni');
-  }
+    const datosRegistro = {
+      dni: valores.dni.toString(),
+      primer_nombre: valores.primer_nombre,
+      segundo_nombre: valores.segundo_nombre,
+      tercer_nombre: valores.tercer_nombre,
+      primer_apellido: valores.primer_apellido,
+      segundo_apellido: valores.segundo_apellido,
+      fecha_nacimiento: valores.fecha_nacimiento,
+      email: valores.email,
+      telefono: valores.telefono,
+      genero: valores.genero,
+      tipo_sangre: valores.tipo_sangre || null,
+      calle: valores.calle,
+      numero_calle: Number(valores.numero_calle),
+      barrio: valores.barrio,
+      id_localidad: Number(valores.id_localidad),
+      id_localidad_nacimiento: Number(valores.id_localidad_nacimiento),
+      contrasenia: valores.password
+    };
 
-  get DniConfirmation() {
-    return this.form.get('dniConfirmation');
+    this.authService.register(datosRegistro).subscribe({
+      next: (response) => {
+        console.log('Registro exitoso:', response);
+
+        this.successMessage = '¡Usuario registrado con éxito! Redirigiendo...';
+
+        setTimeout(() => {
+          this.router.navigate(['/']);
+        }, 1500);
+      },
+
+      error: (err) => {
+        console.error('Error del backend:', err);
+
+        const errorData = err.error;
+
+        if (errorData?.dni) {
+          this.errorMessage = errorData.dni[0];
+        } else if (errorData?.contrasenia) {
+          this.errorMessage = errorData.contrasenia[0];
+        } else if (errorData?.detail) {
+          this.errorMessage = errorData.detail;
+        } else if (errorData && typeof errorData === 'object') {
+          const firstKey = Object.keys(errorData)[0];
+          const firstError = errorData[firstKey];
+
+          this.errorMessage = Array.isArray(firstError)
+            ? firstError[0]
+            : 'Ocurrió un error de validación.';
+        } else {
+          this.errorMessage = 'No se pudo conectar con el servidor.';
+        }
+      }
+    });
   }
 
   get PrimerNombre() {
@@ -168,6 +157,14 @@ export class RegistroComponent {
     return this.form.get('email');
   }
 
+  get Dni() {
+    return this.form.get('dni');
+  }
+
+  get DniConfirmation() {
+    return this.form.get('dniConfirmation');
+  }
+
   get Password() {
     return this.form.get('password');
   }
@@ -176,4 +173,3 @@ export class RegistroComponent {
     return this.form.get('passwordConfirmation');
   }
 }
-
