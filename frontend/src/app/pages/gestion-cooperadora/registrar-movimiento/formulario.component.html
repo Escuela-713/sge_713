@@ -100,10 +100,10 @@
             <div class="text-danger">Motivo requerido</div>
           }
           @if (Motivo.hasError('minlength')) {
-            <div class="text-danger">Debe tener al menos 5 caracteres</div>
+            <div class="text-danger">Mínimo 5 carácteres</div>
           }
           @if (Motivo.hasError('maxlength')) {
-            <div class="text-danger">Máximo 200 caracteres</div>
+            <div class="text-danger">Máximo 200 carácteres</div>
           }
         }
       </div>
@@ -129,7 +129,7 @@
           class="btn btn-cooperadora btn-cooperadora--guardar mt-3"
           [disabled]="enviando"
         >
-          Registrar compra
+          Registrar movimiento
         </button>
       </div>
 
