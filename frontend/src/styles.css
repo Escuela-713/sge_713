@@ -14,6 +14,78 @@
   --font-principal: 'PlusJakartaSans-Variable';
 }
 
+.formulario {
+   h2 {
+       font-weight: 800;
+       font-size: 32px;
+       margin-bottom: 1.25rem;
+       text-align: center;
+       border-bottom: 2px solid #fe6602;
+       padding-bottom: 0.7em;
+   }
+   p {
+      font-weight: 400;
+      font-size: 18px;
+      text-align: center;
+      margin-top: 1em;
+   }
+   a {
+      color: #000000;
+      text-decoration: none;
+      font-weight: 500;
+   }
+   a:hover {
+      color: #3d3d3d;
+   }
+   label {
+       font-weight: 600;
+       font-size: 18px;
+   }
+   max-width: 800;
+       background-color: #ffffff;
+       padding: 1.75rem 2rem;
+       border-radius: 16px;
+       box-shadow: 0 2px 30px rgb(170, 170, 170);
+       margin-inline: 15em;
+       margin-block: 3em;
+       h2 {
+           text-align: center;
+           font-weight: 800;
+           font-size: 32px;
+           margin-bottom: 1.25rem;
+       }
+   .btn-gral {
+       background-color: #198754;
+       color: #FFFFFF;
+       font-weight: 600;
+       border-radius: 10px;
+       border: 2px solid #198754;
+       text-align: center; transition: all 0.3s ease;
+   }
+   .btn-gral:hover {
+       color: #198754;
+       background-color: #FFFFFF;
+       border-color: #198754;
+   }
+   .btn-cancelar {
+       background-color: #726e6e;
+       color: #FFFFFF;
+       font-weight: 600;
+       border-radius: 10px;
+       border: 2px solid #726e6e;
+       text-align: center; transition: all 0.3s ease;
+   }
+   .btn-cancelar:hover {
+       color: #726e6e;
+       background-color: #FFFFFF;
+       border-color: #726e6e;
+   }
+   .btn-centrado {
+       text-align: right;
+       margin-top: 1em;
+   }
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

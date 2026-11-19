@@ -19,7 +19,7 @@
 
 <!-- Main Edit Form -->
 @if (!isLoading && !error && originalSlide) {
-  <div class="editar-slide-modal">
+  <div class="formulario">
     <h2>Editar slide</h2>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
@@ -86,8 +86,8 @@
       </div>
 
       <div class="d-flex justify-content-end gap-2 mt-3">
-        <button type="submit" class="btn btn-primary">Guardar</button>
-        <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+        <button type="submit" class="btn btn-outline-success btn-gral">Guardar</button>
+        <button type="button" class="btn btn-cancelar" (click)="onCancel()">Cancelar</button>
       </div>
     </form>
   </div>
