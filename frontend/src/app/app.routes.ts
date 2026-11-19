@@ -31,6 +31,7 @@ import { LoginComponent } from '@pages/gestion-usuarios/login/login.component'
 import { RegistroComponent } from '@pages/gestion-usuarios/registro/registro.component'
 import { HomeComponent } from '@pages/home/home.component'
 import { NovedadComponent } from '@pages/novedad/novedad.component'
+import { EditarSlideComponent } from './pages/gestion-home/editar-slide/editar-slide.component'
 // import { authGuard } from '@guards/auth.guard'
 
 const indexarRuta = (componenteIndex: any): Route => {
@@ -127,6 +128,7 @@ export const routes: Routes = [
           { path: 'agregar-posteo', component: AgregarPosteoComponent },
           { path: 'editar-novedad/:id', component: EditarPosteoComponent },
           { path: 'agregar-slide', component: AgregarSlideComponent },
+          { path: 'editar-slide/:id', component: EditarSlideComponent },
         ],
       },
       {

@@ -87,36 +87,50 @@ export class NovedadesService {
   }
 
   // ---------- Slides del Carousel ----------
-addSlide(
-  newSlide: { title: string; subtitle: string },
-  imageFile: File
-): Observable<CarouselSlide> {
-  const formData = new FormData();
-  formData.append('title', newSlide.title);
-  formData.append('subtitle', newSlide.subtitle);
-  formData.append('image', imageFile, imageFile.name);
-
-  return this.http.post<CarouselSlide>(this.carouselUrl, formData);
-}
-
-updateSlide(
-  id: number,
-  updatedSlide: { title: string; subtitle: string },
-  imageFile?: File 
-): Observable<CarouselSlide> {
-  const formData = new FormData();
-    
-  formData.append('title', updatedSlide.title);
-  formData.append('subtitle', updatedSlide.subtitle);
-    
-  if (imageFile) {
-    formData.append('image', imageFile, imageFile.name);
+  // Busca el slide dentro del listado, así no depende de que el backend
+  // exponga el detalle (GET) de cada slide.
+  getSlideById(id: number): Observable<CarouselSlide> {
+    return this.http.get<CarouselSlide[]>(this.carouselUrl).pipe(
+      map(slides => {
+        const slide = (slides ?? []).find(s => s.id === id);
+        if (!slide) {
+          throw new Error(`Slide ${id} no encontrado`);
+        }
+        return slide;
+      })
+    );
   }
 
-  return this.http.patch<CarouselSlide>(`${this.carouselUrl}${id}/`, formData);
-}
+  addSlide(
+    newSlide: { title: string; subtitle: string },
+    imageFile: File
+  ): Observable<CarouselSlide> {
+    const formData = new FormData();
+    formData.append('title', newSlide.title);
+    formData.append('subtitle', newSlide.subtitle);
+    formData.append('image', imageFile, imageFile.name);
 
-deleteSlideById(id: number): Observable<void> {
-  return this.http.delete<void>(`${this.carouselUrl}${id}/`);
-}
+    return this.http.post<CarouselSlide>(this.carouselUrl, formData);
+  }
+
+  updateSlide(
+    id: number,
+    updatedSlide: { title: string; subtitle: string },
+    imageFile?: File
+  ): Observable<CarouselSlide> {
+    const formData = new FormData();
+
+    formData.append('title', updatedSlide.title);
+    formData.append('subtitle', updatedSlide.subtitle);
+
+    if (imageFile) {
+      formData.append('image', imageFile, imageFile.name);
+    }
+
+    return this.http.patch<CarouselSlide>(`${this.carouselUrl}${id}/`, formData);
+  }
+
+  deleteSlideById(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.carouselUrl}${id}/`);
+  }
 }

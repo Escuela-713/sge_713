@@ -1,21 +1,137 @@
-@if(slideEditado){
-    <div class="editar-slide-modal">
-  <h2>Editar apartado</h2>
-  <form (ngSubmit)="onGuardar()">
+<!-- Loading State -->
+@if (isLoading) {
+  <div class="loading-container">
+    <div class="loading-spinner"></div>
+    <p>Cargando slide para editar...</p>
+  </div>
+}
 
-  <label>Título</label>
-  <input [(ngModel)]="slideEditado.title" name="title" required />
+<!-- Error State -->
+@if (error) {
+  <div class="error-container">
+    <h2>Error al cargar</h2>
+    <p>{{ error }}</p>
+    <button type="button" class="btn btn-secondary" (click)="goBack()">
+      Volver
+    </button>
+  </div>
+}
 
-  <label>Subtítulo</label>
-  <input [(ngModel)]="slideEditado.subtitle" name="subtitle" />
+<!-- Main Edit Form -->
+@if (!isLoading && !error && originalSlide) {
+  <div class="editar-slide-modal">
+    <h2>Editar slide</h2>
 
-  <label>Imagen URL</label>
-  <input [(ngModel)]="slideEditado.image" name="image" />
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
 
-    <div class="d-flex justify-content-end gap-2 mt-3">
-      <button type="submit" class="btn btn-primary">Guardar</button>
-      <button type="button" class="btn btn-secondary" (click)="onCancelar()">Cancelar</button>
+      <!-- Imagen -->
+      <div class="mb-3">
+        <label for="image" class="form-label">Imagen</label>
+        @if (imageCtrl.value) {
+          <div class="mb-2">
+            <img [src]="imageCtrl.value" alt="Vista previa" class="img-fluid rounded" style="max-height: 160px;" />
+          </div>
+        }
+        <input
+          id="image"
+          type="file"
+          accept="image/*"
+          class="form-control"
+          [class.is-invalid]="imageCtrl.invalid && imageCtrl.touched"
+          (change)="onImageChange($event)"
+        />
+        @if (imageCtrl.invalid && imageCtrl.touched) {
+          <div class="invalid-feedback d-block">
+            Debe seleccionar una imagen
+          </div>
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="title" class="form-label">Título</label>
+        <input
+          id="title"
+          type="text"
+          class="form-control"
+          formControlName="title"
+          [class.is-invalid]="titleCtrl.invalid && titleCtrl.touched"
+        />
+        @if (titleCtrl.touched && titleCtrl.errors) {
+          @if (titleCtrl.errors['required']) {
+            <div class="invalid-feedback d-block">
+              Debe ingresar un título
+            </div>
+          } @else if (titleCtrl.errors['maxlength']) {
+            <div class="invalid-feedback d-block">
+              El título no debe superar los 50 caracteres
+            </div>
+          }
+        }
+      </div>
+
+      <div class="mb-3">
+        <label for="subtitle" class="form-label">Subtítulo</label>
+        <input
+          id="subtitle"
+          type="text"
+          class="form-control"
+          formControlName="subtitle"
+          [class.is-invalid]="subtitleCtrl.invalid && subtitleCtrl.touched"
+        />
+        @if (subtitleCtrl.touched && subtitleCtrl.errors?.['maxlength']) {
+          <div class="invalid-feedback d-block">
+            El subtítulo no debe superar los 50 caracteres
+          </div>
+        }
+      </div>
+
+      <div class="d-flex justify-content-end gap-2 mt-3">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+}
+
+ @if (showAlertToast) {
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="toastWarning" class="toast text-bg-warning show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-warning text-dark">
+        <strong class="me-auto">Advertencia</strong>
+        <small>Ahora</small>
+        <button type="button" class="btn-close" (click)="showAlertToast = false" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Complete los campos obligatorios.
+      </div>
     </div>
-  </form>
-</div>
+  </div>
+}
+@if (showErrorToast) {
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+   <div id="toastDanger" class="toast text-bg-danger show" role="alert" aria-live="assertive" aria-atomic="true">
+     <div class="toast-header bg-danger">
+       <strong class="me-auto text-white">Error</strong>
+       <small class="text-white">Ahora</small>
+       <button type="button" class="btn-close btn-close-white" (click)="showErrorToast = false" aria-label="Close"></button>
+     </div>
+     <div class="toast-body text-white">
+       No se guardaron los datos. Intente nuevamente.
+     </div>
+   </div>
+ </div>
+}
+@if (showSuccessToast) {
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="toastSuccess" class="toast text-bg-success show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-success text-white">
+        <strong class="me-auto">Éxito</strong>
+        <small>Ahora</small>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Los datos se guardaron correctamente.
+      </div>
+    </div>
+  </div>
 }

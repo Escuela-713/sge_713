@@ -116,7 +116,7 @@
                 <p>{{ slide.subtitle }}</p>
                 <small>Slide #{{ i + 1 }}</small>
                 <div class="slide-actions">
-                  <button class="btn btn-editar" (click)="onEditarSlide(slide)">Editar</button>
+                  <button class="btn btn-editar" [routerLink]="['/dashboard/home/editar-slide', slide.id]">Editar</button>
                   <button class="btn btn-eliminar" (click)="onDeleteSlide(slide)">Eliminar</button>
                 </div>
               </div>
@@ -128,14 +128,6 @@
           <h3>No hay slides disponibles</h3>
           <p>El carousel está vacío. Agrega slides para mostrar en la página principal.</p>
         </div>
-      }
-
-      @if (mostrarEditorSlide && slideEditando) {
-        <app-editar-slide
-          [slide]="slideEditando"
-          (guardar)="onGuardarSlideEditado($event)"
-          (cancelar)="onCancelarEdicionSlide()">
-        </app-editar-slide>
       }
     </div>
   </div>
