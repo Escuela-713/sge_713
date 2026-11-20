@@ -74,7 +74,7 @@ class Alumno(models.Model):
     fecha_ingreso = models.DateField(blank=True, null=True)
     n_libro_matriz = models.IntegerField(blank=True, null=True)
     fecha_egreso = models.DateField(db_column="fecha_egreso", blank=True, null=True)
-    cuil = models.CharField(max_length=15)
+    dni = models.CharField(max_length=15)
 
     persona = models.ForeignKey(
         Persona, on_delete=models.CASCADE, related_name="alumnos"

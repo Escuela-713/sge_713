@@ -45,7 +45,6 @@ else:
     ALLOWED_HOSTS = ["*"]
 # Additional hosts may be added via DJANGO_ALLOWED_HOSTS in the .env file
 
-
 # Application definition
 
 INSTALLED_APPS = [
