@@ -4,7 +4,6 @@ import { forkJoin } from 'rxjs';
 
 import { NovedadesService } from '../../../services/novedades.service';
 import { CategoriasService } from '../../../services/categorias.service';
-import { EditarSlideComponent } from '../editar-slide/editar-slide.component';
 
 interface Categoria {
   id: number;
@@ -37,7 +36,7 @@ interface NovedadesData {
 
 @Component({
   selector: 'app-dashboard-home',
-  imports: [RouterLink, EditarSlideComponent],
+  imports: [RouterLink],
   standalone: true,
   templateUrl: './home-dashboard.component.html',
   styleUrls: ['./home-dashboard.component.css']
@@ -51,9 +50,6 @@ export class HomeDashboardComponent implements OnInit {
   };
 
   categorias: Categoria[] = [];
-
-  slideEditando: CarouselSlide | null = null;
-  mostrarEditorSlide = false;
 
   totalSlides = 0;
   totalCards = 0;
@@ -96,31 +92,6 @@ export class HomeDashboardComponent implements OnInit {
         this.isLoading = false;
       }
     });
-  }
-
-  onEditarSlide(slide: CarouselSlide): void {
-    this.slideEditando = { ...slide };
-    this.mostrarEditorSlide = true;
-  }
-
-  onGuardarSlideEditado(slideEditado: CarouselSlide): void {
-    this.novedadesService.updateSlide(slideEditado).subscribe({
-      next: () => {
-        this.cargarDatos();
-        this.mostrarEditorSlide = false;
-        this.slideEditando = null;
-        alert('Slide editado correctamente');
-      },
-      error: (err) => {
-        console.error('Error al editar el slide:', err);
-        alert('Error al editar el slide');
-      }
-    });
-  }
-
-  onCancelarEdicionSlide(): void {
-    this.mostrarEditorSlide = false;
-    this.slideEditando = null;
   }
 
   onDeleteCard(card: Card): void {

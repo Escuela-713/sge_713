@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { firstValueFrom } from 'rxjs';
 import { NovedadesService } from '@/app/services/novedades.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class AgregarSlideComponent {
   form: FormGroup;
   imagePreview: string | null = null;
   isSubmitting = false;
+  private imageFile: File | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +33,8 @@ export class AgregarSlideComponent {
     const file = (event.target as HTMLInputElement)?.files?.[0];
     if (!file) return;
 
+    this.imageFile = file;
+
     const reader = new FileReader();
     reader.onload = () => {
       this.imagePreview = reader.result as string;
@@ -40,27 +44,45 @@ export class AgregarSlideComponent {
     reader.readAsDataURL(file);
   }
 
+showSuccessToast = false
+showErrorToast = false
+showAlertToast = false
+
   async onSubmit(): Promise<void> {
-    if (this.form.invalid) {
+    if (this.form.invalid || !this.imageFile) {
       this.form.markAllAsTouched();
+      this.showAlertToast = true
+        setTimeout(() => {
+          this.showAlertToast = false;
+        }, 4000);
+        return;
       return;
     }
 
     try {
       this.isSubmitting = true;
       const values = this.form.value;
-      
-      await this.novedadesService.addSlide({
-        image: values.image,
-        title: values.title,
-        subtitle: values.subtitle,
-      });
 
-      alert('Slide agregado correctamente');
-      this.router.navigate(['/dashboard/home']);
+      await firstValueFrom(
+        this.novedadesService.addSlide(
+          { title: values.title, subtitle: values.subtitle },
+          this.imageFile
+        )
+      );
+
+      this.showSuccessToast = true
+          setTimeout(() => {
+            this.showSuccessToast = false;
+            this.router.navigate(['/dashboard/home']);
+          }, 2000);
+          return;
     } catch (error) {
       console.error('Error al guardar el slide:', error);
-      alert('Error al guardar el slide');
+      this.showErrorToast = true
+          setTimeout(() => {
+            this.showErrorToast = false;
+          }, 4000);
+          return;
     } finally {
       this.isSubmitting = false;
     }

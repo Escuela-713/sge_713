@@ -1,6 +1,5 @@
 /* Mobile First - Base styles */
-.loading-container,
-.error-container {
+.loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,6 +7,14 @@
   min-height: 60vh;
   padding: 2rem 1rem;
   text-align: center;
+}
+
+.error-container {
+  color: #e74c3c;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin: 0.25rem 0 0 0;
+  padding-left: 0.25rem;
 }
 
 .loading-spinner {
@@ -23,10 +30,6 @@
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.error-container {
-  color: #dc2626;
 }
 
 .error-icon {
@@ -47,74 +50,12 @@
 
 /* Main Layout */
 .editar-page {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Header */
-.page-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  background: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.back-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: none;
-  background: #f3f4f6;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  color: #374151;
-  flex-shrink: 0;
-}
-
-.back-btn:hover {
-  background: #e5e7eb;
-  transform: translateX(-2px);
-}
-
-.back-btn:active {
-  transform: translateX(0);
-}
-
-.back-btn svg {
-  width: 20px;
-  height: 20px;
-}
-
-.header-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.page-title {
-  margin: 0;
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #1f2937;
-  line-height: 1.2;
-}
-
-.page-subtitle {
-  margin: 0.25rem 0 0 0;
-  font-size: 0.875rem;
-  color: #6b7280;
-  line-height: 1.2;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 /* Content Container */
@@ -133,10 +74,26 @@
 }
 
 .form-card {
-  background: white;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  min-width: 0;
+  background-color: #ffffff;
   border-radius: 16px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 30px rgb(170, 170, 170);
+  padding: 1.7rem 2rem;
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.form-card h2 {
+  font-weight: 800;
+  font-size: 32px;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  border-bottom: 2px solid #fe6602;
+  padding-bottom: 0.7rem;
 }
 
 /* Form Groups */
@@ -156,14 +113,18 @@
 .form-input,
 .form-select,
 .form-textarea {
-  width: 100%;
-  padding: 0.75rem;
-  border: 2px solid #e5e7eb;
-  border-radius: 8px;
+  padding: 0.875rem;
+  border: 2px solid #e1e8ed;
+  border-radius: 10px;
   font-size: 1rem;
+  transition: all 0.3s ease;
   font-family: inherit;
-  transition: all 0.2s ease;
-  background: white;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
 }
 
 .form-input:focus,
@@ -285,65 +246,53 @@
 }
 
 /* Buttons */
-.btn-primary,
-.btn-secondary,
-.btn-danger {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  min-height: 44px;
-}
-
 .btn-primary {
-  background: #3b82f6;
-  color: white;
-  flex: 1;
+  background-color: #198754;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #198754;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: #2563eb;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  color: #198754;
+  background-color: #FFFFFF;
+  border-color: #198754;
 }
 
-.btn-primary:disabled {
-  background: #9ca3af;
-  cursor: not-allowed;
-  transform: none;
-  box-shadow: none;
-}
 
 .btn-secondary {
-  background: #f3f4f6;
-  color: #374151;
-  border: 1px solid #d1d5db;
+  background-color: #726e6e;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #726e6e;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-  background: #e5e7eb;
-  border-color: #9ca3af;
+  background-color: #FFFFFF;
+  border-color: #726e6e;
+  color: #726e6e;
 }
 
 .btn-danger {
-  background: #dc2626;
-  color: white;
-  min-width: auto;
-  padding: 0.75rem;
+  background-color: #DC3545;
+  color: #FFFFFF;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #DC3545;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
 .btn-danger:hover {
-  background: #b91c1c;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+  color: #dc3545;
+  background-color: #FFFFFF;
+  border-color: #dc3545;
 }
 
 /* Preview Section */
@@ -358,11 +307,20 @@
   margin-bottom: 1rem;
 }
 
-.preview-header h3 {
-  margin: 0;
-  font-size: 1.125rem;
-  font-weight: 600;
-  color: #1f2937;
+.preview-header h2 {
+  font-weight: 800;
+  font-size: 32px;
+  margin-bottom: 1.25rem;
+  text-align: center;
+  border-bottom: 2px solid #fe6602;
+  padding-bottom: 0.7rem;
+}
+
+p {
+  font-weight: 400;
+  font-size: 16px;
+  margin-bottom: 1.25rem;
+  
 }
 
 .preview-badge {
@@ -376,6 +334,7 @@
 
 .preview-card {
   background: white;
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -389,24 +348,35 @@
   background-color: #3b82f6;
   display: flex;
   align-items: flex-end;
-  padding: 1.5rem;
+  padding: 1.25rem 1.5rem;
   position: relative;
 }
 
 .preview-image::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 100%);
+}
+
+.preview-category {
+  position: absolute;
+  top: 1rem;
+  left: 1.5rem;
+  z-index: 1;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background: #f97316;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .preview-title {
   color: white;
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 32px;
+  line-height: 1.2;
   font-weight: 700;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
   position: relative;

@@ -121,6 +121,10 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(file);
   }
 
+showAlertToast = false
+showErrorToast = false
+showSuccessToast = false
+
   onSubmit(): void {
     if (this.form.valid && this.originalNovedad) {
       const val = this.form.value;
@@ -137,16 +141,28 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
           await firstValueFrom(
             this.novedadesService.updateCard(this.originalNovedad!.id, payload)
           );
-          alert('Publicación actualizada');
-          this.router.navigate(['/dashboard/home']);
+          this.showSuccessToast = true
+          setTimeout(() => {
+            this.showSuccessToast = false;
+            this.router.navigate(['/dashboard/home']);
+          }, 2000);
+          return;
         } catch (err) {
           console.error('Error guardando publicación', err);
-          alert('Error al guardar la publicación');
+          this.showErrorToast = true
+          setTimeout(() => {
+            this.showErrorToast = false;
+          }, 4000);
+          return;
         }
       })();
     } else {
       this.form.markAllAsTouched();
-      alert('Por favor, complete todos los campos requeridos correctamente.');
+      this.showAlertToast = true
+        setTimeout(() => {
+          this.showAlertToast = false;
+        }, 4000);
+        return;
     }
   }
 

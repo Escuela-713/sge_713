@@ -1,6 +1,20 @@
+    .error {
+      color: #e74c3c;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin: 0.25rem 0 0 0;
+      padding-left: 0.25rem;
+    }
+
+    /* estados de validación */
+    .slide-form input.ng-invalid.ng-touched,
+    .slide-form select.ng-invalid.ng-touched {
+      border-color: #e74c3c;
+      box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+    }
 
     .slide-form-container {
-      max-width: 800px;
+      width: 100%;
       margin: 2rem auto;
       padding: 2rem;
       background: white;
@@ -9,14 +23,19 @@
     }
 
     h2 {
-      margin-bottom: 2rem;
-      color: #1e293b;
+      font-weight: 800;
+      font-size: 32px;
+      margin-bottom: 1.25rem;
+      text-align: center;
+      border-bottom: 2px solid #fe6602;
+      padding-bottom: 0.7rem;
     }
 
     .slide-form {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
+      position: static;
     }
 
     .form-group {
@@ -82,22 +101,33 @@
     }
 
     .btn-submit {
-      background: #3b82f6;
-      color: white;
-      border: none;
+      background-color: #198754;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 10px;
+      border: 2px solid #198754;
+      text-align: center;
+      transition: all 0.3s ease;
     }
 
     .btn-submit:hover:not(:disabled) {
-      background: #2563eb;
+      color: #198754;
+      background-color: #FFFFFF;
+      border-color: #198754;
     }
 
     .btn-cancel {
-      background: white;
-      color: #64748b;
-      border: 1px solid #e2e8f0;
+      background-color: #726e6e;
+      color: #FFFFFF;
+      font-weight: 600;
+      border-radius: 10px;
+      border: 2px solid #726e6e;
+      text-align: center;
+      transition: all 0.3s ease;
     }
 
     .btn-cancel:hover {
-      background: #f8fafc;
-      border-color: #cbd5e1;
+     background-color: #FFFFFF;
+     border-color: #726e6e;
+     color: #726e6e;
     }
