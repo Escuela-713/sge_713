@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { AuthService } from '@/app/services/autenticacion.service';
 
 @Component({
@@ -22,6 +22,7 @@ export class LoginComponent {
 
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
+  private route = inject(ActivatedRoute);
   private authService = inject(AuthService);
 
   constructor() {
@@ -44,7 +45,11 @@ export class LoginComponent {
       this.authService.login(credentials).subscribe({
         next: (response) => {
           console.log('Ingreso exitoso');
-          this.router.navigate(['/dashboard/home']);
+
+          const returnUrl =
+            this.route.snapshot.queryParams['returnUrl'] || '/dashboard/home';
+
+          this.router.navigateByUrl(returnUrl);
         },
         error: (err) => {
           console.error('Error de autenticación:', err);

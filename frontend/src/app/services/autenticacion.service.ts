@@ -1,7 +1,15 @@
 
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import {
+  Observable,
+  tap,
+  map,
+  switchMap,
+  catchError,
+  of,
+  shareReplay,
+} from 'rxjs';
 
 export interface RegisterRequest {
   dni: string;
@@ -26,6 +34,24 @@ export interface RegisterRequest {
 export interface LoginRequest {
   dni: string;
   contrasenia: string;
+}
+
+export interface PersonaData {
+  primer_nombre: string;
+  segundo_nombre: string | null;
+  tercer_nombre: string | null;
+  primer_apellido: string;
+  segundo_apellido: string | null;
+  fecha_nacimiento: string;
+  email: string;
+  telefono: string;
+  genero: string;
+  tipo_sangre: string | null;
+  calle: string;
+  numero_calle: number;
+  barrio: string;
+  id_localidad: number;
+  id_localidad_nacimiento: number;
 }
 
 export interface UserData {
@@ -76,46 +102,50 @@ export class AuthService {
   isAuthenticated = signal<boolean>(false);
   currentUser = signal<UserData | null>(null);
 
+  private authCheck$?: Observable<boolean>;
+
   constructor() {
-    this.checkAuthStatus();
+    this.checkAuthStatus().subscribe();
   }
 
-  
-checkAuthStatus(): void {
-  this.http
-    .post<{ access: string }>(
-      `${this.API_URL}/token/refresh/`,
-      {},
-      { withCredentials: true },
-    )
-    .subscribe({
-      next: (response) => {
-        this.tokenService.setAccessToken(response.access);
+  checkAuthStatus(): Observable<boolean> {
+    if (!this.authCheck$) {
+      this.authCheck$ = this.http
+        .post<{ access: string }>(
+          `${this.API_URL}/token/refresh/`,
+          {},
+          { withCredentials: true },
+        )
+        .pipe(
+          switchMap((response) => {
+            this.tokenService.setAccessToken(response.access);
 
-        this.http
-          .get<UserData>(`${this.API_URL}/me/`, {
-            withCredentials: true,
-          })
-          .subscribe({
-            next: (user) => {
-              this.currentUser.set(user);
-              this.isAuthenticated.set(true);
-            },
-            error: () => {
-              this.tokenService.clearAccessToken();
-              this.currentUser.set(null);
-              this.isAuthenticated.set(false);
-            },
-          });
-      },
-      error: () => {
-        this.tokenService.clearAccessToken();
-        this.currentUser.set(null);
-        this.isAuthenticated.set(false);
-      },
-    });
-}
+            return this.http
+              .get<UserData>(`${this.API_URL}/me/`, {
+                withCredentials: true,
+              })
+              .pipe(
+                tap((user) => {
+                  this.currentUser.set(user);
+                  this.isAuthenticated.set(true);
+                }),
+                map(() => true),
+              );
+          }),
+          catchError(() => {
+            this.tokenService.clearAccessToken();
+            this.currentUser.set(null);
+            this.isAuthenticated.set(false);
+            this.authCheck$ = undefined;
 
+            return of(false);
+          }),
+          shareReplay(1),
+        );
+    }
+
+    return this.authCheck$;
+  }
 
   register(credentials: RegisterRequest): Observable<AuthResponse> {
     return this.http
@@ -132,6 +162,8 @@ checkAuthStatus(): void {
           if (response.tokens?.access) {
             this.tokenService.setAccessToken(response.tokens.access);
           }
+
+          this.authCheck$ = of(true);
         }),
       );
   }
@@ -151,13 +183,52 @@ checkAuthStatus(): void {
           if (response.tokens?.access) {
             this.tokenService.setAccessToken(response.tokens.access);
           }
+
+          this.authCheck$ = of(true);
         }),
       );
   }
 
-  logout(): void {
-    this.tokenService.clearAccessToken();
-    this.currentUser.set(null);
-    this.isAuthenticated.set(false);
+  obtenerDatosPersonales(): Observable<PersonaData> {
+    return this.http.get<PersonaData>(
+      `${this.API_URL}/me/update/`,
+      { withCredentials: true },
+    );
   }
+
+  modificarDatosPersonales(
+    datos: Partial<PersonaData>,
+  ): Observable<any> {
+    return this.http.patch(
+      `${this.API_URL}/me/update/`,
+      datos,
+      { withCredentials: true },
+    );
+  }
+
+  logout(): void {
+  this.http
+    .post(
+      `${this.API_URL}/logout/`,
+      {},
+      { withCredentials: true },
+    )
+    .subscribe({
+      next: () => {
+        this.limpiarSesion();
+      },
+      error: () => {
+        // Aunque falle la petición, limpiamos la sesión local.
+        this.limpiarSesion();
+      },
+    });
 }
+
+private limpiarSesion(): void {
+  this.tokenService.clearAccessToken();
+  this.currentUser.set(null);
+  this.isAuthenticated.set(false);
+  this.authCheck$ = of(false);
+}
+}
+
