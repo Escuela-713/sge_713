@@ -6,10 +6,8 @@
   <form class="edit-form" [formGroup]="formulario" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label>Nombre del bien:</label>
-      <input type="text" class="form-control" formControlName="nombre" placeholder="Ingrese el nombre del bien">
-      <small class="error" *ngIf="nombre?.invalid && nombre?.touched">
-        El nombre es obligatorio (mínimo 3 caracteres).
-      </small>
+      <input type="text" class="form-control" formControlName="nombre" [class.campo-invalido]="invalido('nombre')" placeholder="Ingrese el nombre del bien">
+      <small class="error" *ngIf="invalido('nombre')">{{ errorDe('nombre') }}</small>
     </div>
 
     <div class="form-group">
@@ -19,43 +17,35 @@
 
     <div class="form-group">
       <label>Categoría:</label>
-      <select class="form-control form-select" formControlName="categoria">
+      <select class="form-control form-select" formControlName="categoria" [class.campo-invalido]="invalido('categoria')">
         <option [ngValue]="null" disabled>Seleccioná una categoría</option>
         <option *ngFor="let c of categorias" [ngValue]="c.id">{{ c.nombre }}</option>
       </select>
-      <small class="error" *ngIf="categoria?.invalid && categoria?.touched">
-        La categoría es obligatoria.
-      </small>
+      <small class="error" *ngIf="invalido('categoria')">{{ errorDe('categoria') }}</small>
     </div>
 
     <div class="form-group">
       <label>Ubicación:</label>
-      <select class="form-control form-select" formControlName="ubicacion">
+      <select class="form-control form-select" formControlName="ubicacion" [class.campo-invalido]="invalido('ubicacion')">
         <option [ngValue]="null" disabled>Seleccioná una ubicación</option>
         <option *ngFor="let u of ubicaciones" [ngValue]="u.id">{{ u.nombre }}</option>
       </select>
-      <small class="error" *ngIf="ubicacion?.invalid && ubicacion?.touched">
-        La ubicación es obligatoria.
-      </small>
+      <small class="error" *ngIf="invalido('ubicacion')">{{ errorDe('ubicacion') }}</small>
     </div>
 
     <div class="form-row">
       <div class="form-group half">
         <label>Cantidad:</label>
-        <input type="number" class="form-control" formControlName="cantidad" placeholder="0">
-        <small class="error" *ngIf="cantidad?.invalid && cantidad?.touched">
-          Ingresá una cantidad válida (mínimo 1).
-        </small>
+        <input type="number" class="form-control" formControlName="cantidad" [class.campo-invalido]="invalido('cantidad')" placeholder="0">
+        <small class="error" *ngIf="invalido('cantidad')">{{ errorDe('cantidad') }}</small>
       </div>
       <div class="form-group half">
         <label>Estado:</label>
-        <select class="form-control form-select" formControlName="estado">
+        <select class="form-control form-select" formControlName="estado" [class.campo-invalido]="invalido('estado')">
           <option [ngValue]="null" disabled>Seleccioná un estado</option>
           <option *ngFor="let e of estados" [ngValue]="e">{{ e }}</option>
         </select>
-        <small class="error" *ngIf="estado?.invalid && estado?.touched">
-          El estado es obligatorio.
-        </small>
+        <small class="error" *ngIf="invalido('estado')">{{ errorDe('estado') }}</small>
       </div>
     </div>
 

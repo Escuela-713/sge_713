@@ -1,6 +1,6 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, catchError, map, of, tap } from 'rxjs';
 
 export interface RegisterRequest {
   cuil: string;
@@ -33,26 +33,37 @@ export class AuthService {
 
   isAuthenticated = signal<boolean>(false);
   currentUser = signal<UserData | null>(null);
+  /** true si el usuario logueado tiene rol de administrador (ej. "Administrador"). */
+  esAdmin = computed(() => (this.currentUser()?.rol ?? '').toLowerCase().startsWith('admin'));
 
   constructor() {
     this.checkAuthStatus();
   }
 
-  checkAuthStatus(): void {
-    this.http
-      .get<UserData>(`${this.API_URL}/me/`, {
-        withCredentials: true,
-      })
-      .subscribe({
-        next: (user) => {
+    checkAuthStatus(): void {
+    this.verificarSesion().subscribe();
+  }
+
+  /**
+   * Consulta al backend si hay sesión activa y actualiza las señales.
+   * Lo usan los guards para esperar la respuesta (si no, al recargar la página
+   * el guard ve isAuthenticated=false y manda al login antes de que /me/ conteste).
+   */
+  verificarSesion(): Observable<boolean> {
+    return this.http
+      .get<UserData>(`${this.API_URL}/me/`, { withCredentials: true })
+      .pipe(
+        tap((user) => {
           this.currentUser.set(user);
           this.isAuthenticated.set(true);
-        },
-        error: () => {
+        }),
+        map(() => true),
+        catchError(() => {
           this.currentUser.set(null);
           this.isAuthenticated.set(false);
-        },
-      });
+          return of(false);
+        }),
+      );
   }
 
   register(credentials: RegisterRequest): Observable<AuthResponse> {
