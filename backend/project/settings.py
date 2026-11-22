@@ -202,3 +202,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_CREDENTIALS = True
 
+# Inventario
+CORS_EXPOSE_HEADERS = ['Content-Disposition']  # para descargar reportes con su nombre
+EXIGIR_LOGIN = False  # pasar a True cuando el frontend tenga login

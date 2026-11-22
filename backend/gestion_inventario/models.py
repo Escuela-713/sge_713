@@ -8,40 +8,93 @@
 from django.db import models
 
 
-class Bienes(models.Model):
-    nombre = models.CharField(max_length=45, blank=True, null=True)
-    estado = models.CharField(max_length=15, blank=True, null=True)
-    id_bien = models.AutoField(primary_key=True)
-    categoria = models.CharField(max_length=45, blank=True, null=True)
-    prestado = models.IntegerField(blank=True, null=True)
-    cantidad = models.IntegerField(blank=True, null=True)
-    descripcion = models.CharField(max_length=150, blank=True, null=True)
-    ubicacion = models.CharField(max_length=100, blank=True, null=True)
+class Categoria(models.Model):
+    id_categoria = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=45, unique=True)
 
     class Meta:
-        managed = True
+        db_table = 'inventario_categoria'
+        ordering = ['nombre']
+
+    def __str__(self):
+        return self.nombre
+
+
+class Ubicacion(models.Model):
+    id_ubicacion = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=100, unique=True)
+
+    class Meta:
+        db_table = 'inventario_ubicacion'
+        ordering = ['nombre']
+
+    def __str__(self):
+        return self.nombre
+
+
+class Bienes(models.Model):
+    ESTADOS = [
+        ('Bueno', 'Bueno'),
+        ('Regular', 'Regular'),
+        ('Malo', 'Malo'),
+        ('En uso', 'En uso'),
+        ('En reparación', 'En reparación'),
+    ]
+
+    id_bien = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=45)
+    descripcion = models.CharField(max_length=150, blank=True, null=True)
+    categoria = models.ForeignKey(
+        Categoria, on_delete=models.PROTECT, db_column='id_categoria',
+        related_name='bienes', null=True,
+    )
+    ubicacion = models.ForeignKey(
+        Ubicacion, on_delete=models.PROTECT, db_column='id_ubicacion',
+        related_name='bienes', null=True,
+    )
+    estado = models.CharField(max_length=15, choices=ESTADOS)
+    cantidad = models.PositiveIntegerField(default=1)
+    prestado = models.PositiveIntegerField(default=0)
+    codigo_especial = models.CharField(max_length=30, unique=True, blank=True, null=True)
+    fecha_adquisicion = models.DateField(blank=True, null=True)
+
+    class Meta:
         db_table = 'bienes'
+        ordering = ['nombre', 'id_bien']
+
+    def __str__(self):
+        return self.nombre
+
+
+class RegistroInventario(models.Model):
+    id_inventario = models.AutoField(primary_key=True)
+    fecha = models.DateField(blank=True, null=True)
+    destino = models.CharField(max_length=50, blank=True, null=True)
+    contacto = models.CharField(max_length=45, blank=True, null=True)
+    telefono = models.CharField(max_length=20, blank=True, null=True)
+    mail = models.EmailField(max_length=100, blank=True, null=True)
+    tipo = models.IntegerField(blank=True, null=True)
+    responsable = models.CharField(max_length=45, blank=True, null=True)
+
+    class Meta:
+        db_table = 'registro_inventario'
+
+    def __str__(self):
+        return f'Registro {self.id_inventario}'
 
 
 class DetalleInventario(models.Model):
     descripcion = models.CharField(max_length=100, blank=True, null=True)
     cantidad = models.IntegerField(blank=True, null=True)
-    id_inventario = models.ForeignKey('RegistroInventario', models.DO_NOTHING, db_column='id_inventario')
-    id_bien = models.ForeignKey(Bienes, models.DO_NOTHING, db_column='id_bien')
+    id_inventario = models.ForeignKey(
+        RegistroInventario, on_delete=models.CASCADE, db_column='id_inventario',
+    )
+    id_bien = models.ForeignKey(
+        Bienes, on_delete=models.PROTECT, db_column='id_bien',
+    )
 
     class Meta:
-        managed = True
         db_table = 'detalle_inventario'
 
-
-class RegistroInventario(models.Model):
-    fecha = models.DateField(blank=True, null=True)
-    destino = models.CharField(max_length=50, blank=True, null=True)
-    contacto = models.CharField(max_length=45, blank=True, null=True)
-    tipo = models.IntegerField(blank=True, null=True)
-    responsable = models.CharField(max_length=45, blank=True, null=True)
-    id_inventario = models.AutoField(primary_key=True)
-
-    class Meta:
-        managed = True
-        db_table = 'registro_inventario'
+    def __str__(self):
+        return f'Detalle {self.pk}'
