@@ -42,6 +42,11 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" routerLink="/dashboard/inventario">Inventario</a></li>
             <li><a class="dropdown-item" routerLink="/dashboard/inventario/registrar">Registrar bien</a></li>
+                        <li><a class="dropdown-item" routerLink="/dashboard/inventario/bienes">Bienes registrados</a></li>
+            <li><a class="dropdown-item" routerLink="/dashboard/inventario/movimientos">Ingresos y egresos</a></li>
+            @if (authService.esAdmin()) {
+            <li><a class="dropdown-item" routerLink="/dashboard/inventario/reportes">Reportes</a></li>
+            }
           </ul>
         </li>
         <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" style="list-style: none;">

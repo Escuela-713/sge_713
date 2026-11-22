@@ -1,0 +1,121 @@
+<div class="movimientos">
+  <h2 class="titulo">Ingresos y egresos</h2>
+
+  <form class="formulario" [formGroup]="formulario" (ngSubmit)="enviar()" novalidate>
+    <div class="fila">
+      <div class="campo">
+        <label for="tipo">Tipo de movimiento</label>
+        <select id="tipo" formControlName="tipo" class="control">
+          <option value="ingreso">Ingreso</option>
+          <option value="egreso">Egreso</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label for="id_bien">Bien</label>
+        <select id="id_bien" formControlName="id_bien" class="control" [class.campo-invalido]="invalido('id_bien')">
+          <option [ngValue]="null" disabled>Seleccioná un bien</option>
+          @for (b of bienes(); track b.id_bien) {
+            <option [ngValue]="b.id_bien">{{ b.nombre }} (stock: {{ b.cantidad }})</option>
+          }
+        </select>
+        @if (invalido('id_bien')) { <small class="error">{{ errorDe('id_bien') }}</small> }
+      </div>
+
+      <div class="campo">
+        <label for="cantidad">Cantidad</label>
+        <input id="cantidad" type="number" min="1" formControlName="cantidad" class="control"
+               [class.campo-invalido]="invalido('cantidad')" />
+        @if (invalido('cantidad')) { <small class="error">{{ errorDe('cantidad') }}</small> }
+      </div>
+    </div>
+
+    <div class="fila">
+      <div class="campo">
+        <label for="responsable">Responsable</label>
+        <input id="responsable" type="text" formControlName="responsable" class="control"
+               [class.campo-invalido]="invalido('responsable')" />
+        @if (invalido('responsable')) { <small class="error">{{ errorDe('responsable') }}</small> }
+      </div>
+
+      <div class="campo">
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" type="tel" formControlName="telefono" class="control"
+               [class.campo-invalido]="invalido('telefono')" />
+        @if (invalido('telefono')) { <small class="error">{{ errorDe('telefono') }}</small> }
+      </div>
+
+      <div class="campo">
+        <label for="email">Mail (opcional)</label>
+        <input id="email" type="email" formControlName="email" class="control"
+               [class.campo-invalido]="invalido('email')" />
+        @if (invalido('email')) { <small class="error">{{ errorDe('email') }}</small> }
+      </div>
+    </div>
+
+    <div class="fila">
+      <div class="campo">
+        <label for="contacto">Contacto (opcional)</label>
+        <input id="contacto" type="text" formControlName="contacto" class="control" />
+      </div>
+
+      <div class="campo">
+        <label for="destino">Destino</label>
+        <input id="destino" type="text" formControlName="destino" class="control"
+               [class.campo-invalido]="invalido('destino')" />
+        @if (invalido('destino')) { <small class="error">{{ errorDe('destino') }}</small> }
+      </div>
+    </div>
+
+    @if (mensaje(); as m) {
+      <p class="mensaje" [class.exito]="m.tipo === 'exito'" [class.mensaje-error]="m.tipo === 'error'">
+        {{ m.texto }}
+      </p>
+    }
+
+    <div class="acciones">
+      <button type="submit" class="btn btnGuardar" [disabled]="enviando()">
+        {{ enviando() ? 'Registrando...' : 'Registrar' }}
+      </button>
+      <button type="button" class="btn btnCancelar" (click)="cancelar()">Cancelar</button>
+    </div>
+  </form>
+
+  <h3 class="subtitulo">Movimientos recientes</h3>
+
+  @if (cargando()) {
+    <p class="aviso">Cargando movimientos...</p>
+  } @else if (errorCarga()) {
+    <div class="aviso mensaje-error">
+      {{ errorCarga() }}
+      <button type="button" class="btn btnCancelar" (click)="cargar()">Reintentar</button>
+    </div>
+  } @else if (movimientos().length === 0) {
+    <p class="aviso">Todavía no hay movimientos registrados.</p>
+  } @else {
+    <div class="tabla-scroll">
+      <table class="tabla">
+        <thead>
+          <tr>
+            <th>Fecha</th><th>Bien</th><th>Tipo</th><th>Cantidad</th>
+            <th>Responsable</th><th>Teléfono</th><th>Mail</th><th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (m of movimientos(); track m.id ?? $index) {
+            <tr>
+              <td>{{ m.fecha || 'N/D' }}</td>
+              <td>{{ m.nombreBien || 'N/D' }}</td>
+              <td>{{ m.tipo || 'N/D' }}</td>
+              <td>{{ m.cantidad }}</td>
+              <td>{{ m.responsable || 'N/D' }}</td>
+              <td>{{ m.telefono || 'N/D' }}</td>
+              <td>{{ m.email || 'N/D' }}</td>
+              <td>{{ m.estado || 'N/D' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

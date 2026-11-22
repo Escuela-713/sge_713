@@ -114,7 +114,7 @@ export class RegistrarBienComponent implements OnInit {
   onSubmit() {
     if (this.formulario.invalid) {
       this.formulario.markAllAsTouched();
-      this.mostrarMensaje('Por favor completa todos los campos requeridos', 'error');
+            this.mostrarMensaje('Falta dato obligatorio', 'error');
       return;
     }
 
@@ -132,7 +132,7 @@ export class RegistrarBienComponent implements OnInit {
     peticion.subscribe({
       next: () => {
         this.mostrarMensaje(
-          this.modoEdicion ? '¡Bien actualizado exitosamente!' : '¡Bien registrado exitosamente!',
+                    this.modoEdicion ? 'Bien actualizado correctamente' : 'Registro de nuevo bien',
           'exito'
         );
 
@@ -189,7 +189,21 @@ export class RegistrarBienComponent implements OnInit {
     this.mensaje = texto;
     this.tipoMensaje = tipo;
   }
+  /** Campo en rojo solo después de tocarlo o de intentar enviar. */
+  invalido(campo: string): boolean {
+    const c = this.formulario.get(campo);
+    return !!c && c.invalid && (c.touched || c.dirty);
+  }
 
+  /** Texto bajo el campo: «Falta dato obligatorio» si está vacío; si no, el error específico. */
+  errorDe(campo: string): string {
+    const c = this.formulario.get(campo);
+    if (!c?.errors) return '';
+    if (c.errors['required']) return 'Falta dato obligatorio';
+    if (c.errors['minlength']) return 'El nombre debe tener al menos 3 caracteres';
+    if (c.errors['min']) return 'La cantidad mínima es 1';
+    return 'Dato inválido';
+  }
   get nombre() { return this.formulario.get('nombre'); }
   get categoria() { return this.formulario.get('categoria'); }
   get ubicacion() { return this.formulario.get('ubicacion'); }
