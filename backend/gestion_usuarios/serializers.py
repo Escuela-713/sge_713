@@ -115,3 +115,25 @@ class UserSerializer(serializers.ModelSerializer):
 
     def get_roles(self, obj):
         return list(obj.id_persona.roles.values_list("rol", flat=True))
+
+class PersonaUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Persona
+        fields = [
+            "primer_nombre",
+            "segundo_nombre",
+            "tercer_nombre",
+            "primer_apellido",
+            "segundo_apellido",
+            "fecha_nacimiento",
+            "email",
+            "telefono",
+            "genero",
+            "tipo_sangre",
+            "calle",
+            "numero_calle",
+            "barrio",
+            "id_localidad",
+            "id_localidad_nacimiento",
+        ]
