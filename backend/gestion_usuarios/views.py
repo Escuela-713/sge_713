@@ -112,6 +112,26 @@ class UpdateCurrentUserView(APIView):
         )
 
     def patch(self, request):
+        campos_protegidos = {
+            "roles",
+            "is_active",
+            "is_staff",
+            "is_superuser",
+            "groups",
+            "user_permissions",
+            "id_persona",
+        }
+
+        campos_enviados = campos_protegidos.intersection(request.data.keys())
+
+        if campos_enviados:
+            return Response(
+                {
+                    "error": "No podés modificar tus propios roles ni privilegios."
+                },
+                status=status.HTTP_403_FORBIDDEN,
+            )
+
         persona = request.user.id_persona
 
         serializer = PersonaUpdateSerializer(

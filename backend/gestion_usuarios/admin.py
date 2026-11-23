@@ -106,5 +106,44 @@ class UsuarioAdmin(admin.ModelAdmin):
 
     mostrar_roles.short_description = "Roles"
 
+    
+    def get_form(self, request, obj=None, **kwargs):
+        form_class = super().get_form(request, obj, **kwargs)
+
+        if obj is not None and obj.pk == request.user.pk:
+
+            class FormularioPropiaCuentaProtegido(form_class):
+
+                def __init__(self, *args, **form_kwargs):
+                    super().__init__(*args, **form_kwargs)
+
+                    campos_protegidos = (
+                        "id_persona",
+                        "roles",
+                        "is_active",
+                        "is_staff",
+                        "is_superuser",
+                        "groups",
+                        "user_permissions",
+                    )
+
+                    for campo in campos_protegidos:
+                        if campo in self.fields:
+                            self.fields[campo].disabled = True
+
+            return FormularioPropiaCuentaProtegido
+
+        return form_class
+    def has_module_permission(self, request):
+        return request.user.is_superuser
+
+    def has_view_permission(self, request, obj=None):
+        return request.user.is_superuser
+
+    def has_change_permission(self, request, obj=None):
+        return request.user.is_superuser
+
+    def has_delete_permission(self, request, obj=None):
+        return request.user.is_superuser
     def has_add_permission(self, request):
         return False
