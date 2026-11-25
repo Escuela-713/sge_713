@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { RouterLink, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
 
 import { NovedadesService } from '../../../services/novedades.service';
 import { CategoriasService } from '../../../services/categorias.service';
+
+declare var bootstrap: any;
 
 interface Categoria {
   id: number;
@@ -15,7 +17,7 @@ interface Card {
   title: string;
   content: string;
   image: string;
-  categoria: number; // el backend devuelve el ID, no el objeto completo
+  categoria: number;
   is_published: boolean;
   upload_date: string;
   update_date: string;
@@ -41,7 +43,7 @@ interface NovedadesData {
   templateUrl: './home-dashboard.component.html',
   styleUrls: ['./home-dashboard.component.css']
 })
-export class HomeDashboardComponent implements OnInit {
+export class HomeDashboardComponent implements OnInit, AfterViewInit {
 
   novedadesData: NovedadesData = {
     carouselSlides: [],
@@ -58,11 +60,22 @@ export class HomeDashboardComponent implements OnInit {
   isLoading = false;
   mostrarTodas = false;
 
+  selectedCard: Card | null = null;
+
+  @ViewChild('deleteModal') deleteModalElement!: ElementRef;
+  private modalInstance: any;
+
   constructor(
     private novedadesService: NovedadesService,
     private categoriasService: CategoriasService,
     private router: Router
   ) {}
+
+  ngAfterViewInit(): void {
+    if (this.deleteModalElement) {
+      this.modalInstance = new bootstrap.Modal(this.deleteModalElement.nativeElement);
+    }
+  }
 
   ngOnInit(): void {
     this.cargarDatos();
@@ -71,7 +84,6 @@ export class HomeDashboardComponent implements OnInit {
   cargarDatos(): void {
     this.isLoading = true;
 
-    // Se piden en paralelo: los datos del home y las categorías (para resolver los nombres)
     forkJoin({
       data: this.novedadesService.getAll(),
       categorias: this.categoriasService.obtenerCategorias(),
@@ -95,19 +107,32 @@ export class HomeDashboardComponent implements OnInit {
   }
 
   onDeleteCard(card: Card): void {
-    const ok = confirm('¿Está seguro de querer eliminar esta publicación?');
-    if (!ok) return;
+    this.selectedCard = card;
+    if (this.modalInstance) {
+      this.modalInstance.show();
+    }
+  }
 
-    this.novedadesService.deleteCardById(card.id).subscribe({
+  confirmDeleteCard(): void {
+    if (!this.selectedCard) return;
+
+    const cardId = this.selectedCard.id;
+
+    if (this.modalInstance) {
+      this.modalInstance.hide();
+    }
+
+    this.novedadesService.deleteCardById(cardId).subscribe({
       next: () => {
         this.cargarDatos();
         alert('Publicación eliminada');
+        this.selectedCard = null;
       },
       error: (err) => {
         console.error('Error eliminando card:', err);
         alert('Error al eliminar la publicación');
       }
-    });
+    });  
   }
 
   onDeleteSlide(slide: CarouselSlide): void {
@@ -143,8 +168,6 @@ export class HomeDashboardComponent implements OnInit {
     this.ultimasCards = this.mostrarTodas ? ordenadas : ordenadas.slice(0, 4);
   }
 
-  // Resuelve el nombre de la categoría a partir del ID, para usar en el template
-  // en vez de card.categoria.title (que rompería porque categoria es solo un número)
   getCategoriaTitle(categoriaId: number): string {
     return this.categorias.find(c => c.id === categoriaId)?.title ?? 'Sin categoría';
   }
