@@ -1,9 +1,10 @@
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NovedadesService, Publication } from '../../../services/novedades.service';
 import { CategoriasService, Categoria } from '../../../services/categorias.service';
-import { state } from '@angular/animations';
+
+declare var bootstrap: any;
 
 interface NovedadPreview {
   title: string;
@@ -22,7 +23,7 @@ interface NovedadPreview {
   templateUrl: './agregar-posteo.component.html',
   styleUrls: ['./agregar-posteo.component.css']
 })
-export class AgregarPosteoComponent implements OnDestroy {
+export class AgregarPosteoComponent implements OnDestroy, AfterViewInit {
   form: FormGroup;
   novedad: NovedadPreview | null = null;
   categorias: Categoria[] = [];
@@ -31,6 +32,9 @@ export class AgregarPosteoComponent implements OnDestroy {
   isSubmitting = false;
 
   private previewObjectUrl: string | null = null;
+
+  @ViewChild('cancelModal') cancelModalElement!: ElementRef;
+  private modalInstance: any;
 
   constructor(
     private fb: FormBuilder,
@@ -51,6 +55,12 @@ export class AgregarPosteoComponent implements OnDestroy {
     });
 
     this.obtenerCategorias();
+  }
+
+  ngAfterViewInit(): void {
+    if (this.cancelModalElement) {
+      this.modalInstance = new bootstrap.Modal(this.cancelModalElement.nativeElement);
+    }
   }
 
   ngOnDestroy(): void {
@@ -102,9 +112,9 @@ export class AgregarPosteoComponent implements OnDestroy {
     this.chr.detectChanges();
   }
 
-  showAlertToast = false
-  showErrorToast = false
-  showSuccessToast = false
+  showAlertToast = false;
+  showErrorToast = false;
+  showSuccessToast = false;
 
   onSubmit(): void {
     if (this.form.valid && this.selectedFile) {
@@ -122,39 +132,48 @@ export class AgregarPosteoComponent implements OnDestroy {
         next: (response) => {
           console.log('Publicación guardada:', response);
           this.isSubmitting = false;
-          this.showSuccessToast = true
+          this.showSuccessToast = true;
           setTimeout(() => {
             this.showSuccessToast = false;
             this.router.navigate(['/dashboard/home']);
           }, 2000);
-          return;
         },
         error: (err) => {
           console.error('Error al guardar la publicación:', err);
           this.isSubmitting = false;
-          this.showErrorToast = true
+          this.showErrorToast = true;
           setTimeout(() => {
             this.showErrorToast = false;
           }, 4000);
-          return;
         }
       });
     } else {
       this.form.markAllAsTouched();
       if (!this.selectedFile) {
-        this.showAlertToast = true
+        this.showAlertToast = true;
         setTimeout(() => {
           this.showAlertToast = false;
         }, 4000);
-        return;
       }
     }
   }
 
+  // Método de cancelación actualizado
   onCancel(): void {
     if (this.form.dirty) {
-      const confirmar = window.confirm('¿Está seguro que desea cancelar? Se perderán los cambios no guardados.');
-      if (!confirmar) return;
+      // Muestra el modal usando la API de Bootstrap si el formulario está modificado
+      if (this.modalInstance) {
+        this.modalInstance.show();
+      }
+      return;
+    }
+    this.router.navigate(['/dashboard/home']);
+  }
+
+  // Nuevo método para confirmar la salida desde el modal
+  confirmCancel(): void {
+    if (this.modalInstance) {
+      this.modalInstance.hide();
     }
     this.router.navigate(['/dashboard/home']);
   }
