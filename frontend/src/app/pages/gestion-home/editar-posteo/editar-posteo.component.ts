@@ -15,7 +15,7 @@ declare var bootstrap: any;
   templateUrl: './editar-posteo.component.html',
   styleUrls: ['./editar-posteo.component.css']
 })
-export class EditarPosteoComponent implements OnInit, OnDestroy {
+export class EditarPosteoComponent implements OnInit, OnDestroy, AfterViewInit {
   form: FormGroup;
   novedad = signal<any | null>(null);
   originalNovedad: Publication | null = null;
@@ -25,7 +25,11 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   @ViewChild('cancelModal') cancelModalElement!: ElementRef;
-  private modalInstance: any;
+  @ViewChild('deleteModal') deleteModalElement!: ElementRef;
+  
+  // Instancias separadas para cada modal
+  private cancelModalInstance: any;
+  private deleteModalInstance: any;
 
   constructor(
     private fb: FormBuilder,
@@ -51,7 +55,10 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
 
   ngAfterViewInit(): void {
     if (this.cancelModalElement) {
-      this.modalInstance = new bootstrap.Modal(this.cancelModalElement.nativeElement);
+      this.cancelModalInstance = new bootstrap.Modal(this.cancelModalElement.nativeElement);
+    }
+    if (this.deleteModalElement) {
+      this.deleteModalInstance = new bootstrap.Modal(this.deleteModalElement.nativeElement);
     }
   }
 
@@ -132,9 +139,9 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(file);
   }
 
-showAlertToast = false
-showErrorToast = false
-showSuccessToast = false
+  showAlertToast = false;
+  showErrorToast = false;
+  showSuccessToast = false;
 
   onSubmit(): void {
     if (this.form.valid && this.originalNovedad) {
@@ -152,35 +159,32 @@ showSuccessToast = false
           await firstValueFrom(
             this.novedadesService.updateCard(this.originalNovedad!.id, payload)
           );
-          this.showSuccessToast = true
+          this.showSuccessToast = true;
           setTimeout(() => {
             this.showSuccessToast = false;
             this.router.navigate(['/dashboard/home']);
           }, 2000);
-          return;
         } catch (err) {
           console.error('Error guardando publicación', err);
-          this.showErrorToast = true
+          this.showErrorToast = true;
           setTimeout(() => {
             this.showErrorToast = false;
           }, 4000);
-          return;
         }
       })();
     } else {
       this.form.markAllAsTouched();
-      this.showAlertToast = true
-        setTimeout(() => {
-          this.showAlertToast = false;
-        }, 4000);
-        return;
+      this.showAlertToast = true;
+      setTimeout(() => {
+        this.showAlertToast = false;
+      }, 4000);
     }
   }
 
   onCancel(): void {
     if (this.form.dirty) {
-      if (this.modalInstance) {
-        this.modalInstance.show();
+      if (this.cancelModalInstance) {
+        this.cancelModalInstance.show();
       }
       return;
     }
@@ -188,29 +192,35 @@ showSuccessToast = false
   }
 
   confirmCancel(): void {
-    if (this.modalInstance) {
-      this.modalInstance.hide();
+    if (this.cancelModalInstance) {
+      this.cancelModalInstance.hide();
     }
     this.router.navigate(['/dashboard/home']);
   }
-
   onDelete(): void {
     if (this.originalNovedad) {
-      const confirmDelete = confirm('¿Está seguro de querer eliminar esta publicación?');
-
-      if (confirmDelete) {
-        (async () => {
-          try {
-            await firstValueFrom(this.novedadesService.deleteCardById(this.originalNovedad!.id));
-            alert(`PUBLICACIÓN ELIMINADA:\n"${this.originalNovedad!.title}" ha sido eliminada correctamente.`);
-            this.router.navigate(['/dashboard/home']);
-          } catch (err) {
-            console.error('Error eliminando publicación', err);
-            alert('No se pudo eliminar la publicación');
-          }
-        })();
+      if (this.deleteModalInstance) {
+        this.deleteModalInstance.show();
       }
     }
+  }
+
+  confirmDelete(): void {
+    if (!this.originalNovedad) return;
+
+    if (this.deleteModalInstance) {
+      this.deleteModalInstance.hide();
+    }
+
+    (async () => {
+      try {
+        await firstValueFrom(this.novedadesService.deleteCardById(this.originalNovedad!.id));
+        this.router.navigate(['/dashboard/home']);
+      } catch (err) {
+        console.error('Error eliminando publicación', err);
+        alert('No se pudo eliminar la publicación');
+      }
+    })();
   }
 
   private hasChanges(): boolean {
