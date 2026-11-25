@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
-
+from gestion_usuarios.permissions import LecturaPublicaEscrituraConRol
 from .models import CarruselSlide, Evento, Noticia
 from .serializers import CarruselSlideSerializer, EventoSerializer, NoticiaSerializer
 
@@ -12,21 +12,21 @@ class CarruselSlideViewSet(viewsets.ModelViewSet):
 	queryset = CarruselSlide.objects.all()
 	serializer_class = CarruselSlideSerializer
 	parser_classes = [MultiPartParser, FormParser, JSONParser]
-
+	permission_classes = [LecturaPublicaEscrituraConRol("donar_713")]
 
 class EventoViewSet(viewsets.ModelViewSet):
 	"""CRUD de eventos de Donar 713 (incluye subida de imagen)."""
 	queryset = Evento.objects.all()
 	serializer_class = EventoSerializer
 	parser_classes = [MultiPartParser, FormParser, JSONParser]
-
+	permission_classes = [LecturaPublicaEscrituraConRol("donar_713")]
 
 class NoticiaViewSet(viewsets.ModelViewSet):
 	"""CRUD de noticias de Donar 713 (incluye subida de imagen)."""
 	queryset = Noticia.objects.all()
 	serializer_class = NoticiaSerializer
 	parser_classes = [MultiPartParser, FormParser, JSONParser]
-
+	permission_classes = [LecturaPublicaEscrituraConRol("donar_713")]
 
 class DonarHomeDataView(APIView):
 	"""Datos públicos para la página de inicio de Donar 713:

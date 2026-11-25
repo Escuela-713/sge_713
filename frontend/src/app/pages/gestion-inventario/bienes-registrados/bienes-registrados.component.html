@@ -1,165 +1,44 @@
 <div class="inventory">
     <div class="header">
         <h2 class="titulo">Bienes registrados</h2>
-        <input type="text" placeholder="Buscar bien por nombre, código o ubicación..." class="search-input" />
+        <input type="text" placeholder="Buscar bien por nombre, categoría, ubicación o estado..." class="search-input" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()" />
     </div>
 
+    @if (cargando) {
+        <p>Cargando bienes...</p>
+    } @else if (error) {
+        <p>{{ error }}</p>
+    } @else if (bienesFiltrados.length === 0) {
+        <p>No hay bienes para mostrar.</p>
+    }
+
     <ul class="items-list">
-        <li class="item">
-            <details>
-                <summary>
-                    <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
-                        <div style="flex:1">
-                            <h3 style="margin:0; font-size:28px">Sillas</h3>
-                            <div class="card-sub">Código de registro: Sill</div>
+        @for (bien of bienesFiltrados; track bien.id_bien) {
+            <li class="item">
+                <details>
+                    <summary>
+                        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
+                            <div style="flex:1">
+                                <h3 style="margin:0">{{ bien.nombre }}</h3>
+                                <div class="card-sub">Categoría: {{ bien.categoria }}</div>
+                            </div>
+                            <div class="card-actions">
+                                <button class="btn btn-delete-outline" (click)="$event.preventDefault(); eliminarBien(bien.id_bien)">Eliminar</button>
+                            </div>
                         </div>
-                        <div class="card-actions">
-                            <button class="btn btn-success" routerLink="../registrar-bien">Editar</button>
-                        </div>
+                    </summary>
+                    <div class="card-body">
+                        <p><strong class="label">Nombre:</strong> <span class="value">{{ bien.nombre }}</span></p>
+                        <p><strong class="label">Categoría:</strong> <span class="value">{{ bien.categoria }}</span></p>
+                        <p><strong class="label">Cantidad:</strong> <span class="value">{{ bien.cantidad }}</span></p>
+                        <p><strong class="label">Estado:</strong> <span class="value">{{ bien.estado }}</span></p>
+                        <p><strong class="label">Ubicación:</strong> <span class="value">{{ bien.ubicacion }}</span></p>
+                        <p><strong class="label">Descripción:</strong> <span class="value">{{ bien.descripcion || 'N/D' }}</span></p>
+                        <p><strong class="label">Prestado:</strong> <span class="value">{{ bien.prestado ? 'Sí' : 'No' }}</span></p>
                     </div>
-                </summary>
-                <div class="card-body">
-                    <p><strong class="label">Nombre:</strong> <span class="value">Sillas</span></p>
-                    <p><strong class="label">Categoría:</strong> <span class="value">Mobiliario</span></p>
-                    <p><strong class="label">Cantidad:</strong> <span class="value">12</span></p>
-                    <p><strong class="label">Código especial:</strong> <span class="value">Sill-004</span></p>
-                    <p><strong class="label">Estado:</strong> <span class="value">Bueno</span></p>
-                    <p><strong class="label">Ubicación:</strong> <span class="value">Aula 3ro 1ra ESB</span></p>
-                    <p><strong class="label">Fecha de adquisición:</strong> <span class="value">2020-08-01</span></p>
-                    <p><strong class="label">Prestando:</strong> <span class="value">No</span></p>
-                </div>
-            </details>
-        </li>
-        <!-- Items synced from inventario -->
-        <li class="item">
-            <details>
-                <summary>
-                    <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
-                        <div style="flex:1">
-                            <h3 style="margin:0">Proyector Epson X123</h3>
-                            <div class="card-sub">Código de registro: Pyt-001</div>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn btn-success">Editar</button>
-                        </div>
-                    </div>
-                </summary>
-                <div class="card-body">
-                    <p><strong class="label">Nombre:</strong> <span class="value">Proyector Epson X123</span></p>
-                    <p><strong class="label">Categoría:</strong> <span class="value">Equipamiento audiovisual</span></p>
-                    <p><strong class="label">Cantidad:</strong> <span class="value">1</span></p>
-                    <p><strong class="label">Código especial:</strong> <span class="value">Pyt-001</span></p>
-                    <p><strong class="label">Estado:</strong> <span class="value">Prestado</span></p>
-                    <p><strong class="label">Ubicación:</strong> <span class="value">biblioteca</span></p>
-                    <p><strong class="label">Fecha de adquisición:</strong> <span class="value">N/D</span></p>
-                    <p><strong class="label">Prestando:</strong> <span class="value">no</span></p>
-                </div>
-            </details>
-        </li>
-
-        <li class="item">
-            <details>
-                <summary>
-                    <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
-                        <div style="flex:1">
-                            <h3 style="margin:0">Sillas</h3>
-                            <div class="card-sub">Código de registro: S-001</div>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn btn-success">Editar</button>
-                        </div>
-                    </div>
-                </summary>
-                <div class="card-body">
-                    <p><strong class="label">Nombre:</strong> <span class="value">Sillas</span></p>
-                    <p><strong class="label">Categoría:</strong> <span class="value">Mobiliario</span></p>
-                    <p><strong class="label">Cantidad:</strong> <span class="value">12</span></p>
-                    <p><strong class="label">Código especial:</strong> <span class="value">Sill-001</span></p>
-                    <p><strong class="label">Estado:</strong> <span class="value">En uso</span></p>
-                    <p><strong class="label">Ubicación:</strong> <span class="value">Aula 5to ETP</span></p>
-                    <p><strong class="label">Fecha de adquisición:</strong> <span class="value">N/D</span></p>
-                    <p><strong class="label">Prestando:</strong> <span class="value">No</span></p>
-                </div>
-            </details>
-        </li>
-
-        <li class="item">
-            <details>
-                <summary>
-                    <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
-                        <div style="flex:1">
-                            <h3 style="margin:0">Equipo de Sonido — Micrófono</h3>
-                            <div class="card-sub">Código de registro: Mic-001</div>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn btn-success">Editar</button>
-                        </div>
-                    </div>
-                </summary>
-                <div class="card-body">
-                    <p><strong class="label">Nombre:</strong> <span class="value">Equipo de Sonido — Micrófono</span></p>
-                    <p><strong class="label">Categoría:</strong> <span class="value">Equipamiento</span></p>
-                    <p><strong class="label">Cantidad:</strong> <span class="value">1</span></p>
-                    <p><strong class="label">Código especial:</strong> <span class="value">Mic-001</span></p>
-                    <p><strong class="label">Estado:</strong> <span class="value">En préstamo</span></p>
-                    <p><strong class="label">Ubicación:</strong> <span class="value">N/D</span></p>
-                    <p><strong class="label">Fecha de adquisición:</strong> <span class="value">N/D</span></p>
-                    <p><strong class="label">Prestando:</strong> <span class="value">Sí</span></p>
-                </div>
-            </details>
-        </li>
-
-        <li class="item">
-            <details>
-                <summary>
-                    <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
-                        <div style="flex:1">
-                            <h3 style="margin:0; font-size:28px">Mesas</h3>
-                            <div class="card-sub">Código de registro: Ms-004</div>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn btn-success">Editar</button>
-                        </div>
-                    </div>
-                </summary>
-                <div class="card-body">
-                    <p><strong class="label">Nombre:</strong> <span class="value">Mesas</span></p>
-                    <p><strong class="label">Categoría:</strong> <span class="value">Mobiliario</span></p>
-                    <p><strong class="label">Cantidad:</strong> <span class="value">24</span></p>
-                    <p><strong class="label">Código especial:</strong> <span class="value">Ms-004</span></p>
-                    <p><strong class="label">Estado:</strong> <span class="value">Regular</span></p>
-                    <p><strong class="label">Ubicación:</strong> <span class="value">Aula 4to ETP</span></p>
-                    <p><strong class="label">Fecha de adquisición:</strong> <span class="value">2019-11-20</span></p>
-                    <p><strong class="label">Prestando:</strong> <span class="value">No</span></p>
-                </div>
-            </details>
-        </li>
-
-        <li class="item">
-            <details>
-                <summary>
-                    <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
-                        <div style="flex:1">
-                            <h3 style="margin:0; font-size:28px">Mesas grandes</h3>
-                            <div class="card-sub">Código de registro: MsG-003</div>
-                        </div>
-                        <div class="card-actions">
-                            <button class="btn btn-success" routerLink="../registrar-bien">Editar</button>
-                        </div>
-                    </div>
-                </summary>
-                <div class="card-body">
-                    <p><strong class="label">Nombre:</strong> <span class="value">Mesas grandes</span></p>
-                    <p><strong class="label">Categoría:</strong> <span class="value">Mobiliario</span></p>
-                    <p><strong class="label">Cantidad:</strong> <span class="value">3</span></p>
-                    <p><strong class="label">Código especial:</strong> <span class="value">MsG 003</span></p>
-                    <p><strong class="label">Estado:</strong> <span class="value">Bueno</span></p>
-                    <p><strong class="label">Ubicación:</strong> <span class="value">Aula 7mo ETP</span></p>
-                    <p><strong class="label">Fecha de adquisición:</strong> <span class="value">2021-03-12</span></p>
-                    <p><strong class="label">Prestando:</strong> <span class="value">No</span></p>
-                </div>
-            </details>
-        </li>
+                </details>
+            </li>
+        }
     </ul>
 
     <div class="inventory-actions">

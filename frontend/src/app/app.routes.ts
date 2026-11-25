@@ -32,7 +32,7 @@ import { RegistroComponent } from '@pages/gestion-usuarios/registro/registro.com
 import { HomeComponent } from '@pages/home/home.component'
 import { NovedadComponent } from '@pages/novedad/novedad.component'
 import { authGuard } from '@guards/auth.guard'
-
+import { EditarPerfilComponent } from '@pages/gestion-usuarios/editar-perfil/editar-perfil.component'
 const indexarRuta = (componenteIndex: any): Route => {
   const rutaIndex: Route = {
     path: '',
@@ -59,6 +59,10 @@ export const routes: Routes = [
     component: DashboardComponent,
     canActivate: [authGuard],
     children: [
+      {
+        path: 'mi-perfil',
+        component: EditarPerfilComponent,
+      },
       {
         path: 'cooperadora',
         children: [

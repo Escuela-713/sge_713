@@ -3,8 +3,15 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Incidencias
 from .serializer import IncidenciasSerializer
+from rest_framework.permissions import IsAuthenticated
+from gestion_usuarios.permissions import TieneRol
+
+
+
+
 
 class CrearIncidenciaView(APIView):
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         serializer = IncidenciasSerializer(data=request.data)
         if serializer.is_valid():
@@ -13,6 +20,7 @@ class CrearIncidenciaView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class IncidenciasPendientesView(APIView):
+    permission_classes = [TieneRol("directivos", "preceptor_pot")]
     def get(self, request):
         pendientes = Incidencias.objects.filter(estado='pendiente')
         resultado = []

@@ -42,18 +42,16 @@ export class BienesRegistradosComponent implements OnInit {
     });
   }
 
-  buscar() {
-    if (this.searchTerm.trim() === '') {
-      this.bienesFiltrados = this.bienes;
-    } else {
-      const termino = this.searchTerm.toLowerCase();
-      this.bienesFiltrados = this.bienes.filter(bien =>
-        bien.nombre.toLowerCase().includes(termino) ||
-        bien.codigo.toLowerCase().includes(termino) ||
-        bien.ubicacion.toLowerCase().includes(termino) ||
-        bien.estado.toLowerCase().includes(termino)
-      );
-    }
+    buscar() {
+    const termino = this.searchTerm.trim().toLowerCase();
+
+    this.bienesFiltrados = termino
+      ? this.bienes.filter((bien) =>
+          [bien.nombre, bien.categoria, bien.ubicacion, bien.estado].some((campo) =>
+            (campo ?? '').toLowerCase().includes(termino),
+          ),
+        )
+      : this.bienes;
   }
 
   onSearchChange() {
