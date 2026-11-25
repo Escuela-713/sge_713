@@ -61,8 +61,10 @@ export class HomeDashboardComponent implements OnInit, AfterViewInit {
   mostrarTodas = false;
 
   selectedCard: Card | null = null;
+  selectedSlide: CarouselSlide | null = null;
 
   @ViewChild('deleteCardModal') deleteCardModalElement!: ElementRef;
+  @ViewChild('deleteSlideModal') deleteSlideModalElement!: ElementRef;
   private modalInstance: any;
 
   constructor(
@@ -74,6 +76,9 @@ export class HomeDashboardComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     if (this.deleteCardModalElement) {
       this.modalInstance = new bootstrap.Modal(this.deleteCardModalElement.nativeElement);
+    }
+    if (this.deleteSlideModalElement) {
+      this.modalInstance = new bootstrap.Modal(this.deleteSlideModalElement.nativeElement);
     }
   }
 
@@ -135,13 +140,23 @@ export class HomeDashboardComponent implements OnInit, AfterViewInit {
   }
 
   onDeleteSlide(slide: CarouselSlide): void {
-    const ok = confirm(`¿Eliminar slide "${slide.title}"? Esta acción no se puede deshacer.`);
-    if (!ok) return;
+    this.selectedSlide = slide;
+    if (this.modalInstance) {
+      this.modalInstance.show();
+    }
+  }
 
-    this.novedadesService.deleteSlideById(slide.id).subscribe({
+  confirmDeleteSlide() {
+    if (!this.selectedSlide) return;
+
+    const slideId = this.selectedSlide.id;
+
+    if (this.modalInstance) {
+      this.modalInstance.hide();
+    }
+    this.novedadesService.deleteSlideById(slideId).subscribe({
       next: () => {
         this.cargarDatos();
-        alert('Slide eliminado correctamente');
       },
       error: (err) => {
         console.error('Error eliminando slide:', err);
