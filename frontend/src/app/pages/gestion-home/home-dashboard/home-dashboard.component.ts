@@ -65,7 +65,8 @@ export class HomeDashboardComponent implements OnInit, AfterViewInit {
 
   @ViewChild('deleteCardModal') deleteCardModalElement!: ElementRef;
   @ViewChild('deleteSlideModal') deleteSlideModalElement!: ElementRef;
-  private modalInstance: any;
+  private deleteCardModalInstance: any;
+  private deleteSlideModalInstance: any;
 
   constructor(
     private novedadesService: NovedadesService,
@@ -75,10 +76,10 @@ export class HomeDashboardComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     if (this.deleteCardModalElement) {
-      this.modalInstance = new bootstrap.Modal(this.deleteCardModalElement.nativeElement);
+      this.deleteCardModalInstance = new bootstrap.Modal(this.deleteCardModalElement.nativeElement);
     }
     if (this.deleteSlideModalElement) {
-      this.modalInstance = new bootstrap.Modal(this.deleteSlideModalElement.nativeElement);
+      this.deleteSlideModalInstance = new bootstrap.Modal(this.deleteSlideModalElement.nativeElement);
     }
   }
 
@@ -113,8 +114,8 @@ export class HomeDashboardComponent implements OnInit, AfterViewInit {
 
   onDeleteCard(card: Card): void {
     this.selectedCard = card;
-    if (this.modalInstance) {
-      this.modalInstance.show();
+    if (this.deleteCardModalInstance) {
+      this.deleteCardModalInstance.show();
     }
   }
 
@@ -123,8 +124,8 @@ export class HomeDashboardComponent implements OnInit, AfterViewInit {
 
     const cardId = this.selectedCard.id;
 
-    if (this.modalInstance) {
-      this.modalInstance.hide();
+    if (this.deleteCardModalInstance) {
+      this.deleteCardModalInstance.hide();
     }
 
     this.novedadesService.deleteCardById(cardId).subscribe({
@@ -141,8 +142,8 @@ export class HomeDashboardComponent implements OnInit, AfterViewInit {
 
   onDeleteSlide(slide: CarouselSlide): void {
     this.selectedSlide = slide;
-    if (this.modalInstance) {
-      this.modalInstance.show();
+    if (this.deleteSlideModalInstance) {
+      this.deleteSlideModalInstance.show();
     }
   }
 
@@ -151,8 +152,8 @@ export class HomeDashboardComponent implements OnInit, AfterViewInit {
 
     const slideId = this.selectedSlide.id;
 
-    if (this.modalInstance) {
-      this.modalInstance.hide();
+    if (this.deleteSlideModalInstance) {
+      this.deleteSlideModalInstance.hide();
     }
     this.novedadesService.deleteSlideById(slideId).subscribe({
       next: () => {
