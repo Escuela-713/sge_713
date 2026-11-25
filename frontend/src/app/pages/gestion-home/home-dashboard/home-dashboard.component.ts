@@ -62,7 +62,7 @@ export class HomeDashboardComponent implements OnInit, AfterViewInit {
 
   selectedCard: Card | null = null;
 
-  @ViewChild('deleteModal') deleteModalElement!: ElementRef;
+  @ViewChild('deleteCardModal') deleteCardModalElement!: ElementRef;
   private modalInstance: any;
 
   constructor(
@@ -72,8 +72,8 @@ export class HomeDashboardComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngAfterViewInit(): void {
-    if (this.deleteModalElement) {
-      this.modalInstance = new bootstrap.Modal(this.deleteModalElement.nativeElement);
+    if (this.deleteCardModalElement) {
+      this.modalInstance = new bootstrap.Modal(this.deleteCardModalElement.nativeElement);
     }
   }
 
@@ -125,7 +125,6 @@ export class HomeDashboardComponent implements OnInit, AfterViewInit {
     this.novedadesService.deleteCardById(cardId).subscribe({
       next: () => {
         this.cargarDatos();
-        alert('Publicación eliminada');
         this.selectedCard = null;
       },
       error: (err) => {
