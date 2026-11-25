@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy, signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subject, takeUntil, firstValueFrom } from 'rxjs';
 import { NovedadesService, Publication } from '../../../services/novedades.service';
 import { CategoriasService, Categoria } from '../../../services/categorias.service';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-editar-posteo',
@@ -21,6 +23,9 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
   isLoading = true;
   error: string | null = null;
   private destroy$ = new Subject<void>();
+
+  @ViewChild('cancelModal') cancelModalElement!: ElementRef;
+  private modalInstance: any;
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +47,12 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
     });
 
     this.obtenerCategorias();
+  }
+
+  ngAfterViewInit(): void {
+    if (this.cancelModalElement) {
+      this.modalInstance = new bootstrap.Modal(this.cancelModalElement.nativeElement);
+    }
   }
 
   ngOnInit(): void {
@@ -167,14 +178,20 @@ showSuccessToast = false
   }
 
   onCancel(): void {
-    if (this.hasChanges()) {
-      const confirmLeave = confirm('¿Está seguro de que desea cancelar? Se perderán los cambios no guardados.');
-      if (confirmLeave) {
-        this.goBack();
+    if (this.form.dirty) {
+      if (this.modalInstance) {
+        this.modalInstance.show();
       }
-    } else {
-      this.goBack();
+      return;
     }
+    this.router.navigate(['/dashboard/home']);
+  }
+
+  confirmCancel(): void {
+    if (this.modalInstance) {
+      this.modalInstance.hide();
+    }
+    this.router.navigate(['/dashboard/home']);
   }
 
   onDelete(): void {
