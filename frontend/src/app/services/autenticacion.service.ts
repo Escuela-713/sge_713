@@ -152,20 +152,6 @@ export class AuthService {
       .post<AuthResponse>(`${this.API_URL}/registro/`, credentials, {
         withCredentials: true,
       })
-      .pipe(
-        tap((response) => {
-          if (response.usuario) {
-            this.currentUser.set(response.usuario);
-            this.isAuthenticated.set(true);
-          }
-
-          if (response.tokens?.access) {
-            this.tokenService.setAccessToken(response.tokens.access);
-          }
-
-          this.authCheck$ = of(true);
-        }),
-      );
   }
 
   login(credentials: LoginRequest): Observable<AuthResponse> {

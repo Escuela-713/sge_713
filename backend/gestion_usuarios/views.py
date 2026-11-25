@@ -31,16 +31,10 @@ class RegisterAPIView(APIView):
 
         usuario = serializer.save()
 
-        refresh = RefreshToken.for_user(usuario)
-
         return Response(
             {
                 "mensaje": "Registro exitoso",
                 "usuario": UserSerializer(usuario).data,
-                "tokens": {
-                    "refresh": str(refresh),
-                    "access": str(refresh.access_token),
-                },
             },
             status=status.HTTP_201_CREATED,
         )
