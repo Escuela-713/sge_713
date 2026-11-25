@@ -158,10 +158,8 @@ export class AgregarPosteoComponent implements OnDestroy, AfterViewInit {
     }
   }
 
-  // Método de cancelación actualizado
   onCancel(): void {
     if (this.form.dirty) {
-      // Muestra el modal usando la API de Bootstrap si el formulario está modificado
       if (this.modalInstance) {
         this.modalInstance.show();
       }
@@ -170,7 +168,6 @@ export class AgregarPosteoComponent implements OnDestroy, AfterViewInit {
     this.router.navigate(['/dashboard/home']);
   }
 
-  // Nuevo método para confirmar la salida desde el modal
   confirmCancel(): void {
     if (this.modalInstance) {
       this.modalInstance.hide();

@@ -60,6 +60,24 @@
       </form>
     </div>
 
+<div class="modal fade" id="cancelModal" #cancelModal tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelModalLabel">Descartar slide</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Tiene cambios sin guardar. Si cancela ahora, perderá toda la información ingresada en la slide.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">Volver</button>
+        <button type="button" class="btn btn-gral" (click)="confirmCancel()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @if (showSuccessToast) {
   <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
     <div id="toastSuccess" class="toast text-bg-success show" role="alert" aria-live="assertive" aria-atomic="true">

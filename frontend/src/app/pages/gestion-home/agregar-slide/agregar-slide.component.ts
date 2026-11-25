@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { NovedadesService } from '@/app/services/novedades.service';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-agregar-slide',
@@ -16,6 +18,9 @@ export class AgregarSlideComponent {
   imagePreview: string | null = null;
   isSubmitting = false;
   private imageFile: File | null = null;
+
+  @ViewChild('cancelModal') cancelModalElement!: ElementRef;
+  private modalInstance: any;
 
   constructor(
     private fb: FormBuilder,
@@ -44,9 +49,15 @@ export class AgregarSlideComponent {
     reader.readAsDataURL(file);
   }
 
-showSuccessToast = false
-showErrorToast = false
-showAlertToast = false
+  ngAfterViewInit(): void {
+    if (this.cancelModalElement) {
+      this.modalInstance = new bootstrap.Modal(this.cancelModalElement.nativeElement);
+    }
+  }
+
+  showSuccessToast = false
+  showErrorToast = false
+  showAlertToast = false
 
   async onSubmit(): Promise<void> {
     if (this.form.invalid || !this.imageFile) {
@@ -90,8 +101,17 @@ showAlertToast = false
 
   onCancel(): void {
     if (this.form.dirty) {
-      const confirm = window.confirm('¿Está seguro que desea cancelar? Se perderán los cambios no guardados.');
-      if (!confirm) return;
+      if (this.modalInstance) {
+        this.modalInstance.show();
+      }
+      return;
+    }
+    this.router.navigate(['/dashboard/home']);
+  }
+
+  confirmCancel(): void {
+    if (this.modalInstance) {
+      this.modalInstance.hide();
     }
     this.router.navigate(['/dashboard/home']);
   }
