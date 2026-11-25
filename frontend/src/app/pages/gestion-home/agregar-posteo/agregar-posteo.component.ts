@@ -27,9 +27,6 @@ export class AgregarPosteoComponent implements OnDestroy {
   novedad: NovedadPreview | null = null;
   categorias: Categoria[] = [];
 
-  // El archivo real que se sube al backend. El control 'image' del form
-  // solo sirve para que el Validators.required detecte si hay imagen o no,
-  // pero NO contiene el archivo (por eso se separa acá).
   selectedFile: File | null = null;
   isSubmitting = false;
 
@@ -57,7 +54,6 @@ export class AgregarPosteoComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // Libera la URL del objeto creada para el preview, evita fugas de memoria
     if (this.previewObjectUrl) {
       URL.revokeObjectURL(this.previewObjectUrl);
     }
@@ -84,14 +80,9 @@ export class AgregarPosteoComponent implements OnDestroy {
       URL.revokeObjectURL(this.previewObjectUrl);
     }
 
-    // Guardamos el File real para el envío al backend...
     this.selectedFile = file;
-    // ...y una URL local liviana solo para mostrar el preview en pantalla
     this.previewObjectUrl = URL.createObjectURL(file);
 
-    // Con patchValue solo marcamos que "hay algo" en el control, para que
-    // Validators.required lo considere válido. El nombre del archivo no
-    // se usa para nada más que esto.
     this.form.patchValue({ image: file.name });
     this.form.get('image')?.markAsTouched();
 
