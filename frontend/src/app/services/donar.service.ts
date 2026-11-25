@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const API_BASE = 'http://127.0.0.1:8000/api/donar';
+const API_BASE = 'http://127.0.0.1:8000/api/v1/donar';
 
 export interface CarruselSlideApi {
   id: number;

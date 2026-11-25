@@ -1,6 +1,12 @@
 <div class="login">
   <form class="form-login" [formGroup]="form" (ngSubmit)="onEnviar($event)">
     <h4>Inicio De Sesión</h4>
+    
+    @if (sesionExpirada) {
+      <div class="alert alert-warning py-2 text-center" role="alert">
+        Tu sesión expiró. Iniciá sesión nuevamente.
+      </div>
+    }
     @if (errorMessage) {
       <div class="alert alert-danger py-2 text-center" role="alert">
         {{ errorMessage }}
@@ -15,7 +21,7 @@
       placeholder="Ingrese su DNI"
     />
     @if (Dni?.errors && Dni?.touched) {
-      @if (Dni?.hasError("required")) {
+      @if (Dni.hasError("required")) {
         <div class="text-danger">El DNI es requerido.</div>
       }
     }

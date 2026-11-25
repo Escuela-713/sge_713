@@ -4,9 +4,11 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from gestion_carrera_planes_materias.models import Carrera, Plan, Materia
 from gestion_carrera_planes_materias.serializers import CarreraSerializer, PlanSerializer, MateriaSerializer
+from gestion_usuarios.permissions import LecturaPublicaEscrituraConRol
+
 
 class CarreraApiViewSet(APIView):
-
+    permission_classes = [LecturaPublicaEscrituraConRol("directivos")]
     def get(self, _):
        carreras = CarreraSerializer(Carrera.objects.all(), many=True).data
 
@@ -33,6 +35,7 @@ class PlanesApiView(APIView):
            return Response({'data': planes})
      
 class MateriasApiViewSet(APIView):
+    permission_classes = [LecturaPublicaEscrituraConRol("directivos")]
     def get(self, request):
            materias = MateriaSerializer(Materia.objects.all(), many=True).data
            print(Materia.objects.all())

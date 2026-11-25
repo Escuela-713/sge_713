@@ -1,20 +1,30 @@
-
 import { HttpInterceptorFn, HttpClient } from '@angular/common/http';
-import { inject } from '@angular/core';
+import { Injector, inject } from '@angular/core';
 import { BehaviorSubject, catchError, filter, finalize, switchMap, take, throwError } from 'rxjs';
 
-import { TokenService } from '../services/autenticacion.service';
+import { AuthService, TokenService } from '../services/autenticacion.service';
 
 const API_URL = 'api/v1/auth';
+const API_HOSTS = ['http://127.0.0.1:8000', 'http://localhost:8000'];
 
 let isRefreshing = false;
 
 const refreshTokenSubject = new BehaviorSubject<string | null>(null);
 
+// Solo las peticiones hacia nuestro backend llevan el token y las cookies.
+const esPeticionAApi = (url: string): boolean =>
+  url.startsWith('api/') ||
+  url.startsWith('/api/') ||
+  API_HOSTS.some((host) => url.startsWith(`${host}/api/`));
+
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
+  if (!esPeticionAApi(req.url)) {
+    return next(req);
+  }
+
   const tokenService = inject(TokenService);
   const http = inject(HttpClient);
-
+  const injector = inject(Injector);
   const isLoginRequest = req.url.includes('/login/');
   const isRegisterRequest = req.url.includes('/registro/');
   const isRefreshRequest = req.url.includes('/token/refresh/');
@@ -79,6 +89,8 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           catchError((refreshError) => {
             tokenService.clearAccessToken();
             refreshTokenSubject.next('');
+            // El refresh token venció o fue revocado: la sesión expiró.
+            injector.get(AuthService).manejarSesionExpirada();
             return throwError(() => refreshError);
           }),
 

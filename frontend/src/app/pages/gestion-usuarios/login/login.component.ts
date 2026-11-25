@@ -19,6 +19,7 @@ import { AuthService } from '@/app/services/autenticacion.service';
 export class LoginComponent {
   form!: FormGroup;
   errorMessage: string | null = null;
+  sesionExpirada = false;
 
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
@@ -26,6 +27,7 @@ export class LoginComponent {
   private authService = inject(AuthService);
 
   constructor() {
+    this.sesionExpirada = this.route.snapshot.queryParams['expirada'] === 'true';
     this.form = this.formBuilder.group({
       dni: ['', Validators.required],
       contrasenia: ['', Validators.required]
