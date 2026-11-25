@@ -1,4 +1,6 @@
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import SAFE_METHODS, BasePermission
+
+ROL_ADMIN = "administradores"
 
 
 class EsAdministradorSGE(BasePermission):
@@ -16,41 +18,33 @@ class EsAdministradorSGE(BasePermission):
         )
 
 
-class TieneRol(BasePermission):
-    """
-    Permite el acceso a usuarios que tengan al menos uno
-    de los roles indicados en la vista mediante roles_permitidos.
+def _tiene_rol(user, roles):
+    if not (user and user.is_authenticated):
+        return False
+    if user.is_superuser:
+        return True
+    return user.id_persona.roles.filter(rol__in=(ROL_ADMIN, *roles)).exists()
 
-    El superusuario puede acceder independientemente de sus roles.
-    """
 
-    message = "No tenés el rol necesario para acceder a este recurso."
+def TieneRol(*roles):
+    """Solo usuarios con alguno de los roles (los administradores siempre pasan)."""
 
-    def tiene_acceso(self, request, view):
-        usuario = request.user
+    class _TieneRol(BasePermission):
+        message = "No tenés el rol necesario para acceder a este recurso."
 
-        if not usuario or not usuario.is_authenticated:
-            return False
+        def has_permission(self, request, view):
+            return _tiene_rol(request.user, roles)
 
-        if usuario.is_superuser:
-            return True
+    return _TieneRol
 
-        roles_requeridos = getattr(view, "roles_permitidos", ())
 
-        # También permitimos indicar un único rol como texto.
-        if isinstance(roles_requeridos, str):
-            roles_requeridos = (roles_requeridos,)
+def LecturaPublicaEscrituraConRol(*roles):
+    """GET/HEAD/OPTIONS públicos; el resto de métodos requiere alguno de los roles."""
 
-        # Si la vista no define roles, el acceso se rechaza.
-        if not roles_requeridos:
-            return False
+    class _LecturaPublica(BasePermission):
+        message = "No tenés el rol necesario para modificar este recurso."
 
-        return usuario.id_persona.roles.filter(
-            rol__in=roles_requeridos
-        ).exists()
+        def has_permission(self, request, view):
+            return request.method in SAFE_METHODS or _tiene_rol(request.user, roles)
 
-    def has_permission(self, request, view):
-        return self.tiene_acceso(request, view)
-
-    def has_object_permission(self, request, view, obj):
-        return self.tiene_acceso(request, view)
+    return _LecturaPublica
