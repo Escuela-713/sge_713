@@ -5,7 +5,7 @@ from django.db import transaction
 
 from rest_framework import serializers
 
-from gestion_datos_personales.models import Persona
+from gestion_datos_personales.models import Persona, Rol
 from .models import Usuario
 
 
@@ -137,3 +137,13 @@ class PersonaUpdateSerializer(serializers.ModelSerializer):
             "id_localidad",
             "id_localidad_nacimiento",
         ]
+class UsuarioAdminSerializer(UserSerializer):
+    class Meta(UserSerializer.Meta):
+        fields = UserSerializer.Meta.fields + ["is_active"]
+
+
+class UsuarioAdminUpdateSerializer(serializers.Serializer):
+    is_active = serializers.BooleanField(required=False)
+    roles = serializers.PrimaryKeyRelatedField(
+        many=True, queryset=Rol.objects.all(), required=False
+    )

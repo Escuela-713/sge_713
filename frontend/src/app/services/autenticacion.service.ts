@@ -1,6 +1,6 @@
-
 import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import {
   Observable,
   tap,
@@ -97,6 +97,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private tokenService = inject(TokenService);
 
+  private router = inject(Router);
   private readonly API_URL = 'api/v1/auth';
 
   isAuthenticated = signal<boolean>(false);
@@ -191,7 +192,15 @@ export class AuthService {
       { withCredentials: true },
     );
   }
+  manejarSesionExpirada(): void {
+    if (!this.isAuthenticated()) return;
 
+    const returnUrl = this.router.url;
+    this.limpiarSesion();
+    this.router.navigate(['/iniciar-sesion'], {
+      queryParams: { expirada: true, returnUrl },
+    });
+  }
   logout(): void {
   this.http
     .post(

@@ -4,10 +4,12 @@ from rest_framework.generics import get_object_or_404
 from gestion_home.models import Carrousel, Categories, Publication
 from gestion_home.serializers import CarrouselSerializer, CategoriesSerializer, PublicationSerializer
 from rest_framework.parsers import MultiPartParser, FormParser
+from gestion_usuarios.permissions import LecturaPublicaEscrituraConRol
+
 
 class PublicationView(APIView):
     parser_classes = [MultiPartParser, FormParser]
-
+    permission_classes = [LecturaPublicaEscrituraConRol("directivos")]
     def get(self, request):
         publications = Publication.objects.all()
         serializer = PublicationSerializer(publications, many=True, context={'request': request})
@@ -26,7 +28,7 @@ class PublicationView(APIView):
 # ${this.apiUrl}${id}/, así que sin esta vista esos métodos van a fallar con 404.
 class PublicationDetailView(APIView):
     parser_classes = [MultiPartParser, FormParser]
-
+    permission_classes = [LecturaPublicaEscrituraConRol("directivos")]
     def get(self, request, pk):
         publication = get_object_or_404(Publication, pk=pk)
         serializer = PublicationSerializer(publication, context={'request': request})
@@ -50,7 +52,8 @@ class PublicationDetailView(APIView):
 
 class CategoriesView(APIView):
     parser_classes = [MultiPartParser, FormParser]
-
+    permission_classes = [LecturaPublicaEscrituraConRol("directivos")]
+    
     def get(self, request):
         categorias = Categories.objects.all()
         serializer = CategoriesSerializer(categorias, many=True)

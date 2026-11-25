@@ -20,6 +20,37 @@ from .serializers import (
 )
 from rest_framework_simplejwt.exceptions import TokenError
 
+from rest_framework_simplejwt.token_blacklist.models import BlacklistedToken, OutstandingToken
+from django.db import transaction
+from django.shortcuts import get_object_or_404
+from rest_framework.exceptions import PermissionDenied, ValidationError
+from rest_framework.generics import ListAPIView
+
+from .models import Usuario
+from .permissions import ROL_ADMIN, TieneRol
+from .serializers import UsuarioAdminSerializer, UsuarioAdminUpdateSerializer
+
+REFRESH_COOKIE = {"key": "refresh_token", "path": "/api/v1/auth/", "samesite": "Lax"}
+
+
+def set_refresh_cookie(response, refresh):
+    response.set_cookie(
+        value=str(refresh),
+        httponly=True,
+        secure=False,  # Cambiar a True cuando uses HTTPS
+        max_age=86400,
+        **REFRESH_COOKIE,
+    )
+
+
+def delete_refresh_cookie(response):
+    response.delete_cookie(**REFRESH_COOKIE)
+
+def revocar_refresh_tokens(usuario):
+    for token in OutstandingToken.objects.filter(user=usuario):
+        BlacklistedToken.objects.get_or_create(token=token)
+
+
 class RegisterAPIView(APIView):
     permission_classes = [AllowAny]
     throttle_classes = [ScopedRateThrottle]
@@ -31,6 +62,8 @@ class RegisterAPIView(APIView):
 
         usuario = serializer.save()
 
+        refresh = RefreshToken.for_user(usuario)
+
         return Response(
             {
                 "mensaje": "Registro exitoso",
@@ -38,6 +71,8 @@ class RegisterAPIView(APIView):
             },
             status=status.HTTP_201_CREATED,
         )
+        set_refresh_cookie(response, refresh)
+        return response
 
 
 
@@ -172,15 +207,7 @@ class CookieTokenRefreshView(TokenRefreshView):
 
         # Si SimpleJWT rotó el Refresh Token, actualizamos la cookie.
         if "refresh" in tokens:
-            response.set_cookie(
-                key="refresh_token",
-                value=tokens["refresh"],
-                httponly=True,
-                secure=False,  # Cambiar a True cuando uses HTTPS
-                samesite="Lax",
-                max_age=86400,
-                path="/api/v1/auth/",
-            )
+            set_refresh_cookie(response, tokens["refresh"])
 
         return response
 
@@ -192,20 +219,93 @@ class LogoutAPIView(APIView):
 
         if refresh_token:
             try:
-                token = RefreshToken(refresh_token)
-                token.blacklist()
+                RefreshToken(refresh_token).blacklist()
             except TokenError:
-                pass
+                pass  # ya expirado o revocado: igual se cierra la sesión
 
         response = Response(
             {"mensaje": "Sesión cerrada correctamente."},
             status=status.HTTP_200_OK,
         )
-
-        response.delete_cookie(
-            key="refresh_token",
-            path="/api/v1/auth/",
-            samesite="Lax",
-        )
-
+        delete_refresh_cookie(response)
         return response
+
+
+class LogoutAllAPIView(APIView):
+    """Revoca todos los refresh tokens del usuario (cierra todas sus sesiones)."""
+
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+
+        revocar_refresh_tokens(request.user)
+        response = Response(
+            {"mensaje": "Todas las sesiones fueron cerradas."},
+            status=status.HTTP_200_OK,
+        )
+        delete_refresh_cookie(response)
+        return response
+class UsuarioListView(ListAPIView):
+    """Listado de usuarios. Solo administradores."""
+
+    permission_classes = [TieneRol()]
+    queryset = Usuario.objects.select_related("id_persona").order_by("id_usuario")
+    serializer_class = UsuarioAdminSerializer
+
+
+class UsuarioDetailView(APIView):
+    """Detalle y administración (roles / activación) de un usuario. Solo administradores."""
+
+    permission_classes = [TieneRol()]
+
+    def get_usuario(self, pk):
+        return get_object_or_404(Usuario.objects.select_related("id_persona"), pk=pk)
+
+    def get(self, request, pk):
+        return Response(UsuarioAdminSerializer(self.get_usuario(pk)).data)
+
+    @transaction.atomic
+    def patch(self, request, pk):
+        usuario = self.get_usuario(pk)
+        solicitante = request.user
+
+        if usuario.pk == solicitante.pk:
+            raise PermissionDenied("No podés modificar tus propios roles ni privilegios.")
+
+        if usuario.is_superuser and not solicitante.is_superuser:
+            raise PermissionDenied("No podés modificar a un superusuario.")
+
+        serializer = UsuarioAdminUpdateSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        datos = serializer.validated_data
+
+        no_permitidos = set(request.data) - set(serializer.fields)
+        if no_permitidos:
+            raise ValidationError(
+                {"error": f"Campos no permitidos: {', '.join(sorted(no_permitidos))}."}
+            )
+
+        if "roles" in datos:
+            actuales = set(usuario.id_persona.roles.values_list("rol", flat=True))
+            nuevos = {rol.rol for rol in datos["roles"]}
+
+            if ROL_ADMIN in (actuales ^ nuevos) and not solicitante.is_superuser:
+                raise PermissionDenied(
+                    "Solo un superusuario puede asignar o quitar el rol de administrador."
+                )
+
+            usuario.id_persona.roles.set(datos["roles"])
+
+        if "is_active" in datos:
+            usuario.is_active = datos["is_active"]
+            usuario.save(update_fields=["is_active"])
+
+            if not usuario.is_active:
+                revocar_refresh_tokens(usuario)
+
+        return Response(
+            {
+                "mensaje": "Usuario actualizado correctamente.",
+                "usuario": UsuarioAdminSerializer(usuario).data,
+            }
+        )
