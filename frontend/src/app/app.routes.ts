@@ -10,9 +10,8 @@ import { FormMateriasComponent } from '@pages/gestion-carreras-planes-materias/m
 import { MateriasComponent } from '@pages/gestion-carreras-planes-materias/materias/materias.component'
 import { FormPlanesComponent } from '@pages/gestion-carreras-planes-materias/planes/componentes/form-planes.component'
 import { PlanesComponent } from '@pages/gestion-carreras-planes-materias/planes/planes.component'
-import { HistorialComponent } from '@pages/gestion-cooperadora/historial/historial.component'
 import { MovimientosComponent } from '@pages/gestion-cooperadora/movimientos/movimientos.component'
-import { FormularioComponent } from '@pages/gestion-cooperadora/registrar-compra/formulario.component'
+import { FormularioComponent } from '@pages/gestion-cooperadora/registrar-movimiento/formulario.component'
 import { DatosTutoresComponent } from '@pages/gestion-datos-personales/componentes/datos-tutores/datos-tutores.component'
 import { EditarAgregarTutorComponent } from '@pages/gestion-datos-personales/editar-agregar-tutor/editar-agregar-tutor.component'
 import { EditarDatosPersonalesComponent } from '@pages/gestion-datos-personales/editar-datos-personales/editar-datos-personales.component'
@@ -66,13 +65,12 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     children: [
       {
         path: 'cooperadora',
         children: [
           { path: 'movimientos', component: MovimientosComponent },
-          { path: 'historial', component: HistorialComponent },
           { path: 'registro', component: FormularioComponent },
         ],
       },

@@ -407,4 +407,214 @@ app-header a:hover {
     font-size: 32px;
     margin-top: 1.25rem;
   }
+
+  .cooperadora-page {
+    width: min(100% - 2rem, 1100px);
+    margin: clamp(1.5rem, 4vw, 3rem) auto;
+    color: #1e1e1e;
+  }
+
+  .cooperadora-panel {
+    padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1rem, 4vw, 2rem);
+    margin-block: 1.5rem;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  }
+
+  .cooperadora-panel--form {
+    max-width: 800px;
+    margin-inline: auto;
+  }
+
+  .cooperadora-title {
+    margin: 0 0 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #f66002;
+    color: #1e1e1e;
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .cooperadora-panel .form-label {
+    margin-bottom: 0.4rem;
+    color: #1e1e1e;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .cooperadora-page .form-control,
+  .cooperadora-page .form-select {
+    min-height: 2.75rem;
+    border: 1px solid #c4c4c4;
+    border-radius: 8px;
+    background-color: #fff;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .cooperadora-page textarea.form-control {
+    min-height: 7rem;
+  }
+
+  .cooperadora-page .form-control:focus,
+  .cooperadora-page .form-select:focus {
+    border-color: #f66002;
+    box-shadow: 0 0 0 0.2rem rgba(246, 96, 2, 0.18);
+  }
+
+  .cooperadora-page .form-text,
+  .cooperadora-page .text-danger {
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+
+  .btn-cooperadora {
+    min-width: 6rem;
+    padding: 0.55rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .btn-cooperadora--guardar {
+    border-color: #198754;
+    background-color: #198754;
+  }
+
+  .btn-cooperadora--guardar:hover:not(:disabled) {
+    color: #198754;
+    background-color: #fff;
+  }
+
+  .btn-cooperadora--editar {
+    border-color: #ee6602;
+    background-color: #ee6602;
+  }
+
+  .btn-cooperadora--editar:hover:not(:disabled) {
+    color: #ee6602;
+    background-color: #fff;
+  }
+
+  .btn-cooperadora--eliminar {
+    border-color: #dc3545;
+    background-color: #dc3545;
+  }
+
+  .btn-cooperadora--eliminar:hover:not(:disabled) {
+    color: #dc3545;
+    background-color: #fff;
+  }
+
+  .btn-cooperadora--cancelar {
+    border-color: #726e6e;
+    background-color: #726e6e;
+  }
+
+  .btn-cooperadora--cancelar:hover:not(:disabled) {
+    color: #726e6e;
+    background-color: #fff;
+  }
+
+  .btn-cooperadora:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+
+  .tabla-cooperadora {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+    color: #1e1e1e;
+    table-layout: auto;
+  }
+
+  .tabla-cooperadora th {
+    padding: 1rem 0.75rem;
+    border-bottom: 2px solid #f66002;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  .tabla-cooperadora td {
+    padding: 1rem 0.75rem;
+    border-bottom: 1px solid #c4c4c4;
+    font-size: 0.95rem;
+    font-weight: 400;
+    vertical-align: middle;
+  }
+
+  .tabla-cooperadora tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  .tabla-cooperadora .ingreso {
+    color: #198754;
+    font-weight: 700;
+  }
+
+  .tabla-cooperadora .egreso {
+    color: #8f0a0a;
+    font-weight: 700;
+  }
+
+  .tabla-cooperadora .acciones-movimiento {
+    white-space: nowrap;
+  }
+
+  .tabla-cooperadora .acciones-movimiento .btn+.btn {
+    margin-left: 0.5rem;
+  }
+
+  .tabla-cooperadora .estado-vacio {
+    padding-block: 2rem;
+    color: #726e6e;
+    text-align: center;
+  }
+
+  .historial-cabecera {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .historial-cabecera .cooperadora-title {
+    flex: 1;
+  }
+
+  .historial-busqueda {
+    width: min(100%, 22rem);
+    flex: 0 1 22rem;
+  }
+
+  @media (max-width: 640px) {
+    .cooperadora-page {
+      width: min(100% - 1rem, 1100px);
+      margin-block: 1rem;
+    }
+
+    .cooperadora-panel {
+      padding: 1.25rem 1rem;
+      margin-block: 1rem;
+    }
+
+    .historial-cabecera {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .historial-busqueda {
+      width: 100%;
+      flex-basis: auto;
+    }
+  }
 }

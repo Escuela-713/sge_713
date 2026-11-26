@@ -1,0 +1,7 @@
+.compact-fields {
+	margin-inline: -0.4rem;
+}
+
+.compact-fields > div {
+	padding-inline: 0.4rem;
+}
