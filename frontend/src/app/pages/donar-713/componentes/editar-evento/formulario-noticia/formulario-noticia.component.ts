@@ -21,7 +21,6 @@ export class FormularioNoticiaComponent implements OnChanges {
 
   formulario: FormGroup;
 
-  // Imagen: se puede subir un archivo nuevo o dejar/editar la URL existente.
   archivoImagen: File | null = null;
   previewImagen: string | null = null;
 

@@ -2,48 +2,117 @@
   <!-- Formulario -->
   <div class="novedad-form">
     <h2 class="tx-center">Agregar Publicación</h2>
-    <div class="form-container">
-      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
-        <!-- los span (etiquetas donde están los *) tienen que tener color rojo -->
-        <label for="image">Imagen de portada <span>*</span></label>
-        <input id="image" type="file" accept="image/*" (change)="onImageChange($event)" />
-        @if(form.get('image')?.invalid && form.get('image')?.touched){
-          <p class="error">Seleccione una imagen</p>
-        }
 
-        <label for="title">Título <span>*</span></label>
-        <input id="title" formControlName="title" placeholder="Ingrese el título de la publicación" />
-        @if(form.get('title')?.errors?.['required'] && form.get('title')?.touched){
-          <p class="error">Ingrese un título</p>
-        }
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form">
+      <div class="mb-3">
+          <!-- los span (etiquetas donde están los *) tienen que tener color rojo -->
+          <label for="image">Imagen de portada <span>*</span></label>
+          <input id="image" type="file" class="form-control" accept="image/*" (change)="onImageChange($event)" required />
+          @if(form.get('image')?.invalid && form.get('image')?.touched){
+            <p class="error">Seleccione una imagen</p>
+          }
+      </div>
+
+      <div class="mb-3">
+          <label for="title">Título <span>*</span></label>
+          <input type="text" id="title" class="form-control" formControlName="title" placeholder="Ingrese el título de la publicación" />
+          @if(form.get('title')?.errors?.['required'] && form.get('title')?.touched){
+            <p class="error">Ingrese un título</p>
+          }
+        </div>
 
         <label for="categoria">Categoría <span>*</span></label>
-        <select id="categoria" formControlName="categoria">
-        <option value="" hidden selected>Seleccione una categoría</option>
-        @for (categoria of categorias; track categoria.id) {
-        <option [value]="categoria.id">{{ categoria.title }}</option>
-        }
-        </select>
-        @if(form.get('categoria')?.invalid && form.get('categoria')?.touched){
-          <p class="error">Seleccione una categoría</p>
-        }
+      <div class="mb-3">
+          <select id="categoria" formControlName="categoria" class="form-select">
+            <option value="" hidden selected>Seleccione una categoría</option>
+            @for (categoria of categorias; track categoria.id) {
+              <option [value]="categoria.id">{{ categoria.title }}</option>
+            }
+          </select>
+          @if(form.get('categoria')?.invalid && form.get('categoria')?.touched){
+            <p class="error">Seleccione una categoría</p>
+          }
+      </div>
 
-        <label for="content">Contenido <span>*</span></label>
-        <textarea id="content" formControlName="content" placeholder="Ingrese el contenido de la publicación"></textarea>
-        @if(form.get('content')?.errors?.['required'] && form.get('content')?.touched){
-          <p class="error">Escriba contenido</p>
-        }
-        @if(form.get('content')?.errors?.['minlength'] && form.get('content')?.touched){
-          <p class="error">El contenido debe tener al menos 10 caracteres</p>
-        }
-        <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
-        <button type="submit" [disabled]="form.invalid || isSubmitting" class="btn btn-primary">
-          {{ isSubmitting ? 'Guardando...' : 'Publicar' }}
-        </button>
-      </form>
+          <label for="content">Contenido <span>*</span></label>
+          <div class="mb-3">
+            <textarea id="content" class="form-control" rows="4" formControlName="content" placeholder="Ingrese el contenido de la publicación"></textarea>
+            @if(form.get('content')?.errors?.['required'] && form.get('content')?.touched){
+              <p class="error">Escriba contenido</p>
+            }
+            @if(form.get('content')?.errors?.['minlength'] && form.get('content')?.touched){
+              <p class="error">El contenido debe tener al menos 10 caracteres</p>
+             }
+          </div>
+
+          <div class="d-flex justify-content-end gap-2 mt-3">
+            <button type="submit" class="btn-primary">
+              {{ isSubmitting ? 'Guardando...' : 'Publicar' }}
+            </button>
+            <button type="button" class="btn-cancel" (click)="onCancel()">Cancelar</button>
+          </div>
+          
+        </form>
+     </div>
+<div class="modal fade" id="cancelModal" #cancelModal tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="cancelModalLabel">Descartar publicación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Tiene cambios sin guardar. Si cancela ahora, perderá toda la información ingresada en la publicación.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">Volver</button>
+        <button type="button" class="btn btn-gral" (click)="confirmCancel()">Confirmar</button>
+      </div>
     </div>
   </div>
-
+</div>
+@if (showAlertToast) {
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="toastWarning" class="toast text-bg-warning show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-warning text-dark">
+        <strong class="me-auto">Advertencia</strong>
+        <small>Ahora</small>
+        <button type="button" class="btn-close" (click)="showAlertToast = false" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Complete los campos obligatorios.
+      </div>
+    </div>
+  </div>
+}
+@if (showErrorToast) {
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+   <div id="toastDanger" class="toast text-bg-danger show" role="alert" aria-live="assertive" aria-atomic="true">
+     <div class="toast-header bg-danger">
+       <strong class="me-auto text-white">Error</strong>
+       <small class="text-white">Ahora</small>
+       <button type="button" class="btn-close btn-close-white" (click)="showErrorToast = false" aria-label="Close"></button>
+     </div>
+     <div class="toast-body text-white">
+       No se guardaron los datos. Intente nuevamente.
+     </div>
+   </div>
+ </div>
+}
+@if (showSuccessToast) {
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div id="toastSuccess" class="toast text-bg-success show" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header bg-success text-white">
+        <strong class="me-auto text-white">Éxito</strong>
+        <small class="text-white">Ahora</small>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body text-white">
+        Los datos se guardaron correctamente.
+      </div>
+    </div>
+  </div>
+}
   <!-- Preview -->
  <div class="novedad-preview">
   @if (novedad) {

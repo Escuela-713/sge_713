@@ -1,5 +1,7 @@
 export type Dia = `${number}:${number}`
 
+export type Hora = `${number}:${number}:${number}`
+
 export interface Carrera {
   id_carrera: number
   nombre: string
@@ -17,7 +19,7 @@ type Ano = 1 | 2 | 3 | 4 | 5 | 6 | 7
 export interface Mesa {
   id_mesa_examen: Id
   dia: Dia
-  hora: string
+  hora: Hora
   ano: Ano
   carrera: Pick<Carrera, 'nombre'>
   materia: Pick<Materia, 'nombre'>

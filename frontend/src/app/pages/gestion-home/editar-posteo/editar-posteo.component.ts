@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy, signal } from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subject, takeUntil, firstValueFrom } from 'rxjs';
 import { NovedadesService, Publication } from '../../../services/novedades.service';
 import { CategoriasService, Categoria } from '../../../services/categorias.service';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-editar-posteo',
@@ -13,7 +15,7 @@ import { CategoriasService, Categoria } from '../../../services/categorias.servi
   templateUrl: './editar-posteo.component.html',
   styleUrls: ['./editar-posteo.component.css']
 })
-export class EditarPosteoComponent implements OnInit, OnDestroy {
+export class EditarPosteoComponent implements OnInit, OnDestroy, AfterViewInit {
   form: FormGroup;
   novedad = signal<any | null>(null);
   originalNovedad: Publication | null = null;
@@ -21,6 +23,13 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
   isLoading = true;
   error: string | null = null;
   private destroy$ = new Subject<void>();
+
+  @ViewChild('cancelModal') cancelModalElement!: ElementRef;
+  @ViewChild('deleteModal') deleteModalElement!: ElementRef;
+  
+  // Instancias separadas para cada modal
+  private cancelModalInstance: any;
+  private deleteModalInstance: any;
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +51,15 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
     });
 
     this.obtenerCategorias();
+  }
+
+  ngAfterViewInit(): void {
+    if (this.cancelModalElement) {
+      this.cancelModalInstance = new bootstrap.Modal(this.cancelModalElement.nativeElement);
+    }
+    if (this.deleteModalElement) {
+      this.deleteModalInstance = new bootstrap.Modal(this.deleteModalElement.nativeElement);
+    }
   }
 
   ngOnInit(): void {
@@ -121,6 +139,10 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(file);
   }
 
+  showAlertToast = false;
+  showErrorToast = false;
+  showSuccessToast = false;
+
   onSubmit(): void {
     if (this.form.valid && this.originalNovedad) {
       const val = this.form.value;
@@ -137,47 +159,68 @@ export class EditarPosteoComponent implements OnInit, OnDestroy {
           await firstValueFrom(
             this.novedadesService.updateCard(this.originalNovedad!.id, payload)
           );
-          alert('Publicación actualizada');
-          this.router.navigate(['/dashboard/home']);
+          this.showSuccessToast = true;
+          setTimeout(() => {
+            this.showSuccessToast = false;
+            this.router.navigate(['/dashboard/home']);
+          }, 2000);
         } catch (err) {
           console.error('Error guardando publicación', err);
-          alert('Error al guardar la publicación');
+          this.showErrorToast = true;
+          setTimeout(() => {
+            this.showErrorToast = false;
+          }, 4000);
         }
       })();
     } else {
       this.form.markAllAsTouched();
-      alert('Por favor, complete todos los campos requeridos correctamente.');
+      this.showAlertToast = true;
+      setTimeout(() => {
+        this.showAlertToast = false;
+      }, 4000);
     }
   }
 
   onCancel(): void {
-    if (this.hasChanges()) {
-      const confirmLeave = confirm('¿Está seguro de que desea cancelar? Se perderán los cambios no guardados.');
-      if (confirmLeave) {
-        this.goBack();
+    if (this.form.dirty) {
+      if (this.cancelModalInstance) {
+        this.cancelModalInstance.show();
       }
-    } else {
-      this.goBack();
+      return;
+    }
+    this.router.navigate(['/dashboard/home']);
+  }
+
+  confirmCancel(): void {
+    if (this.cancelModalInstance) {
+      this.cancelModalInstance.hide();
+    }
+    this.router.navigate(['/dashboard/home']);
+  }
+  onDelete(): void {
+    if (this.originalNovedad) {
+      if (this.deleteModalInstance) {
+        this.deleteModalInstance.show();
+      }
     }
   }
 
-  onDelete(): void {
-    if (this.originalNovedad) {
-      const confirmDelete = confirm('¿Está seguro de querer eliminar esta publicación?');
+  confirmDelete(): void {
+    if (!this.originalNovedad) return;
 
-      if (confirmDelete) {
-        (async () => {
-          try {
-            await firstValueFrom(this.novedadesService.deleteCardById(this.originalNovedad!.id));
-            alert(`PUBLICACIÓN ELIMINADA:\n"${this.originalNovedad!.title}" ha sido eliminada correctamente.`);
-            this.router.navigate(['/dashboard/home']);
-          } catch (err) {
-            console.error('Error eliminando publicación', err);
-            alert('No se pudo eliminar la publicación');
-          }
-        })();
-      }
+    if (this.deleteModalInstance) {
+      this.deleteModalInstance.hide();
     }
+
+    (async () => {
+      try {
+        await firstValueFrom(this.novedadesService.deleteCardById(this.originalNovedad!.id));
+        this.router.navigate(['/dashboard/home']);
+      } catch (err) {
+        console.error('Error eliminando publicación', err);
+        alert('No se pudo eliminar la publicación');
+      }
+    })();
   }
 
   private hasChanges(): boolean {

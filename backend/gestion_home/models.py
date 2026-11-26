@@ -31,7 +31,7 @@ class Carrousel(models.Model):
 	id = models.AutoField(primary_key=True)
 	image = models.ImageField(blank=False, null=False, upload_to='carrousel/')
 	title = models.TextField(blank=False,  null = False, max_length=50)
-	subtitle = models.TextField(blank=False, null=False, max_length=50)
+	subtitle = models.TextField(blank=True, null=True, max_length=50)
 	class Meta:
 		managed = True
 		db_table = 'gestion_home_carrousel'

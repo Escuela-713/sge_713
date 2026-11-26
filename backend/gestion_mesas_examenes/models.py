@@ -20,6 +20,7 @@ class MesaExamen(models.Model):
     profesor_primer_vocal = models.CharField(max_length=200, null=False)
     profesor_segundo_vocal = models.CharField(max_length=200, null=False)
     ruta_al_examen_model = models.CharField(default='', max_length=300)
+    eliminada = models.BooleanField(default=0, null=False, blank=False)
 
     class Meta:
         managed = True

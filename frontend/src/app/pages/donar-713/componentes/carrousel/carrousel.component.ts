@@ -20,22 +20,20 @@ export class CarrouselComponent implements OnInit, OnDestroy {
 
   private intervalId?: ReturnType<typeof setInterval>;
 
-  // Slides por defecto: se muestran mientras carga el backend o si todavía
-  // no se cargó ningún slide desde el panel de administración.
   slides: Slide[] = [
     {
-      image: '../../../../../assets/imgs/dona-sangre.avif',
+      image: '/assets/imgs/dona-sangre.avif',
       title: 'Dona Sangre, Dona Vida',
       description: 'Una donación puede salvar hasta 3 vidas. Únete a nuestra campaña y sé parte del cambio.',
       buttonText: 'Donar Ahora'
     },
     {
-      image: '../../../../../assets/imgs/sumate-campana.jpg',
+      image: '/assets/imgs/sumate-campana.jpg',
       title: 'Súmate a la Campaña',
       description: 'Estudiantes y comunidad unidos por una causa solidaria. Tu ayuda marca la diferencia.'
     },
     {
-      image: '../../../../../assets/imgs/cada-gota-cuenta.jpg',
+      image: '/assets/imgs/cada-gota-cuenta.jpg',
       title: 'Cada Gota Cuenta',
       description: 'Juntos podemos ayudar a quienes más lo necesitan. Participa en nuestros eventos de donación.',
       buttonText: 'Ver Eventos'
@@ -50,11 +48,12 @@ export class CarrouselComponent implements OnInit, OnDestroy {
   }
 
   private cargarSlides(): void {
-    this.donarService.getCarrusel().subscribe({
-      next: (slides) => {
-        if (slides && slides.length > 0) {
+    this.donarService.getHomeData().subscribe({
+      next: (data) => {
+        const slides = data.carrusel || [];
+        if (slides.length > 0) {
           this.slides = slides.map((s) => ({
-            image: s.imagen || '../../../../../assets/imgs/dona-sangre.avif',
+            image: s.imagen || '/assets/imgs/dona-sangre.avif',
             title: s.titulo,
             description: s.descripcion,
             buttonText: s.boton_texto || 'Ver más',
@@ -63,7 +62,6 @@ export class CarrouselComponent implements OnInit, OnDestroy {
         }
       },
       error: () => {
-        // Si el backend no está disponible, se mantienen los slides por defecto.
       },
     });
   }

@@ -1,49 +1,69 @@
 <div class="inventory">
-    <div class="header">
-        <h2 class="titulo">Bienes registrados</h2>
-        <input type="text" placeholder="Buscar bien por nombre, categoría, ubicación o estado..." class="search-input" [(ngModel)]="searchTerm" (ngModelChange)="onSearchChange()" />
+  <div class="header">
+    <h2 class="titulo">Bienes registrados</h2>
+    <input
+      type="text"
+      placeholder="Buscar bien por nombre, código, categoría, ubicación o estado..."
+      class="search-input"
+      [ngModel]="busqueda()"
+      (ngModelChange)="busqueda.set($event)"
+      name="busqueda"
+    />
+  </div>
+
+  @if (mensajeError()) {
+    <p class="mensaje mensaje-error">{{ mensajeError() }}</p>
+  }
+
+  @if (cargando()) {
+    <p class="mensaje">Cargando bienes...</p>
+  } @else if (error()) {
+    <div class="mensaje mensaje-error">
+      {{ error() }}
+      <button type="button" class="btn btn-success" (click)="cargar()">Reintentar</button>
     </div>
-
-    @if (cargando) {
-        <p>Cargando bienes...</p>
-    } @else if (error) {
-        <p>{{ error }}</p>
-    } @else if (bienesFiltrados.length === 0) {
-        <p>No hay bienes para mostrar.</p>
-    }
-
+  } @else if (bienes().length === 0) {
+    <p class="mensaje">Todavía no hay bienes registrados.</p>
+  } @else if (bienesFiltrados().length === 0) {
+    <p class="mensaje">No se encontraron bienes que coincidan con «{{ busqueda() }}».</p>
+  } @else {
     <ul class="items-list">
-        @for (bien of bienesFiltrados; track bien.id_bien) {
-            <li class="item">
-                <details>
-                    <summary>
-                        <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; width:100%">
-                            <div style="flex:1">
-                                <h3 style="margin:0">{{ bien.nombre }}</h3>
-                                <div class="card-sub">Categoría: {{ bien.categoria }}</div>
-                            </div>
-                            <div class="card-actions">
-                                <button class="btn btn-delete-outline" (click)="$event.preventDefault(); eliminarBien(bien.id_bien)">Eliminar</button>
-                            </div>
-                        </div>
-                    </summary>
-                    <div class="card-body">
-                        <p><strong class="label">Nombre:</strong> <span class="value">{{ bien.nombre }}</span></p>
-                        <p><strong class="label">Categoría:</strong> <span class="value">{{ bien.categoria }}</span></p>
-                        <p><strong class="label">Cantidad:</strong> <span class="value">{{ bien.cantidad }}</span></p>
-                        <p><strong class="label">Estado:</strong> <span class="value">{{ bien.estado }}</span></p>
-                        <p><strong class="label">Ubicación:</strong> <span class="value">{{ bien.ubicacion }}</span></p>
-                        <p><strong class="label">Descripción:</strong> <span class="value">{{ bien.descripcion || 'N/D' }}</span></p>
-                        <p><strong class="label">Prestado:</strong> <span class="value">{{ bien.prestado ? 'Sí' : 'No' }}</span></p>
-                    </div>
-                </details>
-            </li>
-        }
+      @for (bien of bienesFiltrados(); track bien.id_bien ?? $index) {
+        <li class="item">
+          <details>
+            <summary>
+              <div class="resumen">
+                <div class="resumen-texto">
+                  <h3>{{ bien.nombre }}</h3>
+                  <div class="card-sub">Código de registro: {{ bien.codigo_especial || 'N/D' }}</div>
+                </div>
+                <div class="card-actions">
+                  <a class="btn btn-success" [routerLink]="['/dashboard/inventario/editar', bien.id_bien]">Editar</a>
+                  @if (esAdmin()) {
+                    <button type="button" class="btn btn-danger" (click)="eliminarBien(bien)">Eliminar</button>
+                  }
+                </div>
+              </div>
+            </summary>
+            <div class="card-body">
+              <p><strong class="label">Nombre:</strong> <span class="value">{{ bien.nombre }}</span></p>
+              <p><strong class="label">Categoría:</strong> <span class="value">{{ categoriaDe(bien) }}</span></p>
+              <p><strong class="label">Cantidad:</strong> <span class="value">{{ bien.cantidad }}</span></p>
+              <p><strong class="label">Código especial:</strong> <span class="value">{{ bien.codigo_especial || 'N/D' }}</span></p>
+              <p><strong class="label">Estado:</strong> <span class="value">{{ bien.estado || 'N/D' }}</span></p>
+              <p><strong class="label">Ubicación:</strong> <span class="value">{{ ubicacionDe(bien) }}</span></p>
+              <p><strong class="label">Fecha de adquisición:</strong> <span class="value">{{ bien.fecha_adquisicion || 'N/D' }}</span></p>
+              <p><strong class="label">Prestado:</strong> <span class="value">{{ prestadoDe(bien) }}</span></p>
+            </div>
+          </details>
+        </li>
+      }
     </ul>
+  }
 
-    <div class="inventory-actions">
-        <div class="container">
-            <button class="btn btnSave" routerLink="../registrar-bien">Nuevo</button>
-        </div>
+  <div class="inventory-actions">
+    <div class="container">
+      <a class="btn btnSave" routerLink="/dashboard/inventario/registrar">Nuevo</a>
     </div>
+  </div>
 </div>

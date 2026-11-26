@@ -17,3 +17,30 @@ export interface Noticia {
   imagen: string;
   estado: 'reciente' | 'historial';
 }
+
+export interface Slide {
+  id: number;
+  titulo: string;
+  descripcion: string;
+  botonTexto: string;
+  imagen: string;
+  orden: number;
+  activo: boolean;
+}
+
+export interface Informacion {
+  id: number;
+  tipo: string;
+  titulo: string;
+  descripcion: string;
+  imagen: string;
+  orden: number;
+  activo: boolean;
+}
+
+export interface TipoInformacion {
+  id: number;
+  nombre: string;
+  orden: number;
+  cantidad: number;
+}

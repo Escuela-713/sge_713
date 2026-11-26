@@ -1,7 +1,7 @@
 
 # **SGE 713 – Sistema de Gestión Escolar**
 
->**Versión 0.25.2-Alpha**
+>**Versión 0.26.1-Alpha**
 
 ## **1. Introducción**
 
@@ -29,13 +29,14 @@ Corresponde al núcleo del sistema, donde se gestionan los datos, se aplican las
   * `gestion_inventario`: Control del inventario físico (mobiliario, equipamiento, etc.).
   * `gestion_mesa_examenes`: Gestión de mesas de examen y su organización.
   * `gestion_usuarios`: Administración de usuarios y autenticación del sistema.
-  * `gestion_home`: Gestion del contenido de la pagina principal 
+  * `gestion_home`: Gestion del contenido de la pagina principal. 
+  * `gestion_donar_713`: Gestion de la información del proyecto Donar 713.
 
 ### **B. `frontend/` – Interfaz de usuario**
 
 Es la parte visual del sistema; permite que los usuarios interactúen de forma intuitiva con la plataforma.
 
-* **Tecnología utilizada:** *Angular 20*.
+* **Tecnología utilizada:** *Angular 21*.
 * **Función principal:** Solicita información al backend, la procesa visualmente y la presenta en pantallas claras y organizadas.
 
 ---
@@ -53,7 +54,15 @@ El funcionamiento del SGE 713 sigue un ciclo simple y eficiente:
 
 ## **4. Puesta en marcha del sistema**
 
-### **A. Iniciar el Backend**
+### **A. Clonar el proyecto**
+
+1. Abrir la terminal y escribir el siguiente comando:
+
+   ```bash
+   git clone https://github.com/Escuela-713/sge_713
+   ```
+
+### **B. Iniciar el Backend**
 
 1. Abrir una terminal o consola de comandos.
 2. Acceder al directorio del backend:
@@ -61,25 +70,57 @@ El funcionamiento del SGE 713 sigue un ciclo simple y eficiente:
    ```bash
    cd backend
    ```
-3. (Opcional) Activar el entorno virtual:
+
+3. Crear el entorno virtual:
+
+   ```bash
+   python -m venv env
+   ```
+
+4. Abrir el entorno:
+
+   ```bash
+   cd env
+   ```
+
+5. Activar el entorno virtual:
 
    * **Linux/MacOS:**
 
-     ```bash
-     source env/bin/activate
-     ```
+      ```bash
+      source "env/bin/activate"
+      ```
+
    * **Windows:**
 
-     ```bash
-     env\Scripts\activate
-     ```
-4. Ejecutar el servidor de desarrollo:
+      ```bash
+      cd Scripts
+      ```
+
+      ```bash
+      Activate
+      ```
+6. Migrar el modelo del backend:
+**Aclaración:** Los nombres de las aplicaciones están organizados según el nombre de cada gestión. Por ejemplo, `gestion_home`.
+
+   ```bash
+   python manage.py makemigrations nombre_de_la_aplicacion
+   python manage.py migrate
+   ```
+
+6. En backend ejecutar el comando:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+7. Ejecutar el backend:
 
    ```bash
    python manage.py runserver
    ```
-
-### **B. Iniciar el Frontend**
+   
+### **C. Iniciar el Frontend**
 
 1. Abrir una **segunda** terminal.
 2. Acceder al directorio del frontend:

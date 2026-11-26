@@ -1,8 +1,10 @@
-import { ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NovedadesService, Publication } from '../../../services/novedades.service';
 import { CategoriasService, Categoria } from '../../../services/categorias.service';
+
+declare var bootstrap: any;
 
 interface NovedadPreview {
   title: string;
@@ -21,18 +23,18 @@ interface NovedadPreview {
   templateUrl: './agregar-posteo.component.html',
   styleUrls: ['./agregar-posteo.component.css']
 })
-export class AgregarPosteoComponent implements OnDestroy {
+export class AgregarPosteoComponent implements OnDestroy, AfterViewInit {
   form: FormGroup;
   novedad: NovedadPreview | null = null;
   categorias: Categoria[] = [];
 
-  // El archivo real que se sube al backend. El control 'image' del form
-  // solo sirve para que el Validators.required detecte si hay imagen o no,
-  // pero NO contiene el archivo (por eso se separa acá).
   selectedFile: File | null = null;
   isSubmitting = false;
 
   private previewObjectUrl: string | null = null;
+
+  @ViewChild('cancelModal') cancelModalElement!: ElementRef;
+  private modalInstance: any;
 
   constructor(
     private fb: FormBuilder,
@@ -55,8 +57,13 @@ export class AgregarPosteoComponent implements OnDestroy {
     this.obtenerCategorias();
   }
 
+  ngAfterViewInit(): void {
+    if (this.cancelModalElement) {
+      this.modalInstance = new bootstrap.Modal(this.cancelModalElement.nativeElement);
+    }
+  }
+
   ngOnDestroy(): void {
-    // Libera la URL del objeto creada para el preview, evita fugas de memoria
     if (this.previewObjectUrl) {
       URL.revokeObjectURL(this.previewObjectUrl);
     }
@@ -83,14 +90,9 @@ export class AgregarPosteoComponent implements OnDestroy {
       URL.revokeObjectURL(this.previewObjectUrl);
     }
 
-    // Guardamos el File real para el envío al backend...
     this.selectedFile = file;
-    // ...y una URL local liviana solo para mostrar el preview en pantalla
     this.previewObjectUrl = URL.createObjectURL(file);
 
-    // Con patchValue solo marcamos que "hay algo" en el control, para que
-    // Validators.required lo considere válido. El nombre del archivo no
-    // se usa para nada más que esto.
     this.form.patchValue({ image: file.name });
     this.form.get('image')?.markAsTouched();
 
@@ -110,6 +112,10 @@ export class AgregarPosteoComponent implements OnDestroy {
     this.chr.detectChanges();
   }
 
+  showAlertToast = false;
+  showErrorToast = false;
+  showSuccessToast = false;
+
   onSubmit(): void {
     if (this.form.valid && this.selectedFile) {
       const val = this.form.value;
@@ -126,27 +132,45 @@ export class AgregarPosteoComponent implements OnDestroy {
         next: (response) => {
           console.log('Publicación guardada:', response);
           this.isSubmitting = false;
-          alert('Publicación agregada correctamente');
-          this.router.navigate(['/dashboard/home']);
+          this.showSuccessToast = true;
+          setTimeout(() => {
+            this.showSuccessToast = false;
+            this.router.navigate(['/dashboard/home']);
+          }, 2000);
         },
         error: (err) => {
           console.error('Error al guardar la publicación:', err);
           this.isSubmitting = false;
-          alert('No se pudo guardar la publicación');
+          this.showErrorToast = true;
+          setTimeout(() => {
+            this.showErrorToast = false;
+          }, 4000);
         }
       });
     } else {
       this.form.markAllAsTouched();
       if (!this.selectedFile) {
-        alert('Debe seleccionar una imagen');
+        this.showAlertToast = true;
+        setTimeout(() => {
+          this.showAlertToast = false;
+        }, 4000);
       }
     }
   }
 
   onCancel(): void {
     if (this.form.dirty) {
-      const confirmar = window.confirm('¿Está seguro que desea cancelar? Se perderán los cambios no guardados.');
-      if (!confirmar) return;
+      if (this.modalInstance) {
+        this.modalInstance.show();
+      }
+      return;
+    }
+    this.router.navigate(['/dashboard/home']);
+  }
+
+  confirmCancel(): void {
+    if (this.modalInstance) {
+      this.modalInstance.hide();
     }
     this.router.navigate(['/dashboard/home']);
   }

@@ -1,0 +1,80 @@
+@if (grupos.length > 0) {
+  <section class="info-seccion" id="informacion">
+    <div class="info-cabecera">
+      <span class="info-pildora">Todo lo que Necesitas Saber</span>
+      <h2>Información sobre Donación</h2>
+      <p>Conoce los requisitos, beneficios y resuelve tus dudas sobre la donación de sangre.</p>
+    </div>
+
+    <div class="info-grupos">
+      @for (grupo of grupos; track grupo.nombre) {
+        <div class="info-grupo">
+          <div class="info-titulo">
+            <span class="info-titulo-icono">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21s-6.716-4.35-9.428-8.06C.55 10.24 1.2 6.6 4.2 5.1 6.6 3.9 9 4.6 12 7.5c3-2.9 5.4-3.6 7.8-2.4 3 1.5 3.65 5.14 1.628 7.84C18.716 16.65 12 21 12 21z"></path>
+              </svg>
+            </span>
+            <h3>{{ grupo.nombre }}</h3>
+          </div>
+
+          <div class="info-tarjetas">
+            @for (item of grupo.items; track item.id) {
+              <button type="button" class="info-tarjeta" (click)="abrir(item, $event)"
+                [attr.aria-label]="'Ver más sobre ' + item.titulo">
+                <span class="info-tarjeta-imagen">
+                  @if (item.imagen) {
+                    <img [src]="item.imagen" [alt]="item.titulo" loading="lazy">
+                  } @else {
+                    <svg class="info-tarjeta-vacia" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"></path>
+                    </svg>
+                  }
+                </span>
+                <span class="info-tarjeta-cuerpo">
+                  <span class="info-tarjeta-titulo">{{ item.titulo }}</span>
+                  <span class="info-tarjeta-mas">
+                    Ver más
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M5 12h14"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </span>
+              </button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  </section>
+}
+
+@if (seleccionada) {
+  <div class="info-detalle" role="dialog" aria-modal="true"
+    [attr.aria-label]="seleccionada.titulo"
+    [style.--recorte-inicial]="recorteInicial"
+    (keydown.tab)="$event.preventDefault()"
+    (keydown.shift.tab)="$event.preventDefault()">
+
+    <button #botonCerrar type="button" class="info-detalle-cerrar" (click)="cerrar()" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+        <path d="M6 6l12 12"></path>
+        <path d="M18 6L6 18"></path>
+      </svg>
+    </button>
+
+    <article class="info-detalle-panel" [class.sin-imagen]="!seleccionada.imagen">
+      @if (seleccionada.imagen) {
+        <div class="info-detalle-imagen">
+          <img [src]="seleccionada.imagen" [alt]="seleccionada.titulo">
+        </div>
+      }
+      <div class="info-detalle-texto">
+        <span class="info-detalle-tipo">{{ seleccionada.tipo }}</span>
+        <h2>{{ seleccionada.titulo }}</h2>
+        <p>{{ seleccionada.descripcion }}</p>
+      </div>
+    </article>
+  </div>
+}

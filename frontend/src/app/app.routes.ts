@@ -2,6 +2,7 @@ import type { Route, Routes } from '@angular/router'
 import { DashboardComponent } from '@pages/dashboard/dashboard.component'
 import { EditarEventoComponent } from '@pages/donar-713/componentes/editar-evento/editar-evento.component'
 import { Donar713Component } from '@pages/donar-713/donar-713.component'
+import { HistoriaComponent } from '@pages/donar-713/componentes/historia/historia.component'
 import { DonarHomeComponent } from '@pages/donar-713/donar-home/donar-home.component'
 import { CarrerasComponent } from '@pages/gestion-carreras-planes-materias/carreras/carreras.component'
 import { FormCarreraComponent } from '@pages/gestion-carreras-planes-materias/carreras/componentes/form-carreras.component'
@@ -9,9 +10,8 @@ import { FormMateriasComponent } from '@pages/gestion-carreras-planes-materias/m
 import { MateriasComponent } from '@pages/gestion-carreras-planes-materias/materias/materias.component'
 import { FormPlanesComponent } from '@pages/gestion-carreras-planes-materias/planes/componentes/form-planes.component'
 import { PlanesComponent } from '@pages/gestion-carreras-planes-materias/planes/planes.component'
-import { HistorialComponent } from '@pages/gestion-cooperadora/historial/historial.component'
 import { MovimientosComponent } from '@pages/gestion-cooperadora/movimientos/movimientos.component'
-import { FormularioComponent } from '@pages/gestion-cooperadora/registrar-compra/formulario.component'
+import { FormularioComponent } from '@pages/gestion-cooperadora/registrar-movimiento/formulario.component'
 import { DatosTutoresComponent } from '@pages/gestion-datos-personales/componentes/datos-tutores/datos-tutores.component'
 import { EditarAgregarTutorComponent } from '@pages/gestion-datos-personales/editar-agregar-tutor/editar-agregar-tutor.component'
 import { EditarDatosPersonalesComponent } from '@pages/gestion-datos-personales/editar-datos-personales/editar-datos-personales.component'
@@ -25,14 +25,21 @@ import { GestionHomeComponent } from '@pages/gestion-home/gestion-home.component
 import { HomeDashboardComponent } from '@pages/gestion-home/home-dashboard/home-dashboard.component'
 import { IncidenciasPendientesComponent } from '@pages/gestion-incidencias/incidencias-pendientes/incidencias-pendientes.component'
 import { RegistroIncidenciaComponent } from '@pages/gestion-incidencias/registro-incidencia/registro-incidencia.component'
+import { BienesRegistradosComponent } from '@pages/gestion-inventario/bienes-registrados/bienes-registrados.component'
 import { InventarioComponent } from '@pages/gestion-inventario/inventario/inventario.component'
+import { MovimientosInventarioComponent } from '@pages/gestion-inventario/movimientos-inventario/movimientos-inventario.component'
+import { ReportesInventarioComponent } from '@pages/gestion-inventario/reportes-inventario/reportes-inventario.component'
 import { RegistrarBienComponent } from '@pages/gestion-inventario/registrar-bien/registrar-bien.component'
 import { LoginComponent } from '@pages/gestion-usuarios/login/login.component'
 import { RegistroComponent } from '@pages/gestion-usuarios/registro/registro.component'
 import { HomeComponent } from '@pages/home/home.component'
 import { NovedadComponent } from '@pages/novedad/novedad.component'
-import { authGuard } from '@guards/auth.guard'
+import { EditarSlideComponent } from '@pages/gestion-home/editar-slide/editar-slide.component'
+import { InscripcionPreceptorComponent } from '@pages/gestion-examenes-finales/inscripcion-preceptor/inscripcion-preceptor.component'
+import { EditarMesaComponent } from './pages/gestion-examenes-finales/editar-mesa/editar-mesa.component'
+import { adminGuard, authGuard } from '@guards/auth.guard'
 import { EditarPerfilComponent } from '@pages/gestion-usuarios/editar-perfil/editar-perfil.component'
+
 const indexarRuta = (componenteIndex: any): Route => {
   const rutaIndex: Route = {
     path: '',
@@ -50,14 +57,16 @@ export const routes: Routes = [
     path: 'donar-713',
     component: Donar713Component,
     children: [
+      { path: '', redirectTo: 'donar-home', pathMatch: 'full' },
       { path: 'donar-home', component: DonarHomeComponent },
+      { path: 'historia', component: HistoriaComponent },
       { path: 'editar-evento', component: EditarEventoComponent },
     ],
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     children: [
       {
         path: 'mi-perfil',
@@ -67,7 +76,6 @@ export const routes: Routes = [
         path: 'cooperadora',
         children: [
           { path: 'movimientos', component: MovimientosComponent },
-          { path: 'historial', component: HistorialComponent },
           { path: 'registro', component: FormularioComponent },
         ],
       },
@@ -114,6 +122,14 @@ export const routes: Routes = [
         children: [
           indexarRuta(InventarioComponent),
           { path: 'registrar', component: RegistrarBienComponent },
+          { path: 'editar/:id', component: RegistrarBienComponent },
+          { path: 'bienes', component: BienesRegistradosComponent },
+          { path: 'movimientos', component: MovimientosInventarioComponent },
+          {
+            path: 'reportes',
+            component: ReportesInventarioComponent,
+            canActivate: [adminGuard],
+          },
         ],
       },
       {
@@ -131,6 +147,7 @@ export const routes: Routes = [
           { path: 'agregar-posteo', component: AgregarPosteoComponent },
           { path: 'editar-novedad/:id', component: EditarPosteoComponent },
           { path: 'agregar-slide', component: AgregarSlideComponent },
+          { path: 'editar-slide/:id', component: EditarSlideComponent },
         ],
       },
       {
@@ -138,6 +155,14 @@ export const routes: Routes = [
         children: [
           indexarRuta(TablaMesaExamenComponent),
           { path: 'crear-mesa', component: CreacionDeMesaComponent },
+          {
+            path: 'editar-mesa/:id_mesa',
+            component: EditarMesaComponent,
+          },
+          {
+            path: 'inscribir-alumno/:id_mesa',
+            component: InscripcionPreceptorComponent,
+          },
         ],
       },
     ],

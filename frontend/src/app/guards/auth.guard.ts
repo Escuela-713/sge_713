@@ -1,22 +1,35 @@
-
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/autenticacion.service';
 import { map } from 'rxjs';
 
-export const authGuard: CanActivateFn = (route, state) => {
-  const authService = inject(AuthService);
-  const router = inject(Router);
+/** Deja pasar solo si hay sesión. Espera a que el backend confirme (evita el rebote al login al recargar). */
+export const authGuard: CanActivateFn = () => {
+  const authService = inject(AuthService)
+  const router = inject(Router)
 
-  return authService.checkAuthStatus().pipe(
-    map((autenticado) => {
-      if (autenticado) {
-        return true;
-      }
+  //   if (authService.isAuthenticated()) {
+  //     return true;
+  //   }
 
-      return router.createUrlTree(['/iniciar-sesion'], {
-        queryParams: { returnUrl: state.url },
-      });
-    }),
-  );
-};
+  return authService
+    .verificarSesion()
+    .pipe(map((ok) => (ok ? true : router.createUrlTree(['/iniciar-sesion']))))
+}
+
+/** Deja pasar solo a administradores; el resto vuelve al inventario. */
+export const adminGuard: CanActivateFn = () => {
+  const authService = inject(AuthService)
+  const router = inject(Router)
+
+  const decidir = (ok: boolean) => {
+    if (!ok) return router.createUrlTree(['/iniciar-sesion'])
+    return authService.esAdmin()
+      ? true
+      : router.createUrlTree(['/dashboard/inventario'])
+  }
+
+  if (authService.isAuthenticated()) {
+    return decidir(true)
+  }
+  return authService.verificarSesion().pipe(map(decidir))

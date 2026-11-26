@@ -1,0 +1,130 @@
+<form [formGroup]="formularioDeEdicion" (ngSubmit)="guardarEdicion()" class="formulario">
+  <h2>Edición de mesa de examen</h2>
+  <div class="row">
+    <label class="col mb-3">
+      Año:
+      <select formControlName="ano" required class="form-select">
+        @for (ano of anos; track ano) {
+        <option [value]="ano">{{ ano }}°</option>
+        }
+      </select>
+      @if (Ano?.invalid && (Ano?.touched || Ano?.dirty)) {
+        @if (Ano.hasError('required')) {
+          <span>El año es requerido.</span>
+        }
+
+        @if (Ano.hasError('min')) {
+          <span>El mínimo tiene que ser 1.</span>
+        }
+
+        @if (Ano.hasError('max')) {
+          <span>El máximo tiene que ser 7.</span>
+        }
+      }
+    </label>
+    <label class="col mb-3">
+      Carrera:
+      <select formControlName="id_carrera" required class="form-select">
+        @for (carrera of carreras; track carrera.id_carrera) {
+          <option [value]="carrera.id_carrera">{{ carrera.nombre }}</option>
+        }
+      </select>
+      @if (Carrera?.invalid && (Carrera?.touched || Carrera?.dirty)) {
+        @if (Carrera.hasError('required')) {
+          <span>El nombre de la carrera es requerido.</span>
+        }
+      }
+    </label>
+    <label class="col mb-3">
+      Materia:
+      <select formControlName="id_materia" required class="form-select">
+        @for (materia of materias; track materia.id_materia) {
+          <option [value]="materia.id_materia">{{ materia.nombre }}</option>
+        }
+      </select>
+      @if (Materia?.invalid && (Materia?.touched || Materia?.dirty)) {
+        @if (Materia.hasError('required')) {
+          <span>El nombre de la materia es requerido.</span>
+        }
+      }
+    </label>
+  </div>
+  <label>
+    Profesor titular:
+  </label>
+  <div class="form-group mb-3">
+    <input type="text" formControlName="profesor_titular" required class="form-control"/>
+  </div>
+  @if (
+  ProfesorTitular?.invalid &&
+  (ProfesorTitular?.touched || ProfesorTitular?.dirty)
+  ) {
+  @if (ProfesorTitular.hasError('required')) {
+  <span>El nombre del profesor titular es requerido.</span>
+  }
+
+  @if (ProfesorTitular.hasError('minlength')) {
+  <span>Se requiere un mínimo de 10 carácteres.</span>
+  }
+  }
+  <label>
+    Profesor primer vocal:
+  </label>
+  <div class="form-group mb-3">
+    <input class="form-control" type="text" formControlName="profesor_primer_vocal" required />
+  </div>
+  @if (
+  ProfesorPrimerVocal?.invalid &&
+  (ProfesorPrimerVocal?.touched || ProfesorPrimerVocal?.dirty)
+  ) {
+  @if (ProfesorPrimerVocal.hasError('required')) {
+  <span>El nombre del profesor primer vocal es requerido.</span>
+  }
+
+  @if (ProfesorPrimerVocal.hasError('minlength')) {
+  <span>Se requiere un mínimo de 10 carácteres.</span>
+  }
+  }
+  <label>
+    Profesor segundo vocal:
+  </label>
+  <div class="form-group mb-3">
+    <input class="form-control" type="text" formControlName="profesor_segundo_vocal" required />
+  </div>
+  @if (
+  ProfesorSegundoVocal?.invalid &&
+  (ProfesorSegundoVocal?.touched || ProfesorSegundoVocal?.dirty)
+  ) {
+  @if (ProfesorSegundoVocal.hasError('required')) {
+  <span>El nombre del profesor segundo vocal es requerido.</span>
+  }
+
+  @if (ProfesorSegundoVocal.hasError('minlength')) {
+  <span>Se requiere un minimo de 10 carácteres.</span>
+  }
+  }
+  <div class="row">
+    <label class="col mb-3">
+      Fecha del examen:
+      <input class="form-control" type="date" formControlName="dia" required />
+    </label>
+    @if (Dia?.invalid && (Dia?.touched || Dia?.dirty)) {
+    @if (Dia.hasError('required')) {
+    <span>La día es requerido.</span>
+    }
+    }
+    <label class="col mb-3">
+      Hora del examen:
+
+      <input class="form-control" type="time" formControlName="hora" required />
+    </label>
+    @if (Hora?.invalid && (Hora?.touched || Hora?.dirty)) {
+    @if (Hora.hasError('required')) {
+    <span>La hora es requerida.</span>
+    }
+    }
+  </div>
+  <div class="btn-centrado">
+    <button type="submit" class="btn btn-gral btn-outline-success">Guardar mesa editada</button>
+  </div>
+</form>

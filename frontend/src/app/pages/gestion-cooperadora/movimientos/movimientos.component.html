@@ -1,55 +1,124 @@
-<div class="container">
-  <h2>Movimientos de cooperadora escolar</h2>
-  @if (mensaje) {
-    <div class="alert alert-info">{{ mensaje }}</div>
-  }
-</div>
+<main class="cooperadora-page cooperadora-page--wide">
+  <section class="cooperadora-panel">
+    <h2 class="cooperadora-title">Movimientos de cooperadora escolar</h2>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Fecha</th>
-      <th>Tipo</th>
-      <th>Monto</th>
-      <th>Origen</th>
-      <th>Destino</th>
-      <th>Descripción</th>
-      <th>Opciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    @for (mov of movimientos; track mov.id) {
-    <tr>
-      <td>{{ formatearFecha(mov.fecha) }}</td>
-      <td [class.ingreso]="mov.tipo === 'Ingreso'" [class.egreso]="mov.tipo === 'Egreso'">
-        {{ mov.tipo }}
-      </td>
-      <td>{{ formatearMonto(mov.monto) }}</td>
-      <td>{{ mov.origen }}</td>
-      <td>{{ mov.destino }}</td>
-      <td>{{ mov.descripcion }}</td>
-      <td>
-        <button class="btn btnAdd" type="button" (click)="editarMovimiento(mov)">Editar</button>
-        <button class="btn btnDelete" type="button" (click)="eliminarMovimiento(mov)">Eliminar</button>
-      </td>
-    </tr>
+    <div class="row g-3 mb-4" aria-label="Filtros de movimientos">
+      <div class="col-12 col-md-6">
+        <label class="form-label" for="tipo-filtro">Tipo de movimiento</label>
+        <select
+          class="form-select"
+          id="tipo-filtro"
+          name="tipoFiltro"
+          [(ngModel)]="tipoFiltro"
+          (ngModelChange)="aplicarFiltros()"
+        >
+          <option value="">Todos</option>
+          <option value="Ingreso">Ingresos</option>
+          <option value="Egreso">Egresos</option>
+        </select>
+      </div>
+      <div class="col-12 col-md-6">
+        <label class="form-label" for="fecha-filtro">Fecha</label>
+        <input
+          class="form-control"
+          type="text"
+          id="fecha-filtro"
+          name="fechaFiltro"
+          inputmode="numeric"
+          placeholder="D/M/AAAA"
+          [ngModel]="fechaFiltroTexto"
+          (ngModelChange)="actualizarFechaFiltro($event)"
+        />
+        @if (fechaInvalida) {
+          <div class="form-text text-danger">Ingresá una fecha válida como 1/9/2025.</div>
+        }
+      </div>
+    </div>
+
+    @if (mensaje) {
+      <div class="alert alert-info" role="status">{{ mensaje }}</div>
     }
-  </tbody>
-</table>
 
-@if (movimientoEditando) {
-  <form class="edicion-movimiento" (ngSubmit)="guardarEdicion()">
-    <h3>Editar movimiento</h3>
-    <input type="date" name="fecha" [(ngModel)]="movimientoEditando.fecha" required>
-    <select name="tipo" [(ngModel)]="movimientoEditando.tipo" required>
-      <option value="Ingreso">Ingreso</option>
-      <option value="Egreso">Egreso</option>
-    </select>
-    <input type="number" name="monto" [(ngModel)]="movimientoEditando.monto" min="0.01" required>
-    <input type="text" name="origen" [(ngModel)]="movimientoEditando.origen" placeholder="Origen">
-    <input type="text" name="destino" [(ngModel)]="movimientoEditando.destino" placeholder="Destino">
-    <textarea name="descripcion" [(ngModel)]="movimientoEditando.descripcion" placeholder="Descripción"></textarea>
-    <button class="btn btn-primary" type="submit">Guardar</button>
-    <button class="btn btn-secondary" type="button" (click)="cancelarEdicion()">Cancelar</button>
-  </form>
-}
+    <div class="table-responsive">
+      <table class="tabla-cooperadora">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Monto</th>
+            <th>Origen</th>
+            <th>Destino</th>
+            <th>Descripción</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (mov of movimientos; track mov.id) {
+            <tr>
+              <td>{{ formatearFecha(mov.fecha) }}</td>
+              <td [class.ingreso]="mov.tipo === 'Ingreso'" [class.egreso]="mov.tipo === 'Egreso'">
+                {{ mov.tipo }}
+              </td>
+              <td>{{ formatearMonto(mov.monto) }}</td>
+              <td>{{ mov.origen }}</td>
+              <td>{{ mov.destino }}</td>
+              <td>{{ mov.descripcion }}</td>
+              <td class="acciones-movimiento">
+                <button class="btn btn-cooperadora btn-cooperadora--editar" type="button" (click)="editarMovimiento(mov)">
+                  Editar
+                </button>
+                <button class="btn btn-cooperadora btn-cooperadora--eliminar" type="button" (click)="eliminarMovimiento(mov)">
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+          }
+          @if (movimientos.length === 0) {
+            <tr>
+              <td colspan="7" class="estado-vacio">No hay movimientos para mostrar.</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  @if (movimientoEditando) {
+    <section class="cooperadora-panel cooperadora-panel--form">
+      <form class="cooperadora-form edicion-movimiento" (ngSubmit)="guardarEdicion()">
+        <h2 class="cooperadora-title">Editar movimiento</h2>
+        <div class="mb-3">
+          <label class="form-label" for="edicion-fecha">Fecha</label>
+          <input class="form-control" type="date" id="edicion-fecha" name="fecha" [(ngModel)]="movimientoEditando.fecha" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="edicion-tipo">Tipo</label>
+          <select class="form-select" id="edicion-tipo" name="tipo" [(ngModel)]="movimientoEditando.tipo" required>
+            <option value="Ingreso">Ingreso</option>
+            <option value="Egreso">Egreso</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="edicion-monto">Monto</label>
+          <input class="form-control" type="number" id="edicion-monto" name="monto" [(ngModel)]="movimientoEditando.monto" min="0.01" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="edicion-origen">Origen</label>
+          <input class="form-control" type="text" id="edicion-origen" name="origen" [(ngModel)]="movimientoEditando.origen" placeholder="Origen">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="edicion-destino">Destino</label>
+          <input class="form-control" type="text" id="edicion-destino" name="destino" [(ngModel)]="movimientoEditando.destino" placeholder="Destino">
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="edicion-descripcion">Descripción</label>
+          <textarea class="form-control" id="edicion-descripcion" name="descripcion" [(ngModel)]="movimientoEditando.descripcion" placeholder="Descripción"></textarea>
+        </div>
+        <div class="d-flex justify-content-center gap-2">
+          <button class="btn btn-cooperadora btn-cooperadora--guardar" type="submit">Guardar</button>
+          <button class="btn btn-cooperadora btn-cooperadora--cancelar" type="button" (click)="cancelarEdicion()">Cancelar</button>
+        </div>
+      </form>
+    </section>
+  }
+</main>

@@ -34,6 +34,13 @@ export class MesasExamenesService {
   }
 
   inscribirse(inscripcion: Inscripcion): Observable<any> {
-    return this.http.post(`${this.apiUrl}/inscripcion/`, inscripcion)
+    return this.http.post(`${this.apiUrl}/inscripcion/alumno/`, inscripcion)
+  }
+
+  inscribirAlumno(inscripcion: {
+    dni: number
+    id_mesa_examen: number
+  }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/inscripcion/preceptor/`, inscripcion)
   }
 }

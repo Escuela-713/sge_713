@@ -46,7 +46,6 @@ else:
 # Additional hosts may be added via DJANGO_ALLOWED_HOSTS in the .env file
 
 AUTH_USER_MODEL = "gestion_usuarios.Usuario"
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -72,14 +71,14 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
-    "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 CORS_ALLOWED_ORIGINS = [
@@ -208,4 +207,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_CREDENTIALS = True
 
+# Inventario
+CORS_EXPOSE_HEADERS = ['Content-Disposition']  # para descargar reportes con su nombre
+EXIGIR_LOGIN = False  # pasar a True cuando el frontend tenga login
 CORS_ALLOW_CREDENTIALS = True

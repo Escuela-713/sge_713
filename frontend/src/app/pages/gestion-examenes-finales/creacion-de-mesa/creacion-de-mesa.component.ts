@@ -62,7 +62,6 @@ export class CreacionDeMesaComponent implements OnInit {
     dia: ['', [Validators.required]],
     hora: ['', [Validators.required]],
   })
-
   get Ano() {
     return this.formularioMesaExamen.get('ano') as AbstractControl
   }

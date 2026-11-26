@@ -116,7 +116,7 @@ export class RegistroComponent {
         this.successMessage = '¡Usuario registrado con éxito! Redirigiendo...';
 
         setTimeout(() => {
-          this.router.navigate(['/']);
+          this.router.navigate(['/iniciar-sesion']);
         }, 1500);
       },
 

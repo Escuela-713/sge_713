@@ -1,4 +1,4 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {
@@ -102,6 +102,8 @@ export class AuthService {
 
   isAuthenticated = signal<boolean>(false);
   currentUser = signal<UserData | null>(null);
+  /** true si el usuario logueado tiene rol de administrador (ej. "Administrador"). */
+  esAdmin = computed(() => (this.currentUser()?.rol ?? '').toLowerCase().startsWith('admin'));
 
   private authCheck$?: Observable<boolean>;
 
@@ -153,20 +155,6 @@ export class AuthService {
       .post<AuthResponse>(`${this.API_URL}/registro/`, credentials, {
         withCredentials: true,
       })
-      .pipe(
-        tap((response) => {
-          if (response.usuario) {
-            this.currentUser.set(response.usuario);
-            this.isAuthenticated.set(true);
-          }
-
-          if (response.tokens?.access) {
-            this.tokenService.setAccessToken(response.tokens.access);
-          }
-
-          this.authCheck$ = of(true);
-        }),
-      );
   }
 
   login(credentials: LoginRequest): Observable<AuthResponse> {

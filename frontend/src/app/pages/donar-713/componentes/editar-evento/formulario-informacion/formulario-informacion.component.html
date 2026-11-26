@@ -1,0 +1,95 @@
+<div class="modal-overlay" (click)="onCancelar()">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+      <h3>{{ modoEdicion ? 'Editar información' : 'Agregar información' }}</h3>
+      <button type="button" class="close-btn" (click)="onCancelar()" aria-label="Cerrar">&times;</button>
+    </div>
+
+    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <div class="label-fila">
+          <label for="info-tipo">Tipo</label>
+          <button type="button" class="link-btn" (click)="administrarTipos.emit()">Administrar tipos</button>
+        </div>
+        @if (tipos.length > 0) {
+          <select id="info-tipo" formControlName="tipo">
+            @for (tipo of tipos; track tipo.id) {
+              <option [value]="tipo.nombre">{{ tipo.nombre }}</option>
+            }
+          </select>
+        } @else {
+          <p class="aviso">Todavía no hay tipos cargados. Creá el primero desde «Administrar tipos».</p>
+        }
+        @if (campoInvalido('tipo')) {
+          <span class="error-msg">Elegí un tipo.</span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="info-titulo">Título</label>
+        <input id="info-titulo" type="text" formControlName="titulo"
+          placeholder="Ej: Corazón"
+          [class.input-invalido]="campoInvalido('titulo')">
+        @if (campoInvalido('titulo')) {
+          <span class="error-msg">
+            @if (formulario.get('titulo')?.errors?.['required']) {
+              Este campo es obligatorio.
+            } @else if (formulario.get('titulo')?.errors?.['minlength']) {
+              Debe tener al menos 3 caracteres.
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="info-imagen">Imagen</label>
+        <input id="info-imagen" type="file" accept="image/*" (change)="onArchivoSeleccionado($event)">
+        <span class="ayuda-campo">Se sube desde tu computadora (no se aceptan enlaces). Máximo 5 MB.</span>
+        @if (errorImagen) {
+          <span class="error-msg">{{ errorImagen }}</span>
+        }
+        @if (previewImagen) {
+          <img [src]="previewImagen" alt="Vista previa de la imagen" class="imagen-preview">
+        }
+      </div>
+
+      <div class="form-group">
+        <label for="info-contenido">Contenido</label>
+        <textarea id="info-contenido" formControlName="descripcion" rows="6"
+          placeholder="Escribí lo que se muestra cuando se abre la tarjeta"
+          [class.input-invalido]="campoInvalido('descripcion')"></textarea>
+        @if (campoInvalido('descripcion')) {
+          <span class="error-msg">
+            @if (formulario.get('descripcion')?.errors?.['required']) {
+              Este campo es obligatorio.
+            } @else if (formulario.get('descripcion')?.errors?.['minlength']) {
+              Debe tener al menos 3 caracteres.
+            }
+          </span>
+        }
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="info-orden">Posición</label>
+          <input id="info-orden" type="number" min="0" formControlName="orden">
+        </div>
+
+        <div class="form-group">
+          <label class="check-linea">
+            <input type="checkbox" formControlName="activo">
+            Mostrar en la página
+          </label>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-cancelar" (click)="onCancelar()">Cancelar</button>
+        <button type="submit" class="btn-guardar">{{ modoEdicion ? 'Guardar cambios' : 'Guardar' }}</button>
+      </div>
+
+    </form>
+  </div>
+</div>
