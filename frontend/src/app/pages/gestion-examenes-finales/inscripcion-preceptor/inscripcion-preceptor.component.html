@@ -1,1 +1,27 @@
-<p>inscripcion-preceptor works!</p>
+<section>
+  <form [formGroup]="formularioDeInscripcion">
+    <label>
+      DNI del alumno:
+      <input type="number" placeholder="Ej.: 48922152" formControlName="dni" />
+    </label>
+    <button data-bs-toggle="modal" data-bs-target="#inscribirAlumno">Inscribir alumno</button>
+  </form>
+  <div class="modal fade" id="inscribirAlumno" tabindex="-1" aria-labelledby="inscribirAlumnoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Eliminar publicación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>El alumno con DNI {{Dni.value}} va a ser inscrito a la siguiente mesa. ¿Está seguro que quiere inscribir a
+            este alumno?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">Cancelar inscripción</button>
+          <button type="button" class="btn btn-gral" (click)="inscribirAlumno()">Inscribir alumno</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

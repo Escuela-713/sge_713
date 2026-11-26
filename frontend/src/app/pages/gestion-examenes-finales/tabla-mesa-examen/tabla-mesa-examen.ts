@@ -12,6 +12,7 @@ import { MateriasService } from '@services/materias.service'
 import { MesasExamenesService } from '@services/mesas-examenes.service'
 import { ReactiveFormsModule, FormBuilder } from '@angular/forms'
 import { environment } from '@/environments/environment.development'
+import { RouterLink } from '@angular/router'
 
 interface FechasMesas {
   dia: Set<Dia> | string
@@ -22,7 +23,7 @@ interface FechasMesas {
   selector: 'app-tabla-mesa-examen',
   templateUrl: './tabla-mesa-examen.html',
   styleUrl: './tabla-mesa-examen.css',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, RouterLink],
 })
 export class TablaMesaExamenComponent implements OnInit {
   private servicioMateria = inject(MateriasService)

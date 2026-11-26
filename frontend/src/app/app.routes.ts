@@ -31,7 +31,8 @@ import { LoginComponent } from '@pages/gestion-usuarios/login/login.component'
 import { RegistroComponent } from '@pages/gestion-usuarios/registro/registro.component'
 import { HomeComponent } from '@pages/home/home.component'
 import { NovedadComponent } from '@pages/novedad/novedad.component'
-import { EditarSlideComponent } from './pages/gestion-home/editar-slide/editar-slide.component'
+import { EditarSlideComponent } from '@pages/gestion-home/editar-slide/editar-slide.component'
+import { InscripcionPreceptorComponent } from '@pages/gestion-examenes-finales/inscripcion-preceptor/inscripcion-preceptor.component'
 // import { authGuard } from '@guards/auth.guard'
 
 const indexarRuta = (componenteIndex: any): Route => {
@@ -136,6 +137,7 @@ export const routes: Routes = [
         children: [
           indexarRuta(TablaMesaExamenComponent),
           { path: 'crear-mesa', component: CreacionDeMesaComponent },
+          { path: 'inscribir-alumno/:id_mesa', component: InscripcionPreceptorComponent },
         ],
       },
     ],
