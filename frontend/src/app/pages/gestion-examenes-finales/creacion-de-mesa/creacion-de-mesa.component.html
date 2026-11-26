@@ -1,56 +1,60 @@
 <form [formGroup]="formularioMesaExamen" (ngSubmit)="subirMesa()" class="formulario">
   <h2>Crear mesa de examen</h2>
-  <label class="mb-3">
-    Año:
-    <select formControlName="ano" required>
-      @for (ano of anos; track ano) {
-        <option [value]="ano">{{ ano }}°</option>
+  <div class="row">
+    <label class="mb-3 col">
+      Año:
+      <select formControlName="ano" required class="form-select">
+        @for (ano of anos; track ano) {
+          <option [value]="ano">{{ ano }}°</option>
+        }
+      </select>
+    </label>
+    @if (Ano?.invalid && (Ano?.touched || Ano?.dirty)) {
+      @if (Ano.hasError('required')) {
+        <span>El año es requerido.</span>
       }
-    </select>
-  </label>
-  @if (Ano?.invalid && (Ano?.touched || Ano?.dirty)) {
-    @if (Ano.hasError('required')) {
-      <span>El año es requerido.</span>
-    }
 
-    @if (Ano.hasError('min')) {
-      <span>El mínimo tiene que ser 1.</span>
-    }
+      @if (Ano.hasError('min')) {
+        <span>El mínimo tiene que ser 1.</span>
+      }
 
-    @if (Ano.hasError('max')) {
-      <span>El máximo tiene que ser 7.</span>
-    }
-  }
-  <label class="mb-3">
-    Carrera:
-    <select formControlName="id_carrera" required>
-      @for (carrera of carreras; track carrera.id_carrera) {
-        <option [value]="carrera.id_carrera">{{ carrera.nombre }}</option>
+      @if (Ano.hasError('max')) {
+        <span>El máximo tiene que ser 7.</span>
       }
-    </select>
-  </label>
-  @if (Carrera?.invalid && (Carrera?.touched || Carrera?.dirty)) {
-    @if (Carrera.hasError('required')) {
-      <span>El nombre de la carrera es requerido.</span>
     }
-  }
-  <label class="mb-3">
-    Materia:
-    <select formControlName="id_materia" required>
-      @for (materia of materias; track materia.id_materia) {
-        <option [value]="materia.id_materia">{{ materia.nombre }}</option>
+    <label class="mb-3 col">
+      Carrera:
+      <select formControlName="id_carrera" required class="form-select">
+        @for (carrera of carreras; track carrera.id_carrera) {
+          <option [value]="carrera.id_carrera">{{ carrera.nombre }}</option>
+        }
+      </select>
+    </label>
+    @if (Carrera?.invalid && (Carrera?.touched || Carrera?.dirty)) {
+      @if (Carrera.hasError('required')) {
+        <span>El nombre de la carrera es requerido.</span>
       }
-    </select>
-  </label>
-  @if (Materia?.invalid && (Materia?.touched || Materia?.dirty)) {
-    @if (Materia.hasError('required')) {
-      <span>El nombre de la materia es requerido.</span>
     }
-  }
-  <label class="input-group mb-3">
+    <label class="mb-3 col">
+      Materia:
+      <select formControlName="id_materia" required class="form-select">
+        @for (materia of materias; track materia.id_materia) {
+          <option [value]="materia.id_materia">{{ materia.nombre }}</option>
+        }
+      </select>
+    </label>
+    @if (Materia?.invalid && (Materia?.touched || Materia?.dirty)) {
+      @if (Materia.hasError('required')) {
+        <span>El nombre de la materia es requerido.</span>
+      }
+    }
+  </div>
+  <label >
     Profesor titular:
-    <input type="text" class="form-control" formControlName="profesor_titular" required />
   </label>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" formControlName="profesor_titular" required placeholder="Ivana Rojas"/>
+  </div>
   @if (
     ProfesorTitular?.invalid &&
     (ProfesorTitular?.touched || ProfesorTitular?.dirty)
@@ -63,10 +67,12 @@
       <span>Se requiere un mínimo de 10 carácteres.</span>
     }
   }
-  <label class="input-group mb-3">
+  <label>
     Profesor primer vocal:
-    <input type="text" class="form-control" formControlName="profesor_primer_vocal" required />
   </label>
+  <div  class="input-group mb-3">
+    <input type="text" class="form-control" formControlName="profesor_primer_vocal" required placeholder="Pablo Bersier"/>
+  </div>
   @if (
     ProfesorPrimerVocal?.invalid &&
     (ProfesorPrimerVocal?.touched || ProfesorPrimerVocal?.dirty)
@@ -79,10 +85,12 @@
       <span>Se requiere un mínimo de 10 carácteres.</span>
     }
   }
-  <label class="input-group mb-3">
+  <label>
     Profesor segundo vocal:
-    <input type="text" class="form-control" formControlName="profesor_segundo_vocal" required />
   </label>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" formControlName="profesor_segundo_vocal" required placeholder="Gabriel Suarez"/>
+  </div>
   @if (
     ProfesorSegundoVocal?.invalid &&
     (ProfesorSegundoVocal?.touched || ProfesorSegundoVocal?.dirty)
@@ -95,25 +103,30 @@
       <span>Se requiere un minimo de 10 carácteres.</span>
     }
   }
-  <label class="input-group mb-3">
+
+  <div class="row">
+    <label class="mb-3 col">
     Fecha del examen:
 
     <input type="date" class="form-control" formControlName="dia" required />
-  </label>
-  @if (Dia?.invalid && (Dia?.touched || Dia?.dirty)) {
-    @if (Dia.hasError('required')) {
-      <span>La día es requerido.</span>
+    </label>
+    @if (Dia?.invalid && (Dia?.touched || Dia?.dirty)) {
+      @if (Dia.hasError('required')) {
+        <span>La día es requerido.</span>
+      }
     }
-  }
-  <label class="input-group mb-3">
-    Hora del examen:
 
-    <input type="time" class="form-control" formControlName="hora" required />
-  </label>
-  @if (Hora?.invalid && (Hora?.touched || Hora?.dirty)) {
-    @if (Hora.hasError('required')) {
-      <span>La hora es requerida.</span>
+    <label class="mb-3 col">
+      Hora del examen:
+      <input type="time" class="form-control" formControlName="hora" required />
+    </label>
+    @if (Hora?.invalid && (Hora?.touched || Hora?.dirty)) {
+      @if (Hora.hasError('required')) {
+        <span>La hora es requerida.</span>
+      }
     }
-  }
-  <button type="submit" class="btn-gral btn-outline-success">Subir mesa</button>
+  </div>
+  <div class="btn-centrado">
+    <input type="submit" class="btn btn-gral btn-outline-success" value="Subir mesa" />
+  </div>
 </form>

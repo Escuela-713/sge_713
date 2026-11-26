@@ -1,99 +1,106 @@
-<section>
-  <form
-    [formGroup]="formularioTablaDeMesas"
-    (ngSubmit)="obtenerMesasConFiltros()"
-  >
-    <label for="">
-      Fecha de inicio:
-      <select formControlName="dia">
-        <option [ngValue]="null" disabled>Seleccione el día...</option>
-        @for (dia of fechasMesas.dia; track dia) {
-          <option>{{dia}}</option>
-        }
-      </select>
-    </label>
-    <label for="hora">
-      Hora:
-      <select formControlName="hora">
-        <option [ngValue]="null" disabled>Seleccione la hora...</option>
-        @for (hora of fechasMesas.hora; track hora) {
-          <option>{{formatearHora(hora)}}</option>
-        }
-      </select>
-    </label>
-    <label
-      >Materia:
+<section class="contenedor-tabla">
+  <div class="row">
+    <form
+      [formGroup]="formularioTablaDeMesas"
+      (ngSubmit)="obtenerMesasConFiltros()"
+      class="mx-4 col mb-2"
+    >
+      <h4 class="mt-3 mb-2 fs-4">Filtrar mesas</h4>
+    <div class="row">
+      <label class="col">
+        Fecha de la mesa:
+        <select class="form-select" formControlName="dia">
+          <option [ngValue]="null" disabled>Seleccione el día...</option>
+          @for (dia of fechasMesas.dia; track dia) {
+            <option>{{dia}}</option>
+          }
+        </select>
+      </label>
+      <label class="col" for="hora">
+        Hora:
+        <select class="form-select" formControlName="hora">
+          <option [ngValue]="null" disabled>Seleccione la hora...</option>
+          @for (hora of fechasMesas.hora; track hora) {
+            <option>{{formatearHora(hora)}}</option>
+          }
+        </select>
+      </label>
+      <label class="col" for="ano">
+        Año:
 
-      <select formControlName="id_materia">
-        <option [ngValue]="null" disabled>Seleccione una materia...</option>
-        @for(materia of materias; track materia.id_materia) {
-          <option [value]="materia.id_materia">{{materia.nombre}}</option>
-        }
-      </select>
-    </label>
-    <label for="carrera"
-      >Carrera:
+        <select class="form-select" formControlName="ano">
+          <option [ngValue]="null" disabled>Seleccione un año...</option>
+          @for(ano of anos; track ano) {
+          <option [value]="ano">{{ano}}°</option>
+          }
+        </select>
+      </label>
+      </div>
+      <div class="row">
+      <label class="col"
+        >Materia:
 
-      <select formControlName="id_carrera">
-        <option [ngValue]="null" disabled>Seleccione una carrera...</option>
-        @for(carrera of carreras; track carrera.id_carrera) {
-          <option [value]="carrera.id_carrera">{{carrera.nombre}}</option>
-        }
-      </select>
-    </label>
-    <label for="ano"
-      >Año:
+        <select class="form-select" formControlName="id_materia">
+          <option [ngValue]="null" disabled>Seleccione una materia...</option>
+          @for(materia of materias; track materia.id_materia) {
+            <option [value]="materia.id_materia">{{materia.nombre}}</option>
+          }
+        </select>
+      </label>
+      <label class="col" for="carrera"
+        >Carrera:
 
-      <select formControlName="ano">
-        <option [ngValue]="null" disabled>Seleccione un año...</option>
-        @for(ano of anos; track ano) {
-        <option [value]="ano">{{ano}}°</option>
-        }
-      </select>
-    </label>
-    <input type="submit" value="Buscar mesa" />
-    <button (click)="reiniciarFiltros()">Reiniciar filtros</button>
-  </form>
-  <table>
-    <caption>
-      Planilla de Mesas de exámenes
-    </caption>
-    <thead>
-      <tr>
-        <th>Fecha</th>
-        <th>Hora</th>
-        <th>Año</th>
-        <th>Modalidad</th>
-        <th>Materia</th>
-        <th>Tribunal</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for(mesa of mesas; track mesa.id_mesa_examen) {
-      <tr>
-        <td>{{mesa.dia}}</td>
-        <td>{{formatearHora(mesa.hora)}}</td>
-        <td>{{mesa.ano}}</td>
-        <td>{{mesa.carrera}}</td>
-        <td>{{mesa.materia}}</td>
-        <td>
-          {{mesa.profesor_titular}}, {{mesa.profesor_primer_vocal}},
-          {{mesa.profesor_segundo_vocal}}
-        </td>
-        <td>
-          <button [id]="mesa.id_mesa_examen" (click)="inscribirse($event)">
-            Inscribirse
-          </button>
-        </td>
-      </tr>
-      } @empty {
+        <select class="form-select" formControlName="id_carrera">
+          <option [ngValue]="null" disabled>Seleccione una carrera...</option>
+          @for(carrera of carreras; track carrera.id_carrera) {
+            <option [value]="carrera.id_carrera">{{carrera.nombre}}</option>
+          }
+        </select>
+      </label>
+      <button (click)="reiniciarFiltros()" class="btn-outline-warning py-2 my-3 col">Reiniciar filtros</button>
+      </div>
+    </form>
+    <h2 class="text-center w-full mt-2">
+    Planilla de Mesas de exámenes
+    </h2>
+    <table class="tabla-gral col">
+      <thead>
         <tr>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Año</th>
+          <th>Modalidad</th>
+          <th>Materia</th>
+          <th>Tribunal</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(mesa of mesas; track mesa.id_mesa_examen) {
+        <tr>
+          <td>{{mesa.dia}}</td>
+          <td>{{formatearHora(mesa.hora)}}</td>
+          <td>{{mesa.ano}}</td>
+          <td>{{mesa.carrera}}</td>
+          <td>{{mesa.materia}}</td>
           <td>
-            {{error}}
+            {{mesa.profesor_titular}}, {{mesa.profesor_primer_vocal}},
+            {{mesa.profesor_segundo_vocal}}
+          </td>
+          <td>
+            <button [id]="mesa.id_mesa_examen" (click)="inscribirse($event)" class="btn btn-outline-info px-2 py-1">
+              Inscribirse
+            </button>
           </td>
         </tr>
-      }
-    </tbody>
-  </table>
+        } @empty {
+          <tr>
+            <td>
+              {{error}}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </section>
