@@ -4,50 +4,53 @@
     <label class="mb-3 col">
       Año:
       <select formControlName="ano" required class="form-select">
+          <option [ngValue]="null" disabled>Seleccione un año...</option>
         @for (ano of anos; track ano) {
           <option [value]="ano">{{ ano }}°</option>
         }
       </select>
+      @if (Ano?.invalid && (Ano?.touched || Ano?.dirty)) {
+        @if (Ano.hasError('required')) {
+          <span>El año es requerido.</span>
+        }
+
+        @if (Ano.hasError('min')) {
+          <span>El mínimo tiene que ser 1.</span>
+        }
+
+        @if (Ano.hasError('max')) {
+          <span>El máximo tiene que ser 7.</span>
+        }
+      }
     </label>
-    @if (Ano?.invalid && (Ano?.touched || Ano?.dirty)) {
-      @if (Ano.hasError('required')) {
-        <span>El año es requerido.</span>
-      }
-
-      @if (Ano.hasError('min')) {
-        <span>El mínimo tiene que ser 1.</span>
-      }
-
-      @if (Ano.hasError('max')) {
-        <span>El máximo tiene que ser 7.</span>
-      }
-    }
     <label class="mb-3 col">
       Carrera:
       <select formControlName="id_carrera" required class="form-select">
+        <option [ngValue]="null" disabled>Seleccione una carrera...</option>
         @for (carrera of carreras; track carrera.id_carrera) {
           <option [value]="carrera.id_carrera">{{ carrera.nombre }}</option>
         }
       </select>
-    </label>
-    @if (Carrera?.invalid && (Carrera?.touched || Carrera?.dirty)) {
-      @if (Carrera.hasError('required')) {
-        <span>El nombre de la carrera es requerido.</span>
+      @if (Carrera?.invalid && (Carrera?.touched || Carrera?.dirty)) {
+        @if (Carrera.hasError('required')) {
+          <span>El nombre de la carrera es requerido.</span>
+        }
       }
-    }
+    </label>
     <label class="mb-3 col">
       Materia:
       <select formControlName="id_materia" required class="form-select">
+        <option [ngValue]="null" disabled>Seleccione una materia...</option>
         @for (materia of materias; track materia.id_materia) {
           <option [value]="materia.id_materia">{{ materia.nombre }}</option>
         }
       </select>
-    </label>
-    @if (Materia?.invalid && (Materia?.touched || Materia?.dirty)) {
-      @if (Materia.hasError('required')) {
-        <span>El nombre de la materia es requerido.</span>
+      @if (Materia?.invalid && (Materia?.touched || Materia?.dirty)) {
+        @if (Materia.hasError('required')) {
+          <span>El nombre de la materia es requerido.</span>
+        }
       }
-    }
+    </label>
   </div>
   <label >
     Profesor titular:

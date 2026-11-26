@@ -9,7 +9,7 @@
     <div class="row">
       <label class="col">
         Fecha de la mesa:
-        <select class="form-select" formControlName="dia">
+        <select class="form-select" formControlName="dia" (change)="obtenerMesasConFiltros()">
           <option [ngValue]="null" disabled>Seleccione el día...</option>
           @for (dia of fechasMesas.dia; track dia) {
             <option>{{dia}}</option>
@@ -18,7 +18,7 @@
       </label>
       <label class="col" for="hora">
         Hora:
-        <select class="form-select" formControlName="hora">
+        <select class="form-select" formControlName="hora" (change)="obtenerMesasConFiltros()">
           <option [ngValue]="null" disabled>Seleccione la hora...</option>
           @for (hora of fechasMesas.hora; track hora) {
             <option>{{formatearHora(hora)}}</option>
@@ -28,7 +28,7 @@
       <label class="col" for="ano">
         Año:
 
-        <select class="form-select" formControlName="ano">
+        <select class="form-select" formControlName="ano" (change)="obtenerMesasConFiltros()">
           <option [ngValue]="null" disabled>Seleccione un año...</option>
           @for(ano of anos; track ano) {
           <option [value]="ano">{{ano}}°</option>
@@ -40,7 +40,7 @@
       <label class="col"
         >Materia:
 
-        <select class="form-select" formControlName="id_materia">
+        <select class="form-select" formControlName="id_materia" (change)="obtenerMesasConFiltros()">
           <option [ngValue]="null" disabled>Seleccione una materia...</option>
           @for(materia of materias; track materia.id_materia) {
             <option [value]="materia.id_materia">{{materia.nombre}}</option>
@@ -50,7 +50,7 @@
       <label class="col" for="carrera"
         >Carrera:
 
-        <select class="form-select" formControlName="id_carrera">
+        <select class="form-select" formControlName="id_carrera" (change)="obtenerMesasConFiltros()">
           <option [ngValue]="null" disabled>Seleccione una carrera...</option>
           @for(carrera of carreras; track carrera.id_carrera) {
             <option [value]="carrera.id_carrera">{{carrera.nombre}}</option>
@@ -88,15 +88,24 @@
             {{mesa.profesor_segundo_vocal}}
           </td>
           <td>
-            <button [id]="mesa.id_mesa_examen" (click)="inscribirse($event)" class="btn btn-outline-info px-2 py-1">
-              Inscribirse
-            </button>
+            <div class="d-flex justify-content-evenly gap-2">
+              <div class="col">
+                <a routerLink="/dashboard/mesas-de-examenes/inscribir-alumno/{{mesa.id_mesa_examen}}" class="btn btn-outline-info px-2 py-1">
+                  Inscribir alumno
+                </a>
+              </div>
+              <div class="col">
+                <a routerLink="/dashboard/mesas-de-examenes/editar-mesa/{{mesa.id_mesa_examen}}" class="btn btn-outline-info px-2 py-1">
+                  Editar mesa
+                </a>
+              </div>
+            </div>
           </td>
         </tr>
         } @empty {
           <tr>
             <td>
-              {{error}}
+              No hay mesas para mostrar
             </td>
           </tr>
         }

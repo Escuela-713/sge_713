@@ -1,10 +1,15 @@
 <section>
-  <form [formGroup]="formularioDeInscripcion">
+  <form [formGroup]="formularioDeInscripcion" class="formulario">
     <label>
       DNI del alumno:
-      <input type="number" placeholder="Ej.: 48922152" formControlName="dni" />
     </label>
-    <button data-bs-toggle="modal" data-bs-target="#inscribirAlumno">Inscribir alumno</button>
+    <div class="form-group mb-3">
+      <input type="number" placeholder="Ej.: 48922152" formControlName="dni" class="form-control" />
+    </div>
+    <div class="btn-centrado">
+      <button data-bs-toggle="modal" data-bs-target="#inscribirAlumno"
+        class="btn btn-gral btn-outline-success">Inscribir alumno</button>
+    </div>
   </form>
   <div class="modal fade" id="inscribirAlumno" tabindex="-1" aria-labelledby="inscribirAlumnoLabel" aria-hidden="true">
     <div class="modal-dialog">
