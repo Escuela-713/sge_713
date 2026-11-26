@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Subject, takeUntil, firstValueFrom } from 'rxjs';
 import { NovedadesService } from '../../../services/novedades.service';
 import { CarouselSlide } from '../home-dashboard/home-dashboard.component';
+
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-editar-slide',
@@ -19,15 +21,16 @@ export class EditarSlideComponent implements OnInit, OnDestroy {
   isLoading = true;
   error: string | null = null;
 
-  // Archivo real seleccionado (el control 'image' guarda solo la URL actual / vista previa en base64)
   private selectedImageFile: File | null = null;
 
-  // Flags para los toasts (los vinculás vos)
   showAlertToast = false;
   showErrorToast = false;
   showSuccessToast = false;
 
   private destroy$ = new Subject<void>();
+
+  @ViewChild('cancelModal') cancelModalElement!: ElementRef;
+  private modalInstance: any;
 
   constructor(
     private fb: FormBuilder,
@@ -43,10 +46,15 @@ export class EditarSlideComponent implements OnInit, OnDestroy {
     });
   }
 
-  // ---------- Getters de controles (para usar en el template) ----------
   get imageCtrl(): AbstractControl { return this.form.get('image')!; }
   get titleCtrl(): AbstractControl { return this.form.get('title')!; }
   get subtitleCtrl(): AbstractControl { return this.form.get('subtitle')!; }
+
+  ngAfterViewInit(): void {
+    if (this.cancelModalElement) {
+      this.modalInstance = new bootstrap.Modal(this.cancelModalElement.nativeElement);
+    }
+  }
 
   ngOnInit(): void {
     this.route.paramMap
@@ -143,14 +151,20 @@ export class EditarSlideComponent implements OnInit, OnDestroy {
   }
 
   onCancel(): void {
-    if (this.hasChanges()) {
-      const confirmLeave = confirm('¿Está seguro de que desea cancelar? Se perderán los cambios no guardados.');
-      if (confirmLeave) {
-        this.goBack();
+    if (this.form.dirty) {
+      if (this.modalInstance) {
+        this.modalInstance.show();
       }
-    } else {
-      this.goBack();
+      return;
     }
+    this.router.navigate(['/dashboard/home']);
+  }
+
+  confirmCancel(): void {
+    if (this.modalInstance) {
+      this.modalInstance.hide();
+    }
+    this.router.navigate(['/dashboard/home']);
   }
 
   private hasChanges(): boolean {

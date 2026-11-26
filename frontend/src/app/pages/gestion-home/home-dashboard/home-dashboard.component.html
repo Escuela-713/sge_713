@@ -132,3 +132,37 @@
     </div>
   </div>
 }
+<div class="modal fade" id="deleteCardModal" #deleteCardModal tabindex="-1" aria-labelledby="deleteCardModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteCardModalLabel">Eliminar publicación</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Está eliminando una publicación. Si la elimina, no podrá recuperarla.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">Volver</button>
+        <button type="button" class="btn btn-gral" (click)="confirmDeleteCard()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="deleteSlideModal" #deleteSlideModal tabindex="-1" aria-labelledby="deleteSlideModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteSlideModalLabel">Eliminar slide</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Está eliminando una slide. Si la elimina, no podrá recuperarla.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancelar" data-bs-dismiss="modal">Volver</button>
+        <button type="button" class="btn btn-gral" (click)="confirmDeleteSlide()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
