@@ -137,7 +137,14 @@ export const routes: Routes = [
         children: [
           indexarRuta(TablaMesaExamenComponent),
           { path: 'crear-mesa', component: CreacionDeMesaComponent },
-          { path: 'inscribir-alumno/:id_mesa', component: InscripcionPreceptorComponent },
+          {
+            path: 'editar-mesa/:id_mesa',
+            component: InscripcionPreceptorComponent,
+          },
+          {
+            path: 'inscribir-alumno/:id_mesa',
+            component: InscripcionPreceptorComponent,
+          },
         ],
       },
     ],
