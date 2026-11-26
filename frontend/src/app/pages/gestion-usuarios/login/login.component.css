@@ -1,95 +1,14 @@
-.login {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100vh;
-  padding-top: 150px;
-}
-
-.form-login { 
-  width: 500px;
-  padding: 50px;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
-  font-family: "calibri";
-}
-
-.form-login h4 {
-  margin-bottom: 20px;
-  color: #a51c30;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
-}
-
-::placeholder{
-  color: #444;
-}  
-
-.form-login .form-control {
-  margin-bottom: 16px !important;
+.btn-guardarSesion {
+  background-color: #fe6602;
+  color: #ffffff;
+  font-weight: 600;
   border-radius: 10px;
-  border: 1px solid #ccc;
-  background: rgba(0,0,0,0.03);
-  padding: 12px;
-  font-size: 18px;
-  transition: border-color .25s ease, background .25s ease;
-}
-
-.form-login .form-control:focus {
-  border-color: #ffc107;
-  background: rgba(255, 193, 7, 0.1);
-  box-shadow: none;
-}
-
-.form-login .form-control.ng-valid.ng-touched {
-  border-color: #28a745;
-  background: rgba(40, 167, 69, 0.1);
-}
-
-.form-login .form-control.ng-invalid.ng-touched {
-  border-color: #dc3545;
-  background: rgba(220, 53, 69, 0.1);
-}
-
-.form-login p {
-  height: auto;
+  border: 2px solid #fe6602;
   text-align: center;
-  font-size: 18px;
-  line-height: 1.4;
-  color: #a51c30;
+  transition: all 0.3s ease;
 }
-
-.form-login a {
-  color: #a51c30;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.form-login a:hover {
-  color: #ffc107;
-  text-decoration: underline;
-}
-
-
-/*botón*/
-.form-login .botons {
-  width: 100%;
-  background: #ffc107;
-  border: none;
-  padding: 12px;
-  color: black;
-  margin: 16px 0;
-  font-size: 18px;
-
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.form-login .botons:hover {
-  background: #ffca2c;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+.btn-guardarSesion:hover {
+  color: #fe6602;
+  background-color: #ffffff;
+  border-color: #fe6602;
 }

@@ -1,9 +1,42 @@
 header {
-    background-color: var(--color1);
+  background-color: var(--color1);
 }
 .brand {
-    height: 60px;
-    & img {
-        height: 100%;
-    }
+  height: 60px;
+  & img {
+    height: 100%;
+  }
+}
+
+.btn {
+  margin-left: 0.5rem;
+}
+
+.btn-iniciarSesion {
+  background-color: #8f0a0a;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.btn-iniciarSesion:hover {
+  color: #8f0a0a;
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+.btn-registrarse {
+  background-color: #ffffff;
+  color: #8f0a0a;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #ffffff;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+.btn-registrarse:hover {
+  color: #ffffff;
+  background-color: #8f0a0a;
+  border-color: #ffffff;
 }

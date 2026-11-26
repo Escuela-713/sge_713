@@ -1,87 +1,28 @@
-.form-register {
-  width: 500px;
-  padding: 50px;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.15); 
-  font-family: "calibri";
-  margin: auto;
-}
-
-.form-register h4 {
-  margin-bottom: 20px;
-  color: #a51c30;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
-}
-
-.form-register ::placeholder {
-  color: #444;
-}
-
-.form-register .form-control {
-  width: 100%;
-  background: rgba(0,0,0,0.03);
-  padding: 12px;
+.btn-cancelar {
+  background-color: #726e6e;
+  color: #ffffff;
+  font-weight: 600;
   border-radius: 10px;
-  margin-bottom: 16px !important;
-  border: 1px solid #ccc;
-  font-size: 18px;
-  transition: border-color .25s ease, background .25s ease;
-}
-
-.form-register .form-control:focus {
-  border-color: #ffc107;
-  background: rgba(255, 193, 7, 0.1);
-  box-shadow: none;
-}
-
-.form-register .form-control.ng-valid.ng-touched {
-  border-color: #28a745;
-  background: rgba(40,167,69,0.1);
-}
-
-.form-register .form-control.ng-invalid.ng-touched {
-  border-color: #dc3545;
-  background: rgba(220,53,69,0.1);
-}
-
-.form-register p {
+  border: 2px solid #726e6e;
   text-align: center;
-  font-size: 18px;
-  line-height: 1.4;
-  color: #a51c30;
+  transition: all 0.3s ease;
 }
-
-.form-register a {
-  color: #a51c30;
-  text-decoration: none;
-  font-weight: bold;
+.btn-cancelar:hover {
+  color: #726e6e;
+  background-color: #ffffff;
+  border-color: #726e6e;
 }
-
-.form-register a:hover {
-  color: #ffc107;
-  text-decoration: underline;
+.btn-guardarSesion {
+  background-color: #fe6602;
+  color: #ffffff;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid #fe6602;
+  text-align: center;
+  transition: all 0.3s ease;
 }
-
-/*botón*/
-.form-register .botons {
-  width: 100%;
-  background: #a51c30;
-  border: none;
-  padding: 12px;
-  color: white;
-  margin: 16px 0;
-  font-size: 18px;
-
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.form-register .botons:hover {
-  background: #bb243a;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+.btn-guardarSesion:hover {
+  color: #fe6602;
+  background-color: #ffffff;
+  border-color: #fe6602;
 }

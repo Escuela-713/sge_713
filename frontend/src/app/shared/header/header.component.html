@@ -29,12 +29,16 @@
         @if (!authService.isAuthenticated()) {
           <button
             type="button"
-            class="btn btn-outline-light me-2"
+            class="btn btn-iniciarSesion"
             routerLink="/iniciar-sesion"
           >
             Inicio de sesión
           </button>
-          <button type="button" class="btn btn-warning" routerLink="/registro">
+          <button
+            type="button"
+            class="btn btn-registrarse"
+            routerLink="/registro"
+          >
             Registro
           </button>
         }

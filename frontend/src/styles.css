@@ -2,10 +2,10 @@
 @import url(assets/fonts/Zodiak/zodiak.css);
 
 :root {
-  --color-blanco: #FFFFFF;
-  --color-naranja: #FE6602;
-  --color-rojo-oscuro: #8F0A0A;
-  --color-rojo-brillante: #FB1414;
+  --color-blanco: #ffffff;
+  --color-naranja: #fe6602;
+  --color-rojo-oscuro: #8f0a0a;
+  --color-rojo-brillante: #fb1414;
   --color-negro: #010101;
 
   --btn-success: #198754;
@@ -63,7 +63,7 @@
 
   .btn-gral {
     background-color: #198754;
-    color: #FFFFFF;
+    color: #ffffff;
     font-weight: 600;
     border-radius: 10px;
     border: 2px solid #198754;
@@ -73,13 +73,13 @@
 
   .btn-gral:hover {
     color: #198754;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-color: #198754;
   }
 
   .btn-cancelar {
     background-color: #726e6e;
-    color: #FFFFFF;
+    color: #ffffff;
     font-weight: 600;
     border-radius: 10px;
     border: 2px solid #726e6e;
@@ -89,7 +89,7 @@
 
   .btn-cancelar:hover {
     color: #726e6e;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
     border-color: #726e6e;
   }
 
@@ -114,7 +114,7 @@ body {
 }
 
 body {
-  background-color: #F3F3F1;
+  background-color: #f3f3f1;
   letter-spacing: 0.5px;
   position: relative;
 }
@@ -176,7 +176,7 @@ label {
 .btn-gral,
 .btn-outline-success {
   background-color: #198754;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
   border-radius: 10px;
   border: 2px solid #198754;
@@ -187,34 +187,34 @@ label {
 .btn-gral:hover,
 .btn-outline-success:hover {
   color: #198754;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-color: #198754;
 }
 
 /* Editar */
 .btn-editar,
 .btn-outline-warning {
-  background-color: #FE6602;
-  color: #FFFFFF;
+  background-color: #fe6602;
+  color: #ffffff;
   font-weight: 600;
   border-radius: 10px;
-  border: 2px solid #FE6602;
+  border: 2px solid #fe6602;
   text-align: center;
   transition: all 0.3s ease;
 }
 
 .btn-editar:hover,
 .btn-outline-warning:hover {
-  color: #FE6602;
-  background-color: #FFFFFF;
-  border-color: #FE6602;
+  color: #fe6602;
+  background-color: #ffffff;
+  border-color: #fe6602;
 }
 
 /* Ver / Detalle */
 .btn-verDetalle,
 .btn-outline-info {
   background-color: #0084ff;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
   border-radius: 10px;
   border: 2px solid #0084ff;
@@ -225,33 +225,33 @@ label {
 .btn-verDetalle:hover,
 .btn-outline-info:hover {
   color: #0084ff;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-color: #0084ff;
 }
 
 /* Eliminar */
 .btn-eliminar,
 .btn-outline-danger {
-  background-color: #DC3545;
-  color: #FFFFFF;
+  background-color: #dc3545;
+  color: #ffffff;
   font-weight: 600;
   border-radius: 10px;
-  border: 2px solid #DC3545;
+  border: 2px solid #dc3545;
   text-align: center;
   transition: all 0.3s ease;
 }
 
 .btn-eliminar:hover,
 .btn-outline-danger:hover {
-  color: #DC3545;
-  background-color: #FFFFFF;
-  border-color: #DC3545;
+  color: #dc3545;
+  background-color: #ffffff;
+  border-color: #dc3545;
 }
 
 /* Cancelar */
 .btn-cancelar {
   background-color: #726e6e;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: 600;
   border-radius: 10px;
   border: 2px solid #726e6e;
@@ -261,14 +261,14 @@ label {
 
 .btn-cancelar:hover {
   color: #726e6e;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-color: #726e6e;
 }
 
 /* Iniciar Sesión */
 .btn-iniciarSession {
-  background-color: #8F0A0A;
-  color: #FFFFFF;
+  background-color: #8f0a0a;
+  color: #ffffff;
   font-weight: 600;
   border-radius: 10px;
   border: 2px solid #ffffff;
@@ -277,15 +277,15 @@ label {
 }
 
 .btn-iniciarSession:hover {
-  color: #8F0A0A;
-  background-color: #FFFFFF;
+  color: #8f0a0a;
+  background-color: #ffffff;
   border-color: #ffffff;
 }
 
 /* Registrarse */
 .btn-registrarse {
   background-color: #ffffff;
-  color: #8F0A0A;
+  color: #8f0a0a;
   font-weight: 600;
   border-radius: 10px;
   border: 2px solid #ffffff;
@@ -294,33 +294,33 @@ label {
 }
 
 .btn-registrarse:hover {
-  color: #FFFFFF;
-  background-color: #8F0A0A;
-  border-color: #FFFFFF;
+  color: #ffffff;
+  background-color: #8f0a0a;
+  border-color: #ffffff;
 }
 
 /* Guardar Sesión (Registro/Login) */
 .btn-guardarSession,
 .btn-guardarSesion {
-  background-color: #FE6602;
-  color: #FFFFFF;
+  background-color: #fe6602;
+  color: #ffffff;
   font-weight: 600;
   border-radius: 10px;
-  border: 2px solid #FE6602;
+  border: 2px solid #fe6602;
   text-align: center;
   transition: all 0.3s ease;
 }
 
 .btn-guardarSession:hover,
 .btn-guardarSesion:hover {
-  color: #FE6602;
-  background-color: #FFFFFF;
-  border-color: #FE6602;
+  color: #fe6602;
+  background-color: #ffffff;
+  border-color: #fe6602;
 }
 
 /* ------------------ */
 .ng-valid:not(form).ng-touched {
-  border: 2px solid #42A948;
+  border: 2px solid #42a948;
 }
 
 .ng-invalid:not(form).ng-touched {
@@ -334,7 +334,7 @@ app-header header,
 app-nav nav,
 app-nav .navbar,
 app-header .navbar {
-  background-color: #8F0A0A !important;
+  background-color: #8f0a0a !important;
 }
 
 /* Textos blancos en el menú */
@@ -342,12 +342,12 @@ app-nav a,
 app-header a,
 app-nav .nav-link,
 app-header .nav-link {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 app-nav a:hover,
 app-header a:hover {
-  color: #FE6602 !important;
+  color: #fe6602 !important;
 }
 
 #main-content {
@@ -358,6 +358,10 @@ app-header a:hover {
   #main-section {
     height: 100%;
   }
+}
+
+.btn {
+  margin-left: 0.2rem;
 }
 
 .tabla-gral {
@@ -372,7 +376,7 @@ app-header a:hover {
         border: none;
         background-color: transparent;
         font-size: 16px;
-        border-bottom: 2px solid #FE6602;
+        border-bottom: 2px solid #fe6602;
         padding-right: 2em;
         padding-block: 1em;
       }
@@ -479,7 +483,10 @@ app-header a:hover {
     font-size: 0.95rem;
     font-weight: 600;
     text-align: center;
-    transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+    transition:
+      color 0.3s ease,
+      background-color 0.3s ease,
+      border-color 0.3s ease;
   }
 
   .btn-cooperadora--guardar {
@@ -570,7 +577,7 @@ app-header a:hover {
     white-space: nowrap;
   }
 
-  .tabla-cooperadora .acciones-movimiento .btn+.btn {
+  .tabla-cooperadora .acciones-movimiento .btn + .btn {
     margin-left: 0.5rem;
   }
 

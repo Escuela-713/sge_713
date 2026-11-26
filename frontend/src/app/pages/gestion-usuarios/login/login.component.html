@@ -1,6 +1,6 @@
-<div class="login">
-  <form class="form-login" [formGroup]="form" (ngSubmit)="onEnviar($event)">
-    <h4>Inicio De Sesión</h4>
+<div class="formulario">
+  <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
+    <h2>Inicio De Sesión</h2>
 
     @if (sesionExpirada) {
       <div class="alert alert-warning py-2 text-center" role="alert">
@@ -12,39 +12,45 @@
         {{ errorMessage }}
       </div>
     }
-    <input
-      formControlName="dni"
-      class="form-control mb-2"
-      type="text"
-      name="nombres"
-      id="nombres"
-      placeholder="Ingrese su DNI"
-    />
+    <label> DNI </label>
+    <div class="input-group mb-3">
+      <input
+        formControlName="dni"
+        class="form-control"
+        type="text"
+        name="nombres"
+        id="nombres"
+        placeholder="Ingrese su DNI"
+      />
+    </div>
     @if (Dni?.errors && Dni?.touched) {
-    @if (Dni?.hasError("required")) {
+      @if (Dni?.hasError('required')) {
         <div class="text-danger">El DNI es requerido.</div>
       }
     }
+    <label>Contraseña</label>
     <input
       formControlName="contrasenia"
       class="form-control mb-2"
       type="password"
-      name="apellidos"
-      id="apellidos"
+      name="contrasenia"
+      id="contrasenia"
       placeholder="Ingrese su Contraseña"
     />
     @if (Password?.errors && Password?.touched) {
-      @if (Password?.hasError("required")) {
+      @if (Password?.hasError('required')) {
         <div class="text-danger">La contraseña es requerida.</div>
-      } @else if (Password?.hasError("minlength")) {
+      } @else if (Password?.hasError('minlength')) {
         <div class="text-danger">
           La contraseña requiere como mínimo 8 caracteres.
         </div>
       }
     }
 
-    <p><a href="#">Home</a></p>
-    <input class="botons" type="submit" value="Iniciar Sesión" />
-    <p><a routerLink="/registro">No tengo cuenta</a></p>
+    <div class="btn-centrado">
+      <button class="btn btn-guardarSesion">Iniciar sesión</button>
+      <button class="btn btn-cancelar btn-">Cancelar</button>
+    </div>
+    <p>¿No tenés cuenta? <a routerLink="/registro">Registrarse</a></p>
   </form>
 </div>

@@ -1,100 +1,115 @@
-
-<div>
+<div class="formulario">
+  <h2>Registrarse</h2>
   <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
-    <section class="form-register">
-      <h4>Registro</h4>
+    <!-- Alerta de Error del Servidor -->
+    @if (errorMessage) {
+      <div
+        class="alert alert-danger mb-3 p-2 text-center"
+        style="font-size: 14px; border-radius: 6px"
+      >
+        {{ errorMessage }}
+      </div>
+    }
 
-      <!-- Alerta de Error del Servidor -->
-      @if (errorMessage) {
-        <div class="alert alert-danger mb-3 p-2 text-center"
-          style="font-size: 14px; border-radius: 6px">
-          {{ errorMessage }}
-        </div>
-      }
+    <!-- Alerta de Éxito -->
+    @if (successMessage) {
+      <div
+        class="alert alert-success mb-3 p-2 text-center"
+        style="font-size: 14px; border-radius: 6px"
+      >
+        {{ successMessage }}
+      </div>
+    }
 
-      <!-- Alerta de Éxito -->
-      @if (successMessage) {
-        <div class="alert alert-success mb-3 p-2 text-center"
-          style="font-size: 14px; border-radius: 6px">
-          {{ successMessage }}
-        </div>
-      }
-
-      <!-- Nombre -->
+    <!-- Nombre -->
+    <label>Nombre</label>
+    <div class="input-group mb-3">
       <input
-        class="form-control mb-2"
+        class="form-control"
         formControlName="primer_nombre"
         type="text"
-        placeholder="Ingresar nombre"
+        placeholder="Ingrese su nombre"
       />
       @if (PrimerNombre?.errors && PrimerNombre?.touched) {
-        @if (PrimerNombre?.hasError("required")) {
+        @if (PrimerNombre?.hasError('required')) {
           <div class="text-danger mb-2" style="font-size: 13px">
             El nombre es requerido.
           </div>
         }
       }
+    </div>
 
-      <!-- Apellido -->
+    <!-- Apellido -->
+    <label>Apellido</label>
+    <div class="input-group mb-3">
       <input
-        class="form-control mb-2"
+        class="form-control"
         formControlName="primer_apellido"
         type="text"
-        placeholder="Ingresar apellido"
+        placeholder="Ingrese su apellido"
       />
       @if (PrimerApellido?.errors && PrimerApellido?.touched) {
-        @if (PrimerApellido?.hasError("required")) {
+        @if (PrimerApellido?.hasError('required')) {
           <div class="text-danger mb-2" style="font-size: 13px">
             El apellido es requerido.
           </div>
         }
       }
+    </div>
 
-      <!-- Email -->
+    <!-- Email -->
+    <label>Correo electrónico</label>
+    <div class="input-group mb-3">
       <input
-        class="form-control mb-2"
+        class="form-control"
         formControlName="email"
         type="email"
-        placeholder="Ingresar correo electrónico"
+        placeholder="Ingrese su correo electrónico"
       />
       @if (Email?.errors && Email?.touched) {
-        @if (Email?.hasError("required")) {
+        @if (Email?.hasError('required')) {
           <div class="text-danger mb-2" style="font-size: 13px">
             El correo electrónico es requerido.
           </div>
-        } @else if (Email?.hasError("email")) {
+        } @else if (Email?.hasError('email')) {
           <div class="text-danger mb-2" style="font-size: 13px">
             Ingresá un correo electrónico válido.
           </div>
         }
       }
+    </div>
 
-      <!-- DNI -->
+    <!-- DNI -->
+    <label>DNI</label>
+    <div class="input-group mb-3">
       <input
-        class="form-control mb-2"
+        class="form-control"
         formControlName="dni"
         type="text"
         inputmode="numeric"
-        placeholder="Ingresar DNI"
+        placeholder="Ingrese su DNI"
       />
       @if (Dni?.errors && Dni?.touched) {
-        @if (Dni?.hasError("required")) {
+        @if (Dni?.hasError('required')) {
           <div class="text-danger mb-2" style="font-size: 13px">
             El DNI es requerido.
           </div>
         }
       }
+    </div>
 
-      <!-- Confirmar DNI -->
+    <!-- Confirmar DNI -->
+    <label>Confirmación de DNI</label>
+    <div class="input-group mb-3">
       <input
         class="form-control mb-2"
         formControlName="dniConfirmation"
         type="text"
         inputmode="numeric"
-        placeholder="Confirmar DNI"
+        placeholder="Ingrese la confirmación de su DNI"
       />
       @if (DniConfirmation?.errors && DniConfirmation?.touched) {
-        @if (DniConfirmation?.hasError("required")) {
+        @if (DniConfirmation?.hasError('required')) {
           <div class="text-danger mb-2" style="font-size: 13px">
             La confirmación del DNI es requerida.
           </div>
@@ -104,106 +119,141 @@
           El DNI debe ser igual.
         </div>
       }
+    </div>
 
+    <!-- Segundo nombre -->
 
-<!-- Segundo nombre -->
-<input
-  class="form-control mb-2"
-  formControlName="segundo_nombre"
-  type="text"
-  placeholder="Segundo nombre (opcional)"
-/>
+    <label>Segundo nombre</label>
+    <div class="input-group mb-3">
+      <input
+        class="form-control"
+        formControlName="segundo_nombre"
+        type="text"
+        placeholder="Ingrese su segundo nombre (opcional)"
+      />
+    </div>
 
-<!-- Tercer nombre -->
-<input
-  class="form-control mb-2"
-  formControlName="tercer_nombre"
-  type="text"
-  placeholder="Tercer nombre (opcional)"
-/>
+    <!-- Tercer nombre -->
+    <label>Tercer nombre</label>
+    <div class="input-group mb-3">
+      <input
+        class="form-control mb-2"
+        formControlName="tercer_nombre"
+        type="text"
+        placeholder="Ingrese su tercer nombre (opcional)"
+      />
+    </div>
 
-<!-- Segundo apellido -->
-<input
-  class="form-control mb-2"
-  formControlName="segundo_apellido"
-  type="text"
-  placeholder="Segundo apellido (opcional)"
-/>
+    <!-- Segundo apellido -->
+    <label>Segundo apellido</label>
+    <div class="input-group mb-3">
+      <input
+        class="form-control mb-2"
+        formControlName="segundo_apellido"
+        type="text"
+        placeholder="Ingrese su segundo apellido (opcional)"
+      />
+    </div>
 
-<!-- Fecha de nacimiento -->
-<input
-  class="form-control mb-2"
-  formControlName="fecha_nacimiento"
-  type="date"
-/>
+    <!-- Fecha de nacimiento -->
+    <label>Fecha de nacimiento</label>
+    <div class="input-group mb-3">
+      <input
+        class="form-control mb-2"
+        formControlName="fecha_nacimiento"
+        type="date"
+      />
+    </div>
 
-<!-- Teléfono -->
-<input
-  class="form-control mb-2"
-  formControlName="telefono"
-  type="tel"
-  placeholder="Teléfono"
-/>
+    <!-- Teléfono -->
+    <label>Teléfono</label>
+    <div class="input-group mb-3">
+      <input
+        class="form-control mb-2"
+        formControlName="telefono"
+        type="tel"
+        placeholder="Ingrese su teléfono"
+      />
+    </div>
 
-<!-- Género -->
-<select class="form-control mb-2" formControlName="genero">
-  <option value="S">Sin especificar</option>
-  <option value="F">Femenino</option>
-  <option value="M">Masculino</option>
-  <option value="O">Otro</option>
-</select>
+    <!-- Género -->
+    <label>Género</label>
+    <div class="input-group mb-3">
+      <select class="form-control mb-2" formControlName="genero">
+        <option value="S">Sin especificar</option>
+        <option value="F">Femenino</option>
+        <option value="M">Masculino</option>
+        <option value="O">Otro</option>
+      </select>
+    </div>
 
-<!-- Tipo sanguíneo -->
-<select class="form-control mb-2" formControlName="tipo_sangre">
-  <option value="">Tipo sanguíneo (opcional)</option>
-  <option value="A+">A+</option>
-  <option value="A-">A-</option>
-  <option value="B+">B+</option>
-  <option value="B-">B-</option>
-  <option value="AB+">AB+</option>
-  <option value="AB-">AB-</option>
-  <option value="O+">O+</option>
-  <option value="O-">O-</option>
-</select>
+    <!-- Tipo sanguíneo -->
+    <label>Tipo sanguíneo</label>
+    <div class="input-group mb-3">
+      <select class="form-control mb-2" formControlName="tipo_sangre">
+        <option value="A+">A+</option>
+        <option value="A-">A-</option>
+        <option value="B+">B+</option>
+        <option value="B-">B-</option>
+        <option value="AB+">AB+</option>
+        <option value="AB-">AB-</option>
+        <option value="O+">O+</option>
+        <option value="O-">O-</option>
+      </select>
+    </div>
 
-<!-- Dirección -->
-<input
-  class="form-control mb-2"
-  formControlName="calle"
-  type="text"
-  placeholder="Calle"
-/>
+    <!-- Dirección -->
+    <label>Dirección</label>
+    <div class="input-group mb-3">
+      <input
+        class="form-control mb-2"
+        formControlName="calle"
+        type="text"
+        placeholder="Ingrese su calle"
+      />
+    </div>
+    <label>Número de calle</label>
+    <div class="input-group mb-3">
+      <input
+        class="form-control mb-2"
+        formControlName="numero_calle"
+        type="number"
+        placeholder="Ingrese su número de calle"
+      />
+    </div>
+    <label>Barrio</label>
+    <div class="input-group mb-3">
+      <input
+        class="form-control mb-2"
+        formControlName="barrio"
+        type="text"
+        placeholder="Ingresar su barrio"
+      />
+    </div>
 
-<input
-  class="form-control mb-2"
-  formControlName="numero_calle"
-  type="number"
-  placeholder="Número de calle"
-/>
+    <!-- Localidades -->
+    <label>ID Localidad</label>
+    <div class="input-group mb-3">
+      <input
+        class="form-control mb-2"
+        formControlName="id_localidad"
+        type="number"
+        placeholder="Ingresar su ID de localidad"
+      />
+    </div>
+    <label>ID Localidad de nacimiento</label>
+    <div class="input-group mb-3">
+      <input
+        class="form-control mb-2"
+        formControlName="id_localidad_nacimiento"
+        type="number"
+        placeholder="Ingresar su ID de localidad de nacimiento"
+      />
+    </div>
 
-<input
-  class="form-control mb-2"
-  formControlName="barrio"
-  type="text"
-  placeholder="Barrio"
-/>
-
-<!-- Localidades -->
-<input
-  class="form-control mb-2"
-  formControlName="id_localidad"
-  type="number"
-  placeholder="ID de localidad"
-/>
-
-<input
-  class="form-control mb-2"
-  formControlName="id_localidad_nacimiento"
-  type="number"
-  placeholder="ID de localidad de nacimiento"
-/>
-
-      <!-- Contraseña -->
+    <!-- Contraseña -->
+    <label>Contraseña</label>
+    <div class="input-group mb-3">
       <input
         class="form-control mb-2"
         formControlName="password"
@@ -211,26 +261,29 @@
         placeholder="Ingresar contraseña"
       />
       @if (Password?.errors && Password?.touched) {
-        @if (Password?.hasError("required")) {
+        @if (Password?.hasError('required')) {
           <div class="text-danger mb-2" style="font-size: 13px">
             La contraseña es requerida.
           </div>
-        } @else if (Password?.hasError("minlength")) {
+        } @else if (Password?.hasError('minlength')) {
           <div class="text-danger mb-2" style="font-size: 13px">
             La contraseña requiere como mínimo 8 caracteres.
           </div>
         }
       }
+    </div>
 
-      <!-- Confirmar contraseña -->
+    <!-- Confirmar contraseña -->
+    <label>Confirmar contraseña</label>
+    <div class="input-group mb-3">
       <input
         class="form-control mb-3"
         formControlName="passwordConfirmation"
         type="password"
-        placeholder="Confirmar contraseña"
+        placeholder="Ingrese la confirmación de su contraseña"
       />
       @if (PasswordConfirmation?.errors && PasswordConfirmation?.touched) {
-        @if (PasswordConfirmation?.hasError("required")) {
+        @if (PasswordConfirmation?.hasError('required')) {
           <div class="text-danger mb-2" style="font-size: 13px">
             La confirmación de la contraseña es requerida.
           </div>
@@ -240,13 +293,12 @@
           Las contraseñas deben ser iguales.
         </div>
       }
+    </div>
 
-      <input class="botons w-100 mb-3" type="submit" value="Registrar" />
-
-      <p class="text-center m-0">
-        <a routerLink="/iniciar-sesion">¿Ya tenés cuenta?</a>
-      </p>
-    </section>
+    <div class="btn-centrado">
+      <button class="btn btn-guardarSesion">Registrarse</button>
+      <button class="btn btn-cancelar btn-">Cancelar</button>
+    </div>
+    <p>¿Ya tenés cuenta? <a routerLink="/iniciar-sesion">Iniciar sesión</a></p>
   </form>
 </div>
-
