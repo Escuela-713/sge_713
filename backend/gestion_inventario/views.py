@@ -330,4 +330,3 @@ class BienDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [TieneRol("directivos")]
     queryset = Bienes.objects.all()
     serializer_class = BienesSerializer
->>>>>>> d41a8dafe594fa9776d6706e96c659c1f8827cb5

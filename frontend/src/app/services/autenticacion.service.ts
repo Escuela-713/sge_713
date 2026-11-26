@@ -53,7 +53,6 @@ export interface PersonaData {
   id_localidad: number;
   id_localidad_nacimiento: number;
 }
-
 export interface UserData {
   id_usuario: number;
   nombre: string;

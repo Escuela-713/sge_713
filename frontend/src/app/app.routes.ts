@@ -37,7 +37,7 @@ import { NovedadComponent } from '@pages/novedad/novedad.component'
 import { EditarSlideComponent } from '@pages/gestion-home/editar-slide/editar-slide.component'
 import { InscripcionPreceptorComponent } from '@pages/gestion-examenes-finales/inscripcion-preceptor/inscripcion-preceptor.component'
 import { EditarMesaComponent } from './pages/gestion-examenes-finales/editar-mesa/editar-mesa.component'
-import { adminGuard, authGuard } from '@guards/auth.guard'
+import { authGuard } from '@guards/auth.guard'
 import { EditarPerfilComponent } from '@pages/gestion-usuarios/editar-perfil/editar-perfil.component'
 
 const indexarRuta = (componenteIndex: any): Route => {
@@ -66,7 +66,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    //canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: 'mi-perfil',
@@ -128,7 +128,6 @@ export const routes: Routes = [
           {
             path: 'reportes',
             component: ReportesInventarioComponent,
-            canActivate: [adminGuard],
           },
         ],
       },
