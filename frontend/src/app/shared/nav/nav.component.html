@@ -1,62 +1,96 @@
+
 <nav class="p-3 bg-dark text-white">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-between">
 
-      <!-- Zona de enlaces de navegación (Izquierda/Centro) -->
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start gap-2">
+
         @if (isAuthenticated()) {
-        <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" style="list-style: none;">
-          <a class="dropdown-toggle px-2 text-white text-decoration-none" href="#" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">Datos materias</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/dashboard/carreras">Carreras</a></li>
-            <li><a class="dropdown-item" routerLink="/dashboard/materias">Materias</a></li>
-            <li><a class="dropdown-item" routerLink="/dashboard/planes">Planes</a></li>
-          </ul>
-        </li>
-        <li style="list-style: none;">
-          <a class="text-end px-2 text-white text-decoration-none" routerLink="/dashboard/datos-personales/filtro">Datos personales</a>
-        </li>
-        <!-- Mesas de exámenes siempre visible -->
-        <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" style="list-style: none;">
-          <a class="dropdown-toggle px-2 text-white text-decoration-none" href="#" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">Mesas de exámenes</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/dashboard/mesas-de-examenes/">Tabla mesas de exámenes</a></li>
-            <li><a class="dropdown-item" routerLink="/dashboard/mesas-de-examenes/crear-mesa">Crear mesa de examen</a></li>
-            <li><a class="dropdown-item" routerLink="/dashboard/inscripcion-mesa">Inscribir alumno</a></li>
-          </ul>
-        </li>
-        <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" style="list-style: none;">
-          <a class="dropdown-toggle px-2 text-white text-decoration-none" href="#" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">Cooperadora</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/dashboard/cooperadora/movimientos">Movimientos</a></li>
-            <li><a class="dropdown-item" routerLink="/dashboard/cooperadora/registro">Registrar compra</a></li>
-          </ul>
-        </li>
-        <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" style="list-style: none;">
-          <a class="dropdown-toggle px-2 text-white text-decoration-none" href="#" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">Inventario</a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" routerLink="/dashboard/inventario">Inventario</a></li>
-            <li><a class="dropdown-item" routerLink="/dashboard/inventario/registrar">Registrar bien</a></li>
-                        <li><a class="dropdown-item" routerLink="/dashboard/inventario/bienes">Bienes registrados</a></li>
-            <li><a class="dropdown-item" routerLink="/dashboard/inventario/movimientos">Ingresos y egresos</a></li>
-            @if (authService.esAdmin()) {
-            <li><a class="dropdown-item" routerLink="/dashboard/inventario/reportes">Reportes</a></li>
-            }
-          </ul>
-        </li>
-        <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" style="list-style: none;">
-          <a class="dropdown-toggle px-2 text-white text-decoration-none" href="#" role="button" data-bs-toggle="dropdown"
-            aria-expanded="false">Incidencias</a>
-          <ul class="dropdown-menu">
-          <li><a class="dropdown-item" routerLink="/dashboard/incidencias">Incidencias pendientes</a></li>
-            <li><a class="dropdown-item" routerLink="/dashboard/incidencias/registrar">Registrar incidencia</a></li>
-          </ul>
-        </li>
+
+          <!-- Datos materias: preceptor_pot -->
+          @if (authService.esAdmin() || currentUser()?.roles?.includes('preceptor_pot')) {
+            <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" style="list-style: none;">
+              <a class="dropdown-toggle px-2 text-white text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Datos materias
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/dashboard/carreras">Carreras</a></li>
+                <li><a class="dropdown-item" routerLink="/dashboard/materias">Materias</a></li>
+                <li><a class="dropdown-item" routerLink="/dashboard/planes">Planes</a></li>
+              </ul>
+            </li>
+          }
+
+          <!-- Datos personales: cualquier usuario con algún rol -->
+          @if (authService.esAdmin() || (currentUser()?.roles?.length ?? 0) > 0) {
+            <li style="list-style: none;">
+              <a class="text-end px-2 text-white text-decoration-none" routerLink="/dashboard/datos-personales/filtro">
+                Datos personales
+              </a>
+            </li>
+          }
+
+          <!-- Mesas de exámenes: preceptor_pot -->
+          @if (authService.esAdmin() || currentUser()?.roles?.includes('preceptor_pot')) {
+            <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" style="list-style: none;">
+              <a class="dropdown-toggle px-2 text-white text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Mesas de exámenes
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/dashboard/mesas-de-examenes/">Tabla mesas de exámenes</a></li>
+                <li><a class="dropdown-item" routerLink="/dashboard/mesas-de-examenes/crear-mesa">Crear mesa de examen</a></li>
+                <li><a class="dropdown-item" routerLink="/dashboard/inscripcion-mesa">Inscribir alumno</a></li>
+              </ul>
+            </li>
+          }
+
+          <!-- Cooperadora: cooperadora -->
+          @if (authService.esAdmin() || currentUser()?.roles?.includes('cooperadora')) {
+            <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" style="list-style: none;">
+              <a class="dropdown-toggle px-2 text-white text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Cooperadora
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/dashboard/cooperadora/movimientos">Movimientos</a></li>
+                <li><a class="dropdown-item" routerLink="/dashboard/cooperadora/registro">Registrar compra</a></li>
+              </ul>
+            </li>
+          }
+
+          <!-- Inventario: cualquier usuario con algún rol -->
+          @if (authService.esAdmin() || (currentUser()?.roles?.length ?? 0) > 0) {
+            <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" style="list-style: none;">
+              <a class="dropdown-toggle px-2 text-white text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Inventario
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/dashboard/inventario">Inventario</a></li>
+                <li><a class="dropdown-item" routerLink="/dashboard/inventario/registrar">Registrar bien</a></li>
+                <li><a class="dropdown-item" routerLink="/dashboard/inventario/bienes">Bienes registrados</a></li>
+                <li><a class="dropdown-item" routerLink="/dashboard/inventario/movimientos">Ingresos y egresos</a></li>
+
+                @if (authService.esAdmin()) {
+                  <li><a class="dropdown-item" routerLink="/dashboard/inventario/reportes">Reportes</a></li>
+                }
+              </ul>
+            </li>
+          }
+
+          <!-- Incidencias: cooperadora y directivos -->
+          @if (authService.esAdmin() || currentUser()?.roles?.includes('cooperadora') || currentUser()?.roles?.includes('directivos')) {
+            <li class="dropdown nav col-12 col-md-auto me-md-auto mb-2 justify-content-center mb-md-0" style="list-style: none;">
+              <a class="dropdown-toggle px-2 text-white text-decoration-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Incidencias
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/dashboard/incidencias">Incidencias pendientes</a></li>
+                <li><a class="dropdown-item" routerLink="/dashboard/incidencias/registrar">Registrar incidencia</a></li>
+              </ul>
+            </li>
+          }
+
         }
+
       </div>
     </div>
   </div>

@@ -59,6 +59,7 @@ export interface UserData {
   dni: string;
   rol: string;
   roles: string[];
+  is_superuser: boolean;
 }
 
 export interface AuthResponse {
@@ -102,7 +103,12 @@ export class AuthService {
   isAuthenticated = signal<boolean>(false);
   currentUser = signal<UserData | null>(null);
   /** true si el usuario logueado tiene rol de administrador (ej. "Administrador"). */
-  esAdmin = computed(() => (this.currentUser()?.rol ?? '').toLowerCase().startsWith('admin'));
+  esAdmin = computed(() => {
+    const usuario = this.currentUser();
+
+    return usuario?.is_superuser === true ||
+      usuario?.roles?.includes('administradores') === true;
+  });
 
   private authCheck$?: Observable<boolean>;
 

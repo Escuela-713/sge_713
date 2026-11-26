@@ -98,6 +98,7 @@ class UserSerializer(serializers.ModelSerializer):
         read_only=True,
     )
 
+    is_superuser = serializers.BooleanField(read_only=True)
     nombre = serializers.SerializerMethodField()
     roles = serializers.SerializerMethodField()
 
@@ -108,6 +109,7 @@ class UserSerializer(serializers.ModelSerializer):
             "dni",
             "nombre",
             "roles",
+            "is_superuser",
         ]
 
     def get_nombre(self, obj):
