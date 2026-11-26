@@ -1,0 +1,371 @@
+.info-seccion {
+  background-color: #faeeee;
+  padding: 4rem 2rem 4.5rem;
+  letter-spacing: normal;
+}
+
+.info-seccion * {
+  letter-spacing: normal;
+}
+
+/*
+  styles.css (global) le pone un relleno a todos los svg y un color fijo a todos los elementos.
+  Acá los íconos son solo de línea y toman el color de su contenedor.
+*/
+.info-titulo-icono svg,
+.info-tarjeta-vacia,
+.info-tarjeta-mas svg,
+.info-detalle-cerrar svg {
+  fill: none;
+  stroke: currentColor;
+}
+
+.info-tarjeta-mas svg,
+.info-detalle-cerrar svg {
+  color: inherit;
+}
+
+.info-titulo-icono svg *,
+.info-tarjeta-vacia *,
+.info-tarjeta-mas svg *,
+.info-detalle-cerrar svg * {
+  color: inherit;
+}
+
+.info-cabecera {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3.5rem;
+}
+
+.info-pildora {
+  display: inline-block;
+  background-color: #fbdde1;
+  color: #d0081f;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.45rem 1.25rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+}
+
+.info-cabecera h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #26181a;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.info-cabecera p {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #6b5a5d;
+  line-height: 1.5;
+}
+
+.info-grupos {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.info-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-bottom: 1.75rem;
+}
+
+.info-titulo h3 {
+  font-size: 1.7rem;
+  font-weight: 700;
+  color: #26181a;
+}
+
+.info-titulo-icono {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #f8d9dd;
+  color: #d0081f;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-titulo-icono svg {
+  width: 22px;
+  height: 22px;
+  color: #d0081f;
+}
+
+/* ---------- Tarjetas, una al lado de la otra ---------- */
+
+.info-tarjetas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 1.5rem;
+}
+
+.info-tarjeta {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  background-color: #ffffff;
+  border: 1px solid #f1dcdf;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.info-tarjeta:hover {
+  transform: translateY(-4px);
+  border-color: #e9b8bf;
+  box-shadow: 0 10px 24px rgba(208, 8, 31, 0.12);
+}
+
+.info-tarjeta:focus-visible {
+  outline: 3px solid #d0081f;
+  outline-offset: 2px;
+}
+
+.info-tarjeta-imagen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  background: linear-gradient(135deg, #fbe6e8, #f8d9dd);
+  overflow: hidden;
+}
+
+.info-tarjeta-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.info-tarjeta:hover .info-tarjeta-imagen img {
+  transform: scale(1.05);
+}
+
+.info-tarjeta-vacia {
+  width: 64px;
+  height: 64px;
+  color: #d0081f;
+  opacity: 0.55;
+}
+
+.info-tarjeta-cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.1rem 1.25rem 1.25rem;
+}
+
+.info-tarjeta-titulo {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #26181a;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.info-tarjeta-mas {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #d0081f;
+}
+
+.info-tarjeta-mas svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.info-tarjeta:hover .info-tarjeta-mas svg {
+  transform: translateX(4px);
+}
+
+/* ---------- Vista expandida a pantalla completa ---------- */
+
+.info-detalle {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background-color: #ffffff;
+  overflow-y: auto;
+  animation: info-expandir 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes info-expandir {
+  from {
+    clip-path: var(--recorte-inicial, inset(0));
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 0);
+  }
+}
+
+.info-detalle-cerrar {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 1;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background-color: #d0081f;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.2s ease;
+}
+
+.info-detalle-cerrar:hover {
+  background-color: #a80019;
+}
+
+.info-detalle-cerrar:focus-visible {
+  outline: 3px solid #26181a;
+  outline-offset: 2px;
+}
+
+.info-detalle-cerrar svg {
+  width: 22px;
+  height: 22px;
+}
+
+.info-detalle-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  min-height: 100%;
+}
+
+.info-detalle-panel.sin-imagen {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.info-detalle-imagen {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  background-color: #fbe6e8;
+}
+
+.info-detalle-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.info-detalle-texto {
+  align-self: center;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 760px;
+  padding: clamp(2.5rem, 6vw, 5rem);
+  margin: 0 auto;
+}
+
+.info-detalle-tipo {
+  display: inline-block;
+  background-color: #fbdde1;
+  color: #d0081f;
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  margin-bottom: 1.25rem;
+}
+
+.info-detalle-texto h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: #26181a;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  overflow-wrap: anywhere;
+}
+
+.info-detalle-texto p {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #6b5a5d;
+  line-height: 1.7;
+  white-space: pre-line;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 800px) {
+  .info-detalle-panel {
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+  }
+
+  .info-detalle-imagen {
+    position: static;
+    height: 38vh;
+  }
+
+  .info-detalle-texto {
+    align-self: start;
+    padding: 2rem 1.5rem 3rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .info-seccion {
+    padding: 3rem 1.25rem;
+  }
+
+  .info-cabecera h2 {
+    font-size: 2rem;
+  }
+
+  .info-tarjetas {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .info-tarjeta-cuerpo {
+    padding: 0.9rem 1rem 1rem;
+  }
+
+  .info-tarjeta-titulo {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .info-detalle {
+    animation: none;
+  }
+
+  .info-tarjeta,
+  .info-tarjeta-imagen img,
+  .info-tarjeta-mas svg {
+    transition: none;
+  }
+
+  .info-tarjeta:hover {
+    transform: none;
+  }
+}

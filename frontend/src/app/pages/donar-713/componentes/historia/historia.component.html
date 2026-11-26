@@ -1,0 +1,21 @@
+<section class="pagina">
+  <div class="pagina-titulo">
+    <span class="indicador"></span>
+    <h1>Historia de Donar 713</h1>
+  </div>
+
+  <p class="introduccion">{{ introduccion }}</p>
+
+  <ol class="linea-tiempo">
+    @for (hito of hitos; track hito.etapa) {
+      <li class="hito">
+        <span class="hito-punto"></span>
+        <div class="hito-card">
+          <span class="hito-etapa">{{ hito.etapa }}</span>
+          <h3>{{ hito.titulo }}</h3>
+          <p>{{ hito.texto }}</p>
+        </div>
+      </li>
+    }
+  </ol>
+</section>
