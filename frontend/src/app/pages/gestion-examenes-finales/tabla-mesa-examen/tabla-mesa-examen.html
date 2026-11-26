@@ -81,9 +81,14 @@
           {{mesa.profesor_segundo_vocal}}
         </td>
         <td>
-          <a routerLink="/dashboard/mesas-de-examenes/inscribir-alumno/{{mesa.id_mesa_examen}}">
-            Inscribir alumno
-          </a>
+          <div>
+            <a routerLink="/dashboard/mesas-de-examenes/inscribir-alumno/{{mesa.id_mesa_examen}}">
+              Inscribir alumno
+            </a>
+            <a routerLink="/dashboard/mesas-de-examenes/editar-mesa/{{mesa.id_mesa_examen}}">
+              Editar mesa
+            </a>
+          </div>
         </td>
       </tr>
       } @empty {

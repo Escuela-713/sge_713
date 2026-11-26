@@ -37,6 +37,7 @@ import { NovedadComponent } from '@pages/novedad/novedad.component'
 <<<<<<< Updated upstream
 import { EditarSlideComponent } from '@pages/gestion-home/editar-slide/editar-slide.component'
 import { InscripcionPreceptorComponent } from '@pages/gestion-examenes-finales/inscripcion-preceptor/inscripcion-preceptor.component'
+import { EditarMesaComponent } from './pages/gestion-examenes-finales/editar-mesa/editar-mesa.component'
 // import { authGuard } from '@guards/auth.guard'
 =======
 import { EditarSlideComponent } from './pages/gestion-home/editar-slide/editar-slide.component'
@@ -159,7 +160,7 @@ export const routes: Routes = [
           { path: 'crear-mesa', component: CreacionDeMesaComponent },
           {
             path: 'editar-mesa/:id_mesa',
-            component: InscripcionPreceptorComponent,
+            component: EditarMesaComponent,
           },
           {
             path: 'inscribir-alumno/:id_mesa',
