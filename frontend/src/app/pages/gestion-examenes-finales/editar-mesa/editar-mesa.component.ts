@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core'
 import {
   ReactiveFormsModule,
   FormBuilder,
@@ -10,7 +10,7 @@ import { MateriasService } from '@services/materias.service'
 import { MesasExamenesService } from '@services/mesas-examenes.service'
 import { Carrera, Materia, Mesa } from '@models/mesas-examenes.model'
 import { environment } from '@/environments/environment.development'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-editar-mesa',
@@ -30,8 +30,30 @@ export class EditarMesaComponent implements OnInit {
   carreras: Carrera[] = []
   anos = environment.anos
   idMesa = this.ruta.snapshot.paramMap.get('id_mesa')
-  mesaSeleccionada: Mesa | null = null
+  mesaSeleccionada: Mesa | undefined = undefined
 
+  formularioDeEdicion = this.fb.group({
+    ano: [
+      '',
+      [Validators.required, Validators.min(1), Validators.max(7)],
+    ],
+    id_carrera: ['', [Validators.required]],
+    id_materia: ['', [Validators.required]],
+    profesor_titular: [
+      '',
+      [Validators.required, Validators.minLength(10)],
+    ],
+    profesor_primer_vocal: [
+      '',
+      [Validators.required, Validators.minLength(10)],
+    ],
+    profesor_segundo_vocal: [
+      '',
+      [Validators.required, Validators.minLength(10)],
+    ],
+    dia: ['', [Validators.required]],
+    hora: ['', [Validators.required]],
+  })
 
   ngOnInit(): void {
     this.servicioMateria.obtenerMaterias().subscribe({
@@ -41,7 +63,7 @@ export class EditarMesaComponent implements OnInit {
       error: (error) => {
         console.error(error)
       },
-      complete: () => this.cdr.detectChanges(),
+      complete: () => this.cdr.markForCheck(),
     })
 
     this.servicioCarrera.obtenerCarreras().subscribe({
@@ -51,37 +73,37 @@ export class EditarMesaComponent implements OnInit {
       error: (error) => {
         console.error(error)
       },
-      complete: () => this.cdr.detectChanges(),
+      complete: () => this.cdr.markForCheck(),
     })
 
     this.servicioMesas.obtenerMesas().subscribe({
       next: (mesas) => {
-        if (Number.isNaN(Number(this.idMesa))) {
-          return
-        }
+        const mesaSeleccionada = mesas.data.find(
+          (mesa) => mesa.id_mesa_examen === Number(this.idMesa),
+        ) as Mesa
+        Object.entries(mesaSeleccionada).forEach((entrada) => {
+          const [clave, valor] = entrada
 
-        this.mesaSeleccionada = mesas.data.find((mesa) => mesa.id_mesa_examen === Number(this.idMesa)) ?? null
+          if (clave === 'carrera') {
+            this.formularioDeEdicion.get('id_carrera')?.patchValue(this.carreras.find((carrera) => carrera.nombre === mesaSeleccionada.carrera.nombre)?.id_carrera as unknown as string)
+            return
+          }
+
+          if (clave === 'materia') {
+            this.formularioDeEdicion.get('id_materia')?.patchValue(this.materias.find((materia) => materia.nombre === mesaSeleccionada.materia.nombre)?.id_materia as unknown as string)
+            return
+          }
+
+          this.formularioDeEdicion.get(clave)?.patchValue(valor)
+        })
       },
       error: (error) => {
         console.error(error)
       },
-      complete: () => this.cdr.detectChanges(),
+      complete: () => this.cdr.markForCheck(),
     })
-  }
 
-  formularioDeEdicion = this.fb.group({
-    ano: [this.mesaSeleccionada?.ano, [Validators.required, Validators.min(1), Validators.max(7)]],
-    id_carrera: [this.mesaSeleccionada?.carrera, [Validators.required]],
-    id_materia: [this.mesaSeleccionada?.materia, [Validators.required]],
-    profesor_titular: [this.mesaSeleccionada?.profesor_titular, [Validators.required, Validators.minLength(10)]],
-    profesor_primer_vocal: [this.mesaSeleccionada?.profesor_primer_vocal, [Validators.required, Validators.minLength(10)]],
-    profesor_segundo_vocal: [
-      this.mesaSeleccionada?.profesor_segundo_vocal,
-      [Validators.required, Validators.minLength(10)],
-    ],
-    dia: [this.mesaSeleccionada?.dia, [Validators.required]],
-    hora: [this.mesaSeleccionada?.hora, [Validators.required]],
-  })
+  }
 
 
   get Ano() {
@@ -118,9 +140,5 @@ export class EditarMesaComponent implements OnInit {
 
   get Hora() {
     return this.formularioDeEdicion.get('hora') as AbstractControl
-  }
-
-  guardarEdicion() {
-
   }
 }
