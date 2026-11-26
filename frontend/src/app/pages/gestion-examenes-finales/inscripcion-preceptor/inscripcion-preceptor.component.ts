@@ -19,7 +19,7 @@ export class InscripcionPreceptorComponent {
   private mesaServicio = inject(MesasExamenesService)
   private ruta = inject(ActivatedRoute)
 
-  idMesa = this.ruta.snapshot.paramMap.get('id')
+  idMesa = this.ruta.snapshot.paramMap.get('id_mesa')
 
   formularioDeInscripcion = this.fb.group({
     dni: [

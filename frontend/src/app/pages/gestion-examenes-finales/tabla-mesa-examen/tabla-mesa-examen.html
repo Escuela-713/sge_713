@@ -82,9 +82,9 @@
           {{mesa.profesor_segundo_vocal}}
         </td>
         <td>
-          <button [id]="mesa.id_mesa_examen" (click)="inscribirse($event)">
-            Inscribirse
-          </button>
+          <a routerLink="/dashboard/mesas-de-examenes/inscribir-alumno/{{mesa.id_mesa_examen}}">
+            Inscribir alumno
+          </a>
         </td>
       </tr>
       } @empty {

@@ -1,1 +1,7 @@
-<p>inscripcion-preceptor works!</p>
+<form [formGroup]="formularioDeInscripcion" (ngSubmit)="inscribirAlumno()">
+  <label>
+    DNI del alumno:
+    <input type="number" placeholder="Ej.: 48922152" formControlName="dni" />
+  </label>
+  <input type="submit" value="Inscribir alumno">
+</form>
