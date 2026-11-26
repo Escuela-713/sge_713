@@ -17,7 +17,7 @@ export class MesasExamenesService {
   private apiUrl = `${environment.API_URL}/mesas_examenes`
 
   obtenerMesas(filtros?: FiltroMesaExamen): Observable<ApiResponse<Mesa[]>> {
-    if (!filtros) return this.http.get<ApiResponse<Mesa[]>>(`${this.apiUrl}`)
+    if (!filtros) return this.http.get<ApiResponse<Mesa[]>>(`${this.apiUrl}/`)
 
     const filtrosParseados = Object.entries(filtros)
       .filter((filtro) => filtro[1])

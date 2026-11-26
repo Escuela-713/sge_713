@@ -13,7 +13,7 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import Paragraph, SimpleDocTemplate, Spacer, Table, TableStyle
-from rest_framework import filters, status, viewsets
+from rest_framework import filters, status, viewsets, generics
 from rest_framework.exceptions import ValidationError
 from rest_framework.permissions import SAFE_METHODS, BasePermission
 from rest_framework.response import Response
@@ -21,6 +21,12 @@ from rest_framework.views import APIView
 
 from .models import Bienes, Categoria, DetalleInventario, Ubicacion
 from .serializers import BienesSerializer, CategoriaSerializer, UbicacionSerializer
+
+from gestion_usuarios.permissions import TieneRol
+
+from .models import Bienes
+from .serializers import BienesSerializer
+
 
 TIPOS_MOVIMIENTO = {1: 'Ingreso', 2: 'Egreso'}  # ajustar si T10 usa otros valores
 
@@ -287,3 +293,41 @@ class ReporteMovimientosView(APIView):
             ])
         return exportar(formato, 'reporte_movimientos', 'Reporte de movimientos', describir_filtros(params),
                         encabezados, filas)
+
+class CrearBienView(APIView):
+    """
+    HU1 - Endpoint para registrar un bien en el inventario.
+    POST /api/v1/inventario/bienes/crear/
+    """
+
+    permission_classes = [TieneRol("directivos")]
+
+    def post(self, request):
+        serializer = BienesSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(
+                {
+                    'message': 'Bien registrado exitosamente',
+                    'data': serializer.data
+                },
+                status=status.HTTP_201_CREATED
+            )
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class BienesListView(generics.ListAPIView):
+    """GET /api/v1/inventario/bienes/ - listado de bienes."""
+
+    permission_classes = [TieneRol("directivos")]
+    queryset = Bienes.objects.order_by("id_bien")
+    serializer_class = BienesSerializer
+
+
+class BienDetailView(generics.RetrieveUpdateDestroyAPIView):
+    """GET / PUT / PATCH / DELETE /api/v1/inventario/bienes/<id>/"""
+
+    permission_classes = [TieneRol("directivos")]
+    queryset = Bienes.objects.all()
+    serializer_class = BienesSerializer
+>>>>>>> d41a8dafe594fa9776d6706e96c659c1f8827cb5

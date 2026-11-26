@@ -14,6 +14,6 @@ export class MateriasService {
   constructor(private http: HttpClient) {}
 
   obtenerMaterias(): Observable<ApiResponse<Materia[]>> {
-    return this.http.get<ApiResponse<Materia[]>>(`${this.apiUrl}/materia`)
+    return this.http.get<ApiResponse<Materia[]>>(`${this.apiUrl}/materia/`)
   }
 }

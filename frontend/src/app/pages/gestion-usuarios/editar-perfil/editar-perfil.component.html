@@ -1,0 +1,207 @@
+
+<div class="container mt-4">
+  <h2>Mis datos personales</h2>
+  <p>Desde aquí podés consultar y modificar tus datos personales.</p>
+
+  @if (cargando) {
+    <p>Cargando tus datos...</p>
+  } @else {
+    @if (mensaje) {
+      <div class="alert alert-success">{{ mensaje }}</div>
+    }
+
+    @if (error) {
+      <div class="alert alert-danger">{{ error }}</div>
+    }
+
+    <form [formGroup]="perfilForm" (ngSubmit)="guardarCambios()">
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label>Primer nombre</label>
+          <input class="form-control" formControlName="primer_nombre">
+        </div>
+
+        <div class="col-md-6">
+          <label>Segundo nombre</label>
+          <input class="form-control" formControlName="segundo_nombre">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label>Tercer nombre</label>
+          <input class="form-control" formControlName="tercer_nombre">
+        </div>
+
+        <div class="col-md-6">
+          <label>Primer apellido</label>
+          <input class="form-control" formControlName="primer_apellido">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label>Segundo apellido</label>
+          <input class="form-control" formControlName="segundo_apellido">
+        </div>
+
+        <div class="col-md-6">
+          <label>Fecha de nacimiento</label>
+          <input type="date" class="form-control" formControlName="fecha_nacimiento">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label>Email</label>
+          <input type="email" class="form-control" formControlName="email">
+        </div>
+
+        <div class="col-md-6">
+          <label>Teléfono</label>
+          <input class="form-control" formControlName="telefono">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label>Género</label>
+          <select class="form-select" formControlName="genero">
+            <option value="">Seleccione</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+            <option value="O">Otro</option>
+          </select>
+        </div>
+
+        <div class="col-md-6">
+          <label>Tipo de sangre</label>
+          <select class="form-select" formControlName="tipo_sangre">
+            <option [ngValue]="null">Sin especificar</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+          </select>
+        </div>
+      </div>
+
+      <h4 class="mt-4">Domicilio</h4>
+
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <label>Calle</label>
+          <input class="form-control" formControlName="calle">
+        </div>
+
+        <div class="col-md-6">
+          <label>Número</label>
+          <input type="number" class="form-control" formControlName="numero_calle">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label>Barrio</label>
+        <input class="form-control" formControlName="barrio">
+      </div>
+
+      <h4 class="mt-4">Ubicación del domicilio</h4>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label>País</label>
+          <select
+            class="form-select"
+            formControlName="pais_domicilio"
+            (change)="cambiarPaisDomicilio()"
+          >
+            <option [ngValue]="null">Seleccione un país</option>
+            @for (pais of paises; track pais.id) {
+              <option [ngValue]="pais.id">{{ pais.nombre }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label>Provincia</label>
+          <select
+            class="form-select"
+            formControlName="provincia_domicilio"
+            (change)="cambiarProvinciaDomicilio()"
+          >
+            <option [ngValue]="null">Seleccione una provincia</option>
+            @for (provincia of provinciasDomicilio; track provincia.id) {
+              <option [ngValue]="provincia.id">{{ provincia.nombre }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label>Localidad</label>
+          <select class="form-select" formControlName="id_localidad">
+            <option [ngValue]="null">Seleccione una localidad</option>
+            @for (localidad of localidadesDomicilio; track localidad.id) {
+              <option [ngValue]="localidad.id">{{ localidad.nombre }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <h4 class="mt-4">Lugar de nacimiento</h4>
+
+      <div class="row mb-3">
+        <div class="col-md-4">
+          <label>País</label>
+          <select
+            class="form-select"
+            formControlName="pais_nacimiento"
+            (change)="cambiarPaisNacimiento()"
+          >
+            <option [ngValue]="null">Seleccione un país</option>
+            @for (pais of paises; track pais.id) {
+              <option [ngValue]="pais.id">{{ pais.nombre }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label>Provincia</label>
+          <select
+            class="form-select"
+            formControlName="provincia_nacimiento"
+            (change)="cambiarProvinciaNacimiento()"
+          >
+            <option [ngValue]="null">Seleccione una provincia</option>
+            @for (provincia of provinciasNacimiento; track provincia.id) {
+              <option [ngValue]="provincia.id">{{ provincia.nombre }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="col-md-4">
+          <label>Localidad</label>
+          <select class="form-select" formControlName="id_localidad_nacimiento">
+            <option [ngValue]="null">Seleccione una localidad</option>
+            @for (localidad of localidadesNacimiento; track localidad.id) {
+              <option [ngValue]="localidad.id">{{ localidad.nombre }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="guardando || cargando"
+      >
+        {{ guardando ? 'Guardando...' : 'Guardar cambios' }}
+      </button>
+
+    </form>
+  }
+</div>

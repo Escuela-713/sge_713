@@ -5,6 +5,8 @@ from rest_framework.views import APIView as ApiView
 from gestion_datos_personales.models import Alumno
 from gestion_mesas_examenes.models import MesaExamen
 from gestion_mesas_examenes.serializer import AlumnosAnotadosAMesasSerializer, MesaExamenSerializer
+from rest_framework.permissions import IsAuthenticated
+from gestion_usuarios.permissions import LecturaPublicaEscrituraConRol
 
 def debug_print(to_debug):
         print('='*60)
@@ -13,6 +15,10 @@ def debug_print(to_debug):
 
 # Create your views here.
 class MesasExamenesView(ApiView):
+
+    # en MesasExamenesView
+    permission_classes = [LecturaPublicaEscrituraConRol("directivos", "preceptor_pot")]
+
     # Obtener las mesas según el filtro especificado, en caso de no tener, se recuperan todas las mesas
     def get(self, req: Request):
         filtros = req.query_params.dict()
@@ -102,7 +108,9 @@ class MesasExamenesView(ApiView):
         return Response(status=HTTP_204_NO_CONTENT)
 
 
-class InscripcionAlumnoView(ApiView):
+class InscripcionView(ApiView):
+    permission_classes = [IsAuthenticated] 
+
     def post(self, req: Request):
         body = req.data
 

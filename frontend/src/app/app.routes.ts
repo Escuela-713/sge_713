@@ -38,6 +38,7 @@ import { EditarSlideComponent } from '@pages/gestion-home/editar-slide/editar-sl
 import { InscripcionPreceptorComponent } from '@pages/gestion-examenes-finales/inscripcion-preceptor/inscripcion-preceptor.component'
 import { EditarMesaComponent } from './pages/gestion-examenes-finales/editar-mesa/editar-mesa.component'
 import { adminGuard, authGuard } from '@guards/auth.guard'
+import { EditarPerfilComponent } from '@pages/gestion-usuarios/editar-perfil/editar-perfil.component'
 
 const indexarRuta = (componenteIndex: any): Route => {
   const rutaIndex: Route = {
@@ -67,6 +68,10 @@ export const routes: Routes = [
     component: DashboardComponent,
     //canActivate: [authGuard],
     children: [
+      {
+        path: 'mi-perfil',
+        component: EditarPerfilComponent,
+      },
       {
         path: 'cooperadora',
         children: [

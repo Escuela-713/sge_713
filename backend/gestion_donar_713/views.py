@@ -1,6 +1,7 @@
 from rest_framework import status, viewsets
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.views import APIView
+from gestion_usuarios.permissions import LecturaPublicaEscrituraConRol
 from rest_framework.response import Response
 
 from .models import (
@@ -24,19 +25,19 @@ class CarruselSlideViewSet(viewsets.ModelViewSet):
 	queryset = CarruselSlide.objects.all()
 	serializer_class = CarruselSlideSerializer
 	parser_classes = [MultiPartParser, FormParser, JSONParser]
-
+	permission_classes = [LecturaPublicaEscrituraConRol("donar_713")]
 
 class EventoViewSet(viewsets.ModelViewSet):
 	queryset = Evento.objects.all()
 	serializer_class = EventoSerializer
 	parser_classes = [MultiPartParser, FormParser, JSONParser]
-
+	permission_classes = [LecturaPublicaEscrituraConRol("donar_713")]
 
 class NoticiaViewSet(viewsets.ModelViewSet):
 	queryset = Noticia.objects.all()
 	serializer_class = NoticiaSerializer
 	parser_classes = [MultiPartParser, FormParser, JSONParser]
-
+	permission_classes = [LecturaPublicaEscrituraConRol("donar_713")]
 
 class InformacionViewSet(viewsets.ModelViewSet):
 	queryset = Informacion.objects.all()

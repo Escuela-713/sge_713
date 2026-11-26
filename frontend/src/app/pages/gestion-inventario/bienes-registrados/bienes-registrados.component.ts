@@ -79,6 +79,7 @@ export class BienesRegistradosComponent implements OnInit {
       return 'N/D'
     }
     return bien.prestado ? 'Sí' : 'No'
+
   }
 
   private etiqueta(valor: number | string | null | undefined, lista: Opcion[]): string {

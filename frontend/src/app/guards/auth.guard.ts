@@ -1,7 +1,7 @@
-import { inject } from '@angular/core'
-import { CanActivateFn, Router } from '@angular/router'
-import { map } from 'rxjs'
-import { AuthService } from '../services/autenticacion.service'
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from '../services/autenticacion.service';
+import { map } from 'rxjs';
 
 /** Deja pasar solo si hay sesión. Espera a que el backend confirme (evita el rebote al login al recargar). */
 export const authGuard: CanActivateFn = () => {
@@ -33,4 +33,3 @@ export const adminGuard: CanActivateFn = () => {
     return decidir(true)
   }
   return authService.verificarSesion().pipe(map(decidir))
-}

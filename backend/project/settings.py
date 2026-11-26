@@ -45,27 +45,29 @@ else:
     ALLOWED_HOSTS = ["*"]
 # Additional hosts may be added via DJANGO_ALLOWED_HOSTS in the .env file
 
+AUTH_USER_MODEL = "gestion_usuarios.Usuario"
 # Application definition
 
 INSTALLED_APPS = [
-    'corsheaders',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'rest_framework_simplejwt',
-    'gestion_datos_personales',
-    'gestion_usuarios',
-    'gestion_carrera_planes_materias',
-    'gestion_home',
-    'gestion_inventario',
-    'gestion_mesas_examenes',
-    'gestion_incidencias',
-    'gestion_donar_713',
-    'gestion_cooperadora'
+    "corsheaders",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "rest_framework",
+    "rest_framework_simplejwt",
+    "rest_framework_simplejwt.token_blacklist",
+    "gestion_datos_personales",
+    "gestion_usuarios",
+    "gestion_carrera_planes_materias",
+    "gestion_home",
+    "gestion_inventario",
+    "gestion_mesas_examenes",
+    "gestion_incidencias",
+    "gestion_donar_713",
+    "gestion_cooperadora",
 ]
 
 MIDDLEWARE = [
@@ -95,6 +97,7 @@ SIMPLE_JWT = {
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
     "AUTH_HEADER_TYPES": ("Bearer",),
+    "USER_ID_FIELD": "id_usuario",
 }
 
 ROOT_URLCONF = "project.urls"
@@ -138,9 +141,9 @@ WSGI_APPLICATION = "project.wsgi.application"
 
 # Database configuration: prefer env vars, fall back to sensible defaults
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -162,6 +165,10 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    "gestion_usuarios.backends.DNIAuthenticationBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
@@ -182,8 +189,8 @@ STATIC_URL = "static/"
 
 # Media files (imágenes subidas por los usuarios, ej. carrusel/eventos/noticias de Donar 713)
 # https://docs.djangoproject.com/en/5.1/topics/files/
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # CORS: permite que el frontend Angular (ng serve, normalmente http://localhost:4200)
 # consuma la API durante el desarrollo.
@@ -203,3 +210,4 @@ CORS_ALLOW_CREDENTIALS = True
 # Inventario
 CORS_EXPOSE_HEADERS = ['Content-Disposition']  # para descargar reportes con su nombre
 EXIGIR_LOGIN = False  # pasar a True cuando el frontend tenga login
+CORS_ALLOW_CREDENTIALS = True

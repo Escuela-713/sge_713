@@ -1,12 +1,11 @@
 from django.shortcuts import get_object_or_404
 from django.utils.dateparse import parse_date
-from rest_framework import status
+from rest_framework import status, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+from gestion_usuarios.permissions import TieneRol
 from .models import Movimiento
 from .serializers import MovimientoSerializer
-
 
 class MovimientoListCreateView(APIView):
     def get(self, request):
