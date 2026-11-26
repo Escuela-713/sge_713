@@ -392,3 +392,12 @@ h3 {
   border-radius: 20px;
   font-size: 14px;
 }
+
+.campo-invalido {
+  border: 1px solid #dc3545 !important;
+  background-color: #fff5f5;
+}
+
+.error {
+  color: #dc3545;
+}

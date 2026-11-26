@@ -1,0 +1,23 @@
+.movimientos { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.titulo { text-align: center; margin-bottom: 20px; }
+.subtitulo { margin: 28px 0 12px; }
+.formulario { background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.1); }
+.fila { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 14px; }
+.campo { flex: 1 1 220px; display: flex; flex-direction: column; gap: 4px; }
+.campo label { font-weight: 600; }
+.control { padding: 8px 10px; border: 1px solid #ced4da; border-radius: 6px; }
+.campo-invalido { border-color: #dc3545; background: #fff5f5; }
+.error { color: #dc3545; }
+.mensaje { padding: 10px 14px; border-radius: 6px; }
+.exito { background: #d1e7dd; color: #0f5132; }
+.mensaje-error { background: #f8d7da; color: #842029; }
+.acciones { display: flex; gap: 10px; margin-top: 10px; }
+.btn { padding: 8px 20px; border: none; border-radius: 6px; cursor: pointer; }
+.btnGuardar { background: #0d6efd; color: #fff; }
+.btnCancelar { background: #6c757d; color: #fff; }
+.btn:disabled { opacity: .6; cursor: not-allowed; }
+.aviso { text-align: center; padding: 16px; }
+.tabla-scroll { overflow-x: auto; }
+.tabla { width: 100%; border-collapse: collapse; }
+.tabla th, .tabla td { padding: 8px 10px; border-bottom: 1px solid #dee2e6; text-align: left; }
+.tabla th { background: #f1f3f5; }

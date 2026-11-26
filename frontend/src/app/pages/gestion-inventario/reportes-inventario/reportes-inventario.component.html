@@ -1,0 +1,53 @@
+<div class="reportes">
+  <h2 class="titulo">Reportes de inventario</h2>
+
+  <form class="formulario" [formGroup]="filtros" (ngSubmit)="descargar('pdf')">
+    <div class="fila">
+      <div class="campo">
+        <label for="fechaDesde">Fecha desde</label>
+        <input id="fechaDesde" type="date" formControlName="fechaDesde" class="control" />
+      </div>
+      <div class="campo">
+        <label for="fechaHasta">Fecha hasta</label>
+        <input id="fechaHasta" type="date" formControlName="fechaHasta" class="control" />
+      </div>
+    </div>
+
+    <div class="fila">
+      <div class="campo">
+        <label for="ubicacion">Ubicación</label>
+        <select id="ubicacion" formControlName="ubicacion" class="control">
+          <option [ngValue]="null">Todas</option>
+          @for (u of ubicaciones(); track u.id) {
+            <option [ngValue]="u.id">{{ u.nombre }}</option>
+          }
+        </select>
+      </div>
+      <div class="campo">
+        <label for="categoria">Categoría</label>
+        <select id="categoria" formControlName="categoria" class="control">
+          <option [ngValue]="null">Todas</option>
+          @for (c of categorias(); track c.id) {
+            <option [ngValue]="c.id">{{ c.nombre }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    @if (mensaje(); as m) {
+      <p class="mensaje" [class.exito]="m.tipo === 'exito'" [class.mensaje-error]="m.tipo === 'error'">
+        {{ m.texto }}
+      </p>
+    }
+
+    <div class="acciones">
+      <button type="button" class="btn btnPdf" [disabled]="descargando() !== null" (click)="descargar('pdf')">
+        {{ descargando() === 'pdf' ? 'Generando PDF...' : 'Descargar PDF' }}
+      </button>
+      <button type="button" class="btn btnExcel" [disabled]="descargando() !== null" (click)="descargar('excel')">
+        {{ descargando() === 'excel' ? 'Generando Excel...' : 'Descargar Excel' }}
+      </button>
+      <button type="button" class="btn btnLimpiar" (click)="limpiar()">Limpiar filtros</button>
+    </div>
+  </form>
+</div>

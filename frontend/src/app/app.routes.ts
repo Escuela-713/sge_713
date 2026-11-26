@@ -26,7 +26,10 @@ import { GestionHomeComponent } from '@pages/gestion-home/gestion-home.component
 import { HomeDashboardComponent } from '@pages/gestion-home/home-dashboard/home-dashboard.component'
 import { IncidenciasPendientesComponent } from '@pages/gestion-incidencias/incidencias-pendientes/incidencias-pendientes.component'
 import { RegistroIncidenciaComponent } from '@pages/gestion-incidencias/registro-incidencia/registro-incidencia.component'
+import { BienesRegistradosComponent } from '@pages/gestion-inventario/bienes-registrados/bienes-registrados.component'
 import { InventarioComponent } from '@pages/gestion-inventario/inventario/inventario.component'
+import { MovimientosInventarioComponent } from '@pages/gestion-inventario/movimientos-inventario/movimientos-inventario.component'
+import { ReportesInventarioComponent } from '@pages/gestion-inventario/reportes-inventario/reportes-inventario.component'
 import { RegistrarBienComponent } from '@pages/gestion-inventario/registrar-bien/registrar-bien.component'
 import { LoginComponent } from '@pages/gestion-usuarios/login/login.component'
 import { RegistroComponent } from '@pages/gestion-usuarios/registro/registro.component'
@@ -35,7 +38,7 @@ import { NovedadComponent } from '@pages/novedad/novedad.component'
 import { EditarSlideComponent } from '@pages/gestion-home/editar-slide/editar-slide.component'
 import { InscripcionPreceptorComponent } from '@pages/gestion-examenes-finales/inscripcion-preceptor/inscripcion-preceptor.component'
 import { EditarMesaComponent } from './pages/gestion-examenes-finales/editar-mesa/editar-mesa.component'
-// import { authGuard } from '@guards/auth.guard'
+import { adminGuard, authGuard } from '@guards/auth.guard'
 
 const indexarRuta = (componenteIndex: any): Route => {
   const rutaIndex: Route = {
@@ -63,7 +66,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    // canActivate: [authGuard],
+    canActivate: [authGuard],
     children: [
       {
         path: 'cooperadora',
@@ -116,6 +119,14 @@ export const routes: Routes = [
         children: [
           indexarRuta(InventarioComponent),
           { path: 'registrar', component: RegistrarBienComponent },
+          { path: 'editar/:id', component: RegistrarBienComponent },
+          { path: 'bienes', component: BienesRegistradosComponent },
+          { path: 'movimientos', component: MovimientosInventarioComponent },
+          {
+            path: 'reportes',
+            component: ReportesInventarioComponent,
+            canActivate: [adminGuard],
+          },
         ],
       },
       {
