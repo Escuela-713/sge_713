@@ -141,4 +141,6 @@ export class EditarMesaComponent implements OnInit {
   get Hora() {
     return this.formularioDeEdicion.get('hora') as AbstractControl
   }
+
+  guardarEdicion() {}
 }

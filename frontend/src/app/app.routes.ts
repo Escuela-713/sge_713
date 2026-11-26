@@ -31,30 +31,10 @@ import { LoginComponent } from '@pages/gestion-usuarios/login/login.component'
 import { RegistroComponent } from '@pages/gestion-usuarios/registro/registro.component'
 import { HomeComponent } from '@pages/home/home.component'
 import { NovedadComponent } from '@pages/novedad/novedad.component'
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 import { EditarSlideComponent } from '@pages/gestion-home/editar-slide/editar-slide.component'
 import { InscripcionPreceptorComponent } from '@pages/gestion-examenes-finales/inscripcion-preceptor/inscripcion-preceptor.component'
 import { EditarMesaComponent } from './pages/gestion-examenes-finales/editar-mesa/editar-mesa.component'
 // import { authGuard } from '@guards/auth.guard'
-=======
-import { EditarSlideComponent } from './pages/gestion-home/editar-slide/editar-slide.component'
-import { authGuard } from '@guards/auth.guard'
->>>>>>> Stashed changes
-=======
-import { EditarSlideComponent } from './pages/gestion-home/editar-slide/editar-slide.component'
-import { authGuard } from '@guards/auth.guard'
->>>>>>> Stashed changes
-=======
-import { EditarSlideComponent } from './pages/gestion-home/editar-slide/editar-slide.component'
-import { authGuard } from '@guards/auth.guard'
->>>>>>> Stashed changes
-=======
-import { EditarSlideComponent } from './pages/gestion-home/editar-slide/editar-slide.component'
-import { authGuard } from '@guards/auth.guard'
->>>>>>> Stashed changes
 
 const indexarRuta = (componenteIndex: any): Route => {
   const rutaIndex: Route = {
@@ -80,7 +60,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [authGuard],
+    // canActivate: [authGuard],
     children: [
       {
         path: 'cooperadora',
