@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable, inject } from '@angular/core'
 import { Observable, map } from 'rxjs'
 
-export const API_BASE = 'http://localhost:8000/api'
+export const API_BASE = 'http://localhost:8000/api/v1/inventario'
 
 export const RUTA_INVENTARIO = '/dashboard/inventario'
 

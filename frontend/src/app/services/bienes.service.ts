@@ -36,7 +36,7 @@ export interface Egreso {
   providedIn: 'root'
 })
 export class BienesService {
-  private apiUrl = 'http://localhost:8000/api';
+  private apiUrl = 'http://localhost:8000/api/v1/inventario';
 
   constructor(private http: HttpClient) { }
 

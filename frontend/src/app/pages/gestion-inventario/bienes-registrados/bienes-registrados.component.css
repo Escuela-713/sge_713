@@ -63,7 +63,7 @@
     font-size: 18px;
 }
 
-/* Center header title and search input */
+
 .inventory .header {
     display: flex;
     flex-direction: column;

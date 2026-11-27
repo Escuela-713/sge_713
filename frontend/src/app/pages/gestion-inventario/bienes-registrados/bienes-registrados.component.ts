@@ -26,7 +26,7 @@ export class BienesRegistradosComponent implements OnInit {
   error = signal('')
   mensajeError = signal('')
 
-  /** Filtra por nombre, código, categoría, ubicación y estado. Tolerante a campos vacíos. */
+
   bienesFiltrados = computed(() => {
     const termino = this.busqueda().trim().toLowerCase()
     if (!termino) {

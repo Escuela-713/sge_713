@@ -60,7 +60,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [authGuard],
+    //canActivate: [authGuard],
     children: [
       {
         path: 'cooperadora',
@@ -116,7 +116,7 @@ export const routes: Routes = [
           { path: 'editar/:id', component: RegistrarBienComponent },
                     { path: 'bienes', component: BienesRegistradosComponent },
           { path: 'movimientos', component: MovimientosInventarioComponent },
-          { path: 'reportes', component: ReportesInventarioComponent, canActivate: [adminGuard] },
+          { path: 'reportes', component: ReportesInventarioComponent },
         ],
       },
       {
