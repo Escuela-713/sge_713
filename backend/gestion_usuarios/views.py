@@ -62,8 +62,6 @@ class RegisterAPIView(APIView):
 
         usuario = serializer.save()
 
-        refresh = RefreshToken.for_user(usuario)
-
         return Response(
             {
                 "mensaje": "Registro exitoso",
@@ -71,8 +69,6 @@ class RegisterAPIView(APIView):
             },
             status=status.HTTP_201_CREATED,
         )
-        set_refresh_cookie(response, refresh)
-        return response
 
 
 

@@ -3,177 +3,124 @@
   <form [formGroup]="form" (ngSubmit)="onEnviar($event)">
     <!-- Alerta de Error del Servidor -->
     @if (errorMessage) {
-      <div
-        class="alert alert-danger mb-3 p-2 text-center"
-        style="font-size: 14px; border-radius: 6px"
-      >
-        {{ errorMessage }}
-      </div>
+    <div class="alert alert-danger mb-3 p-2 text-center" style="font-size: 14px; border-radius: 6px">
+      {{ errorMessage }}
+    </div>
     }
 
     <!-- Alerta de Éxito -->
     @if (successMessage) {
-      <div
-        class="alert alert-success mb-3 p-2 text-center"
-        style="font-size: 14px; border-radius: 6px"
-      >
-        {{ successMessage }}
-      </div>
+    <div class="alert alert-success mb-3 p-2 text-center" style="font-size: 14px; border-radius: 6px">
+      {{ successMessage }}
+    </div>
     }
 
     <!-- Nombre -->
     <label>Nombre</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control"
-        formControlName="primer_nombre"
-        type="text"
-        placeholder="Ingrese su nombre"
-      />
-      @if (PrimerNombre?.errors && PrimerNombre?.touched) {
-        @if (PrimerNombre?.hasError('required')) {
-          <div class="text-danger mb-2" style="font-size: 13px">
-            El nombre es requerido.
-          </div>
-        }
-      }
+      <input class="form-control" formControlName="primer_nombre" type="text" placeholder="Ingrese su nombre" />
     </div>
+    @if (PrimerNombre?.errors && PrimerNombre?.touched) {
+    @if (PrimerNombre?.hasError('required')) {
+    <div class="text-danger mb-2" style="font-size: 13px">
+      El nombre es requerido.
+    </div>
+    }
+    }
 
     <!-- Apellido -->
     <label>Apellido</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control"
-        formControlName="primer_apellido"
-        type="text"
-        placeholder="Ingrese su apellido"
-      />
-      @if (PrimerApellido?.errors && PrimerApellido?.touched) {
-        @if (PrimerApellido?.hasError('required')) {
-          <div class="text-danger mb-2" style="font-size: 13px">
-            El apellido es requerido.
-          </div>
-        }
-      }
+      <input class="form-control" formControlName="primer_apellido" type="text" placeholder="Ingrese su apellido" />
     </div>
+    @if (PrimerApellido?.errors && PrimerApellido?.touched) {
+    @if (PrimerApellido?.hasError('required')) {
+    <div class="text-danger mb-2" style="font-size: 13px">
+      El apellido es requerido.
+    </div>
+    }
+    }
 
     <!-- Email -->
     <label>Correo electrónico</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control"
-        formControlName="email"
-        type="email"
-        placeholder="Ingrese su correo electrónico"
-      />
-      @if (Email?.errors && Email?.touched) {
-        @if (Email?.hasError('required')) {
-          <div class="text-danger mb-2" style="font-size: 13px">
-            El correo electrónico es requerido.
-          </div>
-        } @else if (Email?.hasError('email')) {
-          <div class="text-danger mb-2" style="font-size: 13px">
-            Ingresá un correo electrónico válido.
-          </div>
-        }
-      }
+      <input class="form-control" formControlName="email" type="email" placeholder="Ingrese su correo electrónico" />
     </div>
+    @if (Email?.errors && Email?.touched) {
+    @if (Email?.hasError('required')) {
+    <div class="text-danger mb-2" style="font-size: 13px">
+      El correo electrónico es requerido.
+    </div>
+    } @else if (Email?.hasError('email')) {
+    <div class="text-danger mb-2" style="font-size: 13px">
+      Ingresá un correo electrónico válido.
+    </div>
+    }
+    }
 
     <!-- DNI -->
     <label>DNI</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control"
-        formControlName="dni"
-        type="text"
-        inputmode="numeric"
-        placeholder="Ingrese su DNI"
-      />
-      @if (Dni?.errors && Dni?.touched) {
-        @if (Dni?.hasError('required')) {
-          <div class="text-danger mb-2" style="font-size: 13px">
-            El DNI es requerido.
-          </div>
-        }
-      }
+      <input class="form-control" formControlName="dni" type="text" inputmode="numeric" placeholder="Ingrese su DNI" />
     </div>
+    @if (Dni?.errors && Dni?.touched) {
+    @if (Dni?.hasError('required')) {
+    <div class="text-danger mb-2" style="font-size: 13px">
+      El DNI es requerido.
+    </div>
+    }
+    }
 
     <!-- Confirmar DNI -->
     <label>Confirmación de DNI</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control mb-2"
-        formControlName="dniConfirmation"
-        type="text"
-        inputmode="numeric"
-        placeholder="Ingrese la confirmación de su DNI"
-      />
-      @if (DniConfirmation?.errors && DniConfirmation?.touched) {
-        @if (DniConfirmation?.hasError('required')) {
-          <div class="text-danger mb-2" style="font-size: 13px">
-            La confirmación del DNI es requerida.
-          </div>
-        }
-      } @else if (errorDni) {
-        <div class="text-danger mb-2" style="font-size: 13px">
-          El DNI debe ser igual.
-        </div>
-      }
+      <input class="form-control mb-2" formControlName="dniConfirmation" type="text" inputmode="numeric"
+        placeholder="Ingrese la confirmación de su DNI" />
     </div>
+    @if (DniConfirmation?.errors && DniConfirmation?.touched) {
+    @if (DniConfirmation?.hasError('required')) {
+    <div class="text-danger mb-2" style="font-size: 13px">
+      La confirmación del DNI es requerida.
+    </div>
+    }
+    } @else if (errorDni) {
+    <div class="text-danger mb-2" style="font-size: 13px">
+      El DNI debe ser igual.
+    </div>
+    }
 
     <!-- Segundo nombre -->
 
     <label>Segundo nombre</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control"
-        formControlName="segundo_nombre"
-        type="text"
-        placeholder="Ingrese su segundo nombre (opcional)"
-      />
+      <input class="form-control" formControlName="segundo_nombre" type="text"
+        placeholder="Ingrese su segundo nombre (opcional)" />
     </div>
 
     <!-- Tercer nombre -->
     <label>Tercer nombre</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control mb-2"
-        formControlName="tercer_nombre"
-        type="text"
-        placeholder="Ingrese su tercer nombre (opcional)"
-      />
+      <input class="form-control mb-2" formControlName="tercer_nombre" type="text"
+        placeholder="Ingrese su tercer nombre (opcional)" />
     </div>
 
     <!-- Segundo apellido -->
     <label>Segundo apellido</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control mb-2"
-        formControlName="segundo_apellido"
-        type="text"
-        placeholder="Ingrese su segundo apellido (opcional)"
-      />
+      <input class="form-control mb-2" formControlName="segundo_apellido" type="text"
+        placeholder="Ingrese su segundo apellido (opcional)" />
     </div>
 
     <!-- Fecha de nacimiento -->
     <label>Fecha de nacimiento</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control mb-2"
-        formControlName="fecha_nacimiento"
-        type="date"
-      />
+      <input class="form-control mb-2" formControlName="fecha_nacimiento" type="date" />
     </div>
 
     <!-- Teléfono -->
     <label>Teléfono</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control mb-2"
-        formControlName="telefono"
-        type="tel"
-        placeholder="Ingrese su teléfono"
-      />
+      <input class="form-control mb-2" formControlName="telefono" type="tel" placeholder="Ingrese su teléfono" />
     </div>
 
     <!-- Género -->
@@ -205,99 +152,68 @@
     <!-- Dirección -->
     <label>Dirección</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control mb-2"
-        formControlName="calle"
-        type="text"
-        placeholder="Ingrese su calle"
-      />
+      <input class="form-control mb-2" formControlName="calle" type="text" placeholder="Ingrese su calle" />
     </div>
     <label>Número de calle</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control mb-2"
-        formControlName="numero_calle"
-        type="number"
-        placeholder="Ingrese su número de calle"
-      />
+      <input class="form-control mb-2" formControlName="numero_calle" type="number"
+        placeholder="Ingrese su número de calle" />
     </div>
     <label>Barrio</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control mb-2"
-        formControlName="barrio"
-        type="text"
-        placeholder="Ingresar su barrio"
-      />
+      <input class="form-control mb-2" formControlName="barrio" type="text" placeholder="Ingresar su barrio" />
     </div>
 
     <!-- Localidades -->
     <label>ID Localidad</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control mb-2"
-        formControlName="id_localidad"
-        type="number"
-        placeholder="Ingresar su ID de localidad"
-      />
+      <input class="form-control mb-2" formControlName="id_localidad" type="number"
+        placeholder="Ingresar su ID de localidad" />
     </div>
     <label>ID Localidad de nacimiento</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control mb-2"
-        formControlName="id_localidad_nacimiento"
-        type="number"
-        placeholder="Ingresar su ID de localidad de nacimiento"
-      />
+      <input class="form-control mb-2" formControlName="id_localidad_nacimiento" type="number"
+        placeholder="Ingresar su ID de localidad de nacimiento" />
     </div>
 
     <!-- Contraseña -->
     <label>Contraseña</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control mb-2"
-        formControlName="password"
-        type="password"
-        placeholder="Ingresar contraseña"
-      />
-      @if (Password?.errors && Password?.touched) {
-        @if (Password?.hasError('required')) {
-          <div class="text-danger mb-2" style="font-size: 13px">
-            La contraseña es requerida.
-          </div>
-        } @else if (Password?.hasError('minlength')) {
-          <div class="text-danger mb-2" style="font-size: 13px">
-            La contraseña requiere como mínimo 8 caracteres.
-          </div>
-        }
-      }
+      <input class="form-control mb-2" formControlName="password" type="password" placeholder="Ingresar contraseña" />
     </div>
+    @if (Password?.errors && Password?.touched) {
+    @if (Password?.hasError('required')) {
+    <div class="text-danger mb-2" style="font-size: 13px">
+      La contraseña es requerida.
+    </div>
+    } @else if (Password?.hasError('minlength')) {
+    <div class="text-danger mb-2" style="font-size: 13px">
+      La contraseña requiere como mínimo 8 caracteres.
+    </div>
+    }
+    }
 
     <!-- Confirmar contraseña -->
     <label>Confirmar contraseña</label>
     <div class="input-group mb-3">
-      <input
-        class="form-control mb-3"
-        formControlName="passwordConfirmation"
-        type="password"
-        placeholder="Ingrese la confirmación de su contraseña"
-      />
-      @if (PasswordConfirmation?.errors && PasswordConfirmation?.touched) {
-        @if (PasswordConfirmation?.hasError('required')) {
-          <div class="text-danger mb-2" style="font-size: 13px">
-            La confirmación de la contraseña es requerida.
-          </div>
-        }
-      } @else if (errorPassword) {
-        <div class="text-danger mb-2" style="font-size: 13px">
-          Las contraseñas deben ser iguales.
-        </div>
-      }
+      <input class="form-control mb-3" formControlName="passwordConfirmation" type="password"
+        placeholder="Ingrese la confirmación de su contraseña" />
     </div>
+    @if (PasswordConfirmation?.errors && PasswordConfirmation?.touched) {
+    @if (PasswordConfirmation?.hasError('required')) {
+    <div class="text-danger mb-2" style="font-size: 13px">
+      La confirmación de la contraseña es requerida.
+    </div>
+    }
+    } @else if (errorPassword) {
+    <div class="text-danger mb-2" style="font-size: 13px">
+      Las contraseñas deben ser iguales.
+    </div>
+    }
 
     <div class="btn-centrado">
-      <button class="btn btn-guardarSesion">Registrarse</button>
-      <button class="btn btn-cancelar btn-">Cancelar</button>
+      <input type="submit" class="btn btn-guardarSesion" value="Registrarse">
+      <a routerLink="/home" class="btn btn-cancelar btn-">Cancelar</a>
     </div>
     <p>¿Ya tenés cuenta? <a routerLink="/iniciar-sesion">Iniciar sesión</a></p>
   </form>

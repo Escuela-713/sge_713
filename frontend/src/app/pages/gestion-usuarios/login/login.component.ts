@@ -48,10 +48,9 @@ export class LoginComponent {
         next: (response) => {
           console.log('Ingreso exitoso');
 
-          const returnUrl =
-            this.route.snapshot.queryParams['returnUrl'] || '/dashboard/home';
-
-          this.router.navigateByUrl(returnUrl);
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 1500);
         },
         error: (err) => {
           console.error('Error de autenticación:', err);
